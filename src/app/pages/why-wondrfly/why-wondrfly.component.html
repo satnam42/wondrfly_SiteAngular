@@ -1,0 +1,225 @@
+<body class="terms_body">
+    <app-header2 *ngIf="!isLogin"></app-header2>
+    <app-header *ngIf="isLogin"></app-header>
+
+<div class="imgage-corners">
+    <img src="assets/whywonderfly-leftcircle.png">
+</div>
+    <section class="webelieve-wonderfly">
+        <div class="container">
+            <div class="row">
+                    <div class="col-3 image-sec-1">
+                        <img class="mt-5 image-sec-1-1" src="{{blogUrl}}{{data[0]?.images[1]?.url}}">
+                        <img class="mt-4 image-sec-1-2" src="{{blogUrl}}{{data[0]?.images[0]?.url}}">
+                    </div>
+                    <div class="col-3 image-sec-2">
+                        <img class="image-sec-2-1" src="{{blogUrl}}{{data[0]?.images[2]?.url}}">
+                        <img class="mt-4 image-sec-2-2" src="{{blogUrl}}{{data[0]?.images[3]?.url}}">
+                    </div>
+                    <div class="col-6 terms_box">
+                        <h2>{{data[0].title}}</h2>
+                        <ul>
+                          <li>{{data[0].content1}}</li>
+                          <li>{{data[0].content2}}</li>
+                          <li> {{data[0].content3}}</li>
+                          <li>{{data[0].content4}}</li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+    </section>
+
+   
+
+    <section class="family-wonderfly">
+    <div class="container">
+        <div class="row">
+            <div class="col-6 family-text">
+                <h1>
+                    {{data[1].title}}
+                </h1>
+                <p>
+                    {{data[1].content1}}
+                    <br>
+                    <br>
+                    <span> {{data[1].content2}}</span>
+                    <br>
+                    <br>
+                    {{data[1].content3}}
+                </p>
+            </div>
+            <div class="col-6">
+                <div class="image-corners">
+                    <img src="assets/whywonderfly-rightcircle.png">
+                </div>
+                <div class="image-section">
+                    <img src="{{blogUrl}}{{data[1]?.images[0]?.url}}">
+                </div> 
+            </div>
+        </div>
+    </div>
+    </section>
+
+    <section class="wave-sect">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 ">
+                    <div class="text-header">
+                    <div class="bar">
+
+                    </div>
+                    <h1>
+                        want to give it a try? 
+                    </h1>
+                    <h2>
+                        it's as easy as...
+                    </h2>
+                     </div>
+                    <div class="wave-bar">
+                        <img src="assets/wave-line.svg">
+
+                        <div class="first-circle">
+                            <div class="circle-dots position-1">
+                                <h1>1</h1>
+                            </div>
+                        
+                            <h3>
+                                Sign up
+                            </h3>
+                           
+                            <h2>
+                                and create a quick and easyfamily profile
+                            </h2>
+                        
+                        </div>
+
+                        <div class="second-circle">
+                            <div class="circle-dots position-2">
+                                <h1>2</h1>
+                            </div>
+                            
+                            <h3>
+                                Customize
+                            </h3>
+                            
+                            <h2>
+                                your wondrfly experience by sharing your child's age, interests, and level so we can make smart suggestions of activity providers near you
+                            </h2>
+                        </div>
+
+                        <div class="third-circle">
+                            <div class="circle-dots position-3">
+                                <h1>3</h1>
+                            </div>
+                           
+                            <h3>
+                                Explore
+                            </h3>
+                            
+                            <h2>
+                                our database local pros anytime – find “just right” fun and learning for your little ones!
+                            </h2>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12 subscribe">
+               <h1>
+                Subscribe
+               </h1>
+               <h2>
+                All the best programs, activities and experiences for your family in Hudson County, delivered to your inbox. Plus special offers, partner discounts and more! 
+               </h2>
+               <div class="search_bar">
+                   <div class="input-group">
+                       <input  class="form-control" placeholder="example@domain.com" type="text">
+                       <div  class="input-group-pend"><button  class="Submit_btn" type="button">Submit</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <footer>
+        <div class="container">
+            <div class="footer_inner">
+                <div class="row align-items-center">
+                    <div class="col-12">
+                        <div class="footer_left">
+                           
+                                <div class="footer_menu">
+                                    <ul>
+                                        <li class="cursor">
+                                            <a [routerLink]="['/about-wondrfly']">About Us</a>
+                                          </li>
+                                        <li >
+                                            <a [routerLink]="['/blogs']">Blogs</a>
+                                          </li>
+                                        <li>
+                                            <a [routerLink]="['/faq']">FAQ</a>
+                                        </li>
+                                        <li>
+                                            <a [routerLink]="['/term-condition']">Terms & Conditions</a>
+                                        </li>
+                                        <li>
+                                            <a [routerLink]="['/privacyPolicy']">Privacy Policy</a>
+                                        </li>
+                                        <li>
+                                            <a [routerLink]="['/contactUs']">Contact Us</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            <div class="copyright_text">
+                                <p>© 2021 Wondrfly Inc. All Rights Reserved.</p>
+                            </div>
+                        </div>
+
+                        <div class="social_icon_footer">
+                            <ul>
+                                <li>
+                                    <a href="https://www.facebook.com/wondrfly" target="_blank">
+                                        <span class="icon icon-facebook"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://www.instagram.com/wondrfly/" target="_blank">
+                                        <span class="icon icon-instagram"></span>
+                                    </a>
+                                </li>
+                                <!-- <li>
+                                    <a href="javascript:;">
+                                        <span class="icon icon-twitter"></span>
+                                    </a>
+                                </li> -->
+                                <li>
+                                    <a href="#">
+                                        <span class="icon icon-pinterest"></span>
+                                    </a>
+                                </li>
+                                <!-- <li>
+                                    <a href="javascript:;">
+                                        <span class="icon">
+                                            <img src="assets/linkedin.png">
+                                        </span>
+                                    </a>
+                                </li> -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>  
+<ngx-ui-loader></ngx-ui-loader>
+
+

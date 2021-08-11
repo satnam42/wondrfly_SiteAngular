@@ -1,0 +1,319 @@
+.container {
+    max-width: 1200px;
+}
+
+.programs_outer {
+    padding: 72px 0 0 0;
+}
+
+.programs_outer .add_program {
+    font-size: 20px;
+    line-height: 20px;
+    color: #494949;
+}
+
+.programs_outer .add_program .icon {
+    color: #FA627D;
+    vertical-align: middle;
+    font-size: 21px;
+    margin: 0 0 0 5px;
+}
+
+.inactiveProgram {
+    background: rgb(240, 236, 236) !important;
+}
+
+.programs_table {
+    margin-top: 46px;
+    margin-bottom: 30px;
+}
+
+.programs_table .table {
+    border-collapse: separate;
+    border-spacing: 0 20px;
+    margin: 0;
+}
+
+tr.add_border td:first-child {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+tr.add_border td:last-child {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.programs_table .program_img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 14px;
+}
+
+.programs_table .program_img img {
+    border-radius: 50%;
+}
+
+.programs_table tr.add_border {
+    background: #F2F2F2;
+    box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+}
+
+.programs_table tr th {
+    font-family: 'Poppins';
+    font-weight: normal;
+    font-size: 11px;
+    line-height: 19px;
+    letter-spacing: 0.01em;
+    color: #494949;
+    border: none;
+}
+
+.programs_table tr th:first-child {
+    padding-left: 70px;
+}
+
+.programs_table tr td {
+    font-size: 15px;
+    line-height: 19px;
+    font-family: 'Poppins';
+    letter-spacing: 0.001em;
+    color: #748494;
+    vertical-align: middle;
+    border: none;
+    padding: 20px 12px;
+}
+
+.programs_table .program_img img {
+    max-width: 100%;
+    height: 100%;
+}
+
+.programs_table .program_collapse .table {
+    max-width: 1107px;
+    margin: -3px auto 0;
+    padding: 0 0 25px 0;
+    border-spacing: 0 5px;
+}
+
+.programs_table .program_collapse tr.add_border {
+    background: #FFFFFF;
+    box-sizing: border-box;
+    box-shadow: none;
+}
+
+.programs_table .program_collapse tr.add_border td:first-child {
+    border-left: 1px solid #E5E9EC;
+    color: #494949;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+.programs_table .program_collapse tr.add_border td:last-child {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.programs_table .program_collapse tr.add_border td:last-child {
+    border-right: 1px solid #E5E9EC;
+}
+
+.programs_table tr.program_collapse td {
+    padding: 0;
+}
+
+.programs_table .program_collapse tr.add_border td {
+    padding: 17px;
+    border-top: 1px solid #E5E9EC;
+    border-bottom: 1px solid #E5E9EC;
+}
+
+.programs_table .program_collapse tr th {
+    color: #494949;
+    text-transform: uppercase;
+}
+
+.programs_table body {
+    /* overflow: hidden; */
+    height: 250px;
+    overflow: auto;
+}
+
+.programs_table .program_collapse {
+    margin-top: -20px;
+    background: #F2F2F2;
+    border-radius: 0 0 20px 20px;
+}
+
+.programs_table .program_collapse .program {
+    border-top: 1px solid #BDBDBD;
+    margin-top: 20px;
+}
+
+.programs_table tr.add_border[aria-expanded="true"] {
+    border-radius: 0;
+}
+
+.programs_table tr.add_border[aria-expanded="true"] td:first-child {
+    border-bottom-left-radius: 0;
+}
+
+.programs_table tr.add_border[aria-expanded="true"] td:last-child {
+    border-bottom-right-radius: 0;
+}
+
+.loadMoreBtn {
+    align-items: center;
+    justify-content: center;
+    background: #F15C20;
+    border: 1px solid #F15C20;
+    box-sizing: border-box;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.12);
+    border-radius: 5px;
+    min-width: 150px;
+    min-height: 40px;
+    text-align: center;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 13px;
+    margin: 0 auto;
+    text-transform: uppercase;
+}
+
+.programs_table .theading {
+    font-family: 'Poppins';
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 19px;
+    letter-spacing: 0.01em;
+    color: #494949;
+    border: none;
+}
+
+.programs_table .tdata {
+    font-size: 15px;
+    line-height: 19px;
+    font-family: 'Poppins';
+    letter-spacing: 0.001em;
+    color: #494949;
+    vertical-align: middle;
+    border: none;
+    padding: 0;
+}
+
+.programs_table .col.name {
+    max-width: 280px;
+    min-width: 280px;
+}
+
+.programs_table .col.publish .published {
+    color: #53B2E8;
+}
+
+.programs_table .col.category {
+    max-width: 137px;
+    min-width: 137px;
+}
+
+.programs_table .col.time {
+    max-width: 170px;
+    min-width: 170px;
+}
+
+.programs_table .col.location {
+    max-width: 316px;
+    min-width: 274px;
+}
+
+.row.bg_color {
+    background: #F2F2F2;
+    box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    padding: 20px 0;
+    margin-top: 30px;
+}
+
+.collapse_outer {
+    margin-bottom: 43px;
+}
+
+.collapse_outer:last-child {
+    margin-bottom: 0;
+}
+
+.collapse_outer .col.arrow {
+    max-width: 54px;
+    text-align: center;
+}
+
+
+/* .programs_table .col.first_col {
+    min-width: 133px;
+} */
+
+.add_border a {
+    margin: 0 10px 0 0;
+}
+
+.add_border .icon {
+    color: #FF4242;
+}
+
+.dropdown_icon .icon-more {
+    color: #FF4242;
+    font-size: 20px;
+}
+
+.dropdown_icon .dropdown-menu {
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 20px;
+    min-width: 216px;
+    left: auto !important;
+    right: 11px;
+    padding: 15px;
+    border: none;
+}
+
+.dropdown_icon .dropdown-menu a {
+    padding: 9px 15px;
+    border-radius: 20px;
+    font-size: 12px;
+    color: #748494;
+}
+
+.dropdown_icon .dropdown-menu a .icon {
+    color: #FF4242;
+    font-size: 16px;
+    vertical-align: middle;
+    margin: 0 9px 0 0;
+}
+
+.dropdown_icon .dropdown-menu a:hover {
+    background: rgba(229, 233, 236, 0.5);
+}
+
+@media(max-width:767px) {
+    .programs_outer {
+        padding: 30px 0 0 0;
+    }
+    .programs_table .table_list {
+        overflow: hidden;
+        overflow-x: auto;
+    }
+    .programs_table .table_list .table {
+        width: 900px;
+    }
+    .programs_outer .add_program {
+        font-size: 24px;
+    }
+}
+
+@media(min-width:767px) {
+    .programs_outer {
+        min-height: calc(100vh - 312px);
+    }
+}

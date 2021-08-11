@@ -1,0 +1,1438 @@
+<app-header2 *ngIf="!isLogin"></app-header2>
+<app-header *ngIf="isLogin"></app-header>
+<app-alert *ngIf="isLogin"></app-alert>
+<section class="main_outer">
+    <div class="search_activity">
+        <div class="row row-0">
+            <div class="col-md-6">
+                <div class="search-filterupper">
+                    <div class="search-filed">
+                        <div class="left-searchpd">
+                            <div class="left_search">
+                                <div>
+                                    <form class="banner_form" data-toggle="collapse" href="#dropdownprogram-provider" role="button" aria-expanded="false" aria-controls="dropdownprogram-provider">
+                                        <div class="form-group ">
+                                            <input type="text" autocomplete="off" (keyup)="searchCategory(activityName);providerSearch(activityName)" placeholder="Search Activity..."
+                                                class="form-control camp_input" name="activityName" [(ngModel)]="activityName">
+                                        </div>
+                                        <div class="form-group saerch-activities">
+                                            <h6>Activities</h6>
+                                            <span><img src="assets/search-activitynew.svg"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <button (click)="filterByNameDate()" class="banner_button" type="submit">
+                                                <img src="assets/search_icon.svg" alt="Search image">
+                                            </button>
+                                        </div>
+
+                                        <div class="dropdownprogram" *ngIf="(providersBySearch?.length || categoriesBySearch?.length ) && activityName">
+                                            <div class="card card-body">
+                                              <div class="program-list" *ngIf="categoriesBySearch?.length">
+                                                <h6  (click)="filterByCategory(category.id);providersBySearch.length=0;categoriesBySearch.length=0;activityName=''" *ngFor="let category of categoriesBySearch | slice:0:4">
+                                                    {{category.name}}
+                                                    <span class="search-programlist">
+                                                        <img src="assets/program-search.svg">
+                                                    </span>
+                                                </h6>
+                                              </div>
+                                              <hr>
+                                              <div class="provider-list" *ngIf="providersBySearch?.length">
+                                                <h5>
+                                                    Providers
+                                                </h5>
+                                                <h6 (click)="goToProviderProfile(provider)" *ngFor="let provider of providersBySearch | slice:0:4">
+                                                    {{provider.firstName}}
+                                                </h6>
+                                              </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 toggle-border">
+                <div class="toggle-filtersearch">
+                    <button [class.active]="isOnline" (click)="isInPerson=false;isOnline=true;inpersonOrVirtual('online')" class="btn1-filtersearch">
+                        Online
+                    </button>
+                    <button [class.active]="isInPerson" (click)="isOnline=false;isInPerson=true;inpersonOrVirtual('inperson')" class="btn2-filtersearch">
+                        In person
+                    </button>
+                </div>
+            </div>
+        </div>
+
+       <div class="row row-0">
+        <div class="col-12 searchs-filters">
+            <div class="search-filtersk" *ngIf="isInPerson">
+                <div class="search-filterlower">
+                    <form>
+                        <div class="form-group">
+                          <input type="type" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Current location">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="search-filterss">
+                <div class="category_list" id="accordionExample">
+                    <ul>
+                        <!-- <li class="cursor">
+                            <a [ngClass]="{'active' : isCategoryFilter}"
+                                (click)="openModal(isCategoryFilter=true,isChildFilter=false,isPriceFilter=false,isDateFilter=false,isAgeFilter=false,isTimeFilter=false,isCategoryModal=true,isChildModal=false,isPriceModal=false,isDateModal=false,isAgeModal=false,isTimeModal=false)"
+                                aria-expanded="true" data-target="#category" data-toggle="collapse">Categories</a>
+
+                            <div class="collapse main_collpase time_collpase verification_modal partcategory" id="category"
+                                data-parent="#accordionExample">
+                                <div class="collpase_content">
+                                    <div class="form-group date_time">
+                                        <div class="input_outer">
+                                            <div class="upper-partcategory">
+                                                <h1>Select the category
+                                                    <span><a>Clear</a></span>
+                                                </h1>
+
+                                            </div>
+                                            <div class="lower-partcategory">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+                                                </div>
+
+                                                <div class="input-btns">
+                                                    <button>
+                                                        Computers
+                                                        <div class="icon-close delete_search_icon recent-search-icon movecategory-icon"></div>
+                                                    </button>
+
+                                                    <button>
+                                                        Computers
+                                                        <div class="icon-close delete_search_icon recent-search-icon movecategory-icon"></div>
+                                                    </button>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </li> -->
+                        <li class="cursor">
+                          <a aria-expanded="true" data-target="#category" [ngClass]="{'active' : isCategoryFilter}"
+                          (click)="openModal(isCategoryFilter=true,isChildFilter=false,isPriceFilter=false,isDateFilter=false,isAgeFilter=false,isTimeFilter=false,isCategoryModal=true,isChildModal=false,isPriceModal=false,isDateModal=false,isAgeModal=false,isTimeModal=false)" data-toggle="collapse">Categories</a>
+                          <div class="collapse main_collpase time_collpase verification_modal partcategory" id="category"
+                              data-parent="#accordionExample">
+                              <div class="collpase_content cate-dilter">
+                                  <div class="container">
+                                      <div class="row categories-filt">
+                                          <div class="col-4 categories-filterheader">
+                                            <h2>
+                                              Categories
+                                            </h2>
+                                          </div>
+                                          <div class="col-8 sub-categoriesfilterheader">
+                                            <h2>
+                                              Sub categories
+                                            </h2>
+                                          </div>
+                                      </div>
+                                      <div class="row">
+                                        <div class="col-4 categories-filtercontent" >
+                                          <h3 *ngFor='let cat of categories' (click)='getSubCateById(cat.id)'>{{cat.name}}</h3>
+                                        </div>
+                                        <div class="col-8 sub-categoriesfiltercontent">
+
+                                            <h3 *ngFor='let s of subCats'>{{s.name}}</h3>
+                                            <!-- <div class="row">
+                                              <div class="col-12">
+
+                                              </div>
+                                              <div class="col-6">
+                                                <h3 *ngFor='let s of subCats | slice:8:16'>{{s.name}}</h3>
+
+                                              </div>
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </li>
+                        <li class="cursor">
+                            <a [ngClass]="{'active' : isAgeFilter}"
+                                (click)="filterName='age';openModal(isCategoryFilter=false,isChildFilter=false,isPriceFilter=false,isDateFilter=false,isAgeFilter=true,isTimeFilter=false,isCategoryModal=false,isChildModal=false,isPriceModal=false,isDateModal=false,isAgeModal=true,isTimeModal=false)"
+                                aria-controls="collapseExample" aria-expanded="true" data-target="#ageGroup"
+                                data-toggle="collapse">Age </a>
+                            <div class="collapse main_collpase verification_modal" id="ageGroup"
+                                data-parent="#accordionExample">
+                                <div class="collpase_content">
+                                    <div class="form-group">
+
+                                        <ng5-slider [(value)]="minAge" [(highValue)]="maxAge" [options]="ageOption">
+                                        </ng5-slider>
+                                    </div>
+                                </div>
+                                <div class="submit_btn">
+                                    <button (click)="resetFilter()" type="button" aria-controls="collapseExample"
+                                    aria-expanded="true" data-target="#ageGroup" data-toggle="collapse"
+                                    class="cancel_btn">Clear</button>
+
+                                    <button (click)="programFilter()" scrollToTop.scrollTop=0 data-target="#ageGroup"
+                                        data-toggle="collapse" class="submitBtn">Save</button>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="cursor">
+                            <a aria-expanded="true" [ngClass]="{'active' : isTypeFilter}" aria-expanded="true" data-target="#typess" data-toggle="collapse"
+                            (click)="filterName='type';openModal(isCategoryFilter=false,isChildFilter=false,isPriceFilter=false,isDateFilter=false,isAgeFilter=false,isTimeFilter=false,isCategoryModal=false,isChildModal=false,isPriceModal=false,isTypeFilter=true,isDateModal=false,isAgeModal=false)">Type</a>
+                            <div class="collapse main_collpase typess verification_modal" id="typess"
+                            data-parent="#accordionExample">
+                            <div class="collpase_content">
+                                <div class="form-group typess">
+                                    <div class="input_outer">
+                                      <form action="">
+                                        <div class="typess-flex">
+                                          <input type="radio" id="type1" data-target="#typess" data-toggle="collapse" class="k-checkbox" name="type1" (change)="$event.target.checked ? typeChecked='Camps' : typeChecked='';programFilter()" value="camps">
+                                          <label for="type2" class="k-checkbox-label" for="type1">Camps</label>
+                                        </div>
+                                        <div class="typess-flex">
+                                        <input type="radio" id="type2" data-target="#typess" data-toggle="collapse" class="k-checkbox"  name="type1" (change)="$event.target.checked ? typeChecked='Semesters' : typeChecked='';programFilter()" value="semesters">
+                                        <label for="type2" class="k-checkbox-label">Semesters</label></div>
+                                        <div class="typess-flex">
+                                        <input type="radio" id="type3" data-target="#typess" data-toggle="collapse"  class="k-checkbox" name="type1" (change)="$event.target.checked ? typeChecked='Drops-in' : typeChecked='';programFilter()" value="drop-ins">
+                                        <label for="type3" class="k-checkbox-label">Drop-ins</label></div>
+                                        <div class="typess-flex">
+                                        <input type="radio" id="type4" data-target="#typess" data-toggle="collapse" class="k-checkbox" name="type1" (change)="$event.target.checked ? typeChecked='Ondemand' : typeChecked='';programFilter()" value="on-demand">
+                                        <label for="type4" class="k-checkbox-label">On demand</label></div>
+                                        <div class="typess-flex">
+                                        <input type="radio" id="type5" data-target="#typess" data-toggle="collapse" class="k-checkbox" name="type1" (change)="$event.target.checked ? typeChecked='Pass' : typeChecked='';programFilter()" value="pass">
+                                        <label for="type5" class="k-checkbox-label">Pass</label></div>
+                                      </form>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        </li>
+                        <li class="cursor">
+                            <a [ngClass]="{'active' : isDateFilter}"
+                                (click)="filterName='date';openModal(isCategoryFilter=false,isTypeFilter=false, isPriceFilter=false,isDateFilter=true,isAgeFilter=false,isTimeFilter=false,isCategoryModal=false,isChildModal=false,isPriceModal=false,isDateModal=true,isAgeModal=false,isTimeModal=false)"
+                                aria-expanded="true" data-target="#date" data-toggle="collapse">Dates</a>
+                            <div class="collapse main_collpase verification_modal date-rangecal" id="date"
+                                data-parent="#accordionExample">
+                                <ngx-daterangepicker-material (choosedDate)="choosedDate($event)"
+                                [autoApply]="true"
+                                >
+                                </ngx-daterangepicker-material>
+
+                                <div class="calender-botoombox">
+                                  <div class="calender-daterange">
+                                    <div class="calender-daterange1" *ngIf='!fromDate'>18 / 02 / 2021</div>
+                                    <div class="calender-daterange1" *ngIf='fromDate'>{{fromDate | date:'shortDate'}}</div>
+                                    <img src="assets/calenderarrows.svg">
+                                    <div class="calender-daterange2" *ngIf='!toDate'>11 / 03 / 2021</div>
+                                    <div class="calender-daterange2" *ngIf='toDate'>{{toDate | date:'shortDate'}}</div>
+                                  </div>
+                                  <div class="calender-buttons">
+                                    <button class="calender-buttons1" data-target="#date" data-toggle="collapse" >Cancel</button>
+                                    <button class="calender-buttons2" data-target="#date" data-toggle="collapse"  (click)='programFilter()'>Set Date</button>
+                                  </div>
+                                </div>
+                                <!-- <div class="collpase_content"> -->
+                                   <!-- <div class="form-group date_time">
+                                        <div class="input_outer">
+                                            <input type="date" class="form-control" placeholder="Start Date"
+                                                [ngModelOptions]="{standalone: true}" [(ngModel)]="fromDate">
+
+                                            <br>
+                                            <input  type="date" class="form-control right_input" placeholder="End Date"
+                                                [ngModelOptions]="{standalone: true}" [(ngModel)]="toDate">
+
+
+                                        </div>
+                                    </div> -->
+
+                                <!-- </div> -->
+                                <!-- <div class="submit_btn">
+                                    <button data-dismiss="modal" (click)="addFilter()" scrollToTop.scrollTop=0
+                                        data-target="#date" data-toggle="collapse" class="submitBtn">Search</button>
+
+                                    <button (click)="closePopup()" type="button" aria-expanded="true"
+                                        data-dismiss="modal" data-target="#date" data-toggle="collapse"
+                                        class="cancel_btn">Cancel</button>
+                                </div> -->
+                            </div>
+                        </li>
+                        <li class="cursor">
+                            <a aria-controls="collapseExample" (click)="filterName='time'" aria-expanded="true" data-target="#timess"
+                            data-toggle="collapse">Time</a>
+                            <div class="collapse main_collpase typess verification_modal" id="timess"
+                            data-parent="#accordionExample">
+                            <div class="collpase_content">
+                                <div class="form-group typess">
+                                    <div class="input_outer">
+                                      <form action="">
+                                        <div class="typess-flex">
+                                          <input type="radio" class="k-checkbox" id="time1" name="time1" (change)="$event.target.checked ? timeSession='early-morning' : timeSession=''" value="early-morning">
+                                          <label for="time1" class="k-checkbox-label">Early Morning (6am - 9am)</label>
+                                        </div>
+                                        <div class="typess-flex">
+                                        <input type="radio" id="time2" class="k-checkbox" name="time1" (change)="$event.target.checked ? timeSession='morning' : timeSession=''"  value="morning">
+                                        <label for="time2" class="k-checkbox-label">Morning (9am - 12pm)</label></div>
+                                        <div class="typess-flex">
+                                        <input type="radio" id="time3" class="k-checkbox" name="time1" (change)="$event.target.checked ? timeSession='afternoon' : timeSession=''" value="afternoon">
+                                        <label for="time3" class="k-checkbox-label">Afternoon (12pm - 3pm)</label></div>
+                                        <div class="typess-flex">
+                                        <input type="radio" id="time4" class="k-checkbox" name="time1" (change)="$event.target.checked ? timeSession='late-afternoon' : timeSession=''" value="late-afternoon">
+                                        <label for="time4" class="k-checkbox-label">Late Afternoon (3pm - 6pm)</label></div>
+                                        <div class="typess-flex">
+                                        <input type="radio" id="time5" class="k-checkbox" name="time1" (change)="$event.target.checked ? timeSession='evening' : timeSession=''" value="evening">
+                                        <label for="time5" class="k-checkbox-label">Evening (6pm - 9pm)</label></div>
+                                      </form>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        </li>
+                        <!-- <li class="cursor">
+                          <a [ngClass]="{'active' : isTimeFilter}"
+                              (click)="openModal(isCategoryFilter=false,isChildFilter=false,isPriceFilter=false,isDateFilter=false,isAgeFilter=false,isTimeFilter=true,isCategoryModal=false,isChildModal=false,isPriceModal=false,isDateModal=false,isAgeModal=false,isTimeModal=true)"
+                              aria-controls="collapseExample" aria-expanded="true" data-target="#time"
+                              data-toggle="collapse">Time</a>
+                          <div class="collapse main_collpase time_collpase verification_modal" id="time"
+                              data-parent="#accordionExample">
+                              <div class="collpase_content">
+                                  <input type='time' min='1:30' max='2:30'>
+                              </div>
+
+                              <div class="submit_btn">
+                                  <button (click)="resetFilter()" type="button" aria-expanded="true"
+                                  data-target="#time" data-toggle="collapse" class="cancel_btn">Clear</button>
+                                  <button (click)="addFilter()" scrollToTop.scrollTop=0 data-target="#time"
+                                      data-toggle="collapse" class="submitBtn">Save</button>
+                              </div>
+                          </div>
+                      </li> -->
+                        <li class="cursor">
+                          <a aria-expanded="true" aria-expanded="true" (click)="filterName='day'"data-target="#Dayss" data-toggle="collapse">Days</a>
+                          <div class="collapse main_collpase typess verification_modal" id="Dayss"
+                          data-parent="#accordionExample">
+                          <div class="collpase_content">
+                              <div class="form-group typess">
+                                  <div class="input_outer">
+                                    <h1>Select Days</h1>
+                                    <form action="">
+                                      <div class="typess-flex">
+                                        <input type="radio" class="k-checkbox radio-check" id="Days1" data-target="#Dayss" data-toggle="collapse" name="Days1"   (change)="$event.target.checked ? daysChecked='monday' : daysChecked='';programFilter()" value="monday">
+                                        <label for="Days1" class="k-checkbox-label">Mon</label></div>
+                                      <div class="typess-flex">
+                                        <input type="radio" class="k-checkbox radio-check" id="Days2" data-target="#Dayss" data-toggle="collapse" name="Days1"  (change)="$event.target.checked ? daysChecked='tuesday' : daysChecked='';programFilter()" value="tuesday">
+                                        <label for="Days2" class="k-checkbox-label">Tue</label></div>
+                                      <div class="typess-flex">
+                                        <input type="radio" class="k-checkbox radio-check" id="Days3" data-target="#Dayss" data-toggle="collapse" name="Days1"  (change)="$event.target.checked ? daysChecked='wednesday' : daysChecked='';programFilter()" value="wednesday">
+                                        <label for="Days3" class="k-checkbox-label">Wed</label></div>
+                                      <div class="typess-flex">
+                                        <input type="radio" class="k-checkbox radio-check" id="Days4" data-target="#Dayss" data-toggle="collapse" name="Days1"  (change)="$event.target.checked ? daysChecked='thursday' : daysChecked='';programFilter()" value="thursday">
+                                        <label for="Days4" class="k-checkbox-label">Thur</label></div>
+                                      <div class="typess-flex">
+                                        <input type="radio" class="k-checkbox radio-check" id="Days5" data-target="#Dayss" data-toggle="collapse" name="Days1"  (change)="$event.target.checked ? daysChecked='friday' : daysChecked='';programFilter()" value="friday">
+                                        <label for="Days5" class="k-checkbox-label">Fri</label></div>
+                                      <div class="typess-flex">
+                                        <input type="radio" class="k-checkbox radio-check" id="Days6" data-target="#Dayss" data-toggle="collapse" name="Days1"  (change)="$event.target.checked ? daysChecked='saturday' : daysChecked='';programFilter()" value="saturday">
+                                        <label for="Days6" class="k-checkbox-label">Sat</label></div>
+                                      <div class="typess-flex">
+                                        <input type="radio" class="k-checkbox radio-check" id="Days7" data-target="#Dayss" data-toggle="collapse" name="Days1"  (change)="$event.target.checked ? daysChecked='sunday' : daysChecked='';programFilter()" value="sunday">
+                                        <label for="Days7" class="k-checkbox-label">Sun</label></div>
+                                    </form>
+                                  </div>
+                              </div>
+
+                          </div>
+                      </div>
+                      </li>
+                        <li class="cursor">
+                          <a [ngClass]="{'active' : isPriceFilter}"
+                              (click)="filterName='price';openModal(isCategoryFilter=false,isChildFilter=false,isPriceFilter=true,isDateFilter=false,isAgeFilter=false,isTimeFilter=false,isCategoryModal=false,isChildModal=false,isPriceModal=true,isDateModal=false,isAgeModal=false,isTimeModal=false)"
+                              aria-controls="collapseExample" aria-expanded="true" data-target="#priceGroup"
+                              data-toggle="collapse">Price </a>
+                          <div class="collapse main_collpase verification_modal" id="priceGroup"
+                              data-parent="#accordionExample">
+                              <div class="collpase_content">
+                                  <div class="form-group">
+
+                                      <ng5-slider [(value)]="minPrice" [(highValue)]="maxPrice" [options]="priceOption">
+                                      </ng5-slider>
+                                  </div>
+                              </div>
+                              <div class="submit_btn">
+                                  <button (click)="resetFilter()" type="button" aria-controls="collapseExample"
+                                  aria-expanded="true" data-target="#priceGroup" data-toggle="collapse"
+                                  class="cancel_btn">Clear</button>
+
+                                  <button (click)="programFilter()" scrollToTop.scrollTop=0 data-target="#priceGroup"
+                                      data-toggle="collapse" class="submitBtn">Save</button>
+                              </div>
+                          </div>
+                      </li>
+                        <!-- <li class="cursor">
+                            <a aria-expanded="true" [ngClass]="{'active' : isTopFilter}"
+                            (click)="getTopRated();openModal(isCategoryFilter=false,isChildFilter=false,isPriceFilter=false,isDateFilter=false,isAgeFilter=false,isTimeFilter=false,isCategoryModal=false,isChildModal=false,isPriceModal=false,isDateModal=false,isAgeModal=false,isTimeModal=false)">
+                            Top Rated</a>
+                        </li> -->
+
+                      <li class="cursor">
+                        <a class="top-rateds" aria-expanded="true" [ngClass]="{'active' : isTopFilter}"
+                        (click)="openModal(isCategoryFilter=false,isChildFilter=false,isPriceFilter=false,isDateFilter=false,isAgeFilter=false,isTimeFilter=false,isCategoryModal=false,isChildModal=false,isPriceModal=false,isDateModal=false,isAgeModal=false,isTimeModal=false)"><span class="simple-toggle">
+                          <label class="tgl" style="font-size:30px">
+                            <input [(ngModel)]="isTopFilterCheckBox" (change)="getTopRated()" type="checkbox" />
+                            <span>Top Rated</span>
+                          </label>
+                        </span>
+                        </a>
+                      </li>
+
+                        <li *ngIf="showReset" class="cursor">
+                            <a (click)="resetFilter()" scrollToTop.scrollTop=0>Reset</a>
+                        </li>
+
+                        <!-- <li class="cursor">
+                            <a
+                                aria-expanded="true" data-target="#morefilter" data-toggle="modal">More Filters</a>
+                        </li>
+                        <li class="cursor">
+                            <a
+                                aria-expanded="true" data-target="#morefilter" data-toggle="modal">More Filters</a>
+                        </li>
+                        <li *ngIf="showReset" class="cursor">
+                            <a (click)="resetFilter()" scrollToTop.scrollTop=0>Reset</a>
+                        </li> -->
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+       </div>
+
+
+       <div class="row row-0" *ngIf="isInPerson">
+        <div class="col-md-6 list_left">
+            <!-- <div class="left-searchpd">
+                <div class="left_search">
+                    <div>
+                        <form class="banner_form" data-toggle="collapse" href="#dropdownprogram-provider" role="button" aria-expanded="false" aria-controls="dropdownprogram-provider">
+                            <div class="form-group ">
+                                <input type="text" autocomplete="off" (keyup)="searchCategory(activityName);providerSearch(activityName);" placeholder="Search Activity..."
+                                    class="form-control camp_input" name="activityName" [(ngModel)]="activityName">
+                            </div>
+                            <div class="form-group">
+                                <button (click)="filterByNameDate()" class="banner_button" type="submit">
+                                    <img src="assets/search_icon.svg" alt="Search image">
+                                </button>
+                            </div>
+
+                            <div class="dropdownprogram" *ngIf="(providersBySearch?.length || categoriesBySearch?.length ) && activityName">
+                                <div class="card card-body">
+                                  <div class="program-list" *ngIf="categoriesBySearch?.length">
+                                    <h6  (click)="filterByCategory(category.id)" *ngFor="let category of categoriesBySearch | slice:0:4">
+                                        {{category.name}}
+                                        <span class="search-programlist">
+                                            <img src="assets/program-search.svg">
+                                        </span>
+                                    </h6>
+                                  </div>
+                                  <hr>
+                                  <div class="provider-list" *ngIf="providersBySearch?.length">
+                                    <h5>
+                                        Providers
+                                    </h5>
+                                    <h6 (click)="goToProviderProfile(provider)" *ngFor="let provider of providersBySearch | slice:0:4">
+                                        {{provider.firstName}}
+                                    </h6>
+                                  </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+           -->
+
+            <!-- <div class="category_list" id="accordionExample">
+                <ul>
+                    <li class="cursor">
+                        <a [ngClass]="{'active' : isAgeFilter}"
+                            (click)="openModal(isCategoryFilter=false,isChildFilter=false,isPriceFilter=false,isDateFilter=false,isAgeFilter=true,isTimeFilter=false,isCategoryModal=false,isChildModal=false,isPriceModal=false,isDateModal=false,isAgeModal=true,isTimeModal=false)"
+                            aria-controls="collapseExample" aria-expanded="true" data-target="#ageGroup"
+                            data-toggle="collapse">Age </a>
+                        <div class="collapse main_collpase verification_modal" id="ageGroup"
+                            data-parent="#accordionExample">
+                            <div class="collpase_content">
+                                <div class="form-group">
+
+                                    <ng5-slider [(value)]="minAge" [(highValue)]="maxAge" [options]="ageOption">
+                                    </ng5-slider>
+                                </div>
+                            </div>
+                            <div class="submit_btn">
+                                <button (click)="resetFilter()" type="button" aria-controls="collapseExample"
+                                aria-expanded="true" data-target="#ageGroup" data-toggle="collapse"
+                                class="cancel_btn">Clear</button>
+
+                                <button (click)="addFilter()" scrollToTop.scrollTop=0 data-target="#ageGroup"
+                                    data-toggle="collapse" class="submitBtn">Save</button>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="cursor">
+                        <a [ngClass]="{'active' : isDateFilter}"
+                            (click)="openModal(isCategoryFilter=false,isChildFilter=false,isPriceFilter=false,isDateFilter=true,isAgeFilter=false,isTimeFilter=false,isCategoryModal=false,isChildModal=false,isPriceModal=false,isDateModal=true,isAgeModal=false,isTimeModal=false)"
+                            aria-expanded="true" data-target="#date" data-toggle="collapse">Date Range</a>
+                        <div class="collapse main_collpase verification_modal" id="date"
+                            data-parent="#accordionExample">
+                            <div class="collpase_content">
+                                <div class="form-group date_time">
+                                    <div class="input_outer">
+                                        <input type="date" class="form-control" placeholder="Start Date"
+                                            [ngModelOptions]="{standalone: true}" [(ngModel)]="fromDate">
+
+                                        <br>
+                                        <input type="date" class="form-control right_input" placeholder="End Date"
+                                            [ngModelOptions]="{standalone: true}" [(ngModel)]="toDate">
+
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="submit_btn">
+                                <button data-dismiss="modal" (click)="addFilter()" scrollToTop.scrollTop=0
+                                    data-target="#date" data-toggle="collapse" class="submitBtn">Search</button>
+
+                                <button (click)="closePopup()" type="button" aria-expanded="true"
+                                    data-dismiss="modal" data-target="#date" data-toggle="collapse"
+                                    class="cancel_btn">Cancel</button>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="cursor">
+                        <a [ngClass]="{'active' : isTimeFilter}"
+                            (click)="openModal(isCategoryFilter=false,isChildFilter=false,isPriceFilter=false,isDateFilter=false,isAgeFilter=false,isTimeFilter=true,isCategoryModal=false,isChildModal=false,isPriceModal=false,isDateModal=false,isAgeModal=false,isTimeModal=true)"
+                            aria-controls="collapseExample" aria-expanded="true" data-target="#time"
+                            data-toggle="collapse">Time</a>
+                        <div class="collapse main_collpase time_collpase verification_modal" id="time"
+                            data-parent="#accordionExample">
+                            <div class="collpase_content">
+                                <input type='time' min='1:30' max='2:30'>
+                            </div>
+                            <div class="submit_btn">
+                                <button (click)="resetFilter()" type="button" aria-expanded="true"
+                                data-target="#time" data-toggle="collapse" class="cancel_btn">Clear</button>
+
+                                <button (click)="addFilter()" scrollToTop.scrollTop=0 data-target="#time"
+                                    data-toggle="collapse" class="submitBtn">Save</button>
+
+
+                            </div>
+                        </div>
+                    </li>
+
+
+                    <li class="cursor">
+                        <a [ngClass]="{'active' : isCategoryFilter}"
+                            (click)="openModal(isCategoryFilter=true,isChildFilter=false,isPriceFilter=false,isDateFilter=false,isAgeFilter=false,isTimeFilter=false,isCategoryModal=true,isChildModal=false,isPriceModal=false,isDateModal=false,isAgeModal=false,isTimeModal=false)"
+                            aria-expanded="true" data-target="#category" data-toggle="collapse">Categories</a>
+
+                        <div class="collapse main_collpase time_collpase verification_modal partcategory" id="category"
+                            data-parent="#accordionExample">
+                            <div class="collpase_content">
+                                <div class="form-group date_time">
+                                    <div class="input_outer">
+                                        <div class="upper-partcategory">
+                                            <h1>Select the category
+                                                <span><a>Clear</a></span>
+                                            </h1>
+
+                                        </div>
+                                        <div class="lower-partcategory">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+                                            </div>
+
+                                            <div class="input-btns">
+                                                <button>
+                                                    Computers
+                                                    <div class="icon-close delete_search_icon recent-search-icon movecategory-icon"></div>
+                                                </button>
+
+                                                <button>
+                                                    Computers
+                                                    <div class="icon-close delete_search_icon recent-search-icon movecategory-icon"></div>
+                                                </button>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </li>
+
+                    <li class="cursor">
+                        <a
+                            aria-expanded="true" data-target="#morefilter" data-toggle="modal">More Filters</a>
+
+                    </li>
+                    <li *ngIf="showReset" class="cursor">
+                        <a (click)="resetFilter()" scrollToTop.scrollTop=0>Reset</a>
+                    </li>
+                </ul>
+            </div> -->
+
+
+            <div class="search-results" #scrollToTop infiniteScroll [infiniteScrollDistance]="2"
+                [infiniteScrollThrottle]="500" (scrolled)="onScroll()" [scrollWindow]="false"
+                *ngIf="programs?.length">
+                <!-- <div class="list-group "> -->
+                <div *ngFor="let program of programs; index as i" class="media activity">
+                    <div class="media-left activity-imgs" (click)="goToProgramDetail(program)">
+                        <img *ngIf="imageLoader.isLoad" [src]="imageLoader.img" alt="Activity">
+                        <img *ngIf="program?.category[0]?.iconUrl" [hidden]="imageLoader.isLoad" [src]="baseUrl+program?.category[0]?.iconUrl"
+                           (load)="imageLoader.isLoad=false"
+                            alt="Activity">
+                            <img *ngIf="!program?.category[0]?.iconUrl"  [hidden]="imageLoader.isLoad" [src]="'assets/guitar.png'"
+                            (load)="imageLoader.isLoad=false"
+                            alt="Activity">
+                    </div>
+                    <div class="media-body ">
+                        <div  class="share_icon ">
+                            <a data-toggle="modal" (click)="selectedProgramId=program._id;genericSocialShare()"  data-target="#ShareModal" class="cursor">
+                                <img src="assets/share_gray.svg " alt="Share Icon ">
+                            </a>
+                            <div  class="bookmark_outer ">
+                                <a *ngIf="!program.isFav && parentRole && isLogin" (click)="addFavProgram(userData.id,program._id ,i) "
+                                    class="bookmark_icon cursor "><img src="assets/bookmark_gray.svg "
+                                        alt="Menu Image "></a>
+
+                                        <a *ngIf="!isLogin"  routerLink="/login"
+                                        class="bookmark_icon cursor "><img src="assets/bookmark_gray.svg "
+                                            alt="Menu Image "></a>
+
+                                <a *ngIf="program.isFav && parentRole && isLogin" (click)="deleteFavProgram(program._id,i) "
+                                    class="bookmark_icon cursor "><img src="assets/bookmarkOrange.svg "
+                                        alt="Menu Image "></a>
+                            </div>
+
+                        </div>
+                        <h2 class="cursor " (click)="goToProgramDetail(program) ">{{program.name}}</h2>
+                        <div class="list_outer row row-0 ">
+                            <div class="list col-12 mt-2 mb-1">
+                                <p>by {{program.programOwner}}
+                                </p>
+                            </div>
+                            <div class="rating-starsearch">
+                                <p  (click)="getRating(program);programOwnerData.firstName=program.programOwner" class="cursor" data-toggle="collapse" [attr.data-target]="'#collapseExamplestar' + i" role="button"
+                                aria-expanded="false" aria-controls="collapseExamplestar">
+                                <span *ngIf="program.averageFinalRating==0">
+                                    <span class="fa fa-star-o"></span>
+                                    <span class="fa fa-star-o"></span>
+                                    <span class="fa fa-star-o"></span>
+                                    <span class="fa fa-star-o"></span>
+                                    <span class="fa fa-star-o"></span>
+                                </span>
+                                <span *ngIf="program.averageFinalRating==1">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star-o"></span>
+                                    <span class="fa fa-star-o"></span>
+                                    <span class="fa fa-star-o"></span>
+                                    <span class="fa fa-star-o"></span>
+                                </span>
+                                <span *ngIf="program.averageFinalRating>1 && program.averageFinalRating<2">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star-half-o checked"></span>
+                                    <span class="fa fa-star-o"></span>
+                                    <span class="fa fa-star-o"></span>
+                                    <span class="fa fa-star-o"></span>
+                                </span>
+                                <span *ngIf="program.averageFinalRating==2">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star-o"></span>
+                                    <span class="fa fa-star-o"></span>
+                                    <span class="fa fa-star-o"></span>
+                                </span>
+                                <span *ngIf="program.averageFinalRating>2 && program.averageFinalRating<3">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star-half-o checked"></span>
+                                    <span class="fa fa-star-o"></span>
+                                    <span class="fa fa-star-o"></span>
+                                </span>
+                                <span *ngIf="program.averageFinalRating==3">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star-o"></span>
+                                    <span class="fa fa-star-o"></span>
+                                </span>
+                                <span *ngIf="program.averageFinalRating>3 && program.averageFinalRating<4">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star-half-o checked"></span>
+                                    <span class="fa fa-star-o"></span>
+                                </span>
+                                <span *ngIf="program.averageFinalRating==4">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star-o"></span>
+                                </span>
+                                <span *ngIf="program.averageFinalRating>4 && program.averageFinalRating<5">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star-half-o checked"></span>
+                                </span>
+                                <span *ngIf="program.averageFinalRating==5">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                </span>
+                              <!-- <a><span *ngIf="program.averageFinalRating">{{program.averageFinalRating}}</span><span *ngIf="!program.averageFinalRating">0</span> out of 5 </a> -->
+                              <a *ngIf='program.totalReviews'> ({{program.totalReviews}} reviews)</a>
+                              <a *ngIf='!program.totalReviews'> (0 reviews)</a>
+                            </p>
+                                <div *ngIf="rating" class="collapse star-daialogbox" id="collapseExamplestar{{i}}">
+                                    <button type="button" data-toggle="collapse" [attr.data-target]="'#collapseExamplestar' + i"  class="close star-daialogicon" aria-label="Close">
+                                        <span aria-hidden="true"><img src="assets/grey-close.png"></span>
+                                    </button>
+                                    <app-rating  [rating]="rating" [user]="programOwnerData"></app-rating>
+                                </div>
+                            </div>
+                            <div class="coding_text ">
+                                <div *ngIf="program?.subCategoryIds?.length" class="coding-text-1">
+                                    <h3 *ngFor="let subCat of program?.subCategoryIds | slice:0:2">{{subCat?.name}}</h3>
+                                    <h6 *ngIf="program?.subCategoryIds?.length>2" class="" data-toggle="collapse" href="#morecategories" [attr.data-target]="'#morecategories' + i">+{{program?.subCategoryIds?.length-2}} more
+                                    <div class="collapse main_collpases verification_modal" id="morecategories{{i}}"
+                                            data-parent="#accordionExample">
+                                            <div class="collpase_content">
+                                                    <div class="categories-content">
+                                                        <span><img src="assets/grey-close.png"> </span>
+                                                        <h5 *ngFor="let subCat of program?.subCategoryIds | slice:2:program.subCategoryIds?.length" class="collapse-btn">{{subCat?.name}}</h5>
+                                                    </div>
+                                            </div>
+                                    </div>
+                                    </h6>
+                                </div>
+                            </div>
+
+                            <div class="list col-md-4 ">
+                                <p><img src="assets/user_group.svg "
+                                        alt="School image ">{{program?.ageGroup?.from + '-' + program?.ageGroup?.to}}
+                                    Yrs
+                                </p>
+                            </div>
+                            <div class="list col-md-6 ">
+                                <p><img src="assets/calendar.svg "
+                                        alt="School image ">{{program.date.from | date: 'MMM d, '}} –
+                                    {{program.date.to | date: 'MMM d, '}}</p>
+                            </div>
+                        </div>
+                            <div class="price-box ">
+                               <p *ngIf='!program.isFree'><span><img src="assets/price.svg">${{program.pricePerParticipant}}<span *ngIf="program.pricePeriod.periodAmount">/{{program.pricePeriod.periodAmount}}</span></span></p>
+                               <p *ngIf='program.isFree'><span>Free</span></p>
+                            </div>
+                            <div class="rating_box ">
+                                <!-- <a href="javascript:; ">
+                                    <img src="assets/star.svg " alt="Star "> 5.0 (15)
+                                </a> -->
+                            </div>
+
+                    </div>
+
+                </div>
+                <!-- suggested starts -->
+                <div *ngIf="programs?.length" class="suggested-searchresult">
+                    <div class="suggested-result in-built">
+                        <h3 class="suggested-searcxhtext">
+                            Suggested Programs
+                        </h3>
+                        <div class="search-results suggested suggested-one" >
+                        <div *ngFor="let program of suggested; index as i" class="media activity">
+                            <div class="media-left activity-imgs" (click)="goToProgramDetail(program) ">
+                                <img *ngIf="imageLoader.isLoad" [src]="imageLoader.img" alt="Activity">
+                                <img *ngIf="program?.category[0]?.iconUrl" [hidden]="imageLoader.isLoad" [src]="baseUrl+program?.category[0]?.iconUrl"
+                                   (load)="imageLoader.isLoad=false"
+                                    alt="Activity">
+                                    <img *ngIf="!program?.category[0]?.iconUrl"  [hidden]="imageLoader.isLoad" [src]="'assets/guitar.png'"
+                                    (load)="imageLoader.isLoad=false"
+                                    alt="Activity">
+                            </div>
+                            <div class="media-body ">
+                                <div  class="share_icon ">
+                                    <a data-toggle="modal" (click)="selectedProgramId=program._id;genericSocialShare()"  data-target="#ShareModal" class="cursor">
+                                        <img src="assets/share_gray.svg " alt="Share Icon ">
+                                    </a>
+                                    <div  class="bookmark_outer ">
+                                        <a *ngIf="!program.isFav && parentRole && isLogin" (click)="addFavProgram(userData.id,program._id ,i) "
+                                            class="bookmark_icon cursor "><img src="assets/bookmark_gray.svg "
+                                                alt="Menu Image "></a>
+
+                                                <a *ngIf="!isLogin"  routerLink="/login"
+                                                class="bookmark_icon cursor "><img src="assets/bookmark_gray.svg "
+                                                    alt="Menu Image "></a>
+
+                                        <a *ngIf="program.isFav && parentRole && isLogin" (click)="deleteFavProgram(program._id,i) "
+                                            class="bookmark_icon cursor "><img src="assets/bookmarkOrange.svg "
+                                                alt="Menu Image "></a>
+                                    </div>
+
+                                </div>
+                                <h2 class="cursor " (click)="goToProgramDetail(program) ">{{program.name}}</h2>
+                                <div class="list_outer row row-0 ">
+                                    <div class="list col-12 mt-2 mb-1">
+                                        <p>by {{program.programOwner}}
+                                        </p>
+                                    </div>
+                                    <div class="rating-starsearch">
+                                        <p  (click)="getRating(program);programOwnerData.firstName=program.programOwner" class="cursor" data-toggle="collapse" [attr.data-target]="'#collapseExamplestr' + i" role="button"
+                                        aria-expanded="false" aria-controls="collapseExamplestr">
+                                        <span *ngIf="program.averageFinalRating==0">
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                        </span>
+                                        <span *ngIf="program.averageFinalRating==1">
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                        </span>
+                                        <span *ngIf="program.averageFinalRating>1 && program.averageFinalRating<2">
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star-half-o checked"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                        </span>
+                                        <span *ngIf="program.averageFinalRating==2">
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                        </span>
+                                        <span *ngIf="program.averageFinalRating>2 && program.averageFinalRating<3">
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star-half-o checked"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                        </span>
+                                        <span *ngIf="program.averageFinalRating==3">
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                        </span>
+                                        <span *ngIf="program.averageFinalRating>3 && program.averageFinalRating<4">
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star-half-o checked"></span>
+                                            <span class="fa fa-star-o"></span>
+                                        </span>
+                                        <span *ngIf="program.averageFinalRating==4">
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star-o"></span>
+                                        </span>
+                                        <span *ngIf="program.averageFinalRating>4 && program.averageFinalRating<5">
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star-half-o checked"></span>
+                                        </span>
+                                        <span *ngIf="program.averageFinalRating==5">
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                        </span>
+                                      <!-- <a><span *ngIf="program.averageFinalRating">{{program.averageFinalRating}}</span><span *ngIf="!program.averageFinalRating">0</span> out of 5 </a> -->
+                                      <a *ngIf='program.totalReviews'> ({{program.totalReviews}} reviews)</a>
+                                      <a *ngIf='!program.totalReviews'> (0 reviews)</a>
+                                    </p>
+                                        <div *ngIf="rating" class="collapse star-daialogbox" id="collapseExamplestr{{i}}">
+                                            <button type="button" data-toggle="collapse" [attr.data-target]="'#collapseExamplestr' + i"  class="close star-daialogicon" aria-label="Close">
+                                                <span aria-hidden="true"><img src="assets/grey-close.png"></span>
+                                            </button>
+                                            <app-rating  [rating]="rating" [user]="programOwnerData" ></app-rating>
+                                        </div>
+                                    </div>
+                                    <div class="coding_text ">
+                                        <div *ngIf="program?.subCategoryIds?.length" class="coding-text-1">
+                                            <h3 *ngFor="let subCat of program?.subCategoryIds | slice:0:2">{{subCat?.name}}</h3>
+                                            <h6 *ngIf="program?.subCategoryIds?.length>2" class="" data-toggle="collapse" href="#morecategories" [attr.data-target]="'#morecategories' + i">+{{program?.subCategoryIds?.length-2}} more
+                                            <div class="collapse main_collpases verification_modal" id="morecategories{{i}}"
+                                                    data-parent="#accordionExample">
+                                                    <div class="collpase_content">
+                                                            <div class="categories-content">
+                                                                <span><img src="assets/grey-close.png"> </span>
+                                                                <h5 *ngFor="let subCat of program?.subCategoryIds | slice:2:program.subCategoryIds?.length" class="collapse-btn">{{subCat?.name}}</h5>
+                                                            </div>
+                                                    </div>
+                                            </div>
+                                            </h6>
+                                        </div>
+                                    </div>
+
+                                    <div class="list col-md-4 ">
+                                        <p><img src="assets/user_group.svg "
+                                                alt="School image ">{{program?.ageGroup?.from + '-' + program?.ageGroup?.to}}
+                                            Yrs
+                                        </p>
+                                    </div>
+                                    <div class="list col-md-6 ">
+                                        <p><img src="assets/calendar.svg "
+                                                alt="School image ">{{program.date.from | date: 'MMM d, '}} –
+                                            {{program.date.to | date: 'MMM d, '}}</p>
+                                    </div>
+                                </div>
+                                    <div class="price-box ">
+                                       <p *ngIf='program.pricePerParticipant'><span> <img src="assets/price.svg">${{program.pricePerParticipant}}<span *ngIf="program.pricePeriod.periodAmount">/{{program.pricePeriod.periodAmount}}</span></span></p>
+                                       <p *ngIf='!program.pricePerParticipant'><span>Free</span></p>
+                                    </div>
+                                    <div class="rating_box ">
+                                        <!-- <a href="javascript:; ">
+                                            <img src="assets/star.svg " alt="Star "> 5.0 (15)
+                                        </a> -->
+                                    </div>
+
+                            </div>
+
+                        </div>
+
+                        </div>
+                    </div>
+                    </div>
+
+
+                    <!-- suggested ends -->
+
+
+
+                </div>
+
+                <!-- <div *ngIf="!programs?.length">
+                    <br>
+                    <br>
+                    <br>
+                    <h3 style="color: #494949; text-align: center;"> No Activity Found</h3>
+                </div> -->
+
+                <div *ngIf="!programs?.length" class="suggested-searchresult">
+                    <div class="suggested-text">
+                        <h1>
+                            Sorry no results found :(
+                        </h1>
+                        <h2>
+                            Do you want to search <span>Camps</span> or <span>Art</span> instead
+                        </h2>
+                    </div>
+
+                    <div class="suggested-result">
+                        <h3 class="suggested-searcxhtext">
+                            Suggested Programs
+                        </h3>
+                        <div class="search-results suggested" #scrollToTop infiniteScroll [infiniteScrollDistance]="2"
+                        [infiniteScrollThrottle]="500" (scrolled)="onScroll()" [scrollWindow]="false">
+                        <div *ngFor="let program of suggested; index as i" class="media activity">
+                            <div class="media-left activity-imgs" (click)="goToProgramDetail(program) ">
+                                <img *ngIf="imageLoader.isLoad" [src]="imageLoader.img" alt="Activity">
+                                <img *ngIf="program?.category[0]?.iconUrl" [hidden]="imageLoader.isLoad" [src]="baseUrl+program?.category[0]?.iconUrl"
+                                   (load)="imageLoader.isLoad=false"
+                                    alt="Activity">
+                                    <img *ngIf="!program?.category[0]?.iconUrl"  [hidden]="imageLoader.isLoad" [src]="'assets/guitar.png'"
+                                    (load)="imageLoader.isLoad=false"
+                                    alt="Activity">
+                            </div>
+                            <div class="media-body ">
+                                <div  class="share_icon ">
+                                    <a data-toggle="modal" (click)="selectedProgramId=program._id;genericSocialShare()"  data-target="#ShareModal" class="cursor">
+                                        <img src="assets/share_gray.svg " alt="Share Icon ">
+                                    </a>
+                                    <div  class="bookmark_outer ">
+                                        <a *ngIf="!program.isFav && parentRole && isLogin" (click)="addFavProgram(userData.id,program._id ,i) "
+                                            class="bookmark_icon cursor "><img src="assets/bookmark_gray.svg "
+                                                alt="Menu Image "></a>
+
+                                                <a *ngIf="!isLogin"  routerLink="/login"
+                                                class="bookmark_icon cursor "><img src="assets/bookmark_gray.svg "
+                                                    alt="Menu Image "></a>
+
+                                        <a *ngIf="program.isFav && parentRole && isLogin" (click)="deleteFavProgram(program._id,i) "
+                                            class="bookmark_icon cursor "><img src="assets/bookmarkOrange.svg "
+                                                alt="Menu Image "></a>
+                                    </div>
+
+                                </div>
+                                <h2 class="cursor " (click)="goToProgramDetail(program) ">{{program.name}}</h2>
+                                <div class="list_outer row row-0 ">
+                                    <div class="list col-12 mt-2 mb-1">
+                                        <p>by {{program.programOwner}}
+                                        </p>
+                                    </div>
+                                    <div class="rating-starsearch">
+                                        <p  (click)="getRating(program);programOwnerData.firstName=program.programOwner" class="cursor" data-toggle="collapse" [attr.data-target]="'#collapseExamplestarr' + i" role="button"
+                                        aria-expanded="false" aria-controls="collapseExamplestarr">
+                                        <span *ngIf="program.averageFinalRating==0">
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                        </span>
+                                        <span *ngIf="program.averageFinalRating==1">
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                        </span>
+                                        <span *ngIf="program.averageFinalRating>1 && program.averageFinalRating<2">
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star-half-o checked"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                        </span>
+                                        <span *ngIf="program.averageFinalRating==2">
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                        </span>
+                                        <span *ngIf="program.averageFinalRating>2 && program.averageFinalRating<3">
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star-half-o checked"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                        </span>
+                                        <span *ngIf="program.averageFinalRating==3">
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                        </span>
+                                        <span *ngIf="program.averageFinalRating>3 && program.averageFinalRating<4">
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star-half-o checked"></span>
+                                            <span class="fa fa-star-o"></span>
+                                        </span>
+                                        <span *ngIf="program.averageFinalRating==4">
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star-o"></span>
+                                        </span>
+                                        <span *ngIf="program.averageFinalRating>4 && program.averageFinalRating<5">
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star-half-o checked"></span>
+                                        </span>
+                                        <span *ngIf="program.averageFinalRating==5">
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                        </span>
+                                      <!-- <a><span *ngIf="program.averageFinalRating">{{program.averageFinalRating}}</span><span *ngIf="!program.averageFinalRating">0</span> out of 5 </a> -->
+                                      <a *ngIf='program.totalReviews'> ({{program.totalReviews}} reviews)</a>
+                                      <a *ngIf='!program.totalReviews'> (0 reviews)</a>
+                                    </p>
+                                        <div *ngIf="rating" class="collapse star-daialogbox" id="collapseExamplestarr{{i}}">
+                                            <button type="button" data-toggle="collapse" [attr.data-target]="'#collapseExamplestarr' + i"  class="close star-daialogicon" aria-label="Close">
+                                                <span aria-hidden="true"><img src="assets/grey-close.png"></span>
+                                            </button>
+                                            <app-rating  [rating]="rating" [user]="programOwnerData"></app-rating>
+                                        </div>
+                                    </div>
+                                    <div class="coding_text ">
+                                        <div *ngIf="program?.subCategoryIds?.length" class="coding-text-1">
+                                            <h3 *ngFor="let subCat of program?.subCategoryIds | slice:0:2">{{subCat?.name}}</h3>
+                                            <h6 *ngIf="program?.subCategoryIds?.length>2" class="" data-toggle="collapse" href="#morecategories" [attr.data-target]="'#morecategories' + i">+{{program?.subCategoryIds?.length-2}} more
+                                            <div class="collapse main_collpases verification_modal" id="morecategories{{i}}"
+                                                    data-parent="#accordionExample">
+                                                    <div class="collpase_content">
+                                                            <div class="categories-content">
+                                                                <span><img src="assets/grey-close.png"> </span>
+                                                                <h5 *ngFor="let subCat of program?.subCategoryIds | slice:2:program.subCategoryIds?.length" class="collapse-btn">{{subCat?.name}}</h5>
+                                                            </div>
+                                                    </div>
+                                            </div>
+                                            </h6>
+                                        </div>
+                                    </div>
+
+                                    <div class="list col-md-4 ">
+                                        <p><img src="assets/user_group.svg "
+                                                alt="School image ">{{program?.ageGroup?.from + '-' + program?.ageGroup?.to}}
+                                            Yrs
+                                        </p>
+                                    </div>
+                                    <div class="list col-md-6 ">
+                                        <p><img src="assets/calendar.svg "
+                                                alt="School image ">{{program.date.from | date: 'MMM d, '}} –
+                                            {{program.date.to | date: 'MMM d, '}}</p>
+                                    </div>
+                                </div>
+                                <div class="price-box ">
+                                  <p *ngIf='!program.isFree'><span><img src="assets/price.svg">${{program.pricePerParticipant}}<span *ngIf="program.pricePeriod.periodAmount">/{{program.pricePeriod.periodAmount}}</span></span></p>
+                                  <p *ngIf='program.isFree'><span>Free</span></p>
+                               </div>
+                                    <div class="rating_box ">
+                                        <!-- <a href="javascript:; ">
+                                            <img src="assets/star.svg " alt="Star "> 5.0 (15)
+                                        </a> -->
+                                    </div>
+
+                            </div>
+
+                        </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col-md-6">
+                <div class="map_section " >
+                    <agm-map    style="width:100%;height:100%"
+                    [zoom]="14" [usePanning]="true" [fitBounds]="true"  [latitude]="latitude"
+                     (mapClick)="mapClicked(previous)">
+                        [longitude]="longitude"    >
+                        <div *ngFor="let program of programs">
+                            <agm-marker *ngIf="program.lat && program.lng"
+                             [iconUrl]="markerUrl"
+                             (markerClick)="clickedMarker(previous)"
+                              [latitude]="program.lat" [longitude]="program.lng" [agmFitBounds]="true" >
+                                <agm-info-window #previous>
+
+                                  <div class="map-popup">
+                                    <h1>
+                                      {{program.name}}
+                                    </h1>
+                                    <h2>
+                                      by {{program.programOwner}}
+                                    </h2>
+                                    <div class="rating-starsearch">
+                                      <p>
+                                        <span *ngIf="program.averageFinalRating==0">
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                        </span>
+                                        <span *ngIf="program.averageFinalRating==1">
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                        </span>
+                                        <span *ngIf="program.averageFinalRating>1 && program.averageFinalRating<2">
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star-half-o checked"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                        </span>
+                                        <span *ngIf="program.averageFinalRating==2">
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                        </span>
+                                        <span *ngIf="program.averageFinalRating>2 && program.averageFinalRating<3">
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star-half-o checked"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                        </span>
+                                        <span *ngIf="program.averageFinalRating==3">
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                        </span>
+                                        <span *ngIf="program.averageFinalRating>3 && program.averageFinalRating<4">
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star-half-o checked"></span>
+                                            <span class="fa fa-star-o"></span>
+                                        </span>
+                                        <span *ngIf="program.averageFinalRating==4">
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star-o"></span>
+                                        </span>
+                                        <span *ngIf="program.averageFinalRating>4 && program.averageFinalRating<5">
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star-half-o checked"></span>
+                                        </span>
+                                        <span *ngIf="program.averageFinalRating==5">
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                        </span>
+                                        <a *ngIf='program.totalReviews'> ({{program.totalReviews}} reviews)</a>
+                                        <a *ngIf='!program.totalReviews'> (0 reviews)</a>
+                                      </p>
+                                    </div>
+                                    <div class="map-locationtext">
+                                      <span><img src="assets/location-pintag.svg"> </span>
+                                      <h3>8795
+                                        {{program.location}}
+                                      </h3>
+                                    </div>
+                                    <button  (click)="goToProgramDetail(program)" class="map-buttonas">
+                                      View
+                                    </button>
+                                  </div>
+                                  <!-- {{program.name}} -->
+                                </agm-info-window>
+                            </agm-marker>
+
+                        </div>
+                    </agm-map>
+                </div>
+            </div>
+        </div>
+     <div  *ngIf="isOnline"><online-programs [programs]='programs' ></online-programs></div>
+    </div>
+
+</section>
+
+
+
+<!--share Modal -->
+<div class="modal fade" id="ShareModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content share-modals">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="close_sharemodal">
+                <span aria-hidden="true" class="icon-close"></span>
+            </button>
+            <h2>Share</h2>
+            <div class="sharethisall-icons">
+                <hr class="N_line">
+            <div class="sharethis-social">
+                <span class="st_facebook_large" st_url="https://wondrfly.com" displayText="Facebook"></span>
+                <span class="sharethis-text">Facebook</span>
+            </div>
+            <hr class="N_line">
+            <div class="sharethis-social">
+                <span class="st_linkedin_large" st_url="https://wondrfly.com" displayText="LinkedIn"></span>
+                <span class="sharethis-text">LinkedIn</span>
+            </div>
+            <hr class="N_line">
+            <div class="sharethis-social">
+                <span class="st_googleplus_large" st_url="https://wondrfly.com" displayText="Google+"></span>
+                <span class="sharethis-text">Google+</span>
+            </div>
+            <hr class="N_line">
+            <div class="sharethis-social">
+                <span class="st_email_large"  st_url="https://wondrfly.com" displayText="Email"></span>
+                <span class="sharethis-text">Email</span>
+            </div>
+            <hr class="N_line">
+            <div class="sharethis-social">
+                <span class="st_sharethis_large" st_url="https://wondrfly.com" displayText="ShareThis"></span>
+                <span class="sharethis-text">ShareThis</span>
+            </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+<!--more filter modal -->
+<!-- <div class="modal fade" id="morefilter" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="close_morefilter">
+                <span aria-hidden="true" class="icon-close"></span>
+            </button>
+           <div class="modal-body N_modal filter-modal">
+               <div class="container">
+                <div class="row ">
+                    <div class="col-12">
+                        <div class="morefilters-heading">
+                        <h1>More Filters</h1>
+                        <h1><a (click)="resetFilter()">Clear</a></h1>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="notifications">
+                            <h3>Saved Programs
+                              <label class="switch notification">
+                                <input type="checkbox" #toggle data-toggle="toggle"  (click)="getFav(userData.id,$event.target.checked)">
+                                <span class="slider round"></span>
+                              </label>
+                            </h3>
+                            <h3>Open
+                                <label class="switch notification">
+                                    <input type="checkbox"  data-toggle="toggle"  (click)="getOpenPrograms($event.target.checked)">
+                                    <span class="slider round"></span>
+                                </label>
+                              </h3>
+                        </div>
+
+
+                    </div>
+                    <div class="col-12 " *ngIf="parentRole" >
+                        <div class="add_child">
+                            <div class="top_add">
+                                <p>Child</p>
+                                <a>
+                                    <span class="icon-plus"></span>
+                                </a>
+                            </div>
+                            <div class="user_list" *ngIf="kids?.length">
+                                <div class="user" *ngFor="let kid of kids" (click)="filterByChild(kid)">
+                                    <div class="user_profile">
+                                        <img *ngIf="kid.avtar" src="{{kid.avtar}}">
+                                        <img *ngIf="!kid.avtar" src="assets/nochild_image.png">
+
+                                    </div>
+                                    <div class="user_text">
+                                        <p>{{kid.name}}</p>
+                                    </div>
+                                    <span class="close-filter"><img src="assets/close.png" (click)="deleteChild(kid)" ></span>
+                                </div>
+
+                            </div>
+                            <div class="user_list" style="color: #494949;" *ngIf="!kids?.length">
+                                No Child Found
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 ">
+                        <div class="add_child">
+                            <div class="top_add">
+                                <p>Mode</p>
+                            </div>
+                            <div class="user_list">
+                                <div class="users" >
+                                    <h1>Online activtives</h1>
+                                    <h1>In-person activities</h1>
+                                        <h2>All</h2>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <!-- <div class="col-12 bar">
+                        <h1>Price PER HOUR ($)</h1>
+                        <div class="price-perhour">
+                                <ng5-slider [(value)]="minPrice" [(highValue)]="maxPrice" [options]="priceOption">
+                                </ng5-slider>
+                        </div>
+
+
+                        <h1>Duration</h1>
+                        <div class="duration-perhour">
+                                <ng5-slider [(value)]="durationMin" [(highValue)]="durationMax" [options]="durationOption">
+                                </ng5-slider>
+                        </div>
+                    </div> -->
+
+                    <!-- <div class="show-resultbtn">
+                        <button class="Submit_btn" type="button" (click)=" programFilter()">APPLY FILTER</button>
+                   </div>
+
+                </div>
+               </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div> -->
+<ngx-ui-loader bgsType={{loaderType}} fgsType={{loaderType}} fgsSize="40" bgsSize="40" fgsPosition={{loaderPostion}}
+    overlayColor="rgba(40,40,40,0.12)">
+</ngx-ui-loader>
+<app-footer2></app-footer2>
+
+
+<!----------------------------------------- Signup Modal ------------------------------------------------------->
+
+<div data-toggle="modal" data-target="#signupModal" id='modal1'></div>
+
+<div class="modal fade verification_modal password" id="signupModal" data-backdrop="static" data-keyboard="false"
+    tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <button type="button" class="close" (click)="signUpModal()" id='close_modal' data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true" class="icon-close"></span>
+            </button>
+            <div class="modal-body">
+                <app-signup-popup></app-signup-popup>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

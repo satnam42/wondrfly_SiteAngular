@@ -1,0 +1,153 @@
+    <app-header2 *ngIf="!auth.currentUser()"></app-header2>
+    <app-header *ngIf="auth.currentUser()"></app-header>
+    
+<div class="imgage-corners">
+    <img src="assets/Contact-leftcircle.png">
+</div>
+    <div class="contact-us">
+        <div class="container">
+            <div class="row">
+            <div class="col-md-5">
+                <div class="contact-usdata">
+                    <h1>
+                        Contact Us
+                    </h1>
+                    <h2>
+                        Our mailing address is :
+                        <br>1732 1st Ave, #21026, New York, NY 10128 
+                        <br>Email: contact@wondrfly.com  
+                    </h2>
+                    <!-- <div class="social-icons">
+                           <a href="#" class="fb">
+                            <img src="assets/fb-black.svg">
+                           </a>
+                           <a href="#" class="insta">
+                            <img src="assets/insta-black.svg">
+                           </a>
+                           <a href="#" class="tweet">
+                            <img src="assets/tweet-black.svg">
+                           </a>
+                           <a href="#" class="pin">
+                            <img src="assets/pin-black.svg">
+                           </a>
+                           <a href="#" class="link">
+                            <img src="assets/link-black.svg">
+                           </a>
+                    </div> -->
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="contact-usform">
+                    <h1>Send us a message:</h1>
+                    <form [formGroup]="contactUsForm">
+                        <div class="form-group">
+                          <label for="exampleInputEmail1">Email address</label>
+                          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Type"  [formControl]="contactUsForm.controls['email']">
+                          <small
+                          *ngIf=" contactUsForm.controls['email'].hasError('email') && contactUsForm.controls['email'].touched"
+                          class="form-error-msg">INVALID EMAIL ADDRESS</small>
+                      <small
+                          *ngIf=" contactUsForm.controls['email'].hasError('required') && contactUsForm.controls['email'].touched"
+                          class="form-error-msg">EMAIL IS REQUIRED</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPhone1">Phone Number (optional)</label>
+                            <input type="number" class="form-control" id="exampleInputPhone1" aria-describedby="PhoneHelp" placeholder="Type" [formControl]="contactUsForm.controls['phoneNumber']">
+                          </div>
+                          <div class="form-group">
+                            <label for="exampleInputSubject1">Subject</label>
+                            <input type="text" class="form-control" id="exampleInputSubject1" aria-describedby="SubjectHelp" placeholder="Type"  [formControl]="contactUsForm.controls['subject']">
+                            <small
+                            *ngIf=" contactUsForm.controls['subject'].hasError('required') && contactUsForm.controls['subject'].touched"
+                            class="form-error-msg">SUBJECT IS REQUIRED</small>
+                          </div>
+                        <div class="form-group text-lengthno">
+                            <label for="exampleFormControlTextarea1">DESCRIPTION</label>
+                            <textarea   maxlength="3000" class="form-control" id="exampleFormControlTextarea1" rows="5"  [formControl]="contactUsForm.controls['description']"></textarea>
+                            <small
+                            *ngIf=" contactUsForm.controls['description'].hasError('required') && contactUsForm.controls['description'].touched"
+                            class="form-error-msg">DESCRIPTION IS REQUIRED</small>
+                            <div class="textarea_length">
+                                <p>({{contactUsForm.value.description.length}} of 3000)</p>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary"(click)="contactUs()" [disabled]="contactUsForm.invalid">Submit</button>
+                      </form>
+
+                      <div class="image-corners">
+                        <img src="assets/Contact-rightcircle.png">
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <div class="footer_inner">
+                <div class="row align-items-center">
+                    <div class="col-12">
+                        <div class="footer_left">
+                           
+                            <div class="footer_menu">
+                                <ul>
+                                    <li class="cursor">
+                                        <a [routerLink]="['/about-wondrfly']"> About Us</a>
+                                      </li>
+                                    <li >
+                                        <a [routerLink]="['/blogs']">Blogs</a>
+                                      </li>
+                                    <li>
+                                        <a [routerLink]="['/faq']">FAQ</a>
+                                    </li>
+                                    <li>
+                                        <a [routerLink]="['/term-condition']">Terms & Conditions</a>
+                                    </li>
+                                    <li>
+                                        <a [routerLink]="['/privacyPolicy']">Privacy Policy</a>
+                                    </li>
+                                </ul>
+                            </div>
+    
+                            <div class="copyright_text">
+                                <p>© 2021 Wondrfly Inc. All Rights Reserved.</p>
+                            </div>
+                        </div>
+    
+                        <div class="social_icon_footer">
+                            <ul>
+                                <li>
+                                    <a href="https://www.facebook.com/wondrfly" target="_blank">
+                                        <span class="icon icon-facebook"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://www.instagram.com/wondrfly/" target="_blank" >
+                                        <span class="icon icon-instagram"></span>
+                                    </a>
+                                </li>
+                                <!-- <li>
+                                    <a href="javascript:;">
+                                        <span class="icon icon-twitter"></span>
+                                    </a>
+                                </li> -->
+                                <li>
+                                    <a href="#">
+                                        <span class="icon icon-pinterest"></span>
+                                    </a>
+                                </li>
+                                <!-- <li>
+                                    <a href="javascript:;">
+                                        <span class="icon">
+                                            <img src="assets/linkedin.png">
+                                        </span>
+                                    </a>
+                                </li> -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+<ngx-ui-loader></ngx-ui-loader>

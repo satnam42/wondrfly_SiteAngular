@@ -1,0 +1,77 @@
+<app-header></app-header>
+<ng2-toasty></ng2-toasty>
+<app-alert></app-alert>
+
+<body>
+    <section class="main_outer">
+        <div class="content_outer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                    </div>
+                </div>
+                <button class="my_class" (click)="sideBar()">
+                    <span class="icon icon-menu"></span>
+                </button>
+                <div class="MainContent">
+                    <div class="side_bar" [ngClass]="isSideBar ? 'side_bar_show' : 'side_bar_hide'">
+                        <div class="page_heading">
+                            <div class="profile_outer">
+                                <div class="profile_image">
+                                    <img src="{{ currentUser.avatarImages }}"
+                                        (error)="currentUser.avatarImages = 'assets/profile.svg'" alt="Profile Image" />
+                                </div>
+                                <div class="edit_profile">
+                                    <a>
+                                        <label class="cursor">
+                                            <input style="display: none" #file accept="image/*"
+                                                (change)="guardianImageSelect($event, currentUser.id)" type="file"
+                                                name="image" />
+                                            <img src="assets/edit_white.svg" alt="Profile Image" />
+                                        </label>
+                                    </a>
+                                </div>
+                            </div>
+                            <h2>{{ currentUser.firstName }}</h2>
+                        </div>
+
+                        <div class="side_menu">
+                            <ul class="cursor">
+                                <li>
+                                    <a (click)="goTo('profile')">Personal Details</a>
+                                </li>
+                                <li>
+                                    <a (click)="goTo('children')">Children</a>
+                                </li>
+                                <!-- <li>
+                                    <a>Chat</a>
+                                </li>
+                                <li>
+                                    <a>Account Settings</a>
+                                </li>
+
+                                <li>
+                                    <a>Give Feedback</a>
+                                </li> -->
+                            </ul>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" [style.width.%]="profileProgress">
+                                <div class="progress-value">{{ profileProgress }}%</div>
+                            </div>
+                        </div>
+                        <div class="complete_score">
+                            <p>
+                                Profile completion score<span class="icon-information"></span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="content_right">
+                        <router-outlet (activate)="getUserById()"></router-outlet>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <app-footer></app-footer>
+</body>

@@ -1,0 +1,379 @@
+﻿<div class="card card-body star-daialogcontent">
+  <h1>
+     {{user.firstName}}
+  </h1>
+  <div class="star-rating">
+      <h2>
+        <h4 *ngIf="rating?.finalAverageRating==0 || rating?.finalAverageRating=='NaN'|| rating?.finalAverageRating==undefined">
+            <span class="fa fa-star-o"></span>
+            <span class="fa fa-star-o"></span>
+            <span class="fa fa-star-o"></span>
+            <span class="fa fa-star-o"></span>
+            <span class="fa fa-star-o"></span>
+        </h4>
+        <h4 *ngIf="rating?.finalAverageRating==1">
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star-o"></span>
+            <span class="fa fa-star-o"></span>
+            <span class="fa fa-star-o"></span>
+            <span class="fa fa-star-o"></span>
+        </h4>
+        <h4 *ngIf="rating?.finalAverageRating>1 && rating?.finalAverageRating<2">
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star-half-o checked"></span>
+            <span class="fa fa-star-o"></span>
+            <span class="fa fa-star-o"></span>
+            <span class="fa fa-star-o"></span>
+        </h4>
+        <h4 *ngIf="rating?.finalAverageRating==2">
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star-o"></span>
+            <span class="fa fa-star-o"></span>
+            <span class="fa fa-star-o"></span>
+        </h4>
+        <h4 *ngIf="rating?.finalAverageRating>2 && rating?.finalAverageRating<3">
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star-half-o checked"></span>
+            <span class="fa fa-star-o"></span>
+            <span class="fa fa-star-o"></span>
+        </h4>
+        <h4 *ngIf="rating?.finalAverageRating==3">
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star-o"></span>
+            <span class="fa fa-star-o"></span>
+        </h4>
+        <h4 *ngIf="rating?.finalAverageRating>3 && rating?.finalAverageRating<4">
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star-half-o checked"></span>
+            <span class="fa fa-star-o"></span>
+        </h4>
+        <h4 *ngIf="rating?.finalAverageRating==4">
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star-o"></span>
+        </h4>
+        <h4 *ngIf="rating?.finalAverageRating>4 && rating?.finalAverageRating<5">
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star-half-o checked"></span>
+        </h4>
+        <h4 *ngIf="rating?.finalAverageRating==5">
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+        </h4>
+        <span class="ratingstar-kids" *ngIf="rating?.isSuccess==false;else finalAverageRatingg">0 reviews
+ <!-- <span *ngIf="rating?.finalAverageRating=='NaN' || 
+            rating?.finalAverageRating==undefined || 
+            rating?.finalAverageRating==0 ;else finalAverageRating">0</span>
+            <ng-template #finalAverageRating>{{rating?.finalAverageRating}}</ng-template> out of 5 -->
+
+        </span>
+
+        <ng-template  #finalAverageRatingg> <span class="ratingstar-kids" >
+              {{rating?.numberOfFacebook+rating?.numberOfGoogle+rating?.numberOfYelp}} reviews
+           
+        </span> </ng-template>
+      </h2>   
+  </div>
+  <h3>
+      Your rating was agregated from the sources:
+  </h3>
+
+  <div class="star-dailogsocial container">
+      <div class="row">
+          <div class="col-4">
+               <h4> Facebook</h4>
+          </div>
+          <div class="col-4">
+              <h4 *ngIf="rating?.facebookRating==0 || rating?.facebookRating==undefined">
+                  <span class="fa fa-star-o"></span>
+                  <span class="fa fa-star-o"></span>
+                  <span class="fa fa-star-o"></span>
+                  <span class="fa fa-star-o"></span>
+                  <span class="fa fa-star-o"></span>
+              </h4>
+              <h4 *ngIf="rating?.facebookRating==1">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star-o"></span>
+                  <span class="fa fa-star-o"></span>
+                  <span class="fa fa-star-o"></span>
+                  <span class="fa fa-star-o"></span>
+
+              </h4>
+              <h4 *ngIf="rating?.facebookRating>1 && rating?.facebookRating<2">
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star-half-o checked"></span>
+                <span class="fa fa-star-o"></span>
+                <span class="fa fa-star-o"></span>
+                <span class="fa fa-star-o"></span>
+            </h4>
+              <h4 *ngIf="rating?.facebookRating==2">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star-o"></span>
+                  <span class="fa fa-star-o"></span>
+                  <span class="fa fa-star-o"></span>
+
+              </h4>
+              <h4 *ngIf="rating?.facebookRating>2 && rating?.facebookRating<3">
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star-half-o checked"></span>
+                <span class="fa fa-star-o"></span>
+                <span class="fa fa-star-o"></span>
+            </h4>
+              <h4 *ngIf="rating?.facebookRating==3">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star-o"></span>
+                  <span class="fa fa-star-o"></span>
+              </h4>
+              <h4 *ngIf="rating?.facebookRating>3 && rating?.facebookRating<4">
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star-half-o checked"></span>
+                <span class="fa fa-star-o"></span>
+            </h4>
+              <h4 *ngIf="rating?.facebookRating==4">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star-o"></span>
+              </h4>
+              <h4 *ngIf="rating?.facebookRating>4 && rating?.facebookRating<5">
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star-half-o checked"></span>
+            </h4>
+              <h4 *ngIf="rating?.facebookRating==5">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+              </h4>
+          </div>
+          <div class="col-4">
+              <h4>
+              <span class="social-star" *ngIf="rating?.isSuccess==false;else numberOfFacebookk">
+                0 reviews
+              </span>
+              <ng-template #numberOfFacebookk><span class="social-star">
+                {{rating?.numberOfFacebook}} reviews
+              </span></ng-template>
+              </h4>
+          </div>
+      </div>
+
+      <div class="row">
+          <div class="col-4">
+               <h4> Google</h4>
+          </div>
+          <div class="col-4">
+              <h4 *ngIf="rating?.googleRating==0 || rating?.googleRating==undefined">
+                  <span class="fa fa-star-o"></span>
+                  <span class="fa fa-star-o"></span>
+                  <span class="fa fa-star-o"></span>
+                  <span class="fa fa-star-o"></span>
+                  <span class="fa fa-star-o"></span>
+              </h4>
+              <h4 *ngIf="rating?.googleRating==1">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star-o"></span>
+                  <span class="fa fa-star-o"></span>
+                  <span class="fa fa-star-o"></span>
+                  <span class="fa fa-star-o"></span>
+
+              </h4>
+              <h4 *ngIf="rating?.googleRating>1 && rating?.googleRating<2">
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star-half-o checked"></span>
+                <span class="fa fa-star-o"></span>
+                <span class="fa fa-star-o"></span>
+                <span class="fa fa-star-o"></span>
+            </h4>
+              <h4 *ngIf="rating?.googleRating==2">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star-o"></span>
+                  <span class="fa fa-star-o"></span>
+                  <span class="fa fa-star-o"></span>
+              </h4>
+              <h4 *ngIf="rating?.googleRating>2 && rating?.googleRating<3">
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star-half-o checked"></span>
+                <span class="fa fa-star-o"></span>
+                <span class="fa fa-star-o"></span>
+            </h4>
+              <h4 *ngIf="rating?.googleRating==3">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star-o"></span>
+                  <span class="fa fa-star-o"></span>
+              </h4>
+              <h4 *ngIf="rating?.googleRating>3 && rating?.googleRating<4">
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star-half-o checked"></span>
+                <span class="fa fa-star-o"></span>
+            </h4>
+              <h4 *ngIf="rating?.googleRating==4">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star-o"></span>
+              </h4>
+              <h4 *ngIf="rating?.googleRating>4 && rating?.googleRating<5">
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star-half-o checked"></span>
+            </h4>
+              <h4 *ngIf="rating?.googleRating==5">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+              </h4>
+          </div>
+          <div class="col-4">
+              <h4>
+                <span class="social-star" *ngIf="rating?.isSuccess==false;else numberOfGooglee">
+                    0 reviews
+                  </span>
+                  <ng-template #numberOfGooglee><span class="social-star">
+                    {{rating?.numberOfGoogle}} reviews
+                  </span></ng-template>
+              </h4>
+          </div>
+      </div>
+
+      <div class="row">
+          <div class="col-4">
+               <h4> Yelp</h4>
+          </div>
+          <div class="col-4">
+              <h4 *ngIf="rating?.yelpRating==0 || rating?.yelpRating==undefined">
+                  <span class="fa fa-star-o"></span>
+                  <span class="fa fa-star-o"></span>
+                  <span class="fa fa-star-o"></span>
+                  <span class="fa fa-star-o"></span>
+                  <span class="fa fa-star-o"></span>
+              </h4>
+              <h4 *ngIf="rating?.yelpRating==1">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star-o"></span>
+                  <span class="fa fa-star-o"></span>
+                  <span class="fa fa-star-o"></span>
+                  <span class="fa fa-star-o"></span>
+              </h4>
+              <h4 *ngIf="rating?.yelpRating>1 && rating?.yelpRating<2">
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star-half-o checked"></span>
+                <span class="fa fa-star-o"></span>
+                <span class="fa fa-star-o"></span>
+                <span class="fa fa-star-o"></span>
+            </h4>
+              <h4 *ngIf="rating?.yelpRating==2">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star-o"></span>
+                  <span class="fa fa-star-o"></span>
+                  <span class="fa fa-star-o"></span>
+              </h4>
+              <h4 *ngIf="rating?.yelpRating>2 && rating?.yelpRating<3">
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star-half-o checked"></span>
+                <span class="fa fa-star-o"></span>
+                <span class="fa fa-star-o"></span>
+            </h4>
+              <h4 *ngIf="rating?.yelpRating==3">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star-o"></span>
+                  <span class="fa fa-star-o"></span>
+              </h4>
+              <h4 *ngIf="rating?.yelpRating>3 && rating?.yelpRating<4">
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star-half-o checked"></span>
+                <span class="fa fa-star-o"></span>
+            </h4>
+              <h4 *ngIf="rating?.yelpRating==4">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star-o"></span>
+              </h4>
+              <h4 *ngIf="rating?.yelpRating>4 && rating?.yelpRating<5">
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star-half-o checked"></span>
+            </h4>
+              <h4 *ngIf="rating?.yelpRating==5">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+              </h4>
+          </div>
+          <div class="col-4">
+              <h4>
+                <span class="social-star" *ngIf="rating?.isSuccess==false;else numberOfYelpp">
+                    0 reviews
+                  </span>
+                  <ng-template #numberOfYelpp><span class="social-star">
+                    {{rating?.numberOfYelp}} reviews
+                  </span></ng-template>
+                 
+              </h4>
+
+              
+          </div>
+      </div>
+
+      <div class="row">
+          <div class="col-4">
+               <h4> Instagram </h4>
+          </div>
+          <div class="col-8">
+              <h4>
+                  <span  *ngIf="rating?.instagramFollowers">{{rating?.instagramFollowers}}</span><span *ngIf="!rating?.instagramFollowers">0</span> Followers
+              </h4>
+          </div>
+          
+      </div>
+  </div>
+
+</div>

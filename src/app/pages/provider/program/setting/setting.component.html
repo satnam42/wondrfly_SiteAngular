@@ -1,0 +1,573 @@
+<!-- ---------new design- ------------- -->
+<ng2-toasty></ng2-toasty>
+
+<body>
+    <app-header></app-header>
+    <div class="main_outer">
+        <div class="setting_outer">
+            <div class="container">
+                <div class="MainContent">
+                    <div class="side_bar">
+                        <h2>Settings</h2>
+                        <div class="side_menu">
+                            <ul>
+                                <li>
+                                    <a (click)="onSecurity()" [class.active]="security" class="cursor">Password &
+                                        Security</a>
+                                </li>
+                                <li>
+                                    <a (click)="onVerification()" [class.active]="verification" class="cursor">Identity
+                                        &
+                                        Verification</a>
+                                </li>
+                                <li>
+                                    <a (click)="onClaimStatus()" [class.active]="claimStatus" class="cursor">Claim
+                                        Status</a>
+                                </li>
+                                <li>
+                                    <a (click)="onNotification()" [class.active]="notificationStatus" class="cursor">
+                                        Notification</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- -------password & secuirity-------- -->
+
+                    <div *ngIf="isSecurity" class="content_right">
+                        <h3>Password & Security</h3>
+                        <div class="media_setting">
+                            <div class="media">
+                                <div class="media-left">
+                                    <img src="assets/approved.svg" alt="Approved Image">
+                                </div>
+                                <div class="media-body">
+                                    <h4>Password has been set</h4>
+                                    <p>Choose a strong, unique password that’s at least 8 characters long.</p>
+                                    <a class="cursor" data-toggle="modal" data-target="#PasswordModal"
+                                        (click)="openPopUp('isPassword')">Update</a>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="media-left">
+                                    <img src="assets/check.svg" alt="Approved Image">
+                                </div>
+                                <div class="media-body">
+                                    <h4>Security question has been enabled</h4>
+                                    <p>Confirm your identity with a question only you know the answer to.</p>
+                                    <a class="cursor" data-toggle="modal" data-target="#SequrityModal"
+                                        (click)="openPopUp('isQuestion')">Update</a>
+                                </div>
+                            </div>
+
+                            <div class="media">
+                                <div class="media-left">
+                                    <img *ngIf="user.isPhoneVerified" src="assets/approved_green.svg"
+                                        alt="Approved Image">
+                                    <img *ngIf="!user.phoneNumber" src="assets/check_gray.svg" alt="inProgress Image">
+                                    <img *ngIf="!user.isPhoneVerified && user.phoneNumber" src="assets/check.svg"
+                                        alt="inProgress Image">
+
+                                </div>
+                                <div class="media-body">
+                                    <h4>Phone Verification</h4>
+                                    <p>Receive a unique 6-digit code to enter along with your password.</p>
+                                    <a class="cursor" data-toggle="modal"
+                                        (click)="showOtpform=false;showPhoneform=true " data-target="#PhoneModal1"
+                                        *ngIf="user.isPhoneVerified">Verified</a>
+                                    <a class="cursor" data-toggle="modal" (click)="resetForm()"
+                                        (click)="showOtpform=false;showPhoneform=true " data-target="#PhoneModal1"
+                                        *ngIf="user.phoneNumber && !user.isPhoneVerified">Enable</a>
+                                    <a class="cursor" data-toggle="modal" (click)="showOtpform=false;resetForm()"
+                                        data-target="#PhoneModal" *ngIf="!user.phoneNumber">Add number</a>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <!-- ------------------------------------------------- -->
+
+                    <!-- ------identity & verification---------- -->
+                    <div *ngIf="isVerification" class="content_right">
+                        <h3>Verifications</h3>
+                        <div class="media_setting">
+                            <div class="media">
+                                <div class="media-left">
+                                    <img src="assets/approved.svg" alt="Approved Image">
+                                </div>
+                                <div class="media-body">
+                                    <h4>Government Issued ID added</h4>
+                                    <!-- <p>Successfully verified on 2020-08-01</p> -->
+                                    <!-- <a href="#">Learn More</a> -->
+                                    <button data-toggle="modal" data-target="#GovermentModal"
+                                        class="add_btn">Add</button>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="media-left">
+                                    <img src="assets/check.svg" alt="Approved Image">
+                                </div>
+                                <div class="media-body">
+                                    <h4>Video call completed</h4>
+                                    <!-- <p>Completed on 2020-10-12</p> -->
+                                    <!-- <a href="#">Learn More</a> -->
+                                    <!-- <button class="add_btn">Add</button> -->
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="media-left">
+                                    <img src="assets/check_gray.svg" alt="Approved Image">
+                                </div>
+                                <div class="media-body">
+                                    <h4>Company Verification</h4>
+                                    <!-- <p> None on the file </p> -->
+                                    <!-- <a href="#">Learn More</a> -->
+                                    <button data-toggle="modal" data-target="#VerificationModal"
+                                        class="add_btn">Add</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- --------------------------------------------- -->
+
+
+                    <!-- ------claim status---------- -->
+
+                    <div *ngIf="isClaimStatus" class="content_right">
+                        <h3>Claim</h3>
+                        <div class="media_setting">
+                            <div class="media">
+                                <div class="media-left">
+                                    <img src="assets/approved_green.svg" alt="Approved Image">
+                                </div>
+                                <div class="media-body">
+                                    <h4>Claimed business</h4>
+                                    <div *ngFor="let claimRequest of claimRequestList">
+                                        <p *ngIf="claimRequest?.status==='approve'">
+                                            {{claimRequest?.requestOn?.firstName}}</p>
+                                    </div> <br>
+                                    <!-- <a>Learn More</a> -->
+                                    <button class="add_btn">NEW CLAIM</button>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="media-left">
+                                    <img src="assets/check.svg" alt="Approved Image">
+                                </div>
+                                <div class="media-body">
+                                    <h4>In-Progress</h4>
+                                    <div *ngFor="let claimRequest of claimRequestList">
+                                        <p *ngIf="claimRequest?.status==='in-progress'">
+                                            {{claimRequest?.requestOn?.firstName}}</p>
+                                    </div><br>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="media-left">
+                                    <img src="assets/check_red.svg" alt="Approved Image">
+                                </div>
+                                <div class="media-body">
+                                    <h4>Not Verified</h4>
+                                    <div *ngFor="let claimRequest of claimRequestList">
+                                        <p *ngIf="claimRequest?.status==='reject'">{{claimRequest?.requestOn?.firstName}}
+                                        </p>
+                                    </div> <br>
+                                    <!-- <a>Learn More</a> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+            <!-- -------------------------------------------notification----------------------------- -->
+            <div *ngIf="isNotification" class="content_right">
+                <h3 class="notification_title">Notifications</h3>
+                <div class="media_setting">
+                    <div class="media">
+                        <div class="media-body">
+                    <form>
+                      <div class="notifications">
+                        <h4>TURN OFF ALL NOTIFICATIONS</h4>
+                        <label class="switch notification">
+                          <input type="checkbox" #toggle [(ngModel)]="isToggle" [checked]="isToggle" (change)="onOffNotification(user.id, isToggle?true:false)"  />
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                      <div class="check_list">
+
+                        <div class="smsNoti">
+                            <h5>PUSH NOTIFICATIONS</h5>
+                            <label class="switch notification">
+                              <input type="checkbox" checked />
+                              <span class="slider round"></span>
+                            </label>
+                           </div>
+
+                          <div class="smsNoti">
+                        <h5>SMS NOTIFICATIONS</h5>
+                        <label class="switch notification">
+                          <input type="checkbox" checked />
+                          <span class="slider round"></span>
+                        </label>
+                    </div>
+                    <div class="smsNoti">
+                        <h5>EMAIL NOTIFICATIONS</h5>
+                        <label class="switch notification">
+                          <input type="checkbox" checked />
+                          <span class="slider round"></span>
+                        </label>
+                       </div>
+
+                      </div>
+                    </form>
+                        </div>
+
+                  </div>
+                  <!-- <div class=btn_noti>
+                  <button class="Noti_btn">Save</button>
+                </div> -->
+                </div>
+
+              </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <!-- Password Modal -->
+    <div class="modal fade verification_modal password" id="PasswordModal" data-backdrop="static" data-keyboard="false"
+        tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="icon-close"></span>
+                </button>
+                <div class="modal-body">
+                    <h2>Change Password</h2>
+                    <div class="verification_outer">
+                        <div class="add_note" [formGroup]="resetPasswordForm">
+
+                            <div class="form-group">
+                                <label>OlD Password</label>
+                                <input type="password" class="form-control"
+                                    [formControl]="resetPasswordForm.controls['oldPassword']"
+                                    [(ngModel)]="resetPasswordData.oldPassword">
+                                <small
+                                    *ngIf=" resetPasswordForm.controls['oldPassword'].hasError('required') && resetPasswordForm.controls['oldPassword'].touched"
+                                    class="form-error-msg">CAN'T LEAVE IT BLANK</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label>New Password</label>
+                                <input type="password" class="form-control"
+                                    [formControl]="resetPasswordForm.controls['newPassword']"
+                                    [(ngModel)]="resetPasswordData.newPassword">
+                                <small
+                                    *ngIf=" resetPasswordForm.controls['newPassword'].hasError('required') && resetPasswordForm.controls['newPassword'].touched"
+                                    class="form-error-msg">CAN'T LEAVE IT BLANK</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Confirm new Password</label>
+                                <input type="password" class="form-control"
+                                    [formControl]="resetPasswordForm.controls['confirmPassword']">
+                                <small *ngIf="resetPasswordForm.controls['confirmPassword'].hasError('equalTo')"
+                                    class="form-error-msg">
+                                    PASSWORD DO NOT MATCH</small>
+                            </div>
+
+
+                            <div class="new_password">
+                                <label class="ch-radio">
+                                    <input name="hiring" type="checkbox">
+                                    <span>
+                                        <i class="ch-icon icon-tick"></i>All devices will be required to sign in with
+                                        new password.
+                                    </span>
+                                </label>
+                            </div>
+
+                            <div class="submit_btn">
+                                <button (click)="resetPassword(userData.id)" class="submitBtn" data-dismiss="modal"
+                                    [disabled]="resetPasswordForm.invalid">Save</button>
+                                <button data-dismiss="modal" class="cancel_btn">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sequrity Question Modal -->
+    <div class="modal fade verification_modal password" id="SequrityModal" data-backdrop="static" data-keyboard="false"
+        tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="icon-close"></span>
+                </button>
+                <div class="modal-body">
+                    <h2>Security Question</h2>
+                    <div class="verification_outer">
+                        <div class="add_note">
+                            <div *ngIf="isOldQuestion" class="form-group sequrity_text">
+                                <h3>Current Question</h3>
+                                <p>{{user?.securityQuestion}}</p>
+                            </div>
+                            <div *ngIf="isOldQuestion" class="form-group">
+                                <label>Answer</label>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div *ngIf="!isOldQuestion" class="form-group">
+                                <label>New Question </label>
+                                <select class="form-control" [(ngModel)]="user.securityQuestion"
+                                    name="secuirtyQuestion">
+                                    <option value="Favourite Teacher Name" selected>Favourite Teacher Name</option>
+                                    <option value="Favourite Book Name">Favourite Book Name</option>
+                                    <option value="Favourite Movie">Favourite Movie </option>
+                                </select>
+                            </div>
+                            <div *ngIf="!isOldQuestion" class="form-group">
+                                <label>Answer</label>
+                                <input type="text" class="form-control" [(ngModel)]="answer">
+                            </div>
+
+                            <div class="new_password">
+                                <label class="ch-radio">
+                                    <input name="hiring" type="checkbox" [(ngModel)]="isAgree">
+                                    <span>
+                                        <i class="ch-icon icon-tick"></i>I understand my acount will be locked of I am
+                                        unable to answer this
+                                        question
+                                    </span>
+                                </label>
+                            </div>
+
+                            <div class="submit_btn">
+                                <button class="submitBtn" (click)="submit()">Save</button>
+                                <button data-dismiss="modal" class="cancel_btn">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- Phone Verification Modal -->
+    <div class="modal fade verification_modal password" id="PhoneModal1" data-backdrop="static" data-keyboard="false"
+        tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="icon-close"></span>
+                </button>
+                <div class="modal-body">
+                    <h2>Phone verification</h2>
+                    <div class="verification_outer">
+                        <div class="add_note" *ngIf='showPhoneform'>
+                            <div class="phone_verification">
+                                <h3>Security Phone Number</h3>
+                                <div class="dlt_number">
+                                    <h4>********{{userData.phoneNumber.substr(userData.phoneNumber.length - 4)}}</h4>
+                                    <a href="javascript:;" (click)='deleteNumber()' class="delete_number">Delete</a>
+                                </div>
+                            </div>
+
+                            <div class="phone_verification _gmail">
+                                <p>You will have the option to recieve verification codes through email:</p>
+                                <h4>*****{{userData.email.substr(userData.email.length - 4)}}</h4>
+                            </div>
+                            <div class="submit_btn">
+                                <button (click)="sendOtp()" class="submitBtn"  *ngIf="!user.isPhoneVerified">Send OTP</button>
+                            </div>
+                            <div class="submit_btn">
+                                <button  class="submitBtn"  *ngIf="user.isPhoneVerified">Verified</button>
+                            </div>
+                        </div>
+
+                        <div class="add_note" [formGroup]="otpForm" *ngIf='showOtpform'>
+                            <div class="form-group">
+                                <label>Otp</label>
+                                <input type="number" class="form-control" maxlength="6" placeholder="Enter otp"
+                                    [formControl]="otpForm.controls['otp']" [(ngModel)]="otpVerification.otp">
+                                <small
+                                    *ngIf=" otpForm.controls['otp'].hasError('required') && otpForm.controls['otp'].touched"
+                                    class="form-error-msg">CAN'T LEAVE IT BLANK</small>
+                            </div>
+                            <div class="submit_btn ">
+                                <button (click)="verifyNumber()" class="submitBtn"
+                                    [disabled]="otpForm.invalid">verify</button>
+                            </div>
+                            <div class="">
+                                <small>Didn't get otp? <a class="cursor" data-dismiss="modal" id="close_model1"
+                                        (click)='resetForm();showOtpform=false;showPhoneform=true '>Get otp</a></small>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+    <!-- Phone Verification Modal -->
+    <div class="modal fade verification_modal password" id="PhoneModal" data-backdrop="static" data-keyboard="false"
+        tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="icon-close"></span>
+                </button>
+                <div class="modal-body">
+                    <h2>Verify phone number</h2>
+                    <div class="verification_outer">
+                        <div class="add_note " [formGroup]="phoneVerificationForm" *ngIf='showPhoneform'>
+
+                            <div class="form-group">
+                                <label>Phone number</label>
+                                <input type="tel" class="form-control" placeholder="Enter phone number"
+                                    [formControl]="phoneVerificationForm.controls['phoneNumber']"
+                                    [(ngModel)]="phoneVerification.phoneNumber">
+                                <small
+                                    *ngIf=" phoneVerificationForm.controls['phoneNumber'].hasError('required') && phoneVerificationForm.controls['phoneNumber'].touched"
+                                    class="form-error-msg">CAN'T LEAVE IT BLANK</small>
+                            </div>
+                            <div class="submit_btn ">
+                                <button (click)="sendOtp()" type="submit" class="submitBtn"
+                                    [disabled]="phoneVerificationForm.invalid">Send otp</button>
+                            </div>
+                        </div>
+
+                        <div class="add_note" [formGroup]="otpForm" *ngIf='showOtpform'>
+                            <div class="form-group">
+                                <label>Otp</label>
+                                <input type="number" class="form-control" maxlength="6" placeholder="Enter otp"
+                                    [formControl]="otpForm.controls['otp']" [(ngModel)]="otpVerification.otp">
+                                <small
+                                    *ngIf=" otpForm.controls['otp'].hasError('required') && otpForm.controls['otp'].touched"
+                                    class="form-error-msg">CAN'T LEAVE IT BLANK</small>
+                            </div>
+                            <div class="submit_btn ">
+                                <button (click)="verifyNumber()" class="submitBtn"
+                                    [disabled]="otpForm.invalid">verify</button>
+                            </div>
+                            <div class="">
+                                <small>Didn't get otp? <a class="cursor" data-dismiss="modal" id="close_model"
+                                        (click)='resetForm();showOtpform=false;showPhoneform=true '>Get otp</a></small>
+                            </div>
+                        </div>
+
+
+
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- Verification Modal -->
+    <div class="modal fade verification_modal" id="VerificationModal" data-backdrop="static" data-keyboard="false"
+        tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="icon-close"></span>
+                </button>
+                <div class="modal-body">
+                    <h2>Comapny Verification</h2>
+                    <div class="verification_outer">
+                        <div class="img_box">
+
+                        </div>
+
+                        <div class="add_note">
+                            <div class="form-group">
+                                <label>add a note</label>
+                                <textarea class="form-control">Type</textarea>
+                                <div class="textarea_length">
+                                    <p>(0 of 3000)</p>
+                                </div>
+                            </div>
+                            <div class="submit_btn">
+                                <button class="submitBtn">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Goverment Modal -->
+
+    <div class="modal fade verification_modal" id="GovermentModal" data-backdrop="static" data-keyboard="false"
+        tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="icon-close"></span>
+                </button>
+                <div class="modal-body">
+                    <h2>Goverment Issued ID</h2>
+                    <div class="verification_outer">
+                        <div class="img_box">
+
+                        </div>
+
+                        <div class="add_note">
+                            <div class="form-group">
+                                <label>add a note</label>
+                                <textarea class="form-control">Type</textarea>
+                                <div class="textarea_length">
+                                    <p>(0 of 3000)</p>
+                                </div>
+                            </div>
+                            <div class="submit_btn">
+                                <button class="submitBtn">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <app-footer></app-footer>
+</body>
+<ngx-ui-loader></ngx-ui-loader>

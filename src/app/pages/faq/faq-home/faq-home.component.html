@@ -1,0 +1,217 @@
+
+
+<div class="faq-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="searchwith-text">
+                    <h1 class="heading">Have a question?</h1>
+                    <div class="banner_form">
+                        <div class="form-group">
+                            <input  data-toggle="collapse" href="#collapseExample" type="text" placeholder="Search Your Question..." [(ngModel)]="term"
+                                class="form-control camp_input">
+
+                        </div>
+                        <div class="form-group float-last">
+                            <button class="banner_button" (click)="goToResultPage(term)">
+                                <img src="assets/search_icon.svg" alt="Search image">
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="searchwith-box collapse"  id="collapseExample">
+                        <div class="search-result cursor" *ngFor='let item of allQuestions  | filter:term ' >
+                            <h1 (click)='selectQues(item)'>{{item.question}}</h1>
+                            <h2  (click)='selectQues(item)'>{{item.answer | slice:0:92}}</h2>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-bar">
+        <div class="container">
+            <ul id="tabs" class="nav nav-tabs" role="tablist">
+                <li class="nav-item">
+                    <a id="tab-A" href="#pane-A" class="nav-link active" data-toggle="tab" role="tab">
+                        <span> <img class="parent-icon" src="assets/iconParent.svg"> </span>Help for Parents</a>
+                </li>
+                <li class="nav-item second-nav">
+                    <a id="tab-B" href="#pane-B" class="nav-link" data-toggle="tab" role="tab">
+                        <span> <img class="parent-icon" src="assets/building.svg"> </span>Help for Visitor</a>
+                </li>
+            </ul>
+
+
+            <div id="content" class="tab-content" role="tablist">
+                <div id="pane-A" class="card tab-pane fade show active" role="tabpanel" aria-labelledby="tab-A">
+                    <div id="collapse-A" class="collapse show" data-parent="#content" role="tabpanel" aria-labelledby="heading-A">
+                        <div class="card-body">
+                            <div class="tab-split row">
+                                <div class="col-4 tab1-data" *ngFor='let category of parentCategories'>
+                                    <h1>
+                                        {{category.category}}
+                                    </h1>
+                                    <div class="ques_cat">
+                                        <nav *ngFor='let ques of category.questions'>
+                                            <ul>
+                                                <li class="cursor"><a (click)='selectQues(ques)'>{{ques.question}}</a></li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="pane-B" class="card tab-pane fade show" role="tabpanel" aria-labelledby="tab-B">
+                    <div id="collapse-B" class="collapse show" data-parent="#content" role="tabpanel" aria-labelledby="heading-B">
+                        <div class="card-body">
+                            <div class="tab-split row">
+                                <div class="col-4 tab1-data" *ngFor='let category of providerCategories'>
+                                    <h1>
+                                        {{category.category}}
+                                    </h1>
+                                    <div class="ques_cat">
+                                        <nav *ngFor='let ques of category.questions'>
+                                            <ul>
+                                                <li class="cursor"><a (click)='selectQues(ques)'>{{ques.question}}</a></li>
+                                            </ul>
+                                        </nav>
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chat-icon" >
+              <a  href="javascript:void(Tawk_API.toggle())">
+                <img src="assets/chaticon.svg">
+              </a>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+</div>
+
+<!-- <footer>
+    <div class="container">
+        <div class="footer_inner">
+            <div class="row align-items-center">
+                <div class="col-12">
+                    <div class="footer_left">
+
+                        <div class="footer_menu">
+                            <ul>
+                                <li class="cursor">
+                                    <a [routerLink]="['/about-wondrfly']"> About Wondrfly</a>
+                                  </li>
+                                <li >
+                                    <a [routerLink]="['/blogs']">Blogs</a>
+                                  </li>
+                                <li>
+                                    <a [routerLink]="['/faq']">FAQ</a>
+                                </li>
+                                <li>
+                                    <a [routerLink]="['/term-condition']">Terms & Conditions</a>
+                                </li>
+                                <li>
+                                    <a [routerLink]="['/privacyPolicy']">Privacy Policy</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="copyright_text">
+                            <p>© 2021 Wondrfly Inc. All Rights Reserved.</p>
+                        </div>
+                    </div>
+
+                    <div class="social_icon_footer">
+                        <ul>
+                            <li>
+                                <a  href="https://www.facebook.com/wondrfly" target="_blank">
+                                    <span class="icon icon-facebook"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.instagram.com/wondrfly/" target="_blank" >
+                                    <span class="icon icon-instagram"></span>
+                                </a>
+                            </li> -->
+                            <!-- <li>
+                                <a href="">
+                                    <span class="icon icon-twitter"></span>
+                                </a>
+                            </li> -->
+                            <!-- <li>
+                                <a href="#">
+                                    <span class="icon icon-pinterest"></span>
+                                </a>
+                            </li> -->
+                            <!-- <li>
+                                <a href="javascript:;">
+                                    <span class="icon">
+                                        <img src="assets/linkedin.png">
+                                    </span>
+                                </a>
+                            </li> -->
+                        <!-- </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer> -->
+<!--Start of tawk.to Status Code-->
+
+<script type="text/javascript">
+
+  Tawk_API = Tawk_API || {};
+
+  Tawk_API.onStatusChange = function (status){
+
+  if(status === 'online')
+
+  {
+
+  document.getElementById('status').innerHTML = '<a href="javascript:void(Tawk_API.toggle())">Online - Click to chat</a>';
+
+  }
+
+  else if(status === 'away')
+
+  {
+
+  document.getElementById('status').innerHTML = 'We are currently away';
+
+  }
+
+  else if(status === 'offline')
+
+  {
+
+  document.getElementById('status').innerHTML = 'Live chat is Offline';
+
+  }
+
+  };
+
+  </script>
+
+  <!--End of tawk.to Status Code -->

@@ -1,0 +1,424 @@
+.webelieve-wonderfly .terms_box h2 {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 45px;
+    color: #494949;
+}
+section.webelieve-wonderfly img {
+    width: 100%;
+}
+section.webelieve-wonderfly {
+    padding: 50px;
+}
+section.webelieve-wonderfly .image-sec-1-1 {
+    height: 346px;
+    object-fit: cover;
+}
+section.webelieve-wonderfly .image-sec-1-2 {
+    height: 249px;
+    object-fit: cover;
+}
+section.webelieve-wonderfly .image-sec-2-1 {
+    height: 263px;
+    object-fit: cover;
+}
+section.webelieve-wonderfly .image-sec-2-2 {
+    height: 398px;
+    object-fit: cover;
+}
+.webelieve-wonderfly .terms_box ul li {
+    font-weight: normal;
+    text-align: justify;
+    letter-spacing: 0.001em;
+    color: #494949;
+    position: relative;
+    padding-left: 28px;
+    margin: 26px 0 0 0;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 150%;
+    color: #494949;
+}
+
+.webelieve-wonderfly .terms_box ul {
+    margin-top: 16px;
+}
+
+.webelieve-wonderfly .terms_box ul li::before {
+    content: '';
+    width: 5.33px;
+    height: 5.33px;
+    position: absolute;
+    top: 7px;
+    left: 9px;
+    background: #494949;
+    border-radius: 50%;
+}
+.webelieve-wonderfly .terms_box {
+    padding: 80px;
+}
+section.family-wonderfly p {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 150%;
+    color: #494949;
+}
+section.family-wonderfly h1 {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 45px;
+    text-transform: capitalize;
+    color: #494949;
+    padding-bottom: 15px;
+}
+section.family-wonderfly .family-text {
+    padding: 50px;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+section.family-wonderfly .image-section img {
+    width: 100%;
+    height: 506.2px;
+    object-fit: cover;
+}
+section.family-wonderfly {
+    padding: 50px;
+}
+.col-12.subscribe .input-group {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 550px;
+    background: #FFFFFF;
+    padding: 0 0 0 5px;
+    border: 1px solid #E5E9EC;
+    box-shadow: 4px 4px 4px rgb(0 0 0 / 10%);
+    border-radius: 50px;
+}
+.col-12.subscribe .input-group .form-control {
+    border: none;
+    box-shadow: none;
+    font-size: 13px;
+    min-height: 46px;
+    background-color: transparent;
+}
+.col-12.subscribe .input-group .Submit_btn {
+    background: #53B2E8;
+    box-shadow: 0px 1px 1px rgb(0 0 0 / 25%);
+    border-radius: 50px;
+    border: none;
+    box-shadow: none;
+    min-width: 124px;
+    min-height: 46px;
+    line-height: 46px;
+    font-weight: 600;
+    font-size: 13px;
+    color: #FFFFFF;
+}
+.col-12.subscribe {
+    padding: 80px;
+}
+.col-12.subscribe h1 {
+    max-width: 470px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 22px;
+    line-height: 18px;
+    text-align: center;
+    color: #494949;
+    padding-bottom: 20px;
+}
+.col-12.subscribe h2 {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 19px;
+    text-align: center;
+    letter-spacing: 0.001em;
+    color: #494949;
+    max-width: 550px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 20px;
+}
+section.wave-sect {
+    padding: 100px;
+    background: #EEF9FF;
+    height: 530px;
+}
+section.wave-sect .text-header h2 {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    text-align: center;
+    text-transform: capitalize;
+    color: #494949;
+    margin-top: 10px;
+}
+section.wave-sect .text-header h1 {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    text-align: center;
+    text-transform: capitalize;
+    color: #494949;
+}
+
+section.wave-sect .wave-bar .circle-dots {
+    width: 60px;
+    height: 60px;
+    background-color: #53B2E8;
+    border-radius: 100%;
+    color: #fff;
+}
+section.wave-sect .wave-bar h1 {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 64px;
+    text-align: center;
+    color: #FFFFFF;
+}
+section.wave-sect .wave-bar {
+    position: relative;
+    padding: 50px;
+}
+section.wave-sect .wave-bar h2 {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 24px;
+    text-align: center;
+    color: #494949;
+}
+section.wave-sect .wave-bar .first-circle {
+    max-width: 220px;
+    position: absolute;
+    top: 25px;
+    left: 140px;
+}
+section.wave-sect .wave-bar .second-circle {
+    max-width: 220px;
+    position: absolute;
+    top: 60px;
+    left: 540px;
+}
+section.wave-sect .text-header .bar {
+    width: 150px;
+    background-color: #53B2E8;
+    height: 4px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-bottom: 15px;
+}
+section.wave-sect .wave-bar .third-circle {
+    max-width: 220px;
+    position: absolute;
+    top: 20px;
+    left: 920px;
+}
+section.wave-sect .wave-bar h3 {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    text-transform: capitalize;
+    color: #494949;
+}
+section.wave-sect .first-circle h3 {
+    margin-left: -7px;
+    margin-top: 15px;
+}
+section.wave-sect .first-circle h2 {
+    margin-left: -110px;
+    margin-top: 10px;
+}
+section.wave-sect .second-circle h3 {
+    margin-left: -20px;
+    margin-top: 15px;
+}
+section.wave-sect .second-circle h2 {
+    margin-left: -127px;
+    margin-top: 10px;
+}
+section.wave-sect .third-circle h3 {
+    margin-left: -4px;
+    margin-top: 15px;
+}
+section.wave-sect .third-circle h2 {
+    margin-left: -110px;
+    margin-top: 10px;
+}
+section.wave-sect .wave-bar img {
+    width: 100%;
+}
+footer {
+    background-color: #53B2E8;
+    padding:25px 0;
+}
+
+.footer_logo {
+    display: inline-block;
+    width: 100%;
+}
+
+.footer_logo a img {
+    max-width: 78px;
+}
+
+.footer_menu {
+    display: inline-block;
+    width: 100%;
+}
+
+.footer_menu ul {
+    margin-top: 7px;
+}
+
+.footer_menu ul li {
+    display: inline-block;
+    margin: 0 27px 0 0;
+}
+
+.footer_menu ul a {
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0.001em;
+    color: #fff;
+}
+
+.footer_menu ul a:hover {
+    color: #fff;
+}
+
+.copyright_text {
+    margin-top: 35px;
+}
+
+.copyright_text p {
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 16px;
+    margin-top: 30px;
+    margin: 0;
+    color: #ffffff;
+    margin-top:40px;
+}
+
+.footer_left {
+    float: left;
+}
+
+.social_icon_footer {
+    float: right;
+    margin-top: 10px;
+}
+
+.social_icon_footer ul li {
+    display: inline-block;
+}
+
+.social_icon_footer li a {
+    display: inline-block;
+    margin-right: 14px;
+}
+
+.social_icon_footer li:last-child a {
+    margin: 0;
+}
+
+.social_icon_footer li a .icon {
+    font-size: 16px;
+    color: #fff;
+    transition: 0.8s;
+}
+.social_icon_footer li a .icon img{
+    width:16px;
+    height:16px;
+    margin-top: -5px;
+}
+.social_icon_footer li a:hover .icon.icon-facebook {
+    color: #395794;
+}
+
+.social_icon_footer li a:hover .icon.icon-instagram {
+    color: #d60044;
+}
+.social_icon_footer li a:hover .icon.icon-twitter {
+    color: #1DA1F2;
+}
+.social_icon_footer li a .icon:hover img {
+    background-color: #0e76a8;
+}
+.social_icon_footer li a:hover .icon.icon-pinterest {
+    color: #e11e27;
+}
+.imgage-corners {
+    position: absolute;
+    top: 89px;
+    left: -41px;
+}
+.imgage-corners img {
+    width: 220px;
+}
+section.family-wonderfly .image-corners {
+    position: absolute;
+    top: -58px;
+    right: -71px;
+}
+section.family-wonderfly .image-corners img {
+    width: 220px;
+}
+section.family-wonderfly {
+    position: relative;
+}
+
+@media only screen and (min-width:1024px) and (max-width:1366px) and (orientation: portrait)  {
+    section.wave-sect .wave-bar .first-circle {
+        max-width: 150px;
+    }
+    section.wave-sect .wave-bar .third-circle {
+        max-width: 150px;
+        top: 20px;
+        left: 600px;
+    }
+    section.wave-sect .wave-bar .second-circle {
+        max-width: 150px;
+        top: 50px;
+        left: 352px;
+    }
+    section.wave-sect .second-circle h2 {
+        margin-left: -92px;
+        margin-top: 10px;
+        
+    }
+    section.family-wonderfly .image-corners img {
+        width: 150px;
+    }
+    section.family-wonderfly .image-corners {
+        position: absolute;
+        top: -58px;
+        right: -43px;
+    }
+
+
+
+
+}

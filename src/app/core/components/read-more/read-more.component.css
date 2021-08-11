@@ -1,0 +1,14 @@
+:host {
+    flex: 0 0 50%;
+    margin: 1rem 0;
+  }
+  .container{
+    display: flex;
+  }
+  a.blue_heading,a.blue_heading:hover {
+    color: #53B2E8;
+	font-family: 'Poppins';
+	    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+}

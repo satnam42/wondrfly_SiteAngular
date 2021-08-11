@@ -1,0 +1,96 @@
+.forum_outer {
+    padding: 33px 0;
+    border-bottom: 2px solid rgb(189, 189, 189, 0.4);
+}
+
+.forum_form {
+    display: flex;
+    background: #FFFFFF;
+    border-radius: 44px;
+    padding: 11px 16px 14px 16px;
+    max-width: 665px;
+}
+
+.forum_form .form-group {
+    margin: 0;
+    width: 100%;
+}
+
+.forum_form .form-group:last-child {
+    width: auto;
+}
+
+.forum_form .form-group .form-control,
+.forum_form .form-group input {
+    background-color: #EFEFEF;
+    border-radius: 30px;
+}
+
+.forum_form .form-group input::placeholder {
+    color: #748494;
+}
+
+.forum_form .form-group input::-webkit-input-placeholder {
+    color: #748494;
+}
+
+.forum_form .form-group input:-moz-placeholder {
+    color: #748494;
+}
+
+.forum_form .banner_button {
+    background: #FA627D;
+    border: 1px solid #FA627D;
+    border-radius: 50%;
+    display: inline-block;
+    width: 52px;
+    height: 52px;
+    margin: 3px 0 0 30px;
+    padding: 0;
+}
+
+.type_outer .type_box {
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    padding: 40px 35px 23px;
+    text-align: center;
+}
+
+.type_outer {
+    padding: 58px 0;
+}
+
+.type_outer .type_box img {
+    max-width: 205px;
+    margin: 0 auto;
+    max-height: 135px;
+}
+
+.type_outer .type_box h2 {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+    color: #494949;
+    margin: 42px 0 0 0;
+}
+
+.type_outer .type_box p {
+    font-size: 15px;
+    line-height: 24px;
+    text-align: center;
+    color: #494949;
+    margin: 17px 0 0 0;
+}
+
+.type_outer .type_box a {
+    font-size: 16px;
+    line-height: 24px;
+    color: #77C6E9;
+    margin: 18px 0 0 0;
+    display: inline-block;
+}
+
+.type_outer .type_box a:hover {
+    text-decoration: underline;
+}

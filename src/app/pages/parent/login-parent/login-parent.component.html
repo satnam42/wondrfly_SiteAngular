@@ -1,0 +1,519 @@
+<!-- <body>
+  <ng2-toasty></ng2-toasty>
+  <div class="step_header">
+    <div class="container">
+      <div class="row">
+
+      </div>
+    </div>
+  </div>
+  <div class="step_outer">
+    <mat-horizontal-stepper [linear]="true" #stepper ngClass="{{ 'last-edited-step-' + stepper.selectedIndex }}"
+      labelPosition="bottom">
+      <mat-step>
+        <ng-template matStepLabel>Location</ng-template>
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <div class="lets_outer">
+                <div class="get_box">
+                  <h3>Lets get you onboard</h3>
+                  <p>Your location will help us to find the best activities near by you</p>
+                  <div class="location_input">
+                    <div class="form-group">
+                      <label class="custom-label">Location </label>
+                      <input type="text" class="form-control" value="" [(ngModel)]="this.userData.location"
+                        (keydown.enter)="$event.preventDefault()" placeholder="Search Location" autocorrect="off"
+                        autocapitalize="off" spellcheck="off" type="text" #search>
+                    </div>
+                  </div>
+                </div>
+                <div class="btns_next">
+                  <button matStepperNext class="button skip">Skip</button>
+                  <button matStepperNext class="button next">Next</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </mat-step>
+      <mat-step [formGroup]="addChildForm">
+        <ng-template matStepLabel>Kids info</ng-template>
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <div class="lets_outer">
+                <div class="get_box">
+                  <h3>Lets add your kid’s information</h3>
+                  <p>Your kid’s information will help us to customized activities according to their age group</p>
+                  <div class="location_input">
+                    <div class="form-group">
+                      <label>Name</label>
+                      <input type="text" placeholder="Enter name" class="form-control"
+                        [formControl]="addChildForm.controls['name']" [(ngModel)]="addChildData.name">
+                      <small
+                        *ngIf=" addChildForm.controls['name'].hasError('required') && addChildForm.controls['name'].touched"
+                        class="form-error-msg">CAN'T LEAVE IT BLANK</small>
+
+                    </div>
+
+                    <div class="form-group">
+                      <label>date of Birth</label>
+                      <input type="date" placeholder="MM/DD/YYYY" class="form-control"
+                        [formControl]="addChildForm.controls['dob']" [(ngModel)]="addChildData.dob">
+                    </div>
+                    <div class="form-group">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="btns_next">
+                  <button matStepperNext class="button next"
+                    [disabled]="!addChildData.name||!addChildData.dob">Next</button>
+                  <button (click)="openSearch()" class="button skip">Skip</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-step>
+
+      <mat-step>
+        <ng-template matStepLabel>Kids interest</ng-template>
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <div class="lets_outer">
+                <div class="get_box">
+                  <h3>Lets add your kid’s interests</h3>
+                  <p>Your kid’s interest will help us to narrow down the activities</p>
+                  <div class="location_input interest">
+
+                    <div class="form-group">
+                      <label>Intrests</label>
+                      <div class="input_outer">
+                        <div class="ng-autocomplete">
+                          <ng-autocomplete placeholder="Add intrests" [data]="tags" [searchKeyword]="keyword"
+                            (selected)='selectEvent($event)' (keyup)='onChangeSearch($event)'
+                            (inputFocused)='onFocused($event)' [itemTemplate]="itemTemplate"
+                            [notFoundTemplate]="notFoundTemplate">
+                          </ng-autocomplete>
+
+                          <ng-template #itemTemplate let-item>
+                            <a [innerHTML]="item.name"></a>
+                          </ng-template>
+
+                          <ng-template #notFoundTemplate let-notFound>
+                            <div *ngIf="tags.length" [innerHTML]="notFound"></div>
+                          </ng-template>
+                        </div>
+
+
+                      </div>
+                      <br>
+                      <mat-form-field>
+                        <mat-chip-list>
+                          <mat-chip *ngFor="let category of addChildData.interestInfo" [selectable]="selectable"
+                            [removable]="removable" (removed)="remove(category)">
+                            {{category.name}}
+                            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                          </mat-chip>
+                        </mat-chip-list>
+                      </mat-form-field>
+
+                    </div>
+
+                  </div>
+                </div>
+                <div class="btns_next">
+                  <button matStepperNext (click)="addChild(userData.id)" class="button next">Next</button>
+                  <button matStepperNext (click)="addChild(userData.id)" class="button skip">Skip</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-step>
+    </mat-horizontal-stepper>
+    <div class="step_footer">
+      <div class="container">
+        <p>© 2020 Letsplay Holdings Inc.</p>
+      </div>
+    </div>
+  </div>
+
+</body>
+<ngx-ui-loader></ngx-ui-loader> -->
+
+
+
+
+
+
+
+<!-- ==================NEW DESIGN==================== -->
+
+<!-- <mat-progress-bar class="progress-bar" mode="determinate" [value]="progressBarVaue"></mat-progress-bar> -->
+
+<div class="main_container">
+ 
+  <div class="sub-main">
+    <!-- <div class="container progess_menu">
+        <div class="box-1 text-center p-3 bg-white">
+             
+             <div class="progress">
+            <div class="progress-bar" role="progressbar" [ngStyle]="{'width': progressBarVaue + '%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <div class="cicle-dots">
+                <div class="dots-info1">
+                <span class="dot" [ngClass]="{active: this.progressBarVaue>=25}" >1</span>
+                <h3>Basic Info </h3>
+                </div>
+                <div class="dots-info2">
+                <span class="dot" [ngClass]="{active: this.progressBarVaue>=50}">2</span>
+                <h3>Personal Info</h3>
+                </div>
+                <div class="dots-info3 ">
+                <span class="dot" [ngClass]="{active: this.progressBarVaue>=75}">3</span>
+                <h3>Business Info</h3>
+                </div>
+            </div>
+    
+    
+        </div>
+        </div> -->
+      
+        <div class="menu-box">
+          <span class="wnderfly-btn">© 2021 WONDRFLY Inc.</span>
+    <div [hidden]="!step1" class=" box text-center p-3 bg-white">
+        <p>
+        <h2 class="my_heading1">Where do you live?</h2>
+        <p class="pt-1">Your location will help us to find the best activities near by you</p>
+        <form [formGroup]="locationForm">
+            <div class="N_inputs_container">
+                <div class="business_name">
+
+                  <input class="my_inputs" placeholder="Type" value="" formControlName="location" (keydown.enter)="$event.preventDefault()"
+                  autocorrect="off" autocapitalize="off" spellcheck="off" #search>
+                </div>
+
+
+            </div>
+            <div class="img_container">
+                <div class="map">
+                <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom" [styles]="mapTheme?.styles" [zoomControl]="false" [streetViewControl]="false">
+                    <div>
+                        <agm-marker  [iconUrl]="markerUrl"
+                            [latitude]="latitude" [longitude]="longitude">
+                            <strong>{{parent.firstName}}</strong>
+                        </agm-marker>
+                    </div>
+                </agm-map>
+            </div>
+            </div>
+          </form>
+        <div class="N_btns">
+            <div class="row">
+                <div class="col-6">
+                    <div onclick="history.back()"  class="back_btn cursor">
+                        <a>
+                            back
+                        </a>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div [ngClass]="{'disable_next':!locationForm.value.location || !locationForm.value.addressLine1}" (click)="nextStep()" class="next_btn cursor">
+                        <a>
+                            Next
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div *ngIf="step2" class=" box text-center p-3 bg-white">
+
+      <p>
+      <h2 class="my_heading1">Tell us about your child</h2>
+      <p class="pt-1">This information will help us customize suggestions based on your child's age, interests and availability</p>
+
+      <div class="N_inputs_container">
+          <form [formGroup]="addChildForm">
+              <div class="business_name">
+                  <div class="N_container_box_input_heading">
+                      NAME
+                  </div>
+                  <input type="text" placeholder="Type" form  [formControl]="addChildForm.controls['name']" class="my_inputs"
+                     [(ngModel)]="kid.name">
+           
+              </div>
+              <div class="business_name datef">
+                <div class="N_container_box_input_heading">
+                    DATE OF BIRTH
+                </div>
+                <input type="date" placeholder="mm/dd/yy"  [formControl]="addChildForm.controls['dob']" class="my_inputs"
+                   [(ngModel)]="kid.dob">
+         
+            </div>
+        
+          </form>
+      </div>
+
+      <div class="N_btns">
+          <div class="row">
+              <div class="col-6">
+                  <div (click)="backStep()" class="back_btn cursor">
+                      <a>
+                          back
+                      </a>
+                  </div>
+              </div>
+              <div class="col-6">
+                  <div [ngClass]="{'disable_next':!kid.name || !kid.dob}" (click)="validAge()" class="next_btn cursor">
+                      <a>
+                          Next
+                      </a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+
+    <div *ngIf="step3" class=" box text-center p-3 bg-white">
+
+      <p>
+      <h2 class="my_heading1">Select your child’s interests</h2>
+      <br>
+      <form>
+        <div class="N_inputs_container">
+          <div class="form-group">
+              <div class="input_outer">
+                <div class="ng-autocomplete">
+                  <ng-autocomplete [data]="searchTags" placeholder="Type" [searchKeyword]="keyword"
+                    (selected)="selectEvent($event)" (inputChanged)="onChangeSearch($event)"
+                    [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate">
+                  </ng-autocomplete>
+
+                  <ng-template #itemTemplate let-item>
+                      <a [innerHTML]="item.name"></a>
+                  </ng-template>
+
+                  <ng-template #notFoundTemplate let-notFound>
+                      <div *ngIf="searchTags.length" [innerHTML]="notFound"></div>
+                  </ng-template>
+                </div>
+              </div>   
+              <br>
+              <mat-form-field class="demo-chip-list">
+                <mat-chip-list>
+                  <mat-chip *ngFor="let t of selectedTags" [selectable]="selectable" [removable]="removable"
+                    (removed)="remove(t)">
+                    {{ t.name }}
+                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                  </mat-chip>
+                </mat-chip-list>
+              </mat-form-field>
+
+            </div>
+
+      </div>
+          <div class="small_boxes">
+              <div class="row">
+                  <div class="col-3" *ngFor="let tag of tags | slice:0:8">
+                      <div  class="category_list" (click)="selectSkills(tag)" >
+                        <div class="box-border" [ngClass]="{'active':tag.active}">
+                          <!-- <img class="cat_img my_box"
+                              src="https://wondrfly.com/{{tag.categoryIds[0].imageUrl}}" alt=""> -->
+                            </div>
+                         
+                          <span [ngClass]="{'active':tag.active}"> {{tag.name}}</span>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </form>
+      <div class="N_btns">
+          <div class="row">
+              <div class="col-6">
+                  <div (click)="backStep()" class="back_btn cursor">
+                      <a>
+                          back
+                      </a>
+                  </div>
+              </div>
+              <div class="col-6">
+                <div [ngClass]="{'disable_next':selectedTags?.length<=0}" (click)="nextStep()"  class="next_btn cursor">
+                      <a>
+                          Next
+                      </a>
+                  </div>
+                 
+
+              </div>
+            
+              
+            
+             
+          </div>
+      </div>
+  </div>
+
+
+
+  <div *ngIf="step4" class=" box text-center p-3 bg-white">
+
+    <p>
+    <h2 class="my_heading1">Select more interests</h2>
+    <br>
+    <form>
+      <div class="N_inputs_container">
+        <div class="form-group">
+            <div class="input_outer">
+              <div class="ng-autocomplete">
+                <ng-autocomplete [data]="searchTags" placeholder="Type" [searchKeyword]="keyword"
+                    (selected)="selectEvent($event)" (inputChanged)="onChangeSearch($event)"
+                    [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate">
+                  </ng-autocomplete>
+                <ng-template #itemTemplate let-item>
+                    <a [innerHTML]="item.name"></a>
+                </ng-template>
+
+                <ng-template #notFoundTemplate let-notFound>
+                    <div *ngIf="searchesCatg.length" [innerHTML]="notFound"></div>
+                </ng-template>
+              </div>
+            </div>   
+            
+            <br>
+            <mat-form-field class="demo-chip-list">
+              <mat-chip-list>
+                <mat-chip *ngFor="let t of selectedTags" [selectable]="selectable" [removable]="removable"
+                  (removed)="remove(t)" >
+                  {{ t.name }}
+                  <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                </mat-chip>
+              </mat-chip-list>
+            </mat-form-field>
+
+          </div>
+
+    </div>
+        <div class="small_boxes">
+            <div class="row">
+              <div class="col-3" *ngFor="let tag of tags | slice:9:17">
+                <div  class="category_list" (click)="selectSkills(tag)" >
+                  <div class="box-border" [ngClass]="{'active':tag.active}">
+                    <!-- <img class="cat_img my_box"
+                        src="https://wondrfly.com/{{tag.categoryIds[0].imageUrl}}" alt=""> -->
+                      </div>
+                   
+                    <span [ngClass]="{'active':tag.active}"> {{tag.name}}</span>
+                </div>
+            </div>
+            </div>
+        </div>
+    </form>
+    <div class="N_btns">
+        <div class="row">
+            <div class="col-6">
+                <div (click)="backStep()" class="back_btn cursor">
+                    <a>
+                        back
+                    </a>
+                </div>
+            </div>
+            <div class="col-6">
+              <div (click)="nextStep()"  class="next_btn cursor">
+                <a>
+                    Next
+                </a>
+            </div>
+                <!-- <div  [ngClass]="{'disable_next':selectedTags?.length<=0}" (click)="addChild();updateParent()"  class="next_btn cursor">
+                  <a>
+                      Next
+                  </a>
+              </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div *ngIf="step5" class=" box text-center p-3 bg-white">
+      <h2 class="my_heading1">Welcome to Wondrfly</h2>
+      <div class="N_inputs_container">
+          <form [formGroup]="addChildForm">
+              <div class="business_name why-wonderflyinput">
+                  <input type="text"  placeholder="Where did you hear from us?" 
+                  [formControl]="addChildForm.controls['fromWhereYouHeard']" [(ngModel)]="kid.fromWhereYouHeard" class="my_inputs" data-toggle="collapse"
+                   href="#whywonderflydrop" role="button" aria-expanded="false" aria-controls="whywonderflydrop">
+              </div>
+              <div class="whywonderfly-dropdown collapse"  id="whywonderflydrop">
+                <a (click)="kid.fromWhereYouHeard='search engine'" ><h1><span >
+                    <img src="assets/search.svg">
+                    </span>
+                Search Engine
+                </h1></a>
+                <a (click)="kid.fromWhereYouHeard='social media'"><h1><span >
+                  <img src="assets/social-media.svg">
+                  </span>
+                  Social Media
+                      </h1></a>
+                      <a (click)="kid.fromWhereYouHeard='from a friend'"><h1><span >
+                        <img src="assets/from-friend.svg">
+                        </span>
+                        From a Friend
+                    </h1></a>
+                    <a (click)="kid.fromWhereYouHeard='facebook ad'"><h1><span >
+                      <img src="assets/fb-ad.svg">
+                      </span>
+                      Facebook Ad
+                  </h1></a>
+                  <a (click)="kid.fromWhereYouHeard='google ad'"><h1><span >
+                    <img src="assets/google-ad.svg">
+                    </span>
+                    Google Ad
+                </h1></a>
+              </div>
+          </form>
+      </div>
+      <div class="welcomeImg">
+          <img src="assets/welcomeScreen.png" class="welcomeImg" alt="">
+      </div>
+      <div class="N_btns">
+          <div class="row">
+              <div class="col-6">
+                  <div (click)="backStep()" class="back_btn cursor">
+                      <a>
+                          back
+                      </a>
+                  </div>
+              </div>
+              <div class="col-6" >
+                  <div [ngClass]="{'disable_next':!kid.fromWhereYouHeard}" (click)="addChild();updateParent()" class="next_btn cursor">
+                    <a>
+                        Finish
+                    </a>
+                </div>
+              </div>
+          </div>
+      </div>
+</div>
+
+
+
+
+
+
+
+
+</div>
+</div>
+
+</div>
+<ngx-ui-loader></ngx-ui-loader>
+<ng2-toasty></ng2-toasty>

@@ -1,0 +1,1376 @@
+<app-header></app-header>
+<ng2-toasty></ng2-toasty>
+<app-alert></app-alert>
+
+<body id="i-padadjust">
+  <section class="main_outer">
+    <div class="content_outer">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <!-- <app-breadcrumb></app-breadcrumb> -->
+          </div>
+        </div>
+        <button class="my_class" (click)="sideBar()">
+          <span class="icon icon-menu"></span>
+        </button>
+        <div class="MainContent">
+          <div class="side_bar" [ngClass]="isSideBar ? 'side_bar_show' : 'side_bar_hide'">
+            <div class="page_heading">
+              <div class="profile_outer">
+                <div class="profile_image">
+                  <img src="{{ user.avatarImages }}" (error)="user.avatarImages = 'assets/default_img.png'"
+                    alt="Profile Image" />
+                </div>
+                <div class="edit_profile">
+                  <a>
+                    <label class="cursor">
+                      <input style="display: none" #file accept="image/*"
+                        (change)="parentImageSelect($event, currentUser.id)" type="file" name="image" />
+                      <img src="assets/edit_white.svg" alt="Profile Image" />
+                    </label>
+                  </a>
+                </div>
+              </div>
+              <h2>{{ user.firstName }}</h2>
+            </div>
+
+            <div class="side_menu">
+              <ul class="cursor">
+                <li>
+                  <a [class.active]="profile" (click)="onProfile()">Parent Details</a>
+                </li>
+                <!-- <li>
+                  <a [class.active]="chat" (click)="onChat()">Chat</a>
+                </li> -->
+                <li>
+                  <a [class.active]="children" (click)="onChildren(currentUser.id)">Children</a>
+                </li>
+                <li>
+                  <a [class.active]="guardian" (click)="onGuardian(currentUser.id)">Co-Parent</a>
+                </li>
+                <li>
+                  <a [class.active]="setting" (click)="onSetting()">Account Settings</a>
+                </li>
+
+                <div  *ngIf="isSetting || isNotification" class="account-setting-modal">
+                  <li>
+                    <a [class.active]="setting" (click)="onSetting()">Password Settings</a>
+                  </li>
+                  <li>
+                    <a [class.active]="notification" (click)="onNotification()">Notifications</a>
+                  </li>
+
+                </div>
+                <!-- <li>
+                    <a [class.active]="favourite" (click)="getFav(currentUser.id)">Saved Activities</a>
+                  </li> 
+               <li>
+                  <a [class.active]="friend" (click)="onFriend()">Tell a Friend</a>
+                </li>
+                <li>
+                  <a [class.active]="feedback" (click)="onFeedback()">Give Feedback</a>
+                </li> -->
+              </ul>
+            </div>
+            <div class="progress">
+              <div class="progress-bar" [style.width.%]="profileProgress">
+                <div class="progress-value">{{ profileProgress }}%</div>
+              </div>
+            </div>
+            <div class="complete_score">
+              <p>
+                Profile completion score<span class="icon-information"></span>
+              </p>
+            </div>
+          </div>
+
+          <div class="content_right">
+            <!-- ----------------------------my profile------------------------------- -->
+
+            <div *ngIf="isProfile" class="personal_details">
+              <h2>Parent Details</h2>
+              <div class="row">
+                <div class="col-md-8">
+                  <form [formGroup]="updateForm" class="details_form">
+                    <div class="form-group">
+                      <label>Full Name</label>
+                      <input type="text" placeholder="Enter fullName" class="form-control"
+                        [formControl]="updateForm.controls['firstName']" [(ngModel)]="user.firstName"
+                        name="firstName" />
+                      <span class="parent-close"><img (click)="user.firstName=''" src="assets/close.png"></span>
+                    </div>
+
+                    <div class="form-group">
+                      <label>Email Address</label>
+                      <input type="text" placeholder="Enter email address" class="form-control"
+                        [formControl]="updateForm.controls['email']" [(ngModel)]="user.email" name="email" readonly />
+                        <span class="parent-close"><img src="assets/close.png"></span>
+                    </div>
+
+                    <div class="form-group">
+                      <label>Address</label>
+                      <input type="text" placeholder="Enter address" class="form-control"
+                        [formControl]="updateForm.controls['addressLine1']" [(ngModel)]="user.addressLine1"
+                        name="addressLine1" />
+                    </div>
+
+                    <div class="form-group">
+                      <label>Mobile Number</label>
+                      <input type="text" placeholder="e.g. (555) 555 5555" mask="(000) 000-0000" minlength="10"
+                        class="form-control" [formControl]="updateForm.controls['phoneNumber']"
+                        [(ngModel)]="user.phoneNumber" name="phoneNumber" />
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+              <!-- <div class="social-icons">
+                <a href="#">
+                  <span class="icon">
+                    <img src="assets/fb-123.png">
+                  </span>
+                </a>
+                <a href="#">
+                  <span class="icon">
+                    <img src="assets/insta.png">
+                  </span>
+                </a>
+                <a href="#">
+                  <span class="icon">
+                    <img src="assets/tweet.png">
+                  </span>
+                </a>
+
+              </div> -->
+
+              <div class="row bottom_arrow">
+                <div class="col-12">
+                  <!-- <a (click)="back()" class="back_arrow cursor"><span class="icon-left-arrow"></span>Back</a> -->
+                  <button (click)="updateParent(user)" class="btn_style save_btn cursor">
+                    Save
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- -------------------------------------------------------------------- -->
+            <!-- -------------------------------------chat start------------------  -->
+            <div *ngIf="isChat" class="container">
+              <div class="row">
+                <div class="col-md-5">
+                  <div class="card contacts">
+                    <div class="chat_searchbar">
+                      <input id="btn-input" type="text" class="form-control input-sm" placeholder="Search..."
+                        name="searchuser" (keyup)="searchUsers($event.target.value)" />
+                      <span class="search_btn">
+                        <a>
+                          <svg width="21" height="20" viewBox="0 0 21 20" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                              d="M13.7049 12.9289C13.8268 12.8138 13.9716 12.7225 14.1309 12.6602C14.2902 12.5979 14.461 12.5658 14.6335 12.5658C14.806 12.5658 14.9768 12.5979 15.1361 12.6602C15.2954 12.7225 15.4402 12.8138 15.5621 12.9289L20.6151 17.6959C20.8614 17.928 20.9998 18.243 20.9999 18.5714C21.0001 18.8999 20.8619 19.2149 20.6158 19.4472C20.3697 19.6796 20.0358 19.8102 19.6877 19.8103C19.3395 19.8104 19.0055 19.68 18.7593 19.4479L13.7062 14.6809C13.5842 14.5659 13.4874 14.4294 13.4213 14.2791C13.3553 14.1288 13.3213 13.9676 13.3213 13.8049C13.3213 13.6422 13.3553 13.4811 13.4213 13.3308C13.4874 13.1805 13.5842 13.0439 13.7062 12.9289H13.7049Z"
+                              fill="#F0F0F0" />
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                              d="M8.53113 14.8579C9.47909 14.8579 10.4178 14.6818 11.2936 14.3396C12.1694 13.9973 12.9652 13.4957 13.6355 12.8634C14.3058 12.231 14.8375 11.4803 15.2003 10.6541C15.5631 9.82787 15.7498 8.94234 15.7498 8.04805C15.7498 7.15376 15.5631 6.26823 15.2003 5.44202C14.8375 4.61581 14.3058 3.86509 13.6355 3.23273C12.9652 2.60037 12.1694 2.09876 11.2936 1.75653C10.4178 1.4143 9.47909 1.23816 8.53113 1.23816C6.61662 1.23816 4.78053 1.95563 3.42677 3.23273C2.07302 4.50983 1.31248 6.24196 1.31248 8.04805C1.31248 9.85415 2.07302 11.5863 3.42677 12.8634C4.78053 14.1405 6.61662 14.8579 8.53113 14.8579ZM17.0623 8.04805C17.0623 10.1825 16.1634 12.2296 14.5635 13.7389C12.9636 15.2482 10.7937 16.0961 8.53113 16.0961C6.26853 16.0961 4.09861 15.2482 2.49871 13.7389C0.898813 12.2296 0 10.1825 0 8.04805C0 5.91357 0.898813 3.86652 2.49871 2.35722C4.09861 0.847917 6.26853 0 8.53113 0C10.7937 0 12.9636 0.847917 14.5635 2.35722C16.1634 3.86652 17.0623 5.91357 17.0623 8.04805Z"
+                              fill="#F0F0F0" />
+                          </svg>
+                        </a>
+                      </span>
+                    </div>
+                    <div class="contact_list" infiniteScroll [infiniteScrollDistance]="2 "
+                      [infiniteScrollThrottle]="500" (scrolled)="onScroll()" [scrollWindow]="false">
+                      <div *ngIf="users?.length != undefined">
+                        <div class="row contact1 cursor" *ngFor="let user of users; trackBy: trackByFn"
+                          (click)="slectedUser(user)">
+                          <div class="col-2">
+                            <div class="contact_image">
+                              <svg width="38" height="38" viewBox="0 0 38 38" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <circle cx="19" cy="19" r="18.75" fill="url(#pattern0)" />
+                                <defs>
+                                  <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                    <use xlink:href="#image0" transform="scale(0.004)" />
+                                  </pattern>
+                                  <image id="image0" width="250" height="250"
+                                    xlink:href="data:image/jpeg;base64,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" />
+                                </defs>
+                              </svg>
+                            </div>
+                          </div>
+                          <div class="col-6">
+                            <div class="contact_name">
+                              {{ user?.firstName }}
+                            </div>
+                            <!-- <div class="contact_msg">
+                            message will show here......
+                          </div> -->
+                          </div>
+                          <div class="col-4">
+                            <div class="chat_value">
+                              <!-- <div class="chat_time1">Today, 11:30 AM</div> -->
+                              <div class="message_count">
+                                <!-- <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <rect width="16" height="16" rx="8" fill="#53B2E8" />
+                                <path
+                                  d="M5.279 9.542V8.858L8.537 4.61H9.419V8.831H10.355V9.542H9.419V11H8.591V9.542H5.279ZM8.645 5.609L6.143 8.831H8.645V5.609Z"
+                                  fill="white" />
+                              </svg> -->
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-7">
+                  <div class="card chat">
+                    <div class="card-header">
+                      <span>{{activeContact?.firstName}} </span>
+                      <span class="blue_dot"><svg width="7" height="7" viewBox="0 0 7 7" fill="none"
+                          xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="3.5" cy="3.5" r="3.5" fill="#53B2E8" />
+                        </svg>
+                      </span>
+                      <span class="three_dots">
+                        <svg width="4" height="18" viewBox="0 0 4 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="2" cy="2" r="2" fill="#C4C4C4" />
+                          <circle cx="2" cy="9" r="2" fill="#C4C4C4" />
+                          <circle cx="2" cy="16" r="2" fill="#C4C4C4" />
+                        </svg>
+                      </span><br />
+                      <span><small>
+                          <p>{{typingMsg}}</p>
+                        </small></span>
+                    </div>
+                    <div class="card-body chat-care" #messageBox>
+                      <!-- <div class="chat_time">Today, 11:30 AM (dummy time)</div> -->
+                      <div *ngIf=" chatCollection?.length> 0;else noConversation">
+                        <ul class="chat" *ngFor="let chat of chatCollection;">
+                          <li class="agent clearfix" *ngIf="chat?.msgFrom !== currentUser?.firstName&&chat?.msg">
+                            <span class="chat-img left clearfix mx-2">
+                              <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="Agent" class="img-circle" />
+                            </span>
+                            <div class="chat-body clearfix">
+                              <div class="header clearfix">
+                                <strong class="primary-font">{{activeContact.firstName}}</strong>
+                                <small class="right text-muted">
+                                  <span class="glyphicon glyphicon-time"></span>{{chat?.date |
+                                  date:'shortTime'}}</small>
+                              </div>
+                              <p *ngIf="chat?.msgFrom !== currentUser?.firstName&&chat?.msg">{{chat.msg}}
+                              </p>
+                            </div>
+                          </li>
+                          <li class="agent clearfix" *ngIf="chat?.msgFrom !== currentUser?.firstName&&chat?.image">
+                            <span class="chat-img left clearfix mx-2">
+                              <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="Agent" class="img-circle" />
+                            </span><img class="img_msg" *ngIf="chat?.image" src="{{chat.image}}" alt="media Image">
+                          </li>
+
+                          <li class="admin clearfix" *ngIf="chat?.msgFrom !== activeContact?.firstName&&chat?.msg">
+                            <span class="chat-img right clearfix mx-2">
+                              <img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="Admin" class="img-circle" />
+                            </span>
+                            <div class="chat-body clearfix send">
+                              <div class="header clearfix">
+                                <!-- <small class="left text-muted"><span
+                                    class="glyphicon glyphicon-time"></span>{{chat?.date | date:'shortTime'}}</small> -->
+                                <!-- <strong class="right primary-font">{{currentUser.firstName}}</strong> -->
+                              </div>
+                              <p *ngIf="chat.msgFrom !==activeContact.firstName ">
+                                {{chat.msg}}
+                              </p><small class="right text-muted"><span
+                                  class="glyphicon glyphicon-time"></span>{{chat?.date | date:'shortTime'}}</small>
+                            </div>
+                          </li>
+                          <li class="admin clearfix" *ngIf="chat.msgFrom !==activeContact.firstName&&chat?.image ">
+                            <span class="chat-img right clearfix mx-2">
+                              <img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="Admin" class="img-circle" />
+                            </span><img class="img_msg_send" *ngIf="chat?.image" src="{{chat.image}}"
+                              alt="Profile Image">
+                          </li>
+                        </ul>
+                      </div>
+                      <ng-template #noConversation class="chat">
+                        <img class="no_chat_img" src="assets/no_chat.png">
+                        <h6 class="no_chat">You don't have any conversation</h6>
+                      </ng-template>
+                    </div>
+                    <div class="card-footer" [ngClass]="{'disable_send':roomId?.length<=0}">
+                      <div class=" input-group">
+                        <input (keyup)="startTyping()" (keyup.enter)="sendMessage()" id="btn-input" type="text"
+                          [(ngModel)]="text" class="form-control input-sm" placeholder="Type here..." />
+                        <span class="add_image ">
+                          <label><input style="display: none;" #file accept="image/*" (change)="sendMedia($event)"
+                              type="file" name="image" />
+                            <a class="cursor">
+                              <svg width="19" height="19" viewBox="0 0 19 19" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                  d="M17.0312 3H1.59375C1.26533 3 1 3.26533 1 3.59375V15.4688C1 15.7972 1.26533 16.0625 1.59375 16.0625H17.0312C17.3597 16.0625 17.625 15.7972 17.625 15.4688V3.59375C17.625 3.26533 17.3597 3 17.0312 3ZM16.2891 14.7266H2.33594V13.9862L4.90576 10.9377L7.69082 14.2404L12.0233 9.10449L16.2891 14.1625V14.7266ZM16.2891 12.3182L12.1365 7.39375C12.0771 7.32324 11.9695 7.32324 11.9102 7.39375L7.69082 12.3961L5.01895 9.22881C4.95957 9.1583 4.85195 9.1583 4.79258 9.22881L2.33594 12.1419V4.33594H16.2891V12.3182ZM5.45312 8.49219C5.66755 8.49219 5.87987 8.44995 6.07798 8.3679C6.27608 8.28584 6.45608 8.16557 6.6077 8.01395C6.75932 7.86233 6.87959 7.68233 6.96165 7.48423C7.0437 7.28612 7.08594 7.0738 7.08594 6.85938C7.08594 6.64495 7.0437 6.43263 6.96165 6.23452C6.87959 6.03642 6.75932 5.85642 6.6077 5.7048C6.45608 5.55318 6.27608 5.43291 6.07798 5.35085C5.87987 5.2688 5.66755 5.22656 5.45312 5.22656C5.02008 5.22656 4.60476 5.39859 4.29855 5.7048C3.99234 6.01101 3.82031 6.42633 3.82031 6.85938C3.82031 7.29242 3.99234 7.70774 4.29855 8.01395C4.60476 8.32016 5.02008 8.49219 5.45312 8.49219ZM5.45312 6.33984C5.74072 6.33984 5.97266 6.57178 5.97266 6.85938C5.97266 7.14697 5.74072 7.37891 5.45312 7.37891C5.16553 7.37891 4.93359 7.14697 4.93359 6.85938C4.93359 6.57178 5.16553 6.33984 5.45312 6.33984Z"
+                                  fill="#BDBDBD" />
+                              </svg>
+                            </a>
+                          </label>
+                        </span>
+                        <span class="add_file cursor">
+                          <a>
+                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"
+                              xmlns="http://www.w3.org/2000/svg">
+                              <g clip-path="url(#clip0)">
+                                <path
+                                  d="M7.0061 6.83909L5.73121 12.8668C5.48044 14.0524 5.71094 15.2891 6.372 16.3048C7.03305 17.3205 8.07052 18.032 9.25616 18.2828C10.4418 18.5336 11.6785 18.3031 12.6942 17.642C13.7099 16.9809 14.4214 15.9435 14.6722 14.7578L16.248 7.30704C16.4152 6.51661 16.2616 5.69214 15.8209 5.01501C15.3801 4.33788 14.6885 3.86355 13.8981 3.69637C13.1076 3.52919 12.2832 3.68286 11.606 4.12356C10.9289 4.56426 10.4546 5.25591 10.2874 6.04634L8.84044 12.8877C8.79905 13.0833 8.79661 13.2853 8.83326 13.4819C8.86991 13.6785 8.94493 13.866 9.05403 14.0337C9.16314 14.2013 9.3042 14.3458 9.46915 14.4589C9.63411 14.5721 9.81973 14.6516 10.0154 14.693V14.693C10.4106 14.7766 10.8229 14.6997 11.1614 14.4794C11.5 14.259 11.7372 13.9132 11.8208 13.518L12.9525 8.16685"
+                                  stroke="#BDBDBD" stroke-width="1.52312" stroke-linecap="round"
+                                  stroke-linejoin="round" />
+                              </g>
+                              <defs>
+                                <clipPath id="clip0">
+                                  <rect width="18.2775" height="18.2775" fill="white"
+                                    transform="translate(3.7821) rotate(11.9423)" />
+                                </clipPath>
+                              </defs>
+                            </svg>
+                          </a>
+                        </span>
+                        <span class="input-group-btn cursor">
+                          <a (click)="sendMessage()">
+                            <svg width="38" height="38" viewBox="0 0 38 38" fill="none"
+                              xmlns="http://www.w3.org/2000/svg">
+                              <circle cx="19" cy="19" r="19" fill="#53B2E8" />
+                              <path d="M27 9L16 20" stroke="#F2F2F2" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                              <path d="M27 9L20 29L16 20L7 16L27 9Z" stroke="#F2F2F2" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                          </a>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- ------------------chat ends---------------------------- -->
+
+            <!-- ---------------account setting------------------------- -->
+            <div *ngIf="isSetting" class="personal_details">
+              <h2>Change your password</h2>
+              <div class="row">
+                <div class="col-md-8">
+                  <form class="details_form" [formGroup]="resetPasswordForm">
+                    <div class="form-group">
+                      <label>Current Password</label>
+                      <div class="input_outer">
+                        <input type="password" placeholder="Type" class="form-control" [formControl]="
+                            resetPasswordForm.controls['oldPassword']
+                          " [(ngModel)]="resetPasswordData.oldPassword" />
+                        <small *ngIf="
+                            resetPasswordForm.controls['oldPassword'].hasError(
+                              'required'
+                            ) &&
+                            resetPasswordForm.controls['oldPassword'].touched
+                          " class="form-error-msg">CAN'T LEAVE IT BLANK</small>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label>New Password</label>
+                      <div class="input_outer">
+                        <input type="password" placeholder="Type" class="form-control" [formControl]="
+                            resetPasswordForm.controls['newPassword']
+                          " [(ngModel)]="resetPasswordData.newPassword" />
+                        <small *ngIf="
+                            resetPasswordForm.controls['newPassword'].hasError(
+                              'required'
+                            ) &&
+                            resetPasswordForm.controls['newPassword'].touched
+                          " class="form-error-msg">CAN'T LEAVE IT BLANK</small>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label>Confirm New Password</label>
+                      <div class="input_outer">
+                        <input type="password" placeholder="Confirm password" class="form-control" [formControl]="
+                            resetPasswordForm.controls['confirmPassword']
+                          " />
+                        <small *ngIf="
+                            resetPasswordForm.controls[
+                              'confirmPassword'
+                            ].hasError('equalTo')
+                          " class="form-error-msg">
+                          PASSWORD DO NOT MATCH</small>
+                      </div>
+                    </div>
+
+                    <div class="form-group delete_account">
+                      <label>
+                        <a *ngIf="user.isActivated" class="cursor" data-toggle="modal" data-target="#confirmModal">
+                          Deactivate my account
+                        </a>
+                        <a *ngIf="!user.isActivated" class="cursor" data-toggle="modal" data-target="#confirmModal">
+                          Activate my account
+                        </a>
+                      </label>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+              <div class="row bottom_arrow">
+                <div class="col-12">
+                  <!-- <a href="javascript:;" class="back_arrow"><span class="icon-left-arrow"></span>Back</a> -->
+                  <button (click)="resetPassword(currentUser.id)" [disabled]="resetPasswordForm.invalid"
+                    class="btn_style save_btn cursor">
+                    Save
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- --------------------------------------------------------- -->
+
+            <!-- ------------------guardians---------------------- -->
+            <div *ngIf="isGuardian" class="guardian_outer personal_details children">
+              <h2>
+                Co-Parent Information
+                <a [ngClass]="{'disable_next':guardianResponse?.length}" data-toggle="modal"
+                  data-target="#inviteGuardianModal" class="btn_style save_btn cursor">Invite</a>
+              </h2>
+
+              <div class="row margin_top" *ngFor="let guardian of guardianResponse; let ii = index;">
+                <div class="col-12">
+                  <div class="Children_table">
+                    <div _ngcontent-flq-c2="" class="page_heading small-box">
+                      <div _ngcontent-flq-c2="" class="profile_outer">
+                        <div _ngcontent-flq-c2="" class="content-img">
+                          <img _ngcontent-flq-c2="" *ngIf="guardian?.avatarImages" alt="Profile Image"
+                            src="{{guardian?.avatarImages}}">
+                          <img _ngcontent-flq-c2="" *ngIf="!guardian?.avatarImages" alt="Profile Image"
+                            src="assets/default_img.png">
+
+                        </div>
+                      </div>
+                      <h2 _ngcontent-flq-c2="">{{guardian?.firstName}}</h2>
+                      <h3 _ngcontent-flq-c2="">{{guardian?.relationToChild}}</h3>
+                    </div>
+
+
+
+                    <div class="content-childrenpart">
+                      <div class="ist-contentimg">
+                        <span><img src="assets/birthday-cake 1.png"></span>
+                        <h2>{{guardian?.age}} years</h2>
+                      </div>
+                      <p>Notes</p>
+                      <div class="text-form">
+                        <div class="form-group">
+                          <textarea #guardianNotes class="form-control"
+                            (keydown.enter)="updateGuardian(guardian,guardian.id)" placeholder="Type" maxLength="3000"
+                            [formControl]="tellFriendForm.controls['personalNote']" #Description maxlength="3000"
+                            [(ngModel)]="guardian.personalNote">
+                                  Type
+                                  </textarea>
+                          <span class="text-absolu">({{guardianNotes.value?.length}} of 3000)</span>
+                        </div>
+                      </div>
+
+
+                    </div>
+
+                    <div class="guardian_table">
+                      <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <span class="icon-more"></span>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <!-- <a class="dropdown-item cursor" data-toggle="modal" data-target="#guardianEditModal"
+                            (click)="getGuardianData(guardian)"><span class="icon icon-edit"></span>Edit</a> -->
+                          <a *ngIf="guardian.isActivated" (click)="activedeactiveGuardian(guardian.id,false)"
+                            class="dropdown-item cursor"><span class="icon icon-trash"></span>Deactivate</a>
+                          <a *ngIf="!guardian.isActivated" (click)="activedeactiveGuardian(guardian.id,true)"
+                            class="dropdown-item cursor"><span class="icon icon-trash"></span>Activate</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+
+            <!-- ---------------------------------------------------------- -->
+
+            <!-- ----------------------------------guardians information------------------ -->
+            <div *ngIf="isInvite" class="personal_details">
+              <h2>Guardian Information</h2>
+              <div class="row">
+                <div class="col-md-8">
+                  <form class="details_form" [formGroup]="addGuardianForm">
+                    <div class="form-group">
+                      <label>Full Name</label>
+                      <div class="input_outer">
+                        <input type="text" placeholder="Enter fullName" class="form-control"
+                          [formControl]="addGuardianForm.controls['firstName']"
+                          [(ngModel)]="addGuardianData.firstName" />
+                        <small *ngIf="
+                            addGuardianForm.controls['firstName'].hasError(
+                              'required'
+                            ) && addGuardianForm.controls['firstName'].touched
+                          " class="form-error-msg">CAN'T LEAVE IT BLANK</small>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label>Email Address</label>
+                      <div class="input_outer">
+                        <input type="text" placeholder="Enter email address" class="form-control"
+                          [formControl]="addGuardianForm.controls['email']" [(ngModel)]="addGuardianData.email" />
+                        <small *ngIf="
+                            addGuardianForm.controls['email'].hasError(
+                              'required'
+                            ) && addGuardianForm.controls['email'].touched
+                          " class="form-error-msg">CAN'T LEAVE IT BLANK</small>
+                        <small *ngIf="
+                            addGuardianForm.controls['email'].hasError(
+                              'email'
+                            ) && addGuardianForm.controls['email'].touched
+                          " class="form-error-msg">INVALID EMAIL ADDRESS</small>
+                      </div>
+                    </div>
+                    <!-- <div class="form-group">
+                      <div class="input_outer">
+                        <label>add a personal note</label>
+                        <textarea placeholder="Add personal note" class="form-control" [formControl]="
+                            addGuardianForm.controls['personalNote']
+                          " #Description maxlength="3000" [(ngModel)]="addGuardianData.personalNote">
+                        Type</textarea>
+                        <small *ngIf="
+                            addGuardianForm.controls['personalNote'].hasError(
+                              'required'
+                            ) &&
+                            addGuardianForm.controls['personalNote'].touched
+                          " class="form-error-msg">CAN'T LEAVE IT BLANK</small>
+                        <span class="word_limit">({{ Description.value?.length || 0 }} of 3000)</span>
+                      </div>
+                    </div> -->
+                  </form>
+                </div>
+              </div>
+              <div class="row bottom_arrow">
+                <div class="col-12">
+                  <!-- <a (click)="onGuardian(currentUser.id)" class="back_arrow cursor"><span
+                      class="icon-left-arrow"></span>Back</a> -->
+                  <button (click)="inviteGuardian(currentUser.id)" [disabled]="addGuardianForm.invalid"
+                    class="btn_style save_btn cursor">
+                    INVITE
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- ---------------------------------------------------------------------------------- -->
+
+            <!-- ----------------------children--------------------- -->
+            <div *ngIf="isChildren" class="guardian_outer personal_details children">
+              <h2>
+                Child Information
+                <a data-toggle="modal" data-target="#editModal" (click)='kid = resetKid;childImgURL=""'
+                  class="btn_style save_btn cursor">Add</a>
+              </h2>
+              <div class="row margin_top" *ngFor="let kid of kids;let i = index">
+                <div class="col-12">
+                  <div class="Children_table">
+                    <div _ngcontent-flq-c2="" class="page_heading small-box">
+                      <div _ngcontent-flq-c2="" class="profile_outer">
+                        <div _ngcontent-flq-c2="" class="content-img">
+                          <img _ngcontent-flq-c2="" alt="Profile Image" *ngIf="kid.avtar" src="{{kid.avtar}}">
+                          <img _ngcontent-flq-c2="" alt="Profile Image" *ngIf="!kid.avtar"
+                            src="assets/default_img.png">
+                        </div>
+                        <div _ngcontent-flq-c2="" class="edit_profile edit-12354">
+                          <a _ngcontent-flq-c2=""><label _ngcontent-flq-c2="" class="cursor">
+                              <input _ngcontent-flq-c2="" accept="image/*" (change)="childImageUpdate($event,i)"
+                                name="image" style="display: none" type="file">
+                              <img _ngcontent-flq-c2="" alt="Profile Image" src="assets/edit_white.svg"></label></a>
+                        </div>
+                      </div>
+                      <h2 _ngcontent-flq-c2="">{{kid.name}}</h2>
+                      <h3 _ngcontent-flq-c2="" *ngIf="kid.sex=='male'">Son</h3>
+                      <h3 _ngcontent-flq-c2="" *ngIf="kid.sex=='female'">Daughter</h3>
+
+                    </div>
+
+                    <div class="content-childrenpart">
+                      <div class="ist-contentimg">
+                        <span><img src="assets/birthday-cake 1.png"></span>
+                        <h2>{{kid.dob | date:'mediumDate'}}</h2>
+                      </div>
+                      <div class="ist-contentimg">
+                        <span><img src="assets/building.png"></span>
+                        <h3>{{kid.schoolInfo}}</h3>
+                      </div>
+
+                      <p>Interests</p>
+                      <div class="content-btn">
+                        <button *ngFor="let interest  of kid?.interestInfo; let indx = index;"
+                          class="btn_style save_btn cursor">
+                          {{interest.name}}
+                          <!-- <span><img (click)="updateKidInterest(i,indx)" src="assets/close.png"></span> -->
+                        </button>
+
+                      </div>
+
+                    </div>
+
+                    <div class="guardian_table">
+                      <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <span class="icon-more"></span>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item cursor" data-toggle="modal" data-target="#editModal"
+                            (click)="getKidData(kid)"><span class="icon icon-edit"></span>Edit</a>
+                          <a *ngIf="kid.isActivated" class="dropdown-item cursor"
+                            (click)="activeDactiveChild(kid.id,false, currentUser.id)"><span
+                              class="icon icon-trash"></span>Deactivate</a>
+                          <a *ngIf="!kid.isActivated" class="dropdown-item cursor"
+                            (click)="activeDactiveChild(kid.id,true, currentUser.id)"><span
+                              class="icon icon-trash"></span>Activate</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- ------------------------------------------------------------- -->
+
+            <!-- ------------------------------add child----------------------------- -->
+            <div *ngIf="isAddChild" class="personal_details">
+              <h2>Children</h2>
+              <div class="row margin_top">
+                <div class="col-md-8">
+                  <form class="details_form">
+                    <div class="form-group">
+                      <label>Full Name</label>
+                      <div class="input_outer">
+                        <input type="text" placeholder="Enter fullName" class="form-control" [(ngModel)]="kid.name"
+                          name="FullName" />
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label>Gender</label>
+                      <div class="custom_select">
+                        <select [(ngModel)]="kid.sex" name="sex">
+                          <option *ngIf="kid.sex === 'male'" selected>
+                            SON
+                          </option>
+                          <option *ngIf="kid.sex === 'female'" selected>
+                            DAUGHTER
+                          </option>
+                          <option value="male">SON</option>
+                          <option value="female">DAUGHTER</option>
+                        </select>
+                      </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                      <label>Date of Birth</label>
+                      <div class="input_outer">
+                        <input type="date" placeholder="MM/DD/YYYY" class="form-control" [(ngModel)]="kid.dob"
+                          name="dob" />
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label>School</label>
+                      <div class="input_outer">
+                        <input type="text" placeholder="Enter School name" class="form-control"
+                          [(ngModel)]="kid.schoolInfo" name="schoolInfo" />
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label>Relationship to child</label>
+                      <div class="input_outer">
+                        <input type="text" placeholder="Relationship status" class="form-control"
+                          [(ngModel)]="kid.relationToChild" name="relationToChild" />
+                      </div>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                      <label>Intrests</label>
+                      <div class="input_outer">
+                        <div class="ng-autocomplete">
+                          <ng-autocomplete [data]="tags" placeholder="Add Intrests" [searchKeyword]="keyword"
+                            (selected)="selectEvent($event)" (inputChanged)="onChangeSearch($event)"
+                            [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate">
+                          </ng-autocomplete>
+
+                          <ng-template #itemTemplate let-item>
+                            <a [innerHTML]="item.name"></a>
+                          </ng-template>
+
+                          <ng-template #notFoundTemplate let-notFound>
+                            <div *ngIf="tags.length" [innerHTML]="notFound"></div>
+                          </ng-template>
+                        </div>
+                      </div>
+                      <br />
+                      <mat-form-field class="demo-chip-list">
+                        <mat-chip-list>
+                          <mat-chip *ngFor="let t of kid.interestInfo" [selectable]="selectable" [removable]="removable"
+                            (removed)="remove(t)">
+                            {{ t.name }}
+                            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                          </mat-chip>
+                        </mat-chip-list>
+                      </mat-form-field>
+                    </div>
+
+                    <div class="form-group">
+                      <a *ngIf="isAddChildBtn" (click)="refreshPage()" class="add_child cursor"><span
+                          class="icon icon-plus"></span>Add another
+                        Child</a>
+                      <a *ngIf="isEditChildBtn" (click)="onAddChild()" class="add_child cursor"><span
+                          class="icon icon-plus"></span>Add another
+                        Child</a>
+                    </div>
+                  </form>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="profile_img edit">
+                    <label class="cursor">
+                      <input style="display: none" #file accept="image/*" (change)="childImageSelect($event)"
+                        type="file" name="image" />
+                      <a *ngIf="!childImgURL">
+                        <span class="icon icon-edit_profile"></span>
+                        Upload Photo
+                      </a>
+                      <img *ngIf="childImgURL" src="{{ childImgURL }}" />
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="row bottom_arrow">
+                <div class="col-12">
+                  <!-- <a (click)="onChildren(currentUser.id)" class="back_arrow cursor"><span
+                      class="icon-left-arrow"></span>Back</a> -->
+                  <button *ngIf="isAddChildBtn" (click)="addChild(currentUser.id)" [disabled]="!kid.name"
+                    class="btn_style save_btn cursor">
+                    Save
+                  </button>
+                  <button *ngIf="isEditChildBtn" (click)="updateChild(kid, currentUser.id)"
+                    class="btn_style save_btn cursor">
+                    Save
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- -----------------------saved listing----------------------------------- -->
+            <div *ngIf="isFavourite" class="description_text  slider">
+              <h2 class="description-activities">Activities</h2>
+
+              <div *ngFor="let favourite of favourites" class="media activity spacing-media">
+                <div class="media-left size-increase activity-imgs cursor" (click)='goToProgramDetail(favourite.program)'>
+
+                  <img src="assets/guitar.png" alt="Activity" />
+                </div>
+                <div class="media-body size-increase-123">
+                  <div class="share_icon sk-1234">
+                    <a data-toggle="modal" data-target="#ShareModal">
+                      <img src="assets/share_gray.svg " alt="Share Icon ">
+                    </a>
+
+                    <div class="bookmark_outer ">
+                      <a (click)="removeFav(favourite.program._id)" class="bookmark_icon cursor ">
+                        <img class="imgsvg" src="assets/bookmarkOrange.svg " alt="Menu Image ">
+                      </a>
+                    </div>
+                  </div>
+                  <h2 class="cursor " (click)='goToProgramDetail(favourite.program)'>{{ favourite.program.name }}</h2>
+                  <div class="list_outer row row-0 ">
+                    <div class="coding_text ">
+                      <div class="coding-text-1">
+                        <h3 *ngFor="let subCat of favourite?.program?.subCategoryIds">{{subCat.names}}</h3>
+                      </div>
+
+                    </div>
+                    <div class="list col-12 ">
+                      <p><img src="assets/local.svg " alt="School image "> {{ favourite?.program?.programOwner }}
+                      </p>
+                    </div>
+                    <div class="list col-12 icon-grpcalender ">
+                      <p><img src="assets/user_group.svg " alt="School image ">
+                        7-11 Yrs
+                      </p>
+                      <p class="pl-5"><img src="assets/calendar.svg " alt="School image ">{{
+                        favourite.program.date?.from
+                        | date: "dd:MM:yyyy"
+                        }}
+                        –
+                        {{
+                        favourite.program.date?.to | date: "dd:MM:yyyy"
+                        }}</p>
+                    </div>
+
+                  </div>
+                  <div class="price-box ">
+                    <p><span>$20/</span>Hour</p>
+                  </div>
+                  <!-- <div class="rating_box ">
+                    <a href="javascript:; ">
+                      <img src="assets/star.svg " alt="Star "> 5.0 (15)
+                    </a>
+                  </div> -->
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+
+            <!-- -------------------------------------------notification----------------------------- -->
+            <div *ngIf="isNotification" class="personal_details">
+              <h2>Notifications</h2>
+              <div class="row">
+                <div class="col-md-12">
+                  <form>
+                    <div class="notifications">
+                      <h3>Turn <span *ngIf="isToggle">Off</span><span *ngIf="!isToggle">On</span> all Notifications
+                        <label class="switch notification">
+                          <input type="checkbox" #toggle data-toggle="toggle" [ngModelOptions]="{standalone: true}"
+                            [(ngModel)]="isToggle" (ngModelChange)="onOffNotification(currentUser.id, $event)" />
+                          <span class="slider round"></span>
+                        </label>
+                      </h3>
+
+                    </div>
+                    <div class="notifications down-spacing">
+                      <h6>PUSH Notifications
+                        <label class="switch notification">
+                          <input [ngModelOptions]="{standalone: true}" [(ngModel)]="isPushnotification"
+                            type="checkbox" />
+                          <span class="slider round"></span>
+                        </label>
+                      </h6>
+                      <h6 class="ml-2">SMS Notifications
+                        <label class="switch notification">
+                          <input [ngModelOptions]="{standalone: true}" [(ngModel)]="isSMSnotification"
+                            type="checkbox" />
+                          <span class="slider round"></span>
+                        </label>
+                      </h6>
+                      <h6 class="ml-2">EMAIL Notifications
+                        <label class="switch notification">
+                          <input [ngModelOptions]="{standalone: true}" [(ngModel)]="isEmailnotification"
+                            type="checkbox" />
+                          <span class="slider round"></span>
+                        </label>
+                      </h6>
+                      <!-- <label class="ch-radio">
+                        <input name="hiring" type="checkbox" checked />
+                        <span> <i class="ch-icon icon-tick"></i>All </span>
+                      </label>
+                      <label class="ch-radio">
+                        <input name="hiring" type="checkbox" />
+                        <span>
+                          <i class="ch-icon icon-tick"></i>Lorem Ipsum
+                        </span>
+                      </label>
+                      <label class="ch-radio">
+                        <input name="hiring" type="checkbox" />
+                        <span>
+                          <i class="ch-icon icon-tick"></i>Lorem Ipsum
+                        </span>
+                      </label>
+                      <label class="ch-radio">
+                        <input name="hiring" type="checkbox" />
+                        <span>
+                          <i class="ch-icon icon-tick"></i>Lorem Ipsum
+                        </span>
+                      </label> -->
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            <!-- ----------------------------------------------------------------------------------------- -->
+
+            <!-- -------------------------------------------tell a friend----------------------------- -->
+            <div *ngIf="isFriend" class="personal_details">
+              <h2>Tell a Friend</h2>
+              <div class="row">
+                <div class="col-md-8">
+                  <form class="details_form" [formGroup]="tellFriendForm">
+                    <div class="form-group">
+                      <label>Full Name</label>
+                      <div class="input_outer">
+                        <input type="text" placeholder="Enter fullName" class="form-control"
+                          [formControl]="tellFriendForm.controls['fullName']" [(ngModel)]="tellFriendData.fullName" />
+                        <small *ngIf="
+                            tellFriendForm.controls['fullName'].hasError(
+                              'required'
+                            ) && tellFriendForm.controls['fullName'].touched
+                          " class="form-error-msg">CAN'T LEAVE IT BLANK</small>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label>Email Address</label>
+                      <div class="input_outer">
+                        <input type="text" placeholder="Enter email address" class="form-control"
+                          [formControl]="tellFriendForm.controls['email']" [(ngModel)]="tellFriendData.email" />
+                        <small *ngIf="
+                            tellFriendForm.controls['email'].hasError(
+                              'required'
+                            ) && tellFriendForm.controls['email'].touched
+                          " class="form-error-msg">CAN'T LEAVE IT BLANK</small>
+                        <small *ngIf="
+                            tellFriendForm.controls['email'].hasError(
+                              'email'
+                            ) && tellFriendForm.controls['email'].touched
+                          " class="form-error-msg">INVALID EMAIL ADDRESS</small>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label>Add a personal note</label>
+                      <textarea class="form-control" placeholder="Add personal note"
+                        [formControl]="tellFriendForm.controls['personalNote']" #Description maxlength="3000"
+                        [(ngModel)]="tellFriendData.personalNote">
+                        Type</textarea>
+                      <div class="textarea_length"></div>
+                      <span class="word_limit">({{ Description.value?.length || 0 }} of 3000)</span>
+                      <small *ngIf="
+                          tellFriendForm.controls['personalNote'].hasError(
+                            'required'
+                          ) && tellFriendForm.controls['personalNote'].touched
+                        " class="form-error-msg">CAN'T LEAVE IT BLANK</small>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="row bottom_arrow">
+                <div class="col-12">
+                  <!-- <a (click)="back()" class="back_arrow cursor"><span class="icon-left-arrow"></span>Back</a> -->
+                  <button class="btn_style save_btn cursor" (click)="tellFriend(currentUser.firstName)"
+                    [disabled]="tellFriendForm.invalid">
+                    Send
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- ----------------------------------------------------------------------------------------- -->
+
+            <!-- -------------------------------------------feedback----------------------------- -->
+            <div *ngIf="isFeedback" class="personal_details">
+              <h2>Give Feedback</h2>
+              <div class="row">
+                <div class="col-md-8">
+                  <form class="details_form" [formGroup]="giveFeedbackForm">
+                    <div class="form-group">
+                      <label>Feedback</label>
+                      <textarea class="form-control" placeholder="feedback"
+                        [formControl]="giveFeedbackForm.controls['feedback']" #Description maxlength="3000"
+                        [(ngModel)]="giveFeedbackData.feedback">Type</textarea>
+                      <div class="textarea_length"></div>
+                      <span class="word_limit">({{ Description.value?.length || 0 }} of 3000)</span>
+
+                      <small *ngIf="
+                          giveFeedbackForm.controls['feedback'].hasError(
+                            'required'
+                          ) && giveFeedbackForm.controls['feedback'].touched
+                        " class="form-error-msg">CAN'T LEAVE IT BLANK</small>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="row bottom_arrow">
+                <div class="col-12">
+                  <a (click)="back()" class="back_arrow cursor"><span class="icon-left-arrow"></span>Back</a>
+                  <button class="btn_style save_btn cursor" (click)="giveFeedback(currentUser.id)"
+                    [disabled]="giveFeedbackForm.invalid">
+                    Send
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- ----------------------------------------------------------------------------------------- -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal -->
+  <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <!-- <h5 class="modal-title" id="exampleModalLabel">YOUR ACCOUNT IS ACTIVE NOW</h5> -->
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Do you really want to Activate or Deativate account ?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            CANCEL
+          </button>
+          <button type="button" (click)="activeDeactiveUser(currentUser.id, user.isActivated)" data-dismiss="modal"
+            class="btn btn-primary">
+            CONFIRM
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--share Modal -->
+  <div class="modal fade search_modal password" id="SearchModal" data-backdrop="static" data-keyboard="false"
+    tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" class="icon-close"></span>
+        </button>
+        <div class="modal-body">
+          <h2>Share</h2>
+          <div class="share_option">
+            <ul>
+              <li>
+                <a href="javascript:;">Facebook</a>
+              </li>
+              <li>
+                <a href="javascript:;">Messenger</a>
+              </li>
+              <li>
+                <a href="javascript:;">Email</a>
+              </li>
+              <li>
+                <a href="javascript:;">Whatsapp</a>
+              </li>
+              <li>
+                <a href="javascript:;">Copylink</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+  <!-- guardian invite Modal -->
+  <div class="modal fade modal_custom" id="inviteGuardianModal" tabindex="-1" role="dialog"
+    aria-labelledby="examplchild-modaleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content child-modal">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="modal-body">
+          <div class="form_outer">
+            <h2 class="title">Guardian Information</h2>
+
+            <form class="details_form" [formGroup]="addGuardianForm">
+              <div class="form-group">
+                <label>Full Name</label>
+                <div class="input_outer">
+                  <input type="text" placeholder="Enter fullName" class="form-control" name="FullName"
+                    [formControl]="addGuardianForm.controls['firstName']" [(ngModel)]="addGuardianData.firstName" />
+                  <span class="parent-edit"><img (click)="addGuardianData.firstName=''" src="assets/close.png"></span>
+                  <small *ngIf="
+                 addGuardianForm.controls['firstName'].hasError(
+                   'required'
+                 ) && addGuardianForm.controls['firstName'].touched
+               " class="form-error-msg">CAN'T LEAVE IT BLANK</small>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Email Address</label>
+                <div class="input_outer">
+                  <input type="text" placeholder="Enter Email Address" class="form-control" name="FullName"
+                    [formControl]="addGuardianForm.controls['email']" [(ngModel)]="addGuardianData.email" />
+                  <span class="parent-edit"><img (click)="addGuardianData.email=''" src="assets/close.png"></span>
+                  <small *ngIf="
+                    addGuardianForm.controls['email'].hasError(
+                      'required'
+                    ) && addGuardianForm.controls['email'].touched
+                  " class="form-error-msg">CAN'T LEAVE IT BLANK</small>
+                  <small *ngIf="
+                    addGuardianForm.controls['email'].hasError(
+                      'email'
+                    ) && addGuardianForm.controls['email'].touched
+                  " class="form-error-msg">INVALID EMAIL ADDRESS</small>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Add a personal note</label>
+                <div class="input_outer">
+                  <textarea class="form-control" placeholder="Add personal note" #Description maxlength="3000"
+                    [ngModelOptions]="{ standalone: true }" [(ngModel)]="guardianData.personalNote"></textarea>
+                  <span class="word_limit">({{ Description.value?.length || 0 }} of 3000)</span>
+                </div>
+              </div>
+
+              <div class="form-group update_btn">
+
+                <button class="btn_style save_btn cursor" data-dismiss="modal" (click)="inviteGuardian(currentUser.id)"
+                  [disabled]="addGuardianForm.invalid">
+                  INVITE
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade modal_custom" id="editModal" tabindex="-1" role="dialog"
+    aria-labelledby="examplchild-modaleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content child-modal">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="modal-body">
+          <div class="form_outer">
+            <h2 *ngIf="kid.id" class="title">Edit Child info</h2>
+            <h2 *ngIf="!kid.id" class="title">Add Child</h2>
+            <div class="profile_outer">
+              <div class="profile_image">
+                <img alt="Profile Image" *ngIf="childImgURL" src="{{ childImgURL }}" />
+                <img alt="Profile Image" *ngIf="!childImgURL" src="assets/default_img.png" />
+              </div>
+              <div class="edit_profile">
+                <a>
+                  <label class="cursor">
+                    <input style="display: none" #file accept="image/*" (change)="childImageSelect($event)" type="file"
+                      name="image" />
+                    <img alt="Profile Image" src="assets/edit_white.svg" />
+                  </label>
+                </a>
+              </div>
+            </div>
+            <form class="details_form">
+              <div class="form-group">
+                <label>Full Name</label>
+                <div class="input_outer">
+                  <input type="text" placeholder="Enter fullName" class="form-control" [(ngModel)]="kid.name"
+                    name="FullName" />
+                  <span class="parent-edit" *ngIf="kid.id" (click)="kid.name=''"><img
+                      src="assets/pencil-blue.png"></span>
+                </div>
+              </div>
+
+
+              <!-- <div class="form-group">
+                <label>From Where You Heard</label>
+                <div class="custom_select">
+                  <select [(ngModel)]="kid.fromWhereYouHeard" name="fromWhereYouHeardex">
+                    <option *ngIf="kid.fromWhereYouHeard === 'search engine'" selected>Search Engine</option>
+                    <option *ngIf="kid.fromWhereYouHeard === 'social media'" selected>Social Media</option>
+                    <option *ngIf="kid.fromWhereYouHeard === 'from a friend'" selected>From a Friend</option>
+                    <option *ngIf="kid.fromWhereYouHeard === 'facebook ad'" selected>Facebook ad</option>
+                    <option *ngIf="kid.fromWhereYouHeard === 'google ad'" selected>Google ad</option>
+
+                    <option value="search engine">Search Engine</option>
+                    <option value="social media">Social Media</option>
+                    <option value="from a friend">From a Friend</option>
+                    <option value="facebook ad" selected>Facebook ad</option>
+                    <option value="google ad" selected>Google ad</option>
+
+                  </select>
+                </div>
+              </div> -->
+
+
+              <div class="form-group">
+                <label>Gender</label>
+                <div class="custom_select">
+                  <select [(ngModel)]="kid.sex" name="sex">
+                    <option *ngIf="kid.sex === 'male'" selected>Male</option>
+                    <option *ngIf="kid.sex === 'female'" selected>Female</option>
+                    <option *ngIf="kid.sex === 'decline to answer'" selected>Decline To Answer</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="decline to answer">Decline To Answer</option>
+
+                  </select>
+                </div>
+              </div>
+
+
+              <div class="form-group">
+                <label>Date of Birth</label>
+                <div class="input_outer">
+                  <input type="date" placeholder="MM/DD/YYYY" class="form-control" [(ngModel)]="kid.dob" name="dob" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label>School</label>
+                <div class="input_outer">
+                  <input type="text" placeholder="Enter schoolInfo" class="form-control" [(ngModel)]="kid.schoolInfo"
+                    name="schoolInfo" />
+                  <span *ngIf="kid.id" (click)="kid.schoolInfo=''" class="parent-edit"><img
+                      src="assets/pencil-blue.png"></span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Grade Level</label>
+                <div class="custom_select">
+                  <select [(ngModel)]="kid.gradeLevel" name="gradeLevel">
+                    <option *ngIf="kid.gradeLevel === 'pre-school or earlier'" selected>Pre-school or earlier</option>
+                    <option *ngIf="kid.gradeLevel === 'kindergarten'" selected>Kindergarten</option>
+                    <option *ngIf="kid.gradeLevel === 'grade 1-12'" selected>Grade 1-12</option>
+                    <option value="pre-school or earlier">Pre-school or earlier</option>
+                    <option value="kindergarten" selected>Kindergarten</option>
+                    <option value="grade 1-12" selected>Grade 1-12</option>
+
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Relationship to child</label>
+                <div class="custom_select">
+                  <select [(ngModel)]="kid.relationToChild" name="relationToChild">
+                    <option *ngIf="kid.relationToChild === 'parent'" selected>Parent</option>
+                    <option *ngIf="kid.relationToChild === 'grandparent'" selected>Grandparent</option>
+                    <option *ngIf="kid.relationToChild === 'caregiver'" selected>Caregiver</option>
+                    <option *ngIf="kid.relationToChild === 'other'" selected>Other</option>
+                    <option value="parent">Parent</option>
+                    <option value="grandparent">Grandparent</option>
+                    <option value="caregiver">Caregiver</option>
+                    <option value="other">Other</option>
+
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group interest">
+                <label>Intrests</label>
+                <div class="input_outer">
+                  <div class="ng-autocomplete">
+                    <ng-autocomplete [data]="tags" placeholder="Add Intrests" [searchKeyword]="keyword"
+                      (selected)="selectEvent($event)" (inputChanged)="onChangeSearch($event)"
+                      (inputFocused)="onFocused($event)" [itemTemplate]="itemTemplate"
+                      [notFoundTemplate]="notFoundTemplate">
+                    </ng-autocomplete>
+
+                    <ng-template #itemTemplate let-item>
+                      <a [innerHTML]="item.name"></a>
+                    </ng-template>
+
+                    <ng-template #notFoundTemplate let-notFound>
+                      <div *ngIf="tags.length" [innerHTML]="notFound"></div>
+                    </ng-template>
+                  </div>
+                </div>
+                <br />
+                <mat-form-field class="demo-chip-list">
+                  <mat-chip-list>
+                    <mat-chip *ngFor="let t of kid.interestInfo; let indx = index" [selectable]="selectable"
+                      [removable]="removable" (removed)="remove(t)">
+                      {{ t.name }}
+                      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                    </mat-chip>
+                  </mat-chip-list>
+                </mat-form-field>
+              </div>
+
+              <div class="form-group update_btn">
+                <button *ngIf="kid.id" class="btn_style save_btn cursor" data-dismiss="modal"
+                  (click)="updateChild(kid, currentUser.id)">
+                  Send
+                </button>
+                <button *ngIf="!kid.id" class="btn_style save_btn cursor" data-dismiss="modal"
+                  (click)="addChild(currentUser.id)">
+                  Add
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Guardian Information Modal -->
+  <div class="modal fade modal_custom guardian_info" id="guardianEditModal" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="modal-body">
+          <div class="form_outer">
+            <h2 class="title">Guardian Information</h2>
+            <form class="details_form">
+              <div class="form-group">
+                <label>Full Name</label>
+                <div class="input_outer">
+                  <input type="text" placeholder="Enter fullName" class="form-control"
+                    [ngModelOptions]="{ standalone: true }" [(ngModel)]="guardianData.firstName" name="FullName" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Email Address</label>
+                <div class="input_outer">
+                  <input placeholder="Enter Email address" class="form-control" [ngModelOptions]="{ standalone: true }"
+                    [(ngModel)]="guardianData.email" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Add a personal note</label>
+                <div class="input_outer">
+                  <textarea class="form-control" placeholder="Add personal note" #Description maxlength="3000"
+                    [ngModelOptions]="{ standalone: true }" [(ngModel)]="guardianData.personalNote"></textarea>
+                  <span class="word_limit">({{ Description.value?.length || 0 }} of 3000)</span>
+                </div>
+              </div>
+
+              <div class="form-group update_btn">
+                <button class="btn_style save_btn cursor" data-dismiss="modal"
+                  (click)="updateGuardian(guardianData, currentUser.id)">
+                  Update
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<!-- <app-confirm-dialog></app-confirm-dialog> -->
+<ngx-ui-loader bgsType={{loaderType}} fgsType={{loaderType}} fgsSize="40" bgsSize="40" fgsPosition={{loaderPostion}}
+  overlayColor="rgba(40,40,40,0.12)">
+</ngx-ui-loader>

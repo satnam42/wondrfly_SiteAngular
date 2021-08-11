@@ -1,0 +1,96 @@
+<!----------------------------------------- Signup Modal ------------------------------------------------------->
+
+<div class="verification_outer">
+    <div class="tab_outer">
+        <div class="tab-content">
+            <div class="tab-pane active" id="parent" role="tabpanel">
+                    <div class="popup_img">
+                        <img src="assets/logo.svg">
+                        </div>
+                        <div class="popup_maintext">
+                        Find the best activities for 
+                        <br>
+                        your kids!
+                        </div>
+                        <div class="popup_normal_text">
+                        Sign up for a free acount
+                        </div>
+                        <app-social-login [role]="'parent'"></app-social-login>
+                        <div class="row">
+                        <div class="col-5">
+                        <hr>
+                        </div>
+                        <div class="col-2">
+                        or
+                        </div>
+                        <div class="col-5">
+                        <hr>
+                        </div>
+                        </div>
+
+                        <div class="form" [formGroup]="parentForm">
+                    <div class="form-group">
+                        <label>Parent Name</label>
+                        <div class="input_outer">
+                            <input type="text" class="form-control" placeholder="Enter name"
+                                [formControl]="parentForm.controls['name']"
+                                [(ngModel)]="userData.firstName">
+                            <p class="cant_blank"
+                                *ngIf="parentForm.controls['name'].hasError('required') && parentForm.controls['name'].touched">
+                                CAN'T LEAVE IT BLANK</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <div class="input_outer">
+                            <input type="text" class="form-control" placeholder="Enter email"
+                                [formControl]="parentForm.controls['email']"
+                                [(ngModel)]="userData.email">
+                            <p class="cant_blank"
+                                *ngIf="parentForm.controls['email'].hasError('required') && parentForm.controls['email'].touched">
+                                CAN'T LEAVE IT BLANK</p>
+                            <p class="cant_blank"
+                                *ngIf="parentForm.controls['email'].hasError('email') && parentForm.controls['email'].touched">
+                                INVALID EMAIL ADDRESS</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Select Password</label>
+                        <div class="input_outer password">
+                            <input type="password" class="form-control" placeholder="Type"
+                                placeholder="Select a Strong Password"
+                                [formControl]="parentForm.controls['password']"
+                                [(ngModel)]="userData.password" [type]="hide ? 'password' : 'text'">
+                            <mat-icon class="field-icon" *ngIf="hide" (click)="onPassword()"><i
+                                    class="far fa-eye"></i></mat-icon>
+                            <mat-icon class="field-icon" *ngIf="!hide" (click)="onPassword()"> <i
+                                    class="far fa-eye-slash"></i></mat-icon>
+
+                            <p class="cant_blank"
+                                *ngIf="parentForm.controls['password'].hasError('required') && parentForm.controls['password'].touched">
+                                CAN'T LEAVE IT BLANK</p>
+
+                        </div>
+                    </div>
+
+                    <div class="row forgot_password">
+                        <div class="col-12 forgot_text">
+                            <p> By clicking sign up I hereby agree with Letsplay’s
+                                <a [routerLink]="['/term-condition']">Terms & Conditions</a></p>
+                        </div>
+                    </div>
+                    <div class="sign_in_btn">
+                        <button class="SignBtn" (click)="signup()" [disabled]="parentForm.invalid">Sign
+                            up</button>
+                    </div>
+                </div>
+                <div class="row forgot_password">
+                    <div class="col-12 forgot_text">
+                        <p>Already a member? <a routerLink="/login">SIGN In</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

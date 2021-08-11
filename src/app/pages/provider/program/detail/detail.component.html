@@ -1,0 +1,1103 @@
+<body>
+    <ng2-toasty></ng2-toasty>
+    <app-header2 *ngIf="!isLogin"></app-header2>
+    <app-header *ngIf="isLogin"></app-header>
+    <app-alert></app-alert>
+    <section class="main_outer">
+        <div class="program_outer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div id="bannerimage">
+                            <img id="bannerimage" *ngIf="programImgURL" src="{{programImgURL}}">
+                        </div>
+                        <label class="banner-icon cursor">
+                            <input style="display:none;" (change)="uploadCoverPic($event,program._id)" type="file"
+                                id="file" accept="image/*" name="img_logo" class="dropzone"
+                                *ngIf="program.user === this.userId">
+                            <button class="uploadbanner" type="button" *ngIf="program.user === this.userId"
+                                onclick="document.getElementById('file').click();">ADD PHOTOS</button>
+                        </label>
+                    </div>
+                </div>
+
+
+                <div class="program_text">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="CategoryText">
+
+                                <div class="session_details">
+                                    <div class="row row-0">
+                                        <div class="col-md-2">
+                                            <div class="learn_code cursor" (click)="goToProfile()">
+
+                                                <img *ngIf="userLogo" src="{{userLogo}}" alt="logo">
+                                                <img *ngIf="!userLogo" src="assets/gray_background.jpeg" alt="logo">
+                                                <a class="edit_logo" *ngIf="program.user === this.userId">
+                                                    <label class="cursor"> <input style="display: none;" #file
+                                                            accept="image/*" (change)="uploadLogo($event)" type="file"
+                                                            name="image" />
+                                                        <img src="assets/edit_white.svg" alt="Profile Image">
+                                                    </label>
+                                                </a>
+
+                                            </div>
+                                        </div>
+
+
+                                        <div class="programText col-md-10">
+                                            <h3 >{{program.name}} <a align="right" class="cursor" data-toggle="modal"
+                                                    *ngIf="program?.user === this.userId" data-target="#UpdateModal">
+                                                    <img src="assets/edit_skyblue.svg" alt="Edit Image">
+                                                </a> </h3>
+
+                                                <div  class="share_icon ">
+                                                    <a data-toggle="modal"   data-target="#ShareModal" class="cursor">
+                                                        <img src="assets/share_gray.svg " alt="Share Icon ">
+                                                    </a>
+                                                    <div class="bookmark_outer ">
+                                                        <a class="bookmark_icon cursor" *ngIf='!program.isFav'>
+                                                        <img src="assets/bookmark_gray.svg  "
+                                                                alt="Menu Image "></a>
+
+                                                        <a class="bookmark_icon cursor " *ngIf='program.isFav' ><img src="assets/bookmarkOrange.svg "
+                                                                alt="Menu Image "></a>
+                                                    </div>
+                                                </div>
+
+                                            <h3 class="provider_name cursor"  >
+
+                                                <span (click)="goToProfile()">{{program?.programOwner}}</span>
+
+
+                                                <span class="rating-starsearch">
+                                                    <p class="cursor" (mouseover)="isRating=true" (mouseout)="isRating=false">
+
+                                                    <span *ngIf="rating?.finalAverageRating==0 || rating?.finalAverageRating=='NaN' || rating?.finalAverageRating==undefined">
+                                                        <span class="fa fa-star-o"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                    </span>
+                                                    <span *ngIf="rating?.finalAverageRating==1">
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                    </span>
+                                                    <span *ngIf="rating?.finalAverageRating>1 && rating?.finalAverageRating<2">
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star-half-o checked"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                    </span>
+                                                    <span *ngIf="rating?.finalAverageRating==2">
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                    </span>
+                                                    <span *ngIf="rating?.finalAverageRating>2 && rating?.finalAverageRating<3">
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star-half-o checked"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                    </span>
+                                                    <span *ngIf="rating?.finalAverageRating==3">
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                    </span>
+                                                    <span *ngIf="rating?.finalAverageRating>3 && rating?.finalAverageRating<4">
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star-half-o checked"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                    </span>
+                                                    <span *ngIf="rating?.finalAverageRating==4">
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                    </span>
+                                                    <span *ngIf="rating?.finalAverageRating>4 && rating?.finalAverageRating<5">
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star-half-o checked"></span>
+                                                    </span>
+                                                    <span *ngIf="rating?.finalAverageRating==5">
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                    </span>
+
+                                                </p>
+                                                    <div class="star-daialogbox"  *ngIf="isRating">
+                                                        <!-- <button type="button" (click)="isRating=false"   class="close star-daialogicon" aria-label="Close">
+                                                            <span aria-hidden="true"><img src="assets/grey-close.png"></span>
+                                                        </button> -->
+                                                        <app-rating [rating]="rating" [user]="user" ></app-rating>
+                                                    </div>
+                                                </span>
+                                            </h3>
+
+
+
+
+
+                                            <p><img src="assets/loction_pin.svg" alt="Loction Pin">{{program.location}}
+                                            </p>
+                                            <p><img src="assets/calendar_orange.svg"
+                                                    alt="Loction Pin">{{program?.date.from | date:"mediumDate"}} -
+                                                {{program.date.to | date:"mediumDate"}}
+                                            </p>
+                                            <p><img src="assets/user_group_orange.svg" alt="Loction Pin">
+                                                {{program?.ageGroup.from}} - {{program?.ageGroup.to}} Yrs. </p>
+                                            <p><img src="assets/watch.svg" alt="Loction Pin">{{program?.time.from |
+                                                date:"shortTime"}} -
+                                                {{program.time.to | date:"shortTime"}}
+                                            </p>
+                                            <p  *ngIf="program.duration.hours || program.duration.minutes">
+                                                <img src="assets/timer.svg" alt="Loction Pin">{{program.duration.hours}} : {{program.duration.minutes}} Hours
+                                            </p>
+
+                                            <p *ngIf="!program.isFree"><img src="assets/pricet.svg" alt="price tag"> ${{program.pricePerParticipant}}<span *ngIf="program.pricePeriod.periodAmount">/{{program.pricePeriod.periodAmount}}</span> </p>
+                                            <p *ngIf="program.isFree"><img src="assets/pricet.svg" alt="price tag"> Free </p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="insured_outer">
+                                    <p *ngFor="let badge of badgesList"><img src="{{badge.icon}}" alt="Loction Pin">
+                                        {{badge.name}} </p>
+                                </div> -->
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="batch_outer">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div *ngIf="program?.sessions?.length" class="description_text">
+                                <h2>Session</h2>
+                                <div class="batchuter">
+                                    <div *ngFor="let batch of program.sessions;  let i = index" class="batch_box">
+                                        <div align="right" class="cursor">
+                                            <a (click)="openModal(isBatch=true,batch)" data-toggle="modal"
+                                                *ngIf="program.user === this.userId" data-target="#programUpdateModal">
+                                                <img src="assets/edit_skyblue.svg" alt="Edit Image">
+                                            </a>
+                                        </div>
+                                        <div class="batch_title">
+                                            <p> {{batch.sessionName}}</p>
+                                        </div>
+                                        <div class="batch_list_outer">
+                                            <div class="batch_listing">
+                                                <label>Time</label>
+                                                <p>{{batch.sessionStartTime | date:"shortTime" }}–{{batch.sessionEndTime |
+                                                    date:"shortTime"}}
+                                                </p>
+                                            </div>
+                                            <div class="batch_listing">
+                                                <label>Dates</label>
+                                                <p>{{batch.sessionStartDate | date:"dd:MM:yyyy"}}–{{batch.sessionEndDate |
+                                                    date:"dd:MM:yyyy"}}
+                                                </p>
+                                            </div>
+                                            <div class="batch_listing">
+                                                <label>instructor</label>
+                                                <p>{{batch.instructor}}</p>
+                                            </div>
+                                            <div class="batch_listing">
+                                                <label>number of seats</label>
+                                                <p>{{batch.noOfSeats}}</p>
+                                            </div>
+                                            <div class="batch_listing">
+                                                <label>Location</label>
+                                                <p>{{batch.sessionAddress}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="description_text" *ngIf='program.description'>
+                                <h2>Program Description</h2>
+                                <p>{{program.description}}</p>
+
+                                <div class="edit_icon cursor">
+                                    <a (click)="openModal(isDescription=true,'')" *ngIf="program.user === this.userId"
+                                        data-toggle="modal" data-target="#programUpdateModal">
+                                        <img src="assets/edit_skyblue.svg" alt="Edit Image">
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="description_text"  *ngIf='program.bookingCancelledIn.days && program.bookingCancelledIn.hours'>
+                                <h2>Cancellation Policy</h2>
+                                <p>
+                                    <label>Booking can’t be cancelled before</label> {{program.bookingCancelledIn.days}}
+                                    days {{program.bookingCancelledIn.hours}} Hours
+                                </p>
+
+                                <div class="edit_icon cursor">
+                                    <a (click)="openModal(isBookingCancle = true,'')"
+                                        *ngIf="program.user === this.userId" data-toggle="modal"
+                                        data-target="#programUpdateModal">
+                                        <img src="assets/edit_skyblue.svg" alt="Edit Image">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="description_text" *ngIf='program.specialInstructions'>
+                                <h2>Special Instructions</h2>
+                                <p>{{program.specialInstructions}}</p>
+                                <div class="edit_icon cursor">
+                                    <a (click)="openModal(isInstruction = true,'')" *ngIf="program.user === this.userId"
+                                        data-toggle="modal" data-target="#programUpdateModal">
+                                        <img src="assets/edit_skyblue.svg" alt="Edit Image">
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="people-block" *ngIf="program.user !== this.userId">
+                                <div class="description_text people_sectionn people_outer">
+                                    <div align="right" class="cursor" *ngIf="program.user === this.userId">
+                                        <a data-toggle="modal" data-target="#providerUpdateModal">
+                                            <img src="assets/edit_skyblue.svg" alt="Edit Image">
+                                        </a>
+                                    </div>
+                                    <h2 class="p-2">Friendly Face</h2>
+                                    <div class="media">
+                                        <div class="media-left">
+                                            <div class="people_profile">
+                                                <a data-toggle="modal" data-target="#profileModal">
+                                                    <img *ngIf="user.avatarImages" src="{{user.avatarImages}}"
+                                                        alt="Profile">
+                                                    <img *ngIf="!user.avatarImages" src="assets/gray_background.jpeg"
+                                                        alt="Profile">
+                                                </a>
+                                            </div>
+                                            <h4>{{user.firstName}}</h4>
+                                            <!-- <h5>Kids land owner</h5> -->
+                                        </div>
+                                        <div class="media-body">
+                                            <h3>About</h3>
+                                            <p>{{user?.note}} </p>
+                                            <div class="skills_sec" *ngIf='user.subCategoryIds'>
+                                                <h3>Skills</h3>
+                                                <div class="skill_outer" *ngFor='let skill of user.subCategoryIds'>
+                                                    <span>{{skill.name}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <div class="col-md-4">
+                            <div class="batch_right map_provider" *ngIf="program.user !== this.userId">
+                                <div class="description_text people_section">
+                                    <div class="media">
+                                        <div class="media-body">
+                                            <h4>{{user?.firstName}}</h4>
+                                            <!-- <h5>Kids land owner</h5> -->
+                                            <p style="text-align: left;"><app-read-more [content]="user?.note" [limit]="100" [completeWords]='true'></app-read-more>
+                                            </p>
+                                        </div>
+                                        <div class="media-left">
+                                            <div class="people_profile">
+                                                <img src="assets/otheruser.jpeg" alt="Profile">
+                                            </div>
+                                          <button class="bt-chat">Chat</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="description_text people_section" *ngIf='user.healthAndSafety.length'>
+
+
+                                    <img class="pencil-right" *ngIf="program.user === this.userId"
+                                        src="assets/edit_skyblue.svg">
+
+                                    <div class="health-upper">
+                                        <img src="assets/main-healthsafety.svg">
+                                        <span>Safety Measures</span>
+                                        <img class="i-big" src="assets/healthsafetyi.svg">
+                                    </div>
+                                    <div class="health-lower">
+                                        <h1 *ngIf="user?.healthAndSafety[0]?.disposableMasksProvided">✓ <span>Disposable masks provided </span><img class="i-small"
+                                                src="assets/healthsafetyi.svg"></h1>
+                                        <h1 *ngIf="user?.healthAndSafety[0]?.qrCodeRegistration">✓ <span>QR Code Registration
+                                            </span><img class="i-small" src="assets/healthsafetyi.svg"></h1>
+                                        <h1 *ngIf="user?.healthAndSafety[0]?.staffHealthAndHygieneProtocols">✓ <span>staff Health And Hygiene Protocols
+                                            </span><img class="i-small" src="assets/healthsafetyi.svg"></h1>
+                                        <h1 *ngIf="user?.healthAndSafety[0]?.dailyEquipment">✓ <span>Daily Equipment </span><img class="i-small" src="assets/i-big.svg">
+                                        </h1>
+                                        <h1 *ngIf="user?.healthAndSafety[0]?.sanitizerStations">✓ <span>Sanitizer Stations </span><img class="i-small"
+                                                src="assets/healthsafetyi.svg"></h1>
+                                        <h1 *ngIf="user?.healthAndSafety[0]?.limitedClassSizes">✓ <span>Limited Class Sizes </span><img class="i-small"
+                                                src="assets/healthsafetyi.svg"></h1>
+                                        <h1 *ngIf="user?.healthAndSafety[0]?.parentObservation">✓ <span>Parent Observation </span><img class="i-small"
+                                                src="assets/healthsafetyi.svg"></h1>
+                                    </div>
+
+                                </div>
+                            <div class="batch_right map_provider">
+
+                                <agm-map [latitude]="40.5682945" [longitude]="-74.0409239" [zoom]="7" [styles]=""
+                                    [zoomControl]="false" [streetViewControl]="false" (mapClick)="mapClicked(previous)">
+                                    <div>
+                                        <agm-marker *ngIf="program.lat && program.lng" [iconUrl]="markerUrl"
+                                            [latitude]="program.lat" [longitude]="program.lng" (markerClick)="clickedMarker(previous)">
+                                            <strong>{{program.name}}</strong>
+                                            <agm-info-window #previous>
+
+                                              <div class="map-popup">
+                                                <h1>
+                                                  {{program.name}}
+                                                </h1>
+                                                <h2>
+                                                  by {{program.programOwner}}
+                                                </h2>
+                                                <div class="rating-starsearch">
+                                                  <p>
+                                                    <span *ngIf="program.averageFinalRating==0">
+                                                        <span class="fa fa-star-o"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                    </span>
+                                                    <span *ngIf="program.averageFinalRating==1">
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                    </span>
+                                                    <span *ngIf="program.averageFinalRating>1 && program.averageFinalRating<2">
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star-half-o checked"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                    </span>
+                                                    <span *ngIf="program.averageFinalRating==2">
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                    </span>
+                                                    <span *ngIf="program.averageFinalRating>2 && program.averageFinalRating<3">
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star-half-o checked"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                    </span>
+                                                    <span *ngIf="program.averageFinalRating==3">
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                    </span>
+                                                    <span *ngIf="program.averageFinalRating>3 && program.averageFinalRating<4">
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star-half-o checked"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                    </span>
+                                                    <span *ngIf="program.averageFinalRating==4">
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                    </span>
+                                                    <span *ngIf="program.averageFinalRating>4 && program.averageFinalRating<5">
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star-half-o checked"></span>
+                                                    </span>
+                                                    <span *ngIf="program.averageFinalRating==5">
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                    </span>
+                                                    <a> <span></span>(58 reviews)</a>
+                                                  </p>
+                                                </div>
+                                                <div class="map-locationtext">
+                                                  <span><img src="assets/location-pintag.svg"> </span>
+                                                  <h3>
+                                                    {{program.location}}
+                                                  </h3>
+                                                </div>
+                                                <!-- <button class="map-buttonas">
+                                                  View
+                                                </button> -->
+                                              </div>
+                                              <!-- {{program.name}} -->
+                                            </agm-info-window>
+                                        </agm-marker>
+                                    </div>
+                                </agm-map>
+                            </div>
+                        </div>
+                        <div class="col-12" *ngIf="program.user === this.userId">
+                            <div class="description_text people_section people_outer">
+                                <h2>People <a href="javascript:;">View all</a> </h2>
+                                <div class="people_list">
+                                    <div class="col-md-4 list_box">
+                                        <div class="media">
+                                            <div class="media-body">
+                                                <h4>{{user.firstName}}</h4>
+                                                 <!-- <h5>Kids land owner</h5> -->
+                                            </div>
+                                            <div class="media-left">
+                                                <div class="people_profile">
+                                                    <img *ngIf="user.avatarImages" src="{{user.avatarImages}}"
+                                                        alt="Profile">
+                                                    <img *ngIf="!user.avatarImages" src="assets/gray_background.jpeg"
+                                                        alt="Profile">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                            tempor incididunt ut labore.</p>
+                                    </div>
+
+                                    <div class="col-md-4 list_box">
+                                        <div class="media">
+                                            <div class="media-body">
+                                                <h4>{{user.firstName}}</h4>
+                                                 <!-- <h5>Kids land owner</h5> -->
+                                            </div>
+                                            <div class="media-left">
+                                                <div class="people_profile">
+                                                    <img *ngIf="user.avatarImages" src="{{user.avatarImages}}"
+                                                        alt="Profile">
+                                                    <img *ngIf="!user.avatarImages" src="assets/otheruser.jpeg"
+                                                        alt="Profile">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                            tempor incididunt ut labore.</p>
+                                    </div>
+
+                                    <div class="col-md-4 list_box">
+                                        <div class="media">
+                                            <div class="media-body">
+                                                <h4>{{user.firstName}}</h4>
+                                                 <!-- <h5>Kids land owner</h5> -->
+                                            </div>
+                                            <div class="media-left">
+                                                <div class="people_profile">
+                                                    <img *ngIf="user.avatarImages" src="{{user.avatarImages}}"
+                                                        alt="Profile">
+                                                    <img *ngIf="!user.avatarImages" src="assets/otheruser.jpeg"
+                                                        alt="Profile">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                            tempor incididunt ut labore.</p>
+                                    </div>
+
+                                    <div class="col-md-4 list_box">
+                                        <div class="media">
+                                            <div class="media-body">
+                                                <h4>{{user.firstName}}</h4>
+                                                 <!-- <h5>Kids land owner</h5> -->
+                                            </div>
+                                            <div class="media-left">
+                                                <div class="people_profile">
+                                                    <img *ngIf="user.avatarImages" src="{{user.avatarImages}}"
+                                                        alt="Profile">
+                                                    <img *ngIf="!user.avatarImages" src="assets/otheruser.jpeg"
+                                                        alt="Profile">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                            tempor incididunt ut labore.</p>
+                                    </div>
+                                  </div>
+
+
+                            </div>
+                        </div>
+
+
+                        	<div class="container description_text slider"  *ngIf="programs?.length">
+			<div class="forth_section_heading">
+			Suggested Programs
+                <!-- <span class="more-programscolor">{{user.firstName}}</span> -->
+				<span class="blue_heading cursor" (click)="goToProfile()">VIEW ALL</span>
+			 </div>
+			 <div class="row">
+
+					  <div class="col-12">
+						 <div id="carouselExampleIndicators" class="carousel slide activities-carousel" data-ride="carousel">
+							<div class="carousel-inner">
+							  <div class="carousel-item active container">
+								<div class="row">
+								  <div class="col-12 col-md" *ngFor='let program of programs | slice:0:3'>
+									 <div class="activities_slide" >
+										 <div class="slide_image cursor" (click)='clickedProgram(program)'>
+										   <img *ngIf='!program.category[0].iconUrl' src="assets/category2.jpg"
+											  alt="Activity">
+                                              <img *ngIf='program.category[0].iconUrl' src="https://wondrfly.com/{{program.category[0].iconUrl}}"
+											  alt="Activity">
+										 </div>
+										 <div class="slide_text">
+										   <h3>
+											  <span class="title cursor" (click)='clickedProgram(program)'>{{program.name}}</span>
+											  <!-- <div class="rating_box">
+												<img src="assets/star.svg" alt="Star Image">
+												<span>5.0 (15)</span>
+											  </div> -->
+										   </h3>
+										   <div class="sports_btn" *ngFor='let cat of program?.category'>
+											  <span>{{cat?.name}}</span>
+										   </div>
+										   <div class="date_age">
+											  <p>
+												<img alt="Loction Pin"
+												  src="assets/calendar.svg">
+                                                  {{program?.date.from |
+                                                    date:'mediumDate'}} -
+                                                    {{program.date.to | date:'mediumDate'}}
+											  </p>
+											  <p>
+												<img alt="Loction Pin" src="assets/user_group.svg">
+                                                {{program?.ageGroup.from}} - {{program?.ageGroup.to}} Yrs.
+											  </p>
+											  <p>
+												<img alt="Loction Pin" src="assets/user_group.svg">
+												{{program?.time.from |
+                                                    date:"shortTime"}} -
+                                                    {{program.time.to | date:"shortTime"}}
+											  </p>
+										   </div>
+										 </div>
+									   </div>
+								  </div>
+
+
+								</div>
+							  </div>
+							  <div class="carousel-item" *ngIf="programs?.length>3">
+								<div class="row">
+                                    <div class="col-12 col-md" *ngFor='let program of programs | slice:3:6'>
+                                        <div class="activities_slide" >
+                                            <div class="slide_image cursor" (click)='clickedProgram(program)'>
+                                                <img *ngIf='!program.category[0].iconUrl' src="assets/category2.jpg"
+                                                alt="Activity">
+                                                <img *ngIf='program.category[0].iconUrl' src="https://wondrfly.com/{{program.category[0].iconUrl}}"
+                                                alt="Activity">
+                                            </div>
+                                            <div class="slide_text">
+                                              <h3>
+                                                 <span class="title cursor" (click)='clickedProgram(program)'>{{program.name}}</span>
+                                                 <!-- <div class="rating_box">
+                                                   <img src="assets/star.svg" alt="Star Image">
+                                                   <span>5.0 (15)</span>
+                                                 </div> -->
+                                              </h3>
+                                              <div class="sports_btn" *ngFor='let cat of program?.category'>
+                                                <span>{{cat?.name}}</span>
+                                             </div>
+                                              <div class="date_age">
+                                                 <p>
+                                                   <img alt="Loction Pin"
+                                                     src="assets/calendar.svg"> {{program?.date.from |
+                                                        date:'mediumDate'}} -
+                                                        {{program.date.to | date:'mediumDate'}}
+                                                 </p>
+                                                 <p>
+                                                   <img alt="Loction Pin" src="assets/user_group.svg">
+                                                   {{program?.ageGroup.from}} - {{program?.ageGroup.to}} Yrs.
+                                                 </p>
+                                                 <p>
+                                                   <img alt="Loction Pin" src="assets/user_group.svg">
+                                                   {{program?.time.from |
+                                                    date:"shortTime"}} -
+                                                    {{program.time.to | date:"shortTime"}}
+                                                 </p>
+                                              </div>
+                                            </div>
+                                          </div>
+                                     </div>
+
+								</div>
+							  </div>
+							</div>
+						 </div>
+						 <!--End carousel-->
+					   </div>
+					   <div class="col-1 d-flex align-items-center justify-content-center"><a  href="#carouselExampleIndicators" data-slide="next">
+						 <div class="carousel-nav-icon">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" xmlns:xlink="http://www.w3.org/1999/xlink">
+							  <path d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z"/>
+							</svg>
+						 </div>
+						 </a>
+					   </div>
+
+
+			 </div>
+		  </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- program update Modal -->
+    <div class="modal fade verification_modal password" id="programUpdateModal" data-backdrop="static"
+        data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <button (click)="closePopup()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="icon-close"></span>
+                </button>
+                <div class="modal-body">
+                    <h2>Program</h2>
+                    <div class="verification_outer">
+                        <div class="add_note">
+
+                            <div *ngIf="isName" class="form-group">
+                                <label>Program Name </label>
+                                <input type="text" class="form-control" placeholder="Type" [(ngModel)]="program.name">
+                            </div>
+
+                            <div *ngIf="isDescription" class="form-group">
+                                <label>Description </label>
+                                <textarea model="noofchars" ng-trim="false" maxLength="3000" class="form-control"
+                                    cols="40" rows="7" placeholder="Type" [(ngModel)]="program.description"></textarea>
+                            </div>
+
+                            <div *ngIf="isInstruction" class="form-group">
+                                <label>Special Instructions </label>
+                                <textarea model="noofchars" ng-trim="false" maxLength="3000" class="form-control"
+                                    cols="40" rows="7" placeholder="Type"
+                                    [(ngModel)]="program.specialInstructions"></textarea>
+                            </div>
+
+                            <div *ngIf="isPricePerParticipant" class="form-group">
+                                <label>Price Per Participant</label>
+                                <input type="text" class="form-control" placeholder="Type"
+                                    [(ngModel)]="program.pricePerParticipant">
+                            </div>
+                            <div *ngIf="isBookingCancle" class="form-group">
+                                <label class="custom-label">BOOKING CANT'T BE CANCELLED BEFORE</label>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" placeholder="Days" name="Days"
+                                            [(ngModel)]="program.bookingCancelledIn.days">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" placeholder="Hours" name="Hours"
+                                            [(ngModel)]="program.bookingCancelledIn.hours">
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="isTag" class="form-group">
+                                <label class="custom-label">Intrests</label>
+                                <div class="input_outer">
+                                    <div class="ng-autocomplete">
+                                        <ng-autocomplete [data]="tags" [searchKeyword]="keyword"
+                                            (selected)='selectEvent($event)' (inputChanged)='onChangeSearch($event)'
+                                            (inputFocused)='onFocused($event)' [itemTemplate]="itemTemplate"
+                                            [notFoundTemplate]="notFoundTemplate">
+                                        </ng-autocomplete>
+
+                                        <ng-template #itemTemplate let-item>
+                                            <a [innerHTML]="item.name"></a>
+                                        </ng-template>
+
+                                        <ng-template #notFoundTemplate let-notFound>
+                                            <div *ngIf="tags" [innerHTML]="notFound"></div>
+                                        </ng-template>
+                                    </div>
+                                </div>
+                                <br>
+                                <mat-form-field>
+                                    <mat-chip-list>
+                                        <mat-chip *ngFor="let t of program.tags;let indx=index;"
+                                            [selectable]="selectable" [removable]="removable" (removed)="remove(t)">
+                                            {{t.name}}
+                                            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                        </mat-chip>
+                                    </mat-chip-list>
+                                </mat-form-field>
+
+                            </div>
+
+                            <div *ngIf="isBatch">
+
+                                <div class="form-group">
+                                    <label> Name </label>
+                                    <input type="text" class="form-control" placeholder="Type"
+                                        [(ngModel)]="batchData.sessionName">
+                                </div>
+
+                                <div class="form-group">
+                                    <label> Instructor </label>
+                                    <input type="text" class="form-control" placeholder="Type"
+                                        [(ngModel)]="batchData.instructor">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Dates</label>
+                                    <div class="input-group mb-3">
+                                        <input [owlDateTimeTrigger]="dt3" placeholder="Start Date"
+                                            [(ngModel)]="batchData.sessionStartDate" class="form-control" [owlDateTime]="dt3"
+                                            readonly>
+                                        <owl-date-time [pickerType]="'calendar'" #dt3></owl-date-time>
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text custom-text">
+                                                <img src="assets/arrow-right.svg" alt="Arrow Image">
+
+                                            </div>
+                                        </div>
+                                        <input [owlDateTimeTrigger]="dt4" placeholder="End Date" class="form-control"
+                                            [owlDateTime]="dt4" [(ngModel)]="batchData.sessionEndDate" readonly>
+                                        <owl-date-time [pickerType]="'calendar'" #dt4></owl-date-time>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Time</label>
+
+                                    <div class="input-group mb-3">
+                                        <input [owlDateTimeTrigger]="dt5" [owlDateTime]="dt5" placeholder="Start Time"
+                                            class="form-control" [(ngModel)]="batchData.sessionStartTime" readonly>
+                                        <owl-date-time [pickerType]="'timer'" #dt5></owl-date-time>
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text custom-text">
+
+                                                <img src="assets/arrow-right.svg" alt="Arrow Image">
+                                            </div>
+                                        </div>
+                                        <input [owlDateTimeTrigger]="dt6" [owlDateTime]="dt6" placeholder="End Time"
+                                            class="form-control" [(ngModel)]="batchData.sessionEndTime" readonly>
+                                        <owl-date-time [pickerType]="'timer'" #dt6></owl-date-time>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label> No of Seats </label>
+                                    <input type="text" class="form-control" placeholder="Type"
+                                        [(ngModel)]="batchData.numberOfSeats">
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label> Location </label>
+                                    <input type="text" class="form-control" placeholder="Type"
+                                        [(ngModel)]="batchData.sessionAddress">
+                                </div>
+                            </div>
+
+                            <div class="submit_btn">
+                                <button (click)="updateProgram(program._id)" data-dismiss="modal"
+                                    class="submitBtn">Update</button>
+                                <button type="button" (click)="closePopup()" data-dismiss="modal"
+                                    class="cancel_btn">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="modal fade verification_modal program-edit profile_edit password" id="UpdateModal"
+        data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="icon-close"></span>
+                </button>
+                <div class="modal-body">
+
+                    <div class="verification_outer">
+                        <h2>Edit Program</h2>
+                        <!-- <div class="profile_outer">
+                            <div class="profile_img">
+                                <img *ngIf="user.avatarImages" src="{{user.avatarImages}}" (error)="'assets/otheruser.jpeg'"
+                                    alt="Profile">
+                            </div>
+
+                            <a>
+                                <label class="cursor icon-edit">
+                                    <input style="display: none;" #file accept="image/*"
+                                        (change)="providerImageSelect($event,user.id)" type="file" name="image" />
+                                </label>
+                            </a>
+
+                        </div> -->
+                        <div class="add_note">
+                            <div class="form-group upload">
+                                <label class="custom-label">Timeline Photos</label>
+                                <i class="glyphicon glyphicon-download-alt"></i>
+                                <app-drag-drop [isMultiple]="false">
+                                </app-drag-drop>
+                            </div>
+                            <div class="form-group">
+                                <label>Program Name </label>
+                                <input type="text" class="form-control" placeholder="Program name"
+                                    [(ngModel)]="program.name">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="custom-label">Location </label>
+                                <input type="text" class="form-control" value="" [(ngModel)]="program.location"
+                                    (keydown.enter)="$event.preventDefault()" placeholder="Search Location"
+                                    autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #search>
+                            </div>
+
+                            <div class="form-group date_input">
+                                <label class="custom-label">Dates</label>
+
+                                <div class="input-group mb-3">
+                                    <input [owlDateTimeTrigger]="dt3" placeholder="Start Date" class="form-control"
+                                        [owlDateTime]="dt3" [(ngModel)]="fromDate" readonly>
+                                    <owl-date-time [pickerType]="'calendar'" #dt3></owl-date-time>
+                                    <!-- <input type="text" id="fromDateSelector" class="form-control" placeholder="Start Date"> -->
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text custom-text">
+                                            <img class="arrow" src="assets/right.png">
+                                        </div>
+                                    </div>
+                                    <input [owlDateTimeTrigger]="dt4" placeholder="End Date" class="form-control"
+                                        [owlDateTime]="dt4" [(ngModel)]="toDate" readonly>
+                                    <owl-date-time [pickerType]="'calendar'" #dt4></owl-date-time>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-group date_input">
+                                <label class="custom-label">Time</label>
+
+                                <div class="input-group mb-3">
+                                    <input [owlDateTimeTrigger]="dt5" [owlDateTime]="dt5" placeholder="Start Time"
+                                        class="form-control" [(ngModel)]="fromTime" (ngModelChange)="onChange($event)"
+                                        readonly>
+                                    <owl-date-time [pickerType]="'timer'" #dt5></owl-date-time>
+                                    <!-- <input type="text" class="form-control" placeholder="Start Time"> -->
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text custom-text">
+                                            <img class="arrow" src="assets/right.png">
+                                        </div>
+                                    </div>
+                                    <input [owlDateTimeTrigger]="dt6" [owlDateTime]="dt6" placeholder="End Time"
+                                        class="form-control" [(ngModel)]="toTime" (ngModelChange)="onChange($event)"
+                                        readonly>
+                                    <owl-date-time [pickerType]="'timer'" #dt6></owl-date-time>
+                                    <!-- <input type="text" class="form-control custom-text" placeholder="End Time"> -->
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label>Duration </label>
+                                <input type="text" class="form-control" placeholder="e.g. John Doe"
+                                    [(ngModel)]="program.duration">
+                            </div>
+
+                            <div class="form-group participant_input">
+                                <label class="custom-label">Price Per Participant</label>
+
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            $
+                                        </div>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="Type"
+                                        [(ngModel)]="program.pricePerParticipant">
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="custom-label">Age Group</label>
+                                <br>
+                                <br>
+                                <ng5-slider [(value)]="minAge" [(highValue)]="maxAge" [options]="ageOption">
+                                </ng5-slider>
+                            </div>
+                            <!-- <div class="form-group">
+                                <label>Category</label>
+                                <div class="input_outer">
+                                    <div class="custom_select">
+                                        <select #selectValue (change)="selectEvent(selectValue.value)">
+                                            <option *ngFor="let category of categories">
+                                                {{category.name}}</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                                <br> -->
+                            <!-- <mat-form-field class="demo-chip-list">
+                                    <mat-chip-list>
+                                        <mat-chip *ngFor="let t of program.categoryId" [selectable]="selectable"
+                                            [removable]="removable" (removed)="remove(t)">
+                                            {{t.name}}<span *ngIf="!t?.name">{{t}}</span>
+                                            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                        </mat-chip>
+                                    </mat-chip-list>
+                                </mat-form-field> -->
+                            <!-- <mat-form-field class="demo-chip-list">
+                                    <mat-chip-list>
+                                        <mat-chip>
+                                            Technology
+                                            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                        </mat-chip>
+                                        <mat-chip>
+                                            Others
+                                            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                        </mat-chip>
+                                    </mat-chip-list>
+                                </mat-form-field> -->
+                            <!-- </div> -->
+                            <div class="submit_btn">
+                                <button (click)="updateProgram(program._id)" data-dismiss="modal"
+                                    class="submitBtn">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <app-footer></app-footer>
+</body>
+<ngx-ui-loader></ngx-ui-loader>
+
+
+
+<!--share Modal -->
+<div class="modal fade" id="ShareModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content share-modals">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="close_sharemodal">
+                <span aria-hidden="true" class="icon-close"></span>
+            </button>
+            <h2>Share</h2>
+            <div class="sharethisall-icons">
+                <hr class="N_line">
+            <div class="sharethis-social">
+                <span class="st_facebook_large" st_url="https://wondrfly.com" displayText="Facebook"></span>
+                <span class="sharethis-text">Facebook</span>
+            </div>
+            <hr class="N_line">
+            <div class="sharethis-social">
+                <span class="st_linkedin_large" st_url="https://wondrfly.com" displayText="LinkedIn"></span>
+                <span class="sharethis-text">LinkedIn</span>
+            </div>
+            <hr class="N_line">
+            <div class="sharethis-social">
+                <span class="st_googleplus_large" st_url="https://wondrfly.com" displayText="Google+"></span>
+                <span class="sharethis-text">Google+</span>
+            </div>
+            <hr class="N_line">
+            <div class="sharethis-social">
+                <span class="st_email_large"  st_url="https://wondrfly.com" displayText="Email"></span>
+                <span class="sharethis-text">Email</span>
+            </div>
+            <hr class="N_line">
+            <div class="sharethis-social">
+                <span class="st_sharethis_large" st_url="https://wondrfly.com" displayText="ShareThis"></span>
+                <span class="sharethis-text">ShareThis</span>
+            </div>
+            </div>
+
+
+
+                <!--   <div class="modal-body N_modal share-modal">
+                <h2>Share</h2>
+
+<div class="share_option">
+                    <ul class="N_list">
+                        <hr class="N_line">
+                        <li class="cursor" (click)="genericSocialShare('facebook')" [class.active]="facebookActive" (mouseover)="facebookActive='active'"
+                            (mouseout)="facebookActive=''">
+                            <a ><span class="social_icons">
+                                <img src="assets/share-fb.svg">
+
+                                </span>Facebook</a>
+                        </li>
+                        <hr class="N_line">
+
+                        <li class="cursor" (click)="genericSocialShare('email')" [class.active]="emailActive" (mouseover)="emailActive='active'" (mouseout)="emailActive=''">
+                            <a><span class="social_icons">
+                                <img src="assets/share-email.svg">
+
+                                </span>Email</a>
+                        </li>
+                        <hr class="N_line">
+                        <li class="cursor" (click)="genericSocialShare('whatsapp')" data-action="share/whatsapp/share" [class.active]="whatsappActive" (mouseover)="whatsappActive='active'"
+                            (mouseout)="whatsappActive=''">
+                            <a><span class="social_icons">
+                                <img src="assets/share-wsup.svg">
+
+                                </span>Whatsapp</a>
+                        </li>
+                        <hr class="N_line">
+                        <li class="cursor" (click)="genericSocialShare('copylink')" [class.active]="copylinkActive" (mouseover)="copylinkActive='active'"
+                            (mouseout)="copylinkActive=''">
+                            <a><span class="social_icons">
+                                <img src="assets/share-copylink.svg">
+
+                                </span>Copylink</a>
+                        </li>
+                    </ul>
+                </div>
+            </div> -->
+        </div>
+    </div>
+</div>

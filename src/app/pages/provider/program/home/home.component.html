@@ -1,0 +1,77 @@
+<body>
+
+  <app-header></app-header>
+
+  <div class="main_outer">
+
+    <div class="dashboard_outer">
+      <div class="container">
+
+        <div class="row graph_outer row-50">
+          <div *ngIf="barChartData" class="col-md-9">
+            <div class="graph activity_graph graph_color" *ngIf="isGraphData">
+              <div class="top_title">
+                <label>Activity</label>
+                <h3>Programs</h3>
+              </div>
+              <div>
+                <canvas baseChart class="chart" [datasets]="barChartData" [labels]="barChartLabels"
+                  [options]="barChartOptions" [colors]="chartColors" [chartType]="barChartType"></canvas>
+              </div>
+              <!-- <img src="assets/graph_img.jpg" alt="Graph Image" class="img-fluid"> -->
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="graph graph_color">
+              <div class="top_title">
+                <label>Trending</label>
+                <h3>Trending Tags</h3>
+              </div>
+              <!-- <img src="assets/graph_img3.svg" alt="Graph Image"> -->
+
+              <canvas baseChart [datasets]="bubbleChartData" [chartType]="bubbleChartType" [labels]="bubbleChartLabels"
+                [options]="bubbleChartOptions" [colors]="ChartColors">
+              </canvas>
+
+            </div>
+
+          </div>
+
+        </div>
+        <div class="row trending_discussions graph_outer row-50">
+          <div class="col-md-9">
+            <div class="trending left graph_color">
+              <h2 class="title">Trending Discussions</h2>
+              <a (click)="forum()" class="view">View All</a>
+              <div class="trending_outer">
+                <div class="trending_box" *ngFor="let forum of forums | slice:0:3">
+                  <h3>{{forum.title}}</h3>
+                  <p>{{forum.description}}</p>
+                  <div class="date">
+                    <!-- <p>{{}}</p> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="graph number_graph graph_color">
+              <div class="top_title">
+                <label>Programs</label>
+                <h3>Number of Programs</h3>
+                <!-- <img src="assets/graph_img2.svg" alt="Graph Image" class="img-fluid"> -->
+                <canvas width="400" height="400" baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels"
+                  [chartType]="doughnutChartType" [colors]="ChartColors">
+                </canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <app-footer></app-footer>
+</body>
+<ngx-ui-loader></ngx-ui-loader>

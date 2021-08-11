@@ -1,0 +1,145 @@
+<app-header></app-header>
+<ng2-toasty></ng2-toasty>
+
+<body>
+  <br />
+  <div class="container-fluid h-100">
+    <!-- <button type="button" routerLink="/chat2" class="btn_style save_btn cursor">Users</button> -->
+
+    <div class="row justify-content-center h-100">
+      <div class="col-md-4 col-xl-3 chat nopad">
+        <div class="card mb-sm-3 mb-md-0 contacts_card ">
+          <div class="card-header">
+            <div class="input-group">
+              <h2>chats</h2>
+              <div class="input-group-prepend">
+              </div>
+            </div>
+          </div>
+          <div class="card-body contacts_body " infiniteScroll [infiniteScrollDistance]="2 "
+            [infiniteScrollThrottle]="500" (scrolled)="onScroll()" [scrollWindow]="false">
+            <ul *ngIf="users?.length != undefined" class="contacts">
+              <!-- <a>{{users.length}}</a> -->
+              <li *ngFor="let user of users;trackBy: trackByFn" class="active" (click)="slectedUser(user)">
+                <div class="d-flex bd-highlight">
+                  <div class="img_cont">
+                    <img class="img_cont" src="{{user.avatarImages}}" alt="Profile Image"
+                      (error)="user.avatarImages='assets/profile.svg'">
+                    <!-- <span class="online_icon"></span> -->
+                  </div>
+                  <div class="user_info">
+                    <span>{{user.firstName}}</span>
+                    <!-- <p>Kalid is online</p> -->
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="card-footer"></div>
+        </div>
+      </div>
+
+      <div class="col-md-8 col-xl-6  chat nopad" *ngIf="activeContact.firstName">
+        <div class="card">
+          <div class="card-header msg_head">
+            <div class="d-flex bd-highlight" *ngIf="activeContact.firstName">
+              <div class="img_cont">
+                <img class="img_cont" *ngIf="activeContact?.avatarImages" src="{{activeContact.avatarImages}}"
+                  alt="Profile Image">
+                <img class="img_cont" *ngIf="!activeContact?.avatarImages" src="assets/profile.svg" alt="Profile Image">
+                <!-- <span class="online_icon"></span> -->
+              </div>
+              <div class="user_info">
+                <span>{{activeContact.firstName}}</span>
+                <p>{{typingMsg}}</p>
+              </div>
+              <div class="video_cam">
+
+              </div>
+            </div>
+            <span id="action_menu_btn"><i class="fas fa-ellipsis-v"></i></span>
+
+          </div>
+
+          <div *ngIf="chatCollection?.length > 0" class="card-body msg_card_body">
+            <div *ngFor="let chat of chatCollection;">
+
+              <div *ngIf="chat?.msgFrom !== currentUser?.firstName&&chat?.msg"
+                class="d-flex justify-content-start mb-4">
+                <!-- <p>{{activeContact.name }}</p> -->
+                <div class="img_cont_msg">
+                  <img class="rounded-circle user_img_msg" *ngIf="activeContact?.avatarImages"
+                    src="{{activeContact.avatarImages}}" alt="Profile Image"
+                    (error)="activeContact.avatarImages='assets/profile.svg'">
+                </div>
+                <div *ngIf="chat?.msgFrom !== currentUser?.firstName&&chat?.msg" class class="msg_cotainer">
+                  {{chat.msg}}
+                  <span class="msg_time">{{chat.date | date:'shortTime'}}</span>
+                </div>
+              </div>
+              <div *ngIf="chat?.msgFrom !== currentUser?.firstName&&chat?.image"
+                class="d-flex justify-content-start mb-4">
+                <!-- <p>{{activeContact.name }}</p> -->
+                <div class="img_cont_msg">
+                  <img class="rounded-circle user_img_msg" *ngIf="activeContact?.avatarImages"
+                    src="{{activeContact.avatarImages}}" alt="Profile Image"
+                    (error)="activeContact.avatarImages='assets/profile.svg'">
+                </div>
+                <div *ngIf="chat?.msgFrom !== currentUser?.firstName&&chat?.image" class class="msg_img_container">
+                  <img class="img_msg" *ngIf="chat?.image" src="{{chat.image}}" alt="media Image">
+                  <span class="msg_time">{{chat.date | date:'shortTime'}}</span>
+                </div>
+              </div>
+              <div *ngIf="chat?.msgFrom !== activeContact?.firstName&&chat?.msg"
+                class="d-flex justify-content-end mb-4">
+                <!-- <p>{{currentUser.firstName}}</p> -->
+                <div *ngIf="chat.msgFrom !==activeContact.firstName " class="msg_cotainer_send">
+                  {{chat.msg}}
+                  <span class="msg_time_send">{{chat.date | date:'shortTime'}}</span>
+                </div>
+                <div class="img_cont_msg">
+                  <img class="rounded-circle user_img_msg" src="{{currentUser.avatarImages}}"
+                    (error)="currentUser.avatarImages='assets/profile.svg'" alt="Profile Image">
+                </div>
+              </div>
+
+              <div *ngIf="chat?.msgFrom !== activeContact?.firstName&&chat?.image"
+                class="d-flex justify-content-end mb-4">
+                <!-- <p>{{currentUser.firstName}}</p> -->
+                <div *ngIf="chat.msgFrom !==activeContact.firstName&&chat?.image " class="msg_img_container_send">
+                  <img class="img_msg_send" *ngIf="chat?.image" src="{{chat.image}}" alt="Profile Image"> <span
+                    class="msg_time_send">{{chat.date | date:'shortTime'}}</span>
+                </div>
+                <div class="img_cont_msg">
+                  <img class="rounded-circle user_img_msg" src="{{currentUser.avatarImages}}"
+                    (error)="currentUser.avatarImages='assets/profile.svg'" alt="Profile Image">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer ">
+            <div class="input-group ">
+              <div class="input-group-append">
+                <label class="cursor input-group-text attach_btn"><input style="display: none;" #file accept="image/*"
+                    (change)="sendMedia($event)" type="file" name="image" />
+                  <span> <i class="fas fa-paperclip"></i>
+                  </span></label>
+              </div>
+              <textarea name="" class="form-control type_msg" (keyup)="startTyping()" (keyup.enter)="sendMessage()"
+                placeholder="Type your message..." [(ngModel)]="text">
+              </textarea>
+              <div class="input-group-append ">
+                <span class="input-group-text send_btn" (click)="sendMessage()"><i
+                    class="fas fa-location-arrow"></i></span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<ngx-ui-loader bgsType={{loaderType}} fgsType={{loaderType}} fgsSize="40" bgsSize="40" fgsPosition={{loaderPostion}}
+  overlayColor="rgba(40,40,40,0.12)">
+</ngx-ui-loader>

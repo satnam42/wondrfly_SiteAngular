@@ -1,0 +1,44 @@
+.fb_button {
+    background: #4560B4;
+    border-radius: 20px;
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    margin-top: 29px;
+    cursor: pointer;
+}
+.fb_button a {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.001em;
+    color: #FFFFFF;
+    padding-left: 16px;
+}
+.google_button {
+    background: #FFFFFF;
+    border: 1px solid #E5E9EC;
+    box-sizing: border-box;
+    border-radius: 20px;
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    margin-top: 14px;
+    cursor: pointer;
+}
+.google_button a {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.001em;
+    color: #494949;
+    padding-left: 16px;
+}

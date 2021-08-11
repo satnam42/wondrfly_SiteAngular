@@ -1,0 +1,613 @@
+<body>
+
+    <app-header2 *ngIf="!isLogin"></app-header2>
+    <app-header *ngIf="isLogin"></app-header>
+    <app-alert *ngIf="isLogin"></app-alert>
+    <div class="main_outer">
+        <div class="container">
+            <div class="provider_profile">
+                <div class="provider_left">
+                    <div class="profile">
+                        <img src="assets/kids_profile.jpg" alt="Profile image">
+                    </div>
+                    <h2 class="provider_name">Kids Land co.</h2>
+                    <div class="provider_menu">
+                        <ul>
+                            <li>
+                                <a [class.active]="overviewClass" (click)="onGenOverview()">
+                                    <span class="icon icon-general"></span> General overview
+                                </a>
+                            </li>
+                            <li>
+                                <a [class.active]="peopleClass" (click)="onPeople()">
+                                    <span class="icon icon-group"></span> People
+                                </a>
+                            </li>
+                            <li>
+                                <a [class.active]="activityClass" (click)="onActivities()">
+                                    <span class="icon icon-list"></span> Activities
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="insured_outer">
+                        <p *ngFor="let badge of badgesList"><img src="{{badge.icon}}" alt="Loction Pin"> {{badge.name}}
+                        </p>
+                    </div>
+                    <div *ngIf="program.user && isLogin && program.user!==user.id" class="business_text">
+                        <img src="assets/business_red.svg" alt="Business image">
+                        <h2>Is this your business?</h2>
+                        <button class="btn_style business_btn" (click)="claimBusiness()">Claim this business</button>
+                    </div> 
+                </div>
+
+
+                <div *ngIf="isGenOverview" class="provider_right">
+
+
+                    <div class="description_text new-progress">
+                        <div class="progress-uppwer">
+                            <p>Profile Strength:<span> {{profileProgress}}%</span><span class="float-right">Add more information to improve to your profile</span></p>
+                        </div>
+
+                        <div class="progress-lowwwer">
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar"  [ngStyle]="{'width': profileProgress + '%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <div class="cicle-dots">
+                                    <div class="dots-info1">
+                                    <span class="dot"  [ngClass]="{active: profileProgress>=25}" ><img class="tick_c"  *ngIf='profileProgress>=25' src="assets/focus_tick.svg"></span>
+                                    </div>
+                                    <div class="dots-info2">
+                                        <span class="dot"  [ngClass]="{active: profileProgress>=50}" ><img class="tick_c" *ngIf='profileProgress>=50' src="assets/focus_tick.svg"></span>
+                                    </div>
+                                    <div class="dots-info3">
+                                        <span class="dot"  [ngClass]="{active: profileProgress>=70}"><img class="tick_c" *ngIf='profileProgress>=70' src="assets/focus_tick.svg"></span>
+                                    </div>
+                                    <div class="dots-info4">
+                                        <span class="dot"   [ngClass]="{active: profileProgress>=99} "><img class="tick_c" *ngIf='profileProgress>=99' src="assets/focus_tick.svg"></span>
+                                    </div>
+                                </div>
+                        </div>
+                     </div>
+
+
+
+
+
+                    <div class="description_text people_section overview">
+                        <span align="right" class="cursor">
+                            <a data-toggle="modal" data-target="#providerUpdateModal" >
+                                <img class="icon-float" src="assets/edit_skyblue.svg" alt="Edit Image">
+                            </a>
+                        </span>
+                        <h2  class="overview-heading">About us</h2>
+                        <!-- <p class="overview-data">{{user.about}} </p> -->
+                        <p class="overview-data">{{user.about}}
+                        </p>
+                        <div class="media">
+                            <div class="media-left">
+                                <div class="people_profile">
+                                    <a data-toggle="modal" data-target="#profileModal">
+                                        <img *ngIf="user.avatarImages"class="cursor" src="{{user.avatarImages}}"
+                                        alt="Profile">
+                                        <img *ngIf="!user.avatarImages"class="cursor" src="assets/default_img.png"
+                                        alt="Profile">
+                                    </a>
+                                </div>
+                                <h4>{{user.firstName}}</h4>
+                                <h5>Kids land owner</h5>
+                            </div>
+                            <div class="media-body">
+                                <h3 *ngIf="user.about">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </h3>
+                                <!-- <p>{{user.about}} </p> -->
+                                <div class="skills_sec">
+                                    <h3>Skills</h3>
+                                    <div class="skill_outer">
+                                        <span>Sports</span>
+                                        <span>Personal Development</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <!-- <div class="description_text">
+                        <div align="right" class="cursor">
+                            <a >
+                                <img src="assets/edit_skyblue.svg" alt="Edit Image">
+                            </a>
+                        </div>
+                        <h2 *ngIf="user.about">About</h2>
+                        <p>{{user.about}}</p>
+                    </div> -->
+
+                    <div *ngIf="isGenOverview" class="description_text">
+                        <span align="right" class="cursor">
+                            <a >
+                                <img class="icon-float" src="assets/edit_skyblue.svg" alt="Edit Image">
+                            </a>
+                        </span>
+                        <h2>Company Information</h2>
+                        <div class="row align-items-center margin_top">
+                            <div class="col-md-4">
+                                <div class="media company_info align-items-center">
+                                    <div class="media-left">
+                                        <span class="icon icon-pin"></span>
+                                    </div>
+                                    <div class="media-body">
+                                        <h4>Address</h4>
+                                        <p>{{user.addressLine1}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="media company_info align-items-center">
+                                    <div class="media-left">
+                                        <span class="icon icon-envelope"></span>
+                                    </div>
+                                    <div class="media-body">
+                                        <h4>Email</h4>
+                                        <p>{{user.email}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="media company_info align-items-center">
+                                    <div class="media-left">
+                                        <span class="icon icon-phone-call"></span>
+                                    </div>
+                                    <div class="media-body">
+                                        <h4>Phone</h4>
+                                        <p>{{user.phoneNumber | phones}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="media company_info align-items-center">
+                                    <div class="media-left">
+                                        <img class="imgsvg" src="assets/questionnaire.svg" alt="Questionnaire">
+                                    </div>
+                                    <div class="media-body">
+                                        <h4>Members</h4>
+                                        <p>Members</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="media company_info align-items-center">
+                                    <div class="media-left">
+                                        <span class="icon icon-global"></span>
+                                    </div>
+                                    <div class="media-body">
+                                        <h4>Www</h4>
+                                        <p>{{user.website}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="social_icons">
+                                    <a *ngIf="user.facebook" href="{{user.facebook}}">
+                                        <span class="icon icon-facebook"></span>
+                                    </a>
+                                    <a *ngIf="user.instagram" href="{{user.instagram}}">
+                                        <span class="icon icon-instagram"></span>
+                                    </a>
+                                    <a *ngIf="user.twitter" href="{{user.twitter}}">
+                                        <span class="icon icon-twitter"></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="description_text">
+                        <span align="right" class="cursor">
+                            <a >
+                                <img class="icon-float" src="assets/edit_skyblue.svg" alt="Edit Image">
+                            </a>
+                        </span>
+                        <h2>Health & Safety measures<img class="i-small"
+                            src="assets/i-big.svg"></h2>
+                        <div class="row align-items-center margin_top">
+                            <div class="col-md-4" *ngFor="let health of health_safety; let i =index">
+                                <div class="media company_info align-items-center">
+                                    <div class="media-body cursor" (click)="upDateHealthMeasure(health.type,i)">
+                                        <img style="margin-left: 33%;"
+                                            [ngClass]="{'health_icon_disable':health.status}" src="{{health.img}}">
+                                        <p class="health_name">{{health.name}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div *ngIf="isPeople" class="provider_right">
+                    <div class="description_text people_section">
+                        <h2>People</h2>
+                        <div class="media">
+                            <div class="media-left">
+                                <div class="people_profile">
+                                    <img src="{{user.avatarImages}}" (error)="user.avatarImages='assets/profile.svg'" alt="Profile">
+                                </div>
+                                <h4>{{user.firstName}}</h4>
+                                <h5>Kids land owner</h5>
+                            </div>
+                            <div class="media-body">
+                                <h3>About</h3>
+                                <p>{{user.about}}</p>
+                                <div class="skills_sec">
+                                    <h3>Skills</h3>
+                                    <div class="skill_outer">
+                                        <span *ngFor="let skill of user.interests" >{{skill.name}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+               
+           
+
+
+                <div *ngIf="isActivities" class="provider_right">
+                    <div class="description_text slider">
+                        <div class="viewsadd">
+                        <h2>Activities <img class="gridviw" src="assets/gridView.svg" alt="grid Image">
+                            <img  src="assets/listView.svg" routerLink='/program/list' alt="list Image">
+                      </h2>
+                            <button class="Noti_btn" (click)='addProgram()'>Add</button>
+                    </div>
+                        <div *ngIf='isGrid' class="row ">
+                        <div class="col-md-6" *ngFor="let program of programs" >
+							<div class="activities_slide" >
+								<div class="slide_image cursor" (click)='goToProgramDetail(program)'  >
+									<!-- <img class="loader_size" *ngIf="imageLoader.isLoad" [src]="imageLoader.img"
+									alt="Activity"> -->
+                                    <img *ngIf="program.timelinePics.length" src="{{program?.timelinePics[0]}}"
+                                    alt="Program Image">
+                                <img *ngIf="!program.timelinePics.length" src="assets/activity1.png"
+                                    alt="Program Image">
+								</div>
+								<div class="slide_text">
+									<h3>
+										<span class="title cursor"  (click)='goToProgramDetail(program)'>{{program.name}}</span>
+										<div class="rating_box">
+											<img src="assets/star.svg" alt="Star Image">
+											<span>5.0 (15)</span>
+										</div>
+									</h3>
+									<div class="sports_btn">
+										<span>{{program.categoryName}}</span>
+                                        <span>{{program.categoryName}}</span>
+									</div>
+									
+									<div class="date_age">
+										<p>
+											<img alt="Loction Pin"
+												src="assets/calendar.svg">{{program?.date.from |
+                                                    date}} -
+                                                    {{program.date.to | date}}
+										</p>
+										<p>
+											<img alt="Loction Pin" src="assets/user_group.svg">
+                                            {{program?.ageGroup.from}} - {{program?.ageGroup.to}} Yrs.
+										</p>
+										<!-- <p>
+											<img alt="Loction Pin" src="assets/user_group.svg">
+											9:00-11:00
+										</p>
+		 -->
+									</div>	
+								</div>	
+							</div>
+							</div>
+                        </div>
+
+
+<!-- <div  *ngIf='isList' routerLink='/program/list'> -->
+
+
+
+                        <!-- <div *ngFor="let program of programs"class="listvieww activity spacing-media">
+                            <div class="media-left size-increase cursor" (click)='goToProgramDetail(program)'>
+            
+                                <img *ngIf="program.timelinePics.length" src="{{program?.timelinePics[0]}}"
+                                alt="Program Image">
+                            <img *ngIf="!program.timelinePics.length" src="assets/activity1.png"
+                                alt="Program Image">
+                            </div>
+                            <div class="media-body size-increase-123">
+                                <h2 class="cursor " (click)='goToProgramDetail(program)' >{{ program.name }}
+                                <span class="ratings-stars">
+                                    <a href="javascript:; ">
+                                        <img src="assets/star.svg " alt="Star "> 5.0 (15) 
+                                    </a>
+                                </span>
+                            </h2>
+                                
+                                <div class="list_outer row row-0 ">
+                                    <div class="coding_text ">
+                                        <div  class="coding-text-1">
+                                            <h3>{{program.categoryName}}</h3>
+                                            
+                                        </div>
+                      
+                                    </div>
+                                    <div class="list col-12 " class="school-image ">
+                                        <p><img src="assets/local.svg " alt="School image "> {{ program?.location }}
+                                        </p>
+                                    </div>
+                                    <div class="list col-12 icon-grpcalender ">
+                                        <p><img src="assets/user_group.svg "
+                                                alt="School image ">
+                                          <span class="ml-1">  7-11 Yrs</span>
+                                        </p>
+                                        <p class="ml-3" ><img src="assets/calendar.svg "
+                                          alt="School image ">  <span class="ml-1">   {{
+                                            program.date?.from
+                                              | date: "dd:MM:yyyy"
+                                          }}
+                                          –
+                                          {{
+                                            program.date?.to | date: "dd:MM:yyyy"
+                                          }}  </span></p>
+                                    </div>
+
+                                    <div class="price-box ">
+                                        <p class=""><span>${{program.pricePerParticipant}}/</span>Hour</p>
+                                     </div>
+                                   
+                                </div>
+                                   
+                                   
+                                
+                            </div>
+            
+                        </div> -->
+                    <!-- </div> -->
+
+
+
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="row">
+                <div *ngIf="user.role==='parent'" class="col-12">
+                    <div class="overview_map">
+                        <img src="assets/provider_map.jpg" alt="Map image">
+                    </div>
+                </div>
+
+                <div *ngIf="user.role==='parent'" class="col-12">
+                    <div class="description_text slider">
+                        <h2>Activities <a href="" class="view_all">View all</a> </h2>
+                        <div class="activities_slider">
+                            <div class="activities_slide">
+                                <div class="slide_image">
+                                    <img src="assets/slide-1.png" alt="Slide 1">
+                                </div>
+                                <div class="slide_text">
+                                    <h3>
+                                        <span class="title">Kinderbots</span>
+                                        <div class="rating_box">
+                                            <img src="assets/star.svg" alt="Star Image">
+                                            <span>5.0 (15)</span>
+                                        </div>
+                                    </h3>
+                                    <div class="date_age">
+                                        <p>
+                                            <img alt="Loction Pin" src="assets/calendar.svg">Mar 23-39
+                                        </p>
+                                        <p>
+                                            <img alt="Loction Pin" src="assets/user_group.svg">7-11 Yrs
+                                        </p>
+                                    </div>
+
+                                    <div class="sports_btn">
+                                        <span>Sports</span>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="activities_slide">
+                                <div class="slide_image">
+                                    <img src="assets/slide-2.png" alt="Slide 1">
+                                </div>
+                                <div class="slide_text">
+                                    <h3>
+                                        <span class="title">Kinderbots</span>
+                                        <div class="rating_box">
+                                            <img src="assets/star.svg" alt="Star Image">
+                                            <span>5.0 (15)</span>
+                                        </div>
+                                    </h3>
+                                    <div class="date_age">
+                                        <p>
+                                            <img alt="Loction Pin" src="assets/calendar.svg">Mar 23-39
+                                        </p>
+                                        <p>
+                                            <img alt="Loction Pin" src="assets/user_group.svg">7-11 Yrs
+                                        </p>
+                                    </div>
+
+                                    <div class="sports_btn">
+                                        <span>Sports</span>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="activities_slide">
+                                <div class="slide_image">
+                                    <img src="assets/slide-3.png" alt="Slide 1">
+                                </div>
+                                <div class="slide_text">
+                                    <h3>
+                                        <span class="title">Kinderbots</span>
+                                        <div class="rating_box">
+                                            <img src="assets/star.svg" alt="Star Image">
+                                            <span>5.0 (15)</span>
+                                        </div>
+                                    </h3>
+                                    <div class="date_age">
+                                        <p>
+                                            <img alt="Loction Pin" src="assets/calendar.svg">Mar 23-39
+                                        </p>
+                                        <p>
+                                            <img alt="Loction Pin" src="assets/user_group.svg">7-11 Yrs
+                                        </p>
+                                    </div>
+
+                                    <div class="sports_btn">
+                                        <span>Sports</span>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <!---------- provider update Modal--------------- -->
+
+    <div class="modal fade verification_modal profile_edit password" id="providerUpdateModal" data-backdrop="static"
+        data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="icon-close"></span>
+                </button>
+                <div class="modal-body">
+
+                    <div class="verification_outer">
+                        <h2>Edit info</h2>
+                        <div class="profile_outer">
+                            <div class="profile_img">
+                                <img *ngIf="user.avatarImages" src="{{user.avatarImages}}"
+                                    (error)="user.avatarImages='assets/otheruser.jpeg'" alt="Profile">
+                            </div>
+
+                            <a>
+                                <label class="cursor icon-edit">
+                                    <input style="display: none;" #file accept="image/*"
+                                       (change)="providerImageSelect($event)" type="file" name="image" />
+                                </label>
+                            </a>
+
+                        </div>
+                        <div class="add_note" [formGroup]="userUpdateForm">
+                            <div class="form-group">
+                                <label>Provider Name </label>
+                                <input type="text" class="form-control" placeholder="e.g. John Doe"
+                                    [formControl]="userUpdateForm.controls['firstName']" [(ngModel)]="user.firstName">
+                            </div>
+
+                
+                            <div class="form-group">
+                                <label>About The Business</label>
+                                <textarea class="form-control" placeholder="Type" ng-trim="false" maxLength="3000"
+                                    cols="40" rows="7" [formControl]="userUpdateForm.controls['about']"
+                                    [(ngModel)]="user.about"></textarea>
+                                <div *ngIf="user.about" class="textarea_length">
+                                    <p>({{ user.about.length }} of 3000)</p>
+                                </div>
+                            </div>
+                            <div class="form-group" *ngIf="user?.phoneNumber">
+                                <label>Phone</label>
+                                <input type="text" class="form-control" placeholder="Phone Number"
+                                    [formControl]="userUpdateForm.controls['phoneNumber']"
+                                    [(ngModel)]="user.phoneNumber">
+                            </div>
+                            <div class="form-group">
+                                <label>Category</label>
+                                <div class="input_outer">
+                                    <div class="custom_select">
+                                        <select (change)="selectEvent($event.target.value)">
+                                            <option   [value]="category.id" *ngFor="let category of categories">
+                                                {{category.name}}</option>
+                                        </select>
+                                    </div>
+                 
+                                </div>
+                                <br>
+                                <mat-form-field class="demo-chip-list">
+                                    <mat-chip-list>
+                                        <mat-chip *ngFor="let t of user.interests" [selectable]="selectable"
+                                            [removable]="removable" (removed)="remove(t)">
+                                            {{t.name}}<span *ngIf="!t?.name">{{t}}</span>
+                                            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                        </mat-chip>
+                                    </mat-chip-list>
+                                </mat-form-field>
+                            </div>
+                            <div class="submit_btn">
+                                <button (click)="updateProviderById(user.id); providerImageUpdate(user.id)" data-dismiss="modal"
+                                    class="submitBtn">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade search_modal" id="profileModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+        role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered N_modal">
+            <div class="modal-content">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="icon-close"></span>
+                </button>
+                <div class="modal-body N_modal1">
+                    <h2>Profile Photo</h2>
+                    <div class="N_photo">
+                        <div class="img_info"> <img src="{{providerImgURL}}" (error)="providerImgURL='assets/otheruser.jpeg'"
+                                alt="Profile">
+                        </div>
+                    </div>
+                    <div class="bottom_btns">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="btn delete_btn">
+                                    DELETE PHOTO
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="btn changephoto_btn">
+                                    <label class="cursor">
+                                        <input style="display: none;" #file accept="image/*"
+                                            (change)="providerImageSelect($event)" type="file" name="image" />
+                                        CHANGE PHOTO
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="btn apply_btn" (click)="providerImageUpdate(user.id)" data-dismiss="modal">
+                                    APPLY </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <app-footer></app-footer>
+    <!-- <app-footer2></app-footer2> -->
+</body>
+<ngx-ui-loader></ngx-ui-loader>

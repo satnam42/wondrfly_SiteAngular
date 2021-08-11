@@ -1,0 +1,53 @@
+<div class="guardian_outer personal_details">
+    <h2>
+        Children Information
+        <a class="btn_style save_btn cursor">Add</a>
+    </h2>
+    <div class="row margin_top">
+        <div class="col-12">
+            <div class="guardian_table">
+                <table class="table">
+                    <thead>
+                        <tr *ngIf="kids?.length > 0">
+                            <th>&nbsp;</th>
+                            <th>Name</th>
+                            <th>Relation</th>
+                            <th>Age</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="kids?.length > 0;else nokidsFound">
+                        <tr *ngFor="let kid of kids">
+                            <td>
+                                <div class="guardian_profile">
+                                    <img *ngIf="kid.avtar" src="{{ kid.avtar }}" alt="Profile Image" />
+                                    <img *ngIf="!kid.avtar" src="assets/nochild_image.png" alt="Profile Image" />
+                                </div>
+                            </td>
+                            <td>{{ kid.name }}</td>
+                            <td *ngIf="kid?.sex == 'female'">Daughter</td>
+                            <td *ngIf="kid?.sex == 'male'">Son</td>
+
+                            <td>{{ kid.age }}</td>
+                            <td>
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button"
+                                        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        <span class="icon-more"></span>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item cursor"><span class="icon icon-edit"></span>Edit</a>
+                                        <a class="dropdown-item cursor"><span class="icon icon-trash"></span>Delete</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <ng-template #nokidsFound> No Kids Found</ng-template>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<ngx-ui-loader></ngx-ui-loader>
