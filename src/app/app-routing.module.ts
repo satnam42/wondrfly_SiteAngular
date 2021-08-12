@@ -18,14 +18,14 @@ const routes: Routes = [
   { path: 'sign-up', component: SignUpComponent },
   { path: 'login', component: LoginComponent },
 
-  { path: 'term-condition', loadChildren: './/pages/term-condition/term-condition.module#TermConditionModule' },
-  { path: 'about-wondrfly', loadChildren: './/pages/why-wondrfly/why-wondrfly.module#WhyWondrflyModule' },
+  { path: 'term-condition', loadChildren: () => import('.//pages/term-condition/term-condition.module').then(m => m.TermConditionModule) },
+  { path: 'about-wondrfly', loadChildren: () => import('.//pages/why-wondrfly/why-wondrfly.module').then(m => m.WhyWondrflyModule) },
   { path: 'search', component: SearchComponent },
-  { path: 'forgot-password', loadChildren: './/pages/forgot-password/forgot-password.module#ForgotPasswordModule' },
+  { path: 'forgot-password', loadChildren: () => import('.//pages/forgot-password/forgot-password.module').then(m => m.ForgotPasswordModule) },
   { path: 'sign-up-guardian', component: SignUpGuardianComponent },
-  { path: 'ambassador-policy', loadChildren: './/pages/ambassador-policy/ambassador-policy.module#AmbassadorPolicyModule' },
-  { path: 'privacyPolicy', loadChildren: './/pages/privacy-policy/privacy-policy.module#PrivacyPolicyModule' },
-  { path: 'contactUs', loadChildren: './/pages/contact-us/contact-us.module#ContactUsModule' },
+  { path: 'ambassador-policy', loadChildren: () => import('.//pages/ambassador-policy/ambassador-policy.module').then(m => m.AmbassadorPolicyModule) },
+  { path: 'privacyPolicy', loadChildren: () => import('.//pages/privacy-policy/privacy-policy.module').then(m => m.PrivacyPolicyModule) },
+  { path: 'contactUs', loadChildren: () => import('.//pages/contact-us/contact-us.module').then(m => m.ContactUsModule) },
 
   {
     path: 'profile/:id', component: ProfileComponent,

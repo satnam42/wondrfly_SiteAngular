@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService, FacebookLoginProvider, GoogleLoginProvider, SocialUser } from 'angularx-social-login';
 import axios from 'axios';
-import { ToastyService } from 'ng2-toasty/src/toasty.service';
+import { ToastyService } from 'ng2-toasty';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { environment } from 'src/environments/environment';
 import { Category } from '../../models/category.model';

@@ -19,8 +19,9 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { AuthService } from 'angularx-social-login';
 import { Globals } from '../../common/imageLoader';
 import { LocalStorageService } from '../../services';
-import { ToastyService } from 'ng2-toasty';
+
 import { DataService } from '../../services/dataservice.service ';
+import { ToastyService } from 'ng2-toasty';
 declare const $: any;
 @Component({
   selector: 'app-header',
