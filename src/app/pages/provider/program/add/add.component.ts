@@ -1,16 +1,15 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone, AfterViewChecked } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { MatDialogRef, MatDialog, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition, MatSnackBarConfig, MatSnackBar, MatAutocompleteSelectedEvent, MatChipInputEvent } from '@angular/material';
 import { ApiService } from 'src/app/core/services/api.service.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Router } from '@angular/router';
-import { Options } from 'ng5-slider';
 import { Program, User, Category } from '../../../../core/models';
-import { Observable } from 'rxjs';
-import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import * as moment from 'moment';
 import { Batch } from 'src/app/core/models/batch.model';
 import { MapsAPILoader } from '@agm/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { Options } from '@angular-slider/ngx-slider';
 
 @Component({
   selector: 'app-add',
@@ -107,8 +106,6 @@ export class AddComponent implements OnInit,AfterViewChecked {
   action: boolean = true;
   setAutoHide: boolean = true;
   autoHide: number = 4000;
-  horizontalPosition: MatSnackBarHorizontalPosition = 'right';
-  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
   progressBarVaue = 15;
   step1 = true;
@@ -124,18 +121,12 @@ export class AddComponent implements OnInit,AfterViewChecked {
 
   constructor(private fb: FormBuilder, private dialog: MatDialog,
     private apiservice: ApiService,
-    private snack: MatSnackBar,
     private router: Router,
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
     private ngxLoader: NgxUiLoaderService) {
     var retrievedObject = localStorage.getItem('userData');
     this.userData = JSON.parse(retrievedObject);
-
-    let config = new MatSnackBarConfig();
-    config.verticalPosition = this.verticalPosition;
-    config.horizontalPosition = this.horizontalPosition;
-    config.duration = this.setAutoHide ? this.autoHide : 0;
   }
   onChange(data) {
     this.program.duration = moment.utc(moment(this.toTime, "HH:mm:ss").diff(moment(this.fromTime, "HH:mm:ss"))).format("mm");
@@ -180,10 +171,8 @@ export class AddComponent implements OnInit,AfterViewChecked {
       console.log('program info after add', res);
       this.ngxLoader.stop();
       if (res.isSuccess) {
-        this.snack.open('Program Added successfully', 'OK', { duration: 5000 });
         this.router.navigate(["/program/list"]);
       } else {
-        this.snack.open(res.error, 'OK', { duration: 5000 });
       }
     });
     this.ngxLoader.stop();

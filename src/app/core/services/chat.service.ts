@@ -1,9 +1,6 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Observable, BehaviorSubject, Subject, of, combineLatest } from "rxjs";
-import { map, switchMap } from "rxjs/operators";
 import { Socket } from 'ngx-socket-io';
-import 'rxjs/add/operator/switchMap';
+import { Observable } from "rxjs";
 
 export class Chat {
   msg?: string;

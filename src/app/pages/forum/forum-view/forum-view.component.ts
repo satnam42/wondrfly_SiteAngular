@@ -2,15 +2,8 @@
 import { Component, OnInit, ViewChild, ɵConsole } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/core/services/api.service.service';
-import { MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition, MatSnackBarConfig, MatSnackBar, MatAutocompleteSelectedEvent, MatChipInputEvent } from '@angular/material';
 import { Router, ActivatedRoute } from '@angular/router';
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { CustomValidators } from 'ng2-validation';
-import { Child } from '../../../core/models/child.model'
 import { User } from '../../../core/models/user.model'
-import { HeaderComponent } from 'src/app/core/components/header/header.component';
-import { ToastyService } from 'ng2-toasty';
 import { Forum } from 'src/app/core/models/forum.model';
 import { AuthsService } from 'src/app/core/services/auths.service';
 

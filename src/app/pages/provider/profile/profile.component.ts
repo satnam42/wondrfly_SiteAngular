@@ -5,13 +5,9 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { User } from 'src/app/core/models/user.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HeaderComponent } from 'src/app/core/components/header/header.component';
-import { MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition, MatSnackBarConfig, MatSnackBar, MatAutocompleteSelectedEvent } from '@angular/material';
-import { MapService } from 'src/app/services/map.service';
 import { Program, Category } from 'src/app/core/models';
 import { Claim } from 'src/app/core/models/claim.model';
-import { ToastyService } from 'ng2-toasty';
-import { AuthsService } from 'src/app/core/services/auths.service';
-import { AnonymousSubject } from 'rxjs/internal/Subject';
+
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
 // import { ParentProfileComponent } from '../../parent/parent-profile/parent-profile.component';
 
@@ -59,8 +55,6 @@ export class ProfileComponent implements OnInit {
   action: boolean = true;
   setAutoHide: boolean = true;
   autoHide: number = 4000;
-  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
-  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
   isLogin = false;
   providerRole: boolean = false;
   claim = new Claim;
@@ -122,10 +116,7 @@ export class ProfileComponent implements OnInit {
   userData: any = new User;
   constructor(private router: Router,
     private apiservice: ApiService,
-    private snack: MatSnackBar,
-    private auth: AuthsService,
-    private map: MapService,
-    private toastyService: ToastyService,
+    
     private ngxLoader: NgxUiLoaderService) {
     var retrievedObject = localStorage.getItem('userData');
     this.user = JSON.parse(retrievedObject);
@@ -137,12 +128,6 @@ export class ProfileComponent implements OnInit {
       var retrievedObject = localStorage.getItem('userData');
       this.userData = JSON.parse(retrievedObject);
     }
-
-    let config = new MatSnackBarConfig();
-    config.verticalPosition = this.verticalPosition;
-    config.horizontalPosition = this.horizontalPosition;
-    config.duration = this.setAutoHide ? this.autoHide : 0;
-
   }
   onGenOverview() {
     window.scroll(0, 0);
@@ -169,7 +154,7 @@ export class ProfileComponent implements OnInit {
       this.claim.requestOn = this.program.user;
       this.ngxLoader.start();
       this.apiservice.claimRequest(this.claim).subscribe(res => {
-        this.toastyService.info({ title: 'Info', msg: this.message })
+        // this.toastyService.info({ title: 'Info', msg: this.message })
         // this.snack.open(this.message, 'OK', { duration: 4000 });
         this.ngxLoader.stop();
 
@@ -177,13 +162,13 @@ export class ProfileComponent implements OnInit {
     } else if (this.user && this.user.role === 'parent') {
       this.ngxLoader.start();
       let msg = 'please  register or login as provider to claim this business!';
-      this.toastyService.info({ title: 'Info', msg: msg })
+      // this.toastyService.info({ title: 'Info', msg: msg })
       this.router.navigate(['/login']);
       this.ngxLoader.stop();
     }
     this.ngxLoader.start();
     let msg = 'please login to claim this business and try again!'
-    this.toastyService.info({ title: 'Info', msg: msg })
+    // this.toastyService.info({ title: 'Info', msg: msg })
     console.log(msg)
     this.router.navigate(['/login']);
     this.ngxLoader.stop();
@@ -248,11 +233,11 @@ export class ProfileComponent implements OnInit {
       this.ngxLoader.stop();
       if (res) {
         localStorage.setItem('userData', JSON.stringify(this.user));
-        this.toastyService.info({ title: 'Info', msg: this.message })
+        // this.toastyService.info({ title: 'Info', msg: this.message })
         this.headerComponent.getUserById()
       } else {
         this.ngxLoader.stop();
-        this.toastyService.info({ title: 'Info', msg: res.error })
+        // this.toastyService.info({ title: 'Info', msg: res.error })
       }
       this.ngxLoader.stop();
     });
@@ -417,7 +402,7 @@ export class ProfileComponent implements OnInit {
   addProgram() {
     console.log('userrrrr',this.user)
     if (this.userData.phoneNumber == '' || this.userData.addressLine1 == '' || this.userData.avatarImages == '') {
-      this.toastyService.warning("you need to complete  your profile before adding new program!");
+      // this.toastyService.warning("you need to complete  your profile before adding new program!");
     }
     else { this.router.navigate(['/program/add']); }
   }

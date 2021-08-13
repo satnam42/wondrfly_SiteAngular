@@ -1,6 +1,5 @@
 import { MapsAPILoader } from '@agm/core';
 import { Component, ElementRef, NgZone, OnInit, ViewChild } from '@angular/core';
-import { MatAutocompleteSelectedEvent } from '@angular/material';
 import { Meta, Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import axios from 'axios';

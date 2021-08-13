@@ -3,7 +3,7 @@ import { Observable, Subject } from 'rxjs';
 import { User } from '../models';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-import { ToastyService } from 'ng2-toasty';
+
 import { LocalStorageService } from '.';
 import { Role } from '../models/role.model';
 
@@ -16,7 +16,6 @@ export class AuthsService {
 
   constructor(
     private http: HttpClient,
-    private toasty: ToastyService,
     private store: LocalStorageService
   ) {
   }
@@ -54,7 +53,7 @@ export class AuthsService {
       const dataModel = responseData
       if (!dataModel.isSuccess) {
         if (responseData.status === 200) {
-          this.toasty.error(dataModel.error);
+          // this.toasty.error(dataModel.error);
           throw new Error(dataModel.code || dataModel.message || 'failed');
         } else {
           throw new Error(responseData.status + '');

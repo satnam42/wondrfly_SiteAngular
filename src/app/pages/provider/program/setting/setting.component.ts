@@ -1,7 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { MatDialogRef, MatDialog, MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material';
-import { ModalComponent } from './modal/modal.component';
 import { ApiService } from 'src/app/core/services/api.service.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { CustomValidators } from 'ng2-validation';
@@ -10,7 +8,7 @@ import { HeaderComponent } from 'src/app/core/components/header/header.component
 import { AuthsService } from 'src/app/core/services/auths.service';
 import { UserDataService } from 'src/app/core/services/user-data.service';
 import { User } from '../../../../core/models';
-import { ToastyService } from 'ng2-toasty';
+
 import { Claim } from 'src/app/core/models/claim.model';
 declare var $: any;
 @Component({
@@ -26,8 +24,6 @@ export class SettingComponent implements OnInit {
   action: boolean = true;
   setAutoHide: boolean = true;
   autoHide: number = 4000;
-  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
-  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
   resetPasswordForm: FormGroup;
   phoneVerificationForm: FormGroup;
   otpForm: FormGroup;
@@ -65,16 +61,12 @@ export class SettingComponent implements OnInit {
   claimRequestList: any = new Claim;
   value: any;
   isToggle: boolean;
-  constructor(private fb: FormBuilder,
-    private dialog: MatDialog,
+  constructor(
     private ngxLoader: NgxUiLoaderService,
-    private snack: MatSnackBar,
     private router: Router,
     private auth: AuthsService,
-    private activatedRoute: ActivatedRoute,
     private apiservice: ApiService,
-    private userdataservice: UserDataService,
-    private toastyService: ToastyService,
+    
   ) {
     // this.user = this.auth.currentUser();
     // if (this.user.securityQuestion != "" && this.user.securityQuestion != undefined && this.user.securityQuestion != null) {
@@ -251,9 +243,9 @@ export class SettingComponent implements OnInit {
         this.showOtpform = true;
         this.isNumber = false
         this.showPhoneform = false;
-        this.toastyService.success({ title: 'Success', msg: res.data.message })
+        // this.toastyService.success({ title: 'Success', msg: res.data.message })
       } else {
-        this.toastyService.error({ title: 'Error', msg: res.error })
+        // this.toastyService.error({ title: 'Error', msg: res.error })
       }
     })
   }
@@ -277,13 +269,13 @@ export class SettingComponent implements OnInit {
       this.ngxLoader.stop();
       console.log('resss', res)
       if (res.isSuccess === true) {
-        this.toastyService.success({ title: 'Success', msg: res.message.message })
+        // this.toastyService.success({ title: 'Success', msg: res.message.message })
         this.getUser(this.userData.id);
         window.document.getElementById("close_model").click();
         window.document.getElementById("close_model1").click();
         this.ngxLoader.stop();
       } else {
-        this.toastyService.error({ title: 'Error', msg: res.error })
+        // this.toastyService.error({ title: 'Error', msg: res.error })
         this.ngxLoader.stop();
       }
     })
@@ -312,9 +304,9 @@ export class SettingComponent implements OnInit {
       if (res.isSuccess) {
         this.auth.logout();
         this.router.navigate(["/login"]);
-        this.toastyService.success({ title: '', msg: res.message })
+        // this.toastyService.success({ title: '', msg: res.message })
       } else {
-        this.toastyService.error({ title: '', msg: res.error })
+        // this.toastyService.error({ title: '', msg: res.error })
 
       }
     });

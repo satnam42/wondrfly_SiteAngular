@@ -1,10 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-// import { MapService } from 'src/app/services/map.service';
-// import { Marker } from 'src/app/models/google-map-marker.model';
+import { Router } from '@angular/router';
 import { ApiService } from 'src/app/core/services/api.service.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { Options } from 'ng5-slider';
 import { MapsAPILoader } from '@agm/core';
 import * as moment from 'moment';
 import { Category, Child, User } from 'src/app/core/models';
@@ -12,11 +9,9 @@ import { DataService } from 'src/app/core/services/dataservice.service ';
 import { Globals } from 'src/app/core/common/imageLoader';
 import { MapTheme } from 'src/app/core/common/map-theme';
 import { environment } from 'src/environments/environment.prod';
-import { ToastyService } from 'ng2-toasty';
-import { Meta, Title } from '@angular/platform-browser';
-import { DaterangepickerComponent } from 'ngx-daterangepicker-material';
-import { map } from 'rxjs/operators';
 
+import { Meta, Title } from '@angular/platform-browser';
+import { Options } from '@angular-slider/ngx-slider';
 @Component({
   selector: 'search',
   templateUrl: './search.component.html',
@@ -163,7 +158,7 @@ export class SearchComponent implements OnInit {
     private dataservice: DataService,
     public imageLoader: Globals,
     public mapTheme: MapTheme,
-    private toastyService: ToastyService,
+    
     private titleService: Title,
     private metaTagService: Meta,
 

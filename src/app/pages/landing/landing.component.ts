@@ -1,16 +1,14 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component,OnDestroy, OnInit, } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/core/services/api.service.service';
-import { Forum } from 'src/app/core/models/forum.model';
 import { Category, User } from 'src/app/core/models';
 import { AuthsService } from 'src/app/core/services/auths.service';
 import { LocalStorageService } from 'src/app/core/services';
 import { DataService } from 'src/app/core/services/dataservice.service ';
 import { Title, Meta } from '@angular/platform-browser';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormGroup  } from '@angular/forms';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { ToastyService } from 'ng2-toasty';
-import { CustomValidators } from 'ng2-validation';
+
 import { SocialUser } from 'src/app/core/models/social.model';
 import { Globals } from 'src/app/core/common/imageLoader';
 import axios from 'axios';
@@ -77,9 +75,7 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
     public imageLoader: Globals,
     private titleService: Title,
     private metaTagService: Meta,
-    private ngxLoader: NgxUiLoaderService,
-    private toastyService: ToastyService,
-    private store: LocalStorageService) {
+   ) {
   }
   searchActivityByCategory(id) {
     this.filterData.categoryId = id

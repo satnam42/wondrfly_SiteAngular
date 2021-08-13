@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService, FacebookLoginProvider, GoogleLoginProvider, SocialUser } from 'angularx-social-login';
 import axios from 'axios';
-import { ToastyService } from 'ng2-toasty';
+
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { environment } from 'src/environments/environment';
 import { Category } from '../../models/category.model';
@@ -43,7 +43,7 @@ export class SocialLoginComponent implements OnInit {
               private router : Router,
               private ngxLoader : NgxUiLoaderService,
               public auth: AuthsService,
-              private toastyService: ToastyService,
+              
               private store : LocalStorageService) { 
                 this.routeName = router.url;
                 console.log('routerr',this.routeName)
@@ -149,7 +149,7 @@ export class SocialLoginComponent implements OnInit {
 }).catch(error => {
   // Handle error.
   console.log('strapi login resss:',  error.response);
-  this.toastyService.error({ title:'', msg: error.response.data.data[0].messages[0].message })
+  // this.toastyService.error({ title:'', msg: error.response.data.data[0].messages[0].message })
 });
   }
 
@@ -181,7 +181,7 @@ strapiSignup(){
     if(error.response.data.statusCode===400){
       this.strapiLogin()
     }else{
-    this.toastyService.error({ title:'', msg: error.response.data.data[0].messages[0].message })
+    // this.toastyService.error({ title:'', msg: error.response.data.data[0].messages[0].message })
     }
   });
 }

@@ -3,7 +3,7 @@ import { Globals } from 'src/app/core/common/imageLoader';
 import axios from 'axios'
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthsService } from 'src/app/core/services/auths.service';
-import { ToastyService } from 'ng2-toasty';
+
 import { Program, User } from 'src/app/core/models';
 import { environment } from 'src/environments/environment';
 import { Meta, Title } from '@angular/platform-browser';
@@ -41,7 +41,7 @@ title:string = ""
     public auths: AuthsService,
     private titleService: Title,
     private metaTagService: Meta,
-    public toasty : ToastyService,
+    
     private apiservice: ApiService,
     private router: Router,
     private activatedroute: ActivatedRoute)
@@ -95,7 +95,7 @@ getBlog(){
   // ------------------------------------------------POST COMMENT ON blogs  -------------------------------------------
   postComment(){
     if(localStorage.getItem('token')===null){
-      this.toasty.warning('Please Login or Signup to comment')
+      // this.toasty.warning('Please Login or Signup to comment')
       window.document.getElementById("modal").click();
     }else
     this.getBlogById()

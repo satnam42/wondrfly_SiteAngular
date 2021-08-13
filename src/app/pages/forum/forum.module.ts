@@ -2,7 +2,6 @@
 import { NgModule } from '@angular/core';
 import { CoreModule } from '../../core/core.module';
 import { CommonModule } from '@angular/common';
-import { MatSliderModule, MatIconModule, MatStepperModule, MatAutocompleteModule, MatChipsModule, MatTooltipModule } from '@angular/material';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { CustomFormsModule } from 'ng2-validation';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
@@ -16,6 +15,12 @@ import { ForumListComponent } from './forum-list/forum-list.component';
 import { ForumTypeComponent } from './forum-type/forum-type.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { ForumComponent } from './forum.component';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatStepperModule } from '@angular/material/stepper';
 
 
 @NgModule({

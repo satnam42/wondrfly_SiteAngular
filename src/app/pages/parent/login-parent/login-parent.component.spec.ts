@@ -1,11 +1,11 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { LoginParentComponent } from './login-parent.component';
 
 describe('LoginParentComponent', () => {
   let component: LoginParentComponent;
   let fixture: ComponentFixture<LoginParentComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ LoginParentComponent ]
     })

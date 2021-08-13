@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Meta, Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { validateEvents } from 'angular-calendar/modules/common/util';
-import { ToastyService } from 'ng2-toasty';
+
 import { User } from 'src/app/core/models';
 import { ApiService } from 'src/app/core/services/api.service.service';
 import { AuthsService } from 'src/app/core/services/auths.service';
@@ -21,7 +21,7 @@ export class ContactUsComponent implements OnInit {
     private titleService: Title,
     private metaTagService: Meta,
     private apiservice: ApiService,
-    private toastyService: ToastyService,
+    
     private ngxLoader:NgxUiLoaderService) {
   }
   ngOnInit() {
@@ -43,8 +43,11 @@ export class ContactUsComponent implements OnInit {
       this.ngxLoader.stop();
       if(res.isSuccess){ 
         this.contactUsForm.reset();
-        this.toastyService.success({ title: 'Success', msg: res.data }) }
-      else { this.toastyService.error({ title: 'Error', msg: res.error }) } 
+        // this.toastyService.success({ title: 'Success', msg: res.data }) 
+      }
+      else { 
+        // this.toastyService.error({ title: 'Error', msg: res.error }) 
+      } 
 });
 this.ngxLoader.stop();
   }

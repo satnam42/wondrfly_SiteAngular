@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Observable, Subscription } from 'rxjs';
 import { ApiService } from 'src/app/core/services/api.service.service';
-import 'rxjs/add/observable/timer';
+
 
 @Component({
   selector: 'forum-type',
@@ -35,7 +35,7 @@ export class ForumTypeComponent implements OnInit {
          console.log('consttttt')
     // set showloader to true to show loading div on view
     this.ngxLoader.start()   
-    this.timer        = Observable.timer(5000); // 5000 millisecond means 5 seconds
+    // this.timer        = Observable.timer(5000); // 5000 millisecond means 5 seconds
     this.subscription = this.timer.subscribe(() => {
         // set showloader to false to hide loading div from view after 5 seconds
         this.ngxLoader.stop() 

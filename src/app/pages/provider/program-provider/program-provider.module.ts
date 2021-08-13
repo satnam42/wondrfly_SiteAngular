@@ -5,10 +5,13 @@ import { CoreModule } from 'src/app/core/core.module';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CustomFormsModule } from 'ng2-validation';
-import { MatChipsModule, MatIconModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { ProgramProviderComponent } from './program-provider.component';
 import { AgmCoreModule } from '@agm/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatIconModule } from '@angular/material/icon';
 // import { AgmCoreModule } from '@agm/core';
 const routes: Routes = [
   {

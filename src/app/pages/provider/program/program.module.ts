@@ -5,20 +5,27 @@ import { ListComponent } from './list/list.component'
 import { AddComponent } from './add/add.component'
 import { DetailComponent } from './detail/detail.component'
 import { CoreModule } from '../../../core/core.module';
-import { Ng5SliderModule } from 'ng5-slider';
+
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
-import { MatSliderModule, MatIconModule, MatStepperModule, MatMenuModule, MatTableModule } from '@angular/material';
 import { ModalComponent } from '../program/setting/modal/modal.component';
 import { SettingComponent } from './setting/setting.component'
-import { CustomFormsModule } from 'ng2-validation';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { ChartsModule, ThemeService } from 'ng2-charts';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { AgmCoreModule } from '@agm/core';
 import { NgFileDragDropModule } from 'ng-file-drag-drop';
+import { MatIconModule } from '@angular/material/icon';
+import {MatSliderModule} from '@angular/material/slider';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatTableModule} from '@angular/material/table';
+import {MatMenuModule} from '@angular/material/menu';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
+
+
+
+
 
 @NgModule({
   entryComponents: [ ModalComponent],
@@ -33,19 +40,16 @@ import { NgFileDragDropModule } from 'ng-file-drag-drop';
   imports: [
     CommonModule,
     FormsModule,
-    CustomFormsModule,
     ReactiveFormsModule,
     CoreModule,
     MatSliderModule,
-    Ng5SliderModule,
+    NgxSliderModule,
     NgxUiLoaderModule,
     MatIconModule,
     CommonModule,
     MatStepperModule,
     MatMenuModule,
     ProgramRoutingModule,
-    OwlDateTimeModule,
-    OwlNativeDateTimeModule,
     ChartsModule,
     AutocompleteLibModule,
     MatTableModule,

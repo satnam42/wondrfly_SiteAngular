@@ -1,5 +1,5 @@
 <body>
-    <ng2-toasty></ng2-toasty>
+    
     <app-header2 *ngIf="!isLogin"></app-header2>
     <app-header *ngIf="isLogin"></app-header>
     <app-alert></app-alert>
@@ -965,8 +965,8 @@
                                 <label class="custom-label">Age Group</label>
                                 <br>
                                 <br>
-                                <ng5-slider [(value)]="minAge" [(highValue)]="maxAge" [options]="ageOption">
-                                </ng5-slider>
+                                <ngx-slider [(value)]="minAge" [(highValue)]="maxAge" [options]="ageOption">
+                                </ngx-slider>
                             </div>
                             <!-- <div class="form-group">
                                 <label>Category</label>

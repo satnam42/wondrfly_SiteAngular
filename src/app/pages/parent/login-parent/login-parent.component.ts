@@ -4,9 +4,8 @@ import { ApiService } from 'src/app/core/services/api.service.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
-import { MatAutocompleteSelectedEvent } from '@angular/material';
-import { ToastyService } from 'ng2-toasty';
-import { Tag } from 'src/app/core/models/tag.model';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+
 import { Child, User } from 'src/app/core/models';
 import * as moment from 'moment';
 import { MapsAPILoader } from '@agm/core';
@@ -55,7 +54,7 @@ export class LoginParentComponent implements OnInit {
   constructor(private router: Router,
     private apiservice: ApiService,
     private ngxLoader: NgxUiLoaderService,
-    private toastyService: ToastyService,
+    
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
     public mapTheme:MapTheme,
@@ -100,17 +99,17 @@ export class LoginParentComponent implements OnInit {
     console.log('birthYear', birthYear)
     console.log('currentYear', currentYear)
     if (birthYear >= currentYear) {
-      this.toastyService.warning({ title: '', msg: 'Please Fill Valid Birth Year!' })
+      // this.toastyService.warning({ title: '', msg: 'Please Fill Valid Birth Year!' })
     }
     else {
       var ageDifMs = Date.now() - birth.getTime();
       var ageDate = new Date(ageDifMs); // miliseconds from epoch
       var age = Math.abs(ageDate.getUTCFullYear() - 1970);
       if(age>=18 || age<=0){
-        this.toastyService.warning({
-          title: "",
-          msg: "please fill valid birth year",
-        });
+        // this.toastyService.warning({
+        //   title: "",
+        //   msg: "please fill valid birth year",
+        // });
       }else{
       this.kid.age = String(age);
       this.kid.relationToChild = 'father'

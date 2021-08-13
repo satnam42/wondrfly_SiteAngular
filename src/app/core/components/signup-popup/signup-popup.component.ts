@@ -3,11 +3,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService, SocialUser } from 'angularx-social-login';
 import axios from 'axios';
-import { ToastyService } from 'ng2-toasty';
+
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { environment } from 'src/environments/environment';
 import { Globals } from '../../common/imageLoader';
-import { Category } from '../../models';
 import { LocalStorageService } from '../../services';
 import { ApiService } from '../../services/api.service.service';
 import { AuthsService } from '../../services/auths.service';
@@ -67,7 +66,7 @@ export class SignupPopupComponent implements OnInit {
     public auth: AuthsService,
     public imageLoader: Globals,
     private ngxLoader: NgxUiLoaderService,
-    private toastyService: ToastyService,
+    
     private store: LocalStorageService,private authService: AuthService) {
   }
  
@@ -106,18 +105,18 @@ export class SignupPopupComponent implements OnInit {
           window.document.getElementById("close_modal").click();
           this.store.setObject('userData', res.data);
           this.store.setItem('token', res.data.token);
-          this.toastyService.success({ title: 'Success', msg: this.message });
+          // this.toastyService.success({ title: 'Success', msg: this.message });
           this.router.navigate(['loginParent']);
         }
         else {
-          this.toastyService.error({ title: '!', msg: res.error })
+          // this.toastyService.error({ title: '!', msg: res.error })
         }
       })
     }
   }).catch(error => {
     // Handle error.
     console.log('An error occurred:',  error.response);
-    this.toastyService.error({ title:'', msg: error.response.data.data[0].messages[0].message })
+    // this.toastyService.error({ title:'', msg: error.response.data.data[0].messages[0].message })
   });
   }
 

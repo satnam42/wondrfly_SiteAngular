@@ -1,14 +1,12 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
-import { Options } from 'ng5-slider';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Program, User, Category } from 'src/app/core/models';
 import { ApiService } from 'src/app/core/services/api.service.service';
-import { MatSnackBar, MatAutocompleteSelectedEvent, MatChipInputEvent, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Observable } from 'rxjs';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
-import { ToastyService } from 'ng2-toasty';
+
 import { Claim } from 'src/app/core/models/claim.model';
 import { AuthsService } from 'src/app/core/services/auths.service';
 import { MapsAPILoader } from '@agm/core';
@@ -16,6 +14,8 @@ import * as moment from 'moment';
 import { Title, Meta } from '@angular/platform-browser';
 import { Globals } from 'src/app/core/common/imageLoader';
 import { MapTheme } from 'src/app/core/common/map-theme';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { Options } from '@angular-slider/ngx-slider';
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',
@@ -79,8 +79,6 @@ export class DetailComponent implements OnInit {
   action: boolean = true;
   setAutoHide: boolean = true;
   autoHide: number = 4000;
-  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
-  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
   programImgURL: any;
   userLogo: any;
   getUrl: any;
@@ -119,14 +117,13 @@ export class DetailComponent implements OnInit {
   totalRating:any = '';
   isRating = false;
   constructor(private apiservice: ApiService,
-    private snack: MatSnackBar,
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
     private router: Router,
     private titleService: Title,
     private metaTagService: Meta,
     private ngxLoader: NgxUiLoaderService,
-    private toastyService: ToastyService,
+    
     private activatedRoute: ActivatedRoute,
     public mapTheme: MapTheme,
     public auth: AuthsService,
@@ -353,9 +350,7 @@ getRating(){
       console.log('after update',res);
       this.ngxLoader.stop();
       if (res) {
-        this.snack.open('Program Updated successfully', 'OK', { duration: 5000 });
       } else {
-        this.snack.open(res.error, 'OK', { duration: 5000 });
       }
     });
     this.ngxLoader.stop();

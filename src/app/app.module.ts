@@ -8,9 +8,7 @@ import { AppComponent } from '../app/app.component';
 import { LocalStorageService } from '../app/core/services';
 import { ProgramComponent } from './pages/provider/program/program.component';
 import { HttpClientModule } from '@angular/common/http';
-import { MatSnackBarModule, MatFormFieldModule, MatCheckboxModule, MatIconModule, MatProgressBarModule } from '@angular/material';
 import { ParentComponent } from './pages/parent/parent.component';
-import { Ng5SliderModule } from 'ng5-slider';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
@@ -41,6 +39,15 @@ import { ProgramModule } from './pages/provider/program/program.module';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { MarkdwonPipe } from './core/shared/markdwon.pipe';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { MatIconModule } from '@angular/material/icon';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
+
+
+
 
 
 
@@ -104,7 +111,7 @@ const components = [
     OwlNativeDateTimeModule,
     NgxUiLoaderModule,
     CoreModule,
-    Ng5SliderModule,
+    NgxSliderModule,
     AutocompleteLibModule,
     ChatModule,
     NgxDaterangepickerMd.forRoot(),
@@ -117,7 +124,6 @@ const components = [
     CoreModule,
     FormsModule,
     ReactiveFormsModule,
-    Ng5SliderModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
     NgxUiLoaderModule,

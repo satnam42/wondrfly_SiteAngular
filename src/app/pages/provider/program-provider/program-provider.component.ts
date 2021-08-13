@@ -2,16 +2,12 @@ import { Component, OnInit, ViewChild, ɵConsole } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/core/services/api.service.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { User } from 'src/app/core/models/user.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HeaderComponent } from 'src/app/core/components/header/header.component';
-import { MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition, MatSnackBarConfig, MatSnackBar, MatAutocompleteSelectedEvent } from '@angular/material';
-import { MapService } from 'src/app/services/map.service';
 import { Program } from 'src/app/core/models';
 import { Claim } from 'src/app/core/models/claim.model';
-import { ToastyService } from 'ng2-toasty';
+
 import { AuthsService } from 'src/app/core/services/auths.service';
-import { AnonymousSubject } from 'rxjs/internal/Subject';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { Globals } from 'src/app/core/common/imageLoader';
 import { MapTheme } from 'src/app/core/common/map-theme';
@@ -41,8 +37,6 @@ export class ProgramProviderComponent implements OnInit {
   action: boolean = true;
   setAutoHide: boolean = true;
   autoHide: number = 4000;
-  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
-  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
   isLogin = false;
   userData: any = {};
@@ -88,10 +82,8 @@ export class ProgramProviderComponent implements OnInit {
   previous;
   constructor(private router: Router,
     private apiservice: ApiService,
-    private snack: MatSnackBar,
     private auth: AuthsService,
-    private map: MapService,
-    private toastyService: ToastyService,
+    
     private ngxLoader: NgxUiLoaderService,
     public imageLoader: Globals,
     public mapTheme: MapTheme,
@@ -107,10 +99,6 @@ export class ProgramProviderComponent implements OnInit {
     if (this.userData) {
       this.isLogin = true;
     }
-    let config = new MatSnackBarConfig();
-    config.verticalPosition = this.verticalPosition;
-    config.horizontalPosition = this.horizontalPosition;
-    config.duration = this.setAutoHide ? this.autoHide : 0;
 
   }
   onGenOverview() {
@@ -139,21 +127,21 @@ export class ProgramProviderComponent implements OnInit {
       this.claim.requestOn = this.user.id;
       this.ngxLoader.start();
       this.apiservice.claimRequest(this.claim).subscribe(res => {
-        this.toastyService.info({ title: 'Info', msg: this.claimMsg })
+        // this.toastyService.info({ title: 'Info', msg: this.claimMsg })
         this.ngxLoader.stop();
       });
     }
     else if (this.userData && this.userData.role === 'parent') {
       this.ngxLoader.start();
       let msg = 'please login as provider to claim this business!';
-      this.toastyService.info({ title: 'Info', msg: msg })
+      // this.toastyService.info({ title: 'Info', msg: msg })
       this.router.navigate(['/login']);
       this.ngxLoader.stop();
     }
     else {
       this.ngxLoader.start();
       let msg = 'please  register or login as provider to claim this business and try again!'
-      this.toastyService.info({ title: 'Info', msg: msg })
+      // this.toastyService.info({ title: 'Info', msg: msg })
       this.router.navigate(['/login']);
       this.ngxLoader.stop();
     }

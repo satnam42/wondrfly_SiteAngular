@@ -1,11 +1,4 @@
-import { HttpClient } from "@angular/common/http";
-import {
-  FormBuilder,
-  FormGroup,
-  FormControl,
-  Validators,
-} from "@angular/forms";
-import { MatSidenav, MatSidenavModule, PageEvent } from "@angular/material";
+
 import { Router } from "@angular/router";
 import { NgxUiLoaderService } from "ngx-ui-loader";
 // import { PerfectScrollbarDirective } from 'ngx-perfect-scrollbar';
@@ -21,11 +14,9 @@ import {
   OnDestroy,
   ChangeDetectionStrategy,
 } from "@angular/core";
-import { Subscription } from "rxjs/Subscription";
-import { MatDialog } from "@angular/material/dialog";
 import { User } from "src/app/core/models/user.model";
 import { Chat, ChatService } from "src/app/core/services/chat.service";
-import { ToastyService } from "ng2-toasty";
+import { Subscription } from "rxjs";
 
 // const SOCKET_ENDPOINT = 'http://93.188.167.68:4500';
 
@@ -68,7 +59,7 @@ export class ChatComponent implements OnInit {
     private authService: AuthsService,
     private apiservice: ApiService,
     private ngxLoader: NgxUiLoaderService,
-    private toastyService: ToastyService,
+    
     private router: Router
   ) {
     this.currentUser = this.authService.currentUser();

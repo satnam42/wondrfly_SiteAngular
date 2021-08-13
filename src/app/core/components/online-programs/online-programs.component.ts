@@ -1,7 +1,6 @@
-﻿import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+﻿import { Options } from '@angular-slider/ngx-slider';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { get } from 'https';
-import { Options } from 'ng5-slider';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { environment } from 'src/environments/environment';
 import { Globals } from '../../common/imageLoader';

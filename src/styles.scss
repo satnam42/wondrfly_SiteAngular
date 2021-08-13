@@ -795,14 +795,14 @@ button.btn.btn-Grade2 {
     color: $theme !important;
 }
 
-.ng5-slider .ng5-slider-selection {
+.ngx-slider .ngx-slider-selection {
     z-index: 2 !important;
     border-radius: 2px !important;
     background: $theme !important;
     border-radius: 2px !important;
 }
 
-.ng5-slider .ng5-slider-pointer {
+.ngx-slider .ngx-slider-pointer {
     cursor: pointer;
     width: 16px !important;
     height: 16px !important;
@@ -812,7 +812,7 @@ button.btn.btn-Grade2 {
     border-radius: 16px;
 }
 
-.ng5-slider .ng5-slider-pointer:after {
+.ngx-slider .ngx-slider-pointer:after {
     content: '';
     width: 8px !important;
     height: 8px !important;
@@ -825,7 +825,7 @@ button.btn.btn-Grade2 {
     background: $theme !important;
 }
 
-.ng5-slider .ng5-slider-bar {
+.ngx-slider .ngx-slider-bar {
     left: 0 !important;
     width: 100% !important;
     height: 11px !important;
@@ -833,7 +833,7 @@ button.btn.btn-Grade2 {
     border-radius: 8px !important;
 }
 
-.ng5-slider .ng5-slider-bubble {
+.ngx-slider .ngx-slider-bubble {
     cursor: default;
     top: 25px !important;
     padding: 1px 3px;
@@ -842,7 +842,7 @@ button.btn.btn-Grade2 {
     font-size: 10px !important;
 }
 
-.ng5-slider {
+.ngx-slider {
     display: inline-block;
     position: relative;
     height: 4px;

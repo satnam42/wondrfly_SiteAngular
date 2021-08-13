@@ -4,7 +4,7 @@ import { ApiService } from 'src/app/core/services/api.service.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { ToastyService } from 'ng2-toasty';
+
 import { Meta, Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-forgot-password',
@@ -45,7 +45,7 @@ export class ForgotPasswordComponent implements OnInit {
   constructor(private router: Router,
     private apiservice: ApiService,
     private ngxLoader: NgxUiLoaderService,
-    private toastyService: ToastyService,
+    
     private titleService: Title,
     private metaTagService: Meta,
   ) {
@@ -62,14 +62,13 @@ export class ForgotPasswordComponent implements OnInit {
         this.isOTP = true;
         this.isNewPassword = false;
         this.isForgot = false;
-        this.credentials.otpToken = res.message.otpToken,
-          this.toastyService.success({ title: '', msg: res.message.message })
-      }
+        this.credentials.otpToken = res.message.otpToken
+    }
       else {
         this.isForgot = true;
         this.isOTP = false;
         this.isNewPassword = false;
-        this.toastyService.error({ title: '', msg: res.error })
+        // this.toastyService.error({ title: '', msg: res.error })
       }
     });
   }
@@ -82,7 +81,7 @@ export class ForgotPasswordComponent implements OnInit {
         this.isOTP = false;
         this.isNewPassword = true;
         this.isForgot = false;
-        this.toastyService.success({ title: '', msg: res.message.message })
+        // this.toastyService.success({ title: '', msg: res.message.message })
       }
 
       else {
@@ -90,7 +89,7 @@ export class ForgotPasswordComponent implements OnInit {
         this.isNewPassword = false;
         this.isForgot = false;
         let msg = 'Something went Wrong!';
-        this.toastyService.error({ title: '', msg: res.error })
+        // this.toastyService.error({ title: '', msg: res.error })
         // this.snack.open(msg, 'OK', { duration: 5000 });
       }
     });
@@ -102,7 +101,7 @@ export class ForgotPasswordComponent implements OnInit {
       this.ngxLoader.stop();
       if (res.isSuccess) {
         this.router.navigate(['/login']);
-        this.toastyService.success({ title: '', msg: res.message.message })
+        // this.toastyService.success({ title: '', msg: res.message.message })
 
         // this.snack.open(resetPasswordResponse, 'OK', { duration: 5000 });
       }
@@ -110,7 +109,7 @@ export class ForgotPasswordComponent implements OnInit {
         this.isOTP = false;
         this.isNewPassword = true;
         this.isForgot = false;
-        this.toastyService.error({ title: '', msg: res.error })
+        // this.toastyService.error({ title: '', msg: res.error })
       }
 
     });

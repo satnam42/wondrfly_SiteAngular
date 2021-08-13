@@ -1,6 +1,6 @@
 import { Directive, ElementRef, Input, OnInit, OnDestroy,Renderer2 } from '@angular/core';
 import { FormGroup,FormBuilder,AbstractControl,Validators } from '@angular/forms';
-import { ISubscription } from 'rxjs/Subscription';
+import { SubscriptionLike } from 'rxjs';
 
 @Directive({
   selector: '[phoneMask]'
@@ -19,7 +19,7 @@ export class PhoneMaskDirective implements OnInit, OnDestroy{
     this._preValue = value;
   }
   
-  private sub:ISubscription;
+  private sub:SubscriptionLike;
 
   constructor(private el: ElementRef,private renderer:Renderer2) {}
 

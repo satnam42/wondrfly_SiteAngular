@@ -3,9 +3,8 @@ import { AuthsService } from '../../core/services/auths.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/core/services/api.service.service';
-import { MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition, MatSnackBar, MatSnackBarConfig } from '@angular/material';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { ToastyService } from 'ng2-toasty';
+
 import { LocalStorageService } from 'src/app/core/services';
 import { CustomValidators } from 'ng2-validation';
 import { Globals } from 'src/app/core/common/imageLoader';
@@ -60,7 +59,7 @@ export class SignUpComponent implements OnInit {
     private router: Router,
     private apiservice: ApiService,
     private ngxLoader: NgxUiLoaderService,
-    private toastyService: ToastyService,
+    
     private store: LocalStorageService,
     private titleService: Title,
     private metaTagService: Meta,
@@ -100,18 +99,18 @@ export class SignUpComponent implements OnInit {
         if (res.isSuccess === true) {
           this.store.setObject('userData', res.data);
           this.store.setItem('token', res.data.token);
-          this.toastyService.success({ title: 'Success', msg: this.message });
+          // this.toastyService.success({ title: 'Success', msg: this.message });
           this.router.navigate(['loginParent']);
         }
         else {
-          this.toastyService.error({ title: '!', msg: res.error })
+          // this.toastyService.error({ title: '!', msg: res.error })
         }
       });
         }
       }).catch(error => {
         // Handle error.
         console.log('An error occurred:',  error.response);
-        this.toastyService.error({ title:'', msg: error.response.data.data[0].messages[0].message })
+        // this.toastyService.error({ title:'', msg: error.response.data.data[0].messages[0].message })
       });
     }
 
@@ -138,17 +137,17 @@ export class SignUpComponent implements OnInit {
         if (res.isSuccess === true) {
           this.store.setObject('userData', res.data);
           this.store.setItem('token', res.data.token);
-          this.toastyService.success({ title: 'Success', msg: this.message });
+          // this.toastyService.success({ title: 'Success', msg: this.message });
           this.router.navigate(['loginProvider']);
         } else {
-          this.toastyService.error({ title: '!', msg: res.error })
+          // this.toastyService.error({ title: '!', msg: res.error })
         }
       });
         }
       }).catch(error => {
         // Handle error.
         console.log('An error occurred:',  error.response);
-        this.toastyService.error({ title:'', msg: error.response.data.data[0].messages[0].message })
+        // this.toastyService.error({ title:'', msg: error.response.data.data[0].messages[0].message })
       });
            
     }

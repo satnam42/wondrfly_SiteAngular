@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/core/services/api.service.service';
-import { MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition, MatSnackBar, MatSnackBarConfig } from '@angular/material';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { ToastyService } from 'ng2-toasty';
+
 import { LocalStorageService } from 'src/app/core/services';
 import { Globals } from 'src/app/core/common/imageLoader';
 import axios from 'axios';
@@ -43,7 +42,7 @@ export class SignUpGuardianComponent implements OnInit {
   constructor(private router: Router,
     private apiservice: ApiService,
     private ngxLoader: NgxUiLoaderService,
-    private toastyService: ToastyService,
+    
     private store: LocalStorageService,
     public imageLoader: Globals,
     private activatedRoute: ActivatedRoute) {
@@ -78,16 +77,16 @@ export class SignUpGuardianComponent implements OnInit {
       console.log('resss', res);
       if (res.isSuccess) {
         this.router.navigate(['/login']);
-        this.toastyService.success({ title: 'Success', msg: this.message });
+        // this.toastyService.success({ title: 'Success', msg: this.message });
       }else {
-        this.toastyService.error({ title: '', msg: res.error });
+        // this.toastyService.error({ title: '', msg: res.error });
       }
     });
         }
       }).catch(error => {
         // Handle error.
         console.log('An error occurred:',  error.response);
-        this.toastyService.error({ title:'', msg: error.response.data.data[0].messages[0].message })
+        // this.toastyService.error({ title:'', msg: error.response.data.data[0].messages[0].message })
       });
   }
 

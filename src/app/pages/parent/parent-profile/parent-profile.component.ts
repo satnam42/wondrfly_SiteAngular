@@ -1,14 +1,6 @@
 import { Component, OnInit, ViewChild, AfterViewChecked, ElementRef } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ApiService } from "src/app/core/services/api.service.service";
-import {
-  MatSnackBarHorizontalPosition,
-  MatSnackBarVerticalPosition,
-  MatSnackBarConfig,
-  MatSnackBar,
-  MatAutocompleteSelectedEvent,
-  MatChipInputEvent,
-} from "@angular/material";
 import { Router } from "@angular/router";
 import { COMMA, ENTER } from "@angular/cdk/keycodes";
 import { NgxUiLoaderService } from "ngx-ui-loader";
@@ -16,11 +8,11 @@ import { CustomValidators } from "ng2-validation";
 import { Child } from "../../../core/models/child.model";
 import { User } from "../../../core/models/user.model";
 import { HeaderComponent } from "src/app/core/components/header/header.component";
-import { ToastyConfig, ToastyService } from "ng2-toasty";
 import * as moment from "moment";
 import { AuthsService } from "src/app/core/services/auths.service";
 import { ChatService, Chat } from "src/app/core/services/chat.service";
 import { LocalStorageService } from "src/app/core/services";
+import { MatAutocompleteSelectedEvent } from "@angular/material/autocomplete";
 
 @Component({
   selector: "parent-profile",
@@ -142,16 +134,12 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
 
   constructor(
     private apiservice: ApiService,
-    private snack: MatSnackBar,
     private router: Router,
-    private toastyService: ToastyService,
-    private toastyConfig: ToastyConfig,
     private ngxLoader: NgxUiLoaderService,
     private authService: AuthsService,
     private chatService: ChatService,
     public store: LocalStorageService
   ) {
-    this.toastyConfig.theme = 'material';
     this.currentUser = this.authService.currentUser();
   }
   getKidData(data) {
@@ -480,10 +468,10 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
         else {
           msg = 'Child Deactivated'
         }
-        this.toastyService.info({ title: "Info", msg: msg });
+        // this.toastyService.info({ title: "Info", msg: msg });
         this.onChildren(parentId);
       } else {
-        this.toastyService.error({ title: "Error", msg: res.error });
+        // this.toastyService.error({ title: "Error", msg: res.error });
       }
     });
   }
@@ -493,7 +481,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
       console.log('delete', res)
       this.ngxLoader.stop();
       if (res.isSuccess) {
-        this.toastyService.info({ title: "Info", msg: "Guardian deleted! " });
+        // this.toastyService.info({ title: "Info", msg: "Guardian deleted! " });
       }
       this.onGuardian(this.currentUser.id)
     });
@@ -511,10 +499,10 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
         else {
           msg = 'Guardian Deactivated'
         }
-        this.toastyService.info({ title: "Info", msg: msg });
+        // this.toastyService.info({ title: "Info", msg: msg });
       }
       else {
-        this.toastyService.error({ title: "Error", msg: res.error });
+        // this.toastyService.error({ title: "Error", msg: res.error });
       }
       this.onGuardian(this.currentUser.id)
     });
@@ -524,17 +512,17 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
     this.apiservice.activeDeactiveUser(id, !isActivated).subscribe((res) => {
       this.ngxLoader.stop();
       if (res && res.isActivated === false) {
-        this.toastyService.info({ title: "Info", msg: "acount Deactivated!" });
+        // this.toastyService.info({ title: "Info", msg: "acount Deactivated!" });
         return this.getParentById();
       } else {
         if (res && res.isActivated === true) {
-          this.toastyService.info({ title: "Info", msg: "acount Activated!" });
+          // this.toastyService.info({ title: "Info", msg: "acount Activated!" });
           return this.getParentById();
         } else {
-          this.toastyService.error({
-            title: "Error",
-            msg: "somthing went wrong!",
-          });
+          // this.toastyService.error({
+          //   title: "Error",
+          //   msg: "somthing went wrong!",
+          // });
         }
       }
     });
@@ -556,12 +544,12 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
     this.apiservice.tellFriend(this.tellFriendData).subscribe((res: any) => {
       this.ngxLoader.stop();
       if (res) {
-        this.toastyService.info({ title: "Info", msg: res.message });
+        // this.toastyService.info({ title: "Info", msg: res.message });
       } else {
-        this.toastyService.error({
-          title: "Error",
-          msg: "somthing went wrong!",
-        });
+        // this.toastyService.error({
+        //   title: "Error",
+        //   msg: "somthing went wrong!",
+        // });
       }
     });
     this.ngxLoader.stop();
@@ -600,12 +588,12 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
       .subscribe((res: any) => {
         this.ngxLoader.stop();
         if (res.isSuccess) {
-          this.toastyService.info({ title: "", msg: "Thankyou For Feedback!" });
+          // this.toastyService.info({ title: "", msg: "Thankyou For Feedback!" });
         } else {
-          this.toastyService.error({
-            title: "",
-            msg: "something went wrong, please try again Later!",
-          });
+          // this.toastyService.error({
+          //   title: "",
+          //   msg: "something went wrong, please try again Later!",
+          // });
         }
       });
     this.ngxLoader.stop();
@@ -653,10 +641,10 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
         this.headerComponent.getProfileProgress();
         this.headerComponent.getUserById();
       } else {
-        this.toastyService.error({
-          title: "Error",
-          msg: "something went wrong, please try again Later!",
-        });
+        // this.toastyService.error({
+        //   title: "Error",
+        //   msg: "something went wrong, please try again Later!",
+        // });
       }
     });
     this.ngxLoader.stop();
@@ -702,15 +690,15 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
       this.headerComponent.getUserById();
       this.ngxLoader.stop();
       if (res) {
-        this.toastyService.success({ title: "Success", msg: this.message });
+        // this.toastyService.success({ title: "Success", msg: this.message });
       } else {
         if (this.currentUser === null || this.currentUser === undefined) {
           this.router.navigate(["/login"]);
           let msg = "Please Login First!";
-          this.toastyService.info({ title: "Info", msg: msg });
+          // this.toastyService.info({ title: "Info", msg: msg });
         } else {
           let msg = "Something Went Wrong!";
-          this.toastyService.error({ title: "Error", msg: msg });
+          // this.toastyService.error({ title: "Error", msg: msg });
         }
       }
     });
@@ -722,20 +710,20 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
       .subscribe((res: any) => {
         this.ngxLoader.stop();
         if (res) {
-          this.toastyService.info({ title: "Info", msg: res.message });
+          // this.toastyService.info({ title: "Info", msg: res.message });
           this.authService.logout()
           this.router.navigate(["/login"]);
         } else {
           if (this.currentUser === null || this.currentUser === undefined) {
             this.router.navigate(["/login"]);
             let msg = "Please Login First!";
-            this.toastyService.info({ title: "Info", msg: msg });
+            // this.toastyService.info({ title: "Info", msg: msg });
           } else {
             if (res.error === "Old Password Not Match") {
-              this.toastyService.error({ title: "Info", msg: res.error });
+              // this.toastyService.error({ title: "Info", msg: res.error });
             } else {
               let msg = "Something Went Wrong!";
-              this.toastyService.error({ title: "Error", msg: msg });
+              // this.toastyService.error({ title: "Error", msg: msg });
             }
           }
         }
@@ -749,10 +737,10 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
       if (res.isSuccess) {
         this.ngxLoader.stop();
         // this.onGuardian(id);
-        this.toastyService.info({ title: "Info", msg: res.message.message });
+        // this.toastyService.info({ title: "Info", msg: res.message.message });
       } else {
         this.ngxLoader.stop();
-        this.toastyService.error({ title: "Info", msg: res.error });
+        // this.toastyService.error({ title: "Info", msg: res.error });
       }
       this.ngxLoader.stop();
     });
@@ -765,9 +753,9 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
       this.ngxLoader.stop();
 
       if (res) {
-        this.toastyService.info({ title: "Info", msg: "Guardian Updated!" });
+        // this.toastyService.info({ title: "Info", msg: "Guardian Updated!" });
       } else {
-        this.toastyService.info({ title: "Error", msg: res.error });
+        // this.toastyService.info({ title: "Error", msg: res.error });
       }
     });
     this.ngxLoader.stop();
@@ -781,7 +769,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
       this.kid.avtar = this.childImageURl;
     }
     if (this.kid.name === "") {
-      this.toastyService.error({ title: "Error", msg: childResponse.error });
+      // this.toastyService.error({ title: "Error", msg: childResponse.error });
     } else {
       this.ngxLoader.start();
       var birth = new Date(this.kid.dob);
@@ -789,19 +777,19 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
       let currentYear = moment(Date.now()).format("YYYY");
       if (birthYear >= currentYear) {
         this.ngxLoader.stop();
-        this.toastyService.warning({
-          title: "",
-          msg: "please fill valid birth year",
-        });
+        // this.toastyService.warning({
+        //   title: "",
+        //   msg: "please fill valid birth year",
+        // });
       } else {
         var ageDifMs = Date.now() - birth.getTime();
         var ageDate = new Date(ageDifMs); // miliseconds from epoch
         var age = Math.abs(ageDate.getUTCFullYear() - 1970);
         if (age > 20) {
-          this.toastyService.warning({
-            title: "",
-            msg: "please fill valid birth year",
-          });
+          // this.toastyService.warning({
+          //   title: "",
+          //   msg: "please fill valid birth year",
+          // });
           this.ngxLoader.stop();
         } else {
           this.kid.age = String(age);
@@ -822,7 +810,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
                   this.ngxLoader.stop();
                 });
               this.ngxLoader.stop();
-              this.toastyService.info({ title: "Child", msg: this.addMessage });
+              // this.toastyService.info({ title: "Child", msg: this.addMessage });
             }
           });
         }
@@ -838,10 +826,10 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
     let birthYear = moment(birth).format("YYYY");
     let currentYear = moment(Date.now()).format("YYYY");
     if (birthYear > currentYear) {
-      this.toastyService.warning({
-        title: "",
-        msg: "please fill valid birth year",
-      });
+      // this.toastyService.warning({
+      //   title: "",
+      //   msg: "please fill valid birth year",
+      // });
     } else {
       if (this.childImageURl != "" && this.childImageURl != undefined) {
         this.kid.avtar = this.childImageURl;
@@ -861,15 +849,15 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
         if (res) {
           // this.onChildren(parentId);
           let msg = "Child Updated Successfully!";
-          this.toastyService.info({ title: "Child", msg: msg });
+          // this.toastyService.info({ title: "Child", msg: msg });
         } else {
           if (this.currentUser === null || this.currentUser === undefined) {
             this.router.navigate(["/login"]);
             let msg = "Please Login First!";
-            this.toastyService.info({ title: "Info", msg: msg });
+            // this.toastyService.info({ title: "Info", msg: msg });
           } else {
             let msg = "Something Went Wrong!";
-            this.toastyService.error({ title: "Error", msg: msg });
+            // this.toastyService.error({ title: "Error", msg: msg });
           }
         }
       });

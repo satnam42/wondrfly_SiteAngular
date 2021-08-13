@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/core/services/api.service.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition, MatSnackBarConfig } from '@angular/material';
 import { Program, User } from 'src/app/core/models';
-import { ToastyService } from 'ng2-toasty';
+
 
 
 @Component({
@@ -23,14 +22,11 @@ export class ListComponent implements OnInit {
   loaderType = "ball-spin-clockwise"
   setAutoHide: boolean = true;
   autoHide: number = 4000;
-  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
-  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
   userData: any = new User;
   programs = new Program;
   constructor(private router: Router,
     private apiservice: ApiService,
     private ngxLoader: NgxUiLoaderService,
-    private toasty: ToastyService
   ) {
 
     var retrievedObject = localStorage.getItem('userData');
@@ -46,7 +42,7 @@ export class ListComponent implements OnInit {
 
   addProgram() {
     if (this.userData.phoneNumber == '' || this.userData.addressLine1 == '' || this.userData.avatarImages == '') {
-      this.toasty.warning("you need to complete  your profile before adding new program!");
+      // this.toasty.warning("you need to complete  your profile before adding new program!");
     }
     else { this.router.navigate(['/program/add']); }
   }
@@ -60,7 +56,7 @@ export class ListComponent implements OnInit {
       || program.description == '' || program.description == "string" || program.date.from == '' || program.date.from == "string"
       || program.location == '' || program.location == "string"
       || program.ageGroup.from == '' || program.ageGroup.from == "string") {
-      this.toasty.warning("you need to complete  program before publish it!");
+      // this.toasty.warning("you need to complete  program before publish it!");
     }
     else {
       if (this.programs[indx].isPublished) {

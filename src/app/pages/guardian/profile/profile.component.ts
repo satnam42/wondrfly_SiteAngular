@@ -3,7 +3,7 @@ import { ApiService } from 'src/app/core/services/api.service.service';
 import { User } from 'src/app/core/models';
 import { ActivatedRoute, RouterOutlet } from '@angular/router';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { ToastyService } from 'ng2-toasty';
+
 @Component({
   selector: "guardian-profile",
   templateUrl: "./profile.component.html",
@@ -15,7 +15,7 @@ export class ProfileComponent implements OnInit {
   constructor(private apiservice: ApiService,
     private activatedRoute: ActivatedRoute,
     private ngxLoader: NgxUiLoaderService,
-    private toastyService: ToastyService,) {
+    ) {
     this.activatedRoute.params.subscribe(params => {
       this.currentUser.id = params['id'];
       this.getUserById()

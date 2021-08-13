@@ -1,5 +1,4 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { filter } from 'rxjs/operators';
 import {
   ActivatedRoute,
   Router,
@@ -13,15 +12,12 @@ import {
 import { User } from '../../models';
 import { AuthsService } from '../../services/auths.service';
 import { ApiService } from '../../services/api.service.service';
-import { _getOptionScrollPosition, MatSnackBarConfig, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition, MatSnackBar } from '@angular/material';
 import { UserDataService } from '../../services/user-data.service';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { AuthService } from 'angularx-social-login';
 import { Globals } from '../../common/imageLoader';
 import { LocalStorageService } from '../../services';
 
 import { DataService } from '../../services/dataservice.service ';
-import { ToastyService } from 'ng2-toasty';
+
 declare const $: any;
 @Component({
   selector: 'app-header',
@@ -71,21 +67,15 @@ export class HeaderComponent implements OnInit {
   action: boolean = true;
   setAutoHide: boolean = true;
   autoHide: number = 4000;
-  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
-  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
   categoriesBySearch: any;
   providersBySearch: any;
   constructor(
     private router: Router,
     private auth: AuthsService,
-    private activatedRoute: ActivatedRoute,
     private apiservice: ApiService,
     private userdataservice: UserDataService,
-    private snack: MatSnackBar,
-    private ngxLoader: NgxUiLoaderService,
     public imageLoader: Globals,
-    private toastyService: ToastyService,
-    private authService: AuthService,
+    
     private dataservice: DataService,
     public store : LocalStorageService
   ) {
@@ -104,10 +94,6 @@ export class HeaderComponent implements OnInit {
         this.isLogin = false;
       }
     } else { auth.logout(); }
-    let config = new MatSnackBarConfig();
-    config.verticalPosition = this.verticalPosition;
-    config.horizontalPosition = this.horizontalPosition;
-    config.duration = this.setAutoHide ? this.autoHide : 0;
     this.getProfileProgress()
   }
   logo() {
@@ -246,7 +232,7 @@ submitFeedback(){
   this.feedbackData.id = this.user.id
   this.apiservice.sendFeedback(this.feedbackData).subscribe((res: any) => {
    if(res.isSuccess=== true){
-    this.toastyService.success({ title: 'Thank you', msg: ':)' })
+    // this.toastyService.success({ title: 'Thank you', msg: ':)' })
      this.auth.logout();
      this.userdataservice.logout();
      // this.authService.signOut();
