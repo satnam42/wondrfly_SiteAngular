@@ -20,6 +20,7 @@ import { Options } from '@angular-slider/ngx-slider';
 export class SearchComponent implements OnInit {
   isDateFilter: boolean = false;
   isTimeFilter: boolean = false;
+  isDaysFilter: boolean = false;
   isAgeFilter: boolean = false;
   isTopFilter: boolean= false;
   isTopFilterCheckBox:boolean=false;
@@ -34,6 +35,7 @@ export class SearchComponent implements OnInit {
   isAgeModal: boolean = false;
   isChildModal: boolean = false;
   isPriceModal: boolean = false;
+  isDaysModal: boolean = false;
   isCategoryModal: boolean = false;
   isFav: boolean = false;
   categoryId: any = ''

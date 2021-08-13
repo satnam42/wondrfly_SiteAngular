@@ -7,11 +7,13 @@ import { DetailComponent } from './detail/detail.component'
 import { SettingComponent } from './setting/setting.component'
 import { UserGuard } from 'src/app/core/guards';
 import { Role } from 'src/app/core/models/role.model';
+import { ProgramComponent } from './program.component';
 
 export const routes: Routes = [
   // { path: '', redirectTo: 'home', pathMatch: 'full' },
+  {path: '', component: ProgramComponent, children:[
   {
-    path: 'home', component: HomeComponent, canActivate:
+    path: '', component: HomeComponent, canActivate:
       [UserGuard],
       data: {
         roles: [
@@ -55,6 +57,8 @@ export const routes: Routes = [
         ]
       }
   }
+  ]
+}
 ];
 
 @NgModule({

@@ -207,10 +207,6 @@ strapiSignup(){
         this.toastr.success(this.message)
         this.router.navigate(['loginParent']);
       }
-      else if (this.user.role === 'guardian') {
-        this.toastr.success(this.message)
-        this.router.navigate(['/guardian/guardianProfile', this.user.id]);
-      }
       else if (this.user.role === 'superAdmin') {
         this.toastr.warning('You Are An Admin!', 'Please Login As Provider Or Parent Only!')
       }

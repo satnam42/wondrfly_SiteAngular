@@ -17,7 +17,6 @@ import { SocialLoginComponent } from './components/social-login/social-login.com
 import { RouterModule } from '@angular/router';
 import { ImageCropModule } from './components/image-crop/image-crop.module';
 import { SignupPopupComponent } from './components/signup-popup/signup-popup.component';
-import { PhoneMaskDirective } from './common/phone-mask.directive';
 import { RatingComponent } from './components/rating/rating.component';
 import { OnlineProgramsComponent } from './components/online-programs/online-programs.component';
 import { HttpClientJsonpModule } from '@angular/common/http';
@@ -43,13 +42,10 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
-
-
-
-
-
-
-
+import { PhonePipe } from '../pages/provider/profile/profile.component';
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+import { NgxMaskModule } from 'ngx-mask';
+import { PhoneMaskDirective } from './common/phone-mask.directive';
 
 const components = [
   HeaderComponent,
@@ -63,11 +59,12 @@ const components = [
   ReadMoreComponent,
   SocialLoginComponent,
   SignupPopupComponent,
-  PhoneMaskDirective,
   RatingComponent,
   OnlineProgramsComponent,
   MailchimpSubscribeForm,
-  MarkdwonPipe
+  MarkdwonPipe,
+  PhoneMaskDirective,
+  PhonePipe,
 
 ]
 
@@ -91,6 +88,7 @@ const thirdPartyModules = [
   MatExpansionModule,
   MatListModule,
   NgxFileDropModule,
+  AutocompleteLibModule,
   OwlDateTimeModule,
   OwlNativeDateTimeModule,
   MatSlideToggleModule,
@@ -108,9 +106,10 @@ const guards = [
     CommonModule,
     RouterModule,
     FormsModule,
+    AutocompleteLibModule,
     HttpClientJsonpModule,
-    // BrowserAnimationsModule,
     ReactiveFormsModule,
+    
     ...thirdPartyModules,
   ],
   declarations: [...components, ],

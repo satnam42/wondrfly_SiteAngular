@@ -4,8 +4,10 @@ import { LoginParentComponent } from './login-parent/login-parent.component'
 import { ParentProfileComponent } from './parent-profile/parent-profile.component';
 import { UserGuard } from 'src/app/core/guards';
 import { Role } from 'src/app/core/models/role.model';
+import { ParentComponent } from './parent.component';
 export const routes: Routes = [
     // { path: '', redirectTo: 'home', pathMatch: 'full' },
+    {path: '', component: ParentComponent, children:[
     {
         path: 'loginParent', component: LoginParentComponent, canActivate:
             [UserGuard],
@@ -24,6 +26,8 @@ export const routes: Routes = [
                 ]
               }
     },
+  ]
+}
 ];
 
 @NgModule({

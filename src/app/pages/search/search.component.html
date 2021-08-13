@@ -124,7 +124,7 @@
                         </li> -->
                         <li class="cursor">
                           <a aria-expanded="true" data-target="#category" [ngClass]="{'active' : isCategoryFilter}"
-                          (click)="openModal(isCategoryFilter=true,isChildFilter=false,isPriceFilter=false,isDateFilter=false,isAgeFilter=false,isTimeFilter=false,isCategoryModal=true,isChildModal=false,isPriceModal=false,isDateModal=false,isAgeModal=false,isTimeModal=false)" data-toggle="collapse">Categories</a>
+                          (click)="openModal(isCategoryFilter=true,isDaysFilter=false,isPriceFilter=false,isDateFilter=false,isAgeFilter=false,isTimeFilter=false,isCategoryModal=true,isDaysModal=false,isPriceModal=false,isDateModal=false,isAgeModal=false,isTimeModal=false)" data-toggle="collapse">Categories</a>
                           <div class="collapse main_collpase time_collpase verification_modal partcategory" id="category"
                               data-parent="#accordionExample">
                               <div class="collpase_content cate-dilter">
@@ -165,7 +165,7 @@
                       </li>
                         <li class="cursor">
                             <a [ngClass]="{'active' : isAgeFilter}"
-                                (click)="filterName='age';openModal(isCategoryFilter=false,isChildFilter=false,isPriceFilter=false,isDateFilter=false,isAgeFilter=true,isTimeFilter=false,isCategoryModal=false,isChildModal=false,isPriceModal=false,isDateModal=false,isAgeModal=true,isTimeModal=false)"
+                                (click)="filterName='age';openModal(isCategoryFilter=false,isDaysFilter=false,isPriceFilter=false,isDateFilter=false,isAgeFilter=true,isTimeFilter=false,isCategoryModal=false,isChildModal=false,isPriceModal=false,isDateModal=false,isAgeModal=true,isTimeModal=false)"
                                 aria-controls="collapseExample" aria-expanded="true" data-target="#ageGroup"
                                 data-toggle="collapse">Age </a>
                             <div class="collapse main_collpase verification_modal" id="ageGroup"
@@ -269,7 +269,9 @@
                             </div>
                         </li>
                         <li class="cursor">
-                            <a aria-controls="collapseExample" (click)="filterName='time'" aria-expanded="true" data-target="#timess"
+                            <a aria-controls="collapseExample" [ngClass]="{'active' : isTimeFilter}"
+                            (click)="filterName='time';openModal(isCategoryFilter=false,isTypeFilter=false,isDaysFilter=false,isPriceFilter=false,isDateFilter=false,isAgeFilter=false,isTimeFilter=true,isCategoryModal=false,isPriceModal=false,isDateModal=false,isAgeModal=false,isTimeModal=true)" 
+                            aria-expanded="true" data-target="#timess"
                             data-toggle="collapse">Time</a>
                             <div class="collapse main_collpase typess verification_modal" id="timess"
                             data-parent="#accordionExample">
@@ -320,7 +322,9 @@
                           </div>
                       </li> -->
                         <li class="cursor">
-                          <a aria-expanded="true" aria-expanded="true" (click)="filterName='day'"data-target="#Dayss" data-toggle="collapse">Days</a>
+                          <a aria-expanded="true" aria-expanded="true" [ngClass]="{'active' : isDaysFilter}"
+                          (click)="filterName='day';openModal(isCategoryFilter=false,isTypeFilter=false,isDaysFilter=true,isPriceFilter=false,isDateFilter=false,isAgeFilter=false,isTimeFilter=false,isCategoryModal=false,isPriceModal=false,isDateModal=false,isAgeModal=false,isTimeModal=false)"
+                          data-target="#Dayss" data-toggle="collapse">Days</a>
                           <div class="collapse main_collpase typess verification_modal" id="Dayss"
                           data-parent="#accordionExample">
                           <div class="collpase_content">
@@ -358,7 +362,7 @@
                       </li>
                         <li class="cursor">
                           <a [ngClass]="{'active' : isPriceFilter}"
-                              (click)="filterName='price';openModal(isCategoryFilter=false,isChildFilter=false,isPriceFilter=true,isDateFilter=false,isAgeFilter=false,isTimeFilter=false,isCategoryModal=false,isChildModal=false,isPriceModal=true,isDateModal=false,isAgeModal=false,isTimeModal=false)"
+                              (click)="filterName='price';openModal(isCategoryFilter=false,isDaysFilter=false,isPriceFilter=true,isDateFilter=false,isAgeFilter=false,isTimeFilter=false,isCategoryModal=false,isDaysModal=false,isPriceModal=true,isDateModal=false,isAgeModal=false,isTimeModal=false)"
                               aria-controls="collapseExample" aria-expanded="true" data-target="#priceGroup"
                               data-toggle="collapse">Price </a>
                           <div class="collapse main_collpase verification_modal" id="priceGroup"
@@ -388,7 +392,7 @@
 
                       <li class="cursor">
                         <a class="top-rateds" aria-expanded="true" [ngClass]="{'active' : isTopFilter}"
-                        (click)="openModal(isCategoryFilter=false,isChildFilter=false,isPriceFilter=false,isDateFilter=false,isAgeFilter=false,isTimeFilter=false,isCategoryModal=false,isChildModal=false,isPriceModal=false,isDateModal=false,isAgeModal=false,isTimeModal=false)"><span class="simple-toggle">
+                        (click)="openModal(isCategoryFilter=false,isDaysFilter=false,isPriceFilter=false,isDateFilter=false,isAgeFilter=false,isTimeFilter=false,isCategoryModal=false,isDaysModal=false,isPriceModal=false,isDateModal=false,isAgeModal=false,isTimeModal=false)"><span class="simple-toggle">
                           <label class="tgl" style="font-size:30px">
                             <input [(ngModel)]="isTopFilterCheckBox" (change)="getTopRated()" type="checkbox" />
                             <span>Top Rated</span>

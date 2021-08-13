@@ -28,41 +28,24 @@ const routes: Routes = [
   { path: 'contactUs', loadChildren: () => import('.//pages/contact-us/contact-us.module').then(m => m.ContactUsModule) },
 
   {
-    path: 'profile/:id', component: ProfileComponent,
-    canActivate: [UserGuard],
-    data: { roles: [Role.Provider,] }
-  },
-  {
-    path: 'loginProvider', component: LoginProviderComponent, canActivate: [UserGuard],
-    data: { roles: [Role.Provider,] }
-  },
-
-  {
     path: 'chat', canActivate: [UserGuard],
     loadChildren: () => import('.//pages/chat/chat.module').then(m => m.ChatModule),
   },
-  {
-    path: '', component: ProgramComponent, children: [
       {
         path: 'program',
         loadChildren: () => import('.//pages/provider/program/program.module').then(m => m.ProgramModule),
         // data: { title: 'Dashboard', breadcrumb: 'DASHBOARD' }
       },
+
       {
-        path: 'program-provider/:name/:id',
-        loadChildren: () => import('.//pages/provider/program-provider/program-provider.module').then(m => m.ProgramProviderModule),
+        path: '',
+        loadChildren: () => import('.//pages/provider/provider.module').then(m => m.ProviderModule),
       },
-    ]
-  },
-  {
-    path: '', component: ParentComponent, children: [
       {
         path: '',
         loadChildren: () => import('.//pages/parent/parent.module').then(m => m.ParentModule),
         // data: { title: 'Dashboard', breadcrumb: 'DASHBOARD' }
       },
-    ]
-  },
 
       {
         path: 'forum',
