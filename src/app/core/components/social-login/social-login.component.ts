@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService, FacebookLoginProvider, GoogleLoginProvider, SocialUser } from 'angularx-social-login';
 import axios from 'axios';
-
+import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { environment } from 'src/environments/environment';
 import { Category } from '../../models/category.model';
@@ -43,7 +43,7 @@ export class SocialLoginComponent implements OnInit {
               private router : Router,
               private ngxLoader : NgxUiLoaderService,
               public auth: AuthsService,
-              
+              private toastr: ToastrService,
               private store : LocalStorageService) { 
                 this.routeName = router.url;
                 console.log('routerr',this.routeName)

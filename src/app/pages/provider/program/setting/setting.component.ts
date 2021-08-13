@@ -10,6 +10,7 @@ import { UserDataService } from 'src/app/core/services/user-data.service';
 import { User } from '../../../../core/models';
 
 import { Claim } from 'src/app/core/models/claim.model';
+import { ToastrService } from 'ngx-toastr';
 declare var $: any;
 @Component({
   selector: 'app-setting',
@@ -66,6 +67,7 @@ export class SettingComponent implements OnInit {
     private router: Router,
     private auth: AuthsService,
     private apiservice: ApiService,
+    private toastr: ToastrService,
     
   ) {
     // this.user = this.auth.currentUser();

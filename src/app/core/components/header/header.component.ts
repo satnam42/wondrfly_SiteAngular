@@ -1,14 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import {
-  ActivatedRoute,
-  Router,
-  Event,
-  ActivationStart,
-  ActivatedRouteSnapshot,
-  ActivationEnd,
-  NavigationEnd,
-  NavigationStart
-} from '@angular/router';
+import {Router,} from '@angular/router';
 import { User } from '../../models';
 import { AuthsService } from '../../services/auths.service';
 import { ApiService } from '../../services/api.service.service';
@@ -17,6 +8,7 @@ import { Globals } from '../../common/imageLoader';
 import { LocalStorageService } from '../../services';
 
 import { DataService } from '../../services/dataservice.service ';
+import { ToastrService } from 'ngx-toastr';
 
 declare const $: any;
 @Component({
@@ -75,7 +67,7 @@ export class HeaderComponent implements OnInit {
     private apiservice: ApiService,
     private userdataservice: UserDataService,
     public imageLoader: Globals,
-    
+    private toastr: ToastrService,
     private dataservice: DataService,
     public store : LocalStorageService
   ) {
@@ -222,20 +214,14 @@ ngOnDestroy() {
 } 
  logout() {
   window.document.getElementById("open_feedback_modal").click();
-    // this.auth.logout();
-    // this.userdataservice.logout();
-    // // this.authService.signOut();
-    // localStorage.clear();
-    // this.router.navigate(['/login']);
   }
 submitFeedback(){
   this.feedbackData.id = this.user.id
   this.apiservice.sendFeedback(this.feedbackData).subscribe((res: any) => {
    if(res.isSuccess=== true){
-    // this.toastyService.success({ title: 'Thank you', msg: ':)' })
+    this.toastr.success('Thank you!', ':)');
      this.auth.logout();
      this.userdataservice.logout();
-     // this.authService.signOut();
      localStorage.clear();
      this.router.navigate(['/login']);
    }
@@ -245,7 +231,6 @@ submitFeedback(){
 canceFeedback(){
     this.auth.logout();
     this.userdataservice.logout();
-    // this.authService.signOut();
     localStorage.clear();
     this.router.navigate(['/login']);
 }

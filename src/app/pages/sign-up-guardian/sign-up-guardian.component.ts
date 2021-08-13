@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { ApiService } from 'src/app/core/services/api.service.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-
 import { LocalStorageService } from 'src/app/core/services';
 import { Globals } from 'src/app/core/common/imageLoader';
 import axios from 'axios';
 import { environment } from 'src/environments/environment';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'sign-up-guardian',
   templateUrl: './sign-up-guardian.component.html',
@@ -42,10 +42,9 @@ export class SignUpGuardianComponent implements OnInit {
   constructor(private router: Router,
     private apiservice: ApiService,
     private ngxLoader: NgxUiLoaderService,
-    
     private store: LocalStorageService,
     public imageLoader: Globals,
-    private activatedRoute: ActivatedRoute) {
+    private toastr: ToastrService,) {
   }
   onPassword() {
     this.hide = !this.hide;
@@ -77,8 +76,10 @@ export class SignUpGuardianComponent implements OnInit {
       console.log('resss', res);
       if (res.isSuccess) {
         this.router.navigate(['/login']);
+        this.toastr.success(this.message, 'ok!');
         // this.toastyService.success({ title: 'Success', msg: this.message });
       }else {
+        this.toastr.error(res.error, 'ok!');
         // this.toastyService.error({ title: '', msg: res.error });
       }
     });

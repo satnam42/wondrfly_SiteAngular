@@ -6,7 +6,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Observable } from 'rxjs';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
-
 import { Claim } from 'src/app/core/models/claim.model';
 import { AuthsService } from 'src/app/core/services/auths.service';
 import { MapsAPILoader } from '@agm/core';
@@ -16,6 +15,7 @@ import { Globals } from 'src/app/core/common/imageLoader';
 import { MapTheme } from 'src/app/core/common/map-theme';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { Options } from '@angular-slider/ngx-slider';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',
@@ -123,7 +123,7 @@ export class DetailComponent implements OnInit {
     private titleService: Title,
     private metaTagService: Meta,
     private ngxLoader: NgxUiLoaderService,
-    
+    private toastr: ToastrService,
     private activatedRoute: ActivatedRoute,
     public mapTheme: MapTheme,
     public auth: AuthsService,

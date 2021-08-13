@@ -6,6 +6,7 @@ import { environment } from '../../../environments/environment';
 
 import { LocalStorageService } from '.';
 import { Role } from '../models/role.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class AuthsService {
@@ -16,6 +17,7 @@ export class AuthsService {
 
   constructor(
     private http: HttpClient,
+    private toastr: ToastrService,
     private store: LocalStorageService
   ) {
   }

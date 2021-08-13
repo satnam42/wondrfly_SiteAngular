@@ -9,6 +9,7 @@ import { Program, Category } from 'src/app/core/models';
 import { Claim } from 'src/app/core/models/claim.model';
 
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
+import { ToastrService } from 'ngx-toastr';
 // import { ParentProfileComponent } from '../../parent/parent-profile/parent-profile.component';
 
 
@@ -116,7 +117,7 @@ export class ProfileComponent implements OnInit {
   userData: any = new User;
   constructor(private router: Router,
     private apiservice: ApiService,
-    
+    private toastr: ToastrService,
     private ngxLoader: NgxUiLoaderService) {
     var retrievedObject = localStorage.getItem('userData');
     this.user = JSON.parse(retrievedObject);

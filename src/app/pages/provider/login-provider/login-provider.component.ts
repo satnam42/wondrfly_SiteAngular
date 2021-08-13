@@ -11,6 +11,7 @@ import { MapsAPILoader } from '@agm/core';
 import { ElementRef, NgZone } from '@angular/core';
 import { AuthsService } from 'src/app/core/services/auths.service';
 import { MapTheme } from 'src/app/core/common/map-theme';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login-provider',
@@ -88,7 +89,7 @@ providerImgURL: any
     private router: Router,
     private apiservice: ApiService,
     private ngxLoader: NgxUiLoaderService,
-    
+    private toastr: ToastrService,
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
     private auth: AuthsService,

@@ -5,12 +5,12 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-
 import { Child, User } from 'src/app/core/models';
 import * as moment from 'moment';
 import { MapsAPILoader } from '@agm/core';
 import { MapTheme } from 'src/app/core/common/map-theme';
 import { Meta, Title } from '@angular/platform-browser';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-login-parent',
   templateUrl: './login-parent.component.html',
@@ -60,6 +60,7 @@ export class LoginParentComponent implements OnInit {
     public mapTheme:MapTheme,
     private titleService: Title,
     private metaTagService: Meta,
+    private toastr: ToastrService,
   ) {
     var retrievedObject = localStorage.getItem('userData');
     this.parent = JSON.parse(retrievedObject);

@@ -6,6 +6,7 @@ import { CustomValidators } from 'ng2-validation';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 import { Meta, Title } from '@angular/platform-browser';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.component.html',
@@ -45,7 +46,7 @@ export class ForgotPasswordComponent implements OnInit {
   constructor(private router: Router,
     private apiservice: ApiService,
     private ngxLoader: NgxUiLoaderService,
-    
+    private toastr: ToastrService,
     private titleService: Title,
     private metaTagService: Meta,
   ) {

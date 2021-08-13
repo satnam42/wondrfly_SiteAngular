@@ -2,16 +2,16 @@ import { Component, OnInit, ViewChild, ɵConsole } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/core/services/api.service.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { HeaderComponent } from 'src/app/core/components/header/header.component';
 import { Program } from 'src/app/core/models';
 import { Claim } from 'src/app/core/models/claim.model';
-
 import { AuthsService } from 'src/app/core/services/auths.service';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { Globals } from 'src/app/core/common/imageLoader';
 import { MapTheme } from 'src/app/core/common/map-theme';
 import { Meta, Title } from '@angular/platform-browser';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-program-provider',
@@ -83,7 +83,7 @@ export class ProgramProviderComponent implements OnInit {
   constructor(private router: Router,
     private apiservice: ApiService,
     private auth: AuthsService,
-    
+    private toastr: ToastrService,
     private ngxLoader: NgxUiLoaderService,
     public imageLoader: Globals,
     public mapTheme: MapTheme,

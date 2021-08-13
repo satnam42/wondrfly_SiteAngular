@@ -1,6 +1,7 @@
 ﻿import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 
 
 interface MailChimpResponse {
@@ -15,7 +16,8 @@ interface MailChimpResponse {
 export class MailchimpSubscribeForm {
 	submitted = false;
 	mailChimpEndpoint = 'https://wondrfly.us6.list-manage.com/subscribe/post-json?u=50d4a655c918bd43244bd72a1&amp;id=f53dcd12e8&';
-	constructor(private http: HttpClient, ) { }
+	constructor(private http: HttpClient, 
+		private toastr: ToastrService) { }
 	emailControl = new FormControl('', [
 		Validators.required,
 		Validators.email,

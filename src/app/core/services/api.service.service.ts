@@ -13,6 +13,7 @@ import { Alert } from '../models/alert.model';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { SocialUser } from '../models/social.model';
 import { Observable, Subject } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
     providedIn: 'root'
@@ -23,7 +24,8 @@ export class ApiService {
     token = ''
     header = {}
     constructor(private http: HttpClient, private store: LocalStorageService,
-        private ngxLoader: NgxUiLoaderService) {
+        private ngxLoader: NgxUiLoaderService,
+        private toastr: ToastrService,) {
     }
 
     //-------------------- get header -------------------------------->

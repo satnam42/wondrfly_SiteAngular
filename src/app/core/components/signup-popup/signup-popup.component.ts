@@ -3,14 +3,13 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService, SocialUser } from 'angularx-social-login';
 import axios from 'axios';
-
+import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { environment } from 'src/environments/environment';
 import { Globals } from '../../common/imageLoader';
 import { LocalStorageService } from '../../services';
 import { ApiService } from '../../services/api.service.service';
 import { AuthsService } from '../../services/auths.service';
-import { DataService } from '../../services/dataservice.service ';
 
 @Component({
   selector: 'app-signup-popup',
@@ -62,7 +61,7 @@ export class SignupPopupComponent implements OnInit {
 
   constructor(private router: Router,
     private apiservice: ApiService,
-    private dataservice: DataService,
+    private toastr: ToastrService,
     public auth: AuthsService,
     public imageLoader: Globals,
     private ngxLoader: NgxUiLoaderService,

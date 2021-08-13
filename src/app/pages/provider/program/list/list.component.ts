@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ApiService } from 'src/app/core/services/api.service.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Program, User } from 'src/app/core/models';
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -26,6 +27,7 @@ export class ListComponent implements OnInit {
   programs = new Program;
   constructor(private router: Router,
     private apiservice: ApiService,
+    private toastr: ToastrService,
     private ngxLoader: NgxUiLoaderService,
   ) {
 

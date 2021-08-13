@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthsService } from '../../core/services/auths.service';
-import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { ApiService } from 'src/app/core/services/api.service.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader'
-
 import { Globals } from 'src/app/core/common/imageLoader';
 import axios from 'axios';
 import { LocalStorageService } from 'src/app/core/services';
 import { User } from 'src/app/core/models';
 import { environment } from 'src/environments/environment';
 import { Meta,  Title } from '@angular/platform-browser';
+import { ToastrService } from 'ngx-toastr';
 // import { User } from '../../core/models/index'
 @Component({
   selector: 'app-login',
@@ -51,11 +51,11 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router,
     private auth: AuthsService,
     private apiservice: ApiService,
-    
     private titleService: Title,
     private metaTagService: Meta,
     private ngxLoader: NgxUiLoaderService,
     public imageLoader: Globals,
+    private toastr: ToastrService,
     public store : LocalStorageService) {
   }
   onPassword() {
@@ -85,7 +85,7 @@ export class LoginComponent implements OnInit {
         this.strapiLogin()
       }
       else {
-        // this.toastyService.error({ title: '', msg: res.error })
+        this.toastr.error(res.error);
       }
       this.ngxLoader.stop();
     });
@@ -101,7 +101,7 @@ export class LoginComponent implements OnInit {
       if (activeDeactiveResponse) {
         return this.signin();
       } else {
-        // this.toastyService.error({ title: 'Error', msg: activeDeactiveResponse.error })
+        this.toastr.error(activeDeactiveResponse.error)
       }
     });
     this.ngxLoader.stop();
@@ -141,25 +141,25 @@ export class LoginComponent implements OnInit {
       this.store.setObject('strapiData', response.data);
       this.store.setItem('jwt', response.data.jwt);
       if (this.user.isOnBoardingDone && this.user.role === 'provider') {
-        // this.toastyService.success({ title: 'Success', msg: this.message })
+        this.toastr.success(this.message)
         this.router.navigate(['profile', this.user.id]);
       }
       else if (this.user.role === 'provider') {
-        // this.toastyService.success({ title: 'Success', msg: this.message })
+        this.toastr.success(this.message)
         this.router.navigate(['loginProvider']);
       }
 
 
       else if (this.user.isOnBoardingDone && this.user.role === 'parent') {
-        // this.toastyService.success({ title: 'Success', msg: this.message })
+        this.toastr.success(this.message)
         this.router.navigate(['/search']);
       }
       else if (this.user.role === 'parent') {
-        // this.toastyService.success({ title: 'Success', msg: this.message })
+        this.toastr.success(this.message)
         this.router.navigate(['loginParent']);
       }
       else if (this.user.role === 'superAdmin') {
-        // this.toastyService.warning({ title: 'You Are An Admin!', msg: 'Please Login As Provider Or Parent Only!' })
+        this.toastr.warning('Please Login As Provider Or Parent Only!')
       }
 
   }
@@ -169,7 +169,7 @@ export class LoginComponent implements OnInit {
     // ----------signUp strapi if user is not register on strapi---------
     this.strapiSignup()
   }else{
-  // this.toastyService.error({ title:'', msg: error.response.data.data[0].messages[0].message })
+  this.toastr.error(error.response.data.data[0].messages[0].message)
   }
 });
   }
@@ -190,36 +190,36 @@ strapiSignup(){
       this.store.setObject('strapiData', response.data);
       this.store.setItem('jwt', response.data.jwt);
       if (this.user.isOnBoardingDone && this.user.role === 'provider') {
-        // this.toastyService.success({ title: 'Success', msg: this.message })
+        this.toastr.success(this.message)
         this.router.navigate(['profile', this.user.id]);
       }
       else if (this.user.role === 'provider') {
-        // this.toastyService.success({ title: 'Success', msg: this.message })
+        this.toastr.success(this.message)
         this.router.navigate(['loginProvider']);
       }
 
 
       else if (this.user.isOnBoardingDone && this.user.role === 'parent') {
-        // this.toastyService.success({ title: 'Success', msg: this.message })
+        this.toastr.success(this.message)
         this.router.navigate(['/search']);
       }
       else if (this.user.role === 'parent') {
-        // this.toastyService.success({ title: 'Success', msg: this.message })
+        this.toastr.success(this.message)
         this.router.navigate(['loginParent']);
       }
       else if (this.user.role === 'guardian') {
-        // this.toastyService.success({ title: 'Success', msg: this.message })
+        this.toastr.success(this.message)
         this.router.navigate(['/guardian/guardianProfile', this.user.id]);
       }
       else if (this.user.role === 'superAdmin') {
-        // this.toastyService.warning({ title: 'You Are An Admin!', msg: 'Please Login As Provider Or Parent Only!' })
+        this.toastr.warning('You Are An Admin!', 'Please Login As Provider Or Parent Only!')
       }
 }
 
   }).catch(error => {
     // Handle error.
     console.log('strapi signup this.userss:',  error.response);
-    // this.toastyService.error({ title:'', msg: error.response.data.data[0].messages[0].message })
+    this.toastr.error(error.response.data.data[0].messages[0].message)
   });
 }
 

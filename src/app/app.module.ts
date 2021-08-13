@@ -38,13 +38,13 @@ import { NgxMaskModule, IConfig } from 'ngx-mask'
 import { ProgramModule } from './pages/provider/program/program.module';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
-import { MarkdwonPipe } from './core/shared/markdwon.pipe';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { MatIconModule } from '@angular/material/icon';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -138,6 +138,7 @@ const components = [
       apiKey: 'AIzaSyD_5P0pxn1q9hvvTeCr3YCsDhLJoHwxs2c',
       libraries: ['places']
     }),
+    ToastrModule.forRoot(),
   ],
   providers: [
     LocalStorageService,

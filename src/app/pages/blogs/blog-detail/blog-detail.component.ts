@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/core/services/api.service.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-blog-detail',
   templateUrl: './blog-detail.component.html',
@@ -41,7 +42,7 @@ title:string = ""
     public auths: AuthsService,
     private titleService: Title,
     private metaTagService: Meta,
-    
+    private toastr: ToastrService,
     private apiservice: ApiService,
     private router: Router,
     private activatedroute: ActivatedRoute)
