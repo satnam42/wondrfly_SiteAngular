@@ -117,13 +117,6 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
-  // getCount() {
-  //   axios.get(`${this.blogUrl}/blogs/count`).then(response => {
-  //     this.count = response.data
-  //     console.log('countttt',this.count)
-  //   });
-  // }
-
   setBlog(data) {
     var title = data.title
     title = title.toLowerCase();

@@ -21,7 +21,6 @@ import { SignUpGuardianComponent } from './pages/sign-up-guardian/sign-up-guardi
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { LoginComponent } from './pages/login/login.component';
 import { AgmCoreModule } from '@agm/core';
-import { SearchComponent } from './pages/search/search.component';
 import { SocialLoginModule, AuthServiceConfig, FacebookLoginProvider, GoogleLoginProvider } from 'angularx-social-login';
 import { Globals } from './core/common/imageLoader';
 import { MapTheme } from './core/common/map-theme';
@@ -66,7 +65,6 @@ const components = [
     SignUpComponent,
     LoginComponent,
     SignUpGuardianComponent,
-    SearchComponent,
   ],
 
   entryComponents: [
