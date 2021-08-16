@@ -7,9 +7,6 @@ import { CoreModule } from './core/core.module';
 import { AppComponent } from '../app/app.component';
 import { LocalStorageService } from '../app/core/services';
 import { HttpClientModule } from '@angular/common/http';
-import { NgxUiLoaderModule } from 'ngx-ui-loader';
-import { AutocompleteLibModule } from 'angular-ng-autocomplete';
-import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { environment } from '../environments/environment';
 import { LandingComponent } from './pages/landing/landing.component';
 import { AuthsService } from './core/services/auths.service';
@@ -25,19 +22,13 @@ import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { LoginComponent } from './pages/login/login.component';
 import { AgmCoreModule } from '@agm/core';
 import { SearchComponent } from './pages/search/search.component';
-import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { SocialLoginModule, AuthServiceConfig, FacebookLoginProvider, GoogleLoginProvider } from 'angularx-social-login';
 import { Globals } from './core/common/imageLoader';
 import { MapTheme } from './core/common/map-theme';
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
-import { MatIconModule } from '@angular/material/icon';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxMaskModule } from 'ngx-mask';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 
 
@@ -91,14 +82,8 @@ const components = [
     SocialLoginModule,
     ReactiveFormsModule,
     HttpClientModule,
-    // MatFormFieldModule,
-    // MatCheckboxModule,
     NgxMaskModule.forRoot(),
-    // MatIconModule,
     ChatModule,
-    // OwlDateTimeModule,
-    // OwlNativeDateTimeModule,
-    // NgxUiLoaderModule,
     NgxDaterangepickerMd.forRoot(),
     FlatpickrModule.forRoot(),
     CalendarModule.forRoot({
@@ -106,14 +91,17 @@ const components = [
       useFactory: adapterFactory,
     }),
     SocketIoModule.forRoot(config),
-    InfiniteScrollModule,
-    Ng2SearchPipeModule,
-    MatProgressBarModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyD_5P0pxn1q9hvvTeCr3YCsDhLJoHwxs2c',
       libraries: ['places']
     }),
     ToastrModule.forRoot(),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
   ],
   providers: [
     LocalStorageService,

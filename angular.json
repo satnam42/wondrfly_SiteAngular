@@ -27,6 +27,7 @@
               "src/assets",
               "src/sitemap.xml",
               "src/robots.txt",
+              "src/manifest.webmanifest",
               "src/manifest.webmanifest"
             ],
             "styles": [
@@ -39,7 +40,9 @@
             "scripts": ["node_modules/jquery/dist/jquery.slim.min.js",
               "node_modules/popper.js/dist/umd/popper.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
-              "node_modules/marked/lib/marked.js"]
+              "node_modules/marked/lib/marked.js"],
+            "serviceWorker": true,
+            "ngswConfigPath": "ngsw-config.json"
           },
           "configurations": {
             "production": {
@@ -98,6 +101,7 @@
             "assets": [
               "src/favicon_blue.ico",
               "src/assets",
+              "src/manifest.webmanifest",
               "src/manifest.webmanifest"
             ],
             "styles": [

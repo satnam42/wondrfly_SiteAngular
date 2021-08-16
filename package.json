@@ -25,6 +25,7 @@
     "@angular/platform-browser": "~11.2.14",
     "@angular/platform-browser-dynamic": "~11.2.14",
     "@angular/router": "~11.2.14",
+    "@angular/service-worker": "~11.2.14",
     "@types/google-maps": "^3.2.2",
     "angular-calendar": "^0.28.22",
     "angular-ng-autocomplete": "^2.0.1",

@@ -68,6 +68,7 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
   blog: any;
   categoriesBySearch: any = new Category;
   providersBySearch: any = new User;
+  count: any;
   constructor(private router: Router,
     private apiservice: ApiService,
     private dataservice: DataService,
@@ -116,6 +117,13 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
+  // getCount() {
+  //   axios.get(`${this.blogUrl}/blogs/count`).then(response => {
+  //     this.count = response.data
+  //     console.log('countttt',this.count)
+  //   });
+  // }
+
   setBlog(data) {
     var title = data.title
     title = title.toLowerCase();
@@ -146,7 +154,7 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit() {
     this.landingImageIndex = Math.floor(Math.random() * this.landingImages.length);
     this.getCategoryList();
-    this.getBlog()
+    this.getBlog();
     this.titleService.setTitle(this.title);
     this.metaTagService.updateTag(
       { name: 'description', content: 'Looking for the best programs and activities for your kids? Wondrfly is the leading platform for parents to discover indoor and outdoor activities for kids ages 3-14 years.' }
