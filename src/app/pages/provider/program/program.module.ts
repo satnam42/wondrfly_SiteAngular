@@ -10,18 +10,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalComponent } from '../program/setting/modal/modal.component';
 import { SettingComponent } from './setting/setting.component'
-import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { ChartsModule, ThemeService } from 'ng2-charts';
-import { AutocompleteLibModule } from 'angular-ng-autocomplete';
-import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { AgmCoreModule } from '@agm/core';
 import { NgFileDragDropModule } from 'ng-file-drag-drop';
-import { MatIconModule } from '@angular/material/icon';
-import {MatSliderModule} from '@angular/material/slider';
-import {MatStepperModule} from '@angular/material/stepper';
-import {MatTableModule} from '@angular/material/table';
-import {MatMenuModule} from '@angular/material/menu';
-import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { ProgramComponent } from './program.component';
 
 
 
@@ -30,6 +22,7 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
 @NgModule({
   entryComponents: [ ModalComponent],
   declarations: [
+    ProgramComponent,
     HomeComponent,
     ListComponent,
     AddComponent,
@@ -39,21 +32,11 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
   ],
   imports: [
     CommonModule,
+    ProgramRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     CoreModule,
-    MatSliderModule,
-    NgxSliderModule,
-    NgxUiLoaderModule,
-    MatIconModule,
     CommonModule,
-    MatStepperModule,
-    MatMenuModule,
-    ProgramRoutingModule,
-    ChartsModule,
-    AutocompleteLibModule,
-    MatTableModule,
-    InfiniteScrollModule,
     AgmCoreModule.forRoot({
       // apiKey: 'AIzaSyCgd-rD47NFwKVpQ30skw_D-qWUMHrxjO4',
       apiKey: 'AIzaSyD_5P0pxn1q9hvvTeCr3YCsDhLJoHwxs2c',
@@ -62,6 +45,7 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
     NgFileDragDropModule,
   ],
   exports: [
+    ProgramComponent,
     HomeComponent,
     ListComponent,
     AddComponent,

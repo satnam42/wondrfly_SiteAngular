@@ -31,19 +31,11 @@ import { MatStepperModule } from '@angular/material/stepper';
     ],
     imports: [
         CommonModule,
+        ForumRoutingModule,
         FormsModule,
         CustomFormsModule,
         ReactiveFormsModule,
         CoreModule,
-        MatSliderModule,
-        MatChipsModule,
-        MatAutocompleteModule,
-        NgxUiLoaderModule,
-        MatIconModule,
-        MatTooltipModule,
-        MatStepperModule,
-        ForumRoutingModule,
-        AutocompleteLibModule,
         Ng2SearchPipeModule,
         // AgmCoreModule.forRoot({
         //     apiKey: 'AIzaSyCayIBisLl_xmSOmS3g524FAzEI-ZhT1sc'

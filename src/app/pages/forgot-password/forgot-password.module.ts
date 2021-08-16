@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule, Routes } from '@angular/router';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { MatIconModule } from '@angular/material/icon';
+import { CoreModule } from 'src/app/core/core.module';
 
 
 const routes: Routes = [
@@ -19,9 +20,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    MatIconModule,
+    CoreModule,
     RouterModule,
-    NgxUiLoaderModule,
     RouterModule.forChild(routes)
   ]
 })

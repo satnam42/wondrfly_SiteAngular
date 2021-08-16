@@ -20,7 +20,6 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     CoreModule,
-    NgxUiLoaderModule,
     RouterModule.forChild(routes)
   ]
 })

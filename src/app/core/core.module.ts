@@ -46,6 +46,12 @@ import { PhonePipe } from '../pages/provider/profile/profile.component';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { NgxMaskModule } from 'ngx-mask';
 import { PhoneMaskDirective } from './common/phone-mask.directive';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { NgxUiLoaderModule } from 'ngx-ui-loader';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { ChatModule } from '../pages/chat/chat.module';
+import { ChartsModule } from 'ng2-charts';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 const components = [
   HeaderComponent,
@@ -72,11 +78,14 @@ const thirdPartyModules = [
   MatToolbarModule,
   MatButtonModule,
   MatTabsModule,
+  InfiniteScrollModule,
   MatSnackBarModule,
   MatIconModule,
-  MatCheckboxModule,
-  MatRadioModule,
+  ChartsModule,
   MatFormFieldModule,
+  MatCheckboxModule,
+  NgxSliderModule,
+  MatRadioModule,
   MatInputModule,
   MatSelectModule,
   MatTooltipModule,
@@ -86,8 +95,10 @@ const thirdPartyModules = [
   MatCardModule,
   MatSidenavModule,
   MatExpansionModule,
+  NgxUiLoaderModule,
   MatListModule,
   NgxFileDropModule,
+  Ng2SearchPipeModule,
   AutocompleteLibModule,
   OwlDateTimeModule,
   OwlNativeDateTimeModule,

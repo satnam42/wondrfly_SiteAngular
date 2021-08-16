@@ -13,9 +13,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [TermConditionComponent],
   imports: [
-    CoreModule,
     CommonModule,
-    NgxUiLoaderModule,
+    CoreModule,
     RouterModule.forChild(routes)
   ]
 })

@@ -12,9 +12,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [WhyWondrflyComponent],
   imports: [
-    CoreModule,
     CommonModule,
-    NgxUiLoaderModule,
+    CoreModule,
     RouterModule.forChild(routes)
   ]
 })

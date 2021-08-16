@@ -6,10 +6,8 @@ import { LoginProviderComponent } from './login-provider/login-provider.componen
 import { ProfileComponent } from './profile/profile.component';
 import { ProgramProviderComponent } from './program-provider/program-provider.component';
 import { ProviderComponent } from './provider.component';
-import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
-import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 
 
 @NgModule({
@@ -18,7 +16,6 @@ import { AutocompleteLibModule } from 'angular-ng-autocomplete';
     CommonModule,
     ProviderRoutingModule,
     CoreModule,
-    NgxUiLoaderModule,
     FormsModule,
     ReactiveFormsModule,
     AgmCoreModule.forRoot({

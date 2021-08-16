@@ -6,9 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
 import { AppComponent } from '../app/app.component';
 import { LocalStorageService } from '../app/core/services';
-import { ProgramComponent } from './pages/provider/program/program.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ParentComponent } from './pages/parent/parent.component';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
@@ -31,7 +29,6 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { SocialLoginModule, AuthServiceConfig, FacebookLoginProvider, GoogleLoginProvider } from 'angularx-social-login';
 import { Globals } from './core/common/imageLoader';
 import { MapTheme } from './core/common/map-theme';
-import { ProgramModule } from './pages/provider/program/program.module';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -77,8 +74,6 @@ const components = [
     LandingComponent,
     SignUpComponent,
     LoginComponent,
-    ProgramComponent,
-    ParentComponent,
     SignUpGuardianComponent,
     SearchComponent,
   ],
@@ -90,22 +85,20 @@ const components = [
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    AppRoutingModule,
+    CoreModule,
     FormsModule,
     SocialLoginModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatFormFieldModule,
-    MatCheckboxModule,
+    // MatFormFieldModule,
+    // MatCheckboxModule,
     NgxMaskModule.forRoot(),
-    AppRoutingModule,
-    MatIconModule,
-    OwlDateTimeModule,
-    OwlNativeDateTimeModule,
-    NgxUiLoaderModule,
-    CoreModule,
-    NgxSliderModule,
-    AutocompleteLibModule,
+    // MatIconModule,
     ChatModule,
+    // OwlDateTimeModule,
+    // OwlNativeDateTimeModule,
+    // NgxUiLoaderModule,
     NgxDaterangepickerMd.forRoot(),
     FlatpickrModule.forRoot(),
     CalendarModule.forRoot({
@@ -113,15 +106,7 @@ const components = [
       useFactory: adapterFactory,
     }),
     SocketIoModule.forRoot(config),
-    CoreModule,
-    FormsModule,
-    ReactiveFormsModule,
-    OwlDateTimeModule,
-    OwlNativeDateTimeModule,
-    NgxUiLoaderModule,
-    AutocompleteLibModule,
     InfiniteScrollModule,
-    ProgramModule,
     Ng2SearchPipeModule,
     MatProgressBarModule,
     AgmCoreModule.forRoot({
