@@ -18,7 +18,6 @@ import { RouterModule } from '@angular/router';
 import { ImageCropModule } from './components/image-crop/image-crop.module';
 import { SignupPopupComponent } from './components/signup-popup/signup-popup.component';
 import { RatingComponent } from './components/rating/rating.component';
-import { OnlineProgramsComponent } from './components/online-programs/online-programs.component';
 import { HttpClientJsonpModule } from '@angular/common/http';
 import { MailchimpSubscribeForm } from './components/mailchimp-subscribe-form/mailchimp-subscribe-form.component';
 import { MarkdwonPipe } from './shared/markdwon.pipe';
@@ -44,12 +43,10 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { PhonePipe } from '../pages/provider/profile/profile.component';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
-import { NgxMaskModule } from 'ngx-mask';
 import { PhoneMaskDirective } from './common/phone-mask.directive';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
-import { ChatModule } from '../pages/chat/chat.module';
 import { ChartsModule } from 'ng2-charts';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
@@ -66,7 +63,6 @@ const components = [
   SocialLoginComponent,
   SignupPopupComponent,
   RatingComponent,
-  OnlineProgramsComponent,
   MailchimpSubscribeForm,
   MarkdwonPipe,
   PhoneMaskDirective,
