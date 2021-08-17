@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/core/services/api.service.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
@@ -12,7 +12,6 @@ import { environment } from 'src/environments/environment.prod';
 
 import { Meta, Title } from '@angular/platform-browser';
 import { Options } from '@angular-slider/ngx-slider';
-import { EFAULT } from 'constants';
 @Component({
   selector: 'search',
   templateUrl: './search.component.html',
@@ -162,7 +161,7 @@ export class SearchComponent implements OnInit {
     private dataservice: DataService,
     public imageLoader: Globals,
     public mapTheme: MapTheme,
-
+    private ngZone: NgZone,
     private titleService: Title,
     private metaTagService: Meta,
 
@@ -262,12 +261,24 @@ console.log('skjdgfsdf',this.toDate)
       }
     }
     this.getCategory();
-    // this.mapsAPILoader.load().then(() => {
-    //   // this.setCurrentLocation();
-    //   this.geoCoder = new google.maps.Geocoder;
-    // });
+    this.mapsAPILoader.load().then(() => {
+   let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);
+   autocomplete.addListener('place_changed', () => {
+     this.ngZone.run(() => {
+       let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+      place.formatted_address;
+      console.log(place.formatted_address)
+       if (place.geometry === undefined || place.geometry === null) {
+         return;
+       }
+       this.lat = place.geometry.location.lat();
+       this.lng= place.geometry.location.lng();
+     });
+   });
+    });
 
   }
+
   // Get Current Location Coordinates
    setCurrentLocation() {
     this.mapsAPILoader.load().then(() => {

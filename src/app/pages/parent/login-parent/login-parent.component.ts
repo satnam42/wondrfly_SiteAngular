@@ -23,7 +23,7 @@ export class LoginParentComponent implements OnInit {
   addChildData: any = new Child
   categoryIds = [];
   parent=new User;
-  // ---------------autucomplete-------------  
+  // ---------------autucomplete-------------
   visible: boolean = true;
   selectable: boolean = true;
   removable: boolean = true;
@@ -54,7 +54,7 @@ export class LoginParentComponent implements OnInit {
   constructor(private router: Router,
     private apiservice: ApiService,
     private ngxLoader: NgxUiLoaderService,
-    
+
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
     public mapTheme:MapTheme,
@@ -76,11 +76,11 @@ export class LoginParentComponent implements OnInit {
   remove(t) {
     this.selectSkills(t)
     const index: number  = this.selectedTags.indexOf(t);
-    
+
     if (index >= 0) {
       this.selectedTags.splice(index, 1);
     }
-   
+
   }
 
 
@@ -117,7 +117,7 @@ export class LoginParentComponent implements OnInit {
       }
   }
 }
- 
+
   addChild(){
     this.kid.interestInfo = this.selectedTags
     this.kid.parentId= this.parent.id
@@ -132,10 +132,10 @@ export class LoginParentComponent implements OnInit {
       });
       this.ngxLoader.stop();
     }
-    
-  
 
-  
+
+
+
 
   // ------------------------------------------auto-complete search functionality for tags-------------------
   selectEvent(item) {
@@ -155,15 +155,15 @@ export class LoginParentComponent implements OnInit {
 
   onChangeSearch(key: string) {
     if(this.step4===true || this.step3===true){
-    if(key.length>2){ 
+    if(key.length>2){
       this.ngxLoader.start();
       this.apiservice.searchTag(key).subscribe((res: any) => {
         this.searchTags = res;
         this.ngxLoader.stop()
       });
     }
-   
-    
+
+
   }
   }
 
@@ -234,7 +234,7 @@ export class LoginParentComponent implements OnInit {
             return;
           }
 
-          // set latitude, longitude 
+          // set latitude, longitude
           this.zoom = 12;
           this.latitude = place.geometry.location.lat();
           this.longitude = place.geometry.location.lng();
@@ -243,7 +243,7 @@ export class LoginParentComponent implements OnInit {
         });
       });
     });
-  
+
 
   }
 
