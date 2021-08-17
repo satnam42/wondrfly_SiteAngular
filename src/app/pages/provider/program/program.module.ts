@@ -16,6 +16,9 @@ import { NgFileDragDropModule } from 'ng-file-drag-drop';
 import { ProgramComponent } from './program.component';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import { RatingModule } from 'src/app/core/components/rating/rating.module';
+import { DragDropModule } from 'src/app/core/components/drag-drop/drag-drop.module';
+
 
 
 
@@ -29,7 +32,7 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
     ListComponent,
     AddComponent,
     DetailComponent,
-    ModalComponent,
+    // ModalComponent,
     SettingComponent,
   ],
   imports: [
@@ -38,15 +41,12 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
     FormsModule,
     ReactiveFormsModule,
     CoreModule,
+    RatingModule,
+    DragDropModule,
     NgxSliderModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
-    AgmCoreModule.forRoot({
-      // apiKey: 'AIzaSyCgd-rD47NFwKVpQ30skw_D-qWUMHrxjO4',
-      apiKey: 'AIzaSyD_5P0pxn1q9hvvTeCr3YCsDhLJoHwxs2c',
-      libraries: ['places']
-    }),
-    NgFileDragDropModule,
+    AgmCoreModule,
   ],
   exports: [
     ProgramComponent,

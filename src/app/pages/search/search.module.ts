@@ -8,6 +8,8 @@ import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { AgmCoreModule } from '@agm/core';
 import { OnlineProgramsComponent } from 'src/app/core/components/online-programs/online-programs.component';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { RatingModule } from 'src/app/core/components/rating/rating.module';
+import { SignupPopupModule } from 'src/app/core/components/signup-popup/signup-popup.module';
 
 
 @NgModule({
@@ -16,7 +18,9 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
     CommonModule,
     SearchRoutingModule,
     CoreModule,
+    RatingModule,
     FormsModule,
+    SignupPopupModule,
     ReactiveFormsModule,
     NgxDaterangepickerMd,
     AgmCoreModule,  

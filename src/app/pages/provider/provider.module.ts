@@ -8,6 +8,7 @@ import { ProgramProviderComponent } from './program-provider/program-provider.co
 import { ProviderComponent } from './provider.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
+import { RatingModule } from 'src/app/core/components/rating/rating.module';
 
 
 @NgModule({
@@ -17,11 +18,9 @@ import { AgmCoreModule } from '@agm/core';
     ProviderRoutingModule,
     CoreModule,
     FormsModule,
+    RatingModule,
     ReactiveFormsModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyD_5P0pxn1q9hvvTeCr3YCsDhLJoHwxs2c',
-      libraries: ['places']
-    }),
+    AgmCoreModule
   ]
 })
 export class ProviderModule { }

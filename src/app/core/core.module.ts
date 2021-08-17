@@ -1,29 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgxFileDropModule } from 'ngx-file-drop';
 import { FooterComponent } from '../../app/core/components/footer/footer.component';
 import { HeaderComponent } from '../../app/core/components/header/header.component';
 import { AuthsService } from './services/auths.service';
 import { UserGuard } from './guards/user.guard';
-import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
-import { CarouselComponent } from './components/carousel/carousel.component';
-import { DragDropComponent } from './components/drag-drop/drag-drop.component';
 import { Header2Component } from './components/header2/header2.component';
 import { Footer2Component } from './components/footer2/footer2.component';
-import { AlertComponent } from './components/alert/alert.component';
 import { ReadMoreComponent } from './components/read-more/read-more.component';
 import { SocialLoginComponent } from './components/social-login/social-login.component';
 import { RouterModule } from '@angular/router';
-import { ImageCropModule } from './components/image-crop/image-crop.module';
 import { SignupPopupComponent } from './components/signup-popup/signup-popup.component';
-import { RatingComponent } from './components/rating/rating.component';
 import { HttpClientJsonpModule } from '@angular/common/http';
 import { MailchimpSubscribeForm } from './components/mailchimp-subscribe-form/mailchimp-subscribe-form.component';
 import { MarkdwonPipe } from './shared/markdwon.pipe';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -51,16 +43,16 @@ const components = [
   HeaderComponent,
   FooterComponent,
   // BreadcrumbComponent,
-  CarouselComponent,
-  DragDropComponent,
+  // CarouselComponent,
+  // DragDropComponent,
   Header2Component,
   Footer2Component,
   // AlertComponent,
   ReadMoreComponent,
-  SocialLoginComponent,
-  SignupPopupComponent,
-  RatingComponent,
-  MailchimpSubscribeForm,
+  // SocialLoginComponent,
+  // SignupPopupComponent,
+  // RatingComponent,
+  // MailchimpSubscribeForm,
   MarkdwonPipe,
   PhoneMaskDirective,
   PhonePipe,
@@ -87,7 +79,6 @@ const thirdPartyModules = [
   MatExpansionModule,
   NgxUiLoaderModule,
   MatListModule,
-  NgxFileDropModule,
   Ng2SearchPipeModule,
   AutocompleteLibModule,
   MatSlideToggleModule,

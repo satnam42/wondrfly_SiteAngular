@@ -8,6 +8,7 @@ import { CoreModule } from 'src/app/core/core.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BlogSearchComponent } from './blog-search/blog-search.component';
 import { BlogsComponent } from './blogs.component';
+import { SignupPopupModule } from 'src/app/core/components/signup-popup/signup-popup.module';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { BlogsComponent } from './blogs.component';
     ReactiveFormsModule,
     FormsModule,
     CoreModule,
+    SignupPopupModule,
     RouterModule.forChild(BlogsRoutes)
   ]
 })

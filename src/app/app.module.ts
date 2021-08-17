@@ -24,6 +24,8 @@ import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxMaskModule } from 'ngx-mask';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { MailchimpSubscribeForm } from './core/components/mailchimp-subscribe-form/mailchimp-subscribe-form.component';
+import { MailchimpSubscribeFormModule } from './core/components/mailchimp-subscribe-form/mailchimp-subscribe-form.module';
 
 
 
@@ -73,6 +75,7 @@ const components = [
     SocialLoginModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MailchimpSubscribeFormModule,
     NgxMaskModule.forRoot(),
     // ChatModule,
     NgxDaterangepickerMd.forRoot(),
