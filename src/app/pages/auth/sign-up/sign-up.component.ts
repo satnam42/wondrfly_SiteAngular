@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthsService } from '../../core/services/auths.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/core/services/api.service.service';
@@ -11,6 +10,7 @@ import axios from 'axios';
 import { environment } from 'src/environments/environment';
 import { Meta, Title } from '@angular/platform-browser';
 import { ToastrService } from 'ngx-toastr';
+import { AuthsService } from 'src/app/core/services/auths.service';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',

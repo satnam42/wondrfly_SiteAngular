@@ -11,15 +11,11 @@ import { environment } from '../environments/environment';
 import { LandingComponent } from './pages/landing/landing.component';
 import { AuthsService } from './core/services/auths.service';
 import { UserGuard } from './core/guards';
-import { ChatModule } from './pages/chat/chat.module';
 import { ChatService } from './core/services/chat.service';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { FlatpickrModule } from 'angularx-flatpickr';
-import { SignUpGuardianComponent } from './pages/sign-up-guardian/sign-up-guardian.component';
-import { SignUpComponent } from './pages/sign-up/sign-up.component';
-import { LoginComponent } from './pages/login/login.component';
 import { AgmCoreModule } from '@agm/core';
 import { SocialLoginModule, AuthServiceConfig, FacebookLoginProvider, GoogleLoginProvider } from 'angularx-social-login';
 import { Globals } from './core/common/imageLoader';
@@ -62,9 +58,6 @@ const components = [
   declarations: [
     ...components,
     LandingComponent,
-    SignUpComponent,
-    LoginComponent,
-    SignUpGuardianComponent,
   ],
 
   entryComponents: [
@@ -81,7 +74,7 @@ const components = [
     ReactiveFormsModule,
     HttpClientModule,
     NgxMaskModule.forRoot(),
-    ChatModule,
+    // ChatModule,
     NgxDaterangepickerMd.forRoot(),
     FlatpickrModule.forRoot(),
     CalendarModule.forRoot({

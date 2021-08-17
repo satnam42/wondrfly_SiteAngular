@@ -1,17 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LandingComponent } from './pages/landing/landing.component';
-import { UserGuard } from './core/guards';
-import { SignUpGuardianComponent } from './pages/sign-up-guardian/sign-up-guardian.component';
-import { SignUpComponent } from './pages/sign-up/sign-up.component';
-import { LoginComponent } from './pages/login/login.component';
+
 // main routes
 const routes: Routes = [
 
   { path: '', component: LandingComponent },
-  { path: 'sign-up', component: SignUpComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'sign-up-guardian', component: SignUpGuardianComponent },
   { path: 'term-condition', loadChildren: () => import('.//pages/term-condition/term-condition.module').then(m => m.TermConditionModule) },
   { path: 'about-wondrfly', loadChildren: () => import('.//pages/why-wondrfly/why-wondrfly.module').then(m => m.WhyWondrflyModule) },
   { path: 'search', loadChildren: () => import('.//pages/search/search.module').then(m => m.SearchModule) },
@@ -20,10 +14,10 @@ const routes: Routes = [
   { path: 'privacyPolicy', loadChildren: () => import('.//pages/privacy-policy/privacy-policy.module').then(m => m.PrivacyPolicyModule) },
   { path: 'contactUs', loadChildren: () => import('.//pages/contact-us/contact-us.module').then(m => m.ContactUsModule) },
 
-  {
-    path: 'chat', canActivate: [UserGuard],
-    loadChildren: () => import('.//pages/chat/chat.module').then(m => m.ChatModule),
-  },
+  // {
+  //   path: 'chat', canActivate: [UserGuard],
+  //   loadChildren: () => import('.//pages/chat/chat.module').then(m => m.ChatModule),
+  // },
       {
         path: 'program',
         loadChildren: () => import('.//pages/provider/program/program.module').then(m => m.ProgramModule),
@@ -54,6 +48,8 @@ const routes: Routes = [
         path: 'blogs',
         loadChildren: () => import('.//pages/blogs/blogs.module').then(m => m.BlogsModule),
       },
+
+  { path: '', loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule) },
 
 
   { path: '**', redirectTo: 'search' },

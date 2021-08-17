@@ -33,9 +33,6 @@ export class BlogPageComponent implements OnInit {
   title = 'Top Kid Friendly Blogs to Follow - Wondrfly';
 
   constructor(
-    private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone,
-    private apiservice: ApiService,
     private titleService: Title,
     private metaTagService: Meta,
     private ngxLoader: NgxUiLoaderService,
@@ -68,9 +65,11 @@ searchCatg(data) {
 
 
 getBlog(){
+  this.ngxLoader.start()
   const responcee = axios.get(`${this.blogUrl}/blogs`).then(response => {
     this.blog = response.data
     this.blog.reverse()
+    this.ngxLoader.stop()
     // this.random = this.blog[Math.floor(Math.random() * this.blog.length)]
   });
   }

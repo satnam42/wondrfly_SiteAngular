@@ -5,7 +5,6 @@ import { BlogDetailComponent } from './blog-detail/blog-detail.component';
 import { RouterModule } from '@angular/router';
 import { BlogsRoutes } from './blogs.routing';
 import { CoreModule } from 'src/app/core/core.module';
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BlogSearchComponent } from './blog-search/blog-search.component';
 import { BlogsComponent } from './blogs.component';
@@ -15,10 +14,9 @@ import { BlogsComponent } from './blogs.component';
   declarations: [BlogPageComponent, BlogDetailComponent, BlogSearchComponent, BlogsComponent ],
   imports: [
     CommonModule,
-    CoreModule,
     ReactiveFormsModule,
-    Ng2SearchPipeModule,
     FormsModule,
+    CoreModule,
     RouterModule.forChild(BlogsRoutes)
   ]
 })

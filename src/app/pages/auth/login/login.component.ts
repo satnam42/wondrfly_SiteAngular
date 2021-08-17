@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthsService } from '../../core/services/auths.service';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { ApiService } from 'src/app/core/services/api.service.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader'
@@ -11,6 +10,7 @@ import { User } from 'src/app/core/models';
 import { environment } from 'src/environments/environment';
 import { Meta,  Title } from '@angular/platform-browser';
 import { ToastrService } from 'ngx-toastr';
+import { AuthsService } from 'src/app/core/services/auths.service';
 // import { User } from '../../core/models/index'
 @Component({
   selector: 'app-login',
