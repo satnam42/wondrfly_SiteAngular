@@ -197,8 +197,6 @@ export class SearchComponent implements OnInit {
 choosedDate(e){
 this.fromDate =e.startDate._d
 this.toDate=e.endDate._d
-console.log('skjdgfsdf',this.fromDate)
-console.log('skjdgfsdf',this.toDate)
   }
 
   centerChange(e) {
@@ -207,7 +205,7 @@ console.log('skjdgfsdf',this.toDate)
     this.locations = [];
     this.lat = e.lat;
     this.lng = e.lng;
-    this.zoom =14;
+    this.programByLatLng();
   }
 
   }
@@ -273,6 +271,7 @@ console.log('skjdgfsdf',this.toDate)
        }
        this.lat = place.geometry.location.lat();
        this.lng= place.geometry.location.lng();
+       this.programByLatLng();
      });
    });
     });
@@ -288,14 +287,25 @@ console.log('skjdgfsdf',this.toDate)
           this.lat = position.coords.latitude;
           this.lng = position.coords.longitude;
           console.log(this.lat,this.lng)
-          this.getAddress(this.lat, this.lng);
+          // this.getAddress(this.lat, this.lng);
+          this.programByLatLng();
         });
       }      this.geoCoder = new google.maps.Geocoder;
     });
-
   }
 
+  programByLatLng(){
+    this.apiservice.programByLatLng(this.lat, this.lng).subscribe(res => {
+      console.log('programs', res);
+      // this.programs = []; // testing
 
+      // if (this.programList.items) {
+      //   this.programs = this.programList.items;
+      //   this.isScrol = true;
+      // }
+    });
+
+  }
   getAddress(latitude, longitude) {
     this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {
       console.log(results);

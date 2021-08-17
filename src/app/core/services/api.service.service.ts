@@ -984,6 +984,30 @@ export class ApiService {
         });
         return subject.asObservable();
     }
+      // ----------------------------- program get by lat long or (location) -------------------------->
+
+      programByLatLng(lat,lng): Observable<Category> {
+        const subject = new Subject<Category>();
+        this.http.get(`${this.root}/programs/nearBy?lat=${lat}&lng=${lng}`, this.getHeader()).subscribe((responseData: any) => {
+            if (responseData.statusCode !== 200) {
+                throw new Error('This request has failed ' + responseData.status);
+            }
+            const dataModel = responseData;
+            if (!dataModel.isSuccess) {
+                if (responseData.status === 200) {
+                    // this.toasty.error(dataModel.error);
+                    throw new Error(dataModel.code || dataModel.message || 'failed');
+                } else {
+                    throw new Error(responseData.status + '');
+                }
+            }
+            subject.next(responseData);
+        }, (error) => {
+            const dataModel = error;
+            subject.next(dataModel.error);
+        });
+        return subject.asObservable();
+    }
     // ----------------------------- program filter -------------------------->
 
     programFilter(filter, pageNo, pageSize): Observable<Program> {
