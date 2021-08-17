@@ -296,6 +296,7 @@ this.toDate=e.endDate._d
 
   programByLatLng(){
     this.apiservice.programByLatLng(this.lat, this.lng).subscribe(res => {
+      this.showReset = true;
       console.log('programs', res);
       // this.programs = []; // testing
 
