@@ -657,7 +657,7 @@ button:focus {
 .left_search{
     background: #FFFFFF;
     border-radius: 50px;
-    width: 100%;
+    width:80%;
     position: relative;
     min-height: 38px !important;
     border: 1px solid #E0E0E0;
@@ -1043,7 +1043,7 @@ a.top-rateds {
 }
 
 .banner_form .form-group input.camp_input{
-    min-width: 390px;
+    min-width:250px;
     height: 55px;
     margin-top: 0px !important;
 }
@@ -2073,21 +2073,21 @@ hr.N_line {
     color: #828282 !important;
 }
 .search-filterss {
-    padding: 22px;
+    padding:8px;
     padding-left: 38px;
     background: #F9FAFA;
-    border: 2px solid #E0E0E0;
+    /* border: 2px solid #E0E0E0; */
     box-sizing: border-box;
     border-right: 0px;
   border-left: 0px;
     border-bottom: 1px solid #e0e0e0;
     width: 100%;
-    padding-bottom: 0px;
+    padding-bottom: 15px;
 }
 .search-filtersk {
   padding: 15px;
   background: #F9FAFA;
-  border:2px solid #E0E0E0;
+  /* border:2px solid #E0E0E0; */
   box-sizing: border-box;
   border-right: 0px;
   border-left: 0px;
@@ -2100,11 +2100,11 @@ hr.N_line {
   padding: 20px;
   padding-bottom: 10px;
   padding-top: 17px;
-  border-top: 1px solid #E0E0E0;
+/* border-top: 1px solid #E0E0E0; */
 }
-.toggle-border{
+/* .toggle-border{
   border-top: 1px solid #E0E0E0;
-}
+} */
 .form-group.saerch-activities {
   background: #F2F2F2;
     border-radius: 30px;
@@ -2724,6 +2724,103 @@ span.simple-toggle {
 #Dayss .typess-flex input {
   border-radius: 20px !important;
 }
+
+
+/* search location */
+.search-location input {
+  min-width: 190px;
+    background-color: transparent;
+
+}
+.search-location:before {
+  content: "";
+  width: 2px;
+  height: 40px;
+  background-color: #E0E0E0;
+  position: absolute;
+  left: 33%;
+  top: 7px;
+}
+
+/* locatrion-popup */
+.location-popup span img {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+.location-popup {
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+.location-popup h1 {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 36px;
+  text-align: center;
+  color: #494949;
+}
+.location-popup h2 {
+  font-family: "Poppins";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 36px;
+    text-align: center;
+    color: #494949;
+    padding-left: 40px;
+    padding-right: 80px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: baseline;
+}
+.location-popup h2 img{
+  margin-top: 10px;
+}
+.sign_in_btn{
+  text-align: center;
+  margin:8px 0 0 0;
+}
+.SignBtn{
+  background: #53B2E8;
+  border: 1px solid #53B2E8;
+  box-sizing: border-box;
+  box-shadow: 0px 2px 2px rgb(0 0 0 / 12%);
+  border-radius: 50px;
+  min-width: 205px;
+  min-height: 55px;
+  line-height: 55px;
+  text-align: center;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 13px;
+  margin: 0 auto;
+  text-transform: uppercase;
+  transition: 0.8s;
+}
+.SignBtn.cancel{
+  background: transparent;
+  border: 1px solid #53B2E8;
+  color: #53B2E8;
+  margin: 0 auto 0 16px;
+}
+.sign_in_btn button.SignBtn {
+  margin-left: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @media only screen and (min-width:1024px) and (max-width:1366px) and (orientation: portrait)  {
 .activity .media-left {

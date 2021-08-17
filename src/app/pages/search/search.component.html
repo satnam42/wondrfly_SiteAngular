@@ -4,7 +4,7 @@
 <section class="main_outer">
     <div class="search_activity">
         <div class="row row-0">
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <div class="search-filterupper">
                     <div class="search-filed">
                         <div class="left-searchpd">
@@ -12,8 +12,11 @@
                                 <div>
                                     <form class="banner_form" data-toggle="collapse" href="#dropdownprogram-provider" role="button" aria-expanded="false" aria-controls="dropdownprogram-provider">
                                         <div class="form-group ">
-                                            <input type="text" autocomplete="off" (keyup)="searchCategory(activityName);providerSearch(activityName)" placeholder="Search Activity..."
-                                                class="form-control camp_input" name="activityName" [(ngModel)]="activityName">
+                                            <input type="text" autocomplete="off" (keyup)="searchCategory(activityName);providerSearch(activityName)" placeholder="Search activity or provider..." class="form-control camp_input" name="activityName" [(ngModel)]="activityName">
+                                        </div>
+                                        <div class="search-location">
+                                          <span data-toggle="modal" data-target="#locationModal"> <img src="assets/search-location.png"></span>
+                                            <input type="text" placeholder="Jersey">
                                         </div>
                                         <div class="form-group saerch-activities">
                                             <h6>Activities</h6>
@@ -55,7 +58,7 @@
                 </div>
             </div>
 
-            <div class="col-md-6 toggle-border">
+            <div class="col-md-4 toggle-border">
                 <div class="toggle-filtersearch">
                     <button [class.active]="isOnline" (click)="isInPerson=false;isOnline=true;inpersonOrVirtual('online')" class="btn1-filtersearch">
                         Online
@@ -69,7 +72,7 @@
 
        <div class="row row-0">
         <div class="col-12 searchs-filters">
-            <div class="search-filtersk" *ngIf="isInPerson">
+            <!-- <div class="search-filtersk" *ngIf="isInPerson">
                 <div class="search-filterlower">
                     <form>
                         <div class="form-group">
@@ -77,7 +80,7 @@
                         </div>
                     </form>
                 </div>
-            </div>
+            </div> -->
             <div class="search-filterss">
                 <div class="category_list" id="accordionExample">
                     <ul>
@@ -270,7 +273,7 @@
                         </li>
                         <li class="cursor">
                             <a aria-controls="collapseExample" [ngClass]="{'active' : isTimeFilter}"
-                            (click)="filterName='time';openModal(isCategoryFilter=false,isTypeFilter=false,isDaysFilter=false,isPriceFilter=false,isDateFilter=false,isAgeFilter=false,isTimeFilter=true,isCategoryModal=false,isPriceModal=false,isDateModal=false,isAgeModal=false,isTimeModal=true)" 
+                            (click)="filterName='time';openModal(isCategoryFilter=false,isTypeFilter=false,isDaysFilter=false,isPriceFilter=false,isDateFilter=false,isAgeFilter=false,isTimeFilter=true,isCategoryModal=false,isPriceModal=false,isDateModal=false,isAgeModal=false,isTimeModal=true)"
                             aria-expanded="true" data-target="#timess"
                             data-toggle="collapse">Time</a>
                             <div class="collapse main_collpase typess verification_modal" id="timess"
@@ -1439,4 +1442,40 @@
     </div>
 </div>
 
+
+<!----------------------------------------- location Modal ------------------------------------------------------->
+
+<div class="modal fade verification_modal Location-Modal" id="locationModal" data-backdrop="static" data-keyboard="false"
+    tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <button type="button" class="close" id='close_modal' data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true" class="icon-close"></span>
+            </button>
+            <div class="modal-body">
+
+              <div class="location-popup">
+                <span><img src="assets/logo.svg"></span>
+
+                <h1>
+                  Would allow us to use your location?
+
+                </h1>
+
+                <h2>
+                  <span><img src="assets/location-search1.png"></span>
+                  Your location will help us to find the best activities near you
+                </h2>
+              </div>
+
+              <div class="sign_in_btn">
+                <button class="SignBtn cancel">Not Now</button>
+                <button type="submit" class="SignBtn" disabled="">Allow</button>
+              </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
 

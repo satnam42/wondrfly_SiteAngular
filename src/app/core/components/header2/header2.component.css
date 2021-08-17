@@ -170,10 +170,10 @@ input.form-control, button{
 .before-nav {
   margin-right: -83px;
 }
-header.search-header {
+/* header.search-header {
   box-shadow: none;
   border: 1px solid #E0E0E0;
-}
+} */
 @media only screen and (min-width:1024px) and (max-width:1366px) and (orientation: portrait)  {
 .before-nav {
   margin-right: -15px;
