@@ -76,18 +76,17 @@ export class SignUpGuardianComponent implements OnInit {
       console.log('resss', res);
       if (res.isSuccess) {
         this.router.navigate(['/login']);
-        this.toastr.success(this.message, 'ok!');
-        // this.toastyService.success({ title: 'Success', msg: this.message });
+        this.toastr.success('Success',this.message);
       }else {
         this.toastr.error(res.error, 'ok!');
-        // this.toastyService.error({ title: '', msg: res.error });
+        this.toastr.error('!', res.error );
       }
     });
         }
       }).catch(error => {
         // Handle error.
         console.log('An error occurred:',  error.response);
-        // this.toastyService.error({ title:'', msg: error.response.data.data[0].messages[0].message })
+        this.toastr.error('!', error.response.data.data[0].messages[0].message)
       });
   }
 

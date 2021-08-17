@@ -127,21 +127,21 @@ export class ProgramProviderComponent implements OnInit {
       this.claim.requestOn = this.user.id;
       this.ngxLoader.start();
       this.apiservice.claimRequest(this.claim).subscribe(res => {
-        // this.toastyService.info({ title: 'Info', msg: this.claimMsg })
+        this.toastr.info('Info', this.claimMsg)
         this.ngxLoader.stop();
       });
     }
     else if (this.userData && this.userData.role === 'parent') {
       this.ngxLoader.start();
       let msg = 'please login as provider to claim this business!';
-      // this.toastyService.info({ title: 'Info', msg: msg })
+      this.toastr.info('Info', msg)
       this.router.navigate(['/login']);
       this.ngxLoader.stop();
     }
     else {
       this.ngxLoader.start();
       let msg = 'please  register or login as provider to claim this business and try again!'
-      // this.toastyService.info({ title: 'Info', msg: msg })
+      this.toastr.info('Info', msg)
       this.router.navigate(['/login']);
       this.ngxLoader.stop();
     }

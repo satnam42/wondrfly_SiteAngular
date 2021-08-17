@@ -32,13 +32,13 @@ export class MailchimpSubscribeForm {
 			this.http.jsonp<MailChimpResponse>(mailChimpUrl, 'c').subscribe(response => {
 					this.submitted = true;
 					if(response.result=='success'){
-						// this.toastyService.success({ title: '', msg: response.msg })
+						this.toastr.success( '', response.msg )
 					}
 					else{
-						// this.toastyService.error({ title: '', msg:this.emailControl.value +' is already subscribed to Wondrfly' })
+						this.toastr.error( '', this.emailControl.value +' is already subscribed to Wondrfly')
 					}
 			}, error => {
-				// this.toastyService.error({ title: '', msg: error })
+				this.toastr.error( '', error )
 
 			});
 		}

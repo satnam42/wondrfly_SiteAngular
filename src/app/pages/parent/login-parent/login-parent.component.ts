@@ -100,17 +100,14 @@ export class LoginParentComponent implements OnInit {
     console.log('birthYear', birthYear)
     console.log('currentYear', currentYear)
     if (birthYear >= currentYear) {
-      // this.toastyService.warning({ title: '', msg: 'Please Fill Valid Birth Year!' })
+      this.toastr.warning('!', 'Please Fill Valid Birth Year!')
     }
     else {
       var ageDifMs = Date.now() - birth.getTime();
       var ageDate = new Date(ageDifMs); // miliseconds from epoch
       var age = Math.abs(ageDate.getUTCFullYear() - 1970);
       if(age>=18 || age<=0){
-        // this.toastyService.warning({
-        //   title: "",
-        //   msg: "please fill valid birth year",
-        // });
+        this.toastr.warning( "!","please fill valid birth year");
       }else{
       this.kid.age = String(age);
       this.kid.relationToChild = 'father'

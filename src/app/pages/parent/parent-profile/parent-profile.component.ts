@@ -470,10 +470,10 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
         else {
           msg = 'Child Deactivated'
         }
-        // this.toastyService.info({ title: "Info", msg: msg });
+        this.toastr.info("Info",  msg );
         this.onChildren(parentId);
       } else {
-        // this.toastyService.error({ title: "Error", msg: res.error });
+        this.toastr.error("Error", res.error);
       }
     });
   }
@@ -483,7 +483,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
       console.log('delete', res)
       this.ngxLoader.stop();
       if (res.isSuccess) {
-        // this.toastyService.info({ title: "Info", msg: "Guardian deleted! " });
+        this.toastr.info( "Info","Guardian deleted!");
       }
       this.onGuardian(this.currentUser.id)
     });
@@ -501,10 +501,10 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
         else {
           msg = 'Guardian Deactivated'
         }
-        // this.toastyService.info({ title: "Info", msg: msg });
+        this.toastr.info( "Info", msg);
       }
       else {
-        // this.toastyService.error({ title: "Error", msg: res.error });
+        this.toastr.error("Error", res.error);
       }
       this.onGuardian(this.currentUser.id)
     });
@@ -514,17 +514,14 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
     this.apiservice.activeDeactiveUser(id, !isActivated).subscribe((res) => {
       this.ngxLoader.stop();
       if (res && res.isActivated === false) {
-        // this.toastyService.info({ title: "Info", msg: "acount Deactivated!" });
-        return this.getParentById();
+        this.toastr.info( "Info", "acount Deactivated!");
+      this.getParentById();
       } else {
         if (res && res.isActivated === true) {
-          // this.toastyService.info({ title: "Info", msg: "acount Activated!" });
-          return this.getParentById();
+          this.toastr.info("Info", "acount Activated!");
+        this.getParentById();
         } else {
-          // this.toastyService.error({
-          //   title: "Error",
-          //   msg: "somthing went wrong!",
-          // });
+          this.toastr.error("Error","somthing went wrong!");
         }
       }
     });
@@ -546,12 +543,9 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
     this.apiservice.tellFriend(this.tellFriendData).subscribe((res: any) => {
       this.ngxLoader.stop();
       if (res) {
-        // this.toastyService.info({ title: "Info", msg: res.message });
+        this.toastr.info("Info", res.message );
       } else {
-        // this.toastyService.error({
-        //   title: "Error",
-        //   msg: "somthing went wrong!",
-        // });
+        this.toastr.error("Error","somthing went wrong!");
       }
     });
     this.ngxLoader.stop();
@@ -590,12 +584,9 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
       .subscribe((res: any) => {
         this.ngxLoader.stop();
         if (res.isSuccess) {
-          // this.toastyService.info({ title: "", msg: "Thankyou For Feedback!" });
+          this.toastr.info("Info","Thankyou For Feedback!");
         } else {
-          // this.toastyService.error({
-          //   title: "",
-          //   msg: "something went wrong, please try again Later!",
-          // });
+          this.toastr.error("Error","something went wrong, please try again Later!");
         }
       });
     this.ngxLoader.stop();
@@ -643,10 +634,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
         this.headerComponent.getProfileProgress();
         this.headerComponent.getUserById();
       } else {
-        // this.toastyService.error({
-        //   title: "Error",
-        //   msg: "something went wrong, please try again Later!",
-        // });
+        this.toastr.error( "Error","something went wrong, please try again Later!");
       }
     });
     this.ngxLoader.stop();
@@ -692,15 +680,15 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
       this.headerComponent.getUserById();
       this.ngxLoader.stop();
       if (res) {
-        // this.toastyService.success({ title: "Success", msg: this.message });
+        this.toastr.success("Success",this.message);
       } else {
         if (this.currentUser === null || this.currentUser === undefined) {
           this.router.navigate(["/login"]);
           let msg = "Please Login First!";
-          // this.toastyService.info({ title: "Info", msg: msg });
+          this.toastr.info( "Info", msg);
         } else {
           let msg = "Something Went Wrong!";
-          // this.toastyService.error({ title: "Error", msg: msg });
+          this.toastr.error("Error",  msg);
         }
       }
     });
@@ -712,20 +700,20 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
       .subscribe((res: any) => {
         this.ngxLoader.stop();
         if (res) {
-          // this.toastyService.info({ title: "Info", msg: res.message });
+          this.toastr.info("Info",res.message);
           this.authService.logout()
           this.router.navigate(["/login"]);
         } else {
           if (this.currentUser === null || this.currentUser === undefined) {
             this.router.navigate(["/login"]);
             let msg = "Please Login First!";
-            // this.toastyService.info({ title: "Info", msg: msg });
+            this.toastr.info( "Info", msg);
           } else {
             if (res.error === "Old Password Not Match") {
-              // this.toastyService.error({ title: "Info", msg: res.error });
+              this.toastr.error("Info", res.error );
             } else {
               let msg = "Something Went Wrong!";
-              // this.toastyService.error({ title: "Error", msg: msg });
+              this.toastr.error("Error", msg);
             }
           }
         }
@@ -739,10 +727,10 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
       if (res.isSuccess) {
         this.ngxLoader.stop();
         // this.onGuardian(id);
-        // this.toastyService.info({ title: "Info", msg: res.message.message });
+        this.toastr.info("Info",res.message.message);
       } else {
         this.ngxLoader.stop();
-        // this.toastyService.error({ title: "Info", msg: res.error });
+        this.toastr.error("Error",res.error);
       }
       this.ngxLoader.stop();
     });
@@ -755,13 +743,12 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
       this.ngxLoader.stop();
 
       if (res) {
-        // this.toastyService.info({ title: "Info", msg: "Guardian Updated!" });
+        this.toastr.info("Info", "Guardian Updated!");
       } else {
-        // this.toastyService.info({ title: "Error", msg: res.error });
+        this.toastr.info("Error", res.error);
       }
     });
     this.ngxLoader.stop();
-    // this.snack.open(msg, 'OK', { duration: 5000 });
   }
 
   addChild(userId) {
@@ -771,7 +758,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
       this.kid.avtar = this.childImageURl;
     }
     if (this.kid.name === "") {
-      // this.toastyService.error({ title: "Error", msg: childResponse.error });
+      this.toastr.error("Error", childResponse.error);
     } else {
       this.ngxLoader.start();
       var birth = new Date(this.kid.dob);
@@ -779,19 +766,13 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
       let currentYear = moment(Date.now()).format("YYYY");
       if (birthYear >= currentYear) {
         this.ngxLoader.stop();
-        // this.toastyService.warning({
-        //   title: "",
-        //   msg: "please fill valid birth year",
-        // });
+        this.toastr.warning("!","please fill valid birth year");
       } else {
         var ageDifMs = Date.now() - birth.getTime();
         var ageDate = new Date(ageDifMs); // miliseconds from epoch
         var age = Math.abs(ageDate.getUTCFullYear() - 1970);
         if (age > 20) {
-          // this.toastyService.warning({
-          //   title: "",
-          //   msg: "please fill valid birth year",
-          // });
+          this.toastr.warning("!", "please fill valid birth year")
           this.ngxLoader.stop();
         } else {
           this.kid.age = String(age);
@@ -812,7 +793,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
                   this.ngxLoader.stop();
                 });
               this.ngxLoader.stop();
-              // this.toastyService.info({ title: "Child", msg: this.addMessage });
+              this.toastr.info("Child",this.addMessage);
             }
           });
         }
@@ -828,10 +809,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
     let birthYear = moment(birth).format("YYYY");
     let currentYear = moment(Date.now()).format("YYYY");
     if (birthYear > currentYear) {
-      // this.toastyService.warning({
-      //   title: "",
-      //   msg: "please fill valid birth year",
-      // });
+      this.toastr.warning("!","please fill valid birth year",);
     } else {
       if (this.childImageURl != "" && this.childImageURl != undefined) {
         this.kid.avtar = this.childImageURl;
@@ -851,15 +829,15 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
         if (res) {
           // this.onChildren(parentId);
           let msg = "Child Updated Successfully!";
-          // this.toastyService.info({ title: "Child", msg: msg });
+          this.toastr.info("Child", msg );
         } else {
           if (this.currentUser === null || this.currentUser === undefined) {
             this.router.navigate(["/login"]);
             let msg = "Please Login First!";
-            // this.toastyService.info({ title: "Info", msg: msg });
+            this.toastr.info("Info",  msg );
           } else {
             let msg = "Something Went Wrong!";
-            // this.toastyService.error({ title: "Error", msg: msg });
+            this.toastr.error("Error", msg);
           }
         }
       });

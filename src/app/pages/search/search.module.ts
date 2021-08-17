@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { AgmCoreModule } from '@agm/core';
 import { OnlineProgramsComponent } from 'src/app/core/components/online-programs/online-programs.component';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { OnlineProgramsComponent } from 'src/app/core/components/online-programs
     ReactiveFormsModule,
     NgxDaterangepickerMd,
     AgmCoreModule,  
+    NgxSliderModule
   ]
 })
 export class SearchModule { }

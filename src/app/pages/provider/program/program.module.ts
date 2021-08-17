@@ -14,6 +14,8 @@ import { ChartsModule, ThemeService } from 'ng2-charts';
 import { AgmCoreModule } from '@agm/core';
 import { NgFileDragDropModule } from 'ng-file-drag-drop';
 import { ProgramComponent } from './program.component';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
 
 
@@ -36,7 +38,9 @@ import { ProgramComponent } from './program.component';
     FormsModule,
     ReactiveFormsModule,
     CoreModule,
-    CommonModule,
+    NgxSliderModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
     AgmCoreModule.forRoot({
       // apiKey: 'AIzaSyCgd-rD47NFwKVpQ30skw_D-qWUMHrxjO4',
       apiKey: 'AIzaSyD_5P0pxn1q9hvvTeCr3YCsDhLJoHwxs2c',
@@ -50,7 +54,7 @@ import { ProgramComponent } from './program.component';
     ListComponent,
     AddComponent,
     DetailComponent,
-    SettingComponent
+    SettingComponent,
     // ProgramComponent
   ],
   providers: [

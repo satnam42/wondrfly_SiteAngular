@@ -155,21 +155,20 @@ export class ProfileComponent implements OnInit {
       this.claim.requestOn = this.program.user;
       this.ngxLoader.start();
       this.apiservice.claimRequest(this.claim).subscribe(res => {
-        // this.toastyService.info({ title: 'Info', msg: this.message })
-        // this.snack.open(this.message, 'OK', { duration: 4000 });
+        this.toastr.info('Info', this.message)
         this.ngxLoader.stop();
 
       }); this.ngxLoader.stop();
     } else if (this.user && this.user.role === 'parent') {
       this.ngxLoader.start();
       let msg = 'please  register or login as provider to claim this business!';
-      // this.toastyService.info({ title: 'Info', msg: msg })
+      this.toastr.info('Info',msg)
       this.router.navigate(['/login']);
       this.ngxLoader.stop();
     }
     this.ngxLoader.start();
     let msg = 'please login to claim this business and try again!'
-    // this.toastyService.info({ title: 'Info', msg: msg })
+    this.toastr.info('Info', msg)
     console.log(msg)
     this.router.navigate(['/login']);
     this.ngxLoader.stop();
@@ -195,7 +194,7 @@ export class ProfileComponent implements OnInit {
       this.user.avatarImages = this.providerImgURL
       this.headerComponent.getUserById()
       // } 
-      // else { this.toastyService.error({ title: 'Error', msg: 'something went wrong, please try again Later!' }) }
+      // else { this.toastr.error( 'Error', 'something went wrong, please try again Later!') }
     });
     this.ngxLoader.stop();
   }
@@ -234,11 +233,11 @@ export class ProfileComponent implements OnInit {
       this.ngxLoader.stop();
       if (res) {
         localStorage.setItem('userData', JSON.stringify(this.user));
-        // this.toastyService.info({ title: 'Info', msg: this.message })
+        this.toastr.info('Info', this.message)
         this.headerComponent.getUserById()
       } else {
         this.ngxLoader.stop();
-        // this.toastyService.info({ title: 'Info', msg: res.error })
+        this.toastr.info('Info', res.error)
       }
       this.ngxLoader.stop();
     });
@@ -403,7 +402,7 @@ export class ProfileComponent implements OnInit {
   addProgram() {
     console.log('userrrrr',this.user)
     if (this.userData.phoneNumber == '' || this.userData.addressLine1 == '' || this.userData.avatarImages == '') {
-      // this.toastyService.warning("you need to complete  your profile before adding new program!");
+      this.toastr.warning("you need to complete  your profile before adding new program!");
     }
     else { this.router.navigate(['/program/add']); }
   }

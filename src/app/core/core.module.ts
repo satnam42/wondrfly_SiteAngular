@@ -38,15 +38,12 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatExpansionModule} from '@angular/material/expansion';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { PhonePipe } from '../pages/provider/profile/profile.component';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { PhoneMaskDirective } from './common/phone-mask.directive';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
-import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { ChartsModule } from 'ng2-charts';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
@@ -75,19 +72,16 @@ const thirdPartyModules = [
   MatButtonModule,
   MatTabsModule,
   InfiniteScrollModule,
-  MatSnackBarModule,
   MatIconModule,
   ChartsModule,
   MatFormFieldModule,
   MatCheckboxModule,
-  NgxSliderModule,
   MatRadioModule,
   MatInputModule,
   MatSelectModule,
   MatTooltipModule,
   MatDialogModule,
   MatChipsModule,
-  MatProgressSpinnerModule,
   MatCardModule,
   MatSidenavModule,
   MatExpansionModule,
@@ -96,10 +90,8 @@ const thirdPartyModules = [
   NgxFileDropModule,
   Ng2SearchPipeModule,
   AutocompleteLibModule,
-  OwlDateTimeModule,
-  OwlNativeDateTimeModule,
   MatSlideToggleModule,
-  ImageCropModule,
+  // ImageCropModule,
 ];
 const services = [
   AuthsService,
@@ -113,7 +105,6 @@ const guards = [
     CommonModule,
     RouterModule,
     FormsModule,
-    AutocompleteLibModule,
     HttpClientJsonpModule,
     ReactiveFormsModule,
     

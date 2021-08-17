@@ -124,7 +124,7 @@ export class SettingComponent implements OnInit {
     if (!this.isOldQuestion) {
       if (!this.isAgree) {
         let msg = 'please mark check box first';
-        // this.toasty.error(msg);
+        this.toastr.error(msg);
         alert(msg)
         return
       }
@@ -152,7 +152,7 @@ export class SettingComponent implements OnInit {
     }
     if (!this.isAgree) {
       let msg = 'please mark check box first';
-      // this.toasty.error(msg);
+      this.toastr.error(msg);
       alert(msg)
       return
     }
@@ -245,10 +245,9 @@ export class SettingComponent implements OnInit {
         this.showOtpform = true;
         this.isNumber = false
         this.showPhoneform = false;
-        // this.toastyService.success({ title: 'Success', msg: res.data.message })
-      } else {
-        // this.toastyService.error({ title: 'Error', msg: res.error })
-      }
+        this.toastr.success('Success',res.data.message)
+      } else 
+        this.toastr.error('Error',res.error)
     })
   }
 
@@ -271,13 +270,13 @@ export class SettingComponent implements OnInit {
       this.ngxLoader.stop();
       console.log('resss', res)
       if (res.isSuccess === true) {
-        // this.toastyService.success({ title: 'Success', msg: res.message.message })
+        this.toastr.success('Success',res.message.message)
         this.getUser(this.userData.id);
         window.document.getElementById("close_model").click();
         window.document.getElementById("close_model1").click();
         this.ngxLoader.stop();
       } else {
-        // this.toastyService.error({ title: 'Error', msg: res.error })
+        this.toastr.error( 'Error', res.error)
         this.ngxLoader.stop();
       }
     })
@@ -306,9 +305,9 @@ export class SettingComponent implements OnInit {
       if (res.isSuccess) {
         this.auth.logout();
         this.router.navigate(["/login"]);
-        // this.toastyService.success({ title: '', msg: res.message })
+        this.toastr.success( 'success',res.message)
       } else {
-        // this.toastyService.error({ title: '', msg: res.error })
+        this.toastr.error('!',res.error)
 
       }
     });

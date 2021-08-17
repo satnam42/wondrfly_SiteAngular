@@ -178,7 +178,7 @@ providerImgURL: any
         this.router.navigate(['/profile', this.provider.id]);
       }
       else {
-        // this.toastyService.error({ title: '', msg: res.error })
+        this.toastr.error('!',res.error)
       }
     });
   }
@@ -250,7 +250,7 @@ providerImgURL: any
         this.progressBarVaue += 10;
       }
       else{
-        // this.toastyService.error({ title: '', msg: "Please Fill Valid Phone Number" })
+        this.toastr.error('!',"Please Fill Valid Phone Number")
       }
    
     }

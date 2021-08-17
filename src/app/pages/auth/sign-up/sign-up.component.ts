@@ -99,18 +99,18 @@ export class SignUpComponent implements OnInit {
         if (res.isSuccess === true) {
           this.store.setObject('userData', res.data);
           this.store.setItem('token', res.data.token);
-          // this.toastyService.success({ title: 'Success', msg: this.message });
+          this.toastr.success( 'Success',  this.message);
           this.router.navigate(['loginParent']);
         }
         else {
-          // this.toastyService.error({ title: '!', msg: res.error })
+          this.toastr.error( '!',  res.error )
         }
       });
         }
       }).catch(error => {
         // Handle error.
         console.log('An error occurred:',  error.response);
-        // this.toastyService.error({ title:'', msg: error.response.data.data[0].messages[0].message })
+        this.toastr.error('!', error.response.data.data[0].messages[0].message)
       });
     }
 
@@ -137,17 +137,17 @@ export class SignUpComponent implements OnInit {
         if (res.isSuccess === true) {
           this.store.setObject('userData', res.data);
           this.store.setItem('token', res.data.token);
-          // this.toastyService.success({ title: 'Success', msg: this.message });
+          this.toastr.success('Success', this.message );
           this.router.navigate(['loginProvider']);
         } else {
-          // this.toastyService.error({ title: '!', msg: res.error })
+          this.toastr.error('!', res.error)
         }
       });
         }
       }).catch(error => {
         // Handle error.
         console.log('An error occurred:',  error.response);
-        // this.toastyService.error({ title:'', msg: error.response.data.data[0].messages[0].message })
+        this.toastr.error('!',  error.response.data.data[0].messages[0].message)
       });
            
     }

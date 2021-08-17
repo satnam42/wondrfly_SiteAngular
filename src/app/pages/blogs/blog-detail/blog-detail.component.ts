@@ -96,7 +96,7 @@ getBlog(){
   // ------------------------------------------------POST COMMENT ON blogs  -------------------------------------------
   postComment(){
     if(localStorage.getItem('token')===null){
-      // this.toasty.warning('Please Login or Signup to comment')
+      this.toastr.warning('Please Login or Signup to comment')
       window.document.getElementById("modal").click();
     }else
     this.getBlogById()
