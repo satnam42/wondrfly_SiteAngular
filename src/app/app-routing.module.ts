@@ -1,16 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProgramComponent } from './pages/provider/program/program.component';
-import { ParentComponent } from './pages/parent/parent.component';
 import { LandingComponent } from './pages/landing/landing.component';
 import { UserGuard } from './core/guards';
 import { SignUpGuardianComponent } from './pages/sign-up-guardian/sign-up-guardian.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { LoginComponent } from './pages/login/login.component';
-import { SearchComponent } from './pages/search/search.component';
-import { ProfileComponent } from './pages/provider/profile/profile.component';
-import { LoginProviderComponent } from './pages/provider/login-provider/login-provider.component';
-import { Role } from './core/models/role.model';
 // main routes
 const routes: Routes = [
 

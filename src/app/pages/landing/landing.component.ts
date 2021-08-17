@@ -112,7 +112,7 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
   getBlog() {
-    axios.get(`${this.blogUrl}/blogs`).then(response => {
+    axios.get(`${this.blogUrl}/blogs?_start=0&_limit=3`).then(response => {
       this.blog = response.data
     });
   }

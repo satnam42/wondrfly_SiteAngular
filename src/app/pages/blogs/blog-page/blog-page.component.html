@@ -114,7 +114,7 @@
                         <h2  (click)="setBlog(blog[0])">{{blog[0]?.title }}</h2>
                     </div>
                     <div class="content_text">
-                        <app-read-more [content]="blog[0].content | markdown" [limit]="100" [completeWords]='true'  [blogData]='blog[0]'>
+                        <app-read-more [content]="blog[0].content" [limit]="200" [completeWords]='true'  [blogData]="blog[0]">
                         </app-read-more>
                     </div>
                     <div class="third_section">

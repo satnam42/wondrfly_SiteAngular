@@ -127,7 +127,7 @@
                         </li> -->
                         <li class="cursor">
                           <a aria-expanded="true" data-target="#category" [ngClass]="{'active' : isCategoryFilter}"
-                          (click)="openModal(isCategoryFilter=true,isDaysFilter=false,isPriceFilter=false,isDateFilter=false,isAgeFilter=false,isTimeFilter=false,isCategoryModal=true,isDaysModal=false,isPriceModal=false,isDateModal=false,isAgeModal=false,isTimeModal=false)" data-toggle="collapse">Categories</a>
+                          (click)="openModal(isCategoryFilter=true,isTypeFilter=false,isDaysFilter=false,isPriceFilter=false,isDateFilter=false,isAgeFilter=false,isTimeFilter=false,isCategoryModal=true,isPriceModal=false,isDateModal=false,isAgeModal=false,isTimeModal=false)" data-toggle="collapse">Categories</a>
                           <div class="collapse main_collpase time_collpase verification_modal partcategory" id="category"
                               data-parent="#accordionExample">
                               <div class="collpase_content cate-dilter">
@@ -168,7 +168,7 @@
                       </li>
                         <li class="cursor">
                             <a [ngClass]="{'active' : isAgeFilter}"
-                                (click)="filterName='age';openModal(isCategoryFilter=false,isDaysFilter=false,isPriceFilter=false,isDateFilter=false,isAgeFilter=true,isTimeFilter=false,isCategoryModal=false,isChildModal=false,isPriceModal=false,isDateModal=false,isAgeModal=true,isTimeModal=false)"
+                                (click)="filterName='age';openModal(isCategoryFilter=false,isDaysFilter=false,isPriceFilter=false,isDateFilter=false,isAgeFilter=true,isTimeFilter=false,isCategoryModal=false,isTypeFilter=false,isPriceModal=false,isDateModal=false,isAgeModal=true,isTimeModal=false)"
                                 aria-controls="collapseExample" aria-expanded="true" data-target="#ageGroup"
                                 data-toggle="collapse">Age </a>
                             <div class="collapse main_collpase verification_modal" id="ageGroup"

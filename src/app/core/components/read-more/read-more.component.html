@@ -1,9 +1,9 @@
-﻿<div>{{ content }}
+﻿<div [innerHtml]="content | markdown">
   <div *ngIf="!blogData"><a  class="blue_heading cursor"*ngIf="!isContentToggled" (click)="toggleContent()" i18n>
     <!-- Learn More -->
   </a>
     <a  class="blue_heading cursor"*ngIf="isContentToggled" (click)="toggleContent()" i18n>Less</a>
 </div>
-<a  class="blue_heading cursor"*ngIf="blogData " (click)="blogDetail()" i18n>
+<a  class="blue_heading cursor" *ngIf="blogData" (click)="blogDetail()" i18n>
   Learn More</a>
  </div>
