@@ -16,7 +16,8 @@
                                         </div>
                                         <div class="search-location">
                                           <span data-toggle="modal" data-target="#locationModal"> <img src="assets/search-location.png"></span>
-                                            <input type="text" placeholder="Jersey">
+                                            <input  placeholder="Search Location"  (keydown.enter)="$event.preventDefault()"
+                                            autocorrect="off" autocapitalize="off" spellcheck="off" #search>
                                         </div>
                                         <div class="form-group saerch-activities">
                                             <h6>Activities</h6>
@@ -1147,9 +1148,8 @@
             <div class="col-md-6">
                 <div class="map_section " >
                     <agm-map    style="width:100%;height:100%"
-                    [zoom]="14" [usePanning]="true" [fitBounds]="true"  [latitude]="latitude"
+                   (centerChange)="centerChange($event)" [zoom]="zoom" [usePanning]="true" [fitBounds]="true" [latitude]="lat" [longitude]="lng"
                      (mapClick)="mapClicked(previous)">
-                        [longitude]="longitude"    >
                         <div *ngFor="let program of programs">
                             <agm-marker *ngIf="program.lat && program.lng"
                              [iconUrl]="markerUrl"
@@ -1469,8 +1469,8 @@
               </div>
 
               <div class="sign_in_btn">
-                <button class="SignBtn cancel">Not Now</button>
-                <button type="submit" class="SignBtn" disabled="">Allow</button>
+                <button class="SignBtn cancel" data-dismiss="modal">Not Now</button>
+                <button (click)="setCurrentLocation()" data-dismiss="modal" type="submit" class="SignBtn">Allow</button>
               </div>
 
 

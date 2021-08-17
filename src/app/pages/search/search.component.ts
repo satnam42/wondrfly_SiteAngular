@@ -12,6 +12,7 @@ import { environment } from 'src/environments/environment.prod';
 
 import { Meta, Title } from '@angular/platform-browser';
 import { Options } from '@angular-slider/ngx-slider';
+import { EFAULT } from 'constants';
 @Component({
   selector: 'search',
   templateUrl: './search.component.html',
@@ -46,6 +47,7 @@ export class SearchComponent implements OnInit {
   favPrograms: any;
   isMap: boolean = true;
   kids = new Child;
+  locations = [];
   categories = new Category;
   categoriesBySearch : any = new Category;
   providersBySearch : any= new User;
@@ -129,9 +131,9 @@ export class SearchComponent implements OnInit {
   deleteProgramRes: any;
   title = 'Search for Online Classes and Programs - Wondrfly';
   // latitude: number = 40.5682945; longitude: number = -74.0409239;
-  latitude:number = 40.712776;
-  longitude:number = -74.005974;
-  zoom: number;
+  lat = 40.712776;
+  lng = -74.005974;
+  zoom = 14;
   address: string;
   private geoCoder;
   user = new User
@@ -160,7 +162,7 @@ export class SearchComponent implements OnInit {
     private dataservice: DataService,
     public imageLoader: Globals,
     public mapTheme: MapTheme,
-    
+
     private titleService: Title,
     private metaTagService: Meta,
 
@@ -171,12 +173,12 @@ export class SearchComponent implements OnInit {
       this.activityName = this.filterData.activityName
       this.activityDate = this.filterData.activityDate
     }
-    if (navigator) {
-      navigator.geolocation.getCurrentPosition(pos => {
-        this.latitude = +pos.coords.longitude;
-        this.longitude = +pos.coords.latitude;
-      });
-    }
+    // if (navigator) {
+    //   navigator.geolocation.getCurrentPosition(pos => {
+    //     this.lat = +pos.coords.longitude;
+    //     this.lng = +pos.coords.latitude;
+    //   });
+    // }
     var retrievedObject = localStorage.getItem('userData');
     this.userData = JSON.parse(retrievedObject);
     if (this.userData) {
@@ -201,8 +203,14 @@ console.log('skjdgfsdf',this.toDate)
   }
 
   centerChange(e) {
-    // this.getAddress(e.lat, e.lng)
-    // console.log('changing', e);
+    this.locations.push(e);
+  if(this.locations.length>15){
+    this.locations = [];
+    this.lat = e.lat;
+    this.lng = e.lng;
+    this.zoom =14;
+  }
+
   }
   suggestedPrograms(){
     if(this.programs.length){
@@ -254,24 +262,26 @@ console.log('skjdgfsdf',this.toDate)
       }
     }
     this.getCategory();
-    this.mapsAPILoader.load().then(() => {
-      this.setCurrentLocation();
-      this.geoCoder = new google.maps.Geocoder;
-
-    });
+    // this.mapsAPILoader.load().then(() => {
+    //   // this.setCurrentLocation();
+    //   this.geoCoder = new google.maps.Geocoder;
+    // });
 
   }
-
   // Get Current Location Coordinates
-  private setCurrentLocation() {
-    if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        this.latitude = position.coords.latitude;
-        this.longitude = position.coords.longitude;
-        this.zoom = 4;
-        this.getAddress(this.latitude, this.longitude);
-      });
-    }
+   setCurrentLocation() {
+    this.mapsAPILoader.load().then(() => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position:any) => {
+          this.zoom = 14;
+          this.lat = position.coords.latitude;
+          this.lng = position.coords.longitude;
+          console.log(this.lat,this.lng)
+          this.getAddress(this.lat, this.lng);
+        });
+      }      this.geoCoder = new google.maps.Geocoder;
+    });
+
   }
 
 
@@ -281,13 +291,13 @@ console.log('skjdgfsdf',this.toDate)
       console.log(status);
       if (status === 'OK') {
         if (results[0]) {
-          // this.zoom = 20;
           this.address = results[0].formatted_address;
+          console.log(this.address)
         } else {
           window.alert('No results found');
         }
       } else {
-        // window.alert('Geocoder failed due to: ' + status);
+        window.alert('Geocoder failed due to: ' + status);
       }
 
     });
@@ -893,7 +903,7 @@ if(toggle){
       setTimeout(() => {
         console.log('timerrrrrr')
         window.document.getElementById("modal1").click();
-      }, 100000);
+      }, 1000000);
     }
   }
 
