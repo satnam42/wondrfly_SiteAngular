@@ -10,6 +10,7 @@ import { OnlineProgramsComponent } from 'src/app/core/components/online-programs
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { RatingModule } from 'src/app/core/components/rating/rating.module';
 import { SignupPopupModule } from 'src/app/core/components/signup-popup/signup-popup.module';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { SignupPopupModule } from 'src/app/core/components/signup-popup/signup-p
     CoreModule,
     RatingModule,
     FormsModule,
+    InfiniteScrollModule,
     SignupPopupModule,
     ReactiveFormsModule,
     NgxDaterangepickerMd,

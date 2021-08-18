@@ -18,6 +18,7 @@ import { FaqComponent } from './faq.component';
     CoreModule,
     CommonModule,
     FormsModule,
+    Ng2SearchPipeModule
   ]
 })
 export class FaqModule { }

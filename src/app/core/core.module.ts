@@ -8,11 +8,8 @@ import { UserGuard } from './guards/user.guard';
 import { Header2Component } from './components/header2/header2.component';
 import { Footer2Component } from './components/footer2/footer2.component';
 import { ReadMoreComponent } from './components/read-more/read-more.component';
-import { SocialLoginComponent } from './components/social-login/social-login.component';
 import { RouterModule } from '@angular/router';
-import { SignupPopupComponent } from './components/signup-popup/signup-popup.component';
 import { HttpClientJsonpModule } from '@angular/common/http';
-import { MailchimpSubscribeForm } from './components/mailchimp-subscribe-form/mailchimp-subscribe-form.component';
 import { MarkdwonPipe } from './shared/markdwon.pipe';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -30,29 +27,17 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatExpansionModule} from '@angular/material/expansion';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { PhonePipe } from '../pages/provider/profile/profile.component';
-import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { PhoneMaskDirective } from './common/phone-mask.directive';
-import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { ChartsModule } from 'ng2-charts';
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 const components = [
   HeaderComponent,
   FooterComponent,
-  // BreadcrumbComponent,
-  // CarouselComponent,
-  // DragDropComponent,
   Header2Component,
   Footer2Component,
-  // AlertComponent,
   ReadMoreComponent,
-  // SocialLoginComponent,
-  // SignupPopupComponent,
-  // RatingComponent,
-  // MailchimpSubscribeForm,
   MarkdwonPipe,
   PhoneMaskDirective,
   PhonePipe,
@@ -63,7 +48,6 @@ const thirdPartyModules = [
   MatToolbarModule,
   MatButtonModule,
   MatTabsModule,
-  InfiniteScrollModule,
   MatIconModule,
   ChartsModule,
   MatFormFieldModule,
@@ -79,9 +63,7 @@ const thirdPartyModules = [
   MatExpansionModule,
   NgxUiLoaderModule,
   MatListModule,
-  Ng2SearchPipeModule,
-  AutocompleteLibModule,
-  MatSlideToggleModule,
+  
   // ImageCropModule,
 ];
 const services = [

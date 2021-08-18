@@ -10,6 +10,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
 import { NgxMaskModule } from 'ngx-mask';
 import { ParentComponent } from './parent.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 @NgModule({
     entryComponents: [],
     declarations: [
@@ -24,11 +26,10 @@ import { ParentComponent } from './parent.component';
         CustomFormsModule,
         ReactiveFormsModule,
         NgxMaskModule,
+        AutocompleteLibModule,
+        InfiniteScrollModule,
         // GoogleMapsModule,
-        AgmCoreModule.forRoot({
-          apiKey: 'AIzaSyD_5P0pxn1q9hvvTeCr3YCsDhLJoHwxs2c',
-          libraries: ['places']
-        }),
+        AgmCoreModule
     ],
     exports: [
         ParentComponent, LoginParentComponent, ParentProfileComponent

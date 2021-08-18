@@ -11,7 +11,6 @@ import { environment } from '../environments/environment';
 import { LandingComponent } from './pages/landing/landing.component';
 import { AuthsService } from './core/services/auths.service';
 import { UserGuard } from './core/guards';
-import { ChatService } from './core/services/chat.service';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
@@ -24,13 +23,7 @@ import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxMaskModule } from 'ngx-mask';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { MailchimpSubscribeForm } from './core/components/mailchimp-subscribe-form/mailchimp-subscribe-form.component';
 import { MailchimpSubscribeFormModule } from './core/components/mailchimp-subscribe-form/mailchimp-subscribe-form.module';
-
-
-
-
-
 
 const configs = new AuthServiceConfig([
   {
@@ -52,19 +45,14 @@ export function provideConfig() {
 }
 
 const config: SocketIoConfig = { url: environment.socketUrl, options: {} };
-const components = [
-  AppComponent,
-];
+
 // guards
 @NgModule({
   declarations: [
-    ...components,
+    AppComponent,
     LandingComponent,
   ],
 
-  entryComponents: [
-    ...components,
-  ],
 
   imports: [
     BrowserModule,
@@ -101,7 +89,6 @@ const components = [
     LocalStorageService,
     AuthsService,
     UserGuard,
-    ChatService,
     Globals,
     MapTheme,
     {

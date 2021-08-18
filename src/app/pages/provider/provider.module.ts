@@ -9,6 +9,7 @@ import { ProviderComponent } from './provider.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
 import { RatingModule } from 'src/app/core/components/rating/rating.module';
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { RatingModule } from 'src/app/core/components/rating/rating.module';
     FormsModule,
     RatingModule,
     ReactiveFormsModule,
-    AgmCoreModule
+    AgmCoreModule,
+    AutocompleteLibModule,
   ]
 })
 export class ProviderModule { }

@@ -116,7 +116,7 @@
             <div class="forth_section_image_section">
                 <div class="row">
 
-                    <div class="col-4" *ngFor="let blog of searchCatgData?.blogs  | slice:0:9 | filter:searchBlog;let i =index">
+                    <div class="col-4" *ngFor="let blog of searchCatgData?.blogs  | slice:0:9 let i =index">
                         <img (click)="setBlog(blog)" class="forth_section_image cursor" src="{{blogUrl}}{{blog?.image[0]?.url}}">
                         <div class="date">
                             <span class="blue_heading">{{blog?.published_at | date:'mediumDate'}}</span>
