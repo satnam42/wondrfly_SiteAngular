@@ -4,7 +4,7 @@
 <section class="main_outer">
     <div class="search_activity">
         <div class="row row-0">
-            <div class="col-md-7">
+            <div class="col-md-6">
                 <div class="search-filterupper">
                     <div class="search-filed">
                         <div class="left-searchpd">
@@ -59,7 +59,7 @@
                 </div>
             </div>
 
-            <div class="col-md-5 toggle-border">
+            <div class="col-md-6 toggle-border">
                 <div class="toggle-filtersearch">
                     <button [class.active]="isOnline" (click)="isInPerson=false;isOnline=true;inpersonOrVirtual('online')" class="btn1-filtersearch">
                         Online
@@ -142,6 +142,13 @@
                                           <div class="col-7 sub-categoriesfilterheader">
                                             <h2>
                                               Sub categories
+
+                                              <span>
+                                                <span>
+                                                  <a class="clear" href="">Clear all</a>
+                                                </span>
+                                                <button>APPLY FILTER</button>
+                                              </span>
                                             </h2>
                                           </div>
                                       </div>
@@ -402,11 +409,12 @@
                         (click)="openModal(isCategoryFilter=false,isDaysFilter=false,isPriceFilter=false,isDateFilter=false,isAgeFilter=false,isTimeFilter=false,isCategoryModal=false,isDaysModal=false,isPriceModal=false,isDateModal=false,isAgeModal=false,isTimeModal=false)"><span class="simple-toggle">
                           Top Rated
 
+                          <span>
                           <label class="switch1">
-                            <input [(ngModel)]="isTopFilterCheckBox" (change)="getTopRated()" wtype="checkbox" checked>
-                            <span class="slider1"> </span>
+                            <input type="checkbox" checked>
+                            <span class="slider1"></span>
                           </label>
-
+                          </span>
                           <!-- <label class="tgl" style="font-size:30px">
                             <input [(ngModel)]="isTopFilterCheckBox" (change)="getTopRated()" type="checkbox" />
                             <span></span>

@@ -657,7 +657,7 @@ button:focus {
 .left_search{
     background: #FFFFFF;
     border-radius: 50px;
-    width:80%;
+    width:100%;
     position: relative;
     min-height: 38px !important;
     border: 1px solid #E0E0E0;
@@ -2234,6 +2234,8 @@ button.btn1-filtersearch.active {
   text-align: left;
   color: #494949;
   padding-left:21px;
+  display: flex;
+    justify-content: space-between;
 }
 .categories-filterheader h2 {
   font-family: "Poppins";
@@ -2247,7 +2249,7 @@ button.btn1-filtersearch.active {
 .categories-filt {
   border-bottom: 1px solid #BDBDBD;
   padding-top: 20px;
-  padding-bottom: 20px;
+  padding-bottom:5px;
   padding-left: 15px;
 }
 .categories-filtercontent h3 {
@@ -2539,8 +2541,6 @@ button.map-buttonas {
 
 }
 /* toggle search page */
-/**starting here**/
-
 /* Hide checkbox */
 .switch1 input {
   opacity: 0;
@@ -2550,8 +2550,9 @@ button.map-buttonas {
 .switch1 {
   position: relative;
   display: inline-block;
-  width: 60px;
-  height: 34px;
+  width: 40px;
+  height: 20px;
+  line-height: 19px;
 }
 .slider1 {
   position: absolute;
@@ -2568,26 +2569,23 @@ button.map-buttonas {
 .slider1:before {
   position: absolute;
   content: "";
-  width: 26px;
-  height: 26px;
-  left: 4px;
-  bottom: 4px;
+  width: 14px;
+  height: 14px;
+  left: 3px;
+    bottom: 3px;
   border-radius: 50%;
   background-color: #fff;
-  -webkit-transition: 0.4s;
   transition: 0.4s;
 }
 .switch1 input:checked + .slider1 {
-  background-color: #2196f3;
+ background: #53B2E8;
 }
 .switch1 input:checked + .slider1:before {
-  transform: translatex(26px);
+  transform: translatex(19px);
 }
 .switch1 input:focus + .slider1 {
-  box-shadow: 0 0 1px #2196f3;
+  box-shadow: 0 0 1px #53B2E8;
 }
-
-
  /*Empty checkbox*/
  .k-checkbox {
   background:transparent;
@@ -2657,7 +2655,7 @@ button.map-buttonas {
 
 /* search location */
 .search-location input {
-  min-width: 190px;
+  min-width:275px;
     background-color: transparent;
 
 }
@@ -2737,10 +2735,36 @@ button.map-buttonas {
 .sign_in_btn button.SignBtn {
   margin-left: 20px;
 }
-
-
-
-
+.sub-categoriesfilterheader h2 span a.clear {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 19px;
+  letter-spacing: 0.001em;
+  text-decoration-line: underline;
+  color: #000000;
+  border: none !important;
+  margin-bottom: 0px !important;
+}
+.sub-categoriesfilterheader h2 span button{
+  background: #53B2E8;
+    border-radius: 25.1946px;
+    font-family: "poppins";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    border: 0px;
+    padding: 10px;
+    margin-right: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
 
 
 
