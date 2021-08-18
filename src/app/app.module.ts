@@ -24,6 +24,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { NgxMaskModule } from 'ngx-mask';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { MailchimpSubscribeFormModule } from './core/components/mailchimp-subscribe-form/mailchimp-subscribe-form.module';
+import { ChatModule } from './pages/chat/chat.module';
+import { ChatService } from './core/services/chat.service';
 
 const configs = new AuthServiceConfig([
   {
@@ -65,7 +67,7 @@ const config: SocketIoConfig = { url: environment.socketUrl, options: {} };
     HttpClientModule,
     MailchimpSubscribeFormModule,
     NgxMaskModule.forRoot(),
-    // ChatModule,
+    ChatModule,
     NgxDaterangepickerMd.forRoot(),
     FlatpickrModule.forRoot(),
     CalendarModule.forRoot({
@@ -89,6 +91,7 @@ const config: SocketIoConfig = { url: environment.socketUrl, options: {} };
     LocalStorageService,
     AuthsService,
     UserGuard,
+    ChatService,
     Globals,
     MapTheme,
     {

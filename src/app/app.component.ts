@@ -18,7 +18,6 @@ export class AppComponent implements OnInit, OnDestroy {
   currentUser: any = new User;
   isLogin = false;
   constructor(private router: Router,
-    
     private auth: AuthsService,
     private activatedRoute: ActivatedRoute,
      ) {

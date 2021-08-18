@@ -3,12 +3,9 @@ import { Router } from '@angular/router';
 import { ApiService } from 'src/app/core/services/api.service.service';
 import { Category, User } from 'src/app/core/models';
 import { AuthsService } from 'src/app/core/services/auths.service';
-import { LocalStorageService } from 'src/app/core/services';
 import { DataService } from 'src/app/core/services/dataservice.service ';
 import { Title, Meta } from '@angular/platform-browser';
 import { FormGroup  } from '@angular/forms';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
-
 import { SocialUser } from 'src/app/core/models/social.model';
 import { Globals } from 'src/app/core/common/imageLoader';
 import axios from 'axios';

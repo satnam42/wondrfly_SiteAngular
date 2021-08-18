@@ -8,12 +8,14 @@ import { ChatRoutes } from './chat.routing';
 import { ChatService } from 'src/app/core/services/chat.service';
 import { CoreModule } from 'src/app/core/core.module';
 import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 const config: SocketIoConfig = { url: environment.socketUrl, options: {} };
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     CoreModule,
+    InfiniteScrollModule,
     // FlexLayoutModule,
     SocketIoModule.forRoot(config),
     RouterModule.forChild(ChatRoutes)
