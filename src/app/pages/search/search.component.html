@@ -4,7 +4,7 @@
 <section class="main_outer">
     <div class="search_activity">
         <div class="row row-0">
-            <div class="col-md-8">
+            <div class="col-md-7">
                 <div class="search-filterupper">
                     <div class="search-filed">
                         <div class="left-searchpd">
@@ -19,10 +19,10 @@
                                             <input  placeholder="Search Location"  (keydown.enter)="$event.preventDefault()"
                                             autocorrect="off" autocapitalize="off" spellcheck="off" #search>
                                         </div>
-                                        <div class="form-group saerch-activities">
+                                        <!-- <div class="form-group saerch-activities">
                                             <h6>Activities</h6>
                                             <span><img src="assets/search-activitynew.svg"></span>
-                                        </div>
+                                        </div> -->
                                         <div class="form-group">
                                             <button (click)="filterByNameDate()" class="banner_button" type="submit">
                                                 <img src="assets/search_icon.svg" alt="Search image">
@@ -59,7 +59,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4 toggle-border">
+            <div class="col-md-5 toggle-border">
                 <div class="toggle-filtersearch">
                     <button [class.active]="isOnline" (click)="isInPerson=false;isOnline=true;inpersonOrVirtual('online')" class="btn1-filtersearch">
                         Online
@@ -134,24 +134,27 @@
                               <div class="collpase_content cate-dilter">
                                   <div class="container">
                                       <div class="row categories-filt">
-                                          <div class="col-4 categories-filterheader">
+                                          <div class="col-5 categories-filterheader">
                                             <h2>
                                               Categories
                                             </h2>
                                           </div>
-                                          <div class="col-8 sub-categoriesfilterheader">
+                                          <div class="col-7 sub-categoriesfilterheader">
                                             <h2>
                                               Sub categories
                                             </h2>
                                           </div>
                                       </div>
                                       <div class="row">
-                                        <div class="col-4 categories-filtercontent" >
+                                        <div class="col-5 categories-filtercontent" >
                                           <h3 *ngFor='let cat of categories' (click)='getSubCateById(cat.id)'>{{cat.name}}</h3>
                                         </div>
-                                        <div class="col-8 sub-categoriesfiltercontent">
+                                        <div class="col-7 sub-categoriesfiltercontent">
 
-                                            <h3 *ngFor='let s of subCats'>{{s.name}}</h3>
+                                            <h3 *ngFor='let s of subCats'>
+                                              <span><input type="radio" class="k-checkbox categories-checkbox" id="categoriescheck" name="categoriescheck" ></span>
+                                              <span>{{s.name}}</span>
+                                            </h3>
                                             <!-- <div class="row">
                                               <div class="col-12">
 
@@ -397,10 +400,17 @@
                       <li class="cursor">
                         <a class="top-rateds" aria-expanded="true" [ngClass]="{'active' : isTopFilter}"
                         (click)="openModal(isCategoryFilter=false,isDaysFilter=false,isPriceFilter=false,isDateFilter=false,isAgeFilter=false,isTimeFilter=false,isCategoryModal=false,isDaysModal=false,isPriceModal=false,isDateModal=false,isAgeModal=false,isTimeModal=false)"><span class="simple-toggle">
-                          <label class="tgl" style="font-size:30px">
-                            <input [(ngModel)]="isTopFilterCheckBox" (change)="getTopRated()" type="checkbox" />
-                            <span>Top Rated</span>
+                          Top Rated
+
+                          <label class="switch1">
+                            <input [(ngModel)]="isTopFilterCheckBox" (change)="getTopRated()" wtype="checkbox" checked>
+                            <span class="slider1"> </span>
                           </label>
+
+                          <!-- <label class="tgl" style="font-size:30px">
+                            <input [(ngModel)]="isTopFilterCheckBox" (change)="getTopRated()" type="checkbox" />
+                            <span></span>
+                          </label> -->
                         </span>
                         </a>
                       </li>

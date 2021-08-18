@@ -295,17 +295,12 @@ this.toDate=e.endDate._d
   }
 
   programByLatLng(){
-    this.apiservice.programByLatLng(this.lat, this.lng).subscribe(res => {
+    this.apiservice.programByLatLng(this.lat, this.lng).subscribe((res:any) => {
       this.showReset = true;
       console.log('programs', res);
-      // this.programs = []; // testing
-
-      // if (this.programList.items) {
-      //   this.programs = this.programList.items;
-      //   this.isScrol = true;
-      // }
+      this.programs = res;
     });
-
+    this.suggestedProgramss();
   }
   getAddress(latitude, longitude) {
     this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {
