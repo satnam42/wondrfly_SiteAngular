@@ -285,8 +285,7 @@
                         <li class="cursor">
                             <a aria-controls="collapseExample" [ngClass]="{'active' : isTimeFilter}"
                             (click)="filterName='time';openModal(isCategoryFilter=false,isTypeFilter=false,isDaysFilter=false,isPriceFilter=false,isDateFilter=false,isAgeFilter=false,isTimeFilter=true,isCategoryModal=false,isPriceModal=false,isDateModal=false,isAgeModal=false,isTimeModal=true)"
-                            aria-expanded="true" data-target="#timess"
-                            data-toggle="collapse">Time</a>
+                            aria-expanded="true" data-target="#timess"data-toggle="collapse">Time</a>
                             <div class="collapse main_collpase typess verification_modal" id="timess"
                             data-parent="#accordionExample">
                             <div class="collpase_content">
@@ -294,20 +293,25 @@
                                     <div class="input_outer">
                                       <form action="">
                                         <div class="typess-flex">
-                                          <input type="radio" class="k-checkbox" id="time1" name="time1" (change)="$event.target.checked ? timeSession='early-morning' : timeSession=''" value="early-morning">
+                                          <input type="radio" class="k-checkbox" id="time1" name="time1" (change)="$event.target.checked ? timeSession='early-morning' : timeSession='';programFilter()"
+                                          data-target="#timess"data-toggle="collapse" value="early-morning">
                                           <label for="time1" class="k-checkbox-label">Early Morning (6am - 9am)</label>
                                         </div>
                                         <div class="typess-flex">
-                                        <input type="radio" id="time2" class="k-checkbox" name="time1" (change)="$event.target.checked ? timeSession='morning' : timeSession=''"  value="morning">
+                                        <input type="radio" id="time2" class="k-checkbox" name="time1" (change)="$event.target.checked ? timeSession='morning' : timeSession='';programFilter()" 
+                                        data-target="#timess"data-toggle="collapse"value="morning">
                                         <label for="time2" class="k-checkbox-label">Morning (9am - 12pm)</label></div>
                                         <div class="typess-flex">
-                                        <input type="radio" id="time3" class="k-checkbox" name="time1" (change)="$event.target.checked ? timeSession='afternoon' : timeSession=''" value="afternoon">
+                                        <input type="radio" id="time3" class="k-checkbox" name="time1" (change)="$event.target.checked ? timeSession='afternoon' : timeSession='';programFilter()" 
+                                        data-target="#timess"data-toggle="collapse"value="afternoon">
                                         <label for="time3" class="k-checkbox-label">Afternoon (12pm - 3pm)</label></div>
                                         <div class="typess-flex">
-                                        <input type="radio" id="time4" class="k-checkbox" name="time1" (change)="$event.target.checked ? timeSession='late-afternoon' : timeSession=''" value="late-afternoon">
+                                        <input type="radio" id="time4" class="k-checkbox" name="time1" (change)="$event.target.checked ? timeSession='late-afternoon' : timeSession='';programFilter()" 
+                                        data-target="#timess"data-toggle="collapse"value="late-afternoon">
                                         <label for="time4" class="k-checkbox-label">Late Afternoon (3pm - 6pm)</label></div>
                                         <div class="typess-flex">
-                                        <input type="radio" id="time5" class="k-checkbox" name="time1" (change)="$event.target.checked ? timeSession='evening' : timeSession=''" value="evening">
+                                        <input type="radio" id="time5" class="k-checkbox" name="time1" (change)="$event.target.checked ? timeSession='evening' : timeSession='';programFilter()" 
+                                        data-target="#timess"data-toggle="collapse" value="evening">
                                         <label for="time5" class="k-checkbox-label">Evening (6pm - 9pm)</label></div>
                                       </form>
                                     </div>
@@ -408,10 +412,9 @@
                         <a class="top-rateds" aria-expanded="true" [ngClass]="{'active' : isTopFilter}"
                         (click)="openModal(isCategoryFilter=false,isDaysFilter=false,isPriceFilter=false,isDateFilter=false,isAgeFilter=false,isTimeFilter=false,isCategoryModal=false,isDaysModal=false,isPriceModal=false,isDateModal=false,isAgeModal=false,isTimeModal=false)"><span class="simple-toggle">
                           Top Rated
-
                           <span>
                           <label class="switch1">
-                            <input type="checkbox" checked>
+                            <input [(ngModel)]="isTopFilterCheckBox" (change)="getTopRated()" type="checkbox" />
                             <span class="slider1"></span>
                           </label>
                           </span>

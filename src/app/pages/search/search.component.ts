@@ -732,8 +732,10 @@ if(toggle){
     //   this.type2=''
     // }
     // -------------------------------------------time filter-----------------------------------------
+console.log('this.timeSession>>>>>>>>>',this.timeSession)
     switch(this.timeSession){
       case 'early-morning':{
+        console.log('time session',this.timeSession)
       this.fromTime = new Date(2018, 0O5, 0O5, 6, 0, 0, 0)
       this.toTime = new Date(2050, 0O5, 0O5, 9, 0, 0, 0)
       break;
