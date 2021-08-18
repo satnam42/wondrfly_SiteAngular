@@ -525,5 +525,21 @@ clickedProgram(data){
   this.program_mins = moment.utc(moment(this.program.time.to, "HH:mm:ss").diff(moment(this.program.time.from, "HH:mm:ss"))).format("mm")
 }
 
+addFav() {
+  this.program.isFav = true;
+  var fav: any = {
+    userId: '',
+    programId: '',
+  };
+  fav.userId = this.userId;
+  fav.programId = this.program._id;
+  this.apiservice.addFavProgram(fav).subscribe(res => {
+  });
+}
 
+deleteFav() {
+  this.program.isFav = false;
+  this.apiservice.deleteFavProgram(this.program._id).subscribe(res => {
+  });
+}
 }

@@ -1,5 +1,5 @@
 <body>
-    
+
     <app-header2 *ngIf="!isLogin"></app-header2>
     <app-header *ngIf="isLogin"></app-header>
     <!-- <app-alert></app-alert> -->
@@ -56,12 +56,12 @@
                                                     <a data-toggle="modal"   data-target="#ShareModal" class="cursor">
                                                         <img src="assets/share_gray.svg " alt="Share Icon ">
                                                     </a>
-                                                    <div class="bookmark_outer ">
-                                                        <a class="bookmark_icon cursor" *ngIf='!program.isFav'>
+                                                    <div class="bookmark_outer " *ngIf="userId && !providerRole">
+                                                        <a class="bookmark_icon cursor" *ngIf='!program.isFav' (click)="addFav()">
                                                         <img src="assets/bookmark_gray.svg  "
                                                                 alt="Menu Image "></a>
 
-                                                        <a class="bookmark_icon cursor " *ngIf='program.isFav' ><img src="assets/bookmarkOrange.svg "
+                                                        <a class="bookmark_icon cursor " *ngIf='program.isFav' (click)="deleteFav()"><img src="assets/bookmarkOrange.svg "
                                                                 alt="Menu Image "></a>
                                                     </div>
                                                 </div>
