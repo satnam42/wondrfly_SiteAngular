@@ -167,9 +167,9 @@
                                             </p>
                                             <p><img src="assets/user_group_orange.svg" alt="Loction Pin">
                                                 {{program?.ageGroup.from}} - {{program?.ageGroup.to}} Yrs. </p>
-                                            <p><img src="assets/watch.svg" alt="Loction Pin">{{program?.time.from |
-                                                date:"shortTime"}} -
-                                                {{program.time.to | date:"shortTime"}}
+                                            <p><img src="assets/watch.svg" alt="Loction Pin">
+                                                {{program.time.from?.charAt(program.time.from?.length - 1) === 'Z' ? (program.time.from | date:'shortTime':'UTC') : (program.time.from?.concat('Z') | date:'shortTime':'UTC')}} -
+                                                {{program.time.to?.charAt(program.time.to?.length - 1) === 'Z' ? (program.time.to | date:'shortTime':'UTC') : (program.time.to?.concat('Z') | date:'shortTime':'UTC')}}
                                             </p>
                                             <p  *ngIf="program.duration.hours || program.duration.minutes">
                                                 <img src="assets/timer.svg" alt="Loction Pin">{{program.duration.hours}} : {{program.duration.minutes}} Hours

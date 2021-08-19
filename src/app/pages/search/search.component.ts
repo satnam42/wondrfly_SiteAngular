@@ -388,22 +388,18 @@ this.toDate=e.endDate._d
       this.fromDate = null;
       this.toDate = null;
       this.isDateModal = false;
-      this.isDateFilter = false;
     } else if (this.isTimeModal) {
       this.toTime = null;
       this.fromTime = null;
       this.isTimeModal = false;
-      this.isTimeFilter = false;
     } else if (this.isAgeModal) {
       this.maxAge = 12;
-      this.maxAge = 3;
+      this.minAge = 3;
       this.isAgeModal = false;
-      this.isAgeFilter = false;
     } else if (this.isPriceModal) {
       this.maxPrice = 250;
       this.minPrice = 50;
       this.isPriceModal = false;
-      this.isPriceFilter = false;
     }
 
   }
@@ -417,12 +413,12 @@ this.toDate=e.endDate._d
     this.isOpenFilter = false;
     this.isTypeFilter=false
     this.isOnline=false;
+    this.isDaysFilter=false
     this.isInPerson=true
     this.isTimeFilter = false;
     this.isSavedFilter = false;
     this.isTopFilterCheckBox=false
     this.isTopFilter= false;
-    this.isChildFilter = false;
     this.isAgeFilter = false;
     this.isDateFilter = false;
     this.isPriceFilter = false;
@@ -431,8 +427,8 @@ this.toDate=e.endDate._d
     this.toDate = null;
     this.toTime = null;
     this.fromTime = null;
-    this.maxAge = 100;
-    this.maxAge = 0;
+    this.maxAge = 12;
+    this.minAge = 3;
     this.getPublishedProgram();
     this.closePopup();
 
@@ -509,40 +505,40 @@ this.toDate=e.endDate._d
     })
   }
 
-  getOpenPrograms(value) {
-    console.log('valuee',value)
-    if(value){
-    this.activityName = ''
-    this.activityDate = undefined
-    this.isScrol = false
-    this.showReset = true
-    this.isOpenFilter = true
-    this.isSavedFilter = false
-    this.isPriceModal = false
-    this.isPriceFilter = false
-    this.isChildModal = false
-    this.isChildFilter = false
-    this.isDateFilter = false
-    this.isAgeFilter = false
-    this.isTimeFilter = false
-    this.isCategoryFilter = false
-    this.isDateModal = false
-    this.isAgeModal = false
-    this.isTimeModal = false
-    this.isCategoryModal = false
-    this.ngxLoader.start();
+  // getOpenPrograms(value) {
+  //   console.log('valuee',value)
+  //   if(value){
+  //   this.activityName = ''
+  //   this.activityDate = undefined
+  //   this.isScrol = false
+  //   this.showReset = true
+  //   this.isOpenFilter = true
+  //   this.isSavedFilter = false
+  //   this.isPriceModal = false
+  //   this.isPriceFilter = false
+  //   this.isChildModal = false
+  //   this.isChildFilter = false
+  //   this.isDateFilter = false
+  //   this.isAgeFilter = false
+  //   this.isTimeFilter = false
+  //   this.isCategoryFilter = false
+  //   this.isDateModal = false
+  //   this.isAgeModal = false
+  //   this.isTimeModal = false
+  //   this.isCategoryModal = false
+  //   this.ngxLoader.start();
 
-    this.apiservice.getOpenPrograms(this.pageNo, this.pageSize).subscribe((res: any) => {
-      this.programs = res
-      console.log('open programs', this.programs)
-      this.ngxLoader.stop();
-    })
-  }
-    else{
-      this.resetFilter();
-    }
-    // window.document.getElementById("close_morefilter").click();
-  }
+  //   this.apiservice.getOpenPrograms(this.pageNo, this.pageSize).subscribe((res: any) => {
+  //     this.programs = res
+  //     console.log('open programs', this.programs)
+  //     this.ngxLoader.stop();
+  //   })
+  // }
+  //   else{
+  //     this.resetFilter();
+  //   }
+  //   // window.document.getElementById("close_morefilter").click();
+  // }
 
   pagination(pageNo) {
     // let scrollToTop = document.getElementById('scrollToTop');
@@ -579,10 +575,10 @@ this.toDate=e.endDate._d
     this.loaderType = 'three-bounce';
     this.loaderPostion = 'bottom-center';
     this.pageSize += 20;
-    if (this.isOpenFilter) {
-      this.getOpenPrograms('value')
-    }
-    else if (this.isSavedFilter) {
+    // if (this.isOpenFilter) {
+    //   this.getOpenPrograms('value')
+    // }
+    if (this.isSavedFilter) {
       this.getFav(this.userData.id,this.isSavedFilter)
     }
     else {
@@ -647,13 +643,13 @@ if(toggle){
   }
 
 
-  filterByChild(kidData) {
-    // window.document.getElementById("close_morefilter").click();
-    this.isChildFilter = true;
-    this.filterClass = false;
-    this.minAge = 0;
-    this.maxAge = Number(kidData.age)
-  }
+  // filterByChild(kidData) {
+  //   // window.document.getElementById("close_morefilter").click();
+  //   this.isChildFilter = true;
+  //   this.filterClass = false;
+  //   this.minAge = 0;
+  //   this.maxAge = Number(kidData.age)
+  // }
 
   filterByCategory(id) {
     this.categoryId = id
@@ -802,8 +798,9 @@ console.log('this.timeSession>>>>>>>>>',this.timeSession)
   }
       // filter = `ageFrom=${this.minAge}&ageTo=${this.maxAge}&fromTime=${from}&toTime=${to}&fromDate=${this.fromDate}&toDate=${this.toDate}&priceFrom=${this.minPrice}&priceTo=${this.maxPrice}&inpersonOrVirtual=${inpersonOrVirtual}&type1=${this.type1}&type2=${this.type2}&day=${this.day}`
       console.log('filter>>>>>>>>>>>>',filter)
-
+    this.ngxLoader.start()
     this.apiservice.programFilter(filter, this.pageNo, this.pageSize).subscribe((res: any) => {
+      this.ngxLoader.stop()
       console.log('filter response', res);
       if (res.isSuccess) {
         this.isTopFilterCheckBox=false
@@ -819,7 +816,9 @@ console.log('this.timeSession>>>>>>>>>',this.timeSession)
     var filter=``
     filter = `inpersonOrVirtual=${e}`
     console.log('filter>>>>>>>>>>>>',filter)
+    this.ngxLoader.start()
     this.apiservice.programFilter(filter, this.pageNo, this.pageSize).subscribe((res: any) => {
+      this.ngxLoader.stop()
       console.log('inpersonVirtual response', res);
       if (res.isSuccess) {
         this.showReset = true;
@@ -1012,7 +1011,9 @@ if(program.userId==''|| program.userId==undefined || !program.userId){ program.u
   this.showReset = true;
   this.isTopFilter= true
   if(this.isTopFilterCheckBox == true){
+    this.ngxLoader.start()
     this.apiservice.getTopRated().subscribe((res: any) => {
+      this.ngxLoader.stop()
       this.programs = res
       console.log('get getTopRated', res);
 
@@ -1021,7 +1022,11 @@ if(program.userId==''|| program.userId==undefined || !program.userId){ program.u
     else if(this.isTopFilterCheckBox ==!true){
       this.showReset=true
       this.resetFilter();
+      this.ngxLoader.stop()
   }
+  this.ngxLoader.stop()
  }
+
 }
+
 

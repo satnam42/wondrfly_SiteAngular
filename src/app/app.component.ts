@@ -1,9 +1,11 @@
 import { Component, OnInit, OnDestroy, HostListener, Input } from '@angular/core';
+import { Meta } from '@angular/platform-browser';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { environment } from '../environments/environment';
 import { User } from './core/models';
 import { AuthsService } from './core/services/auths.service';
+import { CanonicalService } from './core/shared/canonical.service';
 
 
 @Component({
@@ -20,6 +22,8 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(private router: Router,
     private auth: AuthsService,
     private activatedRoute: ActivatedRoute,
+    private canonicalService: CanonicalService,
+    private metaService: Meta
      ) {
 
 
@@ -35,7 +39,12 @@ export class AppComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
+    this.canonicalService.setCanonicalURL();
+    this.metaService.addTags([
+      { name: 'keywords', content: 'Best Activities and Programs, activities near me for toddlers, fitness classes for kids, online music lessons, online art classes' }
+    ])
   }
+
   ngOnDestroy() {
   }
 
