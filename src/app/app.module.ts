@@ -26,7 +26,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { MailchimpSubscribeFormModule } from './core/components/mailchimp-subscribe-form/mailchimp-subscribe-form.module';
 import { ChatModule } from './pages/chat/chat.module';
 import { ChatService } from './core/services/chat.service';
-import { NotFoundComponent } from './pages/not-found/not-found.component';
+
 
 const configs = new AuthServiceConfig([
   {
@@ -54,7 +54,7 @@ const config: SocketIoConfig = { url: environment.socketUrl, options: {} };
   declarations: [
     AppComponent,
     LandingComponent,
-    NotFoundComponent,
+    // NotFoundComponent
   ],
 
 

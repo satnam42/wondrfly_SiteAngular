@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LandingComponent } from './pages/landing/landing.component';
-import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 // main routes
 const routes: Routes = [
 
   { path: '', component: LandingComponent },
-  { path: '404', component: NotFoundComponent },
+  // { path: '404', component: NotFoundComponent },
   { path: 'term-condition', loadChildren: () => import('.//pages/term-condition/term-condition.module').then(m => m.TermConditionModule) },
   { path: 'about-wondrfly', loadChildren: () => import('.//pages/why-wondrfly/why-wondrfly.module').then(m => m.WhyWondrflyModule) },
   { path: 'search', loadChildren: () => import('.//pages/search/search.module').then(m => m.SearchModule) },
@@ -54,7 +53,7 @@ const routes: Routes = [
   { path: '', loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule) },
 
 
-  { path: '**', redirectTo: '404' },
+  { path: '**', redirectTo: 'search' },
 ];
 
 @NgModule({
