@@ -171,15 +171,15 @@ header .navbar {
 }
 
 .header_right .progress .progress-value {
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: normal;
-    font-size: 7px;
-    line-height: 24px;
-    display: flex;
-    align-items: center;
-    letter-spacing: 0.15px;
-    color: #858585;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.15px;
+  color: #494949;
 }
 
 .forum {
@@ -1754,12 +1754,13 @@ header .header_main .nav-link .icon {
 }
 .progress-imagewith {
     display: flex;
-    flex-direction: column;
+    flex-direction:row-reverse;
+    margin-right: 20px;
 }
-.profile-completion {
+/* .profile-completion {
     margin-top: -8px;
     margin-left: -18px;
-}
+} */
 .header-lefticons {
     margin-top: 8px;
     margin-left: -20px;

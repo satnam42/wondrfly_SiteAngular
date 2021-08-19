@@ -2844,5 +2844,20 @@ button.map-buttonas {
 #timess .form-group.typess label {
   font-size: 7px;
 }
+.search-location input {
+  min-width: 115px;
+}
+.banner_form .form-group input.camp_input {
+  max-width: 182px;
+  min-width: 182px;
+}
+.search-location:before {
+  left: 43%;
+}
+.search-location {
+  margin-left: 23px;
+}
+
+
 
 }
