@@ -578,20 +578,20 @@ this.toDate=e.endDate._d
     // if (this.isOpenFilter) {
     //   this.getOpenPrograms('value')
     // }
-    if (this.isSavedFilter) {
-      this.getFav(this.userData.id,this.isSavedFilter)
-    }
-    else {
+ 
       if (this.showReset) {
         if (this.activityDate || this.activityName) {
           this.filterByNameDate()
+        }
+        else{
+          this.programFilter()
         }
 
       }
       else {
         this.getPublishedProgram();
       }
-    }
+    
   }
 
   onSearch(val: string) {
