@@ -26,6 +26,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { MailchimpSubscribeFormModule } from './core/components/mailchimp-subscribe-form/mailchimp-subscribe-form.module';
 import { ChatModule } from './pages/chat/chat.module';
 import { ChatService } from './core/services/chat.service';
+import { DataService } from './core/services/dataservice.service ';
 
 
 const configs = new AuthServiceConfig([
@@ -93,6 +94,7 @@ const config: SocketIoConfig = { url: environment.socketUrl, options: {} };
     LocalStorageService,
     AuthsService,
     UserGuard,
+    DataService,
     ChatService,
     Globals,
     MapTheme,
