@@ -126,7 +126,7 @@ export class OnlineProgramsComponent implements OnInit {
   @ViewChild('search', { static: true })
   public searchElementRef: ElementRef;
   recentSearch: any;
-  shareUrlSocial = environment.shareUrl;
+  shareUrlSocial = environment.baseUrl;
   baseUrl= environment.baseUrl;
   shareUrl:string;
   selectedProgramId: string;

@@ -36,7 +36,7 @@ title:string = ""
     title:''
   };
   shareUrl:string;
-  shareUrlSocial = environment.shareUrl;
+  shareUrlSocial = environment.baseUrl;
   programs:any = new Program;
   constructor( public imageLoader: Globals,
     public auths: AuthsService,
