@@ -12,6 +12,7 @@ import { environment } from 'src/environments/environment.prod';
 
 import { Meta, Title } from '@angular/platform-browser';
 import { Options } from '@angular-slider/ngx-slider';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'search',
   templateUrl: './search.component.html',
@@ -166,6 +167,7 @@ export class SearchComponent implements OnInit {
     private ngZone: NgZone,
     private titleService: Title,
     private metaTagService: Meta,
+    private snack: MatSnackBar
 
   ) {
     this.filterData = dataservice.getOption()
@@ -910,22 +912,13 @@ console.log('this.timeSession>>>>>>>>>',this.timeSession)
         return true;
       }
       case 'copylink': {
-          let selBox = document.createElement('textarea');
-          selBox.style.position = 'fixed';
-          selBox.style.left = '0';
-          selBox.style.top = '0';
-          selBox.style.opacity = '0';
-          selBox.value = this.shareUrl;
-          document.body.appendChild(selBox);
-          selBox.focus();
-          selBox.select();
-          document.execCommand('copy');
-          document.body.removeChild(selBox);
-          return true;
-        // this.url = `${encodeURIComponent(this.baseUrl)}program/detail/${this.selectedProgramId}`;
+        navigator.clipboard.writeText(this.shareUrl).then().catch(e => console.error(e));
+        this.snack.open('Link copied','', { duration: 500 });
+           // this.url = `${encodeURIComponent(this.baseUrl)}program/detail/${this.selectedProgramId}`;
       }
 
     }
+
   }
 
   signUpModal() {

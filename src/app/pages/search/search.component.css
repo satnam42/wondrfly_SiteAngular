@@ -1857,6 +1857,7 @@ span.close-filter {
 }
 .sharethis-social {
     display: flex;
+    cursor:pointer;
     justify-content: left;
     align-items: center;
     background-color: #efefef;
