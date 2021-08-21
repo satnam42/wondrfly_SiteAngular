@@ -18,7 +18,6 @@ export const environment = {
     socketUrl: 'https://wondrfly.com/api:8406',
     blogsUrl:  'https://cms.wondrfly.com',
     baseUrl:'https://wondrfly.com/',
-  shareUrl:'https://wondrfly.com/#/',
     name: 'prod'
 
 

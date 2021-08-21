@@ -139,7 +139,7 @@ export class SearchComponent implements OnInit {
   @ViewChild('search', { static: true })
   public searchElementRef: ElementRef;
   recentSearch: any;
-  shareUrlSocial = environment.shareUrl;
+  shareUrlSocial = environment.baseUrl;
   baseUrl= environment.baseUrl;
   shareUrl:string;
   selectedProgramId: string;
@@ -578,7 +578,7 @@ this.toDate=e.endDate._d
     // if (this.isOpenFilter) {
     //   this.getOpenPrograms('value')
     // }
- 
+
       if (this.showReset) {
         if (this.activityDate || this.activityName) {
           this.filterByNameDate()
@@ -591,7 +591,7 @@ this.toDate=e.endDate._d
       else {
         this.getPublishedProgram();
       }
-    
+
   }
 
   onSearch(val: string) {
@@ -880,40 +880,38 @@ console.log('this.timeSession>>>>>>>>>',this.timeSession)
   }
   //----------------------------------------share activity or program detail in social media  ---------------------------------------------------------
 
-  genericSocialShare() {
+  genericSocialShare(provider) {
 
  this.shareUrl=`${this.shareUrlSocial}program/detail/${this.selectedProgramId}`;
  console.log('share url ',this.shareUrl)
-//  this.metaTagService.updateTag(
-//   { property: 'og:url', content: this.shareUrl  },
-// );
-    // switch (provider) {
-    //   case 'facebook': {
-    //     this.url = `https://www.${provider}.com/sharer/sharer.php?u=${encodeURIComponent(this.baseUrl)}program/detail/${this.selectedProgramId}`;
-    //     window.open(this.url, 'sharer', 'toolbar=0,status=0,width=648,height=395');
-    //     return true;
-    //   }
-    //   case 'email': {
-    //     this.url = `mailto:?subject=wondrfly&amp;body=${encodeURIComponent(this.baseUrl)}program/detail/${this.selectedProgramId}`;
-    //     window.open( this.url, 'sharer', 'toolbar=0,status=0,width=648,height=395');
-    //     return true;
-    //   }
-    //   case 'whatsapp': {
-    //     this.url = `https://api.${provider}.com/send?text=${encodeURIComponent(this.baseUrl)}program/detail/${this.selectedProgramId}`;
-    //     window.open( this.url, 'sharer', 'toolbar=0,status=0,width=648,height=395');
-    //     return true;
-    //   }
-    //   case 'messenger': {
-    //     this.url = `https://fb-messenger://share/?link=${encodeURIComponent(this.baseUrl)}&app_id=123456789`;
-    //     window.open( this.url, 'sharer', 'toolbar=0,status=0,width=648,height=395');
-    //     return true;
-    //   }
-    //   case 'copylink': {
-    //     this.url = `${encodeURIComponent(this.baseUrl)}program/detail/${this.selectedProgramId}`;
 
-    //   }
+    switch (provider) {
+      case 'facebook': {
+        this.url = `https://www.${provider}.com/sharer/sharer.php?u=${this.shareUrl}`;
+        window.open(this.url, 'sharer', 'toolbar=0,status=0,width=648,height=395');
+        return true;
+      }
+      case 'email': {
+        this.url = `mailto:?subject=wondrfly&amp;body=${this.shareUrl}`;
+        window.open( this.url, 'sharer', 'toolbar=0,status=0,width=648,height=395');
+        return true;
+      }
+      case 'whatsapp': {
+        this.url = `https://api.${provider}.com/send?text=${this.shareUrl}`;
+        window.open( this.url, 'sharer', 'toolbar=0,status=0,width=648,height=395');
+        return true;
+      }
+      case 'messenger': {
+        this.url = `https://fb-messenger://share/?link=${this.shareUrl}`;
+        window.open( this.url, 'sharer', 'toolbar=0,status=0,width=648,height=395');
+        return true;
+      }
+      case 'copylink': {
+        // this.url = `${this.shareUrl}`;
 
-    // }
+      }
+
+    }
   }
 
   signUpModal() {

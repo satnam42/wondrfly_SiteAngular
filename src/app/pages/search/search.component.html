@@ -298,19 +298,19 @@
                                           <label for="time1" class="k-checkbox-label">Early Morning (6am - 9am)</label>
                                         </div>
                                         <div class="typess-flex">
-                                        <input type="radio" id="time2" class="k-checkbox" name="time1" (change)="$event.target.checked ? timeSession='morning' : timeSession='';programFilter()" 
+                                        <input type="radio" id="time2" class="k-checkbox" name="time1" (change)="$event.target.checked ? timeSession='morning' : timeSession='';programFilter()"
                                         data-target="#timess"data-toggle="collapse"value="morning">
                                         <label for="time2" class="k-checkbox-label">Morning (9am - 12pm)</label></div>
                                         <div class="typess-flex">
-                                        <input type="radio" id="time3" class="k-checkbox" name="time1" (change)="$event.target.checked ? timeSession='afternoon' : timeSession='';programFilter()" 
+                                        <input type="radio" id="time3" class="k-checkbox" name="time1" (change)="$event.target.checked ? timeSession='afternoon' : timeSession='';programFilter()"
                                         data-target="#timess"data-toggle="collapse"value="afternoon">
                                         <label for="time3" class="k-checkbox-label">Afternoon (12pm - 3pm)</label></div>
                                         <div class="typess-flex">
-                                        <input type="radio" id="time4" class="k-checkbox" name="time1" (change)="$event.target.checked ? timeSession='late-afternoon' : timeSession='';programFilter()" 
+                                        <input type="radio" id="time4" class="k-checkbox" name="time1" (change)="$event.target.checked ? timeSession='late-afternoon' : timeSession='';programFilter()"
                                         data-target="#timess"data-toggle="collapse"value="late-afternoon">
                                         <label for="time4" class="k-checkbox-label">Late Afternoon (3pm - 6pm)</label></div>
                                         <div class="typess-flex">
-                                        <input type="radio" id="time5" class="k-checkbox" name="time1" (change)="$event.target.checked ? timeSession='evening' : timeSession='';programFilter()" 
+                                        <input type="radio" id="time5" class="k-checkbox" name="time1" (change)="$event.target.checked ? timeSession='evening' : timeSession='';programFilter()"
                                         data-target="#timess"data-toggle="collapse" value="evening">
                                         <label for="time5" class="k-checkbox-label">Evening (6pm - 9pm)</label></div>
                                       </form>
@@ -643,7 +643,7 @@
                     </div>
                     <div class="media-body ">
                         <div  class="share_icon ">
-                            <a data-toggle="modal" (click)="selectedProgramId=program._id;genericSocialShare()"  data-target="#ShareModal" class="cursor">
+                            <a data-toggle="modal" (click)="selectedProgramId=program._id"  data-target="#ShareModal" class="cursor">
                                 <img src="assets/share_gray.svg " alt="Share Icon ">
                             </a>
                             <div  class="bookmark_outer ">
@@ -812,7 +812,7 @@
                             </div>
                             <div class="media-body ">
                                 <div  class="share_icon ">
-                                    <a data-toggle="modal" (click)="selectedProgramId=program._id;genericSocialShare()"  data-target="#ShareModal" class="cursor">
+                                    <a data-toggle="modal" (click)="selectedProgramId=program._id"  data-target="#ShareModal" class="cursor">
                                         <img src="assets/share_gray.svg " alt="Share Icon ">
                                     </a>
                                     <div  class="bookmark_outer ">
@@ -1009,7 +1009,7 @@
                             </div>
                             <div class="media-body ">
                                 <div  class="share_icon ">
-                                    <a data-toggle="modal" (click)="selectedProgramId=program._id;genericSocialShare()"  data-target="#ShareModal" class="cursor">
+                                    <a data-toggle="modal" (click)="selectedProgramId=program._id"  data-target="#ShareModal" class="cursor">
                                         <img src="assets/share_gray.svg " alt="Share Icon ">
                                     </a>
                                     <div  class="bookmark_outer ">
@@ -1299,8 +1299,8 @@
             <div class="sharethisall-icons">
                 <hr class="N_line">
             <div class="sharethis-social">
-                <span class="st_facebook_large" st_url="https://wondrfly.com" displayText="Facebook"></span>
-                <span class="sharethis-text">Facebook</span>
+                <!-- <span class="st_facebook_large" st_url="https://wondrfly.com" displayText="Facebook"></span> -->
+                <span (click)="genericSocialShare('facebook')" class="sharethis-text">Facebook</span>
             </div>
             <hr class="N_line">
             <div class="sharethis-social">
