@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService, FacebookLoginProvider, GoogleLoginProvider, SocialUser } from 'angularx-social-login';
+import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthService, SocialUser } from 'angularx-social-login';
 import axios from 'axios';
 import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
@@ -38,7 +38,7 @@ export class SocialLoginComponent implements OnInit {
   }
   data: SocialUser;
   user = new User;
-  constructor(private authService : AuthService,
+  constructor(private socialAuthService: SocialAuthService,
               private apiservice : ApiService,
               private router : Router,
               private ngxLoader : NgxUiLoaderService,
@@ -57,8 +57,8 @@ export class SocialLoginComponent implements OnInit {
   signInWithFB() {
     console.log('user role',this.role);
     if(localStorage.getItem("token") === null){
-    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
-    this.authService.authState.subscribe((user) => {
+    this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
+    this.socialAuthService.authState.subscribe((user) => {
       // this.user = user;
       this.loggedIn = (user != null);
       console.log(user);
@@ -90,8 +90,8 @@ export class SocialLoginComponent implements OnInit {
   signInWithGoogle() {
     console.log('user role',this.role);
     if(localStorage.getItem("token") === null){
-      this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
-    this.authService.authState.subscribe((user) => {
+      this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
+    this.socialAuthService.authState.subscribe((user) => {
       console.log('google dataaaaaaaaaa',user)
       // this.userGoogle = user;
       this.loggedIn = (user != null);

@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 export class Globals {
     public isLoad = true;
     public img = "assets/loader.gif";
-    public logo = "assets/logo.svg";
+    public logo = "assets/logo.png";
     public noCat = "assets/guitar.png";
 
 }

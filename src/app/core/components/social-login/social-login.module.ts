@@ -1,14 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SocialLoginComponent } from './social-login.component';
-
-
+import { SocialLoginComponent } from './social-login.component'
 
 @NgModule({
   declarations: [SocialLoginComponent],
   imports: [
-    CommonModule
+    CommonModule,
   ],
-  exports:[SocialLoginComponent]
+  exports:[SocialLoginComponent],
 })
 export class SocialLoginModule { }

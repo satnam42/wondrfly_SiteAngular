@@ -16,7 +16,7 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { AgmCoreModule } from '@agm/core';
-import { SocialLoginModule, AuthServiceConfig, FacebookLoginProvider, GoogleLoginProvider } from 'angularx-social-login';
+import { SocialLoginModule, FacebookLoginProvider, GoogleLoginProvider, SocialAuthServiceConfig } from 'angularx-social-login';
 import { Globals } from './core/common/imageLoader';
 import { MapTheme } from './core/common/map-theme';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
@@ -28,25 +28,6 @@ import { ChatModule } from './pages/chat/chat.module';
 import { ChatService } from './core/services/chat.service';
 import { DataService } from './core/services/dataservice.service ';
 
-
-const configs = new AuthServiceConfig([
-  {
-    id: FacebookLoginProvider.PROVIDER_ID,
-    provider: new FacebookLoginProvider('2938106953127281')
-    // provider: new FacebookLoginProvider('273271161090720')
-    // provider: new FacebookLoginProvider('531594798084842')
-
-  },
-  {
-    id: GoogleLoginProvider.PROVIDER_ID,
-    provider: new GoogleLoginProvider('335753464827-9pllubf5hlm97nf893j5rfhvmvcv28hi.apps.googleusercontent.com')
-  }
-
-]);
-
-export function provideConfig() {
-  return configs;
-}
 
 const config: SocketIoConfig = { url: environment.socketUrl, options: {} };
 
@@ -98,11 +79,25 @@ const config: SocketIoConfig = { url: environment.socketUrl, options: {} };
     ChatService,
     Globals,
     MapTheme,
-    {
-      provide: AuthServiceConfig,
-      useFactory: provideConfig
-    },
     // { provide: LocationStrategy, useClass: PathLocationStrategy }
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider('335753464827-9pllubf5hlm97nf893j5rfhvmvcv28hi.apps.googleusercontent.com')
+          },
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider(
+              '2938106953127281'
+            )
+          },
+        ]
+      } as SocialAuthServiceConfig,
+    }    
 
   ],
   bootstrap: [AppComponent]

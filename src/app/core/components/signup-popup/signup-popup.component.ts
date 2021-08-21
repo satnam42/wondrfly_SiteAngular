@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService, SocialUser } from 'angularx-social-login';
+import {SocialUser } from 'angularx-social-login';
 import axios from 'axios';
 import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
@@ -66,7 +66,7 @@ export class SignupPopupComponent implements OnInit {
     public imageLoader: Globals,
     private ngxLoader: NgxUiLoaderService,
     
-    private store: LocalStorageService,private authService: AuthService) {
+    private store: LocalStorageService) {
   }
  
 
