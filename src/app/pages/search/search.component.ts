@@ -168,6 +168,7 @@ export class SearchComponent implements OnInit {
   ) {
     this.filterData = dataservice.getOption()
     if (this.filterData) {
+      console.log(this.filterData)
       this.categoryId = this.filterData.categoryId
       this.activityName = this.filterData.activityName
       this.activityDate = this.filterData.activityDate
@@ -242,14 +243,8 @@ this.toDate=e.endDate._d
     // this.getSearchHistory()
     if (this.categoryId) {
       this.isCategoryFilter = true
-      this.fromTime = null;
-      this.toTime = null;
-      this.minAge = null;
-      this.maxAge = null;
-      this.fromDate = null;
-      this.toDate = null;
-      this.minPrice = null
-      this.maxPrice = null
+      this.filterByCategory(this.categoryId)
+      this.showReset =true
     }
     else {
       if (this.activityDate || this.activityName) {
@@ -583,6 +578,9 @@ this.toDate=e.endDate._d
         if (this.activityDate || this.activityName) {
           this.filterByNameDate()
         }
+        else if(this.categoryId){
+          this.filterByCategory(this.categoryId)
+        }
         else{
           this.programFilter()
         }
@@ -658,7 +656,7 @@ if(toggle){
       console.log('response', res);
       if (res.isSuccess) {
         this.programs = res.data;
-        this.isScrol = true;
+        // this.isScrol = true;
       }
     });  }
   filterByNameDate() {
