@@ -168,7 +168,6 @@ export class SearchComponent implements OnInit {
   ) {
     this.filterData = dataservice.getOption()
     if (this.filterData) {
-      console.log(this.filterData)
       this.categoryId = this.filterData.categoryId
       this.activityName = this.filterData.activityName
       this.activityDate = this.filterData.activityDate
@@ -243,8 +242,14 @@ this.toDate=e.endDate._d
     // this.getSearchHistory()
     if (this.categoryId) {
       this.isCategoryFilter = true
-      this.filterByCategory(this.categoryId)
-      this.showReset =true
+      this.fromTime = null;
+      this.toTime = null;
+      this.minAge = null;
+      this.maxAge = null;
+      this.fromDate = null;
+      this.toDate = null;
+      this.minPrice = null
+      this.maxPrice = null
     }
     else {
       if (this.activityDate || this.activityName) {
@@ -578,9 +583,6 @@ this.toDate=e.endDate._d
         if (this.activityDate || this.activityName) {
           this.filterByNameDate()
         }
-        else if(this.categoryId){
-          this.filterByCategory(this.categoryId)
-        }
         else{
           this.programFilter()
         }
@@ -656,7 +658,7 @@ if(toggle){
       console.log('response', res);
       if (res.isSuccess) {
         this.programs = res.data;
-        // this.isScrol = true;
+        this.isScrol = true;
       }
     });  }
   filterByNameDate() {
@@ -905,8 +907,19 @@ console.log('this.timeSession>>>>>>>>>',this.timeSession)
         return true;
       }
       case 'copylink': {
-        // this.url = `${this.shareUrl}`;
-
+          let selBox = document.createElement('textarea');
+          selBox.style.position = 'fixed';
+          selBox.style.left = '0';
+          selBox.style.top = '0';
+          selBox.style.opacity = '0';
+          selBox.value = this.shareUrl;
+          document.body.appendChild(selBox);
+          selBox.focus();
+          selBox.select();
+          document.execCommand('copy');
+          document.body.removeChild(selBox);
+          return true;
+        // this.url = `${encodeURIComponent(this.baseUrl)}program/detail/${this.selectedProgramId}`;
       }
 
     }
