@@ -2326,6 +2326,13 @@ line-height: 37px;
   border-radius: 20px;
   color: #53B2E8 !important;
 }
+
+.categories-filtercontent .active {
+    background: #E2F5FF;
+    border-radius: 20px;
+    color: #53B2E8 !important;
+  }
+
 .sub-categoriesfiltercontent .col-6 {
   padding-right: 15px;
 }

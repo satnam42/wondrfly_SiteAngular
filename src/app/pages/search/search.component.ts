@@ -49,6 +49,7 @@ export class SearchComponent implements OnInit {
   locations = [];
   categories = new Category;
   categoriesBySearch : any = new Category;
+  isActive: boolean=false
   providersBySearch : any= new User;
   userData: any = {};
   programList: any;
@@ -153,6 +154,7 @@ export class SearchComponent implements OnInit {
   subCats: any=[];
   previous;
   filterName='';
+  selectedCat: any;
   constructor(
     private router: Router,
     private apiservice: ApiService,
@@ -498,8 +500,9 @@ this.toDate=e.endDate._d
   }
 
   // ---------------------------------------------get categories-------------------------------------
-  getSubCateById(id){
-    this.apiservice.getTagByCategoryId(id).subscribe((res: any) => {
+  getSubCateById(cat){
+    this.selectedCat= cat.id
+    this.apiservice.getTagByCategoryId(this.selectedCat).subscribe((res: any) => {
       this.subCats = res.data
       console.log('categories', this.subCats)
     })
