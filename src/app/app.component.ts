@@ -13,15 +13,13 @@ import { CanonicalService } from './core/shared/canonical.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnInit {
   subscription: Subscription;
   envName: string;
 
   currentUser: any = new User;
   isLogin = false;
-  constructor(private router: Router,
-    private auth: AuthsService,
-    private activatedRoute: ActivatedRoute,
+  constructor(
     private canonicalService: CanonicalService,
     private metaService: Meta
      ) {
@@ -45,7 +43,5 @@ export class AppComponent implements OnInit, OnDestroy {
     ])
   }
 
-  ngOnDestroy() {
-  }
 
 }

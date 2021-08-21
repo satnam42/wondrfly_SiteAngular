@@ -246,18 +246,17 @@ this.toDate=e.endDate._d
     // this.getSearchHistory()
     if (this.categoryId) {
       this.isCategoryFilter = true
-      this.fromTime = null;
-      this.toTime = null;
-      this.minAge = null;
-      this.maxAge = null;
-      this.fromDate = null;
-      this.toDate = null;
-      this.minPrice = null
-      this.maxPrice = null
-    }
-    else {
-      if (this.activityDate || this.activityName) {
-        this.filterByNameDate()
+      this.filterByCategory(this.categoryId)
+           this.showReset =true
+           }
+           else {
+             if (this.activityDate || this.activityName) {
+               if (this.activityDate || this.activityName) {
+                 this.filterByNameDate()
+               }
+          else if(this.categoryId){
+               this.filterByCategory(this.categoryId)
+            }
       } else {
         this.getPublishedProgram();
       }

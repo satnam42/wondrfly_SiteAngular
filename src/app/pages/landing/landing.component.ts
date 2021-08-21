@@ -16,7 +16,7 @@ import { environment } from 'src/environments/environment';
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.css']
 })
-export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
+export class LandingComponent implements OnInit {
   blogUrl = environment.blogsUrl;
   user: SocialUser;
   userGoogle: SocialUser;
@@ -90,21 +90,6 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
-
-  // signUpModal() {
-  //   if (localStorage.getItem("token") === null) {
-  //     setTimeout(() => {
-  //       console.log('timerrrrrr')
-  //       this.parentForm.reset()
-  //       window.document.getElementById("modal1").click();
-  //     }, 10000);
-  //   }
-  // }
-  ngAfterViewInit() {
-    // this.signUpModal()
-  }
-
-
   // ------------------------------------------------get blogs  -------------------------------------------
 
 
@@ -150,10 +135,6 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
       { name: 'description', content: 'Looking for the best programs and activities for your kids? Wondrfly is the leading platform for parents to discover indoor and outdoor activities for kids ages 3-14 years.' }
     );
 
-  }
-
-  ngOnDestroy() {
-    // window.document.getElementById("close_modal").click();
   }
 
 }
