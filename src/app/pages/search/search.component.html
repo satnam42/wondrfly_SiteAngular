@@ -73,11 +73,10 @@
 
        <div class="row row-0">
         <div class="col-12 searchs-filters">
-            
+
             <div class="search-filterss">
                 <div class="category_list" id="accordionExample">
                     <ul>
-                       
                         <li class="cursor">
                           <a aria-expanded="true" data-target="#category" [ngClass]="{'active' : isCategoryFilter}"
                           (click)="openModal(isCategoryFilter=true,isTypeFilter=false,isDaysFilter=false,isPriceFilter=false,isDateFilter=false,isAgeFilter=false,isTimeFilter=false,isCategoryModal=true,isPriceModal=false,isDateModal=false,isAgeModal=false,isTimeModal=false)" data-toggle="collapse">Categories</a>
@@ -209,7 +208,7 @@
                                     <button class="calender-buttons2" data-target="#date" data-toggle="collapse"  (click)='programFilter()'>Set Date</button>
                                   </div>
                                 </div>
-                              
+
                             </div>
                         </li>
                         <li class="cursor">
@@ -250,7 +249,7 @@
                             </div>
                         </div>
                         </li>
-                       
+
                         <li class="cursor">
                           <a aria-expanded="true"  [ngClass]="{'active' : isDaysFilter}"
                           (click)="filterName='day';openModal(isCategoryFilter=false,isTypeFilter=false,isDaysFilter=true,isPriceFilter=false,isDateFilter=false,isAgeFilter=false,isTimeFilter=false,isCategoryModal=false,isPriceModal=false,isDateModal=false,isAgeModal=false,isTimeModal=false)"
@@ -314,7 +313,7 @@
                               </div>
                           </div>
                       </li>
-                       
+
                       <li class="cursor">
                         <a class="top-rateds" aria-expanded="true" [ngClass]="{'active' : isTopFilter}"
                         (click)="openModal(isCategoryFilter=false,isDaysFilter=false,isPriceFilter=false,isDateFilter=false,isAgeFilter=false,isTimeFilter=false,isCategoryModal=false,isDaysModal=false,isPriceModal=false,isDateModal=false,isAgeModal=false,isTimeModal=false)"><span class="simple-toggle">
@@ -350,7 +349,7 @@
                 <!-- <div class="list-group "> -->
                 <div *ngFor="let program of programs; index as i" class="media activity">
                     <div class="media-left activity-imgs" (click)="goToProgramDetail(program)">
-    
+
                             <img [defaultImage]="defaultImage" [errorImage]="errorImage" [lazyLoad]="baseUrl+program?.category[0]?.iconUrl"/>
                     </div>
                     <div class="media-body ">
@@ -507,11 +506,11 @@
                 </div>
                 <!-- suggested starts -->
                 <div *ngIf="programs?.length" class="suggested-searchresult">
-                    <div class="suggested-result in-built">
-                        <h3 class="suggested-searcxhtext">
-                            Suggested Programs
+                     <div class="suggested-result suggested-text in-built">
+                        <h3>
+                        You might want to explore similar Categories
                         </h3>
-                        <div class="search-results suggested suggested-one" >
+                        <!-- <div class="search-results suggested suggested-one" >
                         <div *ngFor="let program of suggested; index as i" class="media activity">
                             <div class="media-left activity-imgs" (click)="goToProgramDetail(program) ">
                                     <img [defaultImage]="defaultImage" [errorImage]="errorImage" [lazyLoad]="baseUrl+program?.category[0]?.iconUrl"/>
@@ -616,7 +615,7 @@
                                             <span class="fa fa-star checked"></span>
                                             <span class="fa fa-star checked"></span>
                                         </span>
-                                      <!-- <a><span *ngIf="program.averageFinalRating">{{program.averageFinalRating}}</span><span *ngIf="!program.averageFinalRating">0</span> out of 5 </a> -->
+
                                       <a *ngIf='program.totalReviews'> ({{program.totalReviews}} reviews)</a>
                                       <a *ngIf='!program.totalReviews'> (0 reviews)</a>
                                     </p>
@@ -661,18 +660,42 @@
                                        <p *ngIf='!program.pricePerParticipant'><span>Free</span></p>
                                     </div>
                                     <div class="rating_box ">
-                                        <!-- <a href="javascript:; ">
-                                            <img src="assets/star.svg " alt="Star "> 5.0 (15)
-                                        </a> -->
                                     </div>
 
                             </div>
 
                         </div>
 
+                        </div> -->
+                        <div class="similar-categories container">
+                          <div class="row">
+                            <div class="col-md-4">
+                                <div class="similar-cate">
+                                    <img src="assets/similarcategories1.png">
+                                    <h1>Dance</h1>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                             <div class="similar-cate">
+                                 <img src="assets/similarcategories2.png">
+                                 <h1>Soccer</h1>
+                             </div>
+                         </div>
+                         <div class="col-md-4">
+                           <div class="similar-cate">
+                               <img src="assets/similarcategories3.png">
+                               <h1>Skateboarding</h1>
+                           </div>
+                       </div>
+                          </div>
                         </div>
-                    </div>
-                    </div>
+                      </div>
+
+
+
+
+                  </div>
+
 
 
                     <!-- suggested ends -->
@@ -693,15 +716,15 @@
 
                     <div class="suggested-result">
                         <h3 class="suggested-searcxhtext">
-                            Suggested Programs
+                          You might want to explore similar Categories
                         </h3>
-                        <div class="search-results suggested" #scrollToTop infiniteScroll [infiniteScrollDistance]="2"
+                        <!-- <div class="search-results suggested" #scrollToTop infiniteScroll [infiniteScrollDistance]="2"
                         [infiniteScrollThrottle]="500" (scrolled)="onScroll()" [scrollWindow]="false">
                         <div *ngFor="let program of suggested; index as i" class="media activity">
                             <div class="media-left activity-imgs" (click)="goToProgramDetail(program) ">
-                               
+
                                     <img [defaultImage]="defaultImage" [errorImage]="errorImage" [lazyLoad]="baseUrl+program?.category[0]?.iconUrl"/>
-                            
+
                             </div>
                             <div class="media-body ">
                                 <div  class="share_icon ">
@@ -802,7 +825,7 @@
                                             <span class="fa fa-star checked"></span>
                                             <span class="fa fa-star checked"></span>
                                         </span>
-                                      <!-- <a><span *ngIf="program.averageFinalRating">{{program.averageFinalRating}}</span><span *ngIf="!program.averageFinalRating">0</span> out of 5 </a> -->
+
                                       <a *ngIf='program.totalReviews'> ({{program.totalReviews}} reviews)</a>
                                       <a *ngIf='!program.totalReviews'> (0 reviews)</a>
                                     </p>
@@ -847,17 +870,37 @@
                                   <p *ngIf='program.isFree'><span>Free</span></p>
                                </div>
                                     <div class="rating_box ">
-                                        <!-- <a href="javascript:; ">
-                                            <img src="assets/star.svg " alt="Star "> 5.0 (15)
-                                        </a> -->
+
                                     </div>
 
                             </div>
 
                         </div>
 
+                        </div> -->
+                        <div class="similar-categories container">
+                         <div class="row">
+                           <div class="col-md-4">
+                               <div class="similar-cate">
+                                   <img src="assets/similarcategories1.png">
+                                   <h1>Dance</h1>
+                               </div>
+                           </div>
+                           <div class="col-md-4">
+                            <div class="similar-cate">
+                                <img src="assets/similarcategories2.png">
+                                <h1>Soccer</h1>
+                            </div>
                         </div>
-                    </div>
+                        <div class="col-md-4">
+                          <div class="similar-cate">
+                              <img src="assets/similarcategories3.png">
+                              <h1>Skateboarding</h1>
+                          </div>
+                      </div>
+                         </div>
+                       </div>
+                      </div>
 
                 </div>
 
@@ -995,23 +1038,31 @@
             <div class="sharethisall-icons">
                 <hr class="N_line">
             <div class="sharethis-social"  (click)="genericSocialShare('facebook')">
+                <img src="assets/shareface.svg">
                 <span class="sharethis-text">Facebook</span>
             </div>
             <hr class="N_line">
             <div class="sharethis-social" (click)="genericSocialShare('messenger')">
+              <img src="assets/sharemesseng.svg">
               <span  class="sharethis-text">Messenger</span>
             </div>
             <hr class="N_line">
             <div class="sharethis-social" (click)="genericSocialShare('email')">
+              <img src="assets/sharemail.svg">
               <span  class="sharethis-text">Email</span>
             </div>
             <hr class="N_line">
             <div class="sharethis-social" (click)="genericSocialShare('whatsapp')">
+              <img src="assets/sharewsup.svg">
               <span  class="sharethis-text">Whatsapp</span>
             </div>
-            <div style="cursor:copy" class="sharethis-social" (click)="genericSocialShare('copylink')">
-              <span  class="sharethis-text">Copylink</span>
-            </div>
+            <hr class="N_line">
+              <div style="cursor:copy" class="sharethis-social" (click)="genericSocialShare('copylink')">
+                <img src="assets/sharecopylink.svg">
+                <span  class="sharethis-text">Copylink</span>
+              </div>
+
+
             <!-- <hr class="N_line"> -->
             <!-- <div class="sharethis-social">
                 <span class="st_sharethis_large" st_url="https://wondrfly.com" displayText="ShareThis"></span>
