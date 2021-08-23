@@ -1,10 +1,8 @@
-import { Component, OnInit, OnDestroy, HostListener, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
-import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { environment } from '../environments/environment';
 import { User } from './core/models';
-import { AuthsService } from './core/services/auths.service';
 import { CanonicalService } from './core/shared/canonical.service';
 
 

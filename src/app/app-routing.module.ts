@@ -15,10 +15,6 @@ const routes: Routes = [
   { path: 'privacyPolicy', loadChildren: () => import('.//pages/privacy-policy/privacy-policy.module').then(m => m.PrivacyPolicyModule) },
   { path: 'contactUs', loadChildren: () => import('.//pages/contact-us/contact-us.module').then(m => m.ContactUsModule) },
 
-  // {
-  //   path: 'chat', canActivate: [UserGuard],
-  //   loadChildren: () => import('.//pages/chat/chat.module').then(m => m.ChatModule),
-  // },
       {
         path: 'program',
         loadChildren: () => import('.//pages/provider/program/program.module').then(m => m.ProgramModule),

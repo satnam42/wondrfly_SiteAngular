@@ -11,9 +11,7 @@ import { environment } from '../environments/environment';
 import { LandingComponent } from './pages/landing/landing.component';
 import { AuthsService } from './core/services/auths.service';
 import { UserGuard } from './core/guards';
-import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
-import { CalendarModule, DateAdapter } from 'angular-calendar';
-import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { AgmCoreModule } from '@agm/core';
 import { SocialLoginModule, FacebookLoginProvider, GoogleLoginProvider, SocialAuthServiceConfig } from 'angularx-social-login';
@@ -24,9 +22,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { NgxMaskModule } from 'ngx-mask';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { MailchimpSubscribeFormModule } from './core/components/mailchimp-subscribe-form/mailchimp-subscribe-form.module';
-import { ChatModule } from './pages/chat/chat.module';
 import { ChatService } from './core/services/chat.service';
-import { DataService } from './core/services/dataservice.service ';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 
@@ -45,22 +41,17 @@ const config: SocketIoConfig = { url: environment.socketUrl, options: {} };
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    CoreModule,
     FormsModule,
     SocialLoginModule,
     ReactiveFormsModule,
     HttpClientModule,
     LazyLoadImageModule,
+    CoreModule,
     MailchimpSubscribeFormModule,
+    SocketIoModule.forRoot(config),
     NgxMaskModule.forRoot(),
-    ChatModule,
     NgxDaterangepickerMd.forRoot(),
     FlatpickrModule.forRoot(),
-    CalendarModule.forRoot({
-      provide: DateAdapter,
-      useFactory: adapterFactory,
-    }),
-    SocketIoModule.forRoot(config),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyD_5P0pxn1q9hvvTeCr3YCsDhLJoHwxs2c',
       libraries: ['places']
@@ -77,7 +68,6 @@ const config: SocketIoConfig = { url: environment.socketUrl, options: {} };
     LocalStorageService,
     AuthsService,
     UserGuard,
-    DataService,
     ChatService,
     Globals,
     MapTheme,

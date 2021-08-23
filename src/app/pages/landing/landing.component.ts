@@ -1,4 +1,4 @@
-import { AfterViewInit, Component,OnDestroy, OnInit, } from '@angular/core';
+import { Component, OnInit, } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/core/services/api.service.service';
 import { Category, User } from 'src/app/core/models';
@@ -72,7 +72,6 @@ export class LandingComponent implements OnInit {
     private apiservice: ApiService,
     private dataservice: DataService,
     public auth: AuthsService,
-    public imageLoader: Globals,
     private titleService: Title,
     private metaTagService: Meta,
    ) {
