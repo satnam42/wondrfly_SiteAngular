@@ -9,24 +9,10 @@ import { Header2Component } from './components/header2/header2.component';
 import { Footer2Component } from './components/footer2/footer2.component';
 import { ReadMoreComponent } from './components/read-more/read-more.component';
 import { RouterModule } from '@angular/router';
-import { HttpClientJsonpModule } from '@angular/common/http';
 import { MarkdwonPipe } from './shared/markdwon.pipe';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatCardModule } from '@angular/material/card';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatListModule } from '@angular/material/list';
-import {MatTabsModule} from '@angular/material/tabs';
-import {MatRadioModule} from '@angular/material/radio';
-import {MatSelectModule} from '@angular/material/select';
-import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatChipsModule} from '@angular/material/chips';
-import {MatExpansionModule} from '@angular/material/expansion';
 import { PhonePipe } from '../pages/provider/profile/profile.component';
 import { PhoneMaskDirective } from './common/phone-mask.directive';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
@@ -46,24 +32,11 @@ const components = [
 ]
 
 const thirdPartyModules = [
-  MatToolbarModule,
-  MatButtonModule,
-  MatTabsModule,
   MatIconModule,
-  ChartsModule,
-  MatFormFieldModule,
-  MatCheckboxModule,
-  MatRadioModule,
   MatInputModule,
-  MatSelectModule,
-  MatTooltipModule,
-  MatDialogModule,
   MatChipsModule,
-  MatCardModule,
-  MatSidenavModule,
-  MatExpansionModule,
   NgxUiLoaderModule,
-  MatListModule,
+  
   
   // ImageCropModule,
 ];
@@ -79,7 +52,6 @@ const guards = [
     CommonModule,
     RouterModule,
     FormsModule,
-    HttpClientJsonpModule,
     ReactiveFormsModule,
     
     ...thirdPartyModules,

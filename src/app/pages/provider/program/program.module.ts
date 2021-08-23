@@ -17,13 +17,8 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { RatingModule } from 'src/app/core/components/rating/rating.module';
 import { DragDropModule } from 'src/app/core/components/drag-drop/drag-drop.module';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-import { AutocompleteComponent, AutocompleteLibModule } from 'angular-ng-autocomplete';
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
-
-
-
-
-
 
 @NgModule({
   entryComponents: [ ModalComponent],
@@ -44,6 +39,7 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
     CoreModule,
     RatingModule,
     DragDropModule,
+    ChartsModule,
     LazyLoadImageModule,
     InfiniteScrollModule,
     NgxSliderModule,
