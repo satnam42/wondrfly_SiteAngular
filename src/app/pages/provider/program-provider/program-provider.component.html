@@ -356,10 +356,8 @@
                                           <div class="col-12 col-md" *ngFor='let program of programs | slice:0:3'>
                                              <div class="activities_slide" >
                                                  <div class="slide_image cursor"  (click)='goToProgramDetail(program)' >
-                                                    <img *ngIf='!program.category[0].iconUrl' src="assets/category2.jpg"
-                                                    alt="Activity">
-                                                    <img *ngIf='program.category[0].iconUrl' src="https://wondrfly.com/{{program.category[0].iconUrl}}"
-                                                    alt="Activity">
+                                                  
+                                                    <img [defaultImage]="defaultImage" [errorImage]="errorImage" [lazyLoad]="baseUrl+program?.category[0]?.iconUrl"/>
                                                  </div>
                                                  <div class="slide_text">
                                                    <h3>
@@ -400,10 +398,8 @@
                                             <div class="col-12 col-md" *ngFor='let program of programs | slice:3:6'>
                                                 <div class="activities_slide" >
                                                     <div class="slide_image cursor"  (click)='goToProgramDetail(program)' >
-                                                        <img *ngIf='!program.category[0].iconUrl' src="assets/category2.jpg"
-                                                        alt="Activity">
-                                                        <img *ngIf='program.category[0].iconUrl' src="https://wondrfly.com/{{program.category[0].iconUrl}}"
-                                                        alt="Activity">
+                                        
+                                                        <img [defaultImage]="defaultImage" [errorImage]="errorImage" [lazyLoad]="baseUrl+program?.category[0]?.iconUrl"/>
                                                     </div>
                                                     <div class="slide_text">
                                                       <h3>

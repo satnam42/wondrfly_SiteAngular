@@ -260,10 +260,7 @@
                 </div>
                 <div class="col-md-6 img-box">
                     <div class="otp_img">
-                        <img class="otp_img" *ngIf="imageLoader.isLoad" [src]="imageLoader.img" alt="Sign Up Image"
-                            class="img-fluid">
-                        <img [hidden]="imageLoader.isLoad" [src]="signUpImage" (load)="imageLoader.isLoad=false"
-                            alt="Sign Up Image" class="img-fluid">
+                            <img class="img-fluid" [defaultImage]="defaultImage" [errorImage]="errorImage" [lazyLoad]="signUpImage" />
                         <div class="otp_img_overlay"></div>
                     </div>
                 </div>

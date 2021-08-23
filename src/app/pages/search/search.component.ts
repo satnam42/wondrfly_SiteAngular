@@ -19,6 +19,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
+  defaultImage = 'https://miro.medium.com/max/441/1*9EBHIOzhE1XfMYoKz1JcsQ.gif';
+  errorImage = 'assets/guitar.png';
   isDateFilter: boolean = false;
   isTimeFilter: boolean = false;
   isDaysFilter: boolean = false;
@@ -162,7 +164,6 @@ export class SearchComponent implements OnInit {
     private ngxLoader: NgxUiLoaderService,
     private mapsAPILoader: MapsAPILoader,
     private dataservice: DataService,
-    public imageLoader: Globals,
     public mapTheme: MapTheme,
     private ngZone: NgZone,
     private titleService: Title,

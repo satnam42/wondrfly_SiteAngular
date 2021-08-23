@@ -10,6 +10,7 @@ import { Title, Meta } from '@angular/platform-browser';
   styleUrls: ['./why-wondrfly.component.css']
 })
 export class WhyWondrflyComponent implements OnInit {
+  defaultImage = 'https://miro.medium.com/max/441/1*9EBHIOzhE1XfMYoKz1JcsQ.gif';
   blogUrl = environment.blogsUrl;
   userData: any = {};
   isLogin = false;

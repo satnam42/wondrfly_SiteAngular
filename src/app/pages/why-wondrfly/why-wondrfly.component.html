@@ -9,12 +9,12 @@
         <div class="container">
             <div class="row">
                     <div class="col-3 image-sec-1">
-                        <img class="mt-5 image-sec-1-1" src="{{blogUrl}}{{data[0]?.images[1]?.url}}">
-                        <img class="mt-4 image-sec-1-2" src="{{blogUrl}}{{data[0]?.images[0]?.url}}">
+                        <img class="mt-5 image-sec-1-1"  [defaultImage]="defaultImage"  lazyLoad="{{blogUrl}}{{data[0]?.images[1]?.url}}" />
+                        <img class="mt-4 image-sec-1-2" [defaultImage]="defaultImage"  lazyLoad="{{blogUrl}}{{data[0]?.images[0]?.url}}" />
                     </div>
                     <div class="col-3 image-sec-2">
-                        <img class="image-sec-2-1" src="{{blogUrl}}{{data[0]?.images[2]?.url}}">
-                        <img class="mt-4 image-sec-2-2" src="{{blogUrl}}{{data[0]?.images[3]?.url}}">
+                        <img class="image-sec-2-1"  [defaultImage]="defaultImage"  lazyLoad="{{blogUrl}}{{data[0]?.images[2]?.url}}" />
+                        <img class="mt-4 image-sec-2-2" [defaultImage]="defaultImage"  lazyLoad="{{blogUrl}}{{data[0]?.images[3]?.url}}" />
                     </div>
                     <div class="col-6 terms_box">
                         <h2>{{data[0].title}}</h2>
@@ -53,7 +53,7 @@
                     <img src="assets/whywonderfly-rightcircle.png">
                 </div>
                 <div class="image-section">
-                    <img src="{{blogUrl}}{{data[1]?.images[0]?.url}}">
+                    <img [defaultImage]="defaultImage"  lazyLoad="{{blogUrl}}{{data[1]?.images[0]?.url}}" />
                 </div> 
             </div>
         </div>

@@ -18,6 +18,8 @@ import { AuthsService } from 'src/app/core/services/auths.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  defaultImage = 'https://miro.medium.com/max/441/1*9EBHIOzhE1XfMYoKz1JcsQ.gif';
+  errorImage = 'https://i.imgur.com/QsFAQso.jpg';
   blogUrl = environment.blogsUrl;
   signinForm: FormGroup;
   credentials = {

@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
 import { RatingModule } from 'src/app/core/components/rating/rating.module';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { AutocompleteLibModule } from 'angular-ng-autocomplete';
     ReactiveFormsModule,
     AgmCoreModule,
     AutocompleteLibModule,
+    LazyLoadImageModule,
   ]
 })
 export class ProviderModule { }

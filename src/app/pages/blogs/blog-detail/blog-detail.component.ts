@@ -16,6 +16,8 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./blog-detail.component.css']
 })
 export class BlogDetailComponent implements OnInit, OnDestroy {
+  defaultImage = 'https://miro.medium.com/max/441/1*9EBHIOzhE1XfMYoKz1JcsQ.gif';
+  errorImage = 'assets/main_bg.png';
   commentForm: FormGroup;
   blogUrl = environment.blogsUrl;
   blogDetail:any;
@@ -38,7 +40,7 @@ title:string = ""
   shareUrl:string;
   shareUrlSocial = environment.baseUrl;
   programs:any = new Program;
-  constructor( public imageLoader: Globals,
+  constructor( 
     public auths: AuthsService,
     private titleService: Title,
     private metaTagService: Meta,
@@ -50,18 +52,16 @@ title:string = ""
 
     this.user = this.auths.currentUser()
     console.log('userrr', this.user)
-
     this.activatedroute.params.subscribe(data => {
       this.blogDetail=data;
+      this.getBlogById();
       this.addMostViewCount();    })
     }
 
   ngOnInit() {
     window.scroll(0, 0);
-    // this.getBlogs();
-    this.getBlog();
-    this.getBlogById();
     this.getPrograms();
+    this.getBlog();
     this.commentForm = new FormGroup({
       content: new FormControl(''),
       firstName: new FormControl(''),

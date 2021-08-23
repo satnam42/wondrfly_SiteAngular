@@ -1,27 +1,8 @@
-<!-- <div class="header">
-<div class="row">
-<div class="col-sm-2 header_logo">
-<a href="#"><img class="logo_h" src="assets/logo.png"></a>
-</div>
-<div class="col-sm-10">
-<ul class="header_icons">
-<li><a href="#"><img class="header_icon_image" src="assets/notification.png"></a></li>
-
-</ul>
-</div>
-</div>
-
-
-</div> -->
-
-
 
 <div class="content box">
 
     <div class="container">
-        <!-- <div class="row active_head">
-            Home > <span class="blue_heading">Blog</span>
-        </div> -->
+        
         <div class="row">
             <div class="col-12">
                 <div class="main_heading">
@@ -33,79 +14,14 @@
                     <button type="submit" class="btn" *ngFor='let category of categories' (click)="searchCatg(category)">{{category?.categoryName}}</button>
                 </div>
             </div>
-<!--
-            <div class="col-5" id="accordionExample">
-                <span class="search_bar content_text">
-                    <p aria-expanded="true" data-target="#category" data-toggle="collapse">Categories</p>
-                    <div class="collapse main_collpase  inner verification_modal" id="category"
-                        data-parent="#accordionExample">
-                        <div class="collpase_content categories-collapse">
-                            <div class="form-group date_time ">
-                                <div class="input_outer ">
-                                        <input type="text" class="form-control" placeholder="Search Here" [(ngModel)]="term">
-                                    <table class="table">
-                                        <tbody *ngIf='term'>
-                                            <tr *ngFor="let item of categories | slice:0:4 | filter:term">
-                                                <td  class="cursor" (click)="searchCatg(item)">{{item.categoryName}}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="row margin-row">
-                                <div class="col-3 categories cursor" *ngFor='let category of categories | slice:0:8'>
 
-                                    <img  class="cat_img"  (click)="searchCatg(category)"   src="{{blogUrl}}{{category?.image_category?.url}}" alt="">
-
-                                    <span> {{category.categoryName}}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </span>
-                <span class="search_bar content_text">
-                    <p aria-expanded="true" data-target="#location" data-toggle="collapse">Location</p>
-                    <div class="collapse main_collpase verification_modal" id="location"
-                        data-parent="#accordionExample">
-                        <div class="collpase_content location-collapse">
-                            <div class="form-group date_time">
-                                <div class="input_outer">
-                                        <input type="text" class="form-control" placeholder="Search Here" [(ngModel)]="term">
-                                    <table class="table">
-                                        <tbody *ngIf='term'>
-                                            <tr *ngFor="let item of locations | filter:term">
-                                                <td class="cursor" (click)="searchCatg(item)">{{item.city}}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                        <button style="display: none;"id="open_location_modal" data-toggle="modal" data-target="#locationUpdate"> </button>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-3">New Yark</div>
-                                <div class="col-3">New Jersey</div>
-                                <div class="col-3">Arizona</div>
-                                <div class="col-3">Florida</div>
-
-                            </div>
-                        </div>
-
-                    </div>
-                </span>
-                <span class="search_bar">
-                    <input type="text" placeholder="" name="search" >
-                    <img *ngIf="!searchBlog" class="search_img"
-                        src="assets/search_blog.png">
-                        <img *ngIf="searchBlog" (click)="searchBlog=''" class="search_img"
-                        src="assets/close.png">
-                </span>
-            </div> -->
         </div>
         <div class="images_section">
             <div class="row">
                 <div class="col-7">
                     <div class="main_img">
-                        <img class="blog_img cursor" (click)="setBlog(blog[0])" src="{{blogUrl}}{{blog[0]?.image[0]?.url}}">
+                        <img class="blog_img cursor"  [defaultImage]="defaultImage" [errorImage]="errorImage" lazyLoad="{{blogUrl}}{{blog[0].image[0]?.url}}" (click)="setBlog(blog[0])"/>
+
                     </div>
                     <div class="date">
                         <span class="blue_heading">{{blog[0]?.published_at | date:'mediumDate'}}</span>
@@ -130,8 +46,7 @@
                     <div *ngFor="let blogg of blog |slice:1:4;let i = index;">
                         <div class="small_imgs_section">
                             <div class="small_img cursor">
-                                <img (click)="setBlog(blogg)" style="height: 137px;width: 167px;"
-                                    src="{{blogUrl}}{{blogg?.image[0]?.url}}">
+                                    <img (click)="setBlog(blogg)" style="height: 137px;width: 167px;" [defaultImage]="defaultImage" [errorImage]="errorImage" lazyLoad="{{blogUrl}}{{blogg?.image[0]?.url}}"/>
                             </div>
                             <div class="small_imgs_content">
                                 <div class="date">
@@ -160,7 +75,7 @@
             <div class="forth_section_image_section">
                 <div class="row">
                     <div class="col-4" *ngFor="let blog of categories[0]?.blogs | slice:0:3; let i =index">
-                        <img (click)="setBlog(blog)" class="forth_section_image cursor" src="{{blogUrl}}{{blog?.image[0]?.url}}">
+                        <img (click)="setBlog(blog)"  class="forth_section_image cursor" [defaultImage]="defaultImage" [errorImage]="errorImage" lazyLoad="{{blogUrl}}{{blog?.image[0]?.url}}"/>
                         <div class="date">
                             <span class="blue_heading">{{blog?.published_at | date:'mediumDate'}}</span>
                         </div>
@@ -184,7 +99,7 @@
             <div class="forth_section_image_section">
                 <div class="row">
                     <div class="col-4" *ngFor="let blog of categories[1]?.blogs | slice:0:3; let i =index">
-                        <img (click)="setBlog(blog)" class="forth_section_image cursor" src="{{blogUrl}}{{blog?.image[0]?.url}}">
+                        <img (click)="setBlog(blog)"  class="forth_section_image cursor" [defaultImage]="defaultImage" [errorImage]="errorImage" lazyLoad="{{blogUrl}}{{blog?.image[0]?.url}}"/>
                         <div class="date">
                             <span class="blue_heading">{{blog?.published_at | date:'mediumDate'}}</span>
                         </div>
@@ -208,7 +123,7 @@
             <div class="forth_section_image_section">
                 <div class="row">
                     <div class="col-4" *ngFor="let blog of categories[4]?.blogs | slice:0:3; let i =index">
-                        <img (click)="setBlog(blog)" class="forth_section_image cursor" src="{{blogUrl}}{{blog?.image[0]?.url}}">
+                        <img (click)="setBlog(blog)"  class="forth_section_image cursor" [defaultImage]="defaultImage" [errorImage]="errorImage" lazyLoad="{{blogUrl}}{{blog?.image[0]?.url}}"/>
                         <div class="date">
                             <span class="blue_heading">{{blog?.published_at | date:'mediumDate'}}</span>
                         </div>
@@ -236,7 +151,7 @@
                 <div class="col-4"  *ngFor="let blog of categories[3]?.blogs | slice:0:2; let i =index">
                     <div class="small_section">
                         <div class="small_section_img">
-                            <img  class="small_section_img cursor" (click)="setBlog(blog)" src="{{blogUrl}}{{blog?.image[0]?.url}}">
+                            <img (click)="setBlog(blog)"  class="small_section_img cursor" [defaultImage]="defaultImage" [errorImage]="errorImage" lazyLoad="{{blogUrl}}{{blog?.image[0]?.url}}"/>
                         </div>
                         <div class="small_section_text cursor" (click)="setBlog(blog)">
                             <div class="date">
@@ -263,7 +178,7 @@
                     <div class="row">
 
                         <div class="col-6" *ngFor="let blog of categories[2]?.blogs | slice:0:2 ;let i =index">
-                            <img (click)="setBlog(blog)" class="forth_section_image cursor" src="{{blogUrl}}{{blog?.image[0]?.url}}">
+                            <img (click)="setBlog(blog)"  class="forth_section_image cursor" [defaultImage]="defaultImage" [errorImage]="errorImage" lazyLoad="{{blogUrl}}{{blog?.image[0]?.url}}"/>
                             <div class="date">
                                 <span class="blue_heading">{{blog?.published_at | date:'mediumDate'}}</span>
                             </div>
@@ -278,11 +193,7 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
-
-
 
         <div class="seventh_section">
             <div class="up_to_date">
@@ -301,70 +212,8 @@
                 </div>
             </div>
         </div>
-
     </div>
     <br><br>
     <br>
-
-
 </div>
-
-<!-- ------------------------popup html start-------------------------- -->
-<!-- <div class="modal fade verification_modal password" id="locationUpdate" data-backdrop="static" data-keyboard="false"
-    tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true" class="icon-close"></span>
-            </button>
-            <div class="modal-body">
-
-                <div class="popup_my">
-                    <div class="popup_img">
-                        <img src="assets/logo.png">
-                    </div>
-                    <div class="popup_maintext">
-                        Find the best articales in your location!
-                    </div>
-
-                    <div *ngIf="selectedLocation">
-                    <div class="popup_normal_text">
-                        Are you in
-                    </div>
-                    <div class="new_york_btn">
-                        <span class="blue_text"><a href="#">{{selectedLocation}}</a><img (click)="selectedLocation='' "src="assets/close.png"> </span>
-
-                    </div>
-                    <div class="row">
-                        <div class="col-5">
-                            <hr>
-                        </div>
-                        <div class="col-2">
-                            or
-                        </div>
-                        <div class="col-5">
-                            <hr>
-                        </div>
-                    </div>
-                </div>
-<br>
-                    <div class="choose_location">
-                        Choose you location
-                        <div class="location_box">
-
-                        </div>
-                    </div>
-                    <div class="save_btn">
-                        SAVE
-                    </div>
-
-
-
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->
-
-<!-- ---------------popup html end------------ -->
 <ngx-ui-loader></ngx-ui-loader>

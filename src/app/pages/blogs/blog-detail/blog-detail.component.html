@@ -36,19 +36,10 @@
 
 
 	   <div class="main_img">
-		  <img *ngIf="!blogbyid?.image[0].url" src="assets/main_bg.png">
-		  <img *ngIf="blogbyid?.image[0].url" src="{{blogUrl}}{{blogbyid?.image[0].url}}">
+		  <img [defaultImage]="defaultImage" [errorImage]="errorImage" lazyLoad="{{blogUrl}}{{blogbyid.image[0].url}}"/>
 	   </div>
 
 	   <div class="text_section socialblog-rel">
-
-		<!-- <div class="blog-social2">
-			<div class="social-icons">
-			<a href="#" class="icon-button facebook"><i class="fa fa-facebook"></i><span></span></a>
-			<a href="#" class="icon-button pinterest"><i class="fa fa-pinterest"></i><span></span></a>
-			<a href="#" class="icon-button mail"><i class="fa fa-envelope"></i><span></span></a>
-		   </div>
-	   </div> -->
 
 `		<div class="blog-detailcontent1">
 		  <div class="text_section_heading">
@@ -59,49 +50,11 @@
 		  </div>
 		</div>
 
-		<!-- <div class="blog-detailcontent1">
-		  <div class="text_section_heading">
-			Sed scelerisque sagittis, quis gravida turpis ac.</div>
-			<div class="text_section_text">
-				Quis tortor, rhoncus, quis ut hendrerit. Placerat lacus, nulla elementum nam scelerisque nec quis. Vel eget nulla porttitor porttitor interdum non ornare. Eget diam massa eu, bibendum tristique morbi mi. Penatibus tellus pulvinar quisque facilisis amet. Dui vitae sed consequat magna. Eget nulla turpis mauris nisl lacinia gravida. Habitant gravida lectus pellentesque sagittis, nibh dui pharetra. Nulla urna scelerisque morbi id sit eu quam neque. Euismod in eu mauris nibh pretium nisl, imperdiet libero egestas. Amet, etiam posuere mi amet feugiat mauris morbi penatibus non. Vivamus fermentum potenti fames neque, vulputate sit libero, tortor malesuada. Proin mattis pellentesque condimentum at est gravida amet aliquet pharetra. Viverra dolor interdum a praesent congue mauris augue gravida. Donec tellus diam metus nec.
-			</div>
-		</div> -->
-
-
 		  <div class="text_section_blue">
 			 {{blogbyid?.highlightedText}}
 		  </div>
 
-
-		   <!-- <div class="text_section_text">
-			 Quis tortor, rhoncus, quis ut hendrerit. Placerat lacus, nulla elementum nam scelerisque nec quis. Vel
-			 eget nulla porttitor porttitor interdum non ornare. Eget diam massa eu, bibendum tristique morbi mi.
-			 Penatibus tellus pulvinar quisque facilisis amet. Dui vitae sed consequat magna. Eget nulla turpis
-			 mauris nisl lacinia gravida. Habitant gravida lectus pellentesque sagittis, nibh dui pharetra. Nulla
-			 urna scelerisque morbi id sit eu quam neque. Euismod in eu mauris nibh pretium nisl, imperdiet libero
-			 egestas. Amet, etiam posuere mi amet feugiat mauris morbi penatibus non. Vivamus fermentum potenti fames
-			 neque, vulputate sit libero, tortor malesuada. Proin mattis pellentesque condimentum at est gravida amet
-			 aliquet pharetra. Viverra dolor interdum a praesent congue mauris augue gravida. Donec tellus diam metus
-			 nec.
-		  </div>
-  -->
 	   </div>
-
-	   <!-- <div class="source_section">
-		  <div class="source_heading">
-			 Sources:
-		  </div>
-		  <div class="source_links">
-			 <a>1. Ornare eget “Sagittis malesuada augue tempor”, by Jo Lewin <img src="assets/link.png"></a>
-			 <a>2. Turpis elit eu “Ante eu mattis”, by Lizzie Streit<img src="assets/link.png"></a>
-		  </div>
-	   </div>
-
-	   <div class="share_section">
-		  Share with <img class="social_icon" src="assets/fb.png"> <img class="social_icon" src="assets/mail.png">
-	   </div> -->
-
-
 
 
 		  <div class="container description_text slider">
@@ -122,20 +75,13 @@
 									 <div class="activities_slide" >
 										 <div class="slide_image">
 
-											  <img (click)="goToProgramDetail(program) " *ngIf="imageLoader.isLoad" [src]="imageLoader.img" alt="Activity">
-											  <img (click)="goToProgramDetail(program) " *ngIf="program?.category[0]?.iconUrl" [hidden]="imageLoader.isLoad" [src]="baseUrl+program?.category[0]?.iconUrl"
-												 (load)="imageLoader.isLoad=false"
-												  alt="Activity">
-												  <img (click)="goToProgramDetail(program) " *ngIf="!program?.category[0]?.iconUrl"  [hidden]="imageLoader.isLoad" [src]="'assets/guitar.png'"
-												  (load)="imageLoader.isLoad=false"
-												  alt="Activity">
+												  <img (click)="goToProgramDetail(program)" [defaultImage]="defaultImage" [lazyLoad]="baseUrl+program?.category[0]?.iconUrl"/>
 										 </div>
 										 <div class="slide_text">
 										   <h3>
 											  <span (click)="goToProgramDetail(program) " class="title">{{program?.name}}</span>
 											  <div class="rating_box">
-												<!-- <img src="assets/star.svg" alt="Star Image">
-												<span>5.0 (15)</span> -->
+									
 											  </div>
 										   </h3>
 										   <div class="sports_btn">
@@ -166,13 +112,9 @@
 								  <div class="col-12 col-md d-flex align-items-center justify-content-center" *ngFor="let program of programs | slice:3:6">
 									 <div class="activities_slide" >
 										 <div class="slide_image">
-										    <img (click)="goToProgramDetail(program) " *ngIf="imageLoader.isLoad" [src]="imageLoader.img" alt="Activity">
-											  <img (click)="goToProgramDetail(program) " *ngIf="program?.category[0]?.iconUrl" [hidden]="imageLoader.isLoad" [src]="baseUrl+program?.category[0]?.iconUrl"
-												 (load)="imageLoader.isLoad=false"
-												  alt="Activity">
-												  <img (click)="goToProgramDetail(program) " *ngIf="!program?.category[0]?.iconUrl"  [hidden]="imageLoader.isLoad" [src]="'assets/guitar.png'"
-												  (load)="imageLoader.isLoad=false"
-												  alt="Activity">
+										   
+												  <img (click)="goToProgramDetail(program)" [defaultImage]="defaultImage" [lazyLoad]="baseUrl+program?.category[0]?.iconUrl"/>
+												
 										 </div>
 										 <div class="slide_text">
 										   <h3>
@@ -255,16 +197,6 @@
 		  </div>
 		  <div class="collapse" id="collapseExample" *ngIf="auths.currentUser()">
 		  <form [formGroup]="commentForm">
-		  <!-- <div class="name form-group">
-			 <label> Name</label>
-			 <input type="text"   class="name_input" [formControl]="commentForm.controls['firstName']"
-			 [(ngModel)]="user.firstName"  placeholder="Type..">
-		  </div>
-		  <div class="name form-group">
-			 <label> E-mail</label>
-			 <input [formControl]="commentForm.controls['email']"   type="text" class="name_input"
-			 [(ngModel)]="user.email">
-		  </div> -->
 		  <div class="name form-group">
 			 <!-- <label> Comment</label> -->
 			 <textarea rows="4" type="text" class="form-control" placeholder="Type.."
@@ -289,8 +221,8 @@
 				   <div class="row">
 
 					  <div class="col-4" *ngFor="let b of blog | slice:0:3; let i=index">
-						 <img (click)="setBlog(b)" *ngIf="!b?.image[0]?.url" class="forth_section_image cursor" src="assets/bg1.png">
-						 <img (click)="setBlog(b)" *ngIf="b?.image[0]?.url" class="forth_section_image cursor" src="{{blogUrl}}{{b?.image[0]?.url}}">
+						 <img class="forth_section_image cursor"  [defaultImage]="defaultImage" [errorImage]="errorImage" lazyLoad="{{blogUrl}}{{b?.image[0]?.url}}" (click)="setBlog(b)"/>
+
 						 <div class="date">
 							<span class="blue_heading">{{b?.published_at | date:'mediumDate'}}</span>
 						 </div>

@@ -18,6 +18,7 @@ import { RatingModule } from 'src/app/core/components/rating/rating.module';
 import { DragDropModule } from 'src/app/core/components/drag-drop/drag-drop.module';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { AutocompleteComponent, AutocompleteLibModule } from 'angular-ng-autocomplete';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 
 
@@ -43,6 +44,7 @@ import { AutocompleteComponent, AutocompleteLibModule } from 'angular-ng-autocom
     CoreModule,
     RatingModule,
     DragDropModule,
+    LazyLoadImageModule,
     InfiniteScrollModule,
     NgxSliderModule,
     OwlDateTimeModule,

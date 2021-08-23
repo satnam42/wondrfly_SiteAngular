@@ -73,59 +73,11 @@
 
        <div class="row row-0">
         <div class="col-12 searchs-filters">
-            <!-- <div class="search-filtersk" *ngIf="isInPerson">
-                <div class="search-filterlower">
-                    <form>
-                        <div class="form-group">
-                          <input type="type" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Current location">
-                        </div>
-                    </form>
-                </div>
-            </div> -->
+            
             <div class="search-filterss">
                 <div class="category_list" id="accordionExample">
                     <ul>
-                        <!-- <li class="cursor">
-                            <a [ngClass]="{'active' : isCategoryFilter}"
-                                (click)="openModal(isCategoryFilter=true,isChildFilter=false,isPriceFilter=false,isDateFilter=false,isAgeFilter=false,isTimeFilter=false,isCategoryModal=true,isChildModal=false,isPriceModal=false,isDateModal=false,isAgeModal=false,isTimeModal=false)"
-                                aria-expanded="true" data-target="#category" data-toggle="collapse">Categories</a>
-
-                            <div class="collapse main_collpase time_collpase verification_modal partcategory" id="category"
-                                data-parent="#accordionExample">
-                                <div class="collpase_content">
-                                    <div class="form-group date_time">
-                                        <div class="input_outer">
-                                            <div class="upper-partcategory">
-                                                <h1>Select the category
-                                                    <span><a>Clear</a></span>
-                                                </h1>
-
-                                            </div>
-                                            <div class="lower-partcategory">
-                                                <div class="form-group">
-                                                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
-                                                </div>
-
-                                                <div class="input-btns">
-                                                    <button>
-                                                        Computers
-                                                        <div class="icon-close delete_search_icon recent-search-icon movecategory-icon"></div>
-                                                    </button>
-
-                                                    <button>
-                                                        Computers
-                                                        <div class="icon-close delete_search_icon recent-search-icon movecategory-icon"></div>
-                                                    </button>
-                                                </div>
-                                            </div>
-
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </li> -->
+                       
                         <li class="cursor">
                           <a aria-expanded="true" data-target="#category" [ngClass]="{'active' : isCategoryFilter}"
                           (click)="openModal(isCategoryFilter=true,isTypeFilter=false,isDaysFilter=false,isPriceFilter=false,isDateFilter=false,isAgeFilter=false,isTimeFilter=false,isCategoryModal=true,isPriceModal=false,isDateModal=false,isAgeModal=false,isTimeModal=false)" data-toggle="collapse">Categories</a>
@@ -398,13 +350,8 @@
                 <!-- <div class="list-group "> -->
                 <div *ngFor="let program of programs; index as i" class="media activity">
                     <div class="media-left activity-imgs" (click)="goToProgramDetail(program)">
-                        <img *ngIf="imageLoader.isLoad" [src]="imageLoader.img" alt="Activity">
-                        <img *ngIf="program?.category[0]?.iconUrl" [hidden]="imageLoader.isLoad" [src]="baseUrl+program?.category[0]?.iconUrl"
-                           (load)="imageLoader.isLoad=false"
-                            alt="Activity">
-                            <img *ngIf="!program?.category[0]?.iconUrl"  [hidden]="imageLoader.isLoad" [src]="'assets/guitar.png'"
-                            (load)="imageLoader.isLoad=false"
-                            alt="Activity">
+    
+                            <img [defaultImage]="defaultImage" [errorImage]="errorImage" [lazyLoad]="baseUrl+program?.category[0]?.iconUrl"/>
                     </div>
                     <div class="media-body ">
                         <div  class="share_icon ">
@@ -567,13 +514,8 @@
                         <div class="search-results suggested suggested-one" >
                         <div *ngFor="let program of suggested; index as i" class="media activity">
                             <div class="media-left activity-imgs" (click)="goToProgramDetail(program) ">
-                                <img *ngIf="imageLoader.isLoad" [src]="imageLoader.img" alt="Activity">
-                                <img *ngIf="program?.category[0]?.iconUrl" [hidden]="imageLoader.isLoad" [src]="baseUrl+program?.category[0]?.iconUrl"
-                                   (load)="imageLoader.isLoad=false"
-                                    alt="Activity">
-                                    <img *ngIf="!program?.category[0]?.iconUrl"  [hidden]="imageLoader.isLoad" [src]="'assets/guitar.png'"
-                                    (load)="imageLoader.isLoad=false"
-                                    alt="Activity">
+                                    <img [defaultImage]="defaultImage" [errorImage]="errorImage" [lazyLoad]="baseUrl+program?.category[0]?.iconUrl"/>
+
                             </div>
                             <div class="media-body ">
                                 <div  class="share_icon ">
@@ -739,13 +681,6 @@
 
                 </div>
 
-                <!-- <div *ngIf="!programs?.length">
-                    <br>
-                    <br>
-                    <br>
-                    <h3 style="color: #494949; text-align: center;"> No Activity Found</h3>
-                </div> -->
-
                 <div *ngIf="!programs?.length" class="suggested-searchresult">
                     <div class="suggested-text">
                         <h1>
@@ -764,13 +699,9 @@
                         [infiniteScrollThrottle]="500" (scrolled)="onScroll()" [scrollWindow]="false">
                         <div *ngFor="let program of suggested; index as i" class="media activity">
                             <div class="media-left activity-imgs" (click)="goToProgramDetail(program) ">
-                                <img *ngIf="imageLoader.isLoad" [src]="imageLoader.img" alt="Activity">
-                                <img *ngIf="program?.category[0]?.iconUrl" [hidden]="imageLoader.isLoad" [src]="baseUrl+program?.category[0]?.iconUrl"
-                                   (load)="imageLoader.isLoad=false"
-                                    alt="Activity">
-                                    <img *ngIf="!program?.category[0]?.iconUrl"  [hidden]="imageLoader.isLoad" [src]="'assets/guitar.png'"
-                                    (load)="imageLoader.isLoad=false"
-                                    alt="Activity">
+                               
+                                    <img [defaultImage]="defaultImage" [errorImage]="errorImage" [lazyLoad]="baseUrl+program?.category[0]?.iconUrl"/>
+                            
                             </div>
                             <div class="media-body ">
                                 <div  class="share_icon ">

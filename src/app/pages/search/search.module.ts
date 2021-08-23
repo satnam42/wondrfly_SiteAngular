@@ -12,6 +12,7 @@ import { RatingModule } from 'src/app/core/components/rating/rating.module';
 import { SignupPopupModule } from 'src/app/core/components/signup-popup/signup-popup.module';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 @NgModule({
   declarations: [SearchComponent, OnlineProgramsComponent],
   imports: [
@@ -22,6 +23,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     FormsModule,
     InfiniteScrollModule,
     SignupPopupModule,
+    LazyLoadImageModule,
     ReactiveFormsModule,
     NgxDaterangepickerMd,
     AgmCoreModule,

@@ -576,10 +576,11 @@
 								  <div class="col-12 col-md" *ngFor='let program of programs | slice:0:3'>
 									 <div class="activities_slide" >
 										 <div class="slide_image cursor" (click)='clickedProgram(program)'>
-										   <img *ngIf='!program.category[0].iconUrl' src="assets/category2.jpg"
+										   <!-- <img *ngIf='!program.category[0].iconUrl' src="assets/category2.jpg"
 											  alt="Activity">
                                               <img *ngIf='program.category[0].iconUrl' src="https://wondrfly.com/{{program.category[0].iconUrl}}"
-											  alt="Activity">
+											  alt="Activity"> -->
+                                              <img [defaultImage]="defaultImage" [errorImage]="errorImage" [lazyLoad]="baseUrl+program?.category[0]?.iconUrl"/>
 										 </div>
 										 <div class="slide_text">
 										   <h3>
@@ -623,10 +624,7 @@
                                     <div class="col-12 col-md" *ngFor='let program of programs | slice:3:6'>
                                         <div class="activities_slide" >
                                             <div class="slide_image cursor" (click)='clickedProgram(program)'>
-                                                <img *ngIf='!program.category[0].iconUrl' src="assets/category2.jpg"
-                                                alt="Activity">
-                                                <img *ngIf='program.category[0].iconUrl' src="https://wondrfly.com/{{program.category[0].iconUrl}}"
-                                                alt="Activity">
+                                                <img [defaultImage]="defaultImage" [errorImage]="errorImage" [lazyLoad]="baseUrl+program?.category[0]?.iconUrl"/>
                                             </div>
                                             <div class="slide_text">
                                               <h3>
@@ -1022,49 +1020,6 @@
                 <span class="sharethis-text">ShareThis</span>
             </div>
             </div>
-
-
-
-                <!--   <div class="modal-body N_modal share-modal">
-                <h2>Share</h2>
-
-<div class="share_option">
-                    <ul class="N_list">
-                        <hr class="N_line">
-                        <li class="cursor" (click)="genericSocialShare('facebook')" [class.active]="facebookActive" (mouseover)="facebookActive='active'"
-                            (mouseout)="facebookActive=''">
-                            <a ><span class="social_icons">
-                                <img src="assets/share-fb.svg">
-
-                                </span>Facebook</a>
-                        </li>
-                        <hr class="N_line">
-
-                        <li class="cursor" (click)="genericSocialShare('email')" [class.active]="emailActive" (mouseover)="emailActive='active'" (mouseout)="emailActive=''">
-                            <a><span class="social_icons">
-                                <img src="assets/share-email.svg">
-
-                                </span>Email</a>
-                        </li>
-                        <hr class="N_line">
-                        <li class="cursor" (click)="genericSocialShare('whatsapp')" data-action="share/whatsapp/share" [class.active]="whatsappActive" (mouseover)="whatsappActive='active'"
-                            (mouseout)="whatsappActive=''">
-                            <a><span class="social_icons">
-                                <img src="assets/share-wsup.svg">
-
-                                </span>Whatsapp</a>
-                        </li>
-                        <hr class="N_line">
-                        <li class="cursor" (click)="genericSocialShare('copylink')" [class.active]="copylinkActive" (mouseover)="copylinkActive='active'"
-                            (mouseout)="copylinkActive=''">
-                            <a><span class="social_icons">
-                                <img src="assets/share-copylink.svg">
-
-                                </span>Copylink</a>
-                        </li>
-                    </ul>
-                </div>
-            </div> -->
         </div>
     </div>
 </div>

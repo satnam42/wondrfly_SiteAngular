@@ -1,10 +1,9 @@
-import { MapsAPILoader } from '@agm/core';
+
 import { Component, ElementRef, NgZone, OnInit, ViewChild } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import axios from 'axios';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { ApiService } from 'src/app/core/services/api.service.service';
 import { environment } from 'src/environments/environment';
 
 
@@ -14,6 +13,8 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./blog-page.component.css']
 })
 export class BlogPageComponent implements OnInit {
+  defaultImage = 'https://miro.medium.com/max/441/1*9EBHIOzhE1XfMYoKz1JcsQ.gif';
+  errorImage = 'assets/main_bg.png';
   blogUrl = environment.blogsUrl;
   private geoCoder;
     blogs:any
@@ -48,7 +49,6 @@ this.getCategory()
     this.metaTagService.updateTag(
       { name: 'description', content: "Check out our Blog Section to read posts on trending kid's activities, child development, parenting and muh more. Also, don't miss Wondrfly's top blog posts." }
     );
-
     window.scroll(0, 0);
     }
 
@@ -87,13 +87,6 @@ getBlog(){
     });
     }
 
-    // ------------------------------------------------get category  -------------------------------------------
-
-  // getLocation(){
-  //   const responcee = axios.get(`${this.blogUrl}/locations`).then(response => {
-  //     this.locations = response.data
-  //   });
-  //   }
 
     setBlog(data){
       var title = data.title;

@@ -17,6 +17,8 @@ import { AuthsService } from 'src/app/core/services/auths.service';
   styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent implements OnInit {
+  defaultImage = 'https://miro.medium.com/max/441/1*9EBHIOzhE1XfMYoKz1JcsQ.gif';
+  errorImage = 'https://i.imgur.com/QsFAQso.jpg';
   blogUrl = environment.blogsUrl;
   parentForm: FormGroup;
   providerForm: FormGroup;

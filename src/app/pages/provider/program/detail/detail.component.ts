@@ -16,12 +16,16 @@ import { MapTheme } from 'src/app/core/common/map-theme';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { Options } from '@angular-slider/ngx-slider';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.css']
 })
 export class DetailComponent implements OnInit {
+  defaultImage = 'https://miro.medium.com/max/441/1*9EBHIOzhE1XfMYoKz1JcsQ.gif';
+  errorImage = 'assets/guitar.png';
+  baseUrl= environment.baseUrl;
   programUpdateForm: FormGroup;
   pageNo = 1;
   pageSize = 20;

@@ -12,6 +12,7 @@ import { Globals } from 'src/app/core/common/imageLoader';
 import { MapTheme } from 'src/app/core/common/map-theme';
 import { Meta, Title } from '@angular/platform-browser';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-program-provider',
@@ -19,6 +20,9 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./program-provider.component.css']
 })
 export class ProgramProviderComponent implements OnInit {
+  defaultImage = 'https://miro.medium.com/max/441/1*9EBHIOzhE1XfMYoKz1JcsQ.gif';
+  errorImage = 'assets/guitar.png';
+  baseUrl= environment.baseUrl;
   isScrol: boolean = true;
   pageNo = 1;
   pageSize = 20;
@@ -85,7 +89,6 @@ export class ProgramProviderComponent implements OnInit {
     private auth: AuthsService,
     private toastr: ToastrService,
     private ngxLoader: NgxUiLoaderService,
-    public imageLoader: Globals,
     public mapTheme: MapTheme,
     private activatedRoute: ActivatedRoute,
     private titleService: Title,

@@ -13,6 +13,8 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./forgot-password.component.css']
 })
 export class ForgotPasswordComponent implements OnInit {
+  defaultImage = 'https://miro.medium.com/max/441/1*9EBHIOzhE1XfMYoKz1JcsQ.gif';
+  errorImage = 'https://i.imgur.com/QsFAQso.jpg';
   otpSendForm: FormGroup;
   otpVerifyForm: FormGroup;
   passwordResetForm: FormGroup;

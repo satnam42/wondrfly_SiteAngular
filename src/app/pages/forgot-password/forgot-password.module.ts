@@ -6,6 +6,7 @@ import { Router, RouterModule, Routes } from '@angular/router';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { MatIconModule } from '@angular/material/icon';
 import { CoreModule } from 'src/app/core/core.module';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 
 const routes: Routes = [
@@ -22,6 +23,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     CoreModule,
     RouterModule,
+    LazyLoadImageModule,
     RouterModule.forChild(routes)
   ]
 })

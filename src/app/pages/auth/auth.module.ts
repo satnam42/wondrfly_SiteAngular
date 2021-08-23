@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { LoginComponent } from './login/login.component';
 import { SignUpGuardianComponent } from './sign-up-guardian/sign-up-guardian.component';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { SignUpGuardianComponent } from './sign-up-guardian/sign-up-guardian.com
     AuthRoutingModule,
     CoreModule,
     ReactiveFormsModule,
+    LazyLoadImageModule,
     FormsModule,
     SocialLoginModule
   ],

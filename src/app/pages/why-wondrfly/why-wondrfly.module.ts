@@ -4,6 +4,7 @@ import { CoreModule } from '../../core/core.module';
 import { CommonModule } from '@angular/common';
 import { WhyWondrflyComponent } from './why-wondrfly.component';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 const routes: Routes = [
   {
     path: '', component: WhyWondrflyComponent,
@@ -14,6 +15,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     CoreModule,
+    LazyLoadImageModule,
     RouterModule.forChild(routes)
   ]
 })
