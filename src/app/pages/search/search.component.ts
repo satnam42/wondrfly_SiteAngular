@@ -146,7 +146,7 @@ export class SearchComponent implements OnInit {
   shareUrlSocial = environment.baseUrl;
   baseUrl= environment.baseUrl;
   shareUrl:string;
-  selectedProgramId: string;
+  selectedProgram: any;
   url: string;
   suggested: any =[];
   programOwnerData:any = User
@@ -168,8 +168,6 @@ export class SearchComponent implements OnInit {
     private ngZone: NgZone,
     private titleService: Title,
     private metaTagService: Meta,
-    private snack: MatSnackBar
-
   ) {
     this.filterData = dataservice.getOption()
     if (this.filterData) {
@@ -325,7 +323,7 @@ this.toDate=e.endDate._d
   }
 
   openModal(a, b, c, d, e, f, g, h, i, j, k, l) {
-  
+
   }
   mouseOver() {
     console.log('in');
@@ -787,43 +785,7 @@ console.log('this.timeSession>>>>>>>>>',this.timeSession)
       // this.getSearchHistory()
     })
   }
-  //----------------------------------------share activity or program detail in social media  ---------------------------------------------------------
 
-  genericSocialShare(provider) {
-
- this.shareUrl=`${this.shareUrlSocial}program/detail/${this.selectedProgramId}`;
- console.log('share url ',this.shareUrl)
-
-    switch (provider) {
-      case 'facebook': {
-        this.url = `https://www.${provider}.com/sharer/sharer.php?u=${this.shareUrl}`;
-        window.open(this.url, 'sharer', 'toolbar=0,status=0,width=648,height=395');
-        return true;
-      }
-      case 'email': {
-        this.url = `mailto:?subject=wondrfly&amp;body=${this.shareUrl}`;
-        window.open( this.url, 'sharer', 'toolbar=0,status=0,width=648,height=395');
-        return true;
-      }
-      case 'whatsapp': {
-        this.url = `https://api.${provider}.com/send?text=${this.shareUrl}`;
-        window.open( this.url, 'sharer', 'toolbar=0,status=0,width=648,height=395');
-        return true;
-      }
-      case 'messenger': {
-        this.url = `https://fb-messenger://share/?link=${this.shareUrl}`;
-        window.open( this.url, 'sharer', 'toolbar=0,status=0,width=648,height=395');
-        return true;
-      }
-      case 'copylink': {
-        navigator.clipboard.writeText(this.shareUrl).then().catch(e => console.error(e));
-        this.snack.open('Link copied','', { duration: 500 });
-           // this.url = `${encodeURIComponent(this.baseUrl)}program/detail/${this.selectedProgramId}`;
-      }
-
-    }
-
-  }
 
   signUpModal() {
     if (localStorage.getItem("token") === null) {

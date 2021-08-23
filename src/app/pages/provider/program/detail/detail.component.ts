@@ -120,6 +120,7 @@ export class DetailComponent implements OnInit {
   previous;
   totalRating:any = '';
   isRating = false;
+  selectedProgram:any;
   constructor(private apiservice: ApiService,
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,

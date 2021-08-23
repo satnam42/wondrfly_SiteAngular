@@ -1,3 +1,4 @@
+import { sharePopupModule } from './../../../core/components/share-popup/share-popup.module';
 import { NgModule } from '@angular/core';
 import { ProgramRoutingModule } from './program.routing';
 import { HomeComponent } from './home/home.component';
@@ -47,6 +48,7 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
     OwlNativeDateTimeModule,
     AgmCoreModule,
     AutocompleteLibModule,
+    sharePopupModule,
   ],
   exports: [
     ProgramComponent,

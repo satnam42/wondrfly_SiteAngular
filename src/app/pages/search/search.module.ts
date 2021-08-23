@@ -1,3 +1,4 @@
+import { sharePopupModule } from './../../core/components/share-popup/share-popup.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SearchRoutingModule } from './search-routing.module';
@@ -28,7 +29,7 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
     NgxDaterangepickerMd,
     AgmCoreModule,
     NgxSliderModule,
-    MatSnackBarModule
+    sharePopupModule
 
   ]
 })

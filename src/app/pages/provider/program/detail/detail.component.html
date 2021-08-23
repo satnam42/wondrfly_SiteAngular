@@ -53,7 +53,7 @@
                                                 </a> </h3>
 
                                                 <div  class="share_icon ">
-                                                    <a data-toggle="modal"   data-target="#ShareModal" class="cursor">
+                                                    <a data-toggle="modal"   (click)="selectedProgram=program" data-target="#ShareModal" class="cursor">
                                                         <img src="assets/share_gray.svg " alt="Share Icon ">
                                                     </a>
                                                     <div class="bookmark_outer " *ngIf="userId && !providerRole">
@@ -966,7 +966,7 @@
                                 <ngx-slider [(value)]="minAge" [(highValue)]="maxAge" [options]="ageOption">
                                 </ngx-slider>
                             </div>
-                           
+
                             <div class="submit_btn">
                                 <button (click)="updateProgram(program._id)" data-dismiss="modal"
                                     class="submitBtn">Save</button>
@@ -983,43 +983,4 @@
 <ngx-ui-loader></ngx-ui-loader>
 
 
-
-<!--share Modal -->
-<div class="modal fade" id="ShareModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content share-modals">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="close_sharemodal">
-                <span aria-hidden="true" class="icon-close"></span>
-            </button>
-            <h2>Share</h2>
-            <div class="sharethisall-icons">
-                <hr class="N_line">
-            <div class="sharethis-social">
-                <span class="st_facebook_large" st_url="https://wondrfly.com" displayText="Facebook"></span>
-                <span class="sharethis-text">Facebook</span>
-            </div>
-            <hr class="N_line">
-            <div class="sharethis-social">
-                <span class="st_linkedin_large" st_url="https://wondrfly.com" displayText="LinkedIn"></span>
-                <span class="sharethis-text">LinkedIn</span>
-            </div>
-            <hr class="N_line">
-            <div class="sharethis-social">
-                <span class="st_googleplus_large" st_url="https://wondrfly.com" displayText="Google+"></span>
-                <span class="sharethis-text">Google+</span>
-            </div>
-            <hr class="N_line">
-            <div class="sharethis-social">
-                <span class="st_email_large"  st_url="https://wondrfly.com" displayText="Email"></span>
-                <span class="sharethis-text">Email</span>
-            </div>
-            <hr class="N_line">
-            <div class="sharethis-social">
-                <span class="st_sharethis_large" st_url="https://wondrfly.com" displayText="ShareThis"></span>
-                <span class="sharethis-text">ShareThis</span>
-            </div>
-            </div>
-        </div>
-    </div>
-</div>
+<share-popup [shareData]="selectedProgram"></share-popup>
