@@ -27,6 +27,7 @@ import { MailchimpSubscribeFormModule } from './core/components/mailchimp-subscr
 import { ChatModule } from './pages/chat/chat.module';
 import { ChatService } from './core/services/chat.service';
 import { DataService } from './core/services/dataservice.service ';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 
 const config: SocketIoConfig = { url: environment.socketUrl, options: {} };
@@ -49,6 +50,7 @@ const config: SocketIoConfig = { url: environment.socketUrl, options: {} };
     SocialLoginModule,
     ReactiveFormsModule,
     HttpClientModule,
+    LazyLoadImageModule,
     MailchimpSubscribeFormModule,
     NgxMaskModule.forRoot(),
     ChatModule,

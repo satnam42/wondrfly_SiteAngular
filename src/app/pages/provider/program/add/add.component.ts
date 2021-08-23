@@ -16,7 +16,7 @@ import { Options } from '@angular-slider/ngx-slider';
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.css']
 })
-export class AddComponent implements OnInit,AfterViewChecked {
+export class AddComponent implements OnInit {
   fileData: File = null;
   addProgramForm: FormGroup;
   isOneTimeEvent = false;
@@ -158,10 +158,6 @@ export class AddComponent implements OnInit,AfterViewChecked {
     this.program.ageGroup.to = this.maxAge
     this.program.userId = this.userData.id;
     this.program.bookingCancelledIn = this.bookingCancelledIn;
-    // this.program.time.from = new Date(this.fromTime);
-    // this.program.time.to = new Date(this.toTime);
-    // this.program.date.from = moment(this.fromDate).format('YYYY-MM-DD')
-    // this.program.date.to = moment(this.toDate).format("YYYY-MM-DD")
     this.program.isFree = this.isFree;
     this.program.adultAssistanceIsRequried = this.adultAssistanceIsRequried;
     this.program.sessions.push(this.session);
@@ -189,25 +185,7 @@ export class AddComponent implements OnInit,AfterViewChecked {
     this.getCategoryList()
 
   }
-  ngAfterViewChecked() {
-    // console.log('minAge>>',this.minAge)
-    // console.log('maxAge>>',this.maxAge)
-    // console.log('stepOption>>',this.ageOption.step)
-
-
-    // if(this.minAge>=3 && this.maxAge>=3){
-    //   this.ageOption.step = 1;
-    // }
-    // if(this.minAge<3 && this.maxAge>=3){
-    //   this.ageOption.step = 0.5;
-    // }
-    // if(this.minAge<3 && this.maxAge<3){
-    //   this.ageOption.step = 0.5;
-    // }
-    // if(this.minAge<3 && this.maxAge<3){
-    //   this.ageOption.step = 0.5;
-    // }
-  }
+ 
   selectSingleEvent() {
     this.isOneTimeEvent = true;
     this.isMultiEvent = false;

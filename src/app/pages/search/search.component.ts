@@ -324,57 +324,7 @@ this.toDate=e.endDate._d
   }
 
   openModal(a, b, c, d, e, f, g, h, i, j, k, l) {
-    // if (this.isAgeModal || this.isChildModal) {
-    //   this.fromDate = null;
-    //   this.toDate = null;
-    //   this.fromTime = null;
-    //   this.toTime = null;
-    //   this.minPrice = null;
-    //   this.maxPrice = null;
-    //   this.categoryId = null
-    //   this.minAge = 3
-    //   this.maxAge = 12
-    // }
-    // else if (this.isTimeModal) {
-    //   this.fromDate = null;
-    //   this.toDate = null;
-    //   this.minAge = null;
-    //   this.maxAge = null;
-    //   this.minPrice = null;
-    //   this.maxPrice = null;
-    //   this.categoryId = null
-    // }
-    // else if (this.isDateModal) {
-    //   this.fromTime = null;
-    //   this.toTime = null;
-    //   this.minAge = null;
-    //   this.maxAge = null;
-    //   this.minPrice = null;
-    //   this.maxPrice = null;
-    //   this.categoryId = null
-    // }
-    // else if (this.isPriceModal) {
-    //   this.fromTime = null;
-    //   this.toTime = null;
-    //   this.minAge = null;
-    //   this.maxAge = null;
-    //   this.fromDate = null;
-    //   this.toDate = null;
-    //   this.categoryId = null
-    //   this.minPrice = 50
-    //   this.maxPrice = 250
-    // }
-    // else if (this.isCategoryModal) {
-    //   this.fromTime = null;
-    //   this.toTime = null;
-    //   this.minAge = null;
-    //   this.maxAge = null;
-    //   this.fromDate = null;
-    //   this.toDate = null;
-    //   this.minPrice = null
-    //   this.maxPrice = null
-    // }
-
+  
   }
   mouseOver() {
     console.log('in');
@@ -509,40 +459,7 @@ this.toDate=e.endDate._d
     })
   }
 
-  // getOpenPrograms(value) {
-  //   console.log('valuee',value)
-  //   if(value){
-  //   this.activityName = ''
-  //   this.activityDate = undefined
-  //   this.isScrol = false
-  //   this.showReset = true
-  //   this.isOpenFilter = true
-  //   this.isSavedFilter = false
-  //   this.isPriceModal = false
-  //   this.isPriceFilter = false
-  //   this.isChildModal = false
-  //   this.isChildFilter = false
-  //   this.isDateFilter = false
-  //   this.isAgeFilter = false
-  //   this.isTimeFilter = false
-  //   this.isCategoryFilter = false
-  //   this.isDateModal = false
-  //   this.isAgeModal = false
-  //   this.isTimeModal = false
-  //   this.isCategoryModal = false
-  //   this.ngxLoader.start();
 
-  //   this.apiservice.getOpenPrograms(this.pageNo, this.pageSize).subscribe((res: any) => {
-  //     this.programs = res
-  //     console.log('open programs', this.programs)
-  //     this.ngxLoader.stop();
-  //   })
-  // }
-  //   else{
-  //     this.resetFilter();
-  //   }
-  //   // window.document.getElementById("close_morefilter").click();
-  // }
 
   pagination(pageNo) {
     // let scrollToTop = document.getElementById('scrollToTop');
@@ -579,9 +496,6 @@ this.toDate=e.endDate._d
     this.loaderType = 'three-bounce';
     this.loaderPostion = 'bottom-center';
     this.pageSize += 20;
-    // if (this.isOpenFilter) {
-    //   this.getOpenPrograms('value')
-    // }
 
       if (this.showReset) {
         if (this.activityDate || this.activityName) {
@@ -643,17 +557,7 @@ if(toggle){
   else{
     this.resetFilter();
   }
-  // window.document.getElementById("close_morefilter").click();
   }
-
-
-  // filterByChild(kidData) {
-  //   // window.document.getElementById("close_morefilter").click();
-  //   this.isChildFilter = true;
-  //   this.filterClass = false;
-  //   this.minAge = 0;
-  //   this.maxAge = Number(kidData.age)
-  // }
 
   filterByCategory(id) {
     this.categoryId = id
@@ -952,35 +856,6 @@ getProviderById(id) {
   console.log('id',id)
   this.apiservice.getUserById(id).subscribe((res: any) => {
     this.user = res.data;
-// let rating = 0;
-//       if( this.user.rating.facebook){
-//         rating = this.user.rating.facebook;
-//       }
-
-//       if( this.user.rating.google){
-//         rating = this.user.rating.google;
-//       }
-
-//       if( this.user.rating.yelp){
-//         rating = this.user.rating.yelp;
-//       }
-
-//       if( this.user.rating.facebook && this.user.rating.google){
-//         rating = (this.user.rating.facebook + this.user.rating.google) / 2;
-//       }
-
-//       if( this.user.rating.google && this.user.rating.yelp){
-//         rating = (this.user.rating.google + this.user.rating.yelp) / 2;
-//       }
-
-//       if( this.user.rating.facebook && this.user.rating.yelp){
-//         rating = (this.user.rating.facebook + this.user.rating.yelp) / 2;
-//       }
-
-//       if( this.user.rating.facebook && this.user.rating.google && this.user.rating.yelp){
-//         rating = (this.user.rating.facebook + this.user.rating.google + this.user.rating.yelp) / 3;
-//       }
-    // this.totalRating = parseFloat(String(rating)).toFixed(1)
   });
 }
 goToProviderProfile(provider) {

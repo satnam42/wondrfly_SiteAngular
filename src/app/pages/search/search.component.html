@@ -257,29 +257,7 @@
                                     <button class="calender-buttons2" data-target="#date" data-toggle="collapse"  (click)='programFilter()'>Set Date</button>
                                   </div>
                                 </div>
-                                <!-- <div class="collpase_content"> -->
-                                   <!-- <div class="form-group date_time">
-                                        <div class="input_outer">
-                                            <input type="date" class="form-control" placeholder="Start Date"
-                                                [ngModelOptions]="{standalone: true}" [(ngModel)]="fromDate">
-
-                                            <br>
-                                            <input  type="date" class="form-control right_input" placeholder="End Date"
-                                                [ngModelOptions]="{standalone: true}" [(ngModel)]="toDate">
-
-
-                                        </div>
-                                    </div> -->
-
-                                <!-- </div> -->
-                                <!-- <div class="submit_btn">
-                                    <button data-dismiss="modal" (click)="addFilter()" scrollToTop.scrollTop=0
-                                        data-target="#date" data-toggle="collapse" class="submitBtn">Search</button>
-
-                                    <button (click)="closePopup()" type="button" aria-expanded="true"
-                                        data-dismiss="modal" data-target="#date" data-toggle="collapse"
-                                        class="cancel_btn">Cancel</button>
-                                </div> -->
+                              
                             </div>
                         </li>
                         <li class="cursor">
@@ -320,25 +298,7 @@
                             </div>
                         </div>
                         </li>
-                        <!-- <li class="cursor">
-                          <a [ngClass]="{'active' : isTimeFilter}"
-                              (click)="openModal(isCategoryFilter=false,isChildFilter=false,isPriceFilter=false,isDateFilter=false,isAgeFilter=false,isTimeFilter=true,isCategoryModal=false,isChildModal=false,isPriceModal=false,isDateModal=false,isAgeModal=false,isTimeModal=true)"
-                              aria-controls="collapseExample" aria-expanded="true" data-target="#time"
-                              data-toggle="collapse">Time</a>
-                          <div class="collapse main_collpase time_collpase verification_modal" id="time"
-                              data-parent="#accordionExample">
-                              <div class="collpase_content">
-                                  <input type='time' min='1:30' max='2:30'>
-                              </div>
-
-                              <div class="submit_btn">
-                                  <button (click)="resetFilter()" type="button" aria-expanded="true"
-                                  data-target="#time" data-toggle="collapse" class="cancel_btn">Clear</button>
-                                  <button (click)="addFilter()" scrollToTop.scrollTop=0 data-target="#time"
-                                      data-toggle="collapse" class="submitBtn">Save</button>
-                              </div>
-                          </div>
-                      </li> -->
+                       
                         <li class="cursor">
                           <a aria-expanded="true"  [ngClass]="{'active' : isDaysFilter}"
                           (click)="filterName='day';openModal(isCategoryFilter=false,isTypeFilter=false,isDaysFilter=true,isPriceFilter=false,isDateFilter=false,isAgeFilter=false,isTimeFilter=false,isCategoryModal=false,isPriceModal=false,isDateModal=false,isAgeModal=false,isTimeModal=false)"
@@ -402,12 +362,7 @@
                               </div>
                           </div>
                       </li>
-                        <!-- <li class="cursor">
-                            <a aria-expanded="true" [ngClass]="{'active' : isTopFilter}"
-                            (click)="getTopRated();openModal(isCategoryFilter=false,isChildFilter=false,isPriceFilter=false,isDateFilter=false,isAgeFilter=false,isTimeFilter=false,isCategoryModal=false,isChildModal=false,isPriceModal=false,isDateModal=false,isAgeModal=false,isTimeModal=false)">
-                            Top Rated</a>
-                        </li> -->
-
+                       
                       <li class="cursor">
                         <a class="top-rateds" aria-expanded="true" [ngClass]="{'active' : isTopFilter}"
                         (click)="openModal(isCategoryFilter=false,isDaysFilter=false,isPriceFilter=false,isDateFilter=false,isAgeFilter=false,isTimeFilter=false,isCategoryModal=false,isDaysModal=false,isPriceModal=false,isDateModal=false,isAgeModal=false,isTimeModal=false)"><span class="simple-toggle">
@@ -418,10 +373,6 @@
                             <span class="slider1"></span>
                           </label>
                           </span>
-                          <!-- <label class="tgl" style="font-size:30px">
-                            <input [(ngModel)]="isTopFilterCheckBox" (change)="getTopRated()" type="checkbox" />
-                            <span></span>
-                          </label> -->
                         </span>
                         </a>
                       </li>
@@ -429,18 +380,6 @@
                         <li *ngIf="showReset" class="cursor">
                             <a (click)="resetFilter()" scrollToTop.scrollTop=0>Reset</a>
                         </li>
-
-                        <!-- <li class="cursor">
-                            <a
-                                aria-expanded="true" data-target="#morefilter" data-toggle="modal">More Filters</a>
-                        </li>
-                        <li class="cursor">
-                            <a
-                                aria-expanded="true" data-target="#morefilter" data-toggle="modal">More Filters</a>
-                        </li>
-                        <li *ngIf="showReset" class="cursor">
-                            <a (click)="resetFilter()" scrollToTop.scrollTop=0>Reset</a>
-                        </li> -->
 
                     </ul>
                 </div>
@@ -451,180 +390,6 @@
 
        <div class="row row-0" *ngIf="isInPerson">
         <div class="col-md-6 list_left">
-            <!-- <div class="left-searchpd">
-                <div class="left_search">
-                    <div>
-                        <form class="banner_form" data-toggle="collapse" href="#dropdownprogram-provider" role="button" aria-expanded="false" aria-controls="dropdownprogram-provider">
-                            <div class="form-group ">
-                                <input type="text" autocomplete="off" (keyup)="searchCategory(activityName);providerSearch(activityName);" placeholder="Search Activity..."
-                                    class="form-control camp_input" name="activityName" [(ngModel)]="activityName">
-                            </div>
-                            <div class="form-group">
-                                <button (click)="filterByNameDate()" class="banner_button" type="submit">
-                                    <img src="assets/search_icon.svg" alt="Search image">
-                                </button>
-                            </div>
-
-                            <div class="dropdownprogram" *ngIf="(providersBySearch?.length || categoriesBySearch?.length ) && activityName">
-                                <div class="card card-body">
-                                  <div class="program-list" *ngIf="categoriesBySearch?.length">
-                                    <h6  (click)="filterByCategory(category.id)" *ngFor="let category of categoriesBySearch | slice:0:4">
-                                        {{category.name}}
-                                        <span class="search-programlist">
-                                            <img src="assets/program-search.svg">
-                                        </span>
-                                    </h6>
-                                  </div>
-                                  <hr>
-                                  <div class="provider-list" *ngIf="providersBySearch?.length">
-                                    <h5>
-                                        Providers
-                                    </h5>
-                                    <h6 (click)="goToProviderProfile(provider)" *ngFor="let provider of providersBySearch | slice:0:4">
-                                        {{provider.firstName}}
-                                    </h6>
-                                  </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-
-                </div>
-            </div>
-           -->
-
-            <!-- <div class="category_list" id="accordionExample">
-                <ul>
-                    <li class="cursor">
-                        <a [ngClass]="{'active' : isAgeFilter}"
-                            (click)="openModal(isCategoryFilter=false,isChildFilter=false,isPriceFilter=false,isDateFilter=false,isAgeFilter=true,isTimeFilter=false,isCategoryModal=false,isChildModal=false,isPriceModal=false,isDateModal=false,isAgeModal=true,isTimeModal=false)"
-                            aria-controls="collapseExample" aria-expanded="true" data-target="#ageGroup"
-                            data-toggle="collapse">Age </a>
-                        <div class="collapse main_collpase verification_modal" id="ageGroup"
-                            data-parent="#accordionExample">
-                            <div class="collpase_content">
-                                <div class="form-group">
-
-                                    <ngx-slider [(value)]="minAge" [(highValue)]="maxAge" [options]="ageOption">
-                                    </ngx-slider>
-                                </div>
-                            </div>
-                            <div class="submit_btn">
-                                <button (click)="resetFilter()" type="button" aria-controls="collapseExample"
-                                aria-expanded="true" data-target="#ageGroup" data-toggle="collapse"
-                                class="cancel_btn">Clear</button>
-
-                                <button (click)="addFilter()" scrollToTop.scrollTop=0 data-target="#ageGroup"
-                                    data-toggle="collapse" class="submitBtn">Save</button>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="cursor">
-                        <a [ngClass]="{'active' : isDateFilter}"
-                            (click)="openModal(isCategoryFilter=false,isChildFilter=false,isPriceFilter=false,isDateFilter=true,isAgeFilter=false,isTimeFilter=false,isCategoryModal=false,isChildModal=false,isPriceModal=false,isDateModal=true,isAgeModal=false,isTimeModal=false)"
-                            aria-expanded="true" data-target="#date" data-toggle="collapse">Date Range</a>
-                        <div class="collapse main_collpase verification_modal" id="date"
-                            data-parent="#accordionExample">
-                            <div class="collpase_content">
-                                <div class="form-group date_time">
-                                    <div class="input_outer">
-                                        <input type="date" class="form-control" placeholder="Start Date"
-                                            [ngModelOptions]="{standalone: true}" [(ngModel)]="fromDate">
-
-                                        <br>
-                                        <input type="date" class="form-control right_input" placeholder="End Date"
-                                            [ngModelOptions]="{standalone: true}" [(ngModel)]="toDate">
-
-
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="submit_btn">
-                                <button data-dismiss="modal" (click)="addFilter()" scrollToTop.scrollTop=0
-                                    data-target="#date" data-toggle="collapse" class="submitBtn">Search</button>
-
-                                <button (click)="closePopup()" type="button" aria-expanded="true"
-                                    data-dismiss="modal" data-target="#date" data-toggle="collapse"
-                                    class="cancel_btn">Cancel</button>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="cursor">
-                        <a [ngClass]="{'active' : isTimeFilter}"
-                            (click)="openModal(isCategoryFilter=false,isChildFilter=false,isPriceFilter=false,isDateFilter=false,isAgeFilter=false,isTimeFilter=true,isCategoryModal=false,isChildModal=false,isPriceModal=false,isDateModal=false,isAgeModal=false,isTimeModal=true)"
-                            aria-controls="collapseExample" aria-expanded="true" data-target="#time"
-                            data-toggle="collapse">Time</a>
-                        <div class="collapse main_collpase time_collpase verification_modal" id="time"
-                            data-parent="#accordionExample">
-                            <div class="collpase_content">
-                                <input type='time' min='1:30' max='2:30'>
-                            </div>
-                            <div class="submit_btn">
-                                <button (click)="resetFilter()" type="button" aria-expanded="true"
-                                data-target="#time" data-toggle="collapse" class="cancel_btn">Clear</button>
-
-                                <button (click)="addFilter()" scrollToTop.scrollTop=0 data-target="#time"
-                                    data-toggle="collapse" class="submitBtn">Save</button>
-
-
-                            </div>
-                        </div>
-                    </li>
-
-
-                    <li class="cursor">
-                        <a [ngClass]="{'active' : isCategoryFilter}"
-                            (click)="openModal(isCategoryFilter=true,isChildFilter=false,isPriceFilter=false,isDateFilter=false,isAgeFilter=false,isTimeFilter=false,isCategoryModal=true,isChildModal=false,isPriceModal=false,isDateModal=false,isAgeModal=false,isTimeModal=false)"
-                            aria-expanded="true" data-target="#category" data-toggle="collapse">Categories</a>
-
-                        <div class="collapse main_collpase time_collpase verification_modal partcategory" id="category"
-                            data-parent="#accordionExample">
-                            <div class="collpase_content">
-                                <div class="form-group date_time">
-                                    <div class="input_outer">
-                                        <div class="upper-partcategory">
-                                            <h1>Select the category
-                                                <span><a>Clear</a></span>
-                                            </h1>
-
-                                        </div>
-                                        <div class="lower-partcategory">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
-                                            </div>
-
-                                            <div class="input-btns">
-                                                <button>
-                                                    Computers
-                                                    <div class="icon-close delete_search_icon recent-search-icon movecategory-icon"></div>
-                                                </button>
-
-                                                <button>
-                                                    Computers
-                                                    <div class="icon-close delete_search_icon recent-search-icon movecategory-icon"></div>
-                                                </button>
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </li>
-
-                    <li class="cursor">
-                        <a
-                            aria-expanded="true" data-target="#morefilter" data-toggle="modal">More Filters</a>
-
-                    </li>
-                    <li *ngIf="showReset" class="cursor">
-                        <a (click)="resetFilter()" scrollToTop.scrollTop=0>Reset</a>
-                    </li>
-                </ul>
-            </div> -->
 
 
             <div class="search-results" #scrollToTop infiniteScroll [infiniteScrollDistance]="2"
@@ -1329,113 +1094,7 @@
 </div>
 
 
-<!--more filter modal -->
-<!-- <div class="modal fade" id="morefilter" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="close_morefilter">
-                <span aria-hidden="true" class="icon-close"></span>
-            </button>
-           <div class="modal-body N_modal filter-modal">
-               <div class="container">
-                <div class="row ">
-                    <div class="col-12">
-                        <div class="morefilters-heading">
-                        <h1>More Filters</h1>
-                        <h1><a (click)="resetFilter()">Clear</a></h1>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="notifications">
-                            <h3>Saved Programs
-                              <label class="switch notification">
-                                <input type="checkbox" #toggle data-toggle="toggle"  (click)="getFav(userData.id,$event.target.checked)">
-                                <span class="slider round"></span>
-                              </label>
-                            </h3>
-                            <h3>Open
-                                <label class="switch notification">
-                                    <input type="checkbox"  data-toggle="toggle"  (click)="getOpenPrograms($event.target.checked)">
-                                    <span class="slider round"></span>
-                                </label>
-                              </h3>
-                        </div>
 
-
-                    </div>
-                    <div class="col-12 " *ngIf="parentRole" >
-                        <div class="add_child">
-                            <div class="top_add">
-                                <p>Child</p>
-                                <a>
-                                    <span class="icon-plus"></span>
-                                </a>
-                            </div>
-                            <div class="user_list" *ngIf="kids?.length">
-                                <div class="user" *ngFor="let kid of kids" (click)="filterByChild(kid)">
-                                    <div class="user_profile">
-                                        <img *ngIf="kid.avtar" src="{{kid.avtar}}">
-                                        <img *ngIf="!kid.avtar" src="assets/nochild_image.png">
-
-                                    </div>
-                                    <div class="user_text">
-                                        <p>{{kid.name}}</p>
-                                    </div>
-                                    <span class="close-filter"><img src="assets/close.png" (click)="deleteChild(kid)" ></span>
-                                </div>
-
-                            </div>
-                            <div class="user_list" style="color: #494949;" *ngIf="!kids?.length">
-                                No Child Found
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 ">
-                        <div class="add_child">
-                            <div class="top_add">
-                                <p>Mode</p>
-                            </div>
-                            <div class="user_list">
-                                <div class="users" >
-                                    <h1>Online activtives</h1>
-                                    <h1>In-person activities</h1>
-                                        <h2>All</h2>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div> -->
-
-                    <!-- <div class="col-12 bar">
-                        <h1>Price PER HOUR ($)</h1>
-                        <div class="price-perhour">
-                                <ngx-slider [(value)]="minPrice" [(highValue)]="maxPrice" [options]="priceOption">
-                                </ngx-slider>
-                        </div>
-
-
-                        <h1>Duration</h1>
-                        <div class="duration-perhour">
-                                <ngx-slider [(value)]="durationMin" [(highValue)]="durationMax" [options]="durationOption">
-                                </ngx-slider>
-                        </div>
-                    </div> -->
-
-                    <!-- <div class="show-resultbtn">
-                        <button class="Submit_btn" type="button" (click)=" programFilter()">APPLY FILTER</button>
-                   </div>
-
-                </div>
-               </div>
-
-
-
-            </div>
-        </div>
-    </div>
-</div> -->
 <ngx-ui-loader bgsType={{loaderType}} fgsType={{loaderType}} fgsSize="40" bgsSize="40" fgsPosition={{loaderPostion}}
     overlayColor="rgba(40,40,40,0.12)">
 </ngx-ui-loader>

@@ -70,10 +70,7 @@
                         <div class="category_list_box cursor" (click)="searchActivityByCategory(category.id)">
                             <a href="javascritpt:;">
                                 <div class="category_image">
-                                    <img *ngIf="imageLoader.isLoad" [src]="imageLoader.img" alt="Category image">
-                                    <img [hidden]="imageLoader.isLoad" [src]="category?.imageUrl"
-                                        (error)="category.imageUrl=imageLoader.noCat" (load)="imageLoader.isLoad=false"
-                                        alt="Category image">
+                                        <img [defaultImage]="defaultImage" [errorImage]="errorImage" [lazyLoad]="category?.imageUrl" />
                                 </div>
                                 <div class="category_title">
                                     <p>{{category?.name}}<span class="title_arrow">
@@ -102,7 +99,8 @@
                         <div class="lower-blog-sec">
                             <div class="lower-blog" *ngFor='let b of blog |slice:0:3;'>
                                 <div class="lower-img">
-                                    <img class="blog_img cursor" src="{{blogUrl}}{{b?.image[0]?.url}}" (click)='setBlog(b)'>
+                                    <!-- <img class="blog_img cursor" src="{{blogUrl}}{{b?.image[0]?.url}}" (click)='setBlog(b)'> -->
+                                    <img class="blog_img cursor" [defaultImage]="defaultImage" [errorImage]="errorImage" lazyLoad="{{blogUrl}}{{b?.image[0]?.url}}"  (click)='setBlog(b)'/>
                                 </div>
                                 <div class="lower-content" >
                                     <h2 class="lower-blog-heading cursor" (click)='setBlog(b)'>{{b.title}}

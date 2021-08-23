@@ -968,40 +968,7 @@
                                 <ngx-slider [(value)]="minAge" [(highValue)]="maxAge" [options]="ageOption">
                                 </ngx-slider>
                             </div>
-                            <!-- <div class="form-group">
-                                <label>Category</label>
-                                <div class="input_outer">
-                                    <div class="custom_select">
-                                        <select #selectValue (change)="selectEvent(selectValue.value)">
-                                            <option *ngFor="let category of categories">
-                                                {{category.name}}</option>
-                                        </select>
-                                    </div>
-
-                                </div>
-                                <br> -->
-                            <!-- <mat-form-field class="demo-chip-list">
-                                    <mat-chip-list>
-                                        <mat-chip *ngFor="let t of program.categoryId" [selectable]="selectable"
-                                            [removable]="removable" (removed)="remove(t)">
-                                            {{t.name}}<span *ngIf="!t?.name">{{t}}</span>
-                                            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                                        </mat-chip>
-                                    </mat-chip-list>
-                                </mat-form-field> -->
-                            <!-- <mat-form-field class="demo-chip-list">
-                                    <mat-chip-list>
-                                        <mat-chip>
-                                            Technology
-                                            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                                        </mat-chip>
-                                        <mat-chip>
-                                            Others
-                                            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                                        </mat-chip>
-                                    </mat-chip-list>
-                                </mat-form-field> -->
-                            <!-- </div> -->
+                           
                             <div class="submit_btn">
                                 <button (click)="updateProgram(program._id)" data-dismiss="modal"
                                     class="submitBtn">Save</button>

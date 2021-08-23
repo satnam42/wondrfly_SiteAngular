@@ -426,15 +426,6 @@ getRating(){
     });
   }
 
-  // getBadges() {
-  //   this.apiservice.badgeList().subscribe(res => {
-  //     this.badges = res;
-  //     this.badgesList = this.badges.data;
-  //     this.badgesList.reverse();
-  //     console.log('badges here', this.badgesList)
-  //   });
-  // }
-
   getProviderProgram = async () => {
     await this.apiservice.getProgramByProvider(this.program.user, this.pageNo, this.pageSize).subscribe((res) => {
       this.isScrol = true;

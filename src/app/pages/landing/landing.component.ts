@@ -17,6 +17,8 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./landing.component.css']
 })
 export class LandingComponent implements OnInit {
+  defaultImage = 'https://miro.medium.com/max/441/1*9EBHIOzhE1XfMYoKz1JcsQ.gif';
+  errorImage = 'https://i.imgur.com/QsFAQso.jpg';
   blogUrl = environment.blogsUrl;
   user: SocialUser;
   userGoogle: SocialUser;

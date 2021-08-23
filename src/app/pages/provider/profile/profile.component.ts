@@ -304,18 +304,7 @@ export class ProfileComponent implements OnInit {
       }
     });
 }
-  // onFocused(e) {
-  //   // do something when input is focused
-  // }
-  // onChangeSearch(key: string) {
-  //   this.ngxLoader.start();
-  //   this.tags = []
-  //   this.apiservice.searchTag(key).subscribe((res: any) => {
-  //     this.tags = res;
-  //     console.log('tags', this.tags)
-  //     this.ngxLoader.stop()
-  //   });
-  // }
+  
   getCategoryList() {
     this.apiservice.getCategory().subscribe((res: any) => {
       this.categories = res;

@@ -32,6 +32,7 @@ import { PhoneMaskDirective } from './common/phone-mask.directive';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { ChartsModule } from 'ng2-charts';
 
+
 const components = [
   HeaderComponent,
   FooterComponent,
