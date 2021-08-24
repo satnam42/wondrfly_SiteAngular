@@ -1182,24 +1182,3 @@ header .navbar-nav .btn_style {
     background: #F23459;
     border-radius: 50%;
 }
-.footer-icons a {
-    margin-left: 12px;
-}
-.footer-icons {
-    float: right;}
-
-.footer-icons a.fb:hover img {
-    filter: invert(38%) sepia(7%) saturate(4607%) hue-rotate(182deg) brightness(96%) contrast(86%);
-    }
-.footer-icons a.insta:hover img {
-    filter: invert(31%) sepia(100%) saturate(1050%) hue-rotate(308deg) brightness(88%) contrast(103%);
-    }
-.footer-icons a.tweet:hover img {
-    filter: invert(47%) sepia(92%) saturate(1449%) hue-rotate(176deg) brightness(99%) contrast(91%);
-    }
-.footer-icons a.pin:hover img {
-    filter: invert(14%) sepia(71%) saturate(5505%) hue-rotate(342deg) brightness(91%) contrast(115%);
-    }
-.footer-icons a.link:hover img {
-    filter: invert(33%) sepia(47%) saturate(2010%) hue-rotate(173deg) brightness(94%) contrast(101%);
-    }
