@@ -18,7 +18,7 @@
           </div>
           <div class="media-body ">
               <div  class="share_icon ">
-                  <a data-toggle="modal" (click)="selectedProgramId=program._id;genericSocialShare()"  data-target="#ShareModal" class="cursor">
+                  <a data-toggle="modal" (click)="selectedProgram=program"  data-target="#ShareModal" class="cursor">
                       <img src="assets/share_gray.svg " alt="Share Icon ">
                   </a>
                   <div  class="bookmark_outer ">
@@ -115,7 +115,8 @@
                           <span class="fa fa-star checked"></span>
                           <span class="fa fa-star checked"></span>
                       </span>
-                    <a><span *ngIf="program.averageFinalRating">{{program.averageFinalRating}}</span><span *ngIf="!program.averageFinalRating">0</span> out of 5 </a>
+                      <a *ngIf='program.totalReviews'> ({{program.totalReviews}} reviews)</a>
+                      <a *ngIf='!program.totalReviews'> (0 reviews)</a>
                   </p>
                       <div *ngIf="rating" class="collapse star-daialogbox" id="collapseExamplestar{{i}}">
                           <button type="button" data-toggle="collapse" [attr.data-target]="'#collapseExamplestar' + i"  class="close star-daialogicon" aria-label="Close">
@@ -196,7 +197,7 @@
                   </div>
                   <div class="media-body ">
                       <div  class="share_icon ">
-                          <a data-toggle="modal" (click)="selectedProgramId=program._id;genericSocialShare()"  data-target="#ShareModal" class="cursor">
+                          <a data-toggle="modal" (click)="selectedProgram=program;"  data-target="#ShareModal" class="cursor">
                               <img src="assets/share_gray.svg " alt="Share Icon ">
                           </a>
                           <div  class="bookmark_outer ">
@@ -293,8 +294,8 @@
                                   <span class="fa fa-star checked"></span>
                                   <span class="fa fa-star checked"></span>
                               </span>
-                            <a><span *ngIf="program.averageFinalRating">{{program.averageFinalRating}}</span><span *ngIf="!program.averageFinalRating">0</span> out of 5 </a>
-                          </p>
+                              <a *ngIf='program.totalReviews'> ({{program.totalReviews}} reviews)</a>
+                              <a *ngIf='!program.totalReviews'> (0 reviews)</a>                          </p>
                               <div *ngIf="rating" class="collapse star-daialogbox" id="collapseExamplestr{{i}}">
                                   <button type="button" data-toggle="collapse" [attr.data-target]="'#collapseExamplestr' + i"  class="close star-daialogicon" aria-label="Close">
                                       <span aria-hidden="true"><img src="assets/grey-close.png"></span>
@@ -332,30 +333,22 @@
                           </div>
                       </div>
                           <div class="price-box ">
-                             <p *ngIf='program.pricePerParticipant'><span>${{program.pricePerParticipant}}/</span>{{program.pricePeriod.periodAmount}}</p>
-                             <p *ngIf='!program.pricePerParticipant'><span>Free</span></p>
+                            <p *ngIf='!program.isFree'><span><img src="assets/price.svg">${{program.pricePerParticipant}}<span *ngIf="program.pricePeriod.periodAmount">/{{program.pricePeriod.periodAmount}}</span></span></p>
+                    <p *ngIf='program.isFree'><span>Free</span></p>
                           </div>
                           <div class="rating_box ">
                               <!-- <a href="javascript:; ">
                                   <img src="assets/star.svg " alt="Star "> 5.0 (15)
                               </a> -->
                           </div>
-
                   </div>
-
               </div>
               </div>
             </div>
-
-
             </div>
         </div>
       </div>
-
-
 <!-- suggested ends -->
-
-
-
 </div>
 </div>
+<share-popup [shareData]="selectedProgram"></share-popup>

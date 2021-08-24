@@ -12,6 +12,7 @@ import { ApiService } from '../../services/api.service.service';
   styleUrls: ['./online-programs.component.css']
 })
 export class OnlineProgramsComponent implements OnInit {
+  selectedProgram:any;
   isDateFilter: boolean = false;
   isTimeFilter: boolean = false;
   isAgeFilter: boolean = false;
@@ -92,45 +93,14 @@ export class OnlineProgramsComponent implements OnInit {
     }
   };
 
-   priceOption: Options = {
-    floor: 0,
-    ceil: 1000,
-    translate: (value: number): string => {
-      return value + ' $';
-    }
-  };
 
-  durationOption: Options = {
-    floor: 0,
-    ceil: 60,
-    translate: (value: number): string => {
-      return value + ' HOUR';
-    }
-  };
 
 
   // ng5slider end
   showReset = false;
   deleteProgramRes: any;
-  title = 'Search for Online Classes and Programs - Wondrfly';
-  latitude: number = 40.5682945;
-  longitude: number = -74.0409239;
-  center = {
-    latitude: this.latitude,
-    longitude: this.longitude
-  }
-  zoom: number;
-  address: string;
-  private geoCoder;
-  user = new User
-  @ViewChild('search', { static: true })
-  public searchElementRef: ElementRef;
-  recentSearch: any;
-  shareUrlSocial = environment.baseUrl;
   baseUrl= environment.baseUrl;
   shareUrl:string;
-  selectedProgramId: string;
-  url: string;
   suggested: any =[];
   programOwnerData:any = User
   isOnline:boolean = false;
@@ -138,51 +108,24 @@ export class OnlineProgramsComponent implements OnInit {
 
   constructor( public imageLoader: Globals,
     private apiservice: ApiService,
-    private router : Router,
-    private ngxLoader : NgxUiLoaderService) {
+    private router : Router) {
+      var retrievedObject = localStorage.getItem('userData');
+      this.userData = JSON.parse(retrievedObject);
+      if (this.userData) {
+        this.isLogin = true;
+        if (this.userData.role === 'provider') {
+          this.providerRole = true;
+          this.parentRole = false;
+        }
+        if (this.userData.role === 'parent') {
+          this.parentRole = true;
+          this.providerRole = false;
+        }
+      }
   }
   ngOnInit() {
     this.suggestedProgramss();
 }
-
-
-
-genericSocialShare() {
-
-  this.shareUrl=`${this.shareUrlSocial}program/detail/${this.selectedProgramId}`;
-  console.log('share url ',this.shareUrl)
- //  this.metaTagService.updateTag(
- //   { property: 'og:url', content: this.shareUrl  },
- // );
-     // switch (provider) {
-     //   case 'facebook': {
-     //     this.url = `https://www.${provider}.com/sharer/sharer.php?u=${encodeURIComponent(this.baseUrl)}program/detail/${this.selectedProgramId}`;
-     //     window.open(this.url, 'sharer', 'toolbar=0,status=0,width=648,height=395');
-     //     return true;
-     //   }
-     //   case 'email': {
-     //     this.url = `mailto:?subject=wondrfly&amp;body=${encodeURIComponent(this.baseUrl)}program/detail/${this.selectedProgramId}`;
-     //     window.open( this.url, 'sharer', 'toolbar=0,status=0,width=648,height=395');
-     //     return true;
-     //   }
-     //   case 'whatsapp': {
-     //     this.url = `https://api.${provider}.com/send?text=${encodeURIComponent(this.baseUrl)}program/detail/${this.selectedProgramId}`;
-     //     window.open( this.url, 'sharer', 'toolbar=0,status=0,width=648,height=395');
-     //     return true;
-     //   }
-     //   case 'messenger': {
-     //     this.url = `https://fb-messenger://share/?link=${encodeURIComponent(this.baseUrl)}&app_id=123456789`;
-     //     window.open( this.url, 'sharer', 'toolbar=0,status=0,width=648,height=395');
-     //     return true;
-     //   }
-     //   case 'copylink': {
-     //     this.url = `${encodeURIComponent(this.baseUrl)}program/detail/${this.selectedProgramId}`;
-
-     //   }
-
-     // }
-   }
-
    addAction(programId) {
     let body = {
       action: 'click',
@@ -212,8 +155,9 @@ genericSocialShare() {
     if (this.parentRole) {
       this.addAction(data._id);
     }
-    data.name = data.name.replace(/ /g,"-");
-    this.router.navigate(['program', data.name,data._id]);
+    let name=data.name.toLowerCase();
+     name = name.replace(/ /g,"-");
+    this.router.navigate(['program', name,data._id]);
   }
 
    // ---------------------------------navigate to program detail page -------------------------------------------
@@ -222,32 +166,8 @@ getRating(program){
     this.apiservice.getUserRating(program.userId).subscribe((res:any) => {
        this.rating = res
        this.rating.finalAverageRating = parseFloat(String(this.rating.finalAverageRating)).toFixed(1)
-
-       console.log('ratinggggggggggggg', res)
      });
    }
-
-   getPublishedProgram() {
-    this.activityName = ''
-    this.activityDate = undefined
-    this.showReset = false
-    if (this.isSearched) {
-      this.programs = this.searchedProgram;
-    } else {
-      this.ngxLoader.start()
-      this.apiservice.getPublishedProgram(this.pageNo, this.pageSize, 'published').subscribe(res => {
-        this.programList = res;
-        this.ngxLoader.stop()
-        console.log('programs', res);
-        if (this.programList.items) {
-          this.programs = this.programList.items;
-          this.isScrol = true;
-        }
-      });
-    }
-    this.ngxLoader.stop()
-  }
-
    suggestedProgramss(){
     this.categoryId='60b47687bb70a952280bfa7b'
     var filter = `categoryId=${this.categoryId}`

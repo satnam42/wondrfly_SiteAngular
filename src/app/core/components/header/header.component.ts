@@ -75,7 +75,7 @@ export class HeaderComponent implements OnInit {
     this.auth.userChanges.subscribe(user => this.user = user)
     this.routeName = this.router.url;
     if (this.routeName === '/search') {
-      this.logoPosition=true; 
+      this.logoPosition=true;
     }
     if(this.routeName === '/search'|| this.routeName === '/'){ this.searchBar=true}
     if (this.user.role === "provider" || this.user.role === "parent") {
@@ -111,10 +111,9 @@ export class HeaderComponent implements OnInit {
   }
   savedList() {
     if (this.user.role === "parent") {
+      this.store.setItem('savedList', '1')
       this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
       this.router.navigate(['Profile', this.user.id]))
-      this.store.setItem('savedList', '1');
-
     }
   }
   getProfileProgress() {
@@ -211,7 +210,7 @@ parentProfile(){
 
 ngOnDestroy() {
   window.document.getElementById("close_feedback_modal").click();
-} 
+}
  logout() {
   window.document.getElementById("open_feedback_modal").click();
   }
