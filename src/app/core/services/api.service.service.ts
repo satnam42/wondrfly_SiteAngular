@@ -1952,69 +1952,6 @@ onOffNotification(id,e): Observable<User> {
     return subject.asObservable();
 }
 
- //---------------------------------------------- search history get --------------------------------->
- getSearchHistory(id): Observable<User[]> {
-    const subject = new Subject<User[]>();
-    this.http.get(`${this.root}/searchHistory/getsearcHistoryOfUser?userId=${id}`, this.getHeader()).subscribe((responseData) => {
-        console.log("searchHistory", responseData)
-        this.userResponse = responseData;
-        subject.next(this.userResponse);
-    }, (error) => {
-        subject.next(error.error);
-    });
-    return subject.asObservable();
-}
-
- //----------------------------------------    Delete search history  --------------------------------->
-deleteSearchHistory(id,userId ): Observable<User[]> {
-    const subject = new Subject<User[]>();
-    this.http.delete(`${this.root}/searchHistory/deleteSearchById/?id=${id}&userId=${userId}`, this.getHeader()).subscribe((responseData: any) => {
-        if (responseData.statusCode !== 200) {
-            throw new Error('This request has failed ' + responseData.status);
-        }
-        const dataModel = responseData;
-        if (!dataModel.isSuccess) {
-            if (responseData.status === 200) {
-                // this.toasty.error(dataModel.error);
-                throw new Error(dataModel.code || dataModel.message || 'failed');
-            } else {
-                throw new Error(responseData.status + '');
-            }
-        }
-        subject.next(responseData);
-    }, (error) => {
-        const dataModel = error;
-        subject.next(dataModel.error);
-    });
-    return subject.asObservable();
-}
-
-
- //----------------------------------------    clearAll search history  --------------------------------->
- clearAllSearchHistory(id): Observable<User[]> {
-    const subject = new Subject<User[]>();
-    this.http.delete(`${this.root}/searchHistory/allClear/${id}`, this.getHeader()).subscribe((responseData: any) => {
-        if (responseData.statusCode !== 200) {
-            throw new Error('This request has failed ' + responseData.status);
-        }
-        const dataModel = responseData;
-        if (!dataModel.isSuccess) {
-            if (responseData.status === 200) {
-                // this.toasty.error(dataModel.error);
-                throw new Error(dataModel.code || dataModel.message || 'failed');
-            } else {
-                throw new Error(responseData.status + '');
-            }
-        }
-        subject.next(responseData);
-    }, (error) => {
-        const dataModel = error;
-        subject.next(dataModel.error);
-    });
-    return subject.asObservable();
-}
-
-
 
  //-------------------------------- Signup with Facebook --------------------------------->
 

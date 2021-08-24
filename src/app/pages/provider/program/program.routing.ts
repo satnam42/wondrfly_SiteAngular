@@ -13,7 +13,7 @@ export const routes: Routes = [
   // { path: '', redirectTo: 'home', pathMatch: 'full' },
   {path: '', component: ProgramComponent, children:[
   {
-    path: '', component: HomeComponent, canActivate:
+    path: 'home', component: HomeComponent, canActivate:
       [UserGuard],
       data: {
         roles: [

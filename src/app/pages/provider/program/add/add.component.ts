@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone, AfterViewChecked } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { ApiService } from 'src/app/core/services/api.service.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Router } from '@angular/router';

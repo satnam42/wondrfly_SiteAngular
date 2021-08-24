@@ -13,11 +13,7 @@ import { MarkdwonPipe } from './shared/markdwon.pipe';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import {MatChipsModule} from '@angular/material/chips';
-import { PhonePipe } from '../pages/provider/profile/profile.component';
-import { PhoneMaskDirective } from './common/phone-mask.directive';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
-import { ChartsModule } from 'ng2-charts';
-
 
 const components = [
   HeaderComponent,
@@ -26,11 +22,7 @@ const components = [
   Footer2Component,
   ReadMoreComponent,
   MarkdwonPipe,
-  PhoneMaskDirective,
-  PhonePipe,
-
 ]
-
 const thirdPartyModules = [
   MatIconModule,
   MatInputModule,

@@ -20,7 +20,6 @@ import { MapTheme } from './core/common/map-theme';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxMaskModule } from 'ngx-mask';
-import { ServiceWorkerModule } from '@angular/service-worker';
 import { MailchimpSubscribeFormModule } from './core/components/mailchimp-subscribe-form/mailchimp-subscribe-form.module';
 import { ChatService } from './core/services/chat.service';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
@@ -49,7 +48,6 @@ const config: SocketIoConfig = { url: environment.socketUrl, options: {} };
     LazyLoadImageModule,
     MailchimpSubscribeFormModule,
     SocketIoModule.forRoot(config),
-    NgxMaskModule.forRoot(),
     NgxDaterangepickerMd.forRoot(),
     FlatpickrModule.forRoot(),
     AgmCoreModule.forRoot({
@@ -57,12 +55,6 @@ const config: SocketIoConfig = { url: environment.socketUrl, options: {} };
       libraries: ['places']
     }),
     ToastrModule.forRoot(),
-    ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: environment.production,
-      // Register the ServiceWorker as soon as the app is stable
-      // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
-    }),
   ],
   providers: [
     LocalStorageService,
@@ -71,7 +63,7 @@ const config: SocketIoConfig = { url: environment.socketUrl, options: {} };
     ChatService,
     Globals,
     MapTheme,
-    // { provide: LocationStrategy, useClass: PathLocationStrategy }
+    // { provide: LocationStrategy, useClass: PathLocationStrategy  
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {

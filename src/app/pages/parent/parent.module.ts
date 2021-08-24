@@ -12,6 +12,7 @@ import { NgxMaskModule } from 'ngx-mask';
 import { ParentComponent } from './parent.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+import { sharePopupModule } from 'src/app/core/components/share-popup/share-popup.module';
 @NgModule({
     entryComponents: [],
     declarations: [
@@ -25,11 +26,11 @@ import { AutocompleteLibModule } from 'angular-ng-autocomplete';
         CoreModule,
         CustomFormsModule,
         ReactiveFormsModule,
-        NgxMaskModule,
+        NgxMaskModule.forRoot(),
         AutocompleteLibModule,
         InfiniteScrollModule,
-        // GoogleMapsModule,
-        AgmCoreModule
+        AgmCoreModule,
+        sharePopupModule,
     ],
     exports: [
         ParentComponent, LoginParentComponent, ParentProfileComponent

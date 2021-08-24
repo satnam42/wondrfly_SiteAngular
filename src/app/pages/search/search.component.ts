@@ -729,33 +729,6 @@ console.log('this.timeSession>>>>>>>>>',this.timeSession)
 
   }
 
-  //----------------------------------------search history get ---------------------------------------------------------
-  // getSearchHistory() {
-  //   if (this.userData) {
-  //     this.apiservice.getSearchHistory(this.userData.id).subscribe((res: any) => {
-  //       this.recentSearch = res.data
-  //       console.log('get search', this.recentSearch);
-  //     });
-  //   }
-  // }
-
-  //----------------------------------------delete search history  ---------------------------------------------------------
-  deleteSearchHistory(item) {
-    this.apiservice.deleteSearchHistory(item._id, item.user).subscribe((res: any) => {
-      console.log('deleted', res)
-      // this.getSearchHistory()
-    })
-  }
-
-  //----------------------------------------clearAll search history  ---------------------------------------------------------
-  clearAllSearchHistory() {
-    this.apiservice.clearAllSearchHistory(this.userData.id).subscribe((res: any) => {
-      console.log('deleted', res)
-      // this.getSearchHistory()
-    })
-  }
-
-
   signUpModal() {
     if (localStorage.getItem("token") === null) {
       setTimeout(() => {

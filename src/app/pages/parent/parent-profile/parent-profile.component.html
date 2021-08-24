@@ -573,8 +573,8 @@
                 </div>
                 <div class="media-body size-increase-123">
                   <div class="share_icon sk-1234">
-                    <a data-toggle="modal" data-target="#ShareModal">
-                      <img src="assets/share_gray.svg " alt="Share Icon ">
+                    <a data-toggle="modal" data-target="#ShareModal" (click)='selectedProgram=favourite.program'>
+                      <img src="assets/share_gray.svg " alt="Share Icon">
                     </a>
 
                     <div class="bookmark_outer ">
@@ -978,3 +978,5 @@
 <ngx-ui-loader bgsType={{loaderType}} fgsType={{loaderType}} fgsSize="40" bgsSize="40" fgsPosition={{loaderPostion}}
   overlayColor="rgba(40,40,40,0.12)">
 </ngx-ui-loader>
+
+<share-popup [shareData]="selectedProgram"></share-popup>

@@ -132,6 +132,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
   isSMSnotification:boolean;
   isPushnotification:boolean;
   isEmailnotification:boolean;
+  selectedProgram: any;
 
   constructor(
     private apiservice: ApiService,
