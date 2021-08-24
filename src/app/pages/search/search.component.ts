@@ -158,6 +158,7 @@ export class SearchComponent implements OnInit {
   previous;
   filterName='';
   selectedCat: any;
+  selectedSubCategories:any = [];
   constructor(
     private router: Router,
     private apiservice: ApiService,
@@ -868,6 +869,22 @@ if(program.userId==''|| program.userId==undefined || !program.userId){ program.u
   }
   this.ngxLoader.stop()
  }
+
+ updateCheckedSubCategories(i, event) {
+  this.subCats[i].checked = event.target.checked;
+  if(this.subCats[i].checked){
+    this.selectedSubCategories.push(this.subCats[i]);
+    console.log(this.selectedSubCategories)
+  }
+  else{
+    const index = this.selectedSubCategories.indexOf(this.subCats[i]);
+
+    if (index >= 0) {
+      this.selectedSubCategories.splice(index, 1);
+      console.log(this.selectedSubCategories)
+    }
+  }
+}
 
 }
 

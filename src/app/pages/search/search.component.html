@@ -109,8 +109,14 @@
                                         </div>
                                         <div class="col-7 sub-categoriesfiltercontent">
 
-                                            <h3 *ngFor='let s of subCats'>
-                                              <span><input type="radio" class="k-checkbox categories-checkbox" id="categoriescheck" name="categoriescheck" ></span>
+                                            <h3 *ngFor="let s of subCats; let i = index">
+                                              <span><input type="checkbox"
+                                                 class="k-checkbox categories-checkbox"
+                                                 id="categoriescheck"
+                                                  name="categoriescheck"
+                                                  value="{{s}}"
+                                                   [checked]="s.checked"
+                                                   (change)="updateCheckedSubCategories(i, $event)" ></span>
                                               <span>{{s.name}}</span>
                                             </h3>
                                             <!-- <div class="row">
