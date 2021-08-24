@@ -176,12 +176,6 @@ export class SearchComponent implements OnInit {
       this.activityName = this.filterData.activityName
       this.activityDate = this.filterData.activityDate
     }
-    // if (navigator) {
-    //   navigator.geolocation.getCurrentPosition(pos => {
-    //     this.lat = +pos.coords.longitude;
-    //     this.lng = +pos.coords.latitude;
-    //   });
-    // }
     var retrievedObject = localStorage.getItem('userData');
     this.userData = JSON.parse(retrievedObject);
     if (this.userData) {
@@ -193,7 +187,6 @@ export class SearchComponent implements OnInit {
       if (this.userData.role === 'parent') {
         this.parentRole = true;
         this.providerRole = false;
-        this.getChildren()
       }
     }
   }
@@ -326,12 +319,7 @@ this.toDate=e.endDate._d
   openModal(a, b, c, d, e, f, g, h, i, j, k, l) {
 
   }
-  mouseOver() {
-    console.log('in');
-  }
-  mouseOut() {
-    console.log('out');
-  }
+ 
   onFilter() {
     this.filterClass = !this.filterClass;
   }
@@ -405,15 +393,6 @@ this.toDate=e.endDate._d
     }
   }
 
-  profile() {
-    if (this.userData === null || this.userData === undefined) {
-      this.router.navigate(['/login']);
-    }
-    if (this.userData) {
-      this.router.navigate(['parent/parent-profile']);
-    }
-  }
-
   getPublishedProgram() {
     this.activityName = ''
     this.activityDate = undefined
@@ -434,39 +413,28 @@ this.toDate=e.endDate._d
     }
     this.ngxLoader.stop()
   }
-  getChildren() {
-    this.apiservice.getChildByParentId(this.userData.id).subscribe((res: any) => {
-      this.kids = res
-    })
-  }
+ 
 
   // ---------------------------------------------get categories-------------------------------------
   getCategory() {
     this.ngxLoader.start();
     this.apiservice.getCategory().subscribe((res: any) => {
       this.categories = res
-      this.getSubCateById(this.categories[3].id)
+      this.getSubCateById(this.categories[this.categories.length-1].id)
       this.ngxLoader.stop();
     })
   }
 
-  // ---------------------------------------------get categories-------------------------------------
+  // ---------------------------------------------get subCateById-------------------------------------
   getSubCateById(cat){
     this.selectedCat= cat.id
+    this.selectedSubCategories=[]
     this.apiservice.getTagByCategoryId(this.selectedCat).subscribe((res: any) => {
       this.subCats = res.data
-      console.log('categories', this.subCats)
+      console.log('categories', this.categories.length-1)
     })
   }
 
-
-
-  pagination(pageNo) {
-    // let scrollToTop = document.getElementById('scrollToTop');
-    // scrollToTop.scrollTop = 0;
-    this.pageNo = pageNo;
-    this.getPublishedProgram();
-  }
   addFavProgram(userId, programId, index) {
     this.programs[index].isFav = true;
     this.fav.userId = userId;
@@ -797,15 +765,6 @@ console.log('this.timeSession>>>>>>>>>',this.timeSession)
     }
   }
 
-
-// -------------------------delete child----------------------------
-deleteChild(data) {
-  this.apiservice.deleteChild(data.id).subscribe((res: any) => {
-    if (res.isSuccess) {
-      this.getChildren();
-    }
-  });
-}
 searchCategory(key){
   this.apiservice.searchCategory(key).subscribe((res:any)=>{
 this.categoriesBySearch = res.data;

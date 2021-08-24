@@ -66,7 +66,7 @@ searchCatg(data) {
 
 getBlog(){
   this.ngxLoader.start()
-  const responcee = axios.get(`${this.blogUrl}/blogs`).then(response => {
+  const responcee = axios.get(`${this.blogUrl}/blogs?_start=1&_limit=4`).then(response => {
     this.blog = response.data
     this.blog.reverse()
     this.ngxLoader.stop()

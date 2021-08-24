@@ -62,15 +62,7 @@
                   </li>
 
                 </div>
-                <!-- <li>
-                    <a [class.active]="favourite" (click)="getFav(currentUser.id)">Saved Activities</a>
-                  </li> 
-               <li>
-                  <a [class.active]="friend" (click)="onFriend()">Tell a Friend</a>
-                </li>
-                <li>
-                  <a [class.active]="feedback" (click)="onFeedback()">Give Feedback</a>
-                </li> -->
+               
               </ul>
             </div>
             <div class="progress">
@@ -208,13 +200,7 @@
                             <div class="chat_value">
                               <!-- <div class="chat_time1">Today, 11:30 AM</div> -->
                               <div class="message_count">
-                                <!-- <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <rect width="16" height="16" rx="8" fill="#53B2E8" />
-                                <path
-                                  d="M5.279 9.542V8.858L8.537 4.61H9.419V8.831H10.355V9.542H9.419V11H8.591V9.542H5.279ZM8.645 5.609L6.143 8.831H8.645V5.609Z"
-                                  fill="white" />
-                              </svg> -->
+  
                               </div>
                             </div>
                           </div>
@@ -498,80 +484,7 @@
                   </div>
                 </div>
               </div>
-
-
             </div>
-
-            <!-- ---------------------------------------------------------- -->
-
-            <!-- ----------------------------------guardians information------------------ -->
-            <div *ngIf="isInvite" class="personal_details">
-              <h2>Guardian Information</h2>
-              <div class="row">
-                <div class="col-md-8">
-                  <form class="details_form" [formGroup]="addGuardianForm">
-                    <div class="form-group">
-                      <label>Full Name</label>
-                      <div class="input_outer">
-                        <input type="text" placeholder="Enter fullName" class="form-control"
-                          [formControl]="addGuardianForm.controls['firstName']"
-                          [(ngModel)]="addGuardianData.firstName" />
-                        <small *ngIf="
-                            addGuardianForm.controls['firstName'].hasError(
-                              'required'
-                            ) && addGuardianForm.controls['firstName'].touched
-                          " class="form-error-msg">CAN'T LEAVE IT BLANK</small>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label>Email Address</label>
-                      <div class="input_outer">
-                        <input type="text" placeholder="Enter email address" class="form-control"
-                          [formControl]="addGuardianForm.controls['email']" [(ngModel)]="addGuardianData.email" />
-                        <small *ngIf="
-                            addGuardianForm.controls['email'].hasError(
-                              'required'
-                            ) && addGuardianForm.controls['email'].touched
-                          " class="form-error-msg">CAN'T LEAVE IT BLANK</small>
-                        <small *ngIf="
-                            addGuardianForm.controls['email'].hasError(
-                              'email'
-                            ) && addGuardianForm.controls['email'].touched
-                          " class="form-error-msg">INVALID EMAIL ADDRESS</small>
-                      </div>
-                    </div>
-                    <!-- <div class="form-group">
-                      <div class="input_outer">
-                        <label>add a personal note</label>
-                        <textarea placeholder="Add personal note" class="form-control" [formControl]="
-                            addGuardianForm.controls['personalNote']
-                          " #Description maxlength="3000" [(ngModel)]="addGuardianData.personalNote">
-                        Type</textarea>
-                        <small *ngIf="
-                            addGuardianForm.controls['personalNote'].hasError(
-                              'required'
-                            ) &&
-                            addGuardianForm.controls['personalNote'].touched
-                          " class="form-error-msg">CAN'T LEAVE IT BLANK</small>
-                        <span class="word_limit">({{ Description.value?.length || 0 }} of 3000)</span>
-                      </div>
-                    </div> -->
-                  </form>
-                </div>
-              </div>
-              <div class="row bottom_arrow">
-                <div class="col-12">
-                  <!-- <a (click)="onGuardian(currentUser.id)" class="back_arrow cursor"><span
-                      class="icon-left-arrow"></span>Back</a> -->
-                  <button (click)="inviteGuardian(currentUser.id)" [disabled]="addGuardianForm.invalid"
-                    class="btn_style save_btn cursor">
-                    INVITE
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- ---------------------------------------------------------------------------------- -->
 
             <!-- ----------------------children--------------------- -->
             <div *ngIf="isChildren" class="guardian_outer personal_details children">
@@ -647,135 +560,6 @@
                 </div>
               </div>
 
-            </div>
-
-            <!-- ------------------------------------------------------------- -->
-
-            <!-- ------------------------------add child----------------------------- -->
-            <div *ngIf="isAddChild" class="personal_details">
-              <h2>Children</h2>
-              <div class="row margin_top">
-                <div class="col-md-8">
-                  <form class="details_form">
-                    <div class="form-group">
-                      <label>Full Name</label>
-                      <div class="input_outer">
-                        <input type="text" placeholder="Enter fullName" class="form-control" [(ngModel)]="kid.name"
-                          name="FullName" />
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <label>Gender</label>
-                      <div class="custom_select">
-                        <select [(ngModel)]="kid.sex" name="sex">
-                          <option *ngIf="kid.sex === 'male'" selected>
-                            SON
-                          </option>
-                          <option *ngIf="kid.sex === 'female'" selected>
-                            DAUGHTER
-                          </option>
-                          <option value="male">SON</option>
-                          <option value="female">DAUGHTER</option>
-                        </select>
-                      </div>
-                    </div>
-
-
-
-                    <div class="form-group">
-                      <label>Date of Birth</label>
-                      <div class="input_outer">
-                        <input type="date" placeholder="MM/DD/YYYY" class="form-control" [(ngModel)]="kid.dob"
-                          name="dob" />
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <label>School</label>
-                      <div class="input_outer">
-                        <input type="text" placeholder="Enter School name" class="form-control"
-                          [(ngModel)]="kid.schoolInfo" name="schoolInfo" />
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <label>Relationship to child</label>
-                      <div class="input_outer">
-                        <input type="text" placeholder="Relationship status" class="form-control"
-                          [(ngModel)]="kid.relationToChild" name="relationToChild" />
-                      </div>
-                    </div>
-                    <br />
-                    <div class="form-group">
-                      <label>Intrests</label>
-                      <div class="input_outer">
-                        <div class="ng-autocomplete">
-                          <ng-autocomplete [data]="tags" placeholder="Add Intrests" [searchKeyword]="keyword"
-                            (selected)="selectEvent($event)" (inputChanged)="onChangeSearch($event)"
-                            [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate">
-                          </ng-autocomplete>
-
-                          <ng-template #itemTemplate let-item>
-                            <a [innerHTML]="item.name"></a>
-                          </ng-template>
-
-                          <ng-template #notFoundTemplate let-notFound>
-                            <div *ngIf="tags.length" [innerHTML]="notFound"></div>
-                          </ng-template>
-                        </div>
-                      </div>
-                      <br />
-                      <mat-form-field class="demo-chip-list">
-                        <mat-chip-list>
-                          <mat-chip *ngFor="let t of kid.interestInfo" [selectable]="selectable" [removable]="removable"
-                            (removed)="remove(t)">
-                            {{ t.name }}
-                            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                          </mat-chip>
-                        </mat-chip-list>
-                      </mat-form-field>
-                    </div>
-
-                    <div class="form-group">
-                      <a *ngIf="isAddChildBtn" (click)="refreshPage()" class="add_child cursor"><span
-                          class="icon icon-plus"></span>Add another
-                        Child</a>
-                      <a *ngIf="isEditChildBtn" (click)="onAddChild()" class="add_child cursor"><span
-                          class="icon icon-plus"></span>Add another
-                        Child</a>
-                    </div>
-                  </form>
-                </div>
-
-                <div class="col-md-4">
-                  <div class="profile_img edit">
-                    <label class="cursor">
-                      <input style="display: none" #file accept="image/*" (change)="childImageSelect($event)"
-                        type="file" name="image" />
-                      <a *ngIf="!childImgURL">
-                        <span class="icon icon-edit_profile"></span>
-                        Upload Photo
-                      </a>
-                      <img *ngIf="childImgURL" src="{{ childImgURL }}" />
-                    </label>
-                  </div>
-                </div>
-              </div>
-              <div class="row bottom_arrow">
-                <div class="col-12">
-                  <!-- <a (click)="onChildren(currentUser.id)" class="back_arrow cursor"><span
-                      class="icon-left-arrow"></span>Back</a> -->
-                  <button *ngIf="isAddChildBtn" (click)="addChild(currentUser.id)" [disabled]="!kid.name"
-                    class="btn_style save_btn cursor">
-                    Save
-                  </button>
-                  <button *ngIf="isEditChildBtn" (click)="updateChild(kid, currentUser.id)"
-                    class="btn_style save_btn cursor">
-                    Save
-                  </button>
-                </div>
-              </div>
             </div>
 
             <!-- -----------------------saved listing----------------------------------- -->
@@ -881,135 +665,11 @@
                           <span class="slider round"></span>
                         </label>
                       </h6>
-                      <!-- <label class="ch-radio">
-                        <input name="hiring" type="checkbox" checked />
-                        <span> <i class="ch-icon icon-tick"></i>All </span>
-                      </label>
-                      <label class="ch-radio">
-                        <input name="hiring" type="checkbox" />
-                        <span>
-                          <i class="ch-icon icon-tick"></i>Lorem Ipsum
-                        </span>
-                      </label>
-                      <label class="ch-radio">
-                        <input name="hiring" type="checkbox" />
-                        <span>
-                          <i class="ch-icon icon-tick"></i>Lorem Ipsum
-                        </span>
-                      </label>
-                      <label class="ch-radio">
-                        <input name="hiring" type="checkbox" />
-                        <span>
-                          <i class="ch-icon icon-tick"></i>Lorem Ipsum
-                        </span>
-                      </label> -->
                     </div>
                   </form>
                 </div>
               </div>
             </div>
-
-            <!-- ----------------------------------------------------------------------------------------- -->
-
-            <!-- -------------------------------------------tell a friend----------------------------- -->
-            <div *ngIf="isFriend" class="personal_details">
-              <h2>Tell a Friend</h2>
-              <div class="row">
-                <div class="col-md-8">
-                  <form class="details_form" [formGroup]="tellFriendForm">
-                    <div class="form-group">
-                      <label>Full Name</label>
-                      <div class="input_outer">
-                        <input type="text" placeholder="Enter fullName" class="form-control"
-                          [formControl]="tellFriendForm.controls['fullName']" [(ngModel)]="tellFriendData.fullName" />
-                        <small *ngIf="
-                            tellFriendForm.controls['fullName'].hasError(
-                              'required'
-                            ) && tellFriendForm.controls['fullName'].touched
-                          " class="form-error-msg">CAN'T LEAVE IT BLANK</small>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label>Email Address</label>
-                      <div class="input_outer">
-                        <input type="text" placeholder="Enter email address" class="form-control"
-                          [formControl]="tellFriendForm.controls['email']" [(ngModel)]="tellFriendData.email" />
-                        <small *ngIf="
-                            tellFriendForm.controls['email'].hasError(
-                              'required'
-                            ) && tellFriendForm.controls['email'].touched
-                          " class="form-error-msg">CAN'T LEAVE IT BLANK</small>
-                        <small *ngIf="
-                            tellFriendForm.controls['email'].hasError(
-                              'email'
-                            ) && tellFriendForm.controls['email'].touched
-                          " class="form-error-msg">INVALID EMAIL ADDRESS</small>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label>Add a personal note</label>
-                      <textarea class="form-control" placeholder="Add personal note"
-                        [formControl]="tellFriendForm.controls['personalNote']" #Description maxlength="3000"
-                        [(ngModel)]="tellFriendData.personalNote">
-                        Type</textarea>
-                      <div class="textarea_length"></div>
-                      <span class="word_limit">({{ Description.value?.length || 0 }} of 3000)</span>
-                      <small *ngIf="
-                          tellFriendForm.controls['personalNote'].hasError(
-                            'required'
-                          ) && tellFriendForm.controls['personalNote'].touched
-                        " class="form-error-msg">CAN'T LEAVE IT BLANK</small>
-                    </div>
-                  </form>
-                </div>
-              </div>
-              <div class="row bottom_arrow">
-                <div class="col-12">
-                  <!-- <a (click)="back()" class="back_arrow cursor"><span class="icon-left-arrow"></span>Back</a> -->
-                  <button class="btn_style save_btn cursor" (click)="tellFriend(currentUser.firstName)"
-                    [disabled]="tellFriendForm.invalid">
-                    Send
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- ----------------------------------------------------------------------------------------- -->
-
-            <!-- -------------------------------------------feedback----------------------------- -->
-            <div *ngIf="isFeedback" class="personal_details">
-              <h2>Give Feedback</h2>
-              <div class="row">
-                <div class="col-md-8">
-                  <form class="details_form" [formGroup]="giveFeedbackForm">
-                    <div class="form-group">
-                      <label>Feedback</label>
-                      <textarea class="form-control" placeholder="feedback"
-                        [formControl]="giveFeedbackForm.controls['feedback']" #Description maxlength="3000"
-                        [(ngModel)]="giveFeedbackData.feedback">Type</textarea>
-                      <div class="textarea_length"></div>
-                      <span class="word_limit">({{ Description.value?.length || 0 }} of 3000)</span>
-
-                      <small *ngIf="
-                          giveFeedbackForm.controls['feedback'].hasError(
-                            'required'
-                          ) && giveFeedbackForm.controls['feedback'].touched
-                        " class="form-error-msg">CAN'T LEAVE IT BLANK</small>
-                    </div>
-                  </form>
-                </div>
-              </div>
-              <div class="row bottom_arrow">
-                <div class="col-12">
-                  <a (click)="back()" class="back_arrow cursor"><span class="icon-left-arrow"></span>Back</a>
-                  <button class="btn_style save_btn cursor" (click)="giveFeedback(currentUser.id)"
-                    [disabled]="giveFeedbackForm.invalid">
-                    Send
-                  </button>
-                </div>
-              </div>
-            </div>
-
             <!-- ----------------------------------------------------------------------------------------- -->
           </div>
         </div>
@@ -1039,40 +699,6 @@
             class="btn btn-primary">
             CONFIRM
           </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!--share Modal -->
-  <div class="modal fade search_modal password" id="SearchModal" data-backdrop="static" data-keyboard="false"
-    tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true" class="icon-close"></span>
-        </button>
-        <div class="modal-body">
-          <h2>Share</h2>
-          <div class="share_option">
-            <ul>
-              <li>
-                <a href="javascript:;">Facebook</a>
-              </li>
-              <li>
-                <a href="javascript:;">Messenger</a>
-              </li>
-              <li>
-                <a href="javascript:;">Email</a>
-              </li>
-              <li>
-                <a href="javascript:;">Whatsapp</a>
-              </li>
-              <li>
-                <a href="javascript:;">Copylink</a>
-              </li>
-            </ul>
-          </div>
         </div>
       </div>
     </div>

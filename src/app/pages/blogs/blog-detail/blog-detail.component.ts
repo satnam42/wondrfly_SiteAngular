@@ -88,7 +88,7 @@ getBlogById(){
 
   // ------------------------------------------------get blogs  -------------------------------------------
 getBlog(){
-  axios.get(`${this.blogUrl}/blogs`).then(response => {
+  axios.get(`${this.blogUrl}/blogs?_start=5&_limit=8`).then(response => {
     this.blog = response.data
   });
   }

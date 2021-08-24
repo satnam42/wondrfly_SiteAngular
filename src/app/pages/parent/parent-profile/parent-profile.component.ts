@@ -432,31 +432,6 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
     this.isEditChildBtn = false;
   }
 
-  onFriend() {
-    this.store.removeItem('savedList');
-    window.scroll(0, 0);
-    this.isProfile = false;
-    this.profile = "";
-    this.isChat = false;
-    this.chat = "";
-    this.isSetting = false;
-    this.setting = "";
-    this.isGuardian = false;
-    this.guardian = "";
-    this.isChildren = false;
-    this.children = "";
-    this.isFavourite = false;
-    this.favourite = "";
-    this.isNotification = false;
-    this.notification = "";
-    this.isFriend = true;
-    this.friend = "active";
-    this.isFeedback = false;
-    this.feedback = "";
-    this.isInvite = false;
-    this.isAddChild = false;
-    this.isEditChildBtn = false;
-  }
   activeDactiveChild(kidId, value, parentId) {
     this.ngxLoader.start();
     this.apiservice.activeDactiveChild(kidId, value).subscribe((res: any) => {
@@ -477,17 +452,17 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
       }
     });
   }
-  deleteGuardian(guardianId) {
-    this.ngxLoader.start();
-    this.apiservice.deleteGuardian(guardianId).subscribe((res: any) => {
-      console.log('delete', res)
-      this.ngxLoader.stop();
-      if (res.isSuccess) {
-        this.toastr.info( "Info","Guardian deleted!");
-      }
-      this.onGuardian(this.currentUser.id)
-    });
-  }
+  // deleteGuardian(guardianId) {
+  //   this.ngxLoader.start();
+  //   this.apiservice.deleteGuardian(guardianId).subscribe((res: any) => {
+  //     console.log('delete', res)
+  //     this.ngxLoader.stop();
+  //     if (res.isSuccess) {
+  //       this.toastr.info( "Info","Guardian deleted!");
+  //     }
+  //     this.onGuardian(this.currentUser.id)
+  //   });
+  // }
   activedeactiveGuardian(id, value) {
     this.ngxLoader.start();
     this.apiservice.activedeactiveGuardian(id, value).subscribe((res: any) => {
@@ -537,61 +512,6 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
   this.isPushnotification = e;
   this.isEmailnotification= e;
   }
-  tellFriend(parentName) {
-    this.tellFriendData.parentName = parentName;
-    this.ngxLoader.start();
-    this.apiservice.tellFriend(this.tellFriendData).subscribe((res: any) => {
-      this.ngxLoader.stop();
-      if (res) {
-        this.toastr.info("Info", res.message );
-      } else {
-        this.toastr.error("Error","somthing went wrong!");
-      }
-    });
-    this.ngxLoader.stop();
-  }
-
-  onFeedback() {
-    this.store.removeItem('savedList');
-    window.scroll(0, 0);
-    this.isProfile = false;
-    this.profile = "";
-    this.isChat = false;
-    this.chat = "";
-    this.isSetting = false;
-    this.setting = "";
-    this.isGuardian = false;
-    this.guardian = "";
-    this.isChildren = false;
-    this.children = "";
-    this.isFavourite = false;
-    this.favourite = "";
-    this.isNotification = false;
-    this.notification = "";
-    this.isFriend = false;
-    this.friend = "";
-    this.isFeedback = true;
-    this.feedback = "active";
-    this.isInvite = false;
-    this.isAddChild = false;
-    this.isEditChildBtn = false;
-  }
-  giveFeedback(id) {
-    this.giveFeedbackData.id = id;
-    this.ngxLoader.start();
-    this.apiservice
-      .giveFeedback(this.giveFeedbackData)
-      .subscribe((res: any) => {
-        this.ngxLoader.stop();
-        if (res.isSuccess) {
-          this.toastr.info("Info","Thankyou For Feedback!");
-        } else {
-          this.toastr.error("Error","something went wrong, please try again Later!");
-        }
-      });
-    this.ngxLoader.stop();
-  }
-
   onSetting() {
     this.store.removeItem('savedList');
     window.scroll(0, 0);
