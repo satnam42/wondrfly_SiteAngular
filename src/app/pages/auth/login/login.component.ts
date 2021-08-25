@@ -158,7 +158,7 @@ export class LoginComponent implements OnInit {
       }
       else if (this.user.role === 'parent') {
         this.toastr.success(this.message)
-        this.router.navigate(['loginParent']);
+        this.router.navigate(['login-parent']);
       }
       else if (this.user.role === 'superAdmin') {
         this.toastr.warning('Please Login As Provider Or Parent Only!')
@@ -207,7 +207,7 @@ strapiSignup(){
       }
       else if (this.user.role === 'parent') {
         this.toastr.success(this.message)
-        this.router.navigate(['loginParent']);
+        this.router.navigate(['login-parent']);
       }
       else if (this.user.role === 'superAdmin') {
         this.toastr.warning('You Are An Admin!', 'Please Login As Provider Or Parent Only!')

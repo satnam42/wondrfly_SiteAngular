@@ -25,11 +25,12 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
     InfiniteScrollModule,
     SignupPopupModule,
     LazyLoadImageModule,
-    ReactiveFormsModule,
+    NgxDaterangepickerMd.forRoot(),
     NgxDaterangepickerMd,
     AgmCoreModule,
     NgxSliderModule,
-    sharePopupModule
+    sharePopupModule,
+    
 
   ]
 })

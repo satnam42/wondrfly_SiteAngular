@@ -143,7 +143,7 @@ export class SocialLoginComponent implements OnInit {
         this.router.navigate(['loginProvider'])
         // this.router.navigate(['profile',res.data.id])
    }
-   else{ this.router.navigate(['loginParent']);
+   else{ this.router.navigate(['login-parent']);
    }
   }
 }).catch(error => {
@@ -171,7 +171,7 @@ strapiSignup(){
         this.router.navigate(['loginProvider'])
         // this.router.navigate(['profile',res.data.id])
    }
-   else{ this.router.navigate(['loginParent']);
+   else{ this.router.navigate(['login-parent']);
    }
 }
 

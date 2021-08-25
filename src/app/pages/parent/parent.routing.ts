@@ -9,7 +9,7 @@ export const routes: Routes = [
     // { path: '', redirectTo: 'home', pathMatch: 'full' },
     {path: '', component: ParentComponent, children:[
     {
-        path: 'loginParent', component: LoginParentComponent, canActivate:
+        path: 'login-parent', component: LoginParentComponent, canActivate:
             [UserGuard],
             data: {
                 roles: [

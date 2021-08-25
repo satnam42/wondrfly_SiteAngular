@@ -1927,32 +1927,6 @@ onOffNotification(id,e): Observable<User> {
         });
         return subject.asObservable();
     }
-
-  //-------------------------------- search history post --------------------------------->
-
-  searchHistory(model): Observable<User[]> {
-    const subject = new Subject<User[]>();
-    this.http.post(`${this.root}/searchHistory/create`, model).subscribe((responseData: any) => {
-        if (responseData.statusCode !== 200) {
-            throw new Error('This request has failed ' + responseData.status);
-        }
-        const dataModel = responseData;
-        if (!dataModel.isSuccess) {
-            if (responseData.status === 200) {
-                throw new Error(dataModel.code || dataModel.message || 'failed');
-            } else {
-                throw new Error(responseData.status + '');
-            }
-        }
-        subject.next(responseData);
-    }, (error) => {
-        const dataModel = error;
-        subject.next(dataModel.error);
-    });
-    return subject.asObservable();
-}
-
-
  //-------------------------------- Signup with Facebook --------------------------------->
 
  signupWithFb(model): Observable<SocialUser[]> {
@@ -2098,9 +2072,33 @@ getTopRated(): Observable<any> {
     return subject.asObservable();
 }
 
+// ------------------------------------------subCategory fillter--------------------------------------------
 
-
-
+programBySubCategoryIds(filter, pageNo, pageSize): Observable<Program> {
+    const subject = new Subject<Program>();
+    this.ngxLoader.start();
+    this.http.get(`${this.root}/programs/subCategoryFilter?${filter}&pageNo=${pageNo}&pageSize=${pageSize}`, this.getHeader()).subscribe((responseData: any) => {
+        this.ngxLoader.stop();
+        if (responseData.statusCode !== 200) {
+            throw new Error('This request has failed ' + responseData.status);
+        }
+        const dataModel = responseData;
+        if (!dataModel.isSuccess) {
+            if (responseData.status === 200) {
+                throw new Error(dataModel.code || dataModel.message || 'failed');
+            } else {
+                throw new Error(responseData.status + '');
+            }
+        }
+        subject.next(responseData);
+    }, (error) => {
+        this.ngxLoader.stop();
+        const dataModel = error;
+        // this.toasty.error(dataModel.error);
+        subject.next(dataModel.error);
+    });
+    return subject.asObservable();
+}
 
 
 }

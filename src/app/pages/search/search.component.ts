@@ -13,6 +13,7 @@ import { environment } from 'src/environments/environment.prod';
 import { Meta, Title } from '@angular/platform-browser';
 import { Options } from '@angular-slider/ngx-slider';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'search',
   templateUrl: './search.component.html',
@@ -167,6 +168,7 @@ export class SearchComponent implements OnInit {
     private dataservice: DataService,
     public mapTheme: MapTheme,
     private ngZone: NgZone,
+    private toast: ToastrService,
     private titleService: Title,
     private metaTagService: Meta,
   ) {
@@ -705,30 +707,6 @@ console.log('this.timeSession>>>>>>>>>',this.timeSession)
     });
   }
 
-
-  //----------------------------------------search program by recent searches list click  ---------------------------------------------------------
-  searchProgram(data) {
-    this.activityName = data
-    this.apiservice.activityByNameDate(this.activityName, this.activityDate).subscribe((res: any) => {
-      console.log('filterbyNameDate', res)
-    })
-  }
-
-  //----------------------------------------search history save ---------------------------------------------------------
-  searchHistory() {
-    if (this.userData) {
-      this.user.userId = this.userData.id;
-      this.user.searchData = this.activityName
-      console.log('program info before search', this.user);
-      this.apiservice.searchHistory(this.user).subscribe((res: any) => {
-        console.log('history after search', res);
-        // this.getSearchHistory()
-
-      });
-    }
-
-  }
-
   signUpModal() {
     if (localStorage.getItem("token") === null) {
       setTimeout(() => {
@@ -805,17 +783,42 @@ if(program.userId==''|| program.userId==undefined || !program.userId){ program.u
  updateCheckedSubCategories(i, event) {
   this.subCats[i].checked = event.target.checked;
   if(this.subCats[i].checked){
-    this.selectedSubCategories.push(this.subCats[i]);
+    this.selectedSubCategories.push(this.subCats[i]._id);
     console.log(this.selectedSubCategories)
   }
   else{
-    const index = this.selectedSubCategories.indexOf(this.subCats[i]);
+    const index = this.selectedSubCategories.indexOf(this.subCats[i]._id);
 
     if (index >= 0) {
       this.selectedSubCategories.splice(index, 1);
       console.log(this.selectedSubCategories)
     }
   }
+}
+
+// / ---------------------------------------------get programs by sub category ids--------------------------------
+   programBySubCategoryIds(){
+    let filter = ``;
+    let i = 1;
+    let id;
+   for(let catId of this.selectedSubCategories) {
+     if(i<2){
+      id =  `subId${i}=${catId}`
+     }
+     else{id =  `&subId${i}=${catId}`
+    }
+      filter+=id;
+      i++;
+     };
+     console.log(filter)
+     if(i<=5){
+    this.apiservice.programBySubCategoryIds(filter,1,100).subscribe((res: any) => {
+      this.showReset = true;
+      this.programs = res.data
+      console.log('programs by sub catsId', this.programs)
+    })
+  }else { this.toast.error( '', 'You Selected More Than 5 SubCategories')}
+
 }
 
 }

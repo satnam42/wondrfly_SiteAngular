@@ -105,7 +105,7 @@ export class SignupPopupComponent implements OnInit {
           this.store.setObject('userData', res.data);
           this.store.setItem('token', res.data.token);
           this.toastr.success('Success', this.message );
-          this.router.navigate(['loginParent']);
+          this.router.navigate(['login-parent']);
         }
         else {
           this.toastr.error( '!', res.error )

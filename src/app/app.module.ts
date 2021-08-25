@@ -12,14 +12,11 @@ import { LandingComponent } from './pages/landing/landing.component';
 import { AuthsService } from './core/services/auths.service';
 import { UserGuard } from './core/guards';
 import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
-import { FlatpickrModule } from 'angularx-flatpickr';
 import { AgmCoreModule } from '@agm/core';
 import { SocialLoginModule, FacebookLoginProvider, GoogleLoginProvider, SocialAuthServiceConfig } from 'angularx-social-login';
 import { Globals } from './core/common/imageLoader';
 import { MapTheme } from './core/common/map-theme';
-import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { ToastrModule } from 'ngx-toastr';
-import { NgxMaskModule } from 'ngx-mask';
 import { MailchimpSubscribeFormModule } from './core/components/mailchimp-subscribe-form/mailchimp-subscribe-form.module';
 import { ChatService } from './core/services/chat.service';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
@@ -43,13 +40,10 @@ const config: SocketIoConfig = { url: environment.socketUrl, options: {} };
     CoreModule,
     FormsModule,
     SocialLoginModule,
-    ReactiveFormsModule,
     HttpClientModule,
     LazyLoadImageModule,
     MailchimpSubscribeFormModule,
     SocketIoModule.forRoot(config),
-    NgxDaterangepickerMd.forRoot(),
-    FlatpickrModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyD_5P0pxn1q9hvvTeCr3YCsDhLJoHwxs2c',
       libraries: ['places']
