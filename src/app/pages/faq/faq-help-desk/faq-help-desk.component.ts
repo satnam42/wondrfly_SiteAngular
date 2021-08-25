@@ -99,6 +99,10 @@ export class FaqHelpDeskComponent implements OnInit {
     this.metaTagService.updateTag(
       { name: 'description', content: "If you have any queries about kids activities classes, programs or camps you can visit our Frequently Asked Questions (FAQs) section. Visit Wondrfly's website." }
     );
+    this.metaTagService.addTag(
+      { name: 'keywords', content: 'frequently asked questions about kids activities, fun questions for kids'}
+    ); 
+
     window.scroll(0,0);
 }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Meta } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import axios from 'axios';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
@@ -30,7 +31,8 @@ export class BlogSearchComponent implements OnInit {
     private apiservice: ApiService,
     private router: Router,
     private ngxLoader: NgxUiLoaderService,
-    private activatedroute: ActivatedRoute
+    private activatedroute: ActivatedRoute,
+    private metaTagService: Meta
   ) {
 
     this.activatedroute.params.subscribe(data => {
@@ -41,6 +43,9 @@ export class BlogSearchComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.metaTagService.addTag(
+      { name: 'keywords', content: 'blog category filter, blog category page, search blogs,blog topics for kids'}
+    ); 
     window.scroll(0, 0);
 
   }

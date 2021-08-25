@@ -41,6 +41,10 @@ getTermsAndConditions(){
     this.metaTagService.updateTag(
       { name: 'description', content: "Please read our terms and conditions carefully before using or accessing our website. Visit Wondrfly’s website for more information." }
     );
+    this.metaTagService.addTag(
+      { name: 'keywords', content: 'Terms of Agreement, Terms of Service Agreement, Contracts and Agreements, Wondrfly terms and conditions, Terms Of Service'}
+    ); 
+
     window.scroll(0, 0);
     this.getTermsAndConditions()
   }

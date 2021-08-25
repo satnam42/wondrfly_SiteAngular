@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Meta } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { environment } from '../environments/environment';
 import { User } from './core/models';
@@ -19,7 +18,6 @@ export class AppComponent implements OnInit {
   isLogin = false;
   constructor(
     private canonicalService: CanonicalService,
-    private metaService: Meta
      ) {
 
 
@@ -36,10 +34,5 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.canonicalService.setCanonicalURL();
-    this.metaService.addTags([
-      { name: 'keywords', content: 'Best Activities and Programs, activities near me for toddlers, fitness classes for kids, online music lessons, online art classes' }
-    ])
   }
-
-
 }

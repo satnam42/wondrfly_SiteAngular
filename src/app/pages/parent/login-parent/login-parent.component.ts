@@ -208,6 +208,10 @@ export class LoginParentComponent implements OnInit {
     this.metaTagService.updateTag(
       { name: 'description', content: "Structured and well-planned onboarding process for parents to explore kids program, fun activities, and online classes. Visit Wondrfly's website for more info." }
     );
+    this.metaTagService.addTag(
+      { name: 'keywords', content: 'kids on boarding,onboarding'}
+    ); 
+
     window.scroll(0, 0);
     this.getCategoryList();
     this.getTagList();

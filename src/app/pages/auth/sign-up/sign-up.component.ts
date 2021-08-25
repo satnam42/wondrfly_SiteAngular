@@ -165,6 +165,9 @@ export class SignUpComponent implements OnInit {
     this.metaTagService.updateTag(
       { name: 'description', content: "Sign up for free and create a parent account by filling the details below. Visit Wondrfly's website and Sign Up now!" }
     );
+    this.metaTagService.addTag(
+      { name: 'keywords', content: 'create your account, Create Your Wondrfly Account'}
+    );  
     this.randomImage();
     window.scroll(0, 0);
     let password = new FormControl("", [Validators.required]);

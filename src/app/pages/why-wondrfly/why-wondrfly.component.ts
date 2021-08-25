@@ -43,6 +43,9 @@ export class WhyWondrflyComponent implements OnInit {
     this.metaTagService.updateTag(
       { name: 'description', content: 'Why choose Wondrfly? We strongly believe that right developmental activities can inspire a life-long love for adventure and curiosity among kids. Explore now!' }
     );
+    this.metaTagService.addTag(
+      { name: 'keywords', content: 'about wondrfly, wondrfly inc,' }
+    );   
 
     window.scroll(0, 0);
     this.whyWonderflyData()

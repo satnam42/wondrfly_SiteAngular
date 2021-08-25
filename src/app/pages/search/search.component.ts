@@ -235,6 +235,9 @@ this.toDate=e.endDate._d
     this.metaTagService.updateTag(
       { name: 'description', content: `Looking for some easy and fun summer activities for your kids? By visiting Wondrfly's search page you can find best programs or classes. ` }
     );
+    this.metaTagService.addTag(
+      { name: 'keywords', content: 'kid friendly search,kids activities search, kids programs search'}
+    ); 
 
     window.scroll(0, 0);
 

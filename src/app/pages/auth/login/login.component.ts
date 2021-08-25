@@ -119,6 +119,9 @@ export class LoginComponent implements OnInit {
     this.metaTagService.updateTag(
       { name: 'description', content: "Log in now to your Wonderfly parent account. Don't have an account? Log In With Facebook.Or create an account." }
     );
+    this.metaTagService.addTag(
+      { name: 'keywords', content: 'New Member Login' }
+    );  
     window.scroll(0, 0);
     this.randomImage();
     this.signinForm = new FormGroup({

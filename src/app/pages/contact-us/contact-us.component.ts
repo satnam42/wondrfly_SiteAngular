@@ -26,6 +26,9 @@ export class ContactUsComponent implements OnInit {
     this.metaTagService.updateTag(
       { name: 'description', content: `If you have any questions or concerns about Wondrfly's online classes, activites or programs for kids? Contact us over phone or mail or fill the form below. ` }
     );
+    this.metaTagService.addTag(
+      { name: 'keywords', content: 'Contact Wondrfly, Wondrfly Contact Details, Mail to Wondrfly, Contact Us for My Account, Wondrfly Email Address, Wondrfly Contact, Wondrfly Contact Form'}
+    ); 
     this.contactUsForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       phoneNumber: new FormControl('', ),

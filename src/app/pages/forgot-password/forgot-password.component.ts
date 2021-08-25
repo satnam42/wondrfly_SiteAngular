@@ -127,6 +127,9 @@ export class ForgotPasswordComponent implements OnInit {
     this.metaTagService.updateTag(
       { name: 'description', content: "Did you forget your password? Please enter the email that you used to register and we'll send you a link to get back into your account." }
     );
+    this.metaTagService.addTag(
+      { name: 'keywords', content: 'forgot parent password, forgot my parent password'}
+    ); 
     this.randomImage();
     window.scroll(0, 0);
     this.otpSendForm = new FormGroup({

@@ -133,8 +133,13 @@ export class LandingComponent implements OnInit {
     this.getBlog();
     this.titleService.setTitle(this.title);
     this.metaTagService.updateTag(
-      { name: 'description', content: 'Looking for the best programs and activities for your kids? Wondrfly is the leading platform for parents to discover indoor and outdoor activities for kids ages 3-14 years.' }
+      { name: 'description', content: 'Looking for the best programs and activities for your kids? Wondrfly is the leading platform for parents to discover indoor and outdoor activities for kids ages 3-14 years.' },
     );
+    this.metaTagService.addTag(
+      { name: 'keywords', content: 'Best Activities and Programs, activities near me for toddlers, fitness classes for kids, online music lessons, online art classes' }
+    );    
+  
+    
 
   }
 

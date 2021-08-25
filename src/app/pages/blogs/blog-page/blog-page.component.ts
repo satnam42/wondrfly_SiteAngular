@@ -49,6 +49,10 @@ this.getCategory()
     this.metaTagService.updateTag(
       { name: 'description', content: "Check out our Blog Section to read posts on trending kid's activities, child development, parenting and muh more. Also, don't miss Wondrfly's top blog posts." }
     );
+    this.metaTagService.addTag(
+      { name: 'keywords', content: 'kids activities blog,blogs for kids, kids friendly blogs,kids activity blog'}
+    ); 
+
     window.scroll(0, 0);
     }
 
