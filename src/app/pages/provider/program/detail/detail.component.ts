@@ -17,6 +17,7 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { Options } from '@angular-slider/ngx-slider';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
+import { DataService } from 'src/app/core/services/dataservice.service ';
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',
@@ -132,7 +133,8 @@ export class DetailComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     public mapTheme: MapTheme,
     public auth: AuthsService,
-    public imageLoader: Globals) {
+    public imageLoader: Globals,
+    private dataService: DataService) {
     this.activatedRoute.params.subscribe(params => {
       this.program.id = params['id'];
       return this.getProgramById()
@@ -537,5 +539,13 @@ deleteFav() {
   this.program.isFav = false;
   this.apiservice.deleteFavProgram(this.program._id).subscribe(res => {
   });
+}
+setSubCategoryId(e) {
+  let   filterData: any = {
+    subcatId: e,
+  }
+  this.dataService.setOption(filterData)
+  this.router.navigate(['/search'])
+
 }
 }

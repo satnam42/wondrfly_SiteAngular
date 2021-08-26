@@ -169,12 +169,18 @@ export class SearchComponent implements OnInit {
     private metaTagService: Meta,
   ) {
     this.filterData = dataservice.getOption()
-    if (this.filterData) {
+    if(this.filterData){
+    if (this.filterData.categoryId) {
       console.log(this.filterData)
       this.categoryId = this.filterData.categoryId
       this.activityName = this.filterData.activityName
       this.activityDate = this.filterData.activityDate
     }
+    if(this.filterData.subcatId ){
+     this.selectedSubCategories[0]=this.filterData.subcatId;
+      this.programBySubCategoryIds()
+    }
+  }
     var retrievedObject = localStorage.getItem('userData');
     this.userData = JSON.parse(retrievedObject);
     if (this.userData) {

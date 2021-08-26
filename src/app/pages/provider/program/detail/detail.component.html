@@ -562,7 +562,7 @@
 
                         	<div class="container description_text slider"  *ngIf="programs?.length">
 			<div class="forth_section_heading">
-			Suggested Programs
+			You might also try these <span class="subCat" (click)="setSubCategoryId(program.subCategoryIds[0]._id)">{{program.subCategoryIds[0].name}} </span> <span *ngIf="program.subCategoryIds?.length>1">or <span class="subCat" (click)="setSubCategoryId(program.subCategoryIds[1]._id)">{{program.subCategoryIds[1].name}}</span></span> activities:
                 <!-- <span class="more-programscolor">{{user.firstName}}</span> -->
 				<span class="blue_heading cursor" (click)="goToProfile()">VIEW ALL</span>
 			 </div>

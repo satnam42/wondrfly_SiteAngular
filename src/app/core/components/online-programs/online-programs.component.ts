@@ -36,8 +36,6 @@ export class OnlineProgramsComponent implements OnInit {
   activityDate: any
   filterData: any = {
     categoryId: '',
-    activityName: '',
-    activityDate: ''
   }
 
   favPrograms: any;

@@ -50,6 +50,7 @@ export class Program {
     programImage:string;
     pricePeriod:any={}
     averageFinalRating:any
+    subCategoryIds:any=[]
 
     constructor(obj?: any) {
 
