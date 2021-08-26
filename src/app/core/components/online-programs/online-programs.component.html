@@ -180,9 +180,9 @@
       <div *ngIf="programs?.length" class="suggested-searchresult">
         <div class="suggested-result">
             <h3 class="suggested-searcxhtext">
-                Suggested Programs
+              You might want to explore similar Categories
             </h3>
-            <div class="search-results suggested suggested-one" >
+            <!-- <div class="search-results suggested suggested-one" >
             <div class="row">
               <div class="col-3" *ngFor="let program of suggested; index as i">
                 <div class="media activity">
@@ -337,16 +337,58 @@
                     <p *ngIf='program.isFree'><span>Free</span></p>
                           </div>
                           <div class="rating_box ">
-                              <!-- <a href="javascript:; ">
-                                  <img src="assets/star.svg " alt="Star "> 5.0 (15)
-                              </a> -->
+
                           </div>
                   </div>
               </div>
               </div>
             </div>
+            </div> -->
+            <div class="similar-categories">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="similarcate-flex">
+                    <div class="similar-cate">
+                      <img src="assets/similarcategories1.png">
+                      <h1>Dance</h1>
+                  </div>
+                  <div class="similar-cate">
+                    <img src="assets/similarcategories1.png">
+                    <h1>Dance</h1>
+                </div>
+                  </div>
+
+                </div>
+                <div class="col-md-4">
+                  <div class="similarcate-flex">
+                    <div class="similar-cate">
+                      <img src="assets/similarcategories2.png">
+                      <h1>Soccer</h1>
+                  </div>
+                  <div class="similar-cate">
+                   <img src="assets/similarcategories2.png">
+                   <h1>Soccer</h1>
+                 </div>
+                  </div>
+
+             </div>
+             <div class="col-md-4">
+              <div class="similarcate-flex">
+                <div class="similar-cate">
+                  <img src="assets/similarcategories3.png">
+                  <h1>Skateboarding</h1>
+              </div>
+              <div class="similar-cate">
+               <img src="assets/similarcategories3.png">
+               <h1>Skateboarding</h1>
+              </div>
+              </div>
+
+           </div>
+              </div>
             </div>
-        </div>
+
+          </div>
       </div>
 <!-- suggested ends -->
 </div>
