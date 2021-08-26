@@ -2747,7 +2747,17 @@ button.map-buttonas {
   color: #494949;
   padding: 10px;
 }
-
+.suggested-result.suggested-text.in-built h3 {
+    font-family: "Poppins";
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 18px;
+    text-align: justify;
+    letter-spacing: 0.005em;
+    color: #494949;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
 
 
 

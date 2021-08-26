@@ -39,9 +39,7 @@
             "scripts": ["node_modules/jquery/dist/jquery.slim.min.js",
               "node_modules/popper.js/dist/umd/popper.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
-              "node_modules/marked/lib/marked.js"],
-            "serviceWorker": true,
-            "ngswConfigPath": "ngsw-config.json"
+              "node_modules/marked/lib/marked.js"]
           },
           "configurations": {
             "production": {

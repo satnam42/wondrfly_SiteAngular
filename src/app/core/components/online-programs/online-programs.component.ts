@@ -1,17 +1,19 @@
 ﻿import { Options } from '@angular-slider/ngx-slider';
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { SearchComponent } from 'src/app/pages/search/search.component';
 import { environment } from 'src/environments/environment';
 import { Globals } from '../../common/imageLoader';
 import { Category, Child, User } from '../../models';
 import { ApiService } from '../../services/api.service.service';
+import { DataService } from '../../services/dataservice.service ';
 @Component({
   selector: 'online-programs',
   templateUrl: './online-programs.component.html',
   styleUrls: ['./online-programs.component.css']
 })
 export class OnlineProgramsComponent implements OnInit {
+  defaultImage = 'https://miro.medium.com/max/441/1*9EBHIOzhE1XfMYoKz1JcsQ.gif';
   selectedProgram:any;
   isDateFilter: boolean = false;
   isTimeFilter: boolean = false;
@@ -36,7 +38,6 @@ export class OnlineProgramsComponent implements OnInit {
   favPrograms: any;
   isMap: boolean = true;
   kids = new Child;
-  categories = new Category;
   categoriesBySearch : any = new Category;
   providersBySearch : any= new User;
   userData: any = {};
@@ -47,6 +48,7 @@ export class OnlineProgramsComponent implements OnInit {
   pageNo: number = 1;
   pageSize: number = 8;
   @Input() programs: any=[];
+  @Input() categories: any=[];
   randomNumber:any = 0;
   isLogin: Boolean = false;
   key: string = '';
@@ -56,59 +58,33 @@ export class OnlineProgramsComponent implements OnInit {
   keyword = 'name';
   searchKey = '';
   isSearched = false;
-  isScrol
-    = true;
+  isScrol= true;
   fav: any = {
     userId: '',
     programId: '',
   };
-  searchedPrograms: any = [];
-  searchedProgram: any = [];
   loaderPostion = 'center-center';
   loaderType = 'ball-spin-clockwise';
-  fromDate: any;
-  toDate: any;
-  fromTime: any;
-  toTime: any;
-  minPrice: any = 50;
-  maxPrice: any = 250;
   favourites: any = [];
   facebookActive = ''
   messengerActive = ''
   emailActive = ''
   whatsappActive = ''
   copylinkActive = ''
-  durationMin: number = 20
-  durationMax: number = 30
   totalRating:any = '';
-
-  //  ng5slider start age group
-  minAge: number = 3;
-  maxAge: number = 10;
-  ageOption: Options = {
-    floor: 0,
-    ceil: 21,
-    translate: (value: number): string => {
-      return value + ' YRS';
-    }
-  };
-
-
-
-
   // ng5slider end
   showReset = false;
   deleteProgramRes: any;
   baseUrl= environment.baseUrl;
   shareUrl:string;
-  suggested: any =[];
   programOwnerData:any = User
   isOnline:boolean = false;
   isInPerson:boolean = true;
-
+  @ViewChild(SearchComponent, { static: true }) searchComponent: SearchComponent;
   constructor( public imageLoader: Globals,
     private apiservice: ApiService,
-    private router : Router) {
+    private router : Router,
+    private dataService: DataService) {
       var retrievedObject = localStorage.getItem('userData');
       this.userData = JSON.parse(retrievedObject);
       if (this.userData) {
@@ -124,7 +100,6 @@ export class OnlineProgramsComponent implements OnInit {
       }
   }
   ngOnInit() {
-    this.suggestedProgramss();
 }
    addAction(programId) {
     let body = {
@@ -168,14 +143,16 @@ getRating(program){
        this.rating.finalAverageRating = parseFloat(String(this.rating.finalAverageRating)).toFixed(1)
      });
    }
-   suggestedProgramss(){
-    this.categoryId='60b47687bb70a952280bfa7b'
-    var filter = `categoryId=${this.categoryId}`
-    this.apiservice.programFilter(filter, this.pageNo, this.pageSize).subscribe((res: any) => {
-      this.suggested = res.data
-      console.log('suggested', this.suggested);
-    })
 
-}
+   setCategoryId(e) {
+      this.filterData.categoryId = e
+      this.dataService.setOption(e)
+      this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
+      this.router.navigate(['/search']))
+    
+    }
+
+
+// ---------------------suggested sub categories by sub catids -----------------------
 
 }

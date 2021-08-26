@@ -6,13 +6,10 @@ import { MapsAPILoader } from '@agm/core';
 import * as moment from 'moment';
 import { Category, Child, User } from 'src/app/core/models';
 import { DataService } from 'src/app/core/services/dataservice.service ';
-import { Globals } from 'src/app/core/common/imageLoader';
 import { MapTheme } from 'src/app/core/common/map-theme';
 import { environment } from 'src/environments/environment.prod';
-
 import { Meta, Title } from '@angular/platform-browser';
 import { Options } from '@angular-slider/ngx-slider';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'search',
@@ -129,7 +126,6 @@ export class SearchComponent implements OnInit {
     }
   };
 
-
   // ng5slider end
   showReset = false;
   deleteProgramRes: any;
@@ -208,18 +204,7 @@ this.toDate=e.endDate._d
   }
 
   }
-  suggestedPrograms(){
-    if(this.programs.length){
-      this.randomNumber = Math.floor(Math.random() * this.programs.length);
-      console.log('programs',this.programs)
-        this.categoryId=this.programs[this.randomNumber].category[0]._id;
-        var filter = `categoryId=${this.categoryId}`
-        this.apiservice.programFilter(filter, this.pageNo, this.pageSize).subscribe((res: any) => {
-          this.suggested = res.data
-          console.log('suggested', this.suggested);
-        })
-    }
-  }
+
   clickedMarker(infowindow) {
     if (this.previous) {
         this.previous.close();
@@ -301,7 +286,6 @@ this.toDate=e.endDate._d
       console.log('programs', res);
       this.programs = res;
     });
-    this.suggestedProgramss();
   }
   getAddress(latitude, longitude) {
     this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {
@@ -367,6 +351,7 @@ this.toDate=e.endDate._d
     this.isTopFilter= false;
     this.isAgeFilter = false;
     this.isDateFilter = false;
+    this.selectedSubCategories=[];
     this.isPriceFilter = false;
     this.isCategoryFilter = false;
     this.fromDate = null;
@@ -399,6 +384,7 @@ this.toDate=e.endDate._d
   }
 
   getPublishedProgram() {
+    this.selectedSubCategories=[]
     this.activityName = ''
     this.activityDate = undefined
     this.showReset = false
@@ -409,7 +395,6 @@ this.toDate=e.endDate._d
       this.apiservice.getPublishedProgram(this.pageNo, this.pageSize, 'published').subscribe(res => {
         this.programList = res;
         this.ngxLoader.stop()
-        console.log('programs', res);
         if (this.programList.items) {
           this.programs = this.programList.items;
           this.isScrol = true;
@@ -425,8 +410,9 @@ this.toDate=e.endDate._d
     this.ngxLoader.start();
     this.apiservice.getCategory().subscribe((res: any) => {
       this.categories = res
-      this.getSubCateById(this.categories[this.categories.length-1].id)
+      this.getSubCateById(this.categories[6].id)
       this.ngxLoader.stop();
+      console.log('categories', this.categories)
     })
   }
 
@@ -436,7 +422,6 @@ this.toDate=e.endDate._d
     this.selectedSubCategories=[]
     this.apiservice.getTagByCategoryId(this.selectedCat).subscribe((res: any) => {
       this.subCats = res.data
-      console.log('categories', this.categories.length-1)
     })
   }
 
@@ -473,17 +458,14 @@ this.toDate=e.endDate._d
       if (this.showReset) {
         if (this.activityDate || this.activityName) {
           this.filterByNameDate()
+        }else if(!this.selectedSubCategories.length){
+            this.programFilter()
         }
-        else{
-          this.programFilter()
-        }
-
       }
-      else {
-        this.getPublishedProgram();
-      }
-
-  }
+       else {
+            this.getPublishedProgram()
+            }
+}
 
   onSearch(val: string) {
     this.programSearch(val);
@@ -539,7 +521,6 @@ if(toggle){
       console.log('response', res);
       if (res.isSuccess) {
         this.programs = res.data;
-        this.isScrol = true;
       }
     });  }
   filterByNameDate() {
@@ -557,24 +538,11 @@ if(toggle){
         this.ngxLoader.stop();
         this.programs = res.data
         this.showReset = true
-     this.suggestedPrograms();
-        console.log('res', this.programs)
       });
       this.ngxLoader.stop();
-      this.suggestedPrograms()
-    } else {
-      this.getPublishedProgram();
     }
   }
-  suggestedProgramss(){
-      this.categoryId='60b47687bb70a952280bfa7b'
-      var filter = `categoryId=${this.categoryId}`
-      this.apiservice.programFilter(filter, this.pageNo, this.pageSize).subscribe((res: any) => {
-        this.suggested = res.data
-        console.log('suggested', this.suggested);
-      })
 
-  }
   programFilter() {
     const dateFormat = "YYYY-MM-DD";
     const timeFormat = "YYYY-MM-DD HH:mm:ss"
@@ -610,42 +578,41 @@ if(toggle){
     // }
     // -------------------------------------------time filter-----------------------------------------
 console.log('this.timeSession>>>>>>>>>',this.timeSession)
-    switch(this.timeSession){
-      case 'early-morning':{
-        console.log('time session',this.timeSession)
-      this.fromTime = new Date(2018, 0O5, 0O5, 6, 0, 0, 0)
-      this.toTime = new Date(2050, 0O5, 0O5, 9, 0, 0, 0)
-      break;
-      }
-        case 'morning':{
-          this.fromTime = new Date(2018, 0O5, 0O5, 9, 0, 0, 0)
-      this.toTime = new Date(2050, 0O5, 0O5, 12, 0, 0, 0)
-      break;
-        }
-          case 'afternoon':{
-            this.fromTime = new Date(2018, 0O5, 0O5, 12, 0, 0, 0)
-      this.toTime = new Date(2050, 0O5, 0O5, 15, 0, 0, 0)
-      break;
-          }
-            case 'late-afternoon':{
-              this.fromTime = new Date(2018, 0O5, 0O5, 15, 0, 0, 0)
-      this.toTime = new Date(2050, 0O5, 0O5, 18, 0, 0, 0)
-      break;
-            }
-              case 'evening':{
-                this.fromTime = new Date(2018, 0O5, 0O5, 18, 0, 0, 0)
-      this.toTime = new Date(2050, 0O5, 0O5, 21, 0, 0, 0)
-      break;
-              }
-              default: {
-                this.fromTime = new Date(2018, 0O5, 0O5, 0O1, 0, 0, 0)
-                this.toTime = new Date(2050, 0O5, 0O5, 23, 59, 0, 0)
-              }
+switch(this.timeSession){
+  case 'early-morning':{
+  this.fromTime ='2019-01-01T06:00:00.000Z';
+  this.toTime = '2050-01-01T09:00:00.000Z';
+  break;
+  }
+    case 'morning':{
+      this.fromTime ='2019-01-01T09:00:00.000Z';
+  this.toTime = '2050-01-01T12:00:00.000Z';
+  break;
     }
+      case 'afternoon':{
+        this.fromTime ='2019-01-01T12:00:00.000Z';
+        this.toTime = '2050-01-01T15:00:00.000Z';
+  break;
+      }
+        case 'late-afternoon':{
+          this.fromTime ='2019-01-01T15:00:00.000Z';
+          this.toTime = '2050-01-01T18:00:00.000Z';
+  break;
+        }
+          case 'evening':{
+            this.fromTime ='2019-01-01T18:00:00.000Z';
+            this.toTime = '2050-01-01T21:00:00.000Z';
+  break;
+          }
+          default: {
+            this.fromTime ='2019-01-01T00:00:00.000Z';
+  this.toTime = '2050-01-01T23:59:00.000Z';
+          }
+}
     console.log('time session>>>>>>>>>',this.timeSession)
     var filter = ``
-    from = moment(this.fromTime).format(timeFormat);
-    to = moment(this.toTime).format(timeFormat);
+    from = this.fromTime;
+    to = this.toTime;
     if(this.fromDate && this.toDate){
     this.fromDate = moment(this.fromDate).format(dateFormat);
     this.toDate = moment(this.toDate).format(dateFormat);
@@ -689,14 +656,12 @@ console.log('this.timeSession>>>>>>>>>',this.timeSession)
         this.isScrol = true;
       }
     });
-    this.suggestedProgramss();
   }
 
    // ---------------------------------------------getinpersonOrVirtual------------------------------
   inpersonOrVirtual(e){
     var filter=``
     filter = `inpersonOrVirtual=${e}`
-    console.log('filter>>>>>>>>>>>>',filter)
     this.ngxLoader.start()
     this.apiservice.programFilter(filter, this.pageNo, this.pageSize).subscribe((res: any) => {
       this.ngxLoader.stop()
@@ -705,7 +670,6 @@ console.log('this.timeSession>>>>>>>>>',this.timeSession)
         this.showReset = true;
         this.isTopFilterCheckBox=false
         this.programs = res.data;
-        this.isScrol = true;
       }
     });
   }
@@ -720,8 +684,8 @@ console.log('this.timeSession>>>>>>>>>',this.timeSession)
   }
 
 searchCategory(key){
-  this.apiservice.searchCategory(key).subscribe((res:any)=>{
-this.categoriesBySearch = res.data;
+  this.apiservice.searchTag(key).subscribe((res:any)=>{
+this.categoriesBySearch = res;
   })
 }
 providerSearch(key){
@@ -757,22 +721,17 @@ if(program.userId==''|| program.userId==undefined || !program.userId){ program.u
   this.apiservice.getUserRating(program.userId).subscribe((res:any) => {
      this.rating = res
      this.rating.finalAverageRating = parseFloat(String(this.rating.finalAverageRating)).toFixed(1)
-
-     console.log('ratinggggggggggggg', res)
    });
  }
 
  //----------------------------------------search history get ---------------------------------------------------------
  getTopRated() {
   this.showReset = true;
-  this.isTopFilter= true
   if(this.isTopFilterCheckBox == true){
     this.ngxLoader.start()
     this.apiservice.getTopRated().subscribe((res: any) => {
       this.ngxLoader.stop()
       this.programs = res
-      console.log('get getTopRated', res);
-
     });
   }
     else if(this.isTopFilterCheckBox ==!true){
@@ -804,6 +763,7 @@ if(program.userId==''|| program.userId==undefined || !program.userId){ program.u
     let filter = ``;
     let i = 1;
     let id;
+    console.log(this.selectedSubCategories)
    for(let catId of this.selectedSubCategories) {
      if(i<2){
       id =  `subId${i}=${catId}`
@@ -818,12 +778,18 @@ if(program.userId==''|| program.userId==undefined || !program.userId){ program.u
     this.apiservice.programBySubCategoryIds(filter,1,100).subscribe((res: any) => {
       this.showReset = true;
       this.programs = res.data
-      console.log('programs by sub catsId', this.programs)
+      this.suggestedSubCategories(this.selectedSubCategories[0])
     })
   }else { this.toast.error( '', 'You Selected More Than 5 SubCategories')}
-
-}
-
 }
 
 
+  // ---------------------suggested sub categories by sub catids -----------------------
+  suggestedSubCategories(id){
+    window.scroll(0,0)
+   this.apiservice.getSuggestedCategory(id).subscribe((res: any) => {
+     this.suggested = res;
+     console.log('suggested subcategories', res);
+   });
+ }
+}
