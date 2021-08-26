@@ -5,7 +5,7 @@
         <div class="container">
           <div class="terms_outer">
             <div class="terms_top">
-              <h2>{{data[0].Title}}</h2>
+              <h1>{{data[0].Title}}</h1>
               <h3>Last modified: {{data[0].updated_at | date:'medium'}} (view archived versions)</h3>
               <p [innerHTML]="data[0].Content | markdown"></p>
             </div>

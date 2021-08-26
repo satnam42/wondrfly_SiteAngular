@@ -9,8 +9,8 @@
 				<button type="submit" class="btn">{{blogbyid?.categories[0]?.categoryName}}</button>
 			</div>
 
-	   <div class="main_heading">
-		  {{blogbyid?.title}} </div>
+	   <h1 class="main_heading">
+		  {{blogbyid?.title}} </h1>
 	   <div class="by_section">
 		by <span class="text-uppercase"> {{blogbyid?.published_by }}
 		  </span>
@@ -81,7 +81,7 @@
 										   <h3>
 											  <span (click)="goToProgramDetail(program) " class="title">{{program?.name}}</span>
 											  <div class="rating_box">
-									
+
 											  </div>
 										   </h3>
 										   <div class="sports_btn">
@@ -112,9 +112,9 @@
 								  <div class="col-12 col-md d-flex align-items-center justify-content-center" *ngFor="let program of programs | slice:3:6">
 									 <div class="activities_slide" >
 										 <div class="slide_image">
-										   
+
 												  <img (click)="goToProgramDetail(program)" [defaultImage]="defaultImage" [lazyLoad]="baseUrl+program?.category[0]?.iconUrl"/>
-												
+
 										 </div>
 										 <div class="slide_text">
 										   <h3>
@@ -244,7 +244,7 @@
 
 
  </div>
- 
+
 
  <!----------------------------------------- Signup Modal ------------------------------------------------------->
 

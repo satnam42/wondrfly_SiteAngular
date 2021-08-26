@@ -531,7 +531,7 @@ img.forth_section_image {
     padding-top:60px;
     padding-bottom: 20px;
 }
-.categories-box h2.painting-header {
+.categories-box .painting-header {
     font-style: normal;
     font-weight: normal;
     font-size:25px;

@@ -2,12 +2,12 @@
 <div class="content box">
 
     <div class="container">
-        
+
         <div class="row">
             <div class="col-12">
-                <div class="main_heading">
+                <h1 class="main_heading">
                     Blog
-                </div>
+                </h1>
             </div>
             <div class="col-12">
                 <div class="bloginterest-btn" >
@@ -22,7 +22,7 @@
                     <div class="main_img">
                         <!-- <img class="blog_img cursor"  [defaultImage]="defaultImage" [errorImage]="errorImage" lazyLoad="{{blogUrl}}{{blog[0].image[0]?.url}}" (click)="setBlog(blog[0])"/> -->
                         <img class="blog_img cursor" src="{{blogUrl}}{{blog[0].image[0]?.url}}" (click)="setBlog(blog[0])"/>
-                    
+
                     </div>
                     <div class="date">
                         <span class="blue_heading">{{blog[0]?.published_at | date:'mediumDate'}}</span>
