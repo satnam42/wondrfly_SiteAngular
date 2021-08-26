@@ -512,7 +512,7 @@
 
                 </div>
                 <!-- suggested starts -->
-                <div *ngIf="suggestedSubCategories.length && programs?.length" class="suggested-searchresult">
+                <div *ngIf="suggestedSubCategories.length && programs?.length && !categoryId.length" class="suggested-searchresult">
                      <div class="suggested-result suggested-text in-built">
                         <h3>
                         You might want to explore similar Categories

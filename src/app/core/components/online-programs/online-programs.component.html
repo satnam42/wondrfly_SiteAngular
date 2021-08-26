@@ -5,7 +5,7 @@
 <!-- <div class="list-group "> -->
   <div class="container-fluid search-onlineprog">
     <div class="row">
-      <div *ngFor="let program of programs; index as i" class=" col-3">
+      <div *ngFor="let program of programs | slice:0:8; index as i" class=" col-3">
         <div class="media activity">
           <div class="media-left activity-imgs" >
               <img *ngIf="imageLoader.isLoad" [src]="imageLoader.img" alt="Activity">

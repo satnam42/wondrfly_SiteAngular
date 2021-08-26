@@ -170,6 +170,7 @@ export class SearchComponent implements OnInit {
   ) {
     this.filterData = dataservice.getOption()
     if (this.filterData) {
+      console.log(this.filterData)
       this.categoryId = this.filterData.categoryId
       this.activityName = this.filterData.activityName
       this.activityDate = this.filterData.activityDate
@@ -225,8 +226,6 @@ this.toDate=e.endDate._d
     ); 
 
     window.scroll(0, 0);
-
-    // this.getSearchHistory()
     if (this.categoryId) {
       this.isCategoryFilter = true
       this.filterByCategory(this.categoryId)
@@ -342,6 +341,7 @@ this.toDate=e.endDate._d
     this.showReset = false;
     this.isOpenFilter = false;
     this.isTypeFilter=false
+    this.categoryId=''
     this.isOnline=false;
     this.isDaysFilter=false
     this.isInPerson=true
@@ -458,7 +458,7 @@ this.toDate=e.endDate._d
       if (this.showReset) {
         if (this.activityDate || this.activityName) {
           this.filterByNameDate()
-        }else if(!this.selectedSubCategories.length){
+        }else if(!this.selectedSubCategories.length && !this.categoryId.length){
             this.programFilter()
         }
       }
@@ -544,6 +544,7 @@ if(toggle){
   }
 
   programFilter() {
+    this.categoryId=''
     const dateFormat = "YYYY-MM-DD";
     const timeFormat = "YYYY-MM-DD HH:mm:ss"
     this.activityName = ''
@@ -726,6 +727,7 @@ if(program.userId==''|| program.userId==undefined || !program.userId){ program.u
 
  //----------------------------------------search history get ---------------------------------------------------------
  getTopRated() {
+  this.categoryId=''
   this.showReset = true;
   if(this.isTopFilterCheckBox == true){
     this.ngxLoader.start()
@@ -760,6 +762,7 @@ if(program.userId==''|| program.userId==undefined || !program.userId){ program.u
 
 // / ---------------------------------------------get programs by sub category ids--------------------------------
    programBySubCategoryIds(){
+    this.categoryId=''
     let filter = ``;
     let i = 1;
     let id;

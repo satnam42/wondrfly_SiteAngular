@@ -34,7 +34,12 @@ export class OnlineProgramsComponent implements OnInit {
   activityName: any = ''
   rating: any;
   activityDate: any
-  filterData: any = {}
+  filterData: any = {
+    categoryId: '',
+    activityName: '',
+    activityDate: ''
+  }
+
   favPrograms: any;
   isMap: boolean = true;
   kids = new Child;
@@ -146,7 +151,7 @@ getRating(program){
 
    setCategoryId(e) {
       this.filterData.categoryId = e
-      this.dataService.setOption(e)
+      this.dataService.setOption(this.filterData)
       this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
       this.router.navigate(['/search']))
     
