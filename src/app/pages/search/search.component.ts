@@ -171,12 +171,13 @@ export class SearchComponent implements OnInit {
     this.filterData = dataservice.getOption()
     if(this.filterData){
     if (this.filterData.categoryId) {
-      console.log(this.filterData)
+      console.log('this.filterData.categoryId', this.filterData)
       this.categoryId = this.filterData.categoryId
       this.activityName = this.filterData.activityName
       this.activityDate = this.filterData.activityDate
     }
     if(this.filterData.subcatId ){
+      console.log('this.filterData.subcatId',this.filterData)
      this.selectedSubCategories[0]=this.filterData.subcatId;
       this.programBySubCategoryIds()
     }
@@ -413,11 +414,8 @@ this.toDate=e.endDate._d
 
   // ---------------------------------------------get categories-------------------------------------
   getCategory() {
-    this.ngxLoader.start();
     this.apiservice.getCategory().subscribe((res: any) => {
       this.categories = res
-      this.getSubCateById(this.categories[6].id)
-      this.ngxLoader.stop();
       console.log('categories', this.categories)
     })
   }
@@ -550,7 +548,7 @@ if(toggle){
   }
 
   programFilter() {
-    this.categoryId=''
+    console.log('selected cat id', this.selectedSubCategories)
     const dateFormat = "YYYY-MM-DD";
     const timeFormat = "YYYY-MM-DD HH:mm:ss"
     this.activityName = ''
@@ -768,6 +766,7 @@ if(program.userId==''|| program.userId==undefined || !program.userId){ program.u
 
 // / ---------------------------------------------get programs by sub category ids--------------------------------
    programBySubCategoryIds(){
+    this.programs=[]
     this.categoryId=''
     let filter = ``;
     let i = 1;
@@ -787,6 +786,7 @@ if(program.userId==''|| program.userId==undefined || !program.userId){ program.u
     this.apiservice.programBySubCategoryIds(filter,1,100).subscribe((res: any) => {
       this.showReset = true;
       this.programs = res.data
+      console.log('programBySubCategoryIds', res);
       this.suggestedSubCategories(this.selectedSubCategories[0])
     })
   }else { this.toast.error( '', 'You Selected More Than 5 SubCategories')}
@@ -798,6 +798,9 @@ if(program.userId==''|| program.userId==undefined || !program.userId){ program.u
     window.scroll(0,0)
    this.apiservice.getSuggestedCategory(id).subscribe((res: any) => {
      this.suggested = res;
+     if(res.isSuccess==false){
+       this.suggested=[]
+     }
      console.log('suggested subcategories', res);
    });
  }

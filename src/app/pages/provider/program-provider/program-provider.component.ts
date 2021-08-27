@@ -13,6 +13,7 @@ import { MapTheme } from 'src/app/core/common/map-theme';
 import { Meta, Title } from '@angular/platform-browser';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
+import { DataService } from 'src/app/core/services/dataservice.service ';
 
 @Component({
   selector: 'app-program-provider',
@@ -92,7 +93,8 @@ export class ProgramProviderComponent implements OnInit {
     public mapTheme: MapTheme,
     private activatedRoute: ActivatedRoute,
     private titleService: Title,
-    private metaTagService: Meta,) {
+    private metaTagService: Meta,
+    private dataService : DataService) {
 
       this.activatedRoute.params.subscribe(params => {
         this.user.id = params['id'];
@@ -278,6 +280,13 @@ this.clickedMarker(e)
     this.router.navigate(['program', data.name, data._id]);
   }
 
-
+  setSubCategoryId(e) {
+    let   filterData: any = {
+      subcatId: e,
+    }
+    this.dataService.setOption(filterData)
+    this.router.navigate(['/search'])
+  
+  }
 
 }

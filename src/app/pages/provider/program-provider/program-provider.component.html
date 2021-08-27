@@ -343,7 +343,7 @@
 
 
                 <div class="provider_full" *ngIf="isGenOverview && programs?.length">
-                    <h4>Programs <a class="view_all cursor" (click)="onActivities()">View all</a> </h4>
+                    <h4>You might also try these <span class="subCat" (click)="setSubCategoryId(user.subCategoryIds[0]._id)">{{user.subCategoryIds[0].name}} </span> <span *ngIf="user.subCategoryIds?.length>1">or <span class="subCat" (click)="setSubCategoryId(user.subCategoryIds[1]._id)">{{user.subCategoryIds[1].name}}</span></span> activities: <a class="view_all cursor" (click)="onActivities()">View all</a> </h4>
                      <div class="row">
 
                               <div class="col-12" *ngIf="programs?.length">
