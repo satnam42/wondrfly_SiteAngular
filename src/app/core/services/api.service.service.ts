@@ -1034,9 +1034,9 @@ export class ApiService {
     }
 
 
-    activityByNameDate(activityName, activityDate) {
+    activityByNameDate(activityName) {
         const subject = new Subject<Program>();
-        this.http.get(`${this.root}/programs/searchByNameAndDate?programName=${activityName}&programDate=${activityDate}`, this.getHeader()).subscribe((responseData: any) => {
+        this.http.get(`${this.root}/programs/searchByNameAndDate?programName=${activityName}`, this.getHeader()).subscribe((responseData: any) => {
             if (responseData.statusCode !== 200) {
                 throw new Error('This request has failed ' + responseData.status);
             }

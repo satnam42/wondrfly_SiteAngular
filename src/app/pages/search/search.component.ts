@@ -42,25 +42,19 @@ export class SearchComponent implements OnInit {
   categoryId: any = ''
   activityName: any = ''
   rating: any;
-  activityDate: any
   filterData: any = {}
   favPrograms: any;
   isMap: boolean = true;
-  kids = new Child;
   locations = [];
   categories = new Category;
   categoriesBySearch : any = new Category;
   isActive: boolean=false
   providersBySearch : any= new User;
   userData: any = {};
-  programList: any;
-  // totalPages: number;
-  filterClass: boolean = false;
   markerUrl = 'assets/location.svg';
   pageNo: number = 1;
   pageSize: number = 20;
   programs: any=[];
-  randomNumber:any = 0;
   isLogin: Boolean = false;
   key: string = '';
   providerRole: boolean = false;
@@ -68,14 +62,11 @@ export class SearchComponent implements OnInit {
   favProgramRes: any;
   keyword = 'name';
   searchKey = '';
-  isScrol
-    = true;
+  isScrol = true;
   fav: any = {
     userId: '',
     programId: '',
   };
-  searchedPrograms: any = [];
-  searchedProgram: any = [];
   loaderPostion = 'center-center';
   loaderType = 'ball-spin-clockwise';
   fromDate: any;
@@ -95,8 +86,6 @@ export class SearchComponent implements OnInit {
   emailActive = ''
   whatsappActive = ''
   copylinkActive = ''
-  durationMin: number = 20
-  durationMax: number = 30
   totalRating:any = '';
 
   //  ng5slider start age group
@@ -117,14 +106,6 @@ export class SearchComponent implements OnInit {
       return value + ' $';
     }
   };
-  durationOption: Options = {
-    floor: 0,
-    ceil: 60,
-    translate: (value: number): string => {
-      return value + ' HOUR';
-    }
-  };
-
   // ng5slider end
   showReset = false;
   deleteProgramRes: any;
@@ -138,10 +119,8 @@ export class SearchComponent implements OnInit {
   user = new User
   @ViewChild('search', { static: true })
   public searchElementRef: ElementRef;
-  recentSearch: any;
   shareUrlSocial = environment.baseUrl;
   baseUrl= environment.baseUrl;
-  shareUrl:string;
   selectedProgram: any;
   url: string;
   suggested: any =[];
@@ -155,6 +134,7 @@ export class SearchComponent implements OnInit {
   filterName='';
   selectedCat: any;
   selectedSubCategories:any = [];
+  catData: any;
   constructor(
     private router: Router,
     private apiservice: ApiService,
@@ -173,7 +153,6 @@ export class SearchComponent implements OnInit {
       console.log('this.filterData.categoryId', this.filterData)
       this.categoryId = this.filterData.categoryId
       this.activityName = this.filterData.activityName
-      this.activityDate = this.filterData.activityDate
     }
     if(this.filterData.subcatId ){
       console.log('this.filterData.subcatId',this.filterData)
@@ -237,7 +216,7 @@ this.toDate=e.endDate._d
            this.showReset =true
            }
            else {
-               if (this.activityDate || this.activityName) {
+               if (this.activityName) {
                  this.filterByNameDate()
                }
           else if(this.selectedSubCategories.length){
@@ -312,9 +291,6 @@ this.toDate=e.endDate._d
 
   }
  
-  onFilter() {
-    this.filterClass = !this.filterClass;
-  }
   closePopup() {
 
     if (this.isDateModal) {
@@ -341,7 +317,6 @@ this.toDate=e.endDate._d
   resetFilter() {
     // window.document.getElementById("close_morefilter").click();
     this.activityName = ''
-    this.activityDate = undefined
     this.showReset = false;
     this.isOpenFilter = false;
     this.isTypeFilter=false
@@ -358,12 +333,10 @@ this.toDate=e.endDate._d
     this.selectedSubCategories=[];
     this.isPriceFilter = false;
     this.isCategoryFilter = false;
-    this.fromDate = null;
-    this.toDate = null;
-    this.toTime = null;
-    this.fromTime = null;
     this.maxAge = 12;
     this.minAge = 3;
+    this.pageNo = 1;
+    this.pageSize = 20;
     this.getPublishedProgram();
     this.closePopup();
 
@@ -406,6 +379,7 @@ this.toDate=e.endDate._d
   getCategory() {
     this.apiservice.getCategory().subscribe((res: any) => {
       this.categories = res
+      this.catData = this.categories
       console.log('categories', this.categories)
     })
   }
@@ -445,12 +419,10 @@ this.toDate=e.endDate._d
   }
 
   loadMore() {
-    this.loaderType = 'three-bounce';
-    this.loaderPostion = 'bottom-center';
     this.pageSize += 20;
 
       if (this.showReset) {
-        if (this.activityDate || this.activityName) {
+        if (this.activityName) {
           this.filterByNameDate()
         }else if(!this.selectedSubCategories.length && !this.categoryId.length){
             this.programFilter()
@@ -467,7 +439,6 @@ this.toDate=e.endDate._d
 
   programSearch(key) {
     this.activityName = ''
-    this.activityDate = undefined
     this.ngxLoader.start();
     this.apiservice.programSearch(key).subscribe((res: any) => {
       if (res) {
@@ -481,7 +452,6 @@ this.toDate=e.endDate._d
   getFav(id,toggle) {
     console.log('toggle',toggle)
 if(toggle){
-    // this.filterClass = false
     this.isDateFilter = false;
     this.isAgeFilter = false;
     this.isChildFilter = false;
@@ -509,14 +479,18 @@ if(toggle){
   }
 
   filterByCategory(id) {
+    window.scroll(0,0)
     this.categoryId = id
     var filter = `categoryId=${this.categoryId}`
+    this.ngxLoader.start()
     this.apiservice.programFilter(filter, this.pageNo, this.pageSize).subscribe((res: any) => {
+    this.ngxLoader.stop()
       console.log('response', res);
       if (res.isSuccess) {
         this.programs = res.data;
       }
     });  }
+
   filterByNameDate() {
     this.isCategoryFilter = false
     this.isDateFilter = false
@@ -526,8 +500,8 @@ if(toggle){
     this.isOpenFilter = false
     this.isSavedFilter = false
     this.ngxLoader.start();
-    if (this.activityName || this.activityDate) {
-      this.apiservice.activityByNameDate(this.activityName, this.activityDate).subscribe((res: any) => {
+    if (this.activityName) {
+      this.apiservice.activityByNameDate(this.activityName).subscribe((res: any) => {
         console.log('filterbyNameDate', res)
         this.ngxLoader.stop();
         this.programs = res.data
@@ -542,7 +516,6 @@ if(toggle){
     const dateFormat = "YYYY-MM-DD";
     const timeFormat = "YYYY-MM-DD HH:mm:ss"
     this.activityName = ''
-    this.activityDate = undefined
     this.showReset = true;
     var from: any
     var to: any
