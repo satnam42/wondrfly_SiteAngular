@@ -178,6 +178,10 @@
                                             <p *ngIf="!program.isFree"><img src="assets/pricet.svg" alt="price tag"> ${{program.pricePerParticipant}}<span *ngIf="program.pricePeriod.periodAmount">/{{program.pricePeriod.periodAmount}}</span> </p>
                                             <p *ngIf="program.isFree"><img src="assets/pricet.svg" alt="price tag"> Free </p>
 
+                                            <button class="camp-btn">
+                                              Camp
+                                            </button>
+
                                         </div>
                                     </div>
                                 </div>
@@ -560,7 +564,7 @@
                         </div>
 
 
-                        	<div class="container description_text slider"  *ngIf="programs?.length">
+	<div class="container description_text slider carousel-cat"  *ngIf="programs?.length">
 			<div class="forth_section_heading">
 			You might also try these <span class="subCat" (click)="setSubCategoryId(program.subCategoryIds[0]._id)">{{program.subCategoryIds[0].name}} </span> <span *ngIf="program.subCategoryIds?.length>1">or <span class="subCat" (click)="setSubCategoryId(program.subCategoryIds[1]._id)">{{program.subCategoryIds[1].name}}</span></span> activities:
                 <!-- <span class="more-programscolor">{{user.firstName}}</span> -->
@@ -665,17 +669,19 @@
 						 </div>
 						 <!--End carousel-->
 					   </div>
-					   <div class="col-1 d-flex align-items-center justify-content-center"><a  href="#carouselExampleIndicators" data-slide="next">
-						 <div class="carousel-nav-icon">
-							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" xmlns:xlink="http://www.w3.org/1999/xlink">
-							  <path d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z"/>
-							</svg>
-						 </div>
-						 </a>
-					   </div>
+       </div>
+        <div class=""><a  href="#carouselExampleIndicators" data-slide="next">
+          <div class="carousel-nav-icon">
+           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" xmlns:xlink="http://www.w3.org/1999/xlink">
+             <path d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z"/>
+           </svg>
+          </div>
+           </a>
+          </div>
 
 
-			 </div>
+
+
 		  </div>
                     </div>
                 </div>

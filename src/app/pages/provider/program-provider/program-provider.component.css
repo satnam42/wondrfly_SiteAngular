@@ -700,7 +700,9 @@ p.health_name {
         .imgsvg{
             filter: invert(61%) sepia(59%) saturate(442%) hue-rotate(159deg) brightness(95%) contrast(93%);
         }
-
+        .carousel-cat{
+          position: relative;
+        }
         .carousel-nav-icon {
             height: 48px;
             width: 48px;
@@ -709,9 +711,9 @@ p.health_name {
             box-sizing: border-box;
             color: #494949;
             border-radius: 50%;
-            top: -276px;
+            top: 50%;
             position: absolute;
-            left: 1067px;
+            right: -2%;
         }
         .carousel-nav-icon svg {
             width: 20px;
@@ -722,7 +724,7 @@ p.health_name {
             margin-top: 13px;
         }
         .carousel-inner {
-            height: 400px;
+            height: 420px;
         }
         .provider_profile .provider_left h2.provider_name p img {
             margin-top: -3px;

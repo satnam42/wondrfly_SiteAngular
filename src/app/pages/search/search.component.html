@@ -109,8 +109,7 @@
                                           <h3 *ngFor='let cat of categories' [ngClass]="{'active':selectedCat == cat.id}" (click)='getSubCateById(cat)'>{{cat.name}}</h3>
                                         </div>
                                         <div class="col-7 sub-categoriesfiltercontent">
-
-                                            <h3 *ngFor="let s of subCats; let i = index">
+                                          <h2 *ngFor="let s of subCats; let i = index">
                                               <span><input type="checkbox"
                                                  class="k-checkbox categories-checkbox"
                                                  id="categoriescheck"
@@ -118,17 +117,10 @@
                                                   value="{{s}}"
                                                    [checked]="s.checked"
                                                    (change)="updateCheckedSubCategories(i, $event)" ></span>
-                                              <span>{{s.name}}</span>
-                                            </h3>
-                                            <!-- <div class="row">
-                                              <div class="col-12">
+                                            <h3>{{s.name}}</h3>
+                                          </h2>
 
-                                              </div>
-                                              <div class="col-6">
-                                                <h3 *ngFor='let s of subCats | slice:8:16'>{{s.name}}</h3>
 
-                                              </div>
-                                            </div> -->
                                         </div>
                                     </div>
                                   </div>
@@ -529,10 +521,6 @@
                           </div>
                         </div>
                       </div>
-
-
-
-
                   </div>
                     <!-- suggested ends -->
                 </div>

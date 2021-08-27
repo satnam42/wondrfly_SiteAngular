@@ -70,14 +70,9 @@ a.business_btn.cursor.contact {
 }
 
 .program_text {
-    padding: 35px 0 0 0;
+    margin-top: -40px;
 }
 
-.program_text .CategoryText {
-    position: relative;
-    position: relative;
-    top: -69px;
-}
 
 .program_text .CategoryText .edit_icon {
     right: 35%;
@@ -135,9 +130,26 @@ a.business_btn.cursor.contact {
 .custom_select {
     border-radius: 0px !important;
 }
-
+button.camp-btn {
+  background: #E2F5FF;
+  border-radius: 20px;
+  border: none;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: justify;
+  margin-top: -7px;
+  letter-spacing: 0.001em;
+  color: #53B2E8;
+  padding: 7px;
+  padding-left: 25px;
+  padding-right: 25px;
+  float: right;
+}
 .session_details {
-    margin-top: 3px;
+    margin-top:10px;
     align-items: center;
     padding-left: 25px;
     padding-bottom: 31px;
@@ -1384,7 +1396,12 @@ h2.description-activities {
         pointer-events: none;
       }
 
-
+      .carousel-cat{
+        position: relative;
+      }
+      .carousel-inner {
+        height: 420px;
+    }
 .carousel-nav-icon {
     height: 48px;
     width: 48px;
@@ -1393,9 +1410,9 @@ h2.description-activities {
     box-sizing: border-box;
     color: #494949;
     border-radius: 50%;
-    top: -183px;
+    top: 50%;
     position: absolute;
-    left: 1067px;
+    right: -2%;
 }
 .carousel-nav-icon svg {
     width: 20px;
