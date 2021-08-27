@@ -68,7 +68,6 @@ export class SearchComponent implements OnInit {
   favProgramRes: any;
   keyword = 'name';
   searchKey = '';
-  isSearched = false;
   isScrol
     = true;
   fav: any = {
@@ -179,7 +178,6 @@ export class SearchComponent implements OnInit {
     if(this.filterData.subcatId ){
       console.log('this.filterData.subcatId',this.filterData)
      this.selectedSubCategories[0]=this.filterData.subcatId;
-      this.programBySubCategoryIds()
     }
   }
     var retrievedObject = localStorage.getItem('userData');
@@ -239,14 +237,13 @@ this.toDate=e.endDate._d
            this.showReset =true
            }
            else {
-             if (this.activityDate || this.activityName) {
                if (this.activityDate || this.activityName) {
                  this.filterByNameDate()
                }
-          else if(this.categoryId){
-               this.filterByCategory(this.categoryId)
+          else if(this.selectedSubCategories.length){
+               this.programBySubCategoryIds()
             }
-      } else {
+       else {
         this.getPublishedProgram();
       }
     }
@@ -391,23 +388,16 @@ this.toDate=e.endDate._d
   }
 
   getPublishedProgram() {
-    this.selectedSubCategories=[]
     this.activityName = ''
-    this.activityDate = undefined
     this.showReset = false
-    if (this.isSearched) {
-      this.programs = this.searchedProgram;
-    } else {
       this.ngxLoader.start()
-      this.apiservice.getPublishedProgram(this.pageNo, this.pageSize, 'published').subscribe(res => {
-        this.programList = res;
+      this.apiservice.getPublishedProgram(this.pageNo, this.pageSize, 'published').subscribe((res:any) => {
         this.ngxLoader.stop()
-        if (this.programList.items) {
-          this.programs = this.programList.items;
+          this.programs = res.items;
+          if(!this.selectedSubCategories.length && !this.categoryId){
           this.isScrol = true;
-        }
+          }
       });
-    }
     this.ngxLoader.stop()
   }
  
