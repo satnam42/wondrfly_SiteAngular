@@ -541,10 +541,10 @@
                         </h3>
                         <div class="similar-categories container">
                          <div class="row">
-                            <div class="col-md-4 cursor" *ngFor='let subCategory of suggested | slice:0:3' (click)="selectedSubCategories[0]=subCategory.id;programBySubCategoryIds()">
+                            <div class="col-md-4 cursor" *ngFor='let Category of catData | slice:6:9' (click)="filterByCategory(Category.id)">
                                 <div class="similar-cate">
-                                    <img [defaultImage]="defaultImage" [lazyLoad]="subCategory.imageUrl"/>
-                                    <h1>{{subCategory.name}}</h1>
+                                    <img [defaultImage]="defaultImage" [lazyLoad]="Category.imageUrl"/>
+                                    <h1>{{Category.name}}</h1>
                                 </div>
                             </div>
                          </div>
