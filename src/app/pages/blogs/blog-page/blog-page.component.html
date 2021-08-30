@@ -47,7 +47,8 @@
                     <div *ngFor="let blogg of blog |slice:1:4;let i = index;">
                         <div class="small_imgs_section">
                             <div class="small_img cursor">
-                                    <img (click)="setBlog(blogg)" style="height: 137px;width: 167px;" [defaultImage]="defaultImage" [errorImage]="errorImage" lazyLoad="{{blogUrl}}{{blogg?.image[0]?.url}}"/>
+                                    <!-- <img (click)="setBlog(blogg)" style="height: 137px;width: 167px;" [defaultImage]="defaultImage" [errorImage]="errorImage" lazyLoad="{{blogUrl}}{{blogg?.image[0]?.url}}"/> -->
+                                    <img  style="height: 137px;width: 167px;" src="{{blogUrl}}{{blogg.image[0]?.url}}" (click)="setBlog(blogg)"/>
                             </div>
                             <div class="small_imgs_content">
                                 <div class="date">

@@ -13,7 +13,6 @@ import { AuthsService } from './core/services/auths.service';
 import { UserGuard } from './core/guards';
 import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
 import { AgmCoreModule } from '@agm/core';
-import { SocialLoginModule, FacebookLoginProvider, GoogleLoginProvider, SocialAuthServiceConfig } from 'angularx-social-login';
 import { Globals } from './core/common/imageLoader';
 import { MapTheme } from './core/common/map-theme';
 import { ToastrModule } from 'ngx-toastr';
@@ -39,7 +38,6 @@ const config: SocketIoConfig = { url: environment.socketUrl, options: {} };
     AppRoutingModule,
     CoreModule,
     FormsModule,
-    SocialLoginModule,
     HttpClientModule,
     LazyLoadImageModule,
     MailchimpSubscribeFormModule,
@@ -52,31 +50,10 @@ const config: SocketIoConfig = { url: environment.socketUrl, options: {} };
   ],
   providers: [
     LocalStorageService,
-    AuthsService,
-    UserGuard,
     ChatService,
     Globals,
     MapTheme,
     // { provide: LocationStrategy, useClass: PathLocationStrategy  
-    {
-      provide: 'SocialAuthServiceConfig',
-      useValue: {
-        autoLogin: false,
-        providers: [
-          {
-            id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider('335753464827-9pllubf5hlm97nf893j5rfhvmvcv28hi.apps.googleusercontent.com')
-          },
-          {
-            id: FacebookLoginProvider.PROVIDER_ID,
-            provider: new FacebookLoginProvider(
-              '2938106953127281'
-            )
-          },
-        ]
-      } as SocialAuthServiceConfig,
-    }    
-
   ],
   bootstrap: [AppComponent]
 })

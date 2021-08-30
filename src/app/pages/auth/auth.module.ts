@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AuthRoutingModule } from './auth-routing.module';
 import { AuthComponent } from './auth.component';
 import { CoreModule } from 'src/app/core/core.module';
-import { SocialLoginModule } from 'src/app/core/components/social-login/social-login.module';
+import { SocialModule } from 'src/app/core/components/social-login/social-login.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { LoginComponent } from './login/login.component';
@@ -27,7 +27,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     ReactiveFormsModule,
     LazyLoadImageModule,
     FormsModule,
-    SocialLoginModule
+    SocialModule
   ],
  
     // { provide: LocationStrategy, useClass: PathLocationStrategy }

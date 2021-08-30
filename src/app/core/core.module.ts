@@ -11,7 +11,6 @@ import { ReadMoreComponent } from './components/read-more/read-more.component';
 import { RouterModule } from '@angular/router';
 import { MarkdwonPipe } from './shared/markdwon.pipe';
 import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
 import {MatChipsModule} from '@angular/material/chips';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 
