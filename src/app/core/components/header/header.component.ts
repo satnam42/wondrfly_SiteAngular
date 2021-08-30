@@ -6,7 +6,6 @@ import { ApiService } from '../../services/api.service.service';
 import { UserDataService } from '../../services/user-data.service';
 import { Globals } from '../../common/imageLoader';
 import { LocalStorageService } from '../../services';
-
 import { DataService } from '../../services/dataservice.service ';
 import { ToastrService } from 'ngx-toastr';
 
@@ -18,8 +17,6 @@ declare const $: any;
 })
 export class HeaderComponent implements OnInit {
   isLogin = false;
-  bcLoadedData;
-  bcForDisplay;
   user = new User;
   routeName: string;
   isToggle: boolean;
@@ -35,12 +32,6 @@ export class HeaderComponent implements OnInit {
     activityName: '',
   }
 
-
-
-  @Input()
-  showMenu = false;
-  @Output()
-  menuClicked: EventEmitter<boolean> = new EventEmitter()
   initialUrl: any;
   feedbackData: any = {
     id : '',
@@ -49,8 +40,6 @@ export class HeaderComponent implements OnInit {
   logoPosition=false;
   searchBar=false
   notification: any;
-  _user: any = {};
-  userData: any = {};
   profileProgressResponse: any;
   progressBarValue: any;
   profileProgress: string = ''
@@ -192,20 +181,6 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-parentProfile(){
-  if (this.user.role === "parent") {
-    this.router.navigate(['/Profile', this.user.id]);
-  }
-  else if (this.user.role === "provider") {
-    this.router.navigate(['/profile', this.user.id]);
-  }
-  else if (this.user.role === "guardian") {
-    this.router.navigate(['guardianProfile', this.user.id]);
-  }
-  else {
-    this.router.navigate(['login']);
-  }
-}
 
 ngOnDestroy() {
   window.document.getElementById("close_feedback_modal").click();
@@ -226,7 +201,7 @@ submitFeedback(){
  });
 }
 
-canceFeedback(){
+cancelFeedback(){
     this.auth.logout();
     this.userdataservice.logout();
     localStorage.clear();

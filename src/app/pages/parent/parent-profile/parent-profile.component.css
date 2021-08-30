@@ -431,61 +431,7 @@ span.parent-close {
   float: right;
 } */
 
-footer {
-  padding-bottom: 26px;
-}
 
-.footer_inner {
-  padding: 20px 25px;
-  background-color: #ffffff;
-}
-
-.footer_logo {
-  display: inline-block;
-  width: 100%;
-}
-
-.footer_logo a img {
-  max-width: 78px;
-}
-
-.footer_menu {
-  display: inline-block;
-  width: 100%;
-}
-
-.footer_menu ul {
-  margin-top: 7px;
-}
-
-.footer_menu ul li {
-  display: inline-block;
-  margin: 0 27px 0 0;
-}
-
-.footer_menu ul a {
-  font-weight: normal;
-  font-size: 13px;
-  line-height: 18px;
-  letter-spacing: 0.001em;
-  color: #494949;
-}
-
-.footer_menu ul a:hover {
-  color: #777cea;
-}
-
-.copyright_text {
-  margin-top: 35px;
-}
-
-.copyright_text p {
-  font-weight: normal;
-  font-size: 12px;
-  line-height: 16px;
-  margin: 0;
-  color: #494949;
-}
 
 /* guardins page css */
 

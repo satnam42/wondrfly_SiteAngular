@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
 import { AppComponent } from '../app/app.component';
@@ -9,8 +9,6 @@ import { LocalStorageService } from '../app/core/services';
 import { HttpClientModule } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { LandingComponent } from './pages/landing/landing.component';
-import { AuthsService } from './core/services/auths.service';
-import { UserGuard } from './core/guards';
 import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
 import { AgmCoreModule } from '@agm/core';
 import { Globals } from './core/common/imageLoader';
@@ -30,8 +28,6 @@ const config: SocketIoConfig = { url: environment.socketUrl, options: {} };
     LandingComponent,
     // NotFoundComponent
   ],
-
-
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

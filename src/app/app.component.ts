@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
 import { environment } from '../environments/environment';
-import { User } from './core/models';
 import { CanonicalService } from './core/shared/canonical.service';
 
 @Component({
@@ -10,11 +8,7 @@ import { CanonicalService } from './core/shared/canonical.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-
-  subscription: Subscription;
   envName: string;
-
-  currentUser: any = new User;
   isLogin = false;
   constructor(
     private canonicalService: CanonicalService, ) {

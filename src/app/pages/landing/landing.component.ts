@@ -15,22 +15,15 @@ import { environment } from 'src/environments/environment';
 })
 export class LandingComponent implements OnInit {
   defaultImage = 'https://miro.medium.com/max/441/1*9EBHIOzhE1XfMYoKz1JcsQ.gif';
-  errorImage = 'https://i.imgur.com/QsFAQso.jpg';
   blogUrl = environment.blogsUrl;
   loggedIn: boolean;
-  isMap: boolean = true;
-  usersData: any = {};
-  pageNo: number = 1;
   title = 'Best Activities and Programs for Kids in Jersey City - Wondrfly';
-  pageSize: number;
   categories: any = new Category;
   filterData: any = {
     subcatId: '',
     activityName: '',
   }
-  message: string = 'Registered Successfully!';
   categoryResponse: any;
-  response: any;
   hide: boolean = true;
   landingImageIndex: number;
   landingImages = ['assets/landing/header.jpg',
@@ -39,7 +32,6 @@ export class LandingComponent implements OnInit {
   blog: any;
   categoriesBySearch: any = new Category;
   providersBySearch: any = new User;
-  count: any;
   constructor(private router: Router,
     private apiservice: ApiService,
     private dataservice: DataService,
@@ -110,9 +102,5 @@ export class LandingComponent implements OnInit {
     this.metaTagService.addTag(
       { name: 'keywords', content: 'Best Activities and Programs, activities near me for toddlers, fitness classes for kids, online music lessons, online art classes' }
     );    
-  
-    
-
   }
-
 }

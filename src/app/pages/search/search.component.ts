@@ -67,8 +67,6 @@ export class SearchComponent implements OnInit {
     userId: '',
     programId: '',
   };
-  loaderPostion = 'center-center';
-  loaderType = 'ball-spin-clockwise';
   fromDate: any;
   toDate: any;
   fromTime: any;
@@ -676,6 +674,7 @@ if(program.userId==''|| program.userId==undefined || !program.userId){ program.u
  }
 
  updateCheckedSubCategories(i, event) {
+   this.categoryId=''
   this.subCats[i].checked = event.target.checked;
   if(this.subCats[i].checked){
     this.selectedSubCategories.push(this.subCats[i]._id);
@@ -696,10 +695,8 @@ if(program.userId==''|| program.userId==undefined || !program.userId){ program.u
      if(this.categoryId.length){
       this.filterByCategory(this.categoryId)
     }
-    else if(this.selectedSubCategories.length){this.categoryId=''}
     else{
     this.programs=[]
-    this.categoryId=''
     let filter = ``;
     let i = 1;
     let id;

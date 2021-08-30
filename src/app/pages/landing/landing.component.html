@@ -15,12 +15,7 @@
                                     class="form-control camp_input" name="activityName"
                                     [(ngModel)]="filterData.activityName">
                             </div>
-                            <!-- <div class="form-group">
-                                <input [owlDateTimeTrigger]="date1" placeholder="Select Date Range" class="date_input"
-                                    [owlDateTime]="date1" name="activityDate" [(ngModel)]="filterData.activityDate"
-                                    area-owns="date1" readonly>
-                                <owl-date-time [pickerType]="'calendar'" #date1></owl-date-time>
-                            </div> -->
+    
                             <div class="form-group">
                                 <button (click)="searchActivityByNameDate()" class="banner_button" type="submit">
                                     <img src="assets/search_icon.svg" alt="Search image">
@@ -70,7 +65,7 @@
                         <div class="category_list_box cursor" (click)="searchBySubCategory(category._id)">
                             <a href="javascritpt:;">
                                 <div class="category_image">
-                                        <img [defaultImage]="defaultImage" [errorImage]="errorImage" [lazyLoad]="category?.imageUrl" />
+                                        <img [defaultImage]="defaultImage" [lazyLoad]="category?.imageUrl" />
                                 </div>
                                 <div class="category_title">
                                     <p>{{category?.name}}<span class="title_arrow">
@@ -100,7 +95,7 @@
                             <div class="lower-blog" *ngFor='let b of blog |slice:0:3;'>
                                 <div class="lower-img">
                                     <!-- <img class="blog_img cursor" src="{{blogUrl}}{{b?.image[0]?.url}}" (click)='setBlog(b)'> -->
-                                    <img class="blog_img cursor" [defaultImage]="defaultImage" [errorImage]="errorImage" lazyLoad="{{blogUrl}}{{b?.image[0]?.url}}"  (click)='setBlog(b)'/>
+                                    <img class="blog_img cursor" [defaultImage]="defaultImage" lazyLoad="{{blogUrl}}{{b?.image[0]?.url}}"  (click)='setBlog(b)'/>
                                 </div>
                                 <div class="lower-content" >
                                     <h2 class="lower-blog-heading cursor" (click)='setBlog(b)'>{{b.title}}
