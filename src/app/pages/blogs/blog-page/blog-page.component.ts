@@ -70,8 +70,9 @@ searchCatg(data) {
 
 getBlog(){
   this.ngxLoader.start()
-  const responcee = axios.get(`${this.blogUrl}/blogs?_start=1&_limit=4`).then(response => {
+  const responcee = axios.get(`${this.blogUrl}/blogs?_start=0&_limit=4`).then(response => {
     this.blog = response.data
+    console.log(this.blog)
     this.blog.reverse()
     this.ngxLoader.stop()
     // this.random = this.blog[Math.floor(Math.random() * this.blog.length)]

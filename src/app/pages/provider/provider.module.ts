@@ -11,11 +11,13 @@ import { AgmCoreModule } from '@agm/core';
 import { RatingModule } from 'src/app/core/components/rating/rating.module';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { MatInputModule } from '@angular/material/input';
 @NgModule({  declarations: [ProviderComponent ,LoginProviderComponent,ProfileComponent,ProgramProviderComponent,PhonePipe],
   imports: [
     CommonModule,
     ProviderRoutingModule,
     CoreModule,
+    MatInputModule,
     FormsModule,
     RatingModule,
     ReactiveFormsModule,

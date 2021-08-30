@@ -7,12 +7,9 @@ const routes: Routes = [
 
   { path: '', component: LandingComponent },
   // { path: '404', component: NotFoundComponent },
-  { path: 'term-condition', loadChildren: () => import('.//pages/term-condition/term-condition.module').then(m => m.TermConditionModule) },
-  { path: 'about-wondrfly', loadChildren: () => import('.//pages/why-wondrfly/why-wondrfly.module').then(m => m.WhyWondrflyModule) },
   { path: 'search', loadChildren: () => import('.//pages/search/search.module').then(m => m.SearchModule) },
-  { path: 'forgot-password', loadChildren: () => import('.//pages/forgot-password/forgot-password.module').then(m => m.ForgotPasswordModule) },
   { path: 'ambassador-policy', loadChildren: () => import('.//pages/ambassador-policy/ambassador-policy.module').then(m => m.AmbassadorPolicyModule) },
-  { path: 'privacyPolicy', loadChildren: () => import('.//pages/privacy-policy/privacy-policy.module').then(m => m.PrivacyPolicyModule) },
+  { path: '', loadChildren: () => import('./pages/common-pages/common-pages.module').then(m => m.CommonPagesModule) },
   { path: 'contactUs', loadChildren: () => import('.//pages/contact-us/contact-us.module').then(m => m.ContactUsModule) },
 
       {

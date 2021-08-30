@@ -9,6 +9,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { LoginComponent } from './login/login.component';
 import { SignUpGuardianComponent } from './sign-up-guardian/sign-up-guardian.component';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
     AuthComponent,
     SignUpComponent,
     LoginComponent,
-    SignUpGuardianComponent
+    SignUpGuardianComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     CommonModule,

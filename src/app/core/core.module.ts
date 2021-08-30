@@ -25,7 +25,6 @@ const components = [
 ]
 const thirdPartyModules = [
   MatIconModule,
-  MatInputModule,
   MatChipsModule,
   NgxUiLoaderModule,
   

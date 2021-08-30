@@ -13,6 +13,7 @@ import { ParentComponent } from './parent.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { sharePopupModule } from 'src/app/core/components/share-popup/share-popup.module';
+import { MatInputModule } from '@angular/material/input';
 @NgModule({
     entryComponents: [],
     declarations: [
@@ -25,6 +26,7 @@ import { sharePopupModule } from 'src/app/core/components/share-popup/share-popu
         FormsModule,
         CoreModule,
         CustomFormsModule,
+        MatInputModule,
         ReactiveFormsModule,
         NgxMaskModule.forRoot(),
         AutocompleteLibModule,

@@ -20,6 +20,7 @@ import { DragDropModule } from 'src/app/core/components/drag-drop/drag-drop.modu
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   entryComponents: [ ModalComponent],
@@ -44,6 +45,7 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
     LazyLoadImageModule,
     InfiniteScrollModule,
     NgxSliderModule,
+    MatInputModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
     AgmCoreModule,
