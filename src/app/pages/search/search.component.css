@@ -2174,6 +2174,9 @@ button.btn2-filtersearch.active {
 button.btn1-filtersearch.active {
   background: #E2F5FF !important;
 }
+.categories-checkbox {
+  top: 3px;
+}
 .sub-categoriesfilterheader h2 {
   font-family: "Poppins";
   font-style: normal;
@@ -2238,8 +2241,8 @@ width: 50%;
   padding-top: 10px;
   padding-bottom: 10px;
   overflow-x: scroll;
-  max-height: 580px;
-  height: 580px;
+  max-height:310px;
+  height:310px;
   padding-left: 15px;
   padding-right: 15px;
   display: flex;
@@ -2250,8 +2253,8 @@ width: 50%;
   padding-top: 10px;
   padding-bottom: 10px;
   overflow-x: scroll;
-  max-height: 580px;
-  height: 580px;
+  max-height:350px;
+  height:350px;
   padding-left: 15px;
   padding-right: 15px;
   display: flex;
@@ -2259,7 +2262,7 @@ width: 50%;
     flex-wrap: wrap;
 }
 .partcategory{
-  min-width: 850px !important;
+  min-width: 950px !important;
   padding: 0px;
 }
 .collpase_content.cate-dilter {
@@ -2279,7 +2282,7 @@ width: 50%;
   .sub-categoriesfiltercontent h2 {
     display: flex;
     align-items: baseline;
-    width: 50%;
+    width:35%;
 }
 .sub-categoriesfiltercontent .col-6 {
   padding-right: 15px;
@@ -2823,7 +2826,7 @@ button.map-buttonas {
   font-size: 11px;
 }
 .partcategory{
-  min-width:850px !important;
+  min-width:950px !important;
   padding: 0px;
 }
 #timess .form-group.typess label {
