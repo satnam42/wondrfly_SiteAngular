@@ -2,7 +2,6 @@
 
     <app-header2 *ngIf="!isLogin"></app-header2>
     <app-header *ngIf="isLogin"></app-header>
-    <!-- <app-alert></app-alert> -->
     <section class="main_outer">
         <div class="program_outer">
             <div class="container">
@@ -147,18 +146,10 @@
 
                                                 </p>
                                                     <div class="star-daialogbox"  *ngIf="isRating">
-                                                        <!-- <button type="button" (click)="isRating=false"   class="close star-daialogicon" aria-label="Close">
-                                                            <span aria-hidden="true"><img src="assets/grey-close.png"></span>
-                                                        </button> -->
                                                         <app-rating [rating]="rating" [user]="user" ></app-rating>
                                                     </div>
                                                 </span>
                                             </h3>
-
-
-
-
-
                                             <p><img src="assets/loction_pin.svg" alt="Loction Pin">{{program.location}}
                                             </p>
                                             <p><img src="assets/calendar_orange.svg"
@@ -185,10 +176,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- <div class="insured_outer">
-                                    <p *ngFor="let badge of badgesList"><img src="{{badge.icon}}" alt="Loction Pin">
-                                        {{badge.name}} </p>
-                                </div> -->
                             </div>
 
                         </div>
@@ -268,8 +255,13 @@
                                     </a>
                                 </div>
                             </div>
+
                             <div class="description_text" *ngIf='program.specialInstructions'>
                                 <h2>Special Instructions</h2>
+                                <div class="special-groups">
+                                  <span><img src="assets/group-detail.svg">Parent Assistance required</span>
+                                  <span><img src="assets/mountain-detail.svg">Outdoor</span>
+                                </div>
                                 <p>{{program.specialInstructions}}</p>
                                 <div class="edit_icon cursor">
                                     <a (click)="openModal(isInstruction = true,'')" *ngIf="program.user === this.userId"
@@ -566,8 +558,7 @@
 
 	<div class="container description_text slider carousel-cat"  *ngIf="programs?.length">
 			<div class="forth_section_heading">
-			You might also try these <span class="subCat" (click)="setSubCategoryId(program.subCategoryIds[0]._id)">{{program.subCategoryIds[0].name}} </span> <span *ngIf="program.subCategoryIds?.length>1">or <span class="subCat" (click)="setSubCategoryId(program.subCategoryIds[1]._id)">{{program.subCategoryIds[1].name}}</span></span> activities:
-                <!-- <span class="more-programscolor">{{user.firstName}}</span> -->
+		  <h2 class="might-try">You might also try these <span class="subCat" (click)="setSubCategoryId(program.subCategoryIds[0]._id)">{{program.subCategoryIds[0].name}} </span> <span *ngIf="program.subCategoryIds?.length>1">or <span class="subCat" (click)="setSubCategoryId(program.subCategoryIds[1]._id)">{{program.subCategoryIds[1].name}}</span></span> activities:</h2>
 				<span class="blue_heading cursor" (click)="goToProfile()">VIEW ALL</span>
 			 </div>
 			 <div class="row">
