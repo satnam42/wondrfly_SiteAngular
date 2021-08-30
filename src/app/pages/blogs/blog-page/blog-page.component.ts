@@ -75,7 +75,6 @@ getBlog(){
     console.log(this.blog)
     this.blog.reverse()
     this.ngxLoader.stop()
-    // this.random = this.blog[Math.floor(Math.random() * this.blog.length)]
   });
   }
 

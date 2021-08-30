@@ -363,6 +363,7 @@ this.toDate=e.endDate._d
 
   // ---------------------------------------------get subCateById-------------------------------------
   getSubCateById(cat){
+    this.categoryId = cat.id
     this.selectedCat= cat.id
     this.selectedSubCategories=[]
     this.apiservice.getTagByCategoryId(this.selectedCat).subscribe((res: any) => {
@@ -692,6 +693,11 @@ if(program.userId==''|| program.userId==undefined || !program.userId){ program.u
 
 // / ---------------------------------------------get programs by sub category ids--------------------------------
    programBySubCategoryIds(){
+     if(this.categoryId.length){
+      this.filterByCategory(this.categoryId)
+    }
+    else if(this.selectedSubCategories.length){this.categoryId=''}
+    else{
     this.programs=[]
     this.categoryId=''
     let filter = ``;
@@ -709,13 +715,16 @@ if(program.userId==''|| program.userId==undefined || !program.userId){ program.u
      };
      console.log(filter)
      if(i<=5){
+       this.ngxLoader.start()
     this.apiservice.programBySubCategoryIds(filter,1,100).subscribe((res: any) => {
+      this.ngxLoader.stop()
       this.showReset = true;
       this.programs = res.data
       console.log('programBySubCategoryIds', res);
       this.suggestedSubCategories(this.selectedSubCategories[0])
     })
   }else { this.toast.error( '', 'You Selected More Than 5 SubCategories')}
+}
 }
 
 

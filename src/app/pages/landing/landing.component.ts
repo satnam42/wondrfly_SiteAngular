@@ -5,9 +5,6 @@ import { Category, User } from 'src/app/core/models';
 import { AuthsService } from 'src/app/core/services/auths.service';
 import { DataService } from 'src/app/core/services/dataservice.service ';
 import { Title, Meta } from '@angular/platform-browser';
-import { FormGroup  } from '@angular/forms';
-import { SocialUser } from 'src/app/core/models/social.model';
-import { Globals } from 'src/app/core/common/imageLoader';
 import axios from 'axios';
 import { environment } from 'src/environments/environment';
 
@@ -20,41 +17,17 @@ export class LandingComponent implements OnInit {
   defaultImage = 'https://miro.medium.com/max/441/1*9EBHIOzhE1XfMYoKz1JcsQ.gif';
   errorImage = 'https://i.imgur.com/QsFAQso.jpg';
   blogUrl = environment.blogsUrl;
-  user: SocialUser;
-  userGoogle: SocialUser;
   loggedIn: boolean;
   isMap: boolean = true;
   usersData: any = {};
-  pickDate: any;
   pageNo: number = 1;
   title = 'Best Activities and Programs for Kids in Jersey City - Wondrfly';
   pageSize: number;
-  forums: any;
   categories: any = new Category;
   filterData: any = {
-    categoryId: '',
+    subcatId: '',
     activityName: '',
-    activityDate: ''
   }
-
-
-
-  parentForm: FormGroup;
-  userData: any = {
-    firstName: '',
-    email: '',
-    password: '',
-    role: 'provider',
-    name: '',
-
-    facebookId: '',
-
-    lastName: '',
-    authToken: '',
-    idToken: '',
-    authorizationCode: '',
-  }
-
   message: string = 'Registered Successfully!';
   categoryResponse: any;
   response: any;
@@ -63,7 +36,6 @@ export class LandingComponent implements OnInit {
   landingImages = ['assets/landing/header.jpg',
     'assets/landing/header1.jpg',
   ]
-  googleData: SocialUser;
   blog: any;
   categoriesBySearch: any = new Category;
   providersBySearch: any = new User;
@@ -76,12 +48,9 @@ export class LandingComponent implements OnInit {
     private metaTagService: Meta,
    ) {
   }
-  searchActivityByCategory(id) {
-    this.filterData.categoryId = id
-    this.dataservice.setOption(this.filterData)
-    this.router.navigate(['/search']);
-  }
-  searchActivityByNameDate() {
+  searchBySubCategory(id) {
+    this.filterData.activityName=''
+    this.filterData.subcatId = id
     this.dataservice.setOption(this.filterData)
     this.router.navigate(['/search']);
   }
@@ -90,6 +59,10 @@ export class LandingComponent implements OnInit {
       this.categories = res;
     });
   }
+ searchActivityByNameDate() {
+  this.dataservice.setOption(this.filterData)
+  this.router.navigate(['/search']);
+}
 
   // ------------------------------------------------get blogs  -------------------------------------------
 
@@ -108,11 +81,9 @@ export class LandingComponent implements OnInit {
     this.router.navigate(['blogs/',title, data.id])
   }
 
-
-
-  searchCategory(key){
-    this.apiservice.searchCategory(key).subscribe((res:any)=>{
-  this.categoriesBySearch = res.data;
+  searchSubCategory(key){
+    this.apiservice.searchTag(key).subscribe((res:any)=>{
+  this.categoriesBySearch = res;
     })
   }
   providerSearch(key){
@@ -121,6 +92,7 @@ export class LandingComponent implements OnInit {
     })
   }
   goToProviderProfile(provider) {
+    this.filterData.activityName=''
     var providerName =provider.firstName;
     providerName = providerName.toLowerCase();
     providerName = providerName.replace(/ /g,"-");

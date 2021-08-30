@@ -31,9 +31,8 @@ export class HeaderComponent implements OnInit {
   forumClass: string = ""
   chatClass: string = ""
   filterData: any = {
-    categoryId: '',
+    subcatId: '',
     activityName: '',
-    activityDate: ''
   }
 
 
@@ -234,9 +233,9 @@ canceFeedback(){
     this.router.navigate(['/login']);
 }
 
-searchCategory(key){
-  this.apiservice.searchCategory(key).subscribe((res:any)=>{
-this.categoriesBySearch = res.data;
+searchSubCategory(key){
+  this.apiservice.searchTag(key).subscribe((res:any)=>{
+this.categoriesBySearch = res;
   })
 }
 
@@ -246,13 +245,15 @@ providerSearch(key){
   })
 }
 
-searchActivityByCategory(id) {
-  this.filterData.categoryId = id
+searchBySubCategory(id) {
+  this.filterData.activityName=''
+  this.filterData.subcatId = id
   this.dataservice.setOption(this.filterData)
   this.router.navigate(['/search']);
 }
 
 goToProviderProfile(provider) {
+  this.filterData.activityName=''
   provider.firstName = provider.firstName.toLowerCase();
   provider.firstName = provider.firstName.replace(/ /g,"-");
   provider.firstName = provider.firstName.replace(/\?/g,"-");

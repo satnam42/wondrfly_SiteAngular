@@ -15,7 +15,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './blog-detail.component.html',
   styleUrls: ['./blog-detail.component.css']
 })
-export class BlogDetailComponent implements OnInit, OnDestroy {
+export class BlogDetailComponent implements OnInit {
   defaultImage = 'https://miro.medium.com/max/441/1*9EBHIOzhE1XfMYoKz1JcsQ.gif';
   errorImage = 'assets/main_bg.png';
   commentForm: FormGroup;
@@ -165,9 +165,5 @@ genericSocialShare(provider) {
     const responcee = axios.patch(`${this.blogUrl}/blogs/view/${this.blogDetail.id}`).then(response => {
     });
     }
-ngOnDestroy(){
-  window.document.getElementById("close_modal").click();
-
-}
 
 }

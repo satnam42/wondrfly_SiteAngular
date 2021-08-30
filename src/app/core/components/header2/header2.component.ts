@@ -16,9 +16,8 @@ export class Header2Component implements OnInit {
   routeName: string;
   categoriesBySearch: any;
   filterData: any = {
-    categoryId: '',
+    subcatId: '',
     activityName: '',
-    activityDate: ''
   }
   providersBySearch: any;
   @ViewChild(SearchComponent, { static: true }) footerComponent: SearchComponent;
@@ -44,9 +43,9 @@ export class Header2Component implements OnInit {
   ngOnInit() {
   }
 
-  searchCategory(key){
-    this.apiservice.searchCategory(key).subscribe((res:any)=>{
-  this.categoriesBySearch = res.data;
+  searchSubCategory(key){
+    this.apiservice.searchTag(key).subscribe((res:any)=>{
+  this.categoriesBySearch = res;
     })
   }
 
@@ -57,12 +56,14 @@ export class Header2Component implements OnInit {
   }
 
   searchActivityByCategory(id) {
-    this.filterData.categoryId = id
+    this.filterData.activityName=''
+    this.filterData.subcatId = id
     this.dataservice.setOption(this.filterData)
     this.router.navigate(['/search']);
   }
 
   goToProviderProfile(provider) {
+    this.filterData.activityName=''
     provider.firstName = provider.firstName.toLowerCase();
     provider.firstName = provider.firstName.replace(/ /g,"-");
     provider.firstName = provider.firstName.replace(/\?/g,"-");

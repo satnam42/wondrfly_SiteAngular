@@ -2603,6 +2603,9 @@ button.map-buttonas {
   background: #53B2E8;
   color: white !important;
 }
+.checkbox-checked-name{
+    color: #53B2E8 !important;
+  }
 .form-group.typess .form-control:focus, .form-group.typess input:focus {
   border: 1px solid #E5E9EC !important;
 }

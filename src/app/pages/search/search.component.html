@@ -117,7 +117,7 @@
                                                   value="{{s}}"
                                                    [checked]="s.checked"
                                                    (change)="updateCheckedSubCategories(i, $event)" ></span>
-                                            <h3>{{s.name}}</h3>
+                                            <h3 [class.checkbox-checked-name]="s.checked">{{s.name}}</h3>
                                           </h2>
 
 
