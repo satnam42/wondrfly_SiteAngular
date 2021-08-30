@@ -8,7 +8,7 @@ const routes: Routes = [
   { path: '', component: LandingComponent },
   // { path: '404', component: NotFoundComponent },
   { path: 'search', loadChildren: () => import('.//pages/search/search.module').then(m => m.SearchModule) },
-  { path: 'ambassador-policy', loadChildren: () => import('.//pages/ambassador-policy/ambassador-policy.module').then(m => m.AmbassadorPolicyModule) },
+  // { path: 'ambassador-policy', loadChildren: () => import('.//pages/ambassador-policy/ambassador-policy.module').then(m => m.AmbassadorPolicyModule) },
   { path: '', loadChildren: () => import('./pages/common-pages/common-pages.module').then(m => m.CommonPagesModule) },
   { path: 'contactUs', loadChildren: () => import('.//pages/contact-us/contact-us.module').then(m => m.ContactUsModule) },
 
@@ -28,10 +28,10 @@ const routes: Routes = [
         // data: { title: 'Dashboard', breadcrumb: 'DASHBOARD' }
       },
 
-      {
-        path: 'forum',
-        loadChildren: () => import('.//pages/forum/forum.module').then(m => m.ForumModule),
-      },
+      // {
+      //   path: 'forum',
+      //   loadChildren: () => import('.//pages/forum/forum.module').then(m => m.ForumModule),
+      // },
 
       {
         path: 'faq',

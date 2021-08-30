@@ -8,7 +8,6 @@ import { CoreModule } from 'src/app/core/core.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BlogSearchComponent } from './blog-search/blog-search.component';
 import { BlogsComponent } from './blogs.component';
-import { SignupPopupModule } from 'src/app/core/components/signup-popup/signup-popup.module';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 
@@ -20,7 +19,6 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
     FormsModule,
     CoreModule,
     LazyLoadImageModule,
-    SignupPopupModule,
     RouterModule.forChild(BlogsRoutes)
   ]
 })

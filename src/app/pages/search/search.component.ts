@@ -291,31 +291,10 @@ this.toDate=e.endDate._d
 
   }
  
-  closePopup() {
-
-    if (this.isDateModal) {
-      this.fromDate = null;
-      this.toDate = null;
-      this.isDateModal = false;
-    } else if (this.isTimeModal) {
-      this.toTime = null;
-      this.fromTime = null;
-      this.isTimeModal = false;
-    } else if (this.isAgeModal) {
-      this.maxAge = 12;
-      this.minAge = 3;
-      this.isAgeModal = false;
-    } else if (this.isPriceModal) {
-      this.maxPrice = 250;
-      this.minPrice = 50;
-      this.isPriceModal = false;
-    }
-
-  }
+  
 
 
   resetFilter() {
-    // window.document.getElementById("close_morefilter").click();
     this.activityName = ''
     this.showReset = false;
     this.isOpenFilter = false;
@@ -338,8 +317,6 @@ this.toDate=e.endDate._d
     this.pageNo = 1;
     this.pageSize = 20;
     this.getPublishedProgram();
-    this.closePopup();
-
   }
 
   goToProgramDetail(data) {
@@ -433,20 +410,6 @@ this.toDate=e.endDate._d
             }
 }
 
-  onSearch(val: string) {
-    this.programSearch(val);
-  }
-
-  programSearch(key) {
-    this.activityName = ''
-    this.ngxLoader.start();
-    this.apiservice.programSearch(key).subscribe((res: any) => {
-      if (res) {
-        this.programs = res;
-        this.ngxLoader.stop();
-      }
-    });
-  }
 
 
   getFav(id,toggle) {

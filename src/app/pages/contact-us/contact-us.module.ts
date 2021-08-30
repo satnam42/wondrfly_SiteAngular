@@ -4,8 +4,6 @@ import { ContactUsComponent } from './contact-us.component';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoreModule } from 'src/app/core/core.module';
-import { NgxUiLoaderModule } from 'ngx-ui-loader';
-
 
 const routes: Routes = [
   {
