@@ -1,7 +1,83 @@
 <app-header2 *ngIf="!isLogin"></app-header2>
     <app-header *ngIf="isLogin"></app-header>
 
-    Hi! i am SITEMAP
+    <div class="site-map">
+
+      <header class="page-header">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-12 mt-5 mb-2 mb-md-0 col-md-8 col-lg-6 mx-auto text-center">
+              <h1>Site Map</h1>
+            </div>
+          </div>
+        </div>
+      </header>
 
 
-    <app-footer2></app-footer2>
+      <div class="container">
+        <div class="row mt-5 mb-2 sitemap-wrapper">
+          <div class="col-4 mx-auto mb-4">
+            <h3 class="text-uppercase">About Wondrfly</h3>
+              <ul>
+                <li><a href="https://wondrfly.com/">Home</a></li>
+                <li><a href="https://wondrfly.com/about-wondrfly">About Us</a></li>
+                <li><a href="https://wondrfly.com/sign-up">Create an Account</a></li>
+                <li><a href="https://wondrfly.com/term-condition">Terms & Conditions</a></li>
+                <li><a href="https://wondrfly.com/privacyPolicy">Privacy Policy</a></li>
+                <li><a href="https://wondrfly.com/faq">FAQ</a></li>
+                <li><a href="https://wondrfly.com/contactUs">Contact Us</a></li>
+              </ul>
+          </div>
+          <div class="col-4 mx-auto mb-4">
+            <h3 class="text-uppercase">Blogs</h3>
+              <ul>
+                <li><a href="https://wondrfly.com/blogs/category/exploring-their-interests/9">Exploring Their Interests</a></li>
+                <li><a href="https://wondrfly.com/blogs/category/health-&-happiness/10"> Health & Happiness </a></li>
+                <li><a href="https://wondrfly.com/blogs/category/ages-&-stages/11"> Ages & Stages </a></li>
+                <li><a href="https://wondrfly.com/blogs/category/do-togethers-%28diys-&-more%29/12">Do-Togethers (DIYs & More)</a></li>
+                <li><a href="https://wondrfly.com/blogs/category/parents-plus/13">Parents Plus</a></li>
+              </ul>
+          </div>
+          <div class="col-4 mx-auto mb-4">
+            <h3 class="text-uppercase">Search</h3>
+              <ul>
+                <li><a href="#">Search By Category</a></li>
+              </ul>
+          </div>
+        </div>
+
+        <div class="row mt-5 mb-2 sitemap-wrapper">
+          <div class="col-4 mx-auto mb-4">
+            <h3 class="text-uppercase">Programs</h3>
+              <ul>
+                <li><a href="#">Sports & Fitness</a></li>
+                <li><a href="#">Music</a></li>
+                <li><a href="#">Dance</a></li>
+                <li><a href="#">Learning</a></li>
+                <li><a href="#">Art & Craft</a></li>
+                <li><a href="#">Martial Arts</a></li>
+                <li><a href="#">Languages</a></li>
+                <li><a href="#">Theatre & Drama</a></li>
+                <li><a href="#">Parties</a></li>
+                <li><a href="#">Child Care</a></li>
+                <li><a href="#">School</a></li>
+                <li><a href="#">Others</a></li>
+              </ul>
+          </div>
+          <div class="col-4 mx-auto mb-4">
+            <h3 class="text-uppercase">Profile</h3>
+              <ul>
+                <li><a href="#">Create an Account</a></li>
+                <li><a href="#">Profile Details</a></li>
+                <li><a href="#">Forget Password</a></li>
+              </ul>
+          </div>
+          <div class="col-4 mx-auto mb-4">
+            <h3 class="text-uppercase">Other</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <app-footer></app-footer>

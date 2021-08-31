@@ -1,0 +1,31 @@
+.page-header h1 {
+  text-transform: uppercase;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-size: 40px;
+  font-size: 2.5rem;
+  margin: 0;
+}
+.sitemap-wrapper h3 {
+  margin: 0;
+  text-transform: uppercase;
+  font-size: 20px;
+  font-size: 1.25rem;
+  font-weight: 900;
+  margin-bottom: 20px;
+}
+.sitemap-wrapper ul {
+  margin: 0;
+  padding-left: 20px;
+}
+.sitemap-wrapper ul li a {
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #53b2e8;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 22px;
+}
+.sitemap-wrapper ul li{
+  list-style-type: disc;
+}
