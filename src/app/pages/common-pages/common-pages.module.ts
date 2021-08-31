@@ -6,6 +6,7 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
 import { WhyWondrflyComponent } from './why-wondrfly/why-wondrfly.component';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { CoreModule } from 'src/app/core/core.module';
+import { MarkdownModule } from 'src/app/core/shared/markdown/markdown.module';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { CoreModule } from 'src/app/core/core.module';
     CommonModule,
     CoreModule,
     CommonPagesRoutingModule,
-    LazyLoadImageModule
+    LazyLoadImageModule,
+    MarkdownModule,
   ]
 })
 export class CommonPagesModule { }

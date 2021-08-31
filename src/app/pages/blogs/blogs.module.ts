@@ -9,6 +9,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BlogSearchComponent } from './blog-search/blog-search.component';
 import { BlogsComponent } from './blogs.component';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { MarkdownModule } from 'src/app/core/shared/markdown/markdown.module';
+import { ReadMoreModule } from 'src/app/core/components/read-more/read-more.module';
 
 
 @NgModule({
@@ -18,6 +20,8 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
     ReactiveFormsModule,
     FormsModule,
     CoreModule,
+    ReadMoreModule,
+    MarkdownModule,
     LazyLoadImageModule,
     RouterModule.forChild(BlogsRoutes)
   ]

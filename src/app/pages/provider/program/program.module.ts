@@ -21,6 +21,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { MatInputModule } from '@angular/material/input';
+import { ReadMoreModule } from 'src/app/core/components/read-more/read-more.module';
 
 @NgModule({
   entryComponents: [ ModalComponent],
@@ -42,6 +43,7 @@ import { MatInputModule } from '@angular/material/input';
     RatingModule,
     DragDropModule,
     ChartsModule,
+    ReadMoreModule,
     LazyLoadImageModule,
     InfiniteScrollModule,
     NgxSliderModule,

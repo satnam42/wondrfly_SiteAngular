@@ -7,21 +7,17 @@ import { AuthsService } from './services/auths.service';
 import { UserGuard } from './guards/user.guard';
 import { Header2Component } from './components/header2/header2.component';
 import { Footer2Component } from './components/footer2/footer2.component';
-import { ReadMoreComponent } from './components/read-more/read-more.component';
 import { RouterModule } from '@angular/router';
-import { MarkdwonPipe } from './shared/markdwon.pipe';
 import { MatIconModule } from '@angular/material/icon';
 import {MatChipsModule} from '@angular/material/chips';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
-import { SitemapComponent } from './components/sitemap/sitemap.component';
+
 
 const components = [
   HeaderComponent,
   FooterComponent,
   Header2Component,
   Footer2Component,
-  ReadMoreComponent,
-  MarkdwonPipe,
 ]
 const thirdPartyModules = [
   MatIconModule,

@@ -3,7 +3,6 @@ import { Meta, Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import axios from 'axios';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { MarkdwonPipe } from 'src/app/core/shared/markdwon.pipe';
 import { environment } from 'src/environments/environment';
 
 @Component({
