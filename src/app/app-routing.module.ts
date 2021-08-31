@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: 'search', loadChildren: () => import('.//pages/search/search.module').then(m => m.SearchModule) },
   { path: '', loadChildren: () => import('./pages/common-pages/common-pages.module').then(m => m.CommonPagesModule) },
   { path: 'contactUs', loadChildren: () => import('.//pages/contact-us/contact-us.module').then(m => m.ContactUsModule) },
-
+  { path: 'sitemap', loadChildren: () => import('.//core/components/sitemap/sitemap.module').then(m => m.SitemapModule) },
       {
         path: 'program',
         loadChildren: () => import('.//pages/provider/program/program.module').then(m => m.ProgramModule),

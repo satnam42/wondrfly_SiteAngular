@@ -13,6 +13,7 @@ import { MarkdwonPipe } from './shared/markdwon.pipe';
 import { MatIconModule } from '@angular/material/icon';
 import {MatChipsModule} from '@angular/material/chips';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
+import { SitemapComponent } from './components/sitemap/sitemap.component';
 
 const components = [
   HeaderComponent,
@@ -46,7 +47,7 @@ const guards = [
     
     ...thirdPartyModules,
   ],
-  declarations: [...components, ],
+  declarations: [...components ],
   exports: [...thirdPartyModules, ...components],
   entryComponents: [],
   providers: [
