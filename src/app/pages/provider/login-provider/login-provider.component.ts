@@ -5,7 +5,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { User } from 'src/app/core/models';
 import { HeaderComponent } from 'src/app/core/components/header/header.component';
-
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MapsAPILoader } from '@agm/core';
 import { ElementRef, NgZone } from '@angular/core';

@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { SearchRoutingModule } from './search-routing.module';
 import { SearchComponent } from './search.component';
 import { CoreModule } from 'src/app/core/core.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { AgmCoreModule } from '@agm/core';
 import { OnlineProgramsComponent } from 'src/app/core/components/online-programs/online-programs.component';
@@ -12,7 +12,6 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { RatingModule } from 'src/app/core/components/rating/rating.module';
 import { SignupPopupModule } from 'src/app/core/components/signup-popup/signup-popup.module';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 @NgModule({
   declarations: [SearchComponent, OnlineProgramsComponent],
@@ -26,12 +25,9 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
     SignupPopupModule,
     LazyLoadImageModule,
     NgxDaterangepickerMd.forRoot(),
-    NgxDaterangepickerMd,
     AgmCoreModule,
     NgxSliderModule,
     sharePopupModule,
-    
-
   ]
 })
 export class SearchModule { }

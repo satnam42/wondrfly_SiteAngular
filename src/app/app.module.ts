@@ -26,7 +26,6 @@ const config: SocketIoConfig = { url: environment.socketUrl, options: {} };
   declarations: [
     AppComponent,
     LandingComponent,
-    // NotFoundComponent
   ],
   imports: [
     BrowserModule,

@@ -54,7 +54,6 @@ export class LoginParentComponent implements OnInit {
   constructor(private router: Router,
     private apiservice: ApiService,
     private ngxLoader: NgxUiLoaderService,
-
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
     public mapTheme:MapTheme,
@@ -167,9 +166,6 @@ export class LoginParentComponent implements OnInit {
   }
   }
 
-  onFocused(e) {
-    // do something when input is focused
-  }
 
    // ------------------------------------------get categories-----------------------------------------------------------------
   getCategoryList() {

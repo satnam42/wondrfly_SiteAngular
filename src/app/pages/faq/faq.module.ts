@@ -6,7 +6,7 @@ import { FaqHelpDeskComponent } from './faq-help-desk/faq-help-desk.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { CoreModule } from 'src/app/core/core.module';
 import { FormsModule } from '@angular/forms';
-import { Ng2SearchPipe, Ng2SearchPipeModule } from 'ng2-search-filter';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FaqComponent } from './faq.component';
 
 
@@ -16,7 +16,6 @@ import { FaqComponent } from './faq.component';
     CommonModule,
     FaqRoutingModule,
     CoreModule,
-    CommonModule,
     FormsModule,
     Ng2SearchPipeModule
   ]

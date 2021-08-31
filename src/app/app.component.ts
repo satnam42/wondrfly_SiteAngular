@@ -9,7 +9,6 @@ import { CanonicalService } from './core/shared/canonical.service';
 })
 export class AppComponent implements OnInit {
   envName: string;
-  isLogin = false;
   constructor(
     private canonicalService: CanonicalService, ) {
     if (environment.name && environment.name !== 'prod') {
