@@ -39,8 +39,6 @@ const guards = [
     CommonModule,
     RouterModule,
     FormsModule,
-    ReactiveFormsModule,
-    
     ...thirdPartyModules,
   ],
   declarations: [...components ],
