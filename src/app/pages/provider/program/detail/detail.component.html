@@ -150,6 +150,7 @@
                                                     </div>
                                                 </span>
                                             </h3>
+                                            <div class="programInfo">
                                             <p><img src="assets/loction_pin.svg" alt="Loction Pin">{{program.location}}
                                             </p>
                                             <p><img src="assets/calendar_orange.svg"
@@ -168,9 +169,9 @@
 
                                             <p *ngIf="!program.isFree"><img src="assets/pricet.svg" alt="price tag"> ${{program.pricePerParticipant}}<span *ngIf="program.pricePeriod.periodAmount">/{{program.pricePeriod.periodAmount}}</span> </p>
                                             <p *ngIf="program.isFree"><img src="assets/pricet.svg" alt="price tag"> Free </p>
-
+                                        </div>
                                             <button class="camp-btn">
-                                              Camp
+                                             {{program?.subCategoryIds[0].name}}
                                             </button>
 
                                         </div>

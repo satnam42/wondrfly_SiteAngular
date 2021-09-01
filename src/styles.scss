@@ -1,15 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
-@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
-@import "~ng-pick-datetime/assets/style/picker.min.css";
 @import "src/colors.scss";
 @mixin styleStepLine($index) {
-    .mat-horizontal-stepper-header {
-        &+.mat-stepper-horizontal-line:nth-child(#{$index}) {
-            height: 3px;
-            border-top-width: 1px;
-            background-image: linear-gradient(to right, #FA627D, #FA627D) !important;
-        }
-    }
+   
 }
 
 .last-edited-step-1 {
@@ -300,49 +292,6 @@ input.input_search {
     background: url(assets/gps_icon.svg) no-repeat $white;
     background-position: 97% 13px;
 }
-
-
-/* /////////////////////drag drop file css starts///////////// */
-.files input {
-    -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
-    transition: outline-offset .15s ease-in-out, background-color .15s linear;
-    padding: 95px 0px 105px 18%;
-    text-align: center !important;
-}
-.files{ position:relative}
-.files:after {  pointer-events: none;
-    position: absolute;
-    top: 30px;
-    left: 0;
-    width: 50px;
-    right: 0;
-    height: 56px;
-    content: "";
-    background-image: url(assets/drgDrop.svg);
-    display: block;
-    margin: 0 auto;
-    background-size: 100%;
-    background-repeat: no-repeat;
-}
-.color input{ background-color:#f1f1f1;}
-.files:before {
-    position: absolute;
-    bottom:0px;
-    left: 0;  pointer-events: none;
-    width: 100%;
-    right: 0;
-    height: 57px;
-    content: "Drag & Drop Timeline Photo ";
-    display: block;
-    margin: 0 auto;
-    color: #494949;
-    font-weight: 600;
-    text-transform: capitalize;
-    text-align: center;
-}
-/* /////////////////////drag drop file css end///////////// */
-
-
 
 
 @font-face {

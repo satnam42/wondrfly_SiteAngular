@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { FooterComponent } from '../../app/core/components/footer/footer.component';
 import { HeaderComponent } from '../../app/core/components/header/header.component';
 import { AuthsService } from './services/auths.service';

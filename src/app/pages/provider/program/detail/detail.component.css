@@ -1073,6 +1073,13 @@ agm-map {
     min-height: 28px !important;
     margin: 45px 0px 1px -17px;
 }
+.programInfo {
+    width: 87%;
+    float: left;
+}
+
+
+
 @media(min-width:768px){
     .edit_logo {
     bottom: 15px;

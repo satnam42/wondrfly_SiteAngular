@@ -6,17 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./provider.component.css']
 })
 export class ProviderComponent implements OnInit {
-  isLogin = false;
-  userData: any = {};
-  routeName: string;
-  hideHeaderFooter: boolean=false;
-
   constructor() {
-    if(this.routeName === '/loginProvider'){this.hideHeaderFooter=true}
-    this.userData = JSON.parse(localStorage.getItem('userData'));
-    if (this.userData) {
-      this.isLogin = true;
-    }
+ 
    }
 
   ngOnInit(): void {
