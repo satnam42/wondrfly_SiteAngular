@@ -114,10 +114,11 @@
                                                  class="k-checkbox categories-checkbox"
                                                  id="categoriescheck"
                                                   name="categoriescheck"
+                                                  [disabled]="s.programCount<=1"
                                                   value="{{s}}"
                                                    [checked]="s.checked"
                                                    (change)="updateCheckedSubCategories(i, $event)" ></span>
-                                            <h3 [class.checkbox-checked-name]="s.checked">{{s.name}}</h3>
+                                            <h3 [class.checkbox-checked-name]="s.checked">{{s.name}}<span>({{s.programCount}})</span></h3>
                                           </h2>
 
 
@@ -153,7 +154,7 @@
                         </li>
                         <li class="cursor">
                             <a aria-expanded="true" [ngClass]="{'active' : isTypeFilter}" aria-expanded="true" data-target="#typess" data-toggle="collapse"
-                            (click)="filterName='type';openModal(isCategoryFilter=false,isChildFilter=false,isPriceFilter=false,isDateFilter=false,isAgeFilter=false,isTimeFilter=false,isCategoryModal=false,isChildModal=false,isPriceModal=false,isTypeFilter=true,isDateModal=false,isAgeModal=false)">Type</a>
+                            (click)="filterName='type';openModal(isCategoryFilter=false,'l',isPriceFilter=false,isDateFilter=false,isAgeFilter=false,isTimeFilter=false,isCategoryModal=false,'s',isPriceModal=false,isTypeFilter=true,isDateModal=false,isAgeModal=false)">Type</a>
                             <div class="collapse main_collpase typess verification_modal" id="typess"
                             data-parent="#accordionExample">
                             <div class="collpase_content">
@@ -185,7 +186,7 @@
                         </li>
                         <li class="cursor">
                             <a [ngClass]="{'active' : isDateFilter}"
-                                (click)="filterName='date';openModal(isCategoryFilter=false,isTypeFilter=false, isPriceFilter=false,isDateFilter=true,isAgeFilter=false,isTimeFilter=false,isCategoryModal=false,isChildModal=false,isPriceModal=false,isDateModal=true,isAgeModal=false,isTimeModal=false)"
+                                (click)="filterName='date';openModal(isCategoryFilter=false,isTypeFilter=false, isPriceFilter=false,isDateFilter=true,isAgeFilter=false,isTimeFilter=false,isCategoryModal=false,'h',isPriceModal=false,isDateModal=true,isAgeModal=false,isTimeModal=false)"
                                 aria-expanded="true" data-target="#date" data-toggle="collapse">Dates</a>
                             <div class="collapse main_collpase verification_modal date-rangecal" id="date"
                                 data-parent="#accordionExample">

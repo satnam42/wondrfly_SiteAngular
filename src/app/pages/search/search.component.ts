@@ -25,7 +25,6 @@ export class SearchComponent implements OnInit {
   isAgeFilter: boolean = false;
   isTopFilter: boolean= false;
   isTopFilterCheckBox:boolean=false;
-  isChildFilter: boolean = false;
   isPriceFilter: boolean = false;
   isTypeFilter: boolean = false;
   isOpenFilter: boolean = false;
@@ -34,7 +33,6 @@ export class SearchComponent implements OnInit {
   isDateModal: boolean = false;
   isTimeModal: boolean = false;
   isAgeModal: boolean = false;
-  isChildModal: boolean = false;
   isPriceModal: boolean = false;
   isDaysModal: boolean = false;
   isCategoryModal: boolean = false;
@@ -366,6 +364,7 @@ this.toDate=e.endDate._d
     this.selectedSubCategories=[]
     this.apiservice.getTagByCategoryId(this.selectedCat).subscribe((res: any) => {
       this.subCats = res.data
+      console.log(this.subCats)
     })
   }
 
@@ -416,7 +415,6 @@ this.toDate=e.endDate._d
 if(toggle){
     this.isDateFilter = false;
     this.isAgeFilter = false;
-    this.isChildFilter = false;
     this.isPriceFilter = false
     this.isOpenFilter = false
     this.isCategoryFilter = false
@@ -457,7 +455,6 @@ if(toggle){
     this.isCategoryFilter = false
     this.isDateFilter = false
     this.isAgeFilter = false
-    this.isChildFilter = false
     this.isPriceFilter = false
     this.isOpenFilter = false
     this.isSavedFilter = false

@@ -23,7 +23,6 @@ export class Header2Component implements OnInit {
   @ViewChild(SearchComponent, { static: true }) footerComponent: SearchComponent;
   constructor(
     private router: Router,
-    public imageLoader: Globals,
     private apiservice: ApiService,
     private dataservice: DataService
   ) {

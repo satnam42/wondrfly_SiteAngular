@@ -160,12 +160,16 @@
 
             <div class="header-lefticons" *ngIf="!isLogin">
               <a  class="noti-lefticon cursor"  data-toggle="modal" data-target="#NotificationModal">
-                <span class="icon "><img src="assets/Notification-icon.svg" alt="Logo">
-                  <span class="Button-badge">99</span>
+                <span class="icon rel"><img src="assets/Notification-icon.svg" alt="Logo">
+                  <span class="Button-badge" *ngIf='user.notices?.count' >
+                    <span *ngIf='user.notices?.count<=9'>{{user.notices?.count}}</span>
+                    <span *ngIf='user.notices?.count>9'>{{user.notices?.count}}+</span>
+                  </span>
                 </span>
               </a>
               <a  class="share-lefticon cursor"  (click)='savedList()'>
-                <span class="icon "><img src="assets/bookmark_gray.svg" alt="Logo"></span>
+                <span class="icon rel"><img src="assets/bookmark_gray.svg" alt="Logo">
+                </span>
               </a>
             </div>
 
