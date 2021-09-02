@@ -2514,6 +2514,57 @@ button.map-buttonas {
   margin-left: 23px;
 }
 
+}
+
+
+@media screen and (min-width:992px) and (max-width:1023px)  {
+
+  .activity .media-left {
+    max-width:200px;
+  }
+  .banner_form .form-group input.camp_input {
+    min-width: 130px;
+  }
+  .search-location:before {
+    left: 44%;
+  }
+  .search-location input {
+    min-width: 215px;
+}
+.star-daialogbox{
+  width: 330px;
+}
+.main_collpases{
+  top: -24px;
+  width: 230px;
+  min-width: 230px;
+}
+.partcategory{
+  min-width: 840px !important;
+  padding: 0px;
+}
+.partcategory {
+  min-width: 850px !important;
+}
+.activity .media-body h2 {
+  font-size: 14px;
+}
+.star-daialogbox {
+    width: 230px;
+  }
+  .activity .media-left {
+    height: 170px;
+    max-height: 200px;}
+
+    .list p{
+      font-weight: normal;
+      font-size: 12px;}
+
+      .similar-cate img {
+        width: 100%;
+        height: 120px;}
+
+
 
 
 }

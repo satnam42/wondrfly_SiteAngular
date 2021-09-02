@@ -24,7 +24,7 @@
     width: 80%;
     height: 80px;
     position: relative;
-    
+
 }
 
 .banner_form .form-group {
@@ -337,11 +337,29 @@ span.upper-blog-view {
 
 
 
-
-
-
 @media only screen and (min-width:1024px) and (max-width:1366px) and (orientation: portrait)  {
     .container, .container-lg, .container-md, .container-sm {
         max-width: 960px;
     }
+}
+
+
+@media only screen and (min-width:992px) and (max-width:1024px) and (orientation: portrait)  {
+
+  img.header-image-search {
+      margin-left: 0px;
+  }
+  .after-nav{
+      margin-right: 0px;
+  }
+  .activity .media-left {
+    max-width: 300px;
+  }
+
+
+
+
+
+
+
 }

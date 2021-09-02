@@ -2180,3 +2180,24 @@ span.icon.rel {
   margin-right: -15px;
 }
 }
+
+
+@media screen and (min-width:992px) and (max-width:1023px)  {
+
+  img.header-image-search {
+      margin-left: 0px;
+  }
+  .after-nav{
+      margin-right: 0px;
+  }
+  .activity .media-left {
+    max-width: 300px;
+  }
+
+
+
+
+
+
+
+}
