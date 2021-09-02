@@ -584,6 +584,7 @@ switch(this.timeSession){
         this.isScrol = true;
       }
     });
+    this.ngxLoader.stop()
   }
 
    // ---------------------------------------------getinpersonOrVirtual------------------------------
