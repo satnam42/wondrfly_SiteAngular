@@ -507,39 +507,39 @@ if(toggle){
 console.log('this.timeSession>>>>>>>>>',this.timeSession)
 switch(this.timeSession){
   case 'early-morning':{
-    this.fromTime = new Date('')
-    this.toTime = new Date('')
+    this.fromTime = new Date("2015-01-01T06:00:00.000z")
+      this.toTime = new Date("2050-01-01T09:00:00.000z")
   break;
   }
     case 'morning':{
-      this.fromTime = new Date('')
-      this.toTime = new Date('')
+      this.fromTime = new Date("2015-01-01T09:00:00.000z")
+      this.toTime = new Date("2050-01-01T12:00:00.000z")
   break;
     }
       case 'afternoon':{
-        this.fromTime = new Date('')
-            this.toTime = new Date('')
+        this.fromTime = new Date("2015-01-01T12:00:00.000z")
+        this.toTime = new Date("2015-01-01T15:00:00.000z")
   break;
       }
         case 'late-afternoon':{
-          this.fromTime = new Date('')
-          this.toTime = new Date('')
+          this.fromTime = new Date("2015-01-01T15:00:00.000z")
+          this.toTime = new Date("2050-01-01T18:00:00.000z")
   break;
         }
           case 'evening':{
-            this.fromTime = new Date('')
-            this.toTime = new Date('')
+            this.fromTime = new Date("2015-01-01T18:00:00.000z")
+            this.toTime = new Date("2050-01-01T21:00:00.000z")
   break;
           }
           default: {
-            this.fromTime = new Date('')
-            this.toTime = new Date('')
+            this.fromTime = new Date("2015-01-01T00:00:01.000z")
+            this.toTime = new Date("2050-01-01T23:59:00.000z")
           }
 }
     console.log('time session>>>>>>>>>',this.timeSession)
     var filter = ``
-    from = this.fromTime;
-    to = this.toTime;
+    from = this.fromTime.toISOString();
+    to = this.toTime.toISOString();
     if(this.fromDate && this.toDate){
     this.fromDate = moment(this.fromDate).format(dateFormat);
     this.toDate = moment(this.toDate).format(dateFormat);
@@ -574,6 +574,7 @@ switch(this.timeSession){
       // filter = `ageFrom=${this.minAge}&ageTo=${this.maxAge}&fromTime=${from}&toTime=${to}&fromDate=${this.fromDate}&toDate=${this.toDate}&priceFrom=${this.minPrice}&priceTo=${this.maxPrice}&inpersonOrVirtual=${inpersonOrVirtual}&type1=${this.type1}&type2=${this.type2}&day=${this.day}`
       console.log('filter>>>>>>>>>>>>',filter)
     this.ngxLoader.start()
+    this.programs=[]
     this.apiservice.programFilter(filter, this.pageNo, this.pageSize).subscribe((res: any) => {
       this.ngxLoader.stop()
       console.log('filter response', res);
