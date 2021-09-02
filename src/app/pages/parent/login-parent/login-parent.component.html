@@ -32,7 +32,7 @@
             </div>
             <div class="img_container">
                 <div class="map">
-                <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom" [styles]="mapTheme?.styles" [zoomControl]="false" [streetViewControl]="false">
+                <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom" [zoomControl]="false" [streetViewControl]="false">
                     <div>
                         <agm-marker  [iconUrl]="markerUrl"
                             [latitude]="latitude" [longitude]="longitude">
@@ -156,8 +156,8 @@
                   <div class="col-3" *ngFor="let tag of tags | slice:0:8">
                       <div  class="category_list" (click)="selectSkills(tag)" >
                         <div class="box-border" [ngClass]="{'active':tag.active}">
-                          <!-- <img class="cat_img my_box"
-                              src="https://wondrfly.com/{{tag.categoryIds[0].imageUrl}}" alt=""> -->
+                          <img class="cat_img my_box"
+                              src="https://wondrfly.com/{{tag.categoryIds[0].iconUrl}}" alt="">
                             </div>
                          
                           <span [ngClass]="{'active':tag.active}"> {{tag.name}}</span>
@@ -237,8 +237,8 @@
               <div class="col-3" *ngFor="let tag of tags | slice:9:17">
                 <div  class="category_list" (click)="selectSkills(tag)" >
                   <div class="box-border" [ngClass]="{'active':tag.active}">
-                    <!-- <img class="cat_img my_box"
-                        src="https://wondrfly.com/{{tag.categoryIds[0].imageUrl}}" alt=""> -->
+                    <img class="cat_img my_box"
+                        src="https://wondrfly.com/{{tag.categoryIds[0].iconUrl}}" alt="">
                       </div>
                    
                     <span [ngClass]="{'active':tag.active}"> {{tag.name}}</span>

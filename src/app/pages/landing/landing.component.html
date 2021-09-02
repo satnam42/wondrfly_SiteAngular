@@ -95,7 +95,7 @@
                             <div class="lower-blog" *ngFor='let b of blog |slice:0:3;'>
                                 <div class="lower-img">
                                     <!-- <img class="blog_img cursor" src="{{blogUrl}}{{b?.image[0]?.url}}" (click)='setBlog(b)'> -->
-                                    <img class="blog_img cursor" [defaultImage]="defaultImage" lazyLoad="{{blogUrl}}{{b?.image[0]?.url}}"  (click)='setBlog(b)'/>
+                                    <img class="blog_img cursor" src="{{blogUrl}}{{b?.image[0]?.url}}"  (click)='setBlog(b)'/>
                                 </div>
                                 <div class="lower-content" >
                                     <h2 class="lower-blog-heading cursor" (click)='setBlog(b)'>{{b.title}}

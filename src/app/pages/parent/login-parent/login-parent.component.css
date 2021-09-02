@@ -155,9 +155,9 @@ input.my_inputs.ng-untouched.ng-pristine.ng-invalid::placeholder {
   .small_boxes .my_box {
     box-sizing: border-box;
     border-radius: 20px;
-    width: 90px;
-    height: 90px;
-    object-fit:contain;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
   .small_boxes .col-3 {
     padding: 6px 4px;
@@ -290,7 +290,6 @@ input.my_inputs.ng-untouched.ng-pristine.ng-invalid::placeholder {
     margin-left: auto;
     margin-right: auto;
     border-radius: 20px;
-    padding: 10px;
 }
   ::ng-deep.agm-map-container-inner {
       width: inherit;

@@ -507,33 +507,33 @@ if(toggle){
 console.log('this.timeSession>>>>>>>>>',this.timeSession)
 switch(this.timeSession){
   case 'early-morning':{
-  this.fromTime ='2019-01-01T06:00:00.000Z';
-  this.toTime = '2050-01-01T09:00:00.000Z';
+    this.fromTime = new Date('')
+    this.toTime = new Date('')
   break;
   }
     case 'morning':{
-      this.fromTime ='2019-01-01T09:00:00.000Z';
-  this.toTime = '2050-01-01T12:00:00.000Z';
+      this.fromTime = new Date('')
+      this.toTime = new Date('')
   break;
     }
       case 'afternoon':{
-        this.fromTime ='2019-01-01T12:00:00.000Z';
-        this.toTime = '2050-01-01T15:00:00.000Z';
+        this.fromTime = new Date('')
+            this.toTime = new Date('')
   break;
       }
         case 'late-afternoon':{
-          this.fromTime ='2019-01-01T15:00:00.000Z';
-          this.toTime = '2050-01-01T18:00:00.000Z';
+          this.fromTime = new Date('')
+          this.toTime = new Date('')
   break;
         }
           case 'evening':{
-            this.fromTime ='2019-01-01T18:00:00.000Z';
-            this.toTime = '2050-01-01T21:00:00.000Z';
+            this.fromTime = new Date('')
+            this.toTime = new Date('')
   break;
           }
           default: {
-            this.fromTime ='2019-01-01T00:00:00.000Z';
-  this.toTime = '2050-01-01T23:59:00.000Z';
+            this.fromTime = new Date('')
+            this.toTime = new Date('')
           }
 }
     console.log('time session>>>>>>>>>',this.timeSession)
