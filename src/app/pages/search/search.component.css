@@ -2431,7 +2431,7 @@ button.map-buttonas {
 
 
 
-@media only screen and (min-width:1024px) and (max-width:1366px) and (orientation: portrait)  {
+@media only screen and (min-width:1024px) and (max-width:1366px) and (orientation: portrait) {
 .activity .media-left {
     max-width: 200px;
     width: 200px;
@@ -2506,18 +2506,27 @@ button.map-buttonas {
 .banner_form .form-group input.camp_input {
   max-width: 182px;
   min-width: 182px;
+
 }
+
+
+
+}
+@media only screen and (min-width:1024px) and (max-width:1200px) {
 .search-location:before {
   left: 43%;
 }
 .search-location {
   margin-left: 23px;
 }
+.search-location input {
+    min-width: 200px;
+}
+.banner_form .form-group input.camp_input{
+  min-width: 190px;}
 
 }
-
-
-@media screen and (min-width:850px) and (max-width:1023px)  {
+@media screen and (min-width:850px) and (max-width:1023px) {
 
   .activity .media-left {
     max-width:200px;
@@ -2529,7 +2538,7 @@ button.map-buttonas {
     left: 44%;
   }
   .search-location input {
-    min-width: 215px;
+    min-width: 200px;
 }
 .star-daialogbox{
   width: 330px;
@@ -2563,8 +2572,5 @@ button.map-buttonas {
       .similar-cate img {
         width: 100%;
         height: 120px;}
-
-
-
-
 }
+

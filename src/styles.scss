@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import "src/colors.scss";
 @mixin styleStepLine($index) {
-   
+
 }
 
 .last-edited-step-1 {
@@ -1402,10 +1402,6 @@ button.btn.btn-Grade2 {
         position: absolute !important;
         top: 50%;
         transform: translateY(-50%);
-    }
-
-    .header_main img {
-        max-width: 100px;
     }
     header .header_main .nav-link {
         padding: 14px 10px 5px !important;

@@ -2175,14 +2175,17 @@ input.form-control, button{
 span.icon.rel {
     position: relative;
 }
-@media only screen and (min-width:1024px) and (max-width:1366px) and (orientation: portrait)  {
-.after-nav {
-  margin-right: -15px;
-}
+@media only screen and (min-width:1024px) and (max-width:1200px) {
+  .after-nav {
+    margin-right:-17px;
+  }
+  img.header-image-search{
+      margin-left:-17px;
+  }
 }
 
 
-@media screen and (min-width:992px) and (max-width:1023px)  {
+@media screen and (min-width:850px) and (max-width:1023px)  {
 
   img.header-image-search {
       margin-left: 0px;
