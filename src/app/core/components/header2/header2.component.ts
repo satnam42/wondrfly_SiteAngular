@@ -37,7 +37,11 @@ export class Header2Component implements OnInit {
     this.router.navigate(['/search']);
   }
   logo() {
-    this.router.navigate(['/search']);
+    if(this.logoPosition){
+      this.router.navigate(['']);
+}else{
+this.router.navigate(['/search']);
+}
   }
   ngOnInit() {
   }

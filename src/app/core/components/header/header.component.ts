@@ -77,7 +77,11 @@ export class HeaderComponent implements OnInit {
     this.getProfileProgress()
   }
   logo() {
+    if(this.logoPosition){
+          this.router.navigate(['']);
+  }else{
     this.router.navigate(['/search']);
+  }
   }
   addProgram() {
     this.router.navigate(['/program/add']);

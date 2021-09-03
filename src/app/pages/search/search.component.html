@@ -111,10 +111,10 @@
                                         <div class="col-7 sub-categoriesfiltercontent">
                                           <h2 *ngFor="let s of subCats; let i = index">
                                               <span><input type="checkbox"
+                                                [disabled]="!s?.programCount"
                                                  class="k-checkbox categories-checkbox"
                                                  id="categoriescheck"
                                                   name="categoriescheck"
-                                                  [disabled]="s.programCount<=1"
                                                   value="{{s}}"
                                                    [checked]="s.checked"
                                                    (change)="updateCheckedSubCategories(i, $event)" ></span>
@@ -676,7 +676,7 @@
 
 <share-popup [shareData]="selectedProgram"></share-popup>
 
-<ngx-ui-loader  fgsSize="40" bgsSize="40" 
+<ngx-ui-loader  fgsSize="40" bgsSize="40"
     overlayColor="rgba(40,40,40,0.12)">
 </ngx-ui-loader>
 <app-footer2></app-footer2>
