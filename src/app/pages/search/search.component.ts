@@ -203,7 +203,7 @@ this.toDate=e.endDate._d
     );
     this.metaTagService.addTag(
       { name: 'keywords', content: 'kid friendly search,kids activities search, kids programs search'}
-    ); 
+    );
 
     window.scroll(0, 0);
     if (this.categoryId) {
@@ -218,6 +218,9 @@ this.toDate=e.endDate._d
           else if(this.selectedSubCategories.length){
                this.programBySubCategoryIds()
             }
+            else if(this.filterData.categoryId){
+              this.programBySubCategoryIds()
+           }
        else {
         this.getPublishedProgram();
       }
@@ -286,8 +289,8 @@ this.toDate=e.endDate._d
   openModal(a, b, c, d, e, f, g, h, i, j, k, l) {
 
   }
- 
-  
+
+
 
 
   resetFilter() {
@@ -346,7 +349,7 @@ this.toDate=e.endDate._d
       });
     this.ngxLoader.stop()
   }
- 
+
 
   // ---------------------------------------------get categories-------------------------------------
   getCategory() {

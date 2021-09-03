@@ -21,6 +21,7 @@ export class LandingComponent implements OnInit {
   categories: any = new Category;
   filterData: any = {
     subcatId: '',
+    categoryId:'',
     activityName: '',
   }
   categoryResponse: any;
@@ -43,6 +44,12 @@ export class LandingComponent implements OnInit {
   searchBySubCategory(id) {
     this.filterData.activityName=''
     this.filterData.subcatId = id
+    this.dataservice.setOption(this.filterData)
+    this.router.navigate(['/search']);
+  }
+  searchByCategory(id) {
+    this.filterData.activityName=''
+    this.filterData.categoryId = id
     this.dataservice.setOption(this.filterData)
     this.router.navigate(['/search']);
   }
@@ -101,6 +108,6 @@ export class LandingComponent implements OnInit {
     );
     this.metaTagService.addTag(
       { name: 'keywords', content: 'Best Activities and Programs, activities near me for toddlers, fitness classes for kids, online music lessons, online art classes' }
-    );    
+    );
   }
 }
