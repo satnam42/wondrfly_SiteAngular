@@ -16,8 +16,8 @@ import { MapTheme } from 'src/app/core/common/map-theme';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { Options } from '@angular-slider/ngx-slider';
 import { ToastrService } from 'ngx-toastr';
-import { environment } from 'src/environments/environment';
 import { DataService } from 'src/app/core/services/dataservice.service ';
+import { environment } from 'src/environments/environment.prod';
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',

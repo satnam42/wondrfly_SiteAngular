@@ -100,7 +100,7 @@
                                 <div class="lower-content" >
                                     <h2 class="lower-blog-heading cursor" (click)='setBlog(b)'>{{b.title}}
                                     </h2>
-                                    <h2 class="lower-blog-content cursor" (click)='setBlog(b)'> {{ b.content | slice:0:145 }}...
+                                    <h2 class="lower-blog-content cursor" (click)='setBlog(b)' [innerHTML]="b.content | markdown | slice:0:145">
                                     </h2>
                                 </div>
                             </div>

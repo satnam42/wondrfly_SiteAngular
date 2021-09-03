@@ -1,3 +1,4 @@
+import { Category } from 'src/app/core/models';
 import { Time } from '@angular/common';
 import { User } from './user.model';
 
@@ -51,6 +52,7 @@ export class Program {
     pricePeriod:any={}
     averageFinalRating:any
     subCategoryIds:any=[]
+    category:any = {}
 
     constructor(obj?: any) {
 

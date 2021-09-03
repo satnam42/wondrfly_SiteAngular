@@ -17,6 +17,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { MailchimpSubscribeFormModule } from './core/components/mailchimp-subscribe-form/mailchimp-subscribe-form.module';
 import { ChatService } from './core/services/chat.service';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { MarkdwonPipe } from './core/shared/markdown/markdwon.pipe';
+import { MarkdownModule } from './core/shared/markdown/markdown.module';
 
 
 const config: SocketIoConfig = { url: environment.socketUrl, options: {} };
@@ -36,6 +38,7 @@ const config: SocketIoConfig = { url: environment.socketUrl, options: {} };
     HttpClientModule,
     LazyLoadImageModule,
     MailchimpSubscribeFormModule,
+    MarkdownModule,
     SocketIoModule.forRoot(config),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyD_5P0pxn1q9hvvTeCr3YCsDhLJoHwxs2c',
@@ -48,7 +51,7 @@ const config: SocketIoConfig = { url: environment.socketUrl, options: {} };
     ChatService,
     Globals,
     MapTheme,
-    // { provide: LocationStrategy, useClass: PathLocationStrategy  
+    // { provide: LocationStrategy, useClass: PathLocationStrategy
   ],
   bootstrap: [AppComponent]
 })

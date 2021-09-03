@@ -31,8 +31,8 @@
                                         <div class="col-md-2">
                                             <div class="learn_code cursor" (click)="goToProfile()">
 
-                                                <img *ngIf="userLogo" src="{{userLogo}}" alt="logo">
-                                                <img *ngIf="!userLogo" src="assets/gray_background.jpeg" alt="logo">
+                                                <img *ngIf="program.category?.logoUrl" src="{{baseUrl+program.category?.logoUrl}}" alt="logo">
+                                                <img *ngIf="!program.category?.logoUrl" src="assets/gray_background.jpeg" alt="logo">
                                                 <a class="edit_logo" *ngIf="program.user === this.userId">
                                                     <label class="cursor"> <input style="display: none;" #file
                                                             accept="image/*" (change)="uploadLogo($event)" type="file"

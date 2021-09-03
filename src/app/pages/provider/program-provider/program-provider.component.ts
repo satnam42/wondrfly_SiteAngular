@@ -12,8 +12,8 @@ import { Globals } from 'src/app/core/common/imageLoader';
 import { MapTheme } from 'src/app/core/common/map-theme';
 import { Meta, Title } from '@angular/platform-browser';
 import { ToastrService } from 'ngx-toastr';
-import { environment } from 'src/environments/environment';
 import { DataService } from 'src/app/core/services/dataservice.service ';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-program-provider',
@@ -286,7 +286,7 @@ this.clickedMarker(e)
     }
     this.dataService.setOption(filterData)
     this.router.navigate(['/search'])
-  
+
   }
 
 }

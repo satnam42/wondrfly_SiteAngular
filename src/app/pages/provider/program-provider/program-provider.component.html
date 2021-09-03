@@ -9,8 +9,8 @@
             <div class="provider_profile">
                 <div class="provider_left">
                     <div class="profile">
-                        <img *ngIf="user.logo" src="{{user.logo}}" alt="Profile image">
-                        <img *ngIf="!user.logo" src="assets/gray_background.jpeg" alt="Profile image">
+                        <img *ngIf="user.categories[0]?.logoUrl" src="{{baseUrl+user.categories[0]?.logoUrl}}" alt="Profile image">
+                        <img *ngIf="!user.categories[0]?.logoUrl" src="assets/gray_background.jpeg" alt="Profile image">
                     </div>
                     <h2 class="provider_name star-daialog">{{user.firstName}}
                         <p class="cursor"   (mouseover)="isRating=true" (mouseout)="isRating=false">
