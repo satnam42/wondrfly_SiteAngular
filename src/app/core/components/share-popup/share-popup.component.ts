@@ -46,8 +46,8 @@ name = name.replace(/\?/g,"-");
          return true;
        }
        case 'messenger': {
-         this.url = `https://fb-messenger://share/?link=${this.shareUrl}`;
-         window.open( this.url, 'sharer', 'toolbar=0,status=0,width=648,height=395');
+
+         window.open( 'https://m.me', 'sharer', 'toolbar=0,status=0,width=1000,height=600');
          return true;
        }
        case 'copylink': {
