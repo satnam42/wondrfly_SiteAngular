@@ -11,6 +11,7 @@ import { BlogsComponent } from './blogs.component';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { MarkdownModule } from 'src/app/core/shared/markdown/markdown.module';
 import { ReadMoreModule } from 'src/app/core/components/read-more/read-more.module';
+import { MailchimpSubscribeFormModule } from 'src/app/core/components/mailchimp-subscribe-form/mailchimp-subscribe-form.module';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { ReadMoreModule } from 'src/app/core/components/read-more/read-more.modu
     ReadMoreModule,
     MarkdownModule,
     LazyLoadImageModule,
+    MailchimpSubscribeFormModule,
     RouterModule.forChild(BlogsRoutes)
   ]
 })

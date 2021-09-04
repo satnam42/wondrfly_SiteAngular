@@ -1,21 +1,8 @@
-﻿         <section class="upto_date">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="upto_inner">
-                                        <h2 class="title">Subscribe</h2>
-                                        <p>All the best programs, activities and experiences for your family in Hudson County
-                                            delivered to your inbox. Plus special offers, partner discounts and more!</p>
-                                            <form [formGroup]="emailControl" (ngSubmit)="submit()">
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control" [formControl]="emailControl"  placeholder="example@domain.com">
-                                                    <div class="input-group-append">
-                                                        <button [disabled]="emailControl.invalid" class="Submit_btn"  type="submit">Submit</button>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+﻿<form [formGroup]="emailControl" (ngSubmit)="submit()">
+  <div class="input-group">
+      <input type="text" class="form-control" [formControl]="emailControl"  placeholder="example@domain.com">
+      <div class="input-group-append">
+          <button [disabled]="emailControl.invalid" class="Submit_btn"  type="submit">Submit</button>
+      </div>
+  </div>
+</form>

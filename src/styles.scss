@@ -1344,6 +1344,19 @@ button.btn.btn-Grade2 {
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
     border-radius: 50px;
 }
+
+.seventh_section .input-group  {
+  background: #FFFFFF;
+  padding: 0 0 0 15px;
+  margin-top: 20px;
+  border: 1px solid #E5E9EC;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 50px;
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .category_image img {
     width: 377px;
     height: 272px !important;
@@ -1351,11 +1364,13 @@ button.btn.btn-Grade2 {
 }
 
 .upto_date .input-group:focus-within,
+.seventh_section .input-group:focus-within ,
+.seventh_section .input-group:focus
 .upto_date .input-group:focus {
     border: 1px solid #53B2E8;
 }
 
-.upto_date .input-group .form-control {
+.upto_date .input-group .form-control, .seventh_section .input-group .form-control {
     border: none;
     box-shadow: none;
     font-size: 13px;
@@ -1364,19 +1379,22 @@ button.btn.btn-Grade2 {
     border-radius: 50px;
 }
 
-.upto_date .input-group .form-control::placeholder {
+.upto_date .input-group .form-control::placeholder ,
+.seventh_section .input-group .form-control::placeholder {
     color: rgba(0, 0, 0, 0.3);
 }
 
-.upto_date .input-group .form-control::-moz-placeholder {
+.upto_date .input-group .form-control::-moz-placeholder,
+.seventh_section .input-group .form-control::-moz-placeholder {
     color: rgba(0, 0, 0, 0.3);
 }
 
-.upto_date .input-group .input-group-append {
+.upto_date .input-group .input-group-append{
     margin-left: 0;
 }
 
-.upto_date .input-group .Submit_btn {
+.upto_date .input-group .Submit_btn,
+.seventh_section .input-group .Submit_btn {
     background: #53B2E8;
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
     border-radius: 50px;
