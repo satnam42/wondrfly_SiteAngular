@@ -218,9 +218,6 @@ this.toDate=e.endDate._d
           else if(this.selectedSubCategories.length){
                this.programBySubCategoryIds()
             }
-            else if(this.filterData.categoryId){
-              this.programBySubCategoryIds()
-           }
        else {
         this.getPublishedProgram();
       }
@@ -722,7 +719,7 @@ if(program.userId==''|| program.userId==undefined || !program.userId){ program.u
       console.log('programBySubCategoryIds', res);
       this.suggestedSubCategories(this.selectedSubCategories[0])
     })
-  }else { this.toast.error( '', 'You Selected More Than 5 SubCategories')}
+  }else { this.toast.info('You Selected More Than 5 SubCategories')}
 }
 }
 
