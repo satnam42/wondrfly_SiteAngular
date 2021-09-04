@@ -121,7 +121,7 @@ export class LoginComponent implements OnInit {
     );
     this.metaTagService.addTag(
       { name: 'keywords', content: 'New Member Login' }
-    );  
+    );
     window.scroll(0, 0);
     this.randomImage();
     this.signinForm = new FormGroup({
@@ -146,25 +146,25 @@ export class LoginComponent implements OnInit {
       this.store.setObject('strapiData', response.data);
       this.store.setItem('jwt', response.data.jwt);
       if (this.user.isOnBoardingDone && this.user.role === 'provider') {
-        this.toastr.success(this.message)
+        this.toastr.info(this.message)
         this.router.navigate(['profile', this.user.id]);
       }
       else if (this.user.role === 'provider') {
-        this.toastr.success(this.message)
+        this.toastr.info(this.message)
         this.router.navigate(['loginProvider']);
       }
 
 
       else if (this.user.isOnBoardingDone && this.user.role === 'parent') {
-        this.toastr.success(this.message)
+        this.toastr.info(this.message)
         this.router.navigate(['/search']);
       }
       else if (this.user.role === 'parent') {
-        this.toastr.success(this.message)
+        this.toastr.info(this.message)
         this.router.navigate(['login-parent']);
       }
       else if (this.user.role === 'superAdmin') {
-        this.toastr.warning('Please Login As Provider Or Parent Only!')
+        this.toastr.info('Please Login As Provider Or Parent Only!')
       }
 
   }
@@ -195,25 +195,25 @@ strapiSignup(){
       this.store.setObject('strapiData', response.data);
       this.store.setItem('jwt', response.data.jwt);
       if (this.user.isOnBoardingDone && this.user.role === 'provider') {
-        this.toastr.success(this.message)
+        this.toastr.info(this.message)
         this.router.navigate(['profile', this.user.id]);
       }
       else if (this.user.role === 'provider') {
-        this.toastr.success(this.message)
+        this.toastr.info(this.message)
         this.router.navigate(['loginProvider']);
       }
 
 
       else if (this.user.isOnBoardingDone && this.user.role === 'parent') {
-        this.toastr.success(this.message)
+        this.toastr.info(this.message)
         this.router.navigate(['/search']);
       }
       else if (this.user.role === 'parent') {
-        this.toastr.success(this.message)
+        this.toastr.info(this.message)
         this.router.navigate(['login-parent']);
       }
       else if (this.user.role === 'superAdmin') {
-        this.toastr.warning('You Are An Admin!', 'Please Login As Provider Or Parent Only!')
+        this.toastr.info('You Are An Admin!', 'Please Login As Provider Or Parent Only!')
       }
 }
 

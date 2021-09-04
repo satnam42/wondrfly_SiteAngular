@@ -196,7 +196,7 @@ submitFeedback(){
   this.feedbackData.id = this.user.id
   this.apiservice.sendFeedback(this.feedbackData).subscribe((res: any) => {
    if(res.isSuccess=== true){
-    this.toastr.success('Thank you!', ':)');
+    this.toastr.info('Thank you!', ':)');
      this.auth.logout();
      this.userdataservice.logout();
      localStorage.clear();

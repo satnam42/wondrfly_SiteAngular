@@ -16,7 +16,7 @@ interface MailChimpResponse {
 export class MailchimpSubscribeForm {
 	submitted = false;
 	mailChimpEndpoint = 'https://wondrfly.us6.list-manage.com/subscribe/post-json?u=50d4a655c918bd43244bd72a1&amp;id=f53dcd12e8&';
-	constructor(private http: HttpClient, 
+	constructor(private http: HttpClient,
 		private toastr: ToastrService) { }
 	emailControl = new FormControl('', [
 		Validators.required,
@@ -32,7 +32,7 @@ export class MailchimpSubscribeForm {
 			this.http.jsonp<MailChimpResponse>(mailChimpUrl, 'c').subscribe(response => {
 					this.submitted = true;
 					if(response.result=='success'){
-						this.toastr.success( '', response.msg )
+						this.toastr.info( '', response.msg )
 					}
 					else{
 						this.toastr.error( '', this.emailControl.value +' is already subscribed to Wondrfly')

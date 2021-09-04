@@ -601,7 +601,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
       this.headerComponent.getUserById();
       this.ngxLoader.stop();
       if (res) {
-        this.toastr.success("Success",this.message);
+        this.toastr.info("Success",this.message);
       } else {
         if (this.currentUser === null || this.currentUser === undefined) {
           this.router.navigate(["/login"]);
@@ -687,13 +687,13 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
       let currentYear = moment(Date.now()).format("YYYY");
       if (birthYear >= currentYear) {
         this.ngxLoader.stop();
-        this.toastr.warning("!","please fill valid birth year");
+        this.toastr.info("!","please fill valid birth year");
       } else {
         var ageDifMs = Date.now() - birth.getTime();
         var ageDate = new Date(ageDifMs); // miliseconds from epoch
         var age = Math.abs(ageDate.getUTCFullYear() - 1970);
         if (age > 20) {
-          this.toastr.warning("!", "please fill valid birth year")
+          this.toastr.info("!", "please fill valid birth year")
           this.ngxLoader.stop();
         } else {
           this.kid.age = String(age);
@@ -730,7 +730,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
     let birthYear = moment(birth).format("YYYY");
     let currentYear = moment(Date.now()).format("YYYY");
     if (birthYear > currentYear) {
-      this.toastr.warning("!","please fill valid birth year",);
+      this.toastr.info("!","please fill valid birth year",);
     } else {
       if (this.childImageURl != "" && this.childImageURl != undefined) {
         this.kid.avtar = this.childImageURl;
@@ -768,7 +768,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
   getParentById() {
     this.apiservice.getParentById(this.currentUser.id).subscribe((res) => {
       this.user = res;
-    
+
     });
   }
   getUserById() {

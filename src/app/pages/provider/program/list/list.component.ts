@@ -44,7 +44,7 @@ export class ListComponent implements OnInit {
 
   addProgram() {
     if (this.userData.phoneNumber == '' || this.userData.addressLine1 == '' || this.userData.avatarImages == '') {
-      this.toastr.warning("you need to complete  your profile before adding new program!");
+      this.toastr.info("you need to complete  your profile before adding new program!");
     }
     else { this.router.navigate(['/program/add']); }
   }
@@ -58,7 +58,7 @@ export class ListComponent implements OnInit {
       || program.description == '' || program.description == "string" || program.date.from == '' || program.date.from == "string"
       || program.location == '' || program.location == "string"
       || program.ageGroup.from == '' || program.ageGroup.from == "string") {
-      this.toastr.warning("you need to complete  program before publish it!");
+      this.toastr.info("you need to complete  program before publish it!");
     }
     else {
       if (this.programs[indx].isPublished) {

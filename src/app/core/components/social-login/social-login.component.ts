@@ -44,7 +44,7 @@ export class SocialLoginComponent implements OnInit {
               private ngxLoader : NgxUiLoaderService,
               public auth: AuthsService,
               private toastr: ToastrService,
-              private store : LocalStorageService) { 
+              private store : LocalStorageService) {
                 this.routeName = router.url;
                 console.log('routerr',this.routeName)
                 if(this.routeName=='/login'){ this.loginOrSignUp='Log In' }
@@ -97,9 +97,9 @@ export class SocialLoginComponent implements OnInit {
       this.loggedIn = (user != null);
       console.log(user);
       if(user){
-           
+
         let googleUser = new User;
-        googleUser.googleId = user.id; 
+        googleUser.googleId = user.id;
         googleUser.email = user.email;
         googleUser.firstName = user.firstName;
         googleUser.lastName = user.lastName;
@@ -110,12 +110,12 @@ export class SocialLoginComponent implements OnInit {
         console.log('google signup ressss before',googleUser)
         this.apiservice.signupWithGoogle(googleUser).subscribe((res: any) => {
           if(res.isSuccess === true){
-         
+
             this.user =res.data;
             this.strapiSignup()
             console.log('google signup ressss',res)
-      
-      
+
+
   }
           this.ngxLoader.stop();
         })
@@ -126,7 +126,7 @@ export class SocialLoginComponent implements OnInit {
   }
 
 
- 
+
   strapiLogin(){
     axios
   .post(`${this.blogUrl}/auth/local`, {
@@ -149,7 +149,7 @@ export class SocialLoginComponent implements OnInit {
 }).catch(error => {
   // Handle error.
   console.log('strapi login resss:',  error.response);
-  this.toastr.error('!', error.response.data.data[0].messages[0].message )
+  this.toastr.info('!', error.response.data.data[0].messages[0].message )
 });
   }
 
@@ -181,7 +181,7 @@ strapiSignup(){
     if(error.response.data.statusCode===400){
       this.strapiLogin()
     }else{
-    this.toastr.error('!',error.response.data.data[0].messages[0].message)
+    this.toastr.info('!',error.response.data.data[0].messages[0].message)
     }
   });
 }
@@ -190,7 +190,7 @@ strapiSignup(){
 
 
 
-  
+
 }
 
 

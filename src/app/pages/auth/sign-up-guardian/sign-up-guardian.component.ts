@@ -39,7 +39,7 @@ export class SignUpGuardianComponent implements OnInit {
   'assets/preOnboarding/8.jpg',
   'assets/preOnboarding/9.jpg',
   'assets/preOnboarding/10.jpg',
-  'assets/preOnboarding/11.jpg',   
+  'assets/preOnboarding/11.jpg',
   ]
   constructor(private router: Router,
     private apiservice: ApiService,
@@ -78,17 +78,17 @@ export class SignUpGuardianComponent implements OnInit {
       console.log('resss', res);
       if (res.isSuccess) {
         this.router.navigate(['/login']);
-        this.toastr.success('Success',this.message);
+        this.toastr.info('Success',this.message);
       }else {
         this.toastr.error(res.error, 'ok!');
-        this.toastr.error('!', res.error );
+        this.toastr.info('!', res.error );
       }
     });
         }
       }).catch(error => {
         // Handle error.
         console.log('An error occurred:',  error.response);
-        this.toastr.error('!', error.response.data.data[0].messages[0].message)
+        this.toastr.info('!', error.response.data.data[0].messages[0].message)
       });
   }
 

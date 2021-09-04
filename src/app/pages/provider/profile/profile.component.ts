@@ -75,7 +75,7 @@ export class ProfileComponent implements OnInit {
   skills: any = [];
   categories: any = new Category
   providerImgURL: any
-  // ---------------autucomplete-------------  
+  // ---------------autucomplete-------------
   visible: boolean = true;
   selectable: boolean = true;
   removable: boolean = true;
@@ -172,7 +172,7 @@ export class ProfileComponent implements OnInit {
     console.log(msg)
     this.router.navigate(['/login']);
     this.ngxLoader.stop();
-  } 
+  }
 
 
   providerImageSelect(event) {
@@ -193,7 +193,7 @@ export class ProfileComponent implements OnInit {
       // if (res.isSuccess===true) {
       this.user.avatarImages = this.providerImgURL
       this.headerComponent.getUserById()
-      // } 
+      // }
       // else { this.toastr.error( 'Error', 'something went wrong, please try again Later!') }
     });
     this.ngxLoader.stop();
@@ -266,7 +266,7 @@ export class ProfileComponent implements OnInit {
         if (health.parentObservation) {
           this.health_safety[6].status = true;
         }
-        
+
       })
       this.getCategoryList();
     });
@@ -304,7 +304,7 @@ export class ProfileComponent implements OnInit {
       }
     });
 }
-  
+
   getCategoryList() {
     this.apiservice.getCategory().subscribe((res: any) => {
       this.categories = res;
@@ -391,7 +391,7 @@ export class ProfileComponent implements OnInit {
   addProgram() {
     console.log('userrrrr',this.user)
     if (this.userData.phoneNumber == '' || this.userData.addressLine1 == '' || this.userData.avatarImages == '') {
-      this.toastr.warning("you need to complete  your profile before adding new program!");
+      this.toastr.info("you need to complete  your profile before adding new program!");
     }
     else { this.router.navigate(['/program/add']); }
   }

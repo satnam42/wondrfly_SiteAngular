@@ -27,7 +27,7 @@ export class SignupPopupComponent implements OnInit {
   pageNo: number = 1;
   pageSize: number;
   forums: any;
- 
+
   parentForm: FormGroup;
   userData: any = {
     firstName: '',
@@ -35,15 +35,15 @@ export class SignupPopupComponent implements OnInit {
     password: '',
     role: 'parent',
     name: '',
-   
+
     facebookId:'',
-   
+
     lastName: '',
     authToken: '',
     idToken: '',
     authorizationCode: '',
   }
-  
+
   message: string = 'Registered Successfully!';
   categoryResponse: any;
   response: any;
@@ -65,10 +65,10 @@ export class SignupPopupComponent implements OnInit {
     public auth: AuthsService,
     public imageLoader: Globals,
     private ngxLoader: NgxUiLoaderService,
-    
+
     private store: LocalStorageService) {
   }
- 
+
 
 
   onPassword() {
@@ -104,7 +104,7 @@ export class SignupPopupComponent implements OnInit {
           window.document.getElementById("close_modal").click();
           this.store.setObject('userData', res.data);
           this.store.setItem('token', res.data.token);
-          this.toastr.success('Success', this.message );
+          this.toastr.info('Success', this.message );
           this.router.navigate(['login-parent']);
         }
         else {
@@ -115,7 +115,7 @@ export class SignupPopupComponent implements OnInit {
   }).catch(error => {
     // Handle error.
     console.log('An error occurred:',  error.response);
-    this.toastr.error('!',  error.response.data.data[0].messages[0].message )
+    this.toastr.info('!',  error.response.data.data[0].messages[0].message )
   });
   }
 

@@ -68,7 +68,7 @@ export class SettingComponent implements OnInit {
     private auth: AuthsService,
     private apiservice: ApiService,
     private toastr: ToastrService,
-    
+
   ) {
     // this.user = this.auth.currentUser();
     // if (this.user.securityQuestion != "" && this.user.securityQuestion != undefined && this.user.securityQuestion != null) {
@@ -245,9 +245,9 @@ export class SettingComponent implements OnInit {
         this.showOtpform = true;
         this.isNumber = false
         this.showPhoneform = false;
-        this.toastr.success('Success',res.data.message)
-      } else 
-        this.toastr.error('Error',res.error)
+        this.toastr.info('Success',res.data.message)
+      } else
+        this.toastr.info('Error',res.error)
     })
   }
 
@@ -270,7 +270,7 @@ export class SettingComponent implements OnInit {
       this.ngxLoader.stop();
       console.log('resss', res)
       if (res.isSuccess === true) {
-        this.toastr.success('Success',res.message.message)
+        this.toastr.info('Success',res.message.message)
         this.getUser(this.userData.id);
         window.document.getElementById("close_model").click();
         window.document.getElementById("close_model1").click();
@@ -305,9 +305,9 @@ export class SettingComponent implements OnInit {
       if (res.isSuccess) {
         this.auth.logout();
         this.router.navigate(["/login"]);
-        this.toastr.success( 'success',res.message)
+        this.toastr.info( 'success',res.message)
       } else {
-        this.toastr.error('!',res.error)
+        this.toastr.info('!',res.error)
 
       }
     });

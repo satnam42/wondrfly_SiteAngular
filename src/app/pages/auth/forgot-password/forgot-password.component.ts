@@ -30,7 +30,7 @@ export class ForgotPasswordComponent implements OnInit {
     otp: '',
     otpToken: '',
   }
- 
+
   forgotImage = '';
   forgotImages = ['assets/preOnboarding/1.jpg',
   'assets/preOnboarding/2.jpg',
@@ -42,7 +42,7 @@ export class ForgotPasswordComponent implements OnInit {
   'assets/preOnboarding/8.jpg',
   'assets/preOnboarding/9.jpg',
   'assets/preOnboarding/10.jpg',
-  'assets/preOnboarding/11.jpg',   
+  'assets/preOnboarding/11.jpg',
   ]
 
   constructor(private router: Router,
@@ -71,7 +71,7 @@ export class ForgotPasswordComponent implements OnInit {
         this.isForgot = true;
         this.isOTP = false;
         this.isNewPassword = false;
-        this.toastr.error('!', res.error )
+        this.toastr.info('!', res.error )
       }
     });
   }
@@ -84,7 +84,7 @@ export class ForgotPasswordComponent implements OnInit {
         this.isOTP = false;
         this.isNewPassword = true;
         this.isForgot = false;
-        this.toastr.success( 'Success', res.message.message)
+        this.toastr.info( 'Success', res.message.message)
       }
 
       else {
@@ -92,7 +92,7 @@ export class ForgotPasswordComponent implements OnInit {
         this.isNewPassword = false;
         this.isForgot = false;
         let msg = 'Something went Wrong!';
-        this.toastr.error('!', res.error )
+        this.toastr.info('!', res.error )
       }
     });
   }
@@ -103,7 +103,7 @@ export class ForgotPasswordComponent implements OnInit {
       this.ngxLoader.stop();
       if (res.isSuccess) {
         this.router.navigate(['/login']);
-        this.toastr.success('success',res.message.message )
+        this.toastr.info('success',res.message.message )
       }
       else {
         this.isOTP = false;
@@ -129,7 +129,7 @@ export class ForgotPasswordComponent implements OnInit {
     );
     this.metaTagService.addTag(
       { name: 'keywords', content: 'forgot parent password, forgot my parent password'}
-    ); 
+    );
     this.randomImage();
     window.scroll(0, 0);
     this.otpSendForm = new FormGroup({

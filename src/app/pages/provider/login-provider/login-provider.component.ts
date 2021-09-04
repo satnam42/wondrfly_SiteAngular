@@ -177,7 +177,7 @@ providerImgURL: any
         this.router.navigate(['/profile', this.provider.id]);
       }
       else {
-        this.toastr.error('!',res.error)
+        this.toastr.info('!',res.error)
       }
     });
   }
@@ -249,9 +249,9 @@ providerImgURL: any
         this.progressBarVaue += 10;
       }
       else{
-        this.toastr.error('!',"Please Fill Valid Phone Number")
+        this.toastr.info('!',"Please Fill Valid Phone Number")
       }
-   
+
     }
     else if (this.step2) {
       this.mapsAPILoader.load().then(() => {
@@ -266,7 +266,7 @@ providerImgURL: any
               return;
             }
 
-            // set latitude, longitude 
+            // set latitude, longitude
             this.zoom = 12;
             this.latitude = place.geometry.location.lat();
             this.longitude = place.geometry.location.lng();
@@ -341,7 +341,7 @@ providerImgURL: any
       this.step5 = true;
       this.step6 = false;
       this.progressBarVaue -= 14;
-    }   
+    }
     else if (this.step7) {
       this.step6 = true;
       this.step7 = false;
@@ -370,7 +370,7 @@ providerImgURL: any
   }
 
   onChangeSearch(key: string) {
-    if(key.length>2){ 
+    if(key.length>2){
     this.ngxLoader.start();
     this.apiservice.searchCategory(key).subscribe((res: any) => {
       this.searchesCatg = res.data;

@@ -55,7 +55,7 @@ export class SignUpComponent implements OnInit {
   'assets/preOnboarding/8.jpg',
   'assets/preOnboarding/9.jpg',
   'assets/preOnboarding/10.jpg',
-  'assets/preOnboarding/11.jpg',   
+  'assets/preOnboarding/11.jpg',
   ]
   constructor(private auth:AuthsService,
     private router: Router,
@@ -101,7 +101,7 @@ export class SignUpComponent implements OnInit {
         if (res.isSuccess === true) {
           this.store.setObject('userData', res.data);
           this.store.setItem('token', res.data.token);
-          this.toastr.success( 'Success',  this.message);
+          this.toastr.info( 'Success',  this.message);
           this.router.navigate(['login-parent']);
         }
         else {
@@ -112,7 +112,7 @@ export class SignUpComponent implements OnInit {
       }).catch(error => {
         // Handle error.
         console.log('An error occurred:',  error.response);
-        this.toastr.error('!', error.response.data.data[0].messages[0].message)
+        this.toastr.info('!', error.response.data.data[0].messages[0].message)
       });
     }
 
@@ -130,7 +130,7 @@ export class SignUpComponent implements OnInit {
           this.store.setItem('jwt', response.data.jwt);
           let email = this.providerData.email.toLowerCase();
           this.providerData.email = email;
-        
+
 
       this.ngxLoader.start();
       this.apiservice.addUser(this.providerData).subscribe((res: any) => {
@@ -139,19 +139,19 @@ export class SignUpComponent implements OnInit {
         if (res.isSuccess === true) {
           this.store.setObject('userData', res.data);
           this.store.setItem('token', res.data.token);
-          this.toastr.success('Success', this.message );
+          this.toastr.info('Success', this.message );
           this.router.navigate(['loginProvider']);
         } else {
-          this.toastr.error('!', res.error)
+          this.toastr.info('!', res.error)
         }
       });
         }
       }).catch(error => {
         // Handle error.
         console.log('An error occurred:',  error.response);
-        this.toastr.error('!',  error.response.data.data[0].messages[0].message)
+        this.toastr.info('!',  error.response.data.data[0].messages[0].message)
       });
-           
+
     }
   }
 
@@ -167,7 +167,7 @@ export class SignUpComponent implements OnInit {
     );
     this.metaTagService.addTag(
       { name: 'keywords', content: 'create your account, Create Your Wondrfly Account'}
-    );  
+    );
     this.randomImage();
     window.scroll(0, 0);
     let password = new FormControl("", [Validators.required]);

@@ -28,7 +28,7 @@ export class ContactUsComponent implements OnInit {
     );
     this.metaTagService.addTag(
       { name: 'keywords', content: 'Contact Wondrfly, Wondrfly Contact Details, Mail to Wondrfly, Contact Us for My Account, Wondrfly Email Address, Wondrfly Contact, Wondrfly Contact Form'}
-    ); 
+    );
     this.contactUsForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       phoneNumber: new FormControl('', ),
@@ -41,13 +41,13 @@ export class ContactUsComponent implements OnInit {
     this.ngxLoader.start();
     this.apiservice.contactUs(this.contactUsForm.value).subscribe((res: any) => {
       this.ngxLoader.stop();
-      if(res.isSuccess){ 
+      if(res.isSuccess){
         this.contactUsForm.reset();
-        this.toastr.success( 'Success', res.data) 
+        this.toastr.info( 'Success', res.data)
       }
-      else { 
-        this.toastr.error( 'Error', res.error ) 
-      } 
+      else {
+        this.toastr.error( 'Error', res.error )
+      }
 });
 this.ngxLoader.stop();
   }
