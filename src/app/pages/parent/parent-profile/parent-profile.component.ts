@@ -449,7 +449,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
         this.toastr.info("Info",  msg );
         this.onChildren(parentId);
       } else {
-        this.toastr.error("Error", res.error);
+        this.toastr.info(res.error);
       }
     });
   }
@@ -480,7 +480,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
         this.toastr.info( "Info", msg);
       }
       else {
-        this.toastr.error("Error", res.error);
+        this.toastr.info(res.error);
       }
       this.onGuardian(this.currentUser.id)
     });
@@ -497,7 +497,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
           this.toastr.info("Info", "acount Activated!");
         this.getParentById();
         } else {
-          this.toastr.error("Error","somthing went wrong!");
+          this.toastr.info("somthing went wrong!");
         }
       }
     });
@@ -555,7 +555,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
         this.headerComponent.getProfileProgress();
         this.headerComponent.getUserById();
       } else {
-        this.toastr.error( "Error","something went wrong, please try again Later!");
+        this.toastr.info( "Error","something went wrong, please try again Later!");
       }
     });
     this.ngxLoader.stop();
@@ -609,7 +609,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
           this.toastr.info( "Info", msg);
         } else {
           let msg = "Something Went Wrong!";
-          this.toastr.error("Error",  msg);
+          this.toastr.info(msg);
         }
       }
     });
@@ -631,10 +631,10 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
             this.toastr.info( "Info", msg);
           } else {
             if (res.error === "Old Password Not Match") {
-              this.toastr.error("Info", res.error );
+              this.toastr.info(res.error );
             } else {
               let msg = "Something Went Wrong!";
-              this.toastr.error("Error", msg);
+              this.toastr.info(msg);
             }
           }
         }
@@ -651,7 +651,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
         this.toastr.info("Info",res.message.message);
       } else {
         this.ngxLoader.stop();
-        this.toastr.error("Error",res.error);
+        this.toastr.info("Error",res.error);
       }
       this.ngxLoader.stop();
     });
@@ -679,7 +679,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
       this.kid.avtar = this.childImageURl;
     }
     if (this.kid.name === "") {
-      this.toastr.error("Error", childResponse.error);
+      this.toastr.info(childResponse.error);
     } else {
       this.ngxLoader.start();
       var birth = new Date(this.kid.dob);
@@ -758,7 +758,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
             this.toastr.info("Info",  msg );
           } else {
             let msg = "Something Went Wrong!";
-            this.toastr.error("Error", msg);
+            this.toastr.info(msg);
           }
         }
       });

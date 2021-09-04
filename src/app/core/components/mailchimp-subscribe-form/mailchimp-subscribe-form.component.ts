@@ -35,10 +35,10 @@ export class MailchimpSubscribeForm {
 						this.toastr.info( '', response.msg )
 					}
 					else{
-						this.toastr.error( '', this.emailControl.value +' is already subscribed to Wondrfly')
+						this.toastr.info(this.emailControl.value +' is already subscribed to Wondrfly')
 					}
 			}, error => {
-				this.toastr.error( '', error )
+				this.toastr.info(error )
 
 			});
 		}

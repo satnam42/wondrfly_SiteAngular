@@ -124,7 +124,7 @@ export class SettingComponent implements OnInit {
     if (!this.isOldQuestion) {
       if (!this.isAgree) {
         let msg = 'please mark check box first';
-        this.toastr.error(msg);
+        this.toastr.info(msg);
         alert(msg)
         return
       }
@@ -152,7 +152,7 @@ export class SettingComponent implements OnInit {
     }
     if (!this.isAgree) {
       let msg = 'please mark check box first';
-      this.toastr.error(msg);
+      this.toastr.info(msg);
       alert(msg)
       return
     }
@@ -276,7 +276,7 @@ export class SettingComponent implements OnInit {
         window.document.getElementById("close_model1").click();
         this.ngxLoader.stop();
       } else {
-        this.toastr.error( 'Error', res.error)
+        this.toastr.info(res.error)
         this.ngxLoader.stop();
       }
     })
@@ -307,7 +307,7 @@ export class SettingComponent implements OnInit {
         this.router.navigate(["/login"]);
         this.toastr.info( 'success',res.message)
       } else {
-        this.toastr.info('!',res.error)
+        this.toastr.info(res.error)
 
       }
     });

@@ -99,7 +99,7 @@ export class LoginParentComponent implements OnInit {
     console.log('birthYear', birthYear)
     console.log('currentYear', currentYear)
     if (birthYear >= currentYear) {
-      this.toastr.info('!', 'Please Fill Valid Birth Year!')
+      this.toastr.info( 'Please Fill Valid Birth Year!')
     }
     else {
       var ageDifMs = Date.now() - birth.getTime();

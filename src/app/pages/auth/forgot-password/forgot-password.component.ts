@@ -71,7 +71,7 @@ export class ForgotPasswordComponent implements OnInit {
         this.isForgot = true;
         this.isOTP = false;
         this.isNewPassword = false;
-        this.toastr.info('!', res.error )
+        this.toastr.info( res.error )
       }
     });
   }
@@ -92,7 +92,7 @@ export class ForgotPasswordComponent implements OnInit {
         this.isNewPassword = false;
         this.isForgot = false;
         let msg = 'Something went Wrong!';
-        this.toastr.info('!', res.error )
+        this.toastr.info( res.error )
       }
     });
   }
@@ -109,7 +109,7 @@ export class ForgotPasswordComponent implements OnInit {
         this.isOTP = false;
         this.isNewPassword = true;
         this.isForgot = false;
-        this.toastr.error( '!', res.error)
+        this.toastr.info(res.error)
       }
 
     });

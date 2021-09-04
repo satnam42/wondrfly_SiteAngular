@@ -105,14 +105,14 @@ export class SignUpComponent implements OnInit {
           this.router.navigate(['login-parent']);
         }
         else {
-          this.toastr.error( '!',  res.error )
+          this.toastr.info(res.error )
         }
       });
         }
       }).catch(error => {
         // Handle error.
         console.log('An error occurred:',  error.response);
-        this.toastr.info('!', error.response.data.data[0].messages[0].message)
+        this.toastr.info( error.response.data.data[0].messages[0].message)
       });
     }
 
@@ -142,14 +142,14 @@ export class SignUpComponent implements OnInit {
           this.toastr.info('Success', this.message );
           this.router.navigate(['loginProvider']);
         } else {
-          this.toastr.info('!', res.error)
+          this.toastr.info( res.error)
         }
       });
         }
       }).catch(error => {
         // Handle error.
         console.log('An error occurred:',  error.response);
-        this.toastr.info('!',  error.response.data.data[0].messages[0].message)
+        this.toastr.info(  error.response.data.data[0].messages[0].message)
       });
 
     }

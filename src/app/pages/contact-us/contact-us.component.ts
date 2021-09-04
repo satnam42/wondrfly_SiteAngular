@@ -46,7 +46,7 @@ export class ContactUsComponent implements OnInit {
         this.toastr.info( 'Success', res.data)
       }
       else {
-        this.toastr.error( 'Error', res.error )
+        this.toastr.info(res.error )
       }
 });
 this.ngxLoader.stop();

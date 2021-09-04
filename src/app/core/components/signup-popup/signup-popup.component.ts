@@ -108,14 +108,14 @@ export class SignupPopupComponent implements OnInit {
           this.router.navigate(['login-parent']);
         }
         else {
-          this.toastr.error( '!', res.error )
+          this.toastr.info(res.error )
         }
       })
     }
   }).catch(error => {
     // Handle error.
     console.log('An error occurred:',  error.response);
-    this.toastr.info('!',  error.response.data.data[0].messages[0].message )
+    this.toastr.info(  error.response.data.data[0].messages[0].message )
   });
   }
 

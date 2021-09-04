@@ -177,7 +177,7 @@ providerImgURL: any
         this.router.navigate(['/profile', this.provider.id]);
       }
       else {
-        this.toastr.info('!',res.error)
+        this.toastr.info(res.error)
       }
     });
   }
@@ -249,7 +249,7 @@ providerImgURL: any
         this.progressBarVaue += 10;
       }
       else{
-        this.toastr.info('!',"Please Fill Valid Phone Number")
+        this.toastr.info("Please Fill Valid Phone Number")
       }
 
     }

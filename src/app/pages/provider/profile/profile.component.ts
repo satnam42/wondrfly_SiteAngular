@@ -194,7 +194,7 @@ export class ProfileComponent implements OnInit {
       this.user.avatarImages = this.providerImgURL
       this.headerComponent.getUserById()
       // }
-      // else { this.toastr.error( 'Error', 'something went wrong, please try again Later!') }
+      // else { this.toastr.info( 'Error', 'something went wrong, please try again Later!') }
     });
     this.ngxLoader.stop();
   }

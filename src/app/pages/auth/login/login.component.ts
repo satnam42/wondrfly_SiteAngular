@@ -87,7 +87,7 @@ export class LoginComponent implements OnInit {
         this.strapiLogin()
       }
       else {
-        this.toastr.error(res.error);
+        this.toastr.info(res.error);
       }
       this.ngxLoader.stop();
     });
@@ -103,7 +103,7 @@ export class LoginComponent implements OnInit {
       if (activeDeactiveResponse) {
         return this.signin();
       } else {
-        this.toastr.error(activeDeactiveResponse.error)
+        this.toastr.info(activeDeactiveResponse.error)
       }
     });
     this.ngxLoader.stop();
@@ -174,7 +174,7 @@ export class LoginComponent implements OnInit {
     // ----------signUp strapi if user is not register on strapi---------
     this.strapiSignup()
   }else{
-  this.toastr.error(error.response.data.data[0].messages[0].message)
+  this.toastr.info(error.response.data.data[0].messages[0].message)
   }
 });
   }
@@ -220,7 +220,7 @@ strapiSignup(){
   }).catch(error => {
     // Handle error.
     console.log('strapi signup this.userss:',  error.response);
-    this.toastr.error(error.response.data.data[0].messages[0].message)
+    this.toastr.info(error.response.data.data[0].messages[0].message)
   });
 }
 
