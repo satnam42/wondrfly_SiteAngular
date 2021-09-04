@@ -162,8 +162,8 @@
               <a  class="noti-lefticon cursor"  data-toggle="modal" data-target="#NotificationModal">
                 <span class="icon rel"><img src="assets/Notification-icon.svg" alt="Logo">
                   <span class="Button-badge" *ngIf='user.notices?.count' >
-                    <span *ngIf='user.notices?.count<=9'>{{user.notices?.count}}</span>
-                    <span *ngIf='user.notices?.count>9'>{{user.notices?.count}}+</span>
+                    <span *ngIf='user.notices?.count<=10'>{{user.notices?.count}}</span>
+                    <span *ngIf='user.notices?.count>10'>{{10}}+</span>
                   </span>
                 </span>
               </a>
