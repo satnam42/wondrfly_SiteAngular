@@ -446,7 +446,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
         else {
           msg = 'Child Deactivated'
         }
-        this.toastr.info("Info",  msg );
+        this.toastr.info(msg );
         this.onChildren(parentId);
       } else {
         this.toastr.info(res.error);
@@ -477,7 +477,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
         else {
           msg = 'Guardian Deactivated'
         }
-        this.toastr.info( "Info", msg);
+        this.toastr.info(msg);
       }
       else {
         this.toastr.info(res.error);
@@ -490,11 +490,11 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
     this.apiservice.activeDeactiveUser(id, !isActivated).subscribe((res) => {
       this.ngxLoader.stop();
       if (res && res.isActivated === false) {
-        this.toastr.info( "Info", "acount Deactivated!");
+        this.toastr.info("acount Deactivated!");
       this.getParentById();
       } else {
         if (res && res.isActivated === true) {
-          this.toastr.info("Info", "acount Activated!");
+          this.toastr.info("acount Activated!");
         this.getParentById();
         } else {
           this.toastr.info("somthing went wrong!");
@@ -555,7 +555,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
         this.headerComponent.getProfileProgress();
         this.headerComponent.getUserById();
       } else {
-        this.toastr.info( "Error","something went wrong, please try again Later!");
+        this.toastr.info("something went wrong, please try again Later!");
       }
     });
     this.ngxLoader.stop();
@@ -601,12 +601,12 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
       this.headerComponent.getUserById();
       this.ngxLoader.stop();
       if (res) {
-        this.toastr.info("Success",this.message);
+        this.toastr.info(this.message);
       } else {
         if (this.currentUser === null || this.currentUser === undefined) {
           this.router.navigate(["/login"]);
           let msg = "Please Login First!";
-          this.toastr.info( "Info", msg);
+          this.toastr.info(msg);
         } else {
           let msg = "Something Went Wrong!";
           this.toastr.info(msg);
@@ -621,14 +621,14 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
       .subscribe((res: any) => {
         this.ngxLoader.stop();
         if (res) {
-          this.toastr.info("Info",res.message);
+          this.toastr.info(res.message);
           this.authService.logout()
           this.router.navigate(["/login"]);
         } else {
           if (this.currentUser === null || this.currentUser === undefined) {
             this.router.navigate(["/login"]);
             let msg = "Please Login First!";
-            this.toastr.info( "Info", msg);
+            this.toastr.info(msg);
           } else {
             if (res.error === "Old Password Not Match") {
               this.toastr.info(res.error );
@@ -648,10 +648,10 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
       if (res.isSuccess) {
         this.ngxLoader.stop();
         // this.onGuardian(id);
-        this.toastr.info("Info",res.message.message);
+        this.toastr.info(res.message.message);
       } else {
         this.ngxLoader.stop();
-        this.toastr.info("Error",res.error);
+        this.toastr.info(res.error);
       }
       this.ngxLoader.stop();
     });
@@ -664,9 +664,9 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
       this.ngxLoader.stop();
 
       if (res) {
-        this.toastr.info("Info", "Guardian Updated!");
+        this.toastr.info("Guardian Updated!");
       } else {
-        this.toastr.info("Error", res.error);
+        this.toastr.info(res.error);
       }
     });
     this.ngxLoader.stop();
@@ -687,13 +687,13 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
       let currentYear = moment(Date.now()).format("YYYY");
       if (birthYear >= currentYear) {
         this.ngxLoader.stop();
-        this.toastr.info("!","please fill valid birth year");
+        this.toastr.info("please fill valid birth year");
       } else {
         var ageDifMs = Date.now() - birth.getTime();
         var ageDate = new Date(ageDifMs); // miliseconds from epoch
         var age = Math.abs(ageDate.getUTCFullYear() - 1970);
         if (age > 20) {
-          this.toastr.info("!", "please fill valid birth year")
+          this.toastr.info("please fill valid birth year")
           this.ngxLoader.stop();
         } else {
           this.kid.age = String(age);
@@ -714,7 +714,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
                   this.ngxLoader.stop();
                 });
               this.ngxLoader.stop();
-              this.toastr.info("Child",this.addMessage);
+              this.toastr.info(this.addMessage);
             }
           });
         }
@@ -730,7 +730,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
     let birthYear = moment(birth).format("YYYY");
     let currentYear = moment(Date.now()).format("YYYY");
     if (birthYear > currentYear) {
-      this.toastr.info("!","please fill valid birth year",);
+      this.toastr.info("please fill valid birth year",);
     } else {
       if (this.childImageURl != "" && this.childImageURl != undefined) {
         this.kid.avtar = this.childImageURl;
@@ -750,12 +750,12 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
         if (res) {
           // this.onChildren(parentId);
           let msg = "Child Updated Successfully!";
-          this.toastr.info("Child", msg );
+          this.toastr.info(msg );
         } else {
           if (this.currentUser === null || this.currentUser === undefined) {
             this.router.navigate(["/login"]);
             let msg = "Please Login First!";
-            this.toastr.info("Info",  msg );
+            this.toastr.info(msg);
           } else {
             let msg = "Something Went Wrong!";
             this.toastr.info(msg);
