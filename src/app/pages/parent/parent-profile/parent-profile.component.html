@@ -62,7 +62,9 @@
                   </li>
 
                 </div>
-               
+                <li>
+                  <a [class.active]="isInvite" (click)="onInvite()">Invites</a>
+                </li>
               </ul>
             </div>
             <div class="progress">
@@ -200,7 +202,7 @@
                             <div class="chat_value">
                               <!-- <div class="chat_time1">Today, 11:30 AM</div> -->
                               <div class="message_count">
-  
+
                               </div>
                             </div>
                           </div>
@@ -671,6 +673,13 @@
               </div>
             </div>
             <!-- ----------------------------------------------------------------------------------------- -->
+                <!-- ---------------account setting------------------------- -->
+                <div *ngIf="isInvite" class="personal_details">
+
+                   invite section will appear here
+                </div>
+                <!-- --------------------------------------------------------- -->
+
           </div>
         </div>
       </div>

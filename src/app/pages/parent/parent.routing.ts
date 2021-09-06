@@ -5,6 +5,7 @@ import { ParentProfileComponent } from './parent-profile/parent-profile.componen
 import { UserGuard } from 'src/app/core/guards';
 import { Role } from 'src/app/core/models/role.model';
 import { ParentComponent } from './parent.component';
+import { SuggestionComponent } from './suggestion/suggestion.component';
 export const routes: Routes = [
     // { path: '', redirectTo: 'home', pathMatch: 'full' },
     {path: '', component: ParentComponent, children:[
@@ -17,6 +18,15 @@ export const routes: Routes = [
                 ]
               }
     },
+    {
+      path: 'suggestion', component: SuggestionComponent, canActivate:
+          [UserGuard],
+          data: {
+              roles: [
+                Role.Parent,
+              ]
+            }
+  },
     {
         path: 'Profile/:id', component: ParentProfileComponent, canActivate:
             [UserGuard],

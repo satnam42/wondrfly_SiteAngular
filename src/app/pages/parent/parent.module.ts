@@ -14,28 +14,37 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { sharePopupModule } from 'src/app/core/components/share-popup/share-popup.module';
 import { MatInputModule } from '@angular/material/input';
+import { MarkdownModule } from 'src/app/core/shared/markdown/markdown.module';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { MailchimpSubscribeFormModule } from 'src/app/core/components/mailchimp-subscribe-form/mailchimp-subscribe-form.module';
+import { AppRoutingModule } from 'src/app/app-routing.module';
+import { SuggestionComponent } from './suggestion/suggestion.component';
 @NgModule({
     entryComponents: [],
     declarations: [
-        ParentComponent,LoginParentComponent, ParentProfileComponent
+        ParentComponent,LoginParentComponent, ParentProfileComponent,SuggestionComponent
 
     ],
     imports: [
         CommonModule,
+        AppRoutingModule,
         ParentRoutingModule,
         FormsModule,
-        CoreModule,
         CustomFormsModule,
         MatInputModule,
         ReactiveFormsModule,
         NgxMaskModule.forRoot(),
         AutocompleteLibModule,
         InfiniteScrollModule,
+        CoreModule,
         AgmCoreModule,
         sharePopupModule,
+        LazyLoadImageModule,
+        MailchimpSubscribeFormModule,
+        MarkdownModule,
     ],
     exports: [
-        ParentComponent, LoginParentComponent, ParentProfileComponent
+        ParentComponent, LoginParentComponent, ParentProfileComponent,SuggestionComponent
     ]
 })
 export class ParentModule { }

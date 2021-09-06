@@ -369,6 +369,32 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
     this.isAddChildBtn = false;
     this.isEditChildBtn = true;
   }
+  onInvite() {
+    this.store.removeItem('savedList');
+    window.scroll(0, 0);
+    this.isChat = false;
+    this.chat = "";
+    this.isSetting = false;
+    this.setting = "";
+    this.isGuardian = false;
+    this.guardian = "";
+    this.isChildren = false;
+    this.children = "";
+    this.isNotification = false;
+    this.notification = "";
+    this.isFriend = false;
+    this.friend = "";
+    this.isFeedback = false;
+    this.feedback = "";
+    this.isInvite = false;
+    this.isAddChild = false;
+    this.isEditChildBtn = false;
+    this.isFavourite = false;
+    this.favourite = "";
+    this.isProfile = false;
+    this.profile = "";
+    this.isInvite = true;
+  }
   getFav(id) {
     this.savedList = JSON.parse(this.store.getItem('savedList'));
     if (this.savedList) {

@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { SignUpGuardianComponent } from './sign-up-guardian/sign-up-guardian.component';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { AskToJoinComponent } from './ask-to-join/ask-to-join.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     SignUpComponent,
     LoginComponent,
     SignUpGuardianComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    AskToJoinComponent,
   ],
   imports: [
     CommonModule,
@@ -29,9 +31,9 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     FormsModule,
     SocialModule
   ],
- 
+
     // { provide: LocationStrategy, useClass: PathLocationStrategy }
 
-  
+
 })
 export class AuthModule { }
