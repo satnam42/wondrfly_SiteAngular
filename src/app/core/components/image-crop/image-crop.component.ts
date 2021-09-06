@@ -79,10 +79,10 @@ export class ImageCropComponent implements WithStyles, AfterViewInit {
 
   onCropped(e: ImgCropperEvent) {
     this.croppedImage = e.dataURL;
-    console.log('cropped img: ', e);
+
   }
   onLoaded(e: ImgCropperEvent) {
-    console.log('img loaded', e);
+
   }
   onError(e: ImgCropperErrorEvent) {
     console.warn(`'${e.name}' is not a valid image`, e);

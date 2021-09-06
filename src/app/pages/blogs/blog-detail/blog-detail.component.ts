@@ -51,7 +51,6 @@ title:string = ""
      {
 
     this.user = this.auths.currentUser()
-    console.log('userrr', this.user)
     this.activatedroute.params.subscribe(data => {
       this.blogDetail=data;
       this.getBlogById();
@@ -82,7 +81,6 @@ getBlogById(){
     this.metaTagService.updateTag(
       { name: 'description', content: desc+'...'}
     );
-    console.log( 'data on blogBYID axios', this.blogbyid);
   });
   }
 
@@ -124,7 +122,6 @@ genericSocialShare(provider) {
        case 'facebook': {
          this.url = `https://www.${provider}.com/sharer/sharer.php?u=${encodeURIComponent(this.shareUrlSocial)}blogs/${this.share.title}/${this.blogbyid.id}`;
          window.open(this.url, 'sharer', 'toolbar=0,status=0,width=648,height=395');
-         console.log('fb url',this.url)
          return true;
        }
        case 'email': {

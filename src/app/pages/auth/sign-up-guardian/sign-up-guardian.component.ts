@@ -67,7 +67,6 @@ export class SignUpGuardianComponent implements OnInit {
       password: 'strapipassword',
     })
     .then(response => {
-      console.log('bloguser data parent', response);
       if (response.status === 200) {
         this.store.setObject('strapiData', response.data);
         this.store.setItem('jwt', response.data.jwt);
@@ -75,7 +74,6 @@ export class SignUpGuardianComponent implements OnInit {
     this.ngxLoader.start();
     this.apiservice.signupGuardian(this.userData).subscribe((res: any) => {
       this.ngxLoader.stop();
-      console.log('resss', res);
       if (res.isSuccess) {
         this.router.navigate(['/login']);
         this.toastr.info('Success',this.message);
@@ -86,8 +84,6 @@ export class SignUpGuardianComponent implements OnInit {
     });
         }
       }).catch(error => {
-        // Handle error.
-        console.log('An error occurred:',  error.response);
         this.toastr.info( error.response.data.data[0].messages[0].message)
       });
   }

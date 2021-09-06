@@ -45,7 +45,7 @@ export class BlogSearchComponent implements OnInit {
   ngOnInit() {
     this.metaTagService.addTag(
       { name: 'keywords', content: 'blog category filter, blog category page, search blogs,blog topics for kids'}
-    ); 
+    );
     window.scroll(0, 0);
 
   }
@@ -54,7 +54,6 @@ export class BlogSearchComponent implements OnInit {
 
   selectEvent(item) {
     this.router.navigate(['/blogs/blog-result'])
-    console.log('seleced cat');
   }
 
   onFocused(e) {
@@ -62,29 +61,16 @@ export class BlogSearchComponent implements OnInit {
   }
 
   onChangeSearch(key: string) {
-    // this.ngxLoader.start();
+
     this.apiservice.searchCategory(key).subscribe((res: any) => {
       this.searchesCatg = res.data;
-      console.log("data", this.searchesCatg)
-      // this.ngxLoader.stop()
+
     });
   }
 
 
-  // getBlogByLocation(){
-  //   this.location= JSON.parse(localStorage.getItem('data'));
-  //   if(this.location.city){
-  //   console.log('location', this.location)
-  //   const responcee = axios.get(`${this.blogUrl}/locations/?id=${this.location.id}`).then(response => {
-  //     this.searchCatgData = response.data[0]
-
-  //     console.log( 'data by location axios', this.searchCatgData);
-  //   });
-  // }
-  //   }
 
   getBlogByCat() {
-    console.log('catg', this.catg)
     const responcee = axios.get(`${this.blogUrl}/categories/?id=${this.catg.id}`).then(response => {
       this.searchCatgData = response.data[0]
       this.categoryName = this.searchCatgData.categoryName;

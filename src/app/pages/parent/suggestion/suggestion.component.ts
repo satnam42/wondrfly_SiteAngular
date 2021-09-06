@@ -25,10 +25,6 @@ export class SuggestionComponent implements OnInit {
   }
   categoryResponse: any;
   hide: boolean = true;
-  landingImageIndex: number;
-  landingImages = ['assets/landing/header.jpg',
-    'assets/landing/header1.jpg',
-  ]
   blog: any;
   categoriesBySearch: any = new Category;
   providersBySearch: any = new User;
@@ -98,7 +94,6 @@ export class SuggestionComponent implements OnInit {
       this.router.navigate(['/program-provider', providerName, provider._id]);
   }
   ngOnInit() {
-    this.landingImageIndex = Math.floor(Math.random() * this.landingImages.length);
     this.getCategoryList();
     this.getBlog();
     this.titleService.setTitle(this.title);

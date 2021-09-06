@@ -46,7 +46,7 @@ export class SocialLoginComponent implements OnInit {
               private toastr: ToastrService,
               private store : LocalStorageService) {
                 this.routeName = router.url;
-                console.log('routerr',this.routeName)
+
                 if(this.routeName=='/login'){ this.loginOrSignUp='Log In' }
               }
 
@@ -55,13 +55,13 @@ export class SocialLoginComponent implements OnInit {
 
 
   signInWithFB() {
-    console.log('user role',this.role);
+
     if(localStorage.getItem("token") === null){
     this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
     this.socialAuthService.authState.subscribe((user) => {
       // this.user = user;
       this.loggedIn = (user != null);
-      console.log(user);
+
       if(user){
         let facebookUser = new User;
         facebookUser.facebookId = user.id;
@@ -72,12 +72,10 @@ export class SocialLoginComponent implements OnInit {
         facebookUser.healthAndSafety = [];
         facebookUser.role = this.role;
         this.ngxLoader.start();
-        console.log('fb signup ressss before',facebookUser)
         this.apiservice.signupWithFb(facebookUser).subscribe((res: any) => {
           if(res.isSuccess === true){
             let user = new User;
             user =res.data;
-            console.log('fb signup ressss',res)
             this.strapiSignup()
         }
           this.ngxLoader.stop();
@@ -88,16 +86,12 @@ export class SocialLoginComponent implements OnInit {
   }
 
   signInWithGoogle() {
-    console.log('user role',this.role);
     if(localStorage.getItem("token") === null){
       this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
     this.socialAuthService.authState.subscribe((user) => {
-      console.log('google dataaaaaaaaaa',user)
       // this.userGoogle = user;
       this.loggedIn = (user != null);
-      console.log(user);
       if(user){
-
         let googleUser = new User;
         googleUser.googleId = user.id;
         googleUser.email = user.email;
@@ -107,15 +101,11 @@ export class SocialLoginComponent implements OnInit {
         googleUser.healthAndSafety = [];
         googleUser.role = this.role;
         this.ngxLoader.start();
-        console.log('google signup ressss before',googleUser)
         this.apiservice.signupWithGoogle(googleUser).subscribe((res: any) => {
           if(res.isSuccess === true){
 
             this.user =res.data;
             this.strapiSignup()
-            console.log('google signup ressss',res)
-
-
   }
           this.ngxLoader.stop();
         })
@@ -134,7 +124,6 @@ export class SocialLoginComponent implements OnInit {
     identifier:  this.user.email
   })
   .then(response => {
-    console.log('bloguser data parent', response);
     if(response.status===200){
       this.auth.setUser(this.user);
       this.store.setObject('strapiData', response.data);
@@ -147,8 +136,6 @@ export class SocialLoginComponent implements OnInit {
    }
   }
 }).catch(error => {
-  // Handle error.
-  console.log('strapi login resss:',  error.response);
   this.toastr.info( error.response.data.data[0].messages[0].message )
 });
   }
@@ -162,7 +149,6 @@ strapiSignup(){
     password: 'strapipassword',
   })
   .then(response => {
-    console.log('bloguser data parent', response);
     if(response.status===200){
       this.auth.setUser(this.user);
       this.store.setObject('strapiData', response.data);
@@ -176,8 +162,6 @@ strapiSignup(){
 }
 
   }).catch(error => {
-    // Handle error.
-    console.log('strapi signup resss:',  error.response);
     if(error.response.data.statusCode===400){
       this.strapiLogin()
     }else{

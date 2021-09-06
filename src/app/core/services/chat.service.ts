@@ -37,15 +37,13 @@ export class ChatService {
   public chats: ChatCollection[];
   public user: User;
   public collectionLoading: boolean;
-  constructor(private socket: Socket) { 
-    
+  constructor(private socket: Socket) {
+
   }
   sendMessage(newMsg) {
-    console.log('msg', newMsg)
     this.socket.emit('chat-msg', { msg: newMsg.msg, msgTo: newMsg.msgTo, date: newMsg.date });
   }
   sendMedia(newMsg) {
-    console.log('media msg', newMsg)
     this.socket.emit('media-chat', { image: newMsg.image, room: newMsg.room, msgTo: newMsg.msgTo, date: newMsg.date });
   }
   startTyping() {
@@ -70,7 +68,6 @@ export class ChatService {
     return Observable.create((observer) => {
       this.socket.on('chat-msg', (message) => {
         observer.next(message);
-        console.log('res', message)
 
       });
     });
@@ -79,8 +76,6 @@ export class ChatService {
     return Observable.create((observer) => {
       this.socket.on('media-chat', (message) => {
         observer.next(message);
-        console.log('res', message)
-
       });
     });
   }

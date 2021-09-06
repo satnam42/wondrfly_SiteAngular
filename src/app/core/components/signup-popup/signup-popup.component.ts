@@ -91,7 +91,7 @@ export class SignupPopupComponent implements OnInit {
         password: 'strapipassword',
       })
       .then(response => {
-        console.log('bloguser data parent', response);
+
         if(response.status===200){
           this.store.setObject('strapiData', response.data);
           this.store.setItem('jwt', response.data.jwt);
@@ -100,7 +100,7 @@ export class SignupPopupComponent implements OnInit {
       this.apiservice.addUser(this.userData).subscribe((res: any) => {
         this.ngxLoader.stop();
         if (res.isSuccess === true) {
-           console.log('resssssss', res)
+
           window.document.getElementById("close_modal").click();
           this.store.setObject('userData', res.data);
           this.store.setItem('token', res.data.token);
@@ -113,8 +113,6 @@ export class SignupPopupComponent implements OnInit {
       })
     }
   }).catch(error => {
-    // Handle error.
-    console.log('An error occurred:',  error.response);
     this.toastr.info(  error.response.data.data[0].messages[0].message )
   });
   }

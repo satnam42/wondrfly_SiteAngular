@@ -212,7 +212,6 @@ export class ApiService {
     deletePhoneNumber(id): Observable<User[]> {
         const subject = new Subject<User[]>();
         this.http.post(`${this.root}/providers/deletePhoneNumber?id=${id}`, "", this.getHeader()).subscribe((responseData: any) => {
-            console.log('delete', responseData)
             if (responseData.statusCode !== 200) {
                 throw new Error('This request has failed ' + responseData.status);
             }
@@ -246,7 +245,6 @@ export class ApiService {
                 'x-access-token': this.token
             })
         }).subscribe((responseData: any) => {
-            console.log('res from server', responseData);
             if (responseData.statusCode !== 200) {
                 throw new Error('This request has failed ' + responseData.status);
             }

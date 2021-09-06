@@ -59,7 +59,6 @@ export class ForgotPasswordComponent implements OnInit {
     this.credentials.email = email;
     this.ngxLoader.start();
     this.apiservice.otpRequest(this.credentials.email).subscribe((res: any) => {
-      console.log('resss', res)
       this.ngxLoader.stop();
       if (res.isSuccess === true) {
         this.isOTP = true;

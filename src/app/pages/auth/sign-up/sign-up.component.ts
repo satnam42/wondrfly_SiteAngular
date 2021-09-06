@@ -91,13 +91,11 @@ export class SignUpComponent implements OnInit {
         password: 'strapipassword',
       })
       .then(response => {
-        console.log('bloguser data parent', response);
         if(response.status===200){
           this.store.setObject('strapiData', response.data);
           this.store.setItem('jwt', response.data.jwt);
       this.ngxLoader.start();
       this.apiservice.addUser(this.userData).subscribe((res: any) => {
-        console.log('parentADDED', res)
         if (res.isSuccess === true) {
           this.store.setObject('userData', res.data);
           this.store.setItem('token', res.data.token);
@@ -110,8 +108,6 @@ export class SignUpComponent implements OnInit {
       });
         }
       }).catch(error => {
-        // Handle error.
-        console.log('An error occurred:',  error.response);
         this.toastr.info( error.response.data.data[0].messages[0].message)
       });
     }
@@ -124,7 +120,6 @@ export class SignUpComponent implements OnInit {
         password: 'strapipassword',
       })
       .then(response => {
-        console.log('bloguser data provider',response);
         if(response.status===200){
           this.store.setObject('strapiData', response.data);
           this.store.setItem('jwt', response.data.jwt);
@@ -135,7 +130,6 @@ export class SignUpComponent implements OnInit {
       this.ngxLoader.start();
       this.apiservice.addUser(this.providerData).subscribe((res: any) => {
         this.ngxLoader.stop();
-        console.log('resssssss', res)
         if (res.isSuccess === true) {
           this.store.setObject('userData', res.data);
           this.store.setItem('token', res.data.token);
@@ -147,8 +141,6 @@ export class SignUpComponent implements OnInit {
       });
         }
       }).catch(error => {
-        // Handle error.
-        console.log('An error occurred:',  error.response);
         this.toastr.info(  error.response.data.data[0].messages[0].message)
       });
 

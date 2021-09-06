@@ -81,7 +81,6 @@ export class LoginComponent implements OnInit {
     localStorage.removeItem('userId');
     this.auth.login(this.credentials).subscribe((res: any) => {
       this.user=res.data
-      console.log('logged in response', res)
       if(res.isSuccess===true){
         // ----------login strapi if user is register on wondrfly---------
         this.strapiLogin()
@@ -140,7 +139,6 @@ export class LoginComponent implements OnInit {
     identifier:  this.user.email
   })
   .then(response => {
-    console.log('bloguser data parent', response);
     if(response.status===200){
       this.auth.setUser(this.user);
       this.store.setObject('strapiData', response.data);
@@ -169,7 +167,6 @@ export class LoginComponent implements OnInit {
 
   }
 }).catch(error => {
-  console.log('strapi login resss:',  error.response);
   if(error.response.data.statusCode===400){
     // ----------signUp strapi if user is not register on strapi---------
     this.strapiSignup()
@@ -181,7 +178,6 @@ export class LoginComponent implements OnInit {
 
 // --------------------------------------if user is not registerd in strapi------------------------------------
 strapiSignup(){
-  console.log('user',this.user)
   axios
   .post(`${this.blogUrl}/auth/local/register`, {
     username: this.user.firstName,
@@ -189,7 +185,6 @@ strapiSignup(){
     password: 'strapipassword',
   })
   .then(response => {
-    console.log('bloguser data parent', response);
     if(response.status===200){
       this.auth.setUser(this.user);
       this.store.setObject('strapiData', response.data);
@@ -218,8 +213,6 @@ strapiSignup(){
 }
 
   }).catch(error => {
-    // Handle error.
-    console.log('strapi signup this.userss:',  error.response);
     this.toastr.info(error.response.data.data[0].messages[0].message)
   });
 }
