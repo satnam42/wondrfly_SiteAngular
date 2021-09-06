@@ -1,6 +1,6 @@
-import { AskToJoinComponent } from './ask-to-join/ask-to-join.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AskToJoinComponent } from './ask-to-join/ask-to-join.component';
 import { AuthComponent } from './auth.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { LoginComponent } from './login/login.component';
