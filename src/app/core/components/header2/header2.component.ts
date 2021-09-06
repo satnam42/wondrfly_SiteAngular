@@ -20,7 +20,6 @@ export class Header2Component implements OnInit {
     activityName: '',
   }
   providersBySearch: any;
-  @ViewChild(SearchComponent, { static: true }) footerComponent: SearchComponent;
   constructor(
     private router: Router,
     private apiservice: ApiService,

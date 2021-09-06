@@ -33,7 +33,7 @@ const routes: Routes = [
         loadChildren: () => import('.//pages/blogs/blogs.module').then(m => m.BlogsModule),
       },
 
-  { path: '', loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule) },
+  { path: '', loadChildren: () => import('.//pages/auth/auth.module').then(m => m.AuthModule) },
 
 
   { path: '**', redirectTo: 'search' },
