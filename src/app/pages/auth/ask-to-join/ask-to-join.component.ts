@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
@@ -5,6 +6,7 @@ import { Globals } from 'src/app/core/common/imageLoader';
 import axios from 'axios';
 import { environment } from 'src/environments/environment';
 import { AuthsService } from 'src/app/core/services/auths.service';
+import { ApiService } from 'src/app/core/services/api.service.service';
 @Component({
   selector: 'ask-to-join',
   templateUrl: './ask-to-join.component.html',
@@ -24,27 +26,21 @@ export class AskToJoinComponent implements OnInit {
     confirmPassword:'',
     role: 'parent'
   }
-  providerData: any = {
-    firstName: '',
-    email: '',
-    type: '',
-    password: '',
-    confirmPassword:'',
-    role: 'provider'
-  }
-  message: string = 'Registered Successfully!';
+  message: string = 'Your request submitted!';
   categoryResponse: any;
   response: any;
   hide: boolean = true;
   signUpImage = '';
   signUpImages = ['assets/preOnboarding/1.jpg',
   'assets/preOnboarding/2.jpg',
-  'assets/preOnboarding/3.jpg',,
+  'assets/preOnboarding/3.jpg',
   'assets/preOnboarding/6.jpg',
   'assets/preOnboarding/11.jpg',
   ]
   constructor(private auth:AuthsService,
-    public imageLoader: Globals) {
+    private apiservice: ApiService,
+    public imageLoader: Globals,
+    private toastr: ToastrService) {
   }
   onPassword() {
     this.hide = !this.hide;
@@ -56,9 +52,13 @@ export class AskToJoinComponent implements OnInit {
   askToJoin() {
     let email = this.userData.email.toLowerCase();
     this.userData.email = email;
-    //   this.apiservice.addUser(this.userData).subscribe((res: any) => {
-
-    // })
+      this.apiservice.addUser(this.userData).subscribe((res: any) => {
+        console.log(res,'ressssss')
+        if(res.isSuccess){
+    this.toastr.info(this.message)
+        }
+        else{    this.toastr.info(res.error) }
+    })
 
   }
 

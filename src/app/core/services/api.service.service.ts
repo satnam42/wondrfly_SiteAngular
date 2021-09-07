@@ -383,6 +383,28 @@ export class ApiService {
         });
         return subject.asObservable();
     }
+       //------------------------- ask to join  user --------------------------------->
+
+       askToJoin(data): Observable<User[]> {
+        const subject = new Subject<User[]>();
+        this.http.post(`${this.root}/invitation/askToJoin`, data, { headers: null }).subscribe((responseData: any) => {
+            if (responseData.statusCode !== 200) {
+                throw new Error('This request has failed ' + responseData.status);
+            }
+            const dataModel = responseData;
+            if (!dataModel.isSuccess) {
+                if (responseData.status === 200) {
+                    throw new Error(dataModel.code || dataModel.message || 'failed');
+                } else {
+                    throw new Error(responseData.status + '');
+                }
+            }
+            subject.next(responseData);
+        }, (error) => {
+            subject.next(error.error);
+        });
+        return subject.asObservable();
+    }
     // -------------------get users-----------------------
 
     getUsers(role, no, size): Observable<User[]> {
