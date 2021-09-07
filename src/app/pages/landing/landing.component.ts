@@ -33,6 +33,7 @@ export class LandingComponent implements OnInit {
   blog: any;
   categoriesBySearch: any = new Category;
   providersBySearch: any = new User;
+  altBanner:any  = ''
   constructor(private router: Router,
     private apiservice: ApiService,
     private dataservice: DataService,
@@ -100,6 +101,12 @@ export class LandingComponent implements OnInit {
   }
   ngOnInit() {
     this.landingImageIndex = Math.floor(Math.random() * this.landingImages.length);
+    if(this.landingImageIndex){
+      this.altBanner = 'Fun Activities for Kids'
+    }
+    else{
+      this.altBanner = 'Kids Activities'
+    }
     this.getCategoryList();
     this.getBlog();
     this.titleService.setTitle(this.title);
