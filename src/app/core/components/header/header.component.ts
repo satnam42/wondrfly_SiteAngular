@@ -200,7 +200,7 @@ submitFeedback(){
      this.auth.logout();
      this.userdataservice.logout();
      localStorage.clear();
-     this.router.navigate(['/login']);
+     this.router.navigate(['login']);
    }
  });
 }

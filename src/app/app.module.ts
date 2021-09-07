@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
 import { AppComponent } from '../app/app.component';
@@ -24,8 +24,8 @@ import { SignUpComponent } from './pages/auth/sign-up/sign-up.component';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { SignUpGuardianComponent } from './pages/auth/sign-up-guardian/sign-up-guardian.component';
 import { ForgotPasswordComponent } from './pages/auth/forgot-password/forgot-password.component';
-import { CommonModule } from '@angular/common';
-import { SocialModule } from './core/components/social-login/social-login.module';
+
+
 const config: SocketIoConfig = { url: environment.socketUrl, options: {} };
 
 // guards
@@ -33,17 +33,9 @@ const config: SocketIoConfig = { url: environment.socketUrl, options: {} };
   declarations: [
     AppComponent,
     LandingComponent,
-    AskToJoinComponent,
-    SignUpComponent,
-    LoginComponent,
-    SignUpGuardianComponent,
-    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     CoreModule,
@@ -52,14 +44,13 @@ const config: SocketIoConfig = { url: environment.socketUrl, options: {} };
     LazyLoadImageModule,
     MailchimpSubscribeFormModule,
     MarkdownModule,
-    SocialModule,
     SocketIoModule.forRoot(config),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyD_5P0pxn1q9hvvTeCr3YCsDhLJoHwxs2c',
       libraries: ['places']
     }),
     ToastrModule.forRoot(),
-    LazyLoadImageModule,
+
   ],
   providers: [
     LocalStorageService,

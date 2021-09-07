@@ -1,21 +1,17 @@
+
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AskToJoinComponent } from './pages/auth/ask-to-join/ask-to-join.component';
-import { ForgotPasswordComponent } from './pages/auth/forgot-password/forgot-password.component';
-import { LoginComponent } from './pages/auth/login/login.component';
-import { SignUpGuardianComponent } from './pages/auth/sign-up-guardian/sign-up-guardian.component';
-import { SignUpComponent } from './pages/auth/sign-up/sign-up.component';
 import { LandingComponent } from './pages/landing/landing.component';
 
 // main routes
 const routes: Routes = [
 
   { path: '', component: LandingComponent },
-  { path: 'sign-up', component: SignUpComponent },
-  { path: 'ask-to-join', component: AskToJoinComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'sign-up-guardian', component: SignUpGuardianComponent },
-  { path: 'forgot-password', component: ForgotPasswordComponent},
+  { path: 'sign-up', loadChildren: () => import('.//pages/auth/sign-up/sign-up.module').then(m => m.SignUpModule) },
+  { path: 'ask-to-join', loadChildren: () => import('.//pages/auth/ask-to-join/ask-to-join.module').then(m => m.AskToJoinModule) },
+  { path: 'login', loadChildren: () => import('.//pages/auth/login/login.module').then(m => m.LoginModule) },
+  { path: 'sign-up-guardian', loadChildren: () => import('.//pages/auth/sign-up-guardian/sign-up-guardian.module').then(m => m.SignUpGuardianModule) },
+  { path: 'forgot-password', loadChildren: () => import('.//pages/auth/forgot-password/forgot-password.module').then(m => m.ForgotPasswordModule) },
   { path: 'search', loadChildren: () => import('.//pages/search/search.module').then(m => m.SearchModule) },
   { path: '', loadChildren: () => import('./pages/common-pages/common-pages.module').then(m => m.CommonPagesModule) },
   { path: 'contactUs', loadChildren: () => import('.//pages/contact-us/contact-us.module').then(m => m.ContactUsModule) },
@@ -26,11 +22,11 @@ const routes: Routes = [
       },
 
       {
-        path: '',
+        path: 'provider',
         loadChildren: () => import('.//pages/provider/provider.module').then(m => m.ProviderModule),
       },
       {
-        path: '',
+        path: 'parent',
         loadChildren: () => import('.//pages/parent/parent.module').then(m => m.ParentModule),
       },
       {
