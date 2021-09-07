@@ -8,12 +8,15 @@ import { SignUpGuardianComponent } from './sign-up-guardian/sign-up-guardian.com
 import { SignUpComponent } from './sign-up/sign-up.component';
 
 const routes: Routes = [
-  { path: '', component: AuthComponent },
+  { path: '', component: AuthComponent,
+children:[
   { path: 'sign-up', component: SignUpComponent },
   { path: 'ask-to-join', component: AskToJoinComponent },
   { path: 'login', component: LoginComponent },
   { path: 'sign-up-guardian', component: SignUpGuardianComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent}
+] },
+
 ];
 
 @NgModule({
