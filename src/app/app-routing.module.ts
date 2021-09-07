@@ -1,11 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AskToJoinComponent } from './pages/auth/ask-to-join/ask-to-join.component';
+import { ForgotPasswordComponent } from './pages/auth/forgot-password/forgot-password.component';
+import { LoginComponent } from './pages/auth/login/login.component';
+import { SignUpGuardianComponent } from './pages/auth/sign-up-guardian/sign-up-guardian.component';
+import { SignUpComponent } from './pages/auth/sign-up/sign-up.component';
 import { LandingComponent } from './pages/landing/landing.component';
 
 // main routes
 const routes: Routes = [
 
   { path: '', component: LandingComponent },
+  { path: 'sign-up', component: SignUpComponent },
+  { path: 'ask-to-join', component: AskToJoinComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'sign-up-guardian', component: SignUpGuardianComponent },
+  { path: 'forgot-password', component: ForgotPasswordComponent},
   { path: 'search', loadChildren: () => import('.//pages/search/search.module').then(m => m.SearchModule) },
   { path: '', loadChildren: () => import('./pages/common-pages/common-pages.module').then(m => m.CommonPagesModule) },
   { path: 'contactUs', loadChildren: () => import('.//pages/contact-us/contact-us.module').then(m => m.ContactUsModule) },
@@ -33,7 +43,6 @@ const routes: Routes = [
         loadChildren: () => import('.//pages/blogs/blogs.module').then(m => m.BlogsModule),
       },
 
-  { path: '', loadChildren: () => import('.//pages/auth/auth.module').then(m => m.AuthModule) },
 
 
   { path: '**', redirectTo: 'search' },

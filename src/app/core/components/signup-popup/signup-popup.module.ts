@@ -14,8 +14,8 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     ReactiveFormsModule,
     MatIconModule,
-    SocialModule,
-    RouterModule
+    RouterModule,
+    SocialModule
   ],
   exports:[SignupPopupComponent]
 })

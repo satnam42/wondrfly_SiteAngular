@@ -23,8 +23,8 @@ const thirdPartyModules = [
   MatIconModule,
   MatChipsModule,
   NgxUiLoaderModule,
-  
-  
+
+
   // ImageCropModule,
 ];
 const services = [

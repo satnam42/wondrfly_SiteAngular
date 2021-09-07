@@ -29,7 +29,7 @@ import { SocialLoginModule, FacebookLoginProvider, GoogleLoginProvider, SocialAu
           },
         ]
       } as SocialAuthServiceConfig,
-    }    
+    }
 
   ]
 })
