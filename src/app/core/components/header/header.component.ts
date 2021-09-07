@@ -84,17 +84,14 @@ export class HeaderComponent implements OnInit {
   }
   }
   addProgram() {
-    this.router.navigate(['/program/add']);
+    this.router.navigate(['/provider/program/add']);
   }
   profile() {
     if (this.user.role === "parent") {
-      this.router.navigate(['/Profile', this.user.id]);
+      this.router.navigate(['parent/profile', this.user.id]);
     }
     else if (this.user.role === "provider") {
-      this.router.navigate(['/profile', this.user.id]);
-    }
-    else if (this.user.role === "guardian") {
-      this.router.navigate(['guardianProfile', this.user.id]);
+      this.router.navigate(['provider/profile', this.user.id]);
     }
     else {
       this.router.navigate(['login']);
@@ -105,7 +102,7 @@ export class HeaderComponent implements OnInit {
     if (this.user.role === "parent") {
       this.store.setItem('savedList', '1')
       this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
-      this.router.navigate(['Profile', this.user.id]))
+      this.router.navigate(['parent/profile', this.user.id]))
     }
   }
   getProfileProgress() {

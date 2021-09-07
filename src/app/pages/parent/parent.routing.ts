@@ -8,7 +8,8 @@ import { ParentComponent } from './parent.component';
 import { SuggestionComponent } from './suggestion/suggestion.component';
 export const routes: Routes = [
     // { path: '', redirectTo: 'home', pathMatch: 'full' },
-    {path: '', component: ParentComponent, children:[
+    {path: '', component: ParentComponent,
+     children:[
     {
         path: 'login-parent', component: LoginParentComponent, canActivate:
             [UserGuard],
@@ -28,7 +29,7 @@ export const routes: Routes = [
             }
   },
     {
-        path: 'Profile/:id', component: ParentProfileComponent, canActivate:
+        path: 'profile/:id', component: ParentProfileComponent, canActivate:
             [UserGuard],
             data: {
                 roles: [

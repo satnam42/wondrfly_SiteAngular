@@ -27,7 +27,6 @@ import { SuggestionComponent } from './suggestion/suggestion.component';
     ],
     imports: [
         CommonModule,
-        AppRoutingModule,
         ParentRoutingModule,
         FormsModule,
         CustomFormsModule,
