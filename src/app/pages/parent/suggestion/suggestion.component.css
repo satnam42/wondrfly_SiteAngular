@@ -461,7 +461,10 @@ span.upper-blog-view {
     padding-bottom: 10px;
     cursor: pointer;
 }
-
+span.d-flex.justify-content-end {
+  cursor: pointer;
+  color: #53b2e8;
+}
 
 
 @media only screen and (min-width:1024px) and (max-width:1366px) and (orientation: portrait)  {
