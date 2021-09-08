@@ -52,7 +52,7 @@ export class AskToJoinComponent implements OnInit {
   askToJoin() {
     let email = this.userData.email.toLowerCase();
     this.userData.email = email;
-      this.apiservice.addUser(this.userData).subscribe((res: any) => {
+      this.apiservice.askToJoin(this.userData).subscribe((res: any) => {
         console.log(res,'ressssss')
         if(res.isSuccess){
     this.toastr.info(this.message)

@@ -387,7 +387,7 @@ export class ApiService {
 
        askToJoin(data): Observable<User[]> {
         const subject = new Subject<User[]>();
-        this.http.post(`${this.root}/invitation/askToJoin`, data, { headers: null }).subscribe((responseData: any) => {
+        this.http.post(`${this.root}/invitation/askToJoin`, data, this.getHeader()).subscribe((responseData: any) => {
             if (responseData.statusCode !== 200) {
                 throw new Error('This request has failed ' + responseData.status);
             }

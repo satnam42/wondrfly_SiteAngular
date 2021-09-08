@@ -103,6 +103,7 @@ export class OnlineProgramsComponent implements OnInit {
       }
   }
   ngOnInit() {
+    console.log(this.programs,'programs')
 }
    addAction(programId) {
     let body = {
@@ -152,7 +153,7 @@ getRating(program){
       this.dataService.setOption(this.filterData)
       this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
       this.router.navigate(['/search']))
-    
+
     }
 
 
