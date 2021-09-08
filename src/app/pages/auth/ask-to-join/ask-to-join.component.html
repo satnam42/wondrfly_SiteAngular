@@ -16,11 +16,12 @@
                                 <div class="tab-pane active" id="parent" role="tabpanel">
                                     <div class="form" [formGroup]="parentForm">
 
-                                        <div class="form-group socialicons-input">
+                                        <!-- <div class="form-group socialicons-input">
                                             <div class="input_outer">
                                                <app-social-login [role]="userData.role"></app-social-login>
                                             </div>
-                                        </div>
+                                        </div> -->
+                                        <h1 class="ask-heading">Request to join our Beta program!</h1>
 
                                         <div class="form-group">
                                             <label>Parent Name</label>
@@ -48,7 +49,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label>Select Password</label>
+                                            <label>Password</label>
                                             <div class="input_outer password">
                                                 <input type="password" class="form-control" placeholder="Type"
                                                     placeholder="Select a Strong Password"
@@ -82,18 +83,34 @@
                                                 PASSWORD DO NOT MATCH</small>
                                             </div>
                                           </div>
-
-                                        <div class="row forgot_password">
-                                            <div class="col-12 forgot_text">
-                                                <p> By clicking sign up I hereby agree with Letsplay’s
-                                                    <a [routerLink]="['/term-condition']">Terms & Conditions</a></p>
+                                          <div class="checkbox-ask">
+                                            <div class="form-check">
+                                              <input class="form-check-input k-checkbox" type="checkbox" value="" id="flexCheckDefault">
+                                              <label class="form-check-label k-checkbox-label" for="flexCheckDefault">
+                                                I am a parent
+                                              </label>
                                             </div>
-                                        </div>
+                                            <div class="form-check">
+                                              <input class="form-check-input k-checkbox" type="checkbox" value="" id="flexCheckChecked">
+                                              <label class="form-check-label k-checkbox-label" for="flexCheckChecked">
+                                                I agree to participate in wondrfly’s beta program and weekly provide the feedback
+                                              </label>
+                                            </div>
+                                          </div>
+
+
                                         <div class="sign_in_btn">
                                             <button class="SignBtn" (click)="askToJoin()"
                                                 [disabled]="parentForm.invalid">Submit Request</button>
                                             <button class="SignBtn cancel" routerLink="/login">Cancel</button>
                                         </div>
+
+                                        <div class="row forgot_password">
+                                          <div class="col-12 forgot_text">
+                                              <p> By clicking sign up I hereby agree with Letsplay’s
+                                                  <a [routerLink]="['/term-condition']">Terms & Conditions</a></p>
+                                          </div>
+                                      </div>
                                     </div>
 
                                 </div>
@@ -104,7 +121,7 @@
                     </div>
                     <div class="row forgot_password">
                         <div class="col-12 forgot_text">
-                            <p class="member-123">Already a member? <a routerLink="/login">SIGN In</a></p>
+                            <p class="member-123"><a >Terms & Conditions</a> and <a>PRIVACY POLICY</a></p>
                         </div>
                     </div>
                     <div class="row forgot_password">

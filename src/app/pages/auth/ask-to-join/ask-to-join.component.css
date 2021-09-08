@@ -95,7 +95,7 @@
 .otp_img {
     position: relative;
     overflow: hidden;
-   
+
 }
 
 .otp_img_overlay {
@@ -106,7 +106,17 @@
     top: 0px;
     background: linear-gradient(214.99deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 100%);
 }
-
+h1.ask-heading {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 34px;
+  line-height: 51px;
+  text-align: center;
+  letter-spacing: 0.001em;
+  color: #777CEA;
+  margin-bottom: 15px;
+}
 .otp_outer {
     position: relative;
 }
@@ -235,7 +245,7 @@
     letter-spacing: 0.001em;
     color: #494944;
     height: 100%;
-}  
+}
 
 .tab_outer .custom_select{
     min-height: 46px;
@@ -287,6 +297,74 @@ input.ng-invalid.ng-touched {
 select.ng-invalid.ng-touched {
     border: 1px solid red;
 }
+.checkbox-ask .form-check {
+  padding: 8px;
+  padding-top: 10px;
+}
+.checkbox-ask .form-check label.form-check-label {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: 0.01em;
+  color: #494949;
+  margin-left: 25px;
+}
+/*Empty checkbox*/
+.k-checkbox {
+  background:transparent;
+  color: white !important;
+}
+
+/*Checked checkbox*/
+.k-checkbox {
+  border-color: rgba(0,0,0,.08);
+  color: transparent;
+  background-color: #fff;
+}
+.k-checkbox {
+  border-radius: 2px;
+  margin: 0;
+  padding: 0;
+  width: 16px;
+  height: 16px;
+  line-height: initial;
+  border-width: 1px;
+  border-style: solid;
+  outline: 0;
+  box-sizing: border-box;
+  position: absolute;
+  -webkit-appearance: none;
+  margin-right: 9px;
+  border: 1px solid #53B2E8;
+  box-sizing: border-box;
+  border-radius: 2px;
+  top: 13px;
+}
+.k-checkbox.k-checked::before, .k-checkbox:checked::before {
+  border-radius: 2px;
+  -webkit-transform: scale(1) translate(-50%,-50%);
+  -ms-transform: scale(1) translate(-50%,-50%);
+  transform: scale(1) translate(-50%,-50%);
+}
+.k-checkbox::before {
+  width: 12px;
+  height: 12px;
+  font-size: 12px;
+  line-height: 1;
+  -webkit-transform: scale(0) translate(-50%,-50%);
+  -ms-transform: scale(0) translate(-50%,-50%);
+  transform: scale(0) translate(-50%,-50%);
+  overflow: hidden;
+  position: absolute;
+  top: 54%;
+  left: 48%;
+  content: "\2713";
+  font-family: 'Circular-Loom';
+}
+
+
 
 @media(max-width:767px) {
     .tab_outer .nav-tabs .nav-link {
@@ -310,7 +388,7 @@ select.ng-invalid.ng-touched {
     color: #beb4b4;
 }
 @media (max-width: 1024px){
-    
+
 .otp_img {
     position: absolute !important;
     top: 36%;
@@ -323,7 +401,7 @@ select.ng-invalid.ng-touched {
         margin: 46px 0 0 0;
     }
 
-    
+
     .form-group.socialicons-input{
         padding-bottom: 60px;
         padding-top: 29px;
@@ -336,7 +414,7 @@ select.ng-invalid.ng-touched {
         position: inherit;
         margin-top: 136px;
     }
-    
+
 
     @media (max-width: 1024px){
         .otp_outer .email_register{

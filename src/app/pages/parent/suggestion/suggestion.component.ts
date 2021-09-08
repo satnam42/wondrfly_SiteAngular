@@ -28,6 +28,8 @@ export class SuggestionComponent implements OnInit {
   blog: any;
   categoriesBySearch: any = new Category;
   providersBySearch: any = new User;
+
+  activityName:any=''
   constructor(private router: Router,
     private apiservice: ApiService,
     private dataservice: DataService,
@@ -36,6 +38,8 @@ export class SuggestionComponent implements OnInit {
     private metaTagService: Meta,
    ) {
   }
+  searchCategory(s){}
+  filterByNameDate(){}
   searchBySubCategory(id) {
     this.filterData.activityName=''
     this.filterData.subcatId = id
@@ -53,10 +57,6 @@ export class SuggestionComponent implements OnInit {
       this.categories = res;
     });
   }
- searchActivityByNameDate() {
-  this.dataservice.setOption(this.filterData)
-  this.router.navigate(['/search']);
-}
 
   // ------------------------------------------------get blogs  -------------------------------------------
 
@@ -75,11 +75,6 @@ export class SuggestionComponent implements OnInit {
     this.router.navigate(['blogs/',title, data.id])
   }
 
-  searchSubCategory(key){
-    this.apiservice.searchTag(key).subscribe((res:any)=>{
-  this.categoriesBySearch = res;
-    })
-  }
   providerSearch(key){
     this.apiservice.searchUsers(key,'provider').subscribe((res:any)=>{
       this.providersBySearch = res.data;

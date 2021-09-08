@@ -674,9 +674,52 @@
             </div>
             <!-- ----------------------------------------------------------------------------------------- -->
                 <!-- ---------------account setting------------------------- -->
-                <div *ngIf="isInvite" class="personal_details">
+                <div *ngIf="isInvite" class="">
 
-                   invite section will appear here
+                  <div class="beta-heading">
+                    <h1>Beta program invites</h1>
+                    <div class="d-flex align-items-center">
+                      <h2>Invites left: 10</h2>
+                      <button>Invite</button>
+                    </div>
+                  </div>
+
+                  <div class="table-beta">
+                    <table class="table table-borderless">
+                      <thead>
+                        <tr>
+                          <th scope="col" class="align-item-center">
+                            Full Name
+                            <span class="ml-2"><img src="assets/refresh.png"></span>
+                          </th>
+                          <th scope="col">Email</th>
+                          <th scope="col">Status</th>
+                          <th scope="col">Expires in</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr class="beta-row">
+                          <td class="align-item-center"><span class="mr-2"><img src="assets/beta-img.png"></span>
+                            Quam mollis</td>
+                          <td>vishi@yopmail.com</td>
+                          <td class="align-item-center" ><span class="mr-2"><img src="assets/tick-success.png"></span>
+                            Accepted</td>
+                          <td></td>
+                        </tr>
+                        <tr class="beta-row">
+                          <td class="align-item-center">
+                          <span class="mr-2"><img src="assets/beta-img.png"></span>
+                          Suspendisse massa</td>
+                          <td>vishi@yopmail.com</td>
+                          <td>
+                            <span class="mr-2"><img src="assets/spin.png"></span>
+                            Pending</td>
+                          <td>1d 10h 30m</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
                 </div>
                 <!-- --------------------------------------------------------- -->
 
