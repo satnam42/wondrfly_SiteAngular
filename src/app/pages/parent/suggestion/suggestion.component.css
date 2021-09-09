@@ -316,6 +316,7 @@ section.blog-explore .box {
     background: #FFFFFF;
     box-shadow: 4px 4px 4px rgb(0 0 0 / 10%);
     border-radius: 20px;
+    margin-bottom: 50px;
     padding: 40px;
     padding-top: 30px;
 }

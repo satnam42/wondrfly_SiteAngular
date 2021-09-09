@@ -30,6 +30,7 @@ export class SuggestionComponent implements OnInit {
   providersBySearch: any = new User;
 
   activityName:any=''
+  currentUser: any;
   constructor(private router: Router,
     private apiservice: ApiService,
     private dataservice: DataService,
@@ -37,6 +38,7 @@ export class SuggestionComponent implements OnInit {
     private titleService: Title,
     private metaTagService: Meta,
    ) {
+    this.currentUser = this.auth.currentUser();
   }
   searchCategory(s){}
   filterByNameDate(){}
@@ -46,12 +48,16 @@ export class SuggestionComponent implements OnInit {
     this.dataservice.setOption(this.filterData)
     this.router.navigate(['/search']);
   }
+
+
   searchByCategory(id) {
     this.filterData.activityName=''
     this.filterData.categoryId = id
     this.dataservice.setOption(this.filterData)
     this.router.navigate(['/search']);
   }
+
+
   getCategoryList() {
     this.apiservice.getCategory().subscribe((res: any) => {
       this.categories = res;

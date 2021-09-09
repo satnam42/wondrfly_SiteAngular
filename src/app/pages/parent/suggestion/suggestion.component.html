@@ -8,7 +8,7 @@
       <div class="row">
           <div class="col-12">
             <div class="beta-suggestionheading">
-              <h1>Welcome to wondrfly,!</h1>
+              <h1>Welcome to wondrfly,! {{currentUser.firstName}}</h1>
               <h2>We prepared some activties you might be interested in</h2>
             </div>
           </div>
@@ -30,7 +30,7 @@
           <div class="activity_category_list">
               <div class="row">
                   <div class="col-md-4" *ngFor="let category of categories | slice:2:5; let i = index">
-                      <div class="category_list_box cursor" (click)="searchByCategory(category._id)">
+                      <div class="category_list_box cursor" (click)="searchByCategory(category.id)">
                           <a href="javascritpt:;">
                               <div class="category_image">
                                       <img [defaultImage]="defaultImage" [lazyLoad]="category?.imageUrl" />
@@ -58,8 +58,8 @@
         </div>
         <div class="activity_category_list">
             <div class="row">
-                <div class="col-md-4" *ngFor="let category of categories | slice:2:5; let i = index">
-                    <div class="category_list_box cursor" (click)="searchByCategory(category._id)">
+                <div class="col-md-4" *ngFor="let category of categories | slice:6:9; let i = index">
+                    <div class="category_list_box cursor" (click)="searchByCategory(category.id)">
                         <a href="javascritpt:;">
                             <div class="category_image">
                                     <img [defaultImage]="defaultImage" [lazyLoad]="category?.imageUrl" />
