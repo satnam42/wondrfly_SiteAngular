@@ -45,6 +45,7 @@ export class SignUpComponent implements OnInit {
   response: any;
   hide: boolean = true;
   signUpImage = '';
+  signUpImageTag = '';
   signUpImages = ['assets/preOnboarding/1.jpg',
   'assets/preOnboarding/2.jpg',
   'assets/preOnboarding/3.jpg',
@@ -56,6 +57,19 @@ export class SignUpComponent implements OnInit {
   'assets/preOnboarding/9.jpg',
   'assets/preOnboarding/10.jpg',
   'assets/preOnboarding/11.jpg',
+  ]
+  signUpImageTgs = [
+    'Activities and Games for Toddlers',
+  'Activities and Games for Kids',
+  'Fun Learning Activities',
+  'Fun Activities for Toddlers',
+  'Kids Fun Activities',
+  'Smiling Kids',
+  'Fun Activities',
+  'Kids Games And Activities',
+  'Fun Games for Kids',
+  'Learning Activities for Toddlers',
+  'Activities for Kids',
   ]
   constructor(private auth:AuthsService,
     private router: Router,
@@ -79,6 +93,7 @@ export class SignUpComponent implements OnInit {
   randomImage() {
     const num = Math.floor(Math.random() * this.signUpImages.length);
     this.signUpImage = this.signUpImages[num];
+    this.signUpImageTag  = this.signUpImageTgs[num]
   }
   signup() {
     let email = this.userData.email.toLowerCase();
