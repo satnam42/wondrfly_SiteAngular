@@ -466,8 +466,8 @@ if(toggle){
         this.programs = res.data
         this.showReset = true
       });
-      this.ngxLoader.stop();
     }
+    this.ngxLoader.stop();
   }
 
   programFilter() {
