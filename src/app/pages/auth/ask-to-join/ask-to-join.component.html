@@ -102,7 +102,7 @@
                                         <div class="sign_in_btn">
                                             <button class="SignBtn" (click)="askToJoin()"
                                                 [disabled]="parentForm.invalid">Submit Request</button>
-                                            <button class="SignBtn cancel" routerLink="/login">Cancel</button>
+                                            <button class="SignBtn cancel" onclick="history.back()">Cancel</button>
                                         </div>
 
                                         <div class="row forgot_password">

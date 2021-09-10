@@ -1,6 +1,6 @@
 <body>
 
-    
+
     <div class="otp_outer">
         <div class="container-fluid">
             <div class="row">
@@ -90,7 +90,7 @@
                                                     [(ngModel)]="userData.password" [type]="hide ? 'password' : 'text'">
                                                     <mat-icon class="field-icon" *ngIf="hide" (click)="onPassword()"><i class="far fa-eye"></i></mat-icon>
                                                     <mat-icon class="field-icon" *ngIf="!hide" (click)="onPassword()"> <i class="far fa-eye-slash"></i></mat-icon>
-                                               
+
                                                 <p class="cant_blank"
                                                     *ngIf="parentForm.controls['password'].hasError('required') && parentForm.controls['password'].touched">
                                                     CAN'T LEAVE IT BLANK</p>
@@ -130,7 +130,7 @@
                                         <div class="sign_in_btn">
                                             <button class="SignBtn" (click)="signup()"
                                                 [disabled]="parentForm.invalid">Sign up</button>
-                                            <button class="SignBtn cancel" routerLink="/login">Cancel</button>
+                                            <button class="SignBtn cancel" onclick="history.back()">Cancel</button>
                                         </div>
                                     </div>
                                     <!-- <div class="row forgot_password">
@@ -199,7 +199,7 @@
                                                     [(ngModel)]="providerData.password" [type]="hide ? 'password' : 'text'">
                                                     <mat-icon class="field-icon" *ngIf="hide" (click)="onPassword()"><i class="far fa-eye"></i></mat-icon>
                                                     <mat-icon class="field-icon" *ngIf="!hide" (click)="onPassword()"> <i class="far fa-eye-slash"></i></mat-icon>
-                                                
+
                                                 <p class="cant_blank"
                                                     *ngIf="providerForm.controls['password'].hasError('required') && providerForm.controls['password'].touched">
                                                     CAN'T LEAVE IT BLANK</p>
@@ -237,15 +237,15 @@
                                         <div class="sign_in_btn">
                                             <button class="SignBtn" (click)="signup()"
                                                 [disabled]="providerForm.invalid">Sign up</button>
-                                            <button class="SignBtn cancel" routerLink="/login">Cancel</button>
+                                            <button class="SignBtn cancel" onclick="history.back()">Cancel</button>
                                         </div>
                                     </div>
-                                  
-                                </div>  
+
+                                </div>
                             </div>
                         </div>
 
-                      
+
                     </div>
                     <div class="row forgot_password">
                         <div class="col-12 forgot_text">
