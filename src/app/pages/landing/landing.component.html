@@ -65,7 +65,7 @@
                         <div class="category_list_box cursor" (click)="searchByCategory(category._id)">
                             <a href="javascritpt:;">
                                 <div class="category_image">
-                                        <img [defaultImage]="defaultImage" [lazyLoad]="category?.imageUrl" alt="{{category.name}}" />
+                                        <img [defaultImage]="defaultImage" [lazyLoad]="category?.imageUrl" alt="{{category?.alternativeText}}" />
                                 </div>
                                 <div class="category_title">
                                     <p>{{category?.name}}<span class="title_arrow">
