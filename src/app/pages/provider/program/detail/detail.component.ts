@@ -191,7 +191,7 @@ export class DetailComponent implements OnInit {
     this.program.programOwner = this.program.programOwner.toLowerCase();
     this.program.programOwner = this.program.programOwner.replace(/ /g,"-");
     this.program.programOwner = this.program.programOwner.replace(/\?/g,"-");
-      this.router.navigate(['/program-provider', this.program.programOwner, this.program.user]);
+      this.router.navigate(['/provider/program-provider', this.program.programOwner, this.program.user]);
   }
   onChangeSearch(val: string) {
     this.searchTag(val)
