@@ -1,6 +1,6 @@
 
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { LandingComponent } from './pages/landing/landing.component';
 
 // main routes
@@ -46,7 +46,10 @@ const routes: Routes = [
 
 @NgModule({
   // imports: [RouterModule.forRoot(routes, { useHash: false, enableTracing: true })],
-  imports: [RouterModule.forRoot(routes, { useHash: false, relativeLinkResolution: 'legacy' })],
+  imports: [RouterModule.forRoot(routes, { useHash: false, relativeLinkResolution: 'legacy',    preloadingStrategy: PreloadAllModules
+},
+
+)],
   // imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
