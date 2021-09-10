@@ -57,7 +57,6 @@ const config: SocketIoConfig = { url: environment.socketUrl, options: {} };
     ChatService,
     Globals,
     MapTheme,
-    // { provide: LocationStrategy, useClass: PathLocationStrategy
   ],
   bootstrap: [AppComponent]
 })

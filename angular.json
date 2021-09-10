@@ -26,15 +26,14 @@
               "src/favicon.svg",
               "src/assets",
               "src/sitemap.xml",
-              "src/robots.txt",
-              "src/manifest.webmanifest"
+              "src/robots.txt"
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.scss",
               "node_modules/font-awesome/css/font-awesome.min.css" ,
               "node_modules/ngx-toastr/toastr.css"
-              
+
             ],
             "scripts": ["node_modules/jquery/dist/jquery.slim.min.js",
               "node_modules/popper.js/dist/umd/popper.min.js",
