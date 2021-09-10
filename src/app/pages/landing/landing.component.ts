@@ -57,7 +57,6 @@ export class LandingComponent implements OnInit {
   getCategoryList() {
     this.apiservice.getCategory().subscribe((res: any) => {
       this.categories = res;
-      console.log('categories',this.categories)
     });
   }
  searchActivityByNameDate() {
