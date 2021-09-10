@@ -20,8 +20,7 @@
             <div class="row">
                 <div class="col-7">
                     <div class="main_img">
-                        <!-- <img class="blog_img cursor"  [defaultImage]="defaultImage" [errorImage]="errorImage" lazyLoad="{{blogUrl}}{{blog[0].image[0]?.url}}" (click)="setBlog(blog[0])"/> -->
-                        <img class="blog_img cursor" src="{{blogUrl}}{{blog[0].image[0]?.url}}" (click)="setBlog(blog[0])"/>
+                        <img class="blog_img cursor" src="{{blogUrl}}{{blog[0].image[0]?.url}}" alt="{{blog[0]?.image[0]?.alternativeText}}" (click)="setBlog(blog[0])"/>
 
                     </div>
                     <div class="date">
@@ -48,7 +47,7 @@
                         <div class="small_imgs_section">
                             <div class="small_img cursor">
                                     <!-- <img (click)="setBlog(blogg)" style="height: 137px;width: 167px;" [defaultImage]="defaultImage" [errorImage]="errorImage" lazyLoad="{{blogUrl}}{{blogg?.image[0]?.url}}"/> -->
-                                    <img  style="height: 137px;width: 167px;" src="{{blogUrl}}{{blogg.image[0]?.url}}" (click)="setBlog(blogg)"/>
+                                    <img  style="height: 137px;width: 167px;" src="{{blogUrl}}{{blogg.image[0]?.url}}" alt="{{blogg?.image[0]?.alternativeText}}" (click)="setBlog(blogg)"/>
                             </div>
                             <div class="small_imgs_content">
                                 <div class="date">
@@ -77,7 +76,7 @@
             <div class="forth_section_image_section">
                 <div class="row">
                     <div class="col-4" *ngFor="let blog of categories[0]?.blogs | slice:0:3; let i =index">
-                        <img (click)="setBlog(blog)"  class="forth_section_image cursor" [defaultImage]="defaultImage" [errorImage]="errorImage" lazyLoad="{{blogUrl}}{{blog?.image[0]?.url}}"/>
+                        <img (click)="setBlog(blog)"  class="forth_section_image cursor" [defaultImage]="defaultImage" [errorImage]="errorImage" lazyLoad="{{blogUrl}}{{blog?.image[0]?.url}}" alt="{{blog?.image[0]?.alternativeText}}" />
                         <div class="date">
                             <span class="blue_heading">{{blog?.published_at | date:'mediumDate'}}</span>
                         </div>
@@ -101,7 +100,7 @@
             <div class="forth_section_image_section">
                 <div class="row">
                     <div class="col-4" *ngFor="let blog of categories[1]?.blogs | slice:0:3; let i =index">
-                        <img (click)="setBlog(blog)"  class="forth_section_image cursor" [defaultImage]="defaultImage" [errorImage]="errorImage" lazyLoad="{{blogUrl}}{{blog?.image[0]?.url}}"/>
+                        <img (click)="setBlog(blog)"  class="forth_section_image cursor" [defaultImage]="defaultImage" [errorImage]="errorImage" lazyLoad="{{blogUrl}}{{blog?.image[0]?.url}}" alt="{{blog?.image[0]?.alternativeText}}"/>
                         <div class="date">
                             <span class="blue_heading">{{blog?.published_at | date:'mediumDate'}}</span>
                         </div>
@@ -125,7 +124,7 @@
             <div class="forth_section_image_section">
                 <div class="row">
                     <div class="col-4" *ngFor="let blog of categories[4]?.blogs | slice:0:3; let i =index">
-                        <img (click)="setBlog(blog)"  class="forth_section_image cursor" [defaultImage]="defaultImage" [errorImage]="errorImage" lazyLoad="{{blogUrl}}{{blog?.image[0]?.url}}"/>
+                        <img (click)="setBlog(blog)"  class="forth_section_image cursor" [defaultImage]="defaultImage" [errorImage]="errorImage" lazyLoad="{{blogUrl}}{{blog?.image[0]?.url}}" alt="{{blog?.image[0]?.alternativeText}}"/>
                         <div class="date">
                             <span class="blue_heading">{{blog?.published_at | date:'mediumDate'}}</span>
                         </div>
@@ -153,7 +152,7 @@
                 <div class="col-4"  *ngFor="let blog of categories[3]?.blogs | slice:0:2; let i =index">
                     <div class="small_section">
                         <div class="small_section_img">
-                            <img (click)="setBlog(blog)"  class="small_section_img cursor" [defaultImage]="defaultImage" [errorImage]="errorImage" lazyLoad="{{blogUrl}}{{blog?.image[0]?.url}}"/>
+                            <img (click)="setBlog(blog)"  class="small_section_img cursor" [defaultImage]="defaultImage" [errorImage]="errorImage" lazyLoad="{{blogUrl}}{{blog?.image[0]?.url}}" alt="{{blog?.image[0]?.alternativeText}}"/>
                         </div>
                         <div class="small_section_text cursor" (click)="setBlog(blog)">
                             <div class="date">
@@ -180,7 +179,7 @@
                     <div class="row">
 
                         <div class="col-6" *ngFor="let blog of categories[2]?.blogs | slice:0:2 ;let i =index">
-                            <img (click)="setBlog(blog)"  class="forth_section_image cursor" [defaultImage]="defaultImage" [errorImage]="errorImage" lazyLoad="{{blogUrl}}{{blog?.image[0]?.url}}"/>
+                            <img (click)="setBlog(blog)"  class="forth_section_image cursor" [defaultImage]="defaultImage" [errorImage]="errorImage" lazyLoad="{{blogUrl}}{{blog?.image[0]?.url}}" alt="{{blog?.image[0]?.alternativeText}}"/>
                             <div class="date">
                                 <span class="blue_heading">{{blog?.published_at | date:'mediumDate'}}</span>
                             </div>

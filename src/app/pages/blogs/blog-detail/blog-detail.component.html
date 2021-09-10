@@ -36,7 +36,7 @@
 
 
 	   <div class="main_img">
-		  <img [defaultImage]="defaultImage" [errorImage]="errorImage" lazyLoad="{{blogUrl}}{{blogbyid.image[0].url}}"/>
+		  <img [defaultImage]="defaultImage" [errorImage]="errorImage" lazyLoad="{{blogUrl}}{{blogbyid.image[0].url}}" alt="{{blogbyid.image[0]?.alternativeText}}"/>
 	   </div>
 
 	   <div class="text_section socialblog-rel">
@@ -75,7 +75,7 @@
 									 <div class="activities_slide" >
 										 <div class="slide_image">
 
-												  <img (click)="goToProgramDetail(program)" [defaultImage]="defaultImage" [lazyLoad]="baseUrl+program?.category[0]?.iconUrl"/>
+												  <img (click)="goToProgramDetail(program)" [defaultImage]="defaultImage" [lazyLoad]="baseUrl+program?.category[0]?.iconUrl" alt="{{program?.category[0]?.alternativeText}}"/>
 										 </div>
 										 <div class="slide_text">
 										   <h3>
@@ -113,7 +113,7 @@
 									 <div class="activities_slide" >
 										 <div class="slide_image">
 
-												  <img (click)="goToProgramDetail(program)" [defaultImage]="defaultImage" [lazyLoad]="baseUrl+program?.category[0]?.iconUrl"/>
+												  <img (click)="goToProgramDetail(program)" [defaultImage]="defaultImage" [lazyLoad]="baseUrl+program?.category[0]?.iconUrl" alt="{{program?.category[0]?.alternativeText}}"/>
 
 										 </div>
 										 <div class="slide_text">
@@ -221,7 +221,7 @@
 				   <div class="row">
 
 					  <div class="col-4" *ngFor="let b of blog | slice:0:3; let i=index">
-						 <img class="forth_section_image cursor"  [defaultImage]="defaultImage" [errorImage]="errorImage" lazyLoad="{{blogUrl}}{{b?.image[0]?.url}}" (click)="setBlog(b)"/>
+						 <img class="forth_section_image cursor"  [defaultImage]="defaultImage" [errorImage]="errorImage" lazyLoad="{{blogUrl}}{{b?.image[0]?.url}}" alt="{{b?.image[0]?.alternativeText}}" (click)="setBlog(b)"/>
 
 						 <div class="date">
 							<span class="blue_heading">{{b?.published_at | date:'mediumDate'}}</span>
