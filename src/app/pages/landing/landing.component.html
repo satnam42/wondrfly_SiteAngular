@@ -62,7 +62,7 @@
             <div class="activity_category_list">
                 <div class="row">
                     <div class="col-md-4" *ngFor="let category of categories | slice:2:8; let i = index">
-                        <div class="category_list_box cursor" (click)="searchByCategory(category._id)">
+                        <div class="category_list_box cursor" (click)="searchByCategory(category.id)">
                             <a href="javascritpt:;">
                                 <div class="category_image">
                                         <img [defaultImage]="defaultImage" [lazyLoad]="category?.imageUrl" alt="{{category?.alternativeText}}" />

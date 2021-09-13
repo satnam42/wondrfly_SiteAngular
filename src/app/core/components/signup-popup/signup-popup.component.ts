@@ -65,7 +65,6 @@ export class SignupPopupComponent implements OnInit {
     public auth: AuthsService,
     public imageLoader: Globals,
     private ngxLoader: NgxUiLoaderService,
-
     private store: LocalStorageService) {
   }
 
@@ -105,7 +104,7 @@ export class SignupPopupComponent implements OnInit {
           this.store.setObject('userData', res.data);
           this.store.setItem('token', res.data.token);
           this.toastr.info('Success', this.message );
-          this.router.navigate(['login-parent']);
+          this.router.navigate(['parent/login-parent']);
         }
         else {
           this.toastr.info(res.error )

@@ -6,8 +6,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 
-
-
 @NgModule({
   declarations: [SignupPopupComponent],
   imports: [

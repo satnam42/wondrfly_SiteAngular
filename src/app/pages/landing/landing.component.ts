@@ -48,7 +48,9 @@ export class LandingComponent implements OnInit {
     this.dataservice.setOption(this.filterData)
     this.router.navigate(['/search']);
   }
+
   searchByCategory(id) {
+    console.log(id)
     this.filterData.activityName=''
     this.filterData.categoryId = id
     this.dataservice.setOption(this.filterData)

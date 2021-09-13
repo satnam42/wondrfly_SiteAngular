@@ -129,10 +129,10 @@ export class SocialLoginComponent implements OnInit {
       this.store.setObject('strapiData', response.data);
       this.store.setItem('jwt', response.data.jwt);
       if (this.user.role === "provider"){
-        this.router.navigate(['loginProvider'])
+        this.router.navigate(['provider/login-provider'])
         // this.router.navigate(['profile',res.data.id])
    }
-   else{ this.router.navigate(['login-parent']);
+   else{ this.router.navigate(['parent/login-parent']);
    }
   }
 }).catch(error => {
@@ -154,10 +154,10 @@ strapiSignup(){
       this.store.setObject('strapiData', response.data);
       this.store.setItem('jwt', response.data.jwt);
       if (this.user.role === "provider"){
-        this.router.navigate(['loginProvider'])
+        this.router.navigate(['provider/login-provider'])
         // this.router.navigate(['profile',res.data.id])
    }
-   else{ this.router.navigate(['login-parent']);
+   else{ this.router.navigate(['parent/login-parent']);
    }
 }
 
