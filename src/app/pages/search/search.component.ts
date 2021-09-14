@@ -181,7 +181,7 @@ this.toDate=e.endDate._d
     this.locations = [];
     this.lat = e.lat;
     this.lng = e.lng;
-    this.programByLatLng();
+    // this.programByLatLng();
   }
 
   }

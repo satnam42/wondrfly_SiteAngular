@@ -680,7 +680,8 @@
                     <h1>Beta program invites</h1>
                     <div class="d-flex align-items-center">
                       <h2>Invites left: 10</h2>
-                      <button>Invite</button>
+                      <button  data-toggle="modal"
+                      data-target="#betaInvite">Invite</button>
                     </div>
                   </div>
 
@@ -1026,5 +1027,44 @@
     </div>
   </div>
 </body>
+
+
+<!-- Modal -->
+<div class="modal fade modal_custom guardian_info" id="betaInvite" tabindex="-1" role="dialog"
+aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-content">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <div class="modal-body">
+      <div class="form_outer">
+        <h2 class="title">Beta</h2>
+        <form class="details_form">
+          <div class="form-group">
+            <label>Name</label>
+            <div class="input_outer">
+              <input type="text" placeholder="Enter fullName" class="form-control" name="FullName"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <div class="input_outer">
+              <input type="text" placeholder="Enter fullName" class="form-control"
+                name="FullName" />
+            </div>
+          </div>
+
+          <div class="form-group update_btn">
+            <button class="btn_style save_btn cursor" data-dismiss="modal">
+              Invite
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
 <!-- <app-confirm-dialog></app-confirm-dialog> -->
 <share-popup [shareData]="selectedProgram"></share-popup>
