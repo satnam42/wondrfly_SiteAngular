@@ -363,7 +363,10 @@ select.ng-invalid.ng-touched {
   content: "\2713";
   font-family: 'Circular-Loom';
 }
-
+.k-checkbox:checked {
+  background: #53B2E8;
+  color: white !important;
+}
 
 
 @media(max-width:767px) {

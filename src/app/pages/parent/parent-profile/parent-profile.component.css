@@ -2225,3 +2225,96 @@ tr.beta-row {
   padding-top: 30px;
   padding-bottom: 30px;
 }
+#betaInvite input.form-control {
+  background: #FFFFFF;
+  border: 1px solid #E5E9EC;
+  box-sizing: border-box;
+  border-radius: 20px !important;
+}
+#betaInvite label {
+  padding-left: 10px !important;
+}
+#betaInvite .btn_style {
+  float: none;
+  padding: 4px !important;
+  padding-left: 25px!important;
+  padding-right: 25px!important;
+  width: auto !important;
+  font-family: "poppins";
+}
+ /*Empty checkbox*/
+ .k-checkbox {
+  background:transparent;
+  color: white !important;
+}
+
+/*Checked checkbox*/
+.k-checkbox {
+  border-color: rgba(0,0,0,.08);
+  color: transparent;
+  background-color: #fff;
+}
+.k-checkbox {
+  border-radius: 2px;
+  margin: 0;
+  padding: 0;
+  width: 16px;
+  height: 16px;
+  line-height: initial;
+  border-width: 1px;
+  border-style: solid;
+  outline: 0;
+  box-sizing: border-box;
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  -webkit-appearance: none;
+}
+.k-checkbox.k-checked::before, .k-checkbox:checked::before {
+  border-radius: 2px;
+  -webkit-transform: scale(1) translate(-50%,-50%);
+  -ms-transform: scale(1) translate(-50%,-50%);
+  transform: scale(1) translate(-50%,-50%);
+}
+.k-checkbox::before {
+  width: 12px;
+  height: 12px;
+  font-size: 12px;
+  line-height: 1;
+  -webkit-transform: scale(0) translate(-50%,-50%);
+  -ms-transform: scale(0) translate(-50%,-50%);
+  transform: scale(0) translate(-50%,-50%);
+  overflow: hidden;
+  position: absolute;
+  top: 54%;
+  left: 48%;
+  content: "\2713";
+  font-family: 'Circular-Loom';
+}
+.form-check.copy-link {
+  padding: 0px !important;
+  color: #53B2E8;
+}
+.checkbox-ask .form-check {
+  padding: 22px;
+  padding-left: 0px;
+}
+input#flexCheckDefault {
+  border: 1px solid #53B2E8 !important;
+  top: -2px;
+}
+.k-checkbox:checked {
+  background: #53B2E8;
+  color: white !important;
+}
+#betaInvite span.invite-clr {
+  float: right;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 18px;
+  color: #53B2E8;
+}
+#betaInvite h2.title {
+  text-align: left;
+}
