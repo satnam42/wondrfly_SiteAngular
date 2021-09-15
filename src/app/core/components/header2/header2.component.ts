@@ -29,7 +29,7 @@ export class Header2Component implements OnInit {
     if (this.routeName === '/search') {
       this.logoPosition=true;
     }
-    if(this.routeName === '/search'|| this.routeName === '/'){ this.searchBar=true}
+    // if(this.routeName === '/search'|| this.routeName === '/'){ this.searchBar=true}
    }
    searchActivityByNameDate() {
     this.dataservice.setOption(this.filterData)

@@ -65,7 +65,7 @@ export class HeaderComponent implements OnInit {
     if (this.routeName === '/search') {
       this.logoPosition=true;
     }
-    if(this.routeName === '/search'|| this.routeName === '/'){ this.searchBar=true}
+    // if(this.routeName === '/search'|| this.routeName === '/'){ this.searchBar=true}
     if (this.user.role === "provider" || this.user.role === "parent") {
       if (this.user.role === "provider") {
         this.isLogin = true;

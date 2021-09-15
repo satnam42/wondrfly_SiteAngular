@@ -22,7 +22,7 @@ button:focus {
   border-radius: 20px;
   display: inline-block;
   text-align: center;
-  font-family: "Open Sans";
+  font-family: "poppins";
   font-size: 13px;
   letter-spacing: 0.02em;
   text-transform: uppercase;
@@ -900,7 +900,7 @@ header .navbar-light .navbar-nav .nav-link {
 }
 
 header .navbar-nav .btn_style {
-  font-family: "Open Sans";
+  font-family: "poppins";
   box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.12);
   border-radius: 4px;
   font-weight: 600;
@@ -1331,7 +1331,7 @@ select.ng-invalid.ng-touched {
 .details_form .form-group .word_limit {
   font-size: 13px;
   line-height: 18px;
-  font-family: "Open Sans";
+  font-family: "poppins";
   position: absolute;
   right: 19px;
   bottom: 15px;
