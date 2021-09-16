@@ -361,7 +361,7 @@ select.ng-invalid.ng-touched {
   top: 54%;
   left: 48%;
   content: "\2713";
-  font-family: 'Circular-Loom';
+  font-family: 'poppins';
 }
 .k-checkbox:checked {
   background: #53B2E8;

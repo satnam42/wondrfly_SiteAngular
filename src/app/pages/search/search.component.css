@@ -1990,7 +1990,7 @@ width: 50%;
   padding-bottom: 20px;
 }
 .calender-botoombox .calender-daterange .calender-daterange1 {
-  font-family: Inter;
+  font-family: 'poppins';
   font-style: normal;
   font-weight: normal;
   font-size: 12.5973px;
@@ -2007,7 +2007,7 @@ width: 50%;
   margin-right: 15px;
 }
 .calender-botoombox .calender-daterange .calender-daterange2 {
-  font-family: Inter;
+  font-family:'poppins';
   font-style: normal;
   font-weight: normal;
   font-size: 12.5973px;
@@ -2244,7 +2244,7 @@ button.map-buttonas {
   top: 54%;
   left: 48%;
   content: "\2713";
-  font-family: 'Circular-Loom';
+  font-family: 'poppins';
 }
 .categories-checkbox::before {
   content: " " !important;

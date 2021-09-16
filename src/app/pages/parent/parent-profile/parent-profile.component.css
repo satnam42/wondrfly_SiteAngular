@@ -325,7 +325,7 @@ header .logo img {
 .details_form .form-group .input_outer::after {
   position: absolute;
   /* content: "\e900"; */
-  font-family: "icomoon" !important;
+  font-family: "poppins" !important;
   font-size: 18px;
   top: 50%;
   -webkit-transform: translateY(-50%);
@@ -915,7 +915,7 @@ header .navbar-nav .btn_style {
 }
 
 .activity_category h2 {
-  font-family: Nanum Pen;
+  font-family: 'poppins';
   font-weight: normal;
   font-size: 28px;
   line-height: 18px;
@@ -950,7 +950,7 @@ header .navbar-nav .btn_style {
 }
 
 .category_list_box .category_title p {
-  font-family: Nanum Pen;
+  font-family: 'poppins';
   font-weight: normal;
   font-size: 28px;
   line-height: 18px;
@@ -1127,7 +1127,7 @@ select.ng-invalid.ng-touched {
 
 .form-group .input_outer .mat-standard-chip .mat-chip-remove.mat-icon:before {
   content: "\e900";
-  font-family: "icomoon" !important;
+  font-family: "poppins" !important;
   font-size: 15px;
   color: #ffffff;
 }
@@ -1799,7 +1799,7 @@ h2.description-activities {
   display: inline-block;
   font-size: 12px;
   line-height: 16px;
-  font-family: 'Open Sans';
+  font-family: 'poppins';
   color: #494949;
   margin: 0 13px 0 0;
   vertical-align: middle;
@@ -1820,7 +1820,7 @@ h2.description-activities {
 }
 
 .activities_slide .slide_text .sports_btn span {
-  font-family: 'Open Sans';
+  font-family: 'poppins';
   background:#e2f5ff;
   display: inline-block;
   border-radius: 20px;
@@ -2289,7 +2289,7 @@ tr.beta-row {
   top: 54%;
   left: 48%;
   content: "\2713";
-  font-family: 'Circular-Loom';
+  font-family: 'poppins';
 }
 .form-check.copy-link {
   padding: 0px !important;
