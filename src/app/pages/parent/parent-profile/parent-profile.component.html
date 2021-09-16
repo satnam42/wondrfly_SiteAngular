@@ -679,8 +679,8 @@
                   <div class="beta-heading">
                     <h1>Beta program invites</h1>
                     <div class="d-flex align-items-center">
-                      <h2>Invites left: <span *ngIf="!invitedUsers?.length">3</span><span *ngIf="invitedUsers?.length==1">2</span><span *ngIf="invitedUsers?.length==2"></span>1<span *ngIf="invitedUsers?.length>=3">0</span></h2>
-                      <button  data-toggle="modal" [disabled]="invitedUsers?.length>=3"
+                      <h2>Invites left: <span *ngIf="invitedUsers?.length===0">3</span><span *ngIf="invitedUsers?.length===1">2</span><span *ngIf="invitedUsers?.length==2"></span>1<span *ngIf="invitedUsers?.length>2">0</span></h2>
+                      <button  data-toggle="modal" [disabled]="invitedUsers?.length>2"
                       data-target="#betaInvite">Invite</button>
                     </div>
                   </div>

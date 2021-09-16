@@ -408,6 +408,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
         .getInvitedUsersByParent(userId)
         .subscribe((res: any) => {
           this.invitedUsers = res;
+          console.log('invited users',this.invitedUsers)
         });
 
   }
