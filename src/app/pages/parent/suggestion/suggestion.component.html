@@ -83,7 +83,7 @@
         <div class="col-12">
           <div class="beta-suggestionbox">
             <div class="imgage-corners">
-              <img src="assets/whywonderfly-leftcircle.png">
+              <img src="assets/resouces-circle.png">
             </div>
               <h1>Discover the best kids activities near you </h1>
 
@@ -148,23 +148,52 @@
       <div class="container">
           <div class="row">
               <div class="col-12">
-                  <h2 class="blog-heading">Explore the Blog</h2>
                   <div class="box">
                       <div class="upper-blog">
-                          <h2 class="upper-blog-heading">POPULAR POSTS
-                              <span class="upper-blog-view cursor" routerLink='/blogs'>view all</span>
+                          <h2 class="upper-blog-heading">Feedbacks
                           </h2>
                       </div>
                       <div class="lower-blog-sec">
-                          <div class="lower-blog" *ngFor='let b of blog |slice:0:3;'>
-                              <div class="lower-img">
-                                  <img class="blog_img cursor" src="{{blogUrl}}{{b?.image[0]?.url}}"  (click)='setBlog(b)'/>
+                          <div class="row">
+                              <div class="col-md-3">
+                                <div class="card">
+                                  <div class="card-body">
+                                    <h5 class="card-title">Give you input</h5>
+                                    <p class="card-text">Dui ornare gravida quis at massa nulla adipiscing </p>
+                                    <h6 class="card-subtitle mb-2 text-muted">You have <span>0</span> of <span>2</span> done this month</h6>
+                                    <button>START NOW</button>
+                                  </div>
+                                </div>
                               </div>
-                              <div class="lower-content" >
-                                  <h2 class="lower-blog-heading cursor" (click)='setBlog(b)'>{{b.title}}
-                                  </h2>
-                                  <h2 class="lower-blog-content cursor" (click)='setBlog(b)' [innerHTML]="b.content | markdown | slice:0:145">
-                                  </h2>
+                              <div class="col-md-3">
+                                <div class="card">
+                                  <div class="card-body">
+                                    <h5 class="card-title">Give you input</h5>
+                                    <p class="card-text">Dui ornare gravida quis at massa nulla adipiscing </p>
+                                    <h6 class="card-subtitle mb-2 text-muted">You have <span>0</span> of <span>2</span> done this month</h6>
+                                    <button>START NOW</button>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-3">
+                                <div class="card">
+                                  <div class="card-body">
+                                    <h5 class="card-title">Give you input</h5>
+                                    <p class="card-text">Dui ornare gravida quis at massa nulla adipiscing </p>
+                                    <h6 class="card-subtitle mb-2 text-muted">You have <span>0</span> of <span>2</span> done this month</h6>
+                                    <button>START NOW</button>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-3">
+                                <div class="card">
+                                  <div class="card-body">
+                                    <h5 class="card-title">Give you input</h5>
+                                    <p class="card-text">Dui ornare gravida quis at massa nulla adipiscing </p>
+                                    <h6 class="card-subtitle mb-2 text-muted">You have <span>0</span> of <span>2</span> done this month</h6>
+                                    <button>START NOW</button>
+                                  </div>
+                                </div>
                               </div>
                           </div>
                       </div>
@@ -174,6 +203,67 @@
           </div>
       </div>
   </section>
+
+  <section class="blog-explore">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="box">
+                    <div class="upper-blog">
+                        <h2 class="upper-blog-heading">Resources
+                        </h2>
+                    </div>
+                    <div class="lower-resources-sec">
+                       <div class="row">
+                          <div class="col-md-4">
+                            <div class="card">
+                              <img class="card-img-top" src="assets/preOnboarding/1.jpg" alt="Card image cap">
+                              <div class="card-body">
+                                <h5 class="card-title">TOP Reads</h5>
+                                <p class="card-text">Dui ornare gravida quis at massa nulla adipiscing </p>
+                                <div class="list">
+                                  <div class="list-flex">
+                                    <p><img src="assets/calendar.svg " alt="School image ">Mar 23-31 </p>
+                                    <p><img src="assets/user_group.svg " alt="School image ">3-10 Yrs </p>
+                                  </div>
+                                  <p><a href="#">READ mORE</a></p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="card">
+                              <img class="card-img-top" src="assets/preOnboarding/1.jpg" alt="Card image cap">
+                              <div class="card-body">
+                                <h5 class="card-title">TOP Reads</h5>
+                                <p class="card-text">Dui ornare gravida quis at massa nulla adipiscing </p>
+                                <button>DOWNLOAD NOW</button>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="card comming-soon">
+                              <div class="imgage-corners">
+                                <img src="assets/resouces-circle.png">
+                              </div>
+                              <div class="tuned-flex">
+                                <h5 class="card-title">STAY TUNED</h5>
+                                <p class="card-text">New features will come soon</p>
+                              </div>
+
+                              <div class="image-corners">
+                                <img src="assets/beta-image.png">
+                              </div>
+                            </div>
+                          </div>
+                       </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <app-footer></app-footer>
 </body>
