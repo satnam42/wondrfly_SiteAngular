@@ -1040,8 +1040,11 @@ copyInvite(){
 inviteAsktojoina(){
   this.inviteAsktojoin.userId = this.user.id
   console.log(this.inviteAsktojoin)
-  this.apiservice.InviteAsktojoin(this.inviteAsktojoin).subscribe((res) => {
+  this.apiservice.InviteAsktojoin(this.inviteAsktojoin).subscribe((res:any) => {
     console.log(res)
+    if(res.isSuccess){
+      this.onInvite(this.currentUser.id)
+    }
   })
 }
 
