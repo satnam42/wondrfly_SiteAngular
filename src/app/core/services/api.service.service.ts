@@ -2144,5 +2144,26 @@ getSuggestedCategory(id): Observable<any> {
     return subject.asObservable();
 }
 
+InviteAsktojoin(model): Observable<any[]> {
+    const subject = new Subject<any[]>();
+    this.http.post(`${this.root}/invitation/inviteToJoin`, model).subscribe((responseData: any) => {
+        if (responseData.statusCode !== 200) {
+            throw new Error('This request has failed ' + responseData.status);
+        }
+        const dataModel = responseData;
+        if (!dataModel.isSuccess) {
+            if (responseData.status === 200) {
+                throw new Error(dataModel.code || dataModel.message || 'failed');
+            } else {
+                throw new Error(responseData.status + '');
+            }
+        }
+        subject.next(responseData);
+    }, (error) => {
+        const dataModel = error;
+        subject.next(dataModel.error);
+    });
+    return subject.asObservable();
+}
 
 }

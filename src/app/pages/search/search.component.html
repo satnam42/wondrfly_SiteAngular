@@ -308,9 +308,9 @@
                           </a>
                         </li>
 
-                          <li *ngIf="showReset" class="cursor">
+                          <!-- <li *ngIf="showReset" class="cursor">
                               <a (click)="resetFilter()" scrollToTop.scrollTop=0>Reset</a>
-                          </li>
+                          </li> -->
 
                       </ul>
                   </div>
@@ -594,7 +594,7 @@
         </div>
        </div>
 
-       <div class="row row-0">
+       <div class="row row-0" *ngIf='showReset'>
          <div class="col-4">
             <div class="chip-set">
               <h1>Looking for <span>Violin</span> in <span>Jersey</span> </h1>
@@ -616,7 +616,7 @@
             </button>
            <span>
              <span>&times;</span>
-             <a class="ml-2 clear-text" href="#">Clear all</a>
+             <a class="ml-2 clear-text cursor" (click)='resetFilter()'>Clear all</a>
            </span>
           </div>
        </div>

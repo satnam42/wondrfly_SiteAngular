@@ -574,14 +574,13 @@ switch(this.timeSession){
       // filter = `ageFrom=${this.minAge}&ageTo=${this.maxAge}&fromTime=${from}&toTime=${to}&fromDate=${this.fromDate}&toDate=${this.toDate}&priceFrom=${this.minPrice}&priceTo=${this.maxPrice}&inpersonOrVirtual=${inpersonOrVirtual}&type1=${this.type1}&type2=${this.type2}&day=${this.day}`
       console.log('filter>>>>>>>>>>>>',filter)
     this.ngxLoader.start()
-    this.programs=[]
     this.apiservice.programFilter(filter, this.pageNo, this.pageSize).subscribe((res: any) => {
-      this.ngxLoader.stop()
       console.log('filter response', res);
       if (res.isSuccess) {
         this.isTopFilterCheckBox=false
         this.programs = res.data;
         this.isScrol = true;
+        this.ngxLoader.stop()
       }
     });
     this.ngxLoader.stop()

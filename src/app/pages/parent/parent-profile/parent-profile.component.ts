@@ -14,6 +14,7 @@ import { ChatService, Chat } from "src/app/core/services/chat.service";
 import { LocalStorageService } from "src/app/core/services";
 import { MatAutocompleteSelectedEvent } from "@angular/material/autocomplete";
 import { ToastrService } from "ngx-toastr";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
   selector: "parent-profile",
@@ -97,6 +98,13 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
     personalNote: "",
     parentId: "",
   };
+  inviteForm: FormGroup;
+  inviteAsktojoin: any = {
+    firstName:'',
+    userId: this.user.id,
+    email: "",
+  };
+
   categoryIds: [] = [];
   separatorKeysCodes: number[] = [ENTER, COMMA];
 
@@ -141,6 +149,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
     private authService: AuthsService,
     private chatService: ChatService,
     public store: LocalStorageService,
+    private snack: MatSnackBar,
     private toastr: ToastrService,
   ) {
     this.currentUser = this.authService.currentUser();
@@ -926,11 +935,9 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
       // personalNote: new FormControl("", [Validators.required]),
     });
 
-    this.tellFriendForm = new FormGroup({
-      parentName: new FormControl("", []),
+    this.inviteForm = new FormGroup({
       fullName: new FormControl("", [Validators.required]),
       email: new FormControl("", [Validators.required, Validators.email]),
-      personalNote: new FormControl("", [Validators.required]),
     });
 
     this.giveFeedbackForm = new FormGroup({
@@ -1017,4 +1024,18 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
     data.name = data.name.replace(/\?/g,"-");
     this.router.navigate(['program', data.name, data._id]);
   }
+
+copyInvite(){
+  navigator.clipboard.writeText(`https://www.wondrfly.com/ask-to-join/${this.user.id}`).then().catch(e => console.error(e));
+         this.snack.open('Link copied','', { duration: 500 });
+}
+
+inviteAsktojoina(){
+  this.inviteAsktojoin.userId = this.user.id
+  console.log(this.inviteAsktojoin)
+  this.apiservice.InviteAsktojoin(this.inviteAsktojoin).subscribe((res) => {
+    console.log(res)
+  })
+}
+
 }

@@ -1042,19 +1042,25 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <h2 class="title">User Information
           <span class="invite-clr">Invites left: 10</span>
         </h2>
-        <form class="details_form">
+        <form class="details_form" [formGroup]="inviteForm">
           <div class="form-group">
             <label>Full Name</label>
             <div class="input_outer">
-              <input type="text" placeholder="Enter fullName" class="form-control" name="FullName"/>
+              <input type="text" placeholder="Enter fullName" [formControl]="inviteForm.controls['fullName']" class="form-control" [(ngModel)]='inviteAsktojoin.firstName' name="FullName" required/>
               <span class="parent-edit"><img src="assets/close.png"></span>
             </div>
           </div>
           <div class="form-group">
             <label>Email Address</label>
             <div class="input_outer">
-              <input type="text" placeholder="Enter fullName" class="form-control"
-                name="FullName" />
+              <input type="email" placeholder="Enter fullName" [formControl]="inviteForm.controls['email']" class="form-control" [(ngModel)]='inviteAsktojoin.email'
+                name="email" required />
+                <small
+                *ngIf=" inviteForm.controls['email'].hasError('email') && inviteForm.controls['email'].touched"
+                class="form-error-msg">INVALID EMAIL ADDRESS</small>
+            <small
+                *ngIf=" inviteForm.controls['email'].hasError('required') && inviteForm.controls['email'].touched"
+                class="form-error-msg">EMAIL IS REQUIRED</small>
                 <span class="parent-edit"><img src="assets/close.png"></span>
             </div>
           </div>
@@ -1066,16 +1072,16 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 Is this person a parent?
               </label>
             </div>
-            <div class="form-check copy-link">
+            <div class="form-check copy-link" (click)='copyInvite()'>
               <span><img src="assets/copy-link.png"></span>
-              <label class="form-check-label k-checkbox-label" for="flexCheckChecked">
+              <label class="form-check-label k-checkbox-label cursor" for="flexCheckChecked">
                 COPY Invitation link
               </label>
             </div>
           </div>
 
           <div class="form-group update_btn">
-            <button class="btn_style save_btn cursor" data-dismiss="modal">
+            <button class="btn_style save_btn cursor" type="submit" [disabled]="inviteForm.invalid" data-dismiss="modal" (click)='inviteAsktojoina()'>
               SEND INVITE
             </button>
           </div>

@@ -226,6 +226,10 @@ searchBySubCategory(id) {
   this.filterData.subcatId = id
   this.dataservice.setOption(this.filterData)
   this.router.navigate(['/search']);
+  if(this.routeName==='/search'){
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
+    this.router.navigate(['search',]))
+  }
 }
 
 goToProviderProfile(provider) {
