@@ -17,12 +17,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MarkdownModule } from 'src/app/core/shared/markdown/markdown.module';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { MailchimpSubscribeFormModule } from 'src/app/core/components/mailchimp-subscribe-form/mailchimp-subscribe-form.module';
-import { AppRoutingModule } from 'src/app/app-routing.module';
 import { SuggestionComponent } from './suggestion/suggestion.component';
+import { CounterComponent } from 'src/app/core/shared/counter/counter.component';
 @NgModule({
     entryComponents: [],
     declarations: [
-        ParentComponent,LoginParentComponent, ParentProfileComponent,SuggestionComponent
+        ParentComponent,LoginParentComponent, ParentProfileComponent,SuggestionComponent,CounterComponent
 
     ],
     imports: [
