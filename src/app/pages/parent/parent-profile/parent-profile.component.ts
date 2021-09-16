@@ -40,6 +40,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
   msg: string;
   guardianResponse: any = [];
   favourites: any = [];
+  invitedUsers:any = []
   profileProgress: 0;
   fileData: File = null;
   parentImgURL: any;
@@ -378,7 +379,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
     this.isAddChildBtn = false;
     this.isEditChildBtn = true;
   }
-  onInvite() {
+  onInvite(userId) {
     this.store.removeItem('savedList');
     window.scroll(0, 0);
     this.isChat = false;
@@ -403,6 +404,12 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
     this.isProfile = false;
     this.profile = "";
     this.isInvite = true;
+      this.apiservice
+        .getInvitedUsersByParent(userId)
+        .subscribe((res: any) => {
+          this.invitedUsers = res;
+        });
+
   }
   getFav(id) {
     this.savedList = JSON.parse(this.store.getItem('savedList'));

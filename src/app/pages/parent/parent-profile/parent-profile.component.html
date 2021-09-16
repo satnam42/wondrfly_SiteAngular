@@ -63,7 +63,7 @@
 
                 </div>
                 <li>
-                  <a [class.active]="isInvite" (click)="onInvite()">Invites</a>
+                  <a [class.active]="isInvite" (click)="onInvite(currentUser.id)">Invites</a>
                 </li>
               </ul>
             </div>
@@ -679,8 +679,8 @@
                   <div class="beta-heading">
                     <h1>Beta program invites</h1>
                     <div class="d-flex align-items-center">
-                      <h2>Invites left: 10</h2>
-                      <button  data-toggle="modal"
+                      <h2>Invites left: <span *ngIf="invitedUsers?.length==1">2</span><span *ngIf="invitedUsers?.length==2"></span>1<span *ngIf="invitedUsers?.length>=3">0</span></h2>
+                      <button  data-toggle="modal" [disabled]="invitedUsers?.length>=3"
                       data-target="#betaInvite">Invite</button>
                     </div>
                   </div>
@@ -699,24 +699,19 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr class="beta-row">
+                        <tr class="beta-row" *ngIf="let invited of invitedUsers">
                           <td class="align-item-center"><span class="mr-2"><img src="assets/beta-img.png"></span>
-                            Quam mollis</td>
-                          <td>vishi@yopmail.com</td>
-                          <td class="align-item-center" ><span class="mr-2"><img src="assets/tick-sucess.png"></span>
+                            {{invited?.firstName}}</td>
+                          <td>{{invited?.email}}</td>
+                          <td *ngIf="invited?.status?.accepted" class="align-item-center" ><span class="mr-2"><img src="assets/tick-sucess.png"></span>
                             Accepted</td>
                           <td></td>
-                        </tr>
-                        <tr class="beta-row">
-                          <td class="align-item-center">
-                          <span class="mr-2"><img src="assets/beta-img.png"></span>
-                          Suspendisse massa</td>
-                          <td>vishi@yopmail.com</td>
-                          <td>
+                          <td *ngIf="invited?.status?.pending">
                             <span class="mr-2"><img src="assets/spin.png"></span>
                             Pending</td>
-                          <td><span><counter ></counter></span></td>
+                          <td><span><counter [futureString]="invited?.date"></counter></span></td>
                         </tr>
+
                       </tbody>
                     </table>
                   </div>

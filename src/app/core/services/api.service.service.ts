@@ -2175,4 +2175,13 @@ feedbackSurveyList(): Observable<any[]> {
   });
   return subject.asObservable();
 }
+getInvitedUsersByParent(id): Observable<any[]> {
+  const subject = new Subject<any[]>();
+  this.http.get(`${this.root}/invitation/listByParentId/${id}`, this.getHeader()).subscribe((responseData:any) => {
+      subject.next(responseData.data);
+  }, (error) => {
+      subject.next(error.error);
+  });
+  return subject.asObservable();
+}
 }
