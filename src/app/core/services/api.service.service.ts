@@ -2166,4 +2166,13 @@ InviteAsktojoin(model): Observable<any[]> {
     return subject.asObservable();
 }
 
+feedbackSurveyList(): Observable<any[]> {
+  const subject = new Subject<any[]>();
+  this.http.get(`${this.root}/justfeedback/list`, this.getHeader()).subscribe((responseData:any) => {
+      subject.next(responseData.data);
+  }, (error) => {
+      subject.next(error.error);
+  });
+  return subject.asObservable();
+}
 }

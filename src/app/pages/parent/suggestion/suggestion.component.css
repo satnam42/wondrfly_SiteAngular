@@ -529,6 +529,9 @@ span.d-flex.justify-content-end {
   margin-bottom: 20px;
   border: 0px;
 }
+.lower-blog-sec .card button a{
+  color: #FFFFFF;
+}
 .lower-blog-sec .card span {
   color: #f99964;
 }

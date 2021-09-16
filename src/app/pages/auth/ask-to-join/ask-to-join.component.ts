@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -24,7 +25,8 @@ export class AskToJoinComponent implements OnInit {
     email: '',
     password: '',
     confirmPassword:'',
-    role: 'parent'
+    role: 'parent',
+    userId:''
   }
   message: string = 'Your request submitted!';
   categoryResponse: any;
@@ -40,7 +42,13 @@ export class AskToJoinComponent implements OnInit {
   constructor(private auth:AuthsService,
     private apiservice: ApiService,
     public imageLoader: Globals,
-    private toastr: ToastrService) {
+    private toastr: ToastrService,
+    private activatedRoute: ActivatedRoute) {
+      this.activatedRoute.params.subscribe(params => {
+        if(params['id'].length>1){
+        this.userData.userId = params['id'];
+        }
+      });
   }
   onPassword() {
     this.hide = !this.hide;

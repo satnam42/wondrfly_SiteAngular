@@ -155,7 +155,7 @@ export class LoginComponent implements OnInit {
 
       else if (this.user.isOnBoardingDone && this.user.role === 'parent') {
         this.toastr.info(this.message)
-        this.router.navigate(['/search']);
+        this.router.navigate(['parent/suggestion']);
       }
       else if (this.user.role === 'parent') {
         this.toastr.info(this.message)

@@ -18,6 +18,8 @@ export class SuggestionComponent implements OnInit {
   loggedIn: boolean;
   title = 'Best Activities and Programs for Kids in Jersey City - Wondrfly';
   categories: any = new Category;
+  feedback: any = [];
+
   filterData: any = {
     subcatId: '',
     categoryId:'',
@@ -64,8 +66,14 @@ export class SuggestionComponent implements OnInit {
     });
   }
 
-  // ------------------------------------------------get blogs  -------------------------------------------
+  feedbackSurveyList() {
+    this.apiservice.feedbackSurveyList().subscribe((res: any) => {
+      this.feedback = res;
+      console.log('feedback',this.feedback)
+    });
+  }
 
+  // ------------------------------------------------get blogs  -------------------------------------------
 
   getBlog() {
     axios.get(`${this.blogUrl}/blogs?_start=0&_limit=3`).then(response => {
@@ -94,8 +102,10 @@ export class SuggestionComponent implements OnInit {
     providerName = providerName.replace(/\?/g,"-");
       this.router.navigate(['/program-provider', providerName, provider._id]);
   }
+
   ngOnInit() {
     this.getCategoryList();
+    this.feedbackSurveyList();
     this.getBlog();
     this.titleService.setTitle(this.title);
     this.metaTagService.updateTag(
