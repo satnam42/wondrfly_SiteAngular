@@ -23,7 +23,7 @@ import { Component, OnInit, } from '@angular/core';
 
 		<p>the page you are looking for not avaible!</p>
 
-		<a href="search" class="link_404">Go to Home</a>
+		<a href="" class="link_404">Go to Home</a>
 	</div>
 		</div>
 		</div>
