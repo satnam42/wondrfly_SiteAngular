@@ -39,7 +39,7 @@ import { Component, OnInit, } from '@angular/core';
     padding:40px 0;
     background:#fff;
     position:relative;
-    min-height:100%;
+    min-height:100vh;
   }
 
   .page_404  img{ width:100%;}
@@ -80,7 +80,7 @@ import { Component, OnInit, } from '@angular/core';
         width:194px;
         position: absolute;
         right: 0px;
-        bottom:-35px;
+        bottom:0px;
       }
     `]
 })
