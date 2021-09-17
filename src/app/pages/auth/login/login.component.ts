@@ -159,7 +159,7 @@ export class LoginComponent implements OnInit {
       }
       else if (this.user.role === 'parent') {
         this.toastr.info(this.message)
-        this.router.navigate(['login-parent']);
+        this.router.navigate(['parent/login-parent']);
       }
       else if (this.user.role === 'superAdmin') {
         this.toastr.info('Please Login As Provider Or Parent Only!')
