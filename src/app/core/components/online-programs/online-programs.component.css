@@ -418,13 +418,13 @@ button:focus {
 }
 
 .activity .media-left {
-    max-width:100%;
-    width:1005;
-    height: 200px;
-    max-height: 200px;
+  max-width: 100%;
+  width: 320px;
+  height: 240px;
+  max-height: 100%;
     position: relative;
     overflow: hidden;
-    border-radius: 20px 20px 0px 0px;
+    border-radius: 20px 0px 0px 20px;
 }
 
 .activity .media-left .share_icon {
@@ -434,12 +434,12 @@ button:focus {
 }
 
 .activity .media-left img {
-    max-width: 100%;
-    height: 200px;
-    width: 100%;
+  max-width: 100%;
+  height: 100%;
+  width: 100%;
     object-fit:cover;
     cursor: pointer;
-    border-radius: 20px 20px 0px 0px;
+    border-radius: 20px 0px 0px 20px;
 }
 
 .activity .media-body {
@@ -2075,10 +2075,6 @@ hr.N_line {
     padding-left: 24px;
 }
 .online-searchresult .search-results .media.activity {
-  flex-direction: column;
-}
-.online-searchresult .search-results .media.activity {
-  flex-direction: column;
   background-color: #fff;
   margin-top: 25px;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
@@ -2095,7 +2091,7 @@ hr.N_line {
 .similar-cate {
   background: #FFFFFF;
   box-shadow: 0px 10px 20px rgb(0 0 0 / 10%);
-  border-radius: 4px;
+  border-radius: 4px 4px 18px 18px;
   margin-right: 15px;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -2104,6 +2100,7 @@ hr.N_line {
   width: 100%;
   height: 195px;
   object-fit: cover;
+  border-radius: 4px 4px 0px 0px;
 }
 .similar-cate h1 {
   font-family: "Poppins";
@@ -2118,18 +2115,31 @@ hr.N_line {
 .similarcate-flex {
   display: flex;
 }
-
+.online-bar {
+  background: #53B2E8;
+  border-radius: 18px 0px 0px 0px;
+  position: absolute;
+  z-index: 1;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 10px;
+  color: #FFFFFF;
+  padding: 4px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
 
 
 
 
 @media only screen and (min-width:1024px) and (max-width:1366px) and (orientation: portrait)  {
 .activity .media-left {
-    width:100%;
-    height: 200px;
-    max-height: 200px;
-    position: relative;
-    overflow: hidden;
+  width: 220px;
+  height: 270px;
+  max-height: 270px;
+  position: relative;
+  overflow: hidden;
 }
 
 .banner_form .form-group input.date_input {

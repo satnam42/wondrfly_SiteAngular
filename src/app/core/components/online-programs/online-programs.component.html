@@ -5,8 +5,11 @@
 <!-- <div class="list-group "> -->
   <div class="container-fluid search-onlineprog">
     <div class="row">
-      <div *ngFor="let program of programs | slice:0:8; index as i" class=" col-3">
+      <div *ngFor="let program of programs | slice:0:8; index as i" class="col-6">
         <div class="media activity">
+          <div class="online-bar">
+            ONLINE
+          </div>
           <div class="media-left activity-imgs" >
               <img *ngIf="imageLoader.isLoad" [src]="imageLoader.img" alt="Activity">
               <img *ngIf="program?.category[0]?.iconUrl" [hidden]="imageLoader.isLoad" [src]="baseUrl+program?.category[0]?.iconUrl"
@@ -184,7 +187,7 @@
             </h3>
             <div class="similar-categories">
               <div class="row">
-                <div class="col-md-2 cursor" *ngFor='let subcat of categories | slice:4:10' (click)="setCategoryId(subcat.id)">
+                <div class="col-md-3 cursor" *ngFor='let subcat of categories | slice:4:8' (click)="setCategoryId(subcat.id)">
                   <div class="similarcate-flex">
                     <div class="similar-cate">
                         <img [defaultImage]="defaultImage" [lazyLoad]="subcat?.imageUrl"/>
