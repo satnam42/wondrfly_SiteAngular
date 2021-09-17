@@ -6,7 +6,15 @@ import { Alert } from '../../models/alert.model';
 declare const $: any;
 @Component({
     selector: 'app-alert',
-    templateUrl: './alert.component.html',
+    template: `
+    <!-- <div *ngIf="isAlert && alert" [ngClass]="alertColor" class="alert  alert-dismissible fade show" id="alert-custom"
+    role="alert" data-auto-dismiss="5000">
+    <strong>{{alert.msgType}}</strong> {{alert.msg}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="deactivateAlert()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div> -->
+`,
     styleUrls: ['./alert.component.css']
 
 })

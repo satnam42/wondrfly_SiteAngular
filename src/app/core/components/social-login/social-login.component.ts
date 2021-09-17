@@ -13,7 +13,16 @@ import { AuthsService } from '../../services/auths.service';
 
 @Component({
   selector: 'app-social-login',
-  templateUrl: './social-login.component.html',
+  template: `
+
+<div class="fb_button">
+<span class="fb_icon"><img src="assets/Vector.svg"></span>
+<a  (click)="signInWithFB()">{{loginOrSignUp}} with Facebook</a>
+</div>
+<div class="google_button">
+<span class="go_icon"><img src="assets/Group.svg"></span>
+<a  (click)="signInWithGoogle()" >{{loginOrSignUp}} with Google</a>
+</div>`,
   styleUrls: ['./social-login.component.css']
 })
 export class SocialLoginComponent implements OnInit {

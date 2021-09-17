@@ -11,7 +11,16 @@ interface MailChimpResponse {
 
 @Component({
 	selector: 'mailchimp-subscribe-form',
-	templateUrl: './mailchimp-subscribe-form.component.html'
+	template: `
+  <form [formGroup]="emailControl" (ngSubmit)="submit()">
+  <div class="input-group">
+      <input type="text" class="form-control" [formControl]="emailControl"  placeholder="example@domain.com">
+      <div class="input-group-append">
+          <button [disabled]="emailControl.invalid" class="Submit_btn"  type="submit">Submit</button>
+      </div>
+  </div>
+</form>
+`
 })
 export class MailchimpSubscribeForm {
 	submitted = false;

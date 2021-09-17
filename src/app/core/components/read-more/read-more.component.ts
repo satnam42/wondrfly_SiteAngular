@@ -3,7 +3,17 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-read-more',
-  templateUrl: './read-more.component.html',
+  template: `
+  <div [innerHtml]="content | markdown">
+  <div *ngIf="!blogData"><a  class="blue_heading cursor"*ngIf="!isContentToggled" (click)="toggleContent()" i18n>
+    <!-- Learn More -->
+  </a>
+    <a  class="blue_heading cursor"*ngIf="isContentToggled" (click)="toggleContent()" i18n>Less</a>
+</div>
+<a  class="blue_heading cursor" *ngIf="blogData" (click)="blogDetail()" i18n>
+  Learn More</a>
+ </div>
+`,
   styleUrls: ['./read-more.component.css']
 })
 export class ReadMoreComponent implements OnInit {
