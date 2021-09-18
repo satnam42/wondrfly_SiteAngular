@@ -1037,7 +1037,7 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-body">
       <div class="form_outer">
         <h2 class="title">User Information
-          <span class="invite-clr">Invites left: 10</span>
+          <span class="invite-clr">Invites left: <span *ngIf="invitedUsers?.length===0">3</span><span *ngIf="invitedUsers?.length===1">2</span><span *ngIf="invitedUsers?.length==2">1</span><span *ngIf="invitedUsers?.length>2">0</span></span>
         </h2>
         <form class="details_form" [formGroup]="inviteForm">
           <div class="form-group">
@@ -1064,7 +1064,7 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 
           <div class="checkbox-ask">
             <div class="form-check">
-              <input class="form-check-input k-checkbox" type="checkbox" value="" id="flexCheckDefault">
+              <input class="form-check-input k-checkbox" type="checkbox" #parentc [checked]="isParent" (change)="parentChecked(parentc.checked)">
               <label class="form-check-label k-checkbox-label" for="flexCheckDefault">
                 Is this person a parent?
               </label>
@@ -1078,7 +1078,7 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
           </div>
 
           <div class="form-group update_btn">
-            <button class="btn_style save_btn cursor" type="submit" [disabled]="inviteForm.invalid" data-dismiss="modal" (click)='inviteAsktojoina()'>
+            <button class="btn_style save_btn cursor" type="submit" [disabled]="inviteForm.invalid || !isParent" data-dismiss="modal" (click)='inviteAsktojoina()'>
               SEND INVITE
             </button>
           </div>

@@ -85,13 +85,13 @@
                                           </div>
                                           <div class="checkbox-ask">
                                             <div class="form-check">
-                                              <input class="form-check-input k-checkbox" type="checkbox" value="" id="flexCheckDefault">
+                                              <input class="form-check-input k-checkbox" type="checkbox" #parentc [checked]="isParent" (change)="parentChecked(parentc.checked)">
                                               <label class="form-check-label k-checkbox-label" for="flexCheckDefault">
                                                 I am a parent
                                               </label>
                                             </div>
                                             <div class="form-check">
-                                              <input class="form-check-input k-checkbox" type="checkbox" value="" id="flexCheckChecked">
+                                              <input class="form-check-input k-checkbox" type="checkbox" #termsc  (change)="termsChecked(termsc.checked)">
                                               <label class="form-check-label k-checkbox-label" for="flexCheckChecked">
                                                 I agree to participate in wondrfly’s beta program and weekly provide the feedback
                                               </label>
@@ -101,14 +101,14 @@
 
                                         <div class="sign_in_btn">
                                             <button class="SignBtn" (click)="askToJoin()"
-                                                [disabled]="parentForm.invalid">Submit Request</button>
-                                            <button class="SignBtn cancel" onclick="history.back()">Cancel</button>
+                                                [disabled]="parentForm.invalid || !isTerms || !isParent">Submit Request</button>
+                                            <button class="SignBtn cancel" [routerLink]="['/login']">Cancel</button>
                                         </div>
 
                                         <div class="row forgot_password">
                                           <div class="col-12 forgot_text">
                                               <p> By clicking sign up I hereby agree with Letsplay’s
-                                                  <a [routerLink]="['/term-condition']">Terms & Conditions</a></p>
+                                                  <a [routerLink]="['/term-condition']" target="_blank">Terms & Conditions</a></p>
                                           </div>
                                       </div>
                                     </div>
@@ -121,7 +121,7 @@
                     </div>
                     <div class="row forgot_password">
                         <div class="col-12 forgot_text">
-                            <p class="member-123"><a >Terms & Conditions</a> and <a>PRIVACY POLICY</a></p>
+                            <p class="member-123"><a class="cursor" [routerLink]="['/term-condition']" target="_blank" >Terms & Conditions</a> and <a class="cursor" [routerLink]="['/privacyPolicy']" target="_blank">PRIVACY POLICY</a></p>
                         </div>
                     </div>
                     <div class="row forgot_password">

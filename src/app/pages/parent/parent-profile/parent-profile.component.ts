@@ -142,6 +142,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
   isPushnotification:boolean;
   isEmailnotification:boolean;
   selectedProgram: any;
+  isParent: boolean;
 
   constructor(
     private apiservice: ApiService,
@@ -155,6 +156,13 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
   ) {
     this.currentUser = this.authService.currentUser();
   }
+
+
+  parentChecked(value:boolean) {
+    this.isParent=value
+  }
+
+
   getKidData(data) {
     this.kid = data;
     console.log(this.kid)

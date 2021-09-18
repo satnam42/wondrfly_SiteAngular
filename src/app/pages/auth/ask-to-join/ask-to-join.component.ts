@@ -4,7 +4,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
 import { Globals } from 'src/app/core/common/imageLoader';
-import axios from 'axios';
 import { environment } from 'src/environments/environment';
 import { AuthsService } from 'src/app/core/services/auths.service';
 import { ApiService } from 'src/app/core/services/api.service.service';
@@ -28,6 +27,8 @@ export class AskToJoinComponent implements OnInit {
     role: 'parent',
     userId:''
   }
+  isTerms: boolean;
+  isParent: boolean;
   message: string = 'Your request submitted!';
   categoryResponse: any;
   response: any;
@@ -57,15 +58,23 @@ export class AskToJoinComponent implements OnInit {
     const num = Math.floor(Math.random() * this.signUpImages.length);
     this.signUpImage = this.signUpImages[num];
   }
+
+  termsChecked(value:boolean) {
+    this.isTerms=value
+  }
+
+  parentChecked(value:boolean) {
+    this.isParent=value
+  }
+
   askToJoin() {
     let email = this.userData.email.toLowerCase();
     this.userData.email = email;
       this.apiservice.askToJoin(this.userData).subscribe((res: any) => {
-        console.log(res,'ressssss')
         if(res.isSuccess){
     this.toastr.info(this.message)
         }
-        else{    this.toastr.info(res.error) }
+        else{this.toastr.info(res.error) }
     })
 
   }

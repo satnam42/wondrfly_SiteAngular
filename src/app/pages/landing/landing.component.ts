@@ -102,6 +102,7 @@ export class LandingComponent implements OnInit {
       this.router.navigate(['/program-provider', providerName, provider._id]);
   }
   ngOnInit() {
+    window.scroll(0,0);
     this.landingImageIndex = Math.floor(Math.random() * this.landingImages.length);
     if(this.landingImageIndex){
       this.altBanner = 'Fun Activities for Kids'
