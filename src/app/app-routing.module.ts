@@ -3,11 +3,13 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { LandingComponent } from './pages/landing/landing.component';
 import { NotFound404Component } from './pages/not-found-404/not-found-404.component';
+import { SuggestionComponent } from './pages/parent/suggestion/suggestion.component';
 
+const user = JSON.parse(localStorage.getItem('userData'));
 // main routes
 const routes: Routes = [
 
-  { path: '', component: LandingComponent },
+  { path: '', component:user && user.role==='parent'?SuggestionComponent:LandingComponent  },
   { path: 'sign-up', loadChildren: () => import('.//pages/auth/sign-up/sign-up.module').then(m => m.SignUpModule) },
   { path: 'ask-to-join/:id', loadChildren: () => import('.//pages/auth/ask-to-join/ask-to-join.module').then(m => m.AskToJoinModule) },
   { path: 'login', loadChildren: () => import('.//pages/auth/login/login.module').then(m => m.LoginModule) },
