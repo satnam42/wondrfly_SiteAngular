@@ -18,12 +18,12 @@
   </section>
 
 
-
-  <section class="activity_category " *ngIf="categories?.length>0">
+<div *ngIf="kids?.length">
+  <section class="activity_category " *ngFor="let kid of kids">
       <div class="container">
           <div class="row">
               <div class="col-12">
-                  <h2 class="title">Activities for Anna</h2>
+                  <h2 class="title">Activities for {{kid?.name}}</h2>
                   <span class="d-flex justify-content-end">view all</span>
               </div>
           </div>
@@ -47,35 +47,7 @@
           </div>
       </div>
   </section>
-
-  <section class="activity_category " *ngIf="categories?.length>0">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-              <h2 class="title">Activities for Andrei</h2>
-              <span class="d-flex justify-content-end">view all</span>
-            </div>
-        </div>
-        <div class="activity_category_list">
-            <div class="row">
-                <div class="col-md-4" *ngFor="let category of categories | slice:6:9; let i = index">
-                    <div class="category_list_box cursor" (click)="searchByCategory(category.id)">
-                        <a href="javascritpt:;">
-                            <div class="category_image">
-                                    <img [defaultImage]="defaultImage" [lazyLoad]="category?.imageUrl" />
-                            </div>
-                            <div class="category_title">
-                                <p>{{category?.name}}<span class="title_arrow">
-                                        <img src="assets/category_arrow.svg" alt="Category_arrow">
-                                    </span></p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+</div>
 
 <section>
   <div class="container">

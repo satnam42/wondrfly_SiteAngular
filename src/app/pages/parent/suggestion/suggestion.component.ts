@@ -2,7 +2,7 @@ import { Component, OnInit, } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import axios from 'axios';
-import { Category, User } from 'src/app/core/models';
+import { Category, Child, User } from 'src/app/core/models';
 import { ApiService } from 'src/app/core/services/api.service.service';
 import { AuthsService } from 'src/app/core/services/auths.service';
 import { DataService } from 'src/app/core/services/dataservice.service ';
@@ -19,7 +19,6 @@ export class SuggestionComponent implements OnInit {
   title = 'Best Activities and Programs for Kids in Jersey City - Wondrfly';
   categories: any = new Category;
   feedback: any = [];
-
   filterData: any = {
     subcatId: '',
     categoryId:'',
@@ -30,9 +29,9 @@ export class SuggestionComponent implements OnInit {
   blog: any;
   categoriesBySearch: any = new Category;
   providersBySearch: any = new User;
-
   activityName:any=''
   currentUser: any;
+  kids:Child[];
   constructor(private router: Router,
     private apiservice: ApiService,
     private dataservice: DataService,
@@ -50,8 +49,6 @@ export class SuggestionComponent implements OnInit {
     this.dataservice.setOption(this.filterData)
     this.router.navigate(['/search']);
   }
-
-
   searchByCategory(id) {
     this.filterData.activityName=''
     this.filterData.categoryId = id
@@ -102,8 +99,14 @@ export class SuggestionComponent implements OnInit {
     providerName = providerName.replace(/\?/g,"-");
       this.router.navigate(['/program-provider', providerName, provider._id]);
   }
-
+getChildByParentId(){
+  this.apiservice.getChildByParentId(this.currentUser.id).subscribe((res: any) => {
+    this.kids = res
+    console.log('children List', res)
+  });
+}
   ngOnInit() {
+    this.getChildByParentId()
     this.getCategoryList();
     this.feedbackSurveyList();
     this.getBlog();
