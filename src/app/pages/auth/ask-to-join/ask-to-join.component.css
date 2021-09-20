@@ -367,6 +367,42 @@ select.ng-invalid.ng-touched {
   background: #53B2E8;
   color: white !important;
 }
+#joinModal .modal-content {
+  padding: 40px;
+}
+#joinModal .location-popup h1 {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 45px;
+  text-align: center;
+  letter-spacing: 0.001em;
+  color: #494949;
+}
+#joinModal .location-popup h2 {
+  padding: 15px;
+  padding-left: 60px;
+}
+
+.SignBtnss {
+  background: #53B2E8;
+  border: 1px solid #53B2E8;
+  box-sizing: border-box;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.12);
+  border-radius: 50px;
+  min-width: 205px;
+  max-height: 52px;
+  line-height: 50px;
+  text-align: center;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 13px;
+  margin: 0 auto;
+  text-transform: uppercase;
+  transition: 0.8s;
+}
+
 
 
 @media(max-width:767px) {

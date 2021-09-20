@@ -100,8 +100,7 @@
 
 
                                         <div class="sign_in_btn">
-                                            <button class="SignBtn" (click)="askToJoin()"
-                                                [disabled]="parentForm.invalid || !isTerms || !isParent">Submit Request</button>
+                                            <button data-toggle="modal" data-target="#joinModal" class="SignBtn" (click)="askToJoin()" [disabled]="parentForm.invalid || !isTerms || !isParent">Submit Request</button>
                                             <button class="SignBtn cancel" [routerLink]="['/login']">Cancel</button>
                                         </div>
 
@@ -141,3 +140,32 @@
     </div>
 
 </body>
+
+
+<!----------------------------------------- ask to join Modal ------------------------------------------------------->
+
+<div class="modal fade verification_modal Location-Modal" id="joinModal" data-backdrop="static" data-keyboard="false"
+    tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <button type="button" class="close" id='close_modal' data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true" class="icon-close"></span>
+            </button>
+            <div class="modal-body">
+              <div class="location-popup">
+                <h1>
+                  Thanks for accepting our invitation to join the wondrfly Beta program!
+                </h1>
+
+                <h2>
+                  We’re thrilled to have you on board.
+                </h2>
+              </div>
+
+              <div class="sign_in_btn">
+                <button class="SignBtnss" data-dismiss="modal">EXPLORE NOW</button>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
