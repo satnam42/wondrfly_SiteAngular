@@ -1,5 +1,5 @@
 export const environment = {
-  production: true,
+  production: false,
   apiUrls: {
     reports: 'https://wondrfly.com/api',
     master: 'https://wondrfly.com/api',
@@ -9,6 +9,6 @@ export const environment = {
   baseUrl:'https://wondrfly.com/',
   shareUrl:'https://wondrfly.com/#/',
 
-  name: 'prod'
+  name: 'dev'
 
 };
