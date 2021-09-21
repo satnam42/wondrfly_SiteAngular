@@ -295,9 +295,7 @@ button.banner_button.cursor img {
   .search-location:before {
     left: 43%;
   }
-  .search-location input {
-      min-width: 200px;
-  }
+
   .banner_form .form-group input.camp_input{
     min-width: 190px;}
   .activity .media-left {
@@ -370,9 +368,6 @@ button.banner_button.cursor img {
   #timess .form-group.typess label {
     font-size: 7px;
   }
-  .search-location input {
-    min-width: 115px;
-  }
   .banner_form .form-group input.camp_input {
     max-width: 170px;
     min-width: 170px;
@@ -380,5 +375,11 @@ button.banner_button.cursor img {
   }
   .banner_form .form-group {
     margin-left: 10px;
-}
+    }
+
+    .search-location input {
+      min-width: 177px;
+      max-width: 177px;
+    }
+
   }
