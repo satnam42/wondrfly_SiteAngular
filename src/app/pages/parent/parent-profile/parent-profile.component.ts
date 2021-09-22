@@ -40,7 +40,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
   msg: string;
   guardianResponse: any = [];
   favourites: any = [];
-  invitedUsers:any = []
+  invitedUsers:User[] = []
   profileProgress: 0;
   fileData: File = null;
   parentImgURL: any;
@@ -111,7 +111,6 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
 
   @ViewChild(HeaderComponent, { static: true })
   headerComponent: HeaderComponent;
-
   message: string = "Updated Successfully";
   addMessage: string = "Child Added Successfully";
   action: boolean = true;
@@ -958,6 +957,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
       feedback: new FormControl("", [Validators.required]),
     });
   }
+
   ngAfterViewChecked() {
     this.scrollToBottom();
   }
@@ -1047,8 +1047,11 @@ inviteAsktojoina(){
   console.log(this.inviteAsktojoin)
   this.apiservice.InviteAsktojoin(this.inviteAsktojoin).subscribe((res:any) => {
     console.log(res)
-    if(res.isSuccess){
+    if(res.isSuccess===true){
       this.betaProgramInvitedUsers(this.currentUser.id)
+    }
+    else{
+      this.toastr.info(res.error);
     }
   })
 }

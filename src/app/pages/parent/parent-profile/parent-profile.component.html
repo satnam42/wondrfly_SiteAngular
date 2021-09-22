@@ -673,9 +673,7 @@
               </div>
             </div>
             <!-- ----------------------------------------------------------------------------------------- -->
-                <!-- ---------------account setting------------------------- -->
-                <div *ngIf="isInvite" class="">
-
+                <div [hidden]="!isInvite" class="">
                   <div class="beta-heading">
                     <h1>Beta program invites</h1>
                     <div class="d-flex align-items-center">

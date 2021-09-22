@@ -7,6 +7,7 @@ import { Observable, Subscription } from 'rxjs/Rx';
     selector: 'counter',
     template: `
     {{message}}
+
 `
 })
 export class CounterComponent implements OnInit, OnDestroy {
@@ -31,13 +32,17 @@ export class CounterComponent implements OnInit, OnDestroy {
         minutes = Math.floor(t / 60) % 60;
         t -= minutes * 60;
         seconds = t % 60;
-
+if(days>=0){
         return [
             days + 'd',
             hours + 'h',
             minutes + 'm',
             seconds + 's'
         ].join(' ');
+      }
+      else{
+        return 'Expired';
+      }
     }
 
 
