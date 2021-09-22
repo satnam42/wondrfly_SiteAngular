@@ -389,12 +389,6 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
   }
   onInvite(userId) {
     this.store.removeItem('savedList');
-    this.apiservice
-    .getInvitedUsersByParent(userId)
-    .subscribe((res: any) => {
-      this.invitedUsers = res;
-      console.log('invited users',this.invitedUsers)
-    });
     window.scroll(0, 0);
     this.isChat = false;
     this.chat = "";
@@ -901,6 +895,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
   }
   ngOnInit() {
     this.getFav(this.currentUser.id);
+    this.betaProgramInvitedUsers(this.currentUser.id);
     window.scroll(0, 0);
     this.getProfileProgress();
     this.headerComponent.getProfileProgress();
@@ -1053,9 +1048,16 @@ inviteAsktojoina(){
   this.apiservice.InviteAsktojoin(this.inviteAsktojoin).subscribe((res:any) => {
     console.log(res)
     if(res.isSuccess){
-      this.onInvite(this.currentUser.id)
+      this.betaProgramInvitedUsers(this.currentUser.id)
     }
   })
 }
-
+betaProgramInvitedUsers(userId){
+  this.apiservice
+  .getInvitedUsersByParent(userId)
+  .subscribe((res: any) => {
+    this.invitedUsers = res;
+    console.log('invited users',this.invitedUsers)
+  });
+}
 }

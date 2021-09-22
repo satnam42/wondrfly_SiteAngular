@@ -85,19 +85,19 @@
                                           </div> -->
                                           <div class="checkbox-ask">
                                             <div class="form-check">
-                                              <input class="form-check-input k-checkbox" type="checkbox" #parentc [checked]="isParent" (change)="parentChecked(parentc.checked)">
+                                              <input class="form-check-input k-checkbox" type="checkbox" #parentc [checked]="isParent" (change)="isParent=!isParent">
                                               <label class="form-check-label k-checkbox-label" for="flexCheckDefault">
                                                 I am a parent
                                               </label>
                                             </div>
                                             <div class="form-check">
-                                              <input class="form-check-input k-checkbox" type="checkbox" #termsc  (change)="termsChecked(termsc.checked)">
+                                              <input class="form-check-input k-checkbox" type="checkbox" #termsc  [checked]="isTerms"  (change)="isTerms=!isTerms">
                                               <label class="form-check-label k-checkbox-label" for="flexCheckChecked">
                                                 I agree to participate in wondrfly’s beta program and weekly provide the feedback
                                               </label>
                                             </div>
                                             <div class="form-check">
-                                              <input class="form-check-input k-checkbox" type="checkbox" #termsc  (change)="termsChecked(termsc.checked)">
+                                              <input class="form-check-input k-checkbox" type="checkbox" #forbetaactivity [checked]="isbetaActivity"  (change)="isbetaActivity=!isbetaActivity">
                                               <label class="form-check-label k-checkbox-label" for="flexCheckChecked">
                                                 I will be active in the <span class="beta-span">Wondrfly beta program</span> and spend 15 mins every week to experience the product and provide timely feedback to the product team
                                               </label>
@@ -106,7 +106,7 @@
 
 
                                         <div class="sign_in_btn">
-                                            <button data-toggle="modal" data-target="#joinModal" class="SignBtn" (click)="askToJoin()" [disabled]="parentForm.invalid || !isTerms || !isParent">Submit Request</button>
+                                            <button data-toggle="modal" data-target="#joinModal" class="SignBtn" (click)="askToJoin()" [disabled]="parentForm.invalid && !isTerms || !isParent || !isbetaActivity">Submit Request</button>
                                             <button class="SignBtn cancel" [routerLink]="['/login']">Cancel</button>
                                         </div>
 
@@ -172,7 +172,7 @@
               </div>
 
               <div class="sign_in_btn">
-                <button class="SignBtnss" data-dismiss="modal">EXPLORE NOW</button>
+                <button class="SignBtnss" data-dismiss="modal" routerLink="/search">EXPLORE NOW</button>
               </div>
             </div>
             <div class="image-corners">

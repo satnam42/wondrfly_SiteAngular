@@ -29,6 +29,7 @@ export class AskToJoinComponent implements OnInit {
   }
   isTerms: boolean;
   isParent: boolean;
+  isbetaActivity:boolean;
   message: string = 'Your request submitted!';
   categoryResponse: any;
   response: any;
@@ -59,18 +60,12 @@ export class AskToJoinComponent implements OnInit {
     this.signUpImage = this.signUpImages[num];
   }
 
-  termsChecked(value:boolean) {
-    this.isTerms=value
-  }
-
-  parentChecked(value:boolean) {
-    this.isParent=value
-  }
 
   askToJoin() {
     let email = this.userData.email.toLowerCase();
     this.userData.email = email;
       this.apiservice.askToJoin(this.userData).subscribe((res: any) => {
+        console.log(res)
         if(res.isSuccess){
     this.toastr.info(this.message)
         }
