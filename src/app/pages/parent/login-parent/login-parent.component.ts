@@ -305,7 +305,7 @@ updateParent() {
     this.ngxLoader.stop();
     console.log('after parent update', res)
     if(res.isSuccess===true){
-      this.router.navigate(['parent/suggestion'])
+      this.router.navigate(['parent/my-wondrfly'])
     }
   });
 }

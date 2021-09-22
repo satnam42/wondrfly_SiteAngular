@@ -20,7 +20,7 @@ export const routes: Routes = [
               }
     },
     {
-      path: 'suggestion', component: SuggestionComponent, canActivate:
+      path: 'my-wondrfly', component: SuggestionComponent, canActivate:
           [UserGuard],
           data: {
               roles: [

@@ -32,7 +32,7 @@ export class CounterComponent implements OnInit, OnDestroy {
         minutes = Math.floor(t / 60) % 60;
         t -= minutes * 60;
         seconds = t % 60;
-if(days>=0){
+        if(days>=0){
         return [
             days + 'd',
             hours + 'h',
@@ -40,7 +40,7 @@ if(days>=0){
             seconds + 's'
         ].join(' ');
       }
-      else{
+        else{
         return 'Expired';
       }
     }
