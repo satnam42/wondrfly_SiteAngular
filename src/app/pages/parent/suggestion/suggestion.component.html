@@ -128,57 +128,26 @@
                       </div>
                       <div class="lower-blog-sec">
                           <div class="row">
-                              <div class="col-md-3">
-                                <!-- <div class="card">
-                                  <div class="card-body">
-                                    <h5 class="card-title">Take a poll</h5>
-                                    <p class="card-text">Got 5 minutes? Take a quick weekly poll and let your voice be heard! </p>
+                              <div class="col-md-3" *ngFor="let survey of feedback;let i =index">
+                                <div class="card"  [class.activated-survey]="">
+                                  <div class="card-body" >
+                                    <h5 class="card-title">{{survey?.feedback}}</h5>
+                                    <p class="card-text">{{survey?.description}} </p>
                                     <h6 class="card-subtitle mb-2 text-muted"><span>Not Completed </span><br>
                                       this week</h6>
-                                    <a href="#" target="_blank"><button>START NOW</button></a>
+                                    <a href="{{survey?.url}}" target="_blank"><button [disabled]="">START NOW</button></a>
                                   </div>
-                                </div> -->
+                                </div>
 
-                                <div class="card comming-soons">
+                                <!-- <div class="card comming-soons">
                                   <div class="tuned-flexs">
                                     <h5 class="card-title">All Done!</h5>
                                     <p class="card-text">You’ve completed this poll. Your next one becomes available next week</p>
                                   </div>
-                                </div>
+                                </div> -->
                               </div>
-                              <div class="col-md-3">
-                                <div class="card">
-                                  <div class="card-body">
-                                    <h5 class="card-title">Give us your input</h5>
-                                    <p class="card-text">It takes just 10 minutes to help us improve the Wondrfly experience.</p>
-                                    <h6 class="card-subtitle mb-2 text-muted"><span>Not Completed </span><br>
-                                      this week</h6>
-                                    <a href="#" target="_blank"><button>START NOW</button></a>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="col-md-3">
-                                <div class="card">
-                                  <div class="card-body">
-                                    <h5 class="card-title">Share your opinion</h5>
-                                    <p class="card-text">In 15 minutes or fewer you can help enhance Wondrfly for future users. </p>
-                                    <h6 class="card-subtitle mb-2 text-muted"><span>Not Completed </span><br>
-                                      this week</h6>
-                                    <a href="#" target="_blank"><button>START NOW</button></a>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="col-md-3">
-                                <div class="card">
-                                  <div class="card-body">
-                                    <h5 class="card-title">This or That</h5>
-                                    <p class="card-text">Give your opinion each week and help us grow!</p>
-                                    <h6 class="card-subtitle mb-2 text-muted"><span>Not Completed </span><br>
-                                      this week</h6>
-                                    <a href="#" target="_blank"><button>START NOW</button></a>
-                                  </div>
-                                </div>
-                              </div>
+
+
                           </div>
                       </div>
 

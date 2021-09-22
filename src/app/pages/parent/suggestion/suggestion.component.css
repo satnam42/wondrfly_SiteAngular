@@ -476,8 +476,8 @@ span.d-flex.justify-content-end {
   text-align: center;
   margin-bottom: 30px;
   min-height: 330px;
-  border: 1px solid #53B2E8;
   display: grid;
+  opacity: 0.7;
 }
 .tuned-flexs {
   height: 100%;
@@ -680,6 +680,9 @@ span.d-flex.justify-content-end {
 .activities-flex {
   display: flex;
   justify-content: space-between;
+}
+.activated-survey{
+  border: 1px solid #53B2E8;
 }
 @media only screen and (min-width:1024px) and (max-width:1366px) and (orientation: portrait)  {
     .container, .container-lg, .container-md, .container-sm {
