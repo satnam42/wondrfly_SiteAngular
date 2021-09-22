@@ -84,7 +84,7 @@ import { DataService } from '../../services/dataservice.service ';
                     <a class="nav-link cursor" [routerLink]="['/faq']">FAQ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link cursor" [routerLink]="['/ask-to-join','']">Ask to join</a>
+                    <a class="nav-link cursor" [routerLink]="['/ask-to-join']">Ask to join</a>
                 </li>
                 <li>
                     <a [routerLink]="['/login']" class="btn_style cursor">SIGN IN</a>

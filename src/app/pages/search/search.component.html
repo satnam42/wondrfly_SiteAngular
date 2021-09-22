@@ -3,12 +3,12 @@
 <!-- <app-alert *ngIf="isLogin"></app-alert> -->
 <section class="main_outer">
 
-    <div class="beta-full">
+    <div class="beta-full" *ngIf="isBetaPopUp">
       <div class="beta-fullbox">
         <h1>
           Wondrfly is currently a Beta program. To get full access, you would need to join as a Beta User.
         </h1>
-        <button>
+        <button [routerLink]="['/ask-to-join']">
           SIGN UP
         </button>
       </div>
@@ -659,7 +659,7 @@
 
 <!----------------------------------------- Signup Modal ------------------------------------------------------->
 
-<div data-toggle="modal" data-target="#signupModal" id='modal1'></div>
+<!-- <div data-toggle="modal" data-target="#signupModal" id='modal1'></div>
 
 <div class="modal fade verification_modal password" id="signupModal" data-backdrop="static" data-keyboard="false"
     tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -675,7 +675,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 
 <!----------------------------------------- location Modal ------------------------------------------------------->

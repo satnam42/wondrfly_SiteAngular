@@ -11,7 +11,7 @@ const routes: Routes = [
 
   { path: '', component:user && user.role==='parent'?SuggestionComponent:LandingComponent  },
   { path: 'sign-up', loadChildren: () => import('.//pages/auth/sign-up/sign-up.module').then(m => m.SignUpModule) },
-  { path: 'ask-to-join/:id', loadChildren: () => import('.//pages/auth/ask-to-join/ask-to-join.module').then(m => m.AskToJoinModule) },
+  { path: 'ask-to-join', loadChildren: () => import('.//pages/auth/ask-to-join/ask-to-join.module').then(m => m.AskToJoinModule) },
   { path: 'login', loadChildren: () => import('.//pages/auth/login/login.module').then(m => m.LoginModule) },
   { path: 'sign-up-guardian', loadChildren: () => import('.//pages/auth/sign-up-guardian/sign-up-guardian.module').then(m => m.SignUpGuardianModule) },
   { path: 'forgot-password', loadChildren: () => import('.//pages/auth/forgot-password/forgot-password.module').then(m => m.ForgotPasswordModule) },

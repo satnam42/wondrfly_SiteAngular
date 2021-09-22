@@ -131,6 +131,7 @@ export class SearchComponent implements OnInit {
   selectedCat: any;
   selectedSubCategories:any = [];
   catData: any;
+  isBetaPopUp:boolean = false;
   constructor(
     private router: Router,
     private apiservice: ApiService,
@@ -240,6 +241,9 @@ this.toDate=e.endDate._d
    });
     });
 
+
+
+
   }
 
   // Get Current Location Coordinates
@@ -330,6 +334,11 @@ this.toDate=e.endDate._d
     if (this.isScrol) {
       this.isScrol = false;
       this.loadMore();
+    }
+    if (!this.isLogin) {
+      setTimeout(() => {
+        this.isBetaPopUp = true;
+      }, 1000);
     }
   }
 
@@ -602,14 +611,15 @@ switch(this.timeSession){
     });
   }
 
-  signUpModal() {
-    if (localStorage.getItem("token") === null) {
-      setTimeout(() => {
-        console.log('timerrrrrr')
-        window.document.getElementById("modal1").click();
-      }, 1000000);
-    }
-  }
+  // signUpModal() {
+  //   if (localStorage.getItem("token") === null) {
+  //     setTimeout(() => {
+  //       console.log('timerrrrrr')
+  //       window.document.getElementById("modal1").click();
+  //     }, 1000000);
+  //   }
+  // }
+
 
 searchCategory(key){
   this.apiservice.searchTag(key).subscribe((res:any)=>{
@@ -635,7 +645,8 @@ var providerName = provider.firstName;
     this.router.navigate(['/program-provider', providerName, provider._id]);
 }
   ngAfterViewInit() {
-    this.signUpModal()
+    // this.signUpModal()
+
   }
   ngOnDestroy() {
     window.document.getElementById("close_modal").click();
