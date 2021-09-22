@@ -5,11 +5,11 @@ import { LandingComponent } from './pages/landing/landing.component';
 import { NotFound404Component } from './pages/not-found-404/not-found-404.component';
 import { SuggestionComponent } from './pages/parent/suggestion/suggestion.component';
 
-const user = JSON.parse(localStorage.getItem('userData'));
+const USER = JSON.parse(localStorage.getItem('userData'));
 // main routes
-const routes: Routes = [
+const ROUTES: Routes = [
 
-  { path: '', component:user && user.role==='parent'?SuggestionComponent:LandingComponent  },
+  { path: '', component:USER && USER.role==='parent'?SuggestionComponent:LandingComponent  },
   { path: 'sign-up', loadChildren: () => import('.//pages/auth/sign-up/sign-up.module').then(m => m.SignUpModule) },
   { path: 'ask-to-join', loadChildren: () => import('.//pages/auth/ask-to-join/ask-to-join.module').then(m => m.AskToJoinModule) },
   { path: 'login', loadChildren: () => import('.//pages/auth/login/login.module').then(m => m.LoginModule) },
@@ -49,7 +49,7 @@ const routes: Routes = [
 
 @NgModule({
   // imports: [RouterModule.forRoot(routes, { useHash: false, enableTracing: true })],
-  imports: [RouterModule.forRoot(routes, { useHash: false, relativeLinkResolution: 'legacy',    preloadingStrategy: PreloadAllModules
+  imports: [RouterModule.forRoot(ROUTES, { useHash: false, relativeLinkResolution: 'legacy',    preloadingStrategy: PreloadAllModules
 },
 
 )],
