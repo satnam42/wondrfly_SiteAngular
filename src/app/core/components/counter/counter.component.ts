@@ -23,7 +23,7 @@ export class CounterComponent implements OnInit, OnDestroy {
 
     }
 
-    dhms(t:any) {
+    dhms(t) {
         var days, hours, minutes, seconds;
         days = Math.floor(t / 86400);
         t -= days * 86400;
@@ -53,7 +53,7 @@ export class CounterComponent implements OnInit, OnDestroy {
            return Math.floor((this.future.getTime() - new Date().getTime()) / 1000);
         });
 
-        this.subscription = this.counter$.subscribe((x:any) => this.message = this.dhms(x));
+        this.subscription = this.counter$.subscribe((x) => this.message = this.dhms(x));
     }
 
     ngOnDestroy(): void {
