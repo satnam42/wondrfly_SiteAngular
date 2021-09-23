@@ -422,7 +422,7 @@ export class HeaderComponent implements OnInit {
   }
   logo() {
     if(this.logoPosition){
-          this.router.navigate(['']);
+          this.router.navigate(['/parent/my-wondrfly']);
   }else{
     this.router.navigate(['/search']);
   }
