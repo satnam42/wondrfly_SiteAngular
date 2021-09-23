@@ -43,7 +43,11 @@ export class SuggestionComponent implements OnInit {
     this.currentUser = this.auth.currentUser();
 
   }
-  searchCategory(s){}
+  searchSubCategory(key){
+    this.apiservice.searchTag(key).subscribe((res:any)=>{
+  this.categoriesBySearch = res;
+    })
+  }
   filterByNameDate(){}
   searchBySubCategory(id) {
     this.filterData.activityName=''
