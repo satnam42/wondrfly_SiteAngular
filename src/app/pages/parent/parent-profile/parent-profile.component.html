@@ -709,7 +709,7 @@
                             <!-- <td *ngIf="invited.status.declined">
                               <span class="mr-2"><img src="assets/spin.png"></span>
                               Declined</td> -->
-                          <td><span><counter [futureString]="invited?.createdOn"></counter></span></td>
+                          <td><span *ngIf="invited.createdOn"><counter [futureString]="invited?.date"></counter></span></td>
                         </tr>
 
                       </tbody>

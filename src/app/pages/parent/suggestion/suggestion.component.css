@@ -664,6 +664,7 @@ span.d-flex.justify-content-end {
 }
 .activated-survey {
   border: 1px solid #53b2e8;
+  opacity: 1 !important;
 }
 section.blog-explore .boxs {
   width: 100%;

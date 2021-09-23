@@ -72,6 +72,8 @@ export class User {
   subject: string;
   categories:any = []
   subCategoryIds:any =[]
+  createdOn:string;
+  date:string;
   constructor(obj?: any) {
 
     if (!obj) {

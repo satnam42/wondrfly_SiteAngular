@@ -15,6 +15,7 @@ import { environment } from 'src/environments/environment.prod';
 export class SuggestionComponent implements OnInit {
   defaultImage = 'https://miro.medium.com/max/441/1*9EBHIOzhE1XfMYoKz1JcsQ.gif';
   blogUrl = environment.blogsUrl;
+  currentDate = new Date()
   loggedIn: boolean;
   title = 'Best Activities and Programs for Kids in Jersey City - Wondrfly';
   categories: any = new Category;
@@ -40,6 +41,7 @@ export class SuggestionComponent implements OnInit {
     private metaTagService: Meta,
    ) {
     this.currentUser = this.auth.currentUser();
+
   }
   searchCategory(s){}
   filterByNameDate(){}

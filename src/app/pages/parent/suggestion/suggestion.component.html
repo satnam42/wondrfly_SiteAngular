@@ -157,13 +157,13 @@
                       <div class="lower-blog-sec">
                           <div class="row">
                               <div class="col-md-3" *ngFor="let survey of feedback;let i =index">
-                                <div class="card"  [class.activated-survey]="">
+                                <div class="card" [class.activated-survey]="feedback[0]===feedback[i]?true:false">
                                   <div class="card-body" >
                                     <h5 class="card-title">{{survey?.feedback}}</h5>
                                     <p class="card-text">{{survey?.description}} </p>
                                     <h6 class="card-subtitle mb-2 text-muted"><span>Not Completed </span><br>
                                       this week</h6>
-                                    <a href="{{survey?.url}}" target="_blank"><button [disabled]="true">START NOW</button></a>
+                                    <a href="{{survey?.url}}" target="_blank"><button [disabled]="feedback[0]!==feedback[i]?true:false">START NOW</button></a>
                                   </div>
                                 </div>
 
