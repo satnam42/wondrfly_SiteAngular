@@ -1,4 +1,3 @@
-//module
 import { NgModule } from '@angular/core';
 import { ParentRoutingModule } from './parent.routing';
 import { CoreModule } from '../../core/core.module';
@@ -18,11 +17,12 @@ import { MarkdownModule } from 'src/app/core/shared/markdown/markdown.module';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { MailchimpSubscribeFormModule } from 'src/app/core/components/mailchimp-subscribe-form/mailchimp-subscribe-form.module';
 import { SuggestionComponent } from './suggestion/suggestion.component';
-import { CounterComponent } from 'src/app/core/shared/counter/counter.component';
+import { CounterModule } from './../../core/components/counter/counter.module';
+
 @NgModule({
     entryComponents: [],
     declarations: [
-        ParentComponent,LoginParentComponent, ParentProfileComponent,SuggestionComponent,CounterComponent
+        ParentComponent,LoginParentComponent, ParentProfileComponent,SuggestionComponent
 
     ],
     imports: [
@@ -41,6 +41,7 @@ import { CounterComponent } from 'src/app/core/shared/counter/counter.component'
         LazyLoadImageModule,
         MailchimpSubscribeFormModule,
         MarkdownModule,
+        CounterModule,
     ],
     exports: [
         ParentComponent, LoginParentComponent, ParentProfileComponent,SuggestionComponent
