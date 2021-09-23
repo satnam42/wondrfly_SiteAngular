@@ -158,7 +158,7 @@ declare const $: any;
                   <span class="progress-right">
                     <span class="progress-bar"></span>
                   </span>
-                  <img [src]="user.avatarImages" (error)="user.avatarImages='assets/default_img.png'" alt="Profile image">
+                  <img [src]="user?.avatarImages" (error)="user.avatarImages='assets/default_img.png'" alt="Profile image">
 
                 </div>
               </div>
