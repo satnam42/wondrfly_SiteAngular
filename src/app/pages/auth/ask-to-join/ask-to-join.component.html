@@ -106,7 +106,7 @@
 
 
                                         <div class="sign_in_btn">
-                                            <button data-toggle="modal" data-target="#joinModal" class="SignBtn" (click)="askToJoin()" [disabled]="parentForm.invalid && !isTerms || !isParent || !isbetaActivity">Submit Request</button>
+                                            <button data-toggle="modal" data-target="#joinModal" class="SignBtn" (click)="askToJoin()" [disabled]="parentForm.invalid || !isTerms || !isParent || !isbetaActivity">Submit Request</button>
                                             <button class="SignBtn cancel" [routerLink]="['/login']">Cancel</button>
                                         </div>
 
