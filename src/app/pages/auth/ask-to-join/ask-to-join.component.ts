@@ -80,16 +80,17 @@ export class AskToJoinComponent implements OnInit {
     this.randomImage();
     window.scroll(0, 0);
 
-    let password2 = new FormControl("", [Validators.required]);
-    let confirmPassword2 = new FormControl("", [
-      Validators.required,
-      CustomValidators.equalTo(password2),
-    ]);
+    // let password2 = new FormControl("", [Validators.required]);
+    // let confirmPassword2 = new FormControl("", [
+    //   Validators.required,
+    //   CustomValidators.equalTo(password2),
+    // ]);
     this.parentForm = new FormGroup({
       name: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
-      password: password2,
-      confirmPassword : confirmPassword2
+      password:  new FormControl('', [Validators.required]),
+      // password: password2,
+      // confirmPassword : confirmPassword2
       // rememberMe: new FormControl(false)
     });
   }
