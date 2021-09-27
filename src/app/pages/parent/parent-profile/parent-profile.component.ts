@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewChecked, ElementRef } from "@angular/core";
+import { Component, OnInit, ViewChild, AfterViewChecked,OnDestroy, ElementRef } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ApiService } from "src/app/core/services/api.service.service";
 import { Router } from "@angular/router";
@@ -21,7 +21,7 @@ import { MatSnackBar } from "@angular/material/snack-bar";
   templateUrl: "./parent-profile.component.html",
   styleUrls: ["./parent-profile.component.css"],
 })
-export class ParentProfileComponent implements OnInit, AfterViewChecked {
+export class ParentProfileComponent implements OnInit, AfterViewChecked,OnDestroy {
   @ViewChild('messageBox', { static: false }) myScrollContainer: ElementRef;
   updateForm: FormGroup;
   resetPasswordForm: FormGroup;
@@ -137,6 +137,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
   // ------------------------------------
   tags: any = [];
   savedList = '';
+  sendInvite = '';
   isSMSnotification:boolean;
   isPushnotification:boolean;
   isEmailnotification:boolean;
@@ -154,6 +155,9 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
     private toastr: ToastrService,
   ) {
     this.currentUser = this.authService.currentUser();
+    this.sendInvite = JSON.parse(this.store.getItem('sendInvite'));
+    this.savedList = JSON.parse(this.store.getItem('savedList'));
+
   }
 
 
@@ -220,6 +224,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
 
   onProfile() {
     this.store.removeItem('savedList');
+    this.store.removeItem('sendInvite');
     window.scroll(0, 0);
     this.isChat = false;
     this.chat = "";
@@ -246,6 +251,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
   }
   onChat() {
     this.store.removeItem('savedList');
+    this.store.removeItem('sendInvite');
     window.scroll(0, 0);
     this.isChat = true;
     this.chat = "active";
@@ -274,6 +280,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
 
   onGuardian(id) {
     this.store.removeItem('savedList');
+    this.store.removeItem('sendInvite');
     window.scroll(0, 0);
     this.ngxLoader.start();
     this.apiservice.getGuardianByParentId(id).subscribe((res: any) => {
@@ -318,6 +325,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
 
   onChildren(id) {
     this.store.removeItem('savedList');
+    this.store.removeItem('sendInvite');
     window.scroll(0, 0);
     this.isProfile = false;
     this.profile = "";
@@ -415,8 +423,6 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
 
   }
   getFav(id) {
-    this.savedList = JSON.parse(this.store.getItem('savedList'));
-    if (this.savedList) {
       this.apiservice.getFavouriteByParentId(id).subscribe((res) => {
         this.favourites = res;
         console.log('saved list ',this.favourites)
@@ -425,14 +431,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
       this.favourite = "active";
       this.isProfile = false;
       this.profile = "";
-    }
-    else {
-      this.getParentById();
-      this.isFavourite = false;
-      this.favourite = "";
-      this.isProfile = true;
-      this.profile = "active";
-    }
+    
     this.isSetting = false;
     this.setting = "";
     this.isChat = false;
@@ -560,6 +559,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
   }
   onSetting() {
     this.store.removeItem('savedList');
+    this.store.removeItem('sendInvite');
     window.scroll(0, 0);
     this.isProfile = false;
     this.profile = "";
@@ -893,7 +893,20 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
     this.getRoomId();
   }
   ngOnInit() {
-    this.getFav(this.currentUser.id);
+    if(this.savedList){
+      this.store.removeItem('sendInvite');
+      this.getFav(this.currentUser.id);
+    }
+    else if(this.sendInvite){
+      this.onInvite(this.currentUser.id)
+    }
+    else{
+        this.getParentById();
+        this.isFavourite = false;
+        this.favourite = "";
+        this.isProfile = true;
+        this.profile = "active";
+    }
     this.betaProgramInvitedUsers(this.currentUser.id);
     window.scroll(0, 0);
     this.getProfileProgress();
@@ -961,6 +974,11 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked {
   ngAfterViewChecked() {
     this.scrollToBottom();
   }
+  ngOnDestroy(): void{
+    this.store.removeItem('savedList');
+    this.store.removeItem('sendInvite');
+  }
+
   scrollToBottom(): void {
     try {
       this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;

@@ -1,8 +1,9 @@
-import { Component, OnInit, } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import axios from 'axios';
 import { Category, Child, User } from 'src/app/core/models';
+import { LocalStorageService } from 'src/app/core/services';
 import { ApiService } from 'src/app/core/services/api.service.service';
 import { AuthsService } from 'src/app/core/services/auths.service';
 import { DataService } from 'src/app/core/services/dataservice.service ';
@@ -33,12 +34,14 @@ export class SuggestionComponent implements OnInit {
   activityName:any=''
   currentUser: any;
   kids:Child[];
+
   constructor(private router: Router,
     private apiservice: ApiService,
     private dataservice: DataService,
     public auth: AuthsService,
     private titleService: Title,
     private metaTagService: Meta,
+    private store:LocalStorageService
    ) {
     this.currentUser = this.auth.currentUser();
 
@@ -110,6 +113,10 @@ getChildByParentId(){
     this.kids = res
     console.log('children List', res)
   });
+}
+sendInvite(){
+  this.store.setItem('sendInvite','1')
+  this.router.navigate(['/parent/profile',this.currentUser.id]);
 }
   ngOnInit() {
     this.getChildByParentId()
