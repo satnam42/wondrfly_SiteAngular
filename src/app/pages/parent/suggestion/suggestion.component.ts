@@ -28,7 +28,7 @@ export class SuggestionComponent implements OnInit {
   }
   categoryResponse: any;
   hide: boolean = true;
-  blog: any;
+  resources: any;
   categoriesBySearch: any = new Category;
   providersBySearch: any = new User;
   activityName:any=''
@@ -82,18 +82,19 @@ export class SuggestionComponent implements OnInit {
   // ------------------------------------------------get blogs  -------------------------------------------
 
   getBlog() {
-    axios.get(`${this.blogUrl}/blogs?_start=0&_limit=3`).then(response => {
-      this.blog = response.data
+    axios.get(`${this.blogUrl}/resources`).then(response => {
+      this.resources = response.data
+      console.log('resources',this.resources)
     });
   }
 
-  setBlog(data) {
-    var title = data.title
-    title = title.toLowerCase();
-    title = title.replace(/ /g,"-");
-    title = title.replace(/\?/g,"-");
-    this.router.navigate(['blogs/',title, data.id])
-  }
+  // setBlog(data) {
+  //   var title = data.title
+  //   title = title.toLowerCase();
+  //   title = title.replace(/ /g,"-");
+  //   title = title.replace(/\?/g,"-");
+  //   this.router.navigate(['blogs/',title, data.id])
+  // }
 
   providerSearch(key){
     this.apiservice.searchUsers(key,'provider').subscribe((res:any)=>{

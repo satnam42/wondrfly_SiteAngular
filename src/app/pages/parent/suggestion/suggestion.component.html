@@ -196,23 +196,23 @@
                     </div>
                     <div class="lower-resources-sec">
                        <div class="row">
-                          <div class="col-md-4">
+                          <div class="col-md-4" *ngFor='let res of resources'>
                             <div class="card">
-                              <img class="card-img-top" src="assets/preOnboarding/1.jpg" alt="Card image cap">
+                              <img class="card-img-top" src="{{blogUrl}}{{res?.image?.url}}" alt="Card image cap">
                               <div class="card-body">
-                                <h5 class="card-title">TOP Reads</h5>
-                                <p class="card-text">Dui ornare gravida quis at massa nulla adipiscing </p>
+                                <h5 class="card-title">{{res.title}}</h5>
+                                <p class="card-text">{{res.description}} </p>
                                 <div class="list">
                                   <div class="list-flex">
-                                    <p><img src="assets/calendar.svg " alt="School image ">Mar 23-31 </p>
-                                    <p><img src="assets/user_group.svg " alt="School image ">3-10 Yrs </p>
+                                    <p><img src="assets/calendar.svg " alt="School image ">{{res.start_date}}</p>
+                                    <p><img src="assets/user_group.svg " alt="School image ">{{res.end_date}} </p>
                                   </div>
-                                  <p><a href="">READ mORE</a></p>
+                                  <p><a href="{{res.url}}" target="_blank">READ MORE</a></p>
                                 </div>
                               </div>
                             </div>
                           </div>
-                          <div class="col-md-4">
+                          <!-- <div class="col-md-4">
                             <div class="card">
                               <img class="card-img-top" src="assets/preOnboarding/1.jpg" alt="Card image cap">
                               <div class="card-body">
@@ -221,7 +221,7 @@
                                 <button>DOWNLOAD NOW</button>
                               </div>
                             </div>
-                          </div>
+                          </div> -->
                           <div class="col-md-4">
                             <div class="card comming-soon">
                               <div class="imgage-corners">
