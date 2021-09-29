@@ -11,7 +11,7 @@
                             <img id="bannerimage" *ngIf="programImgURL" src="{{programImgURL}}">
                         </div>
                         <label class="banner-icon cursor">
-                            <input style="display:none;" (change)="uploadCoverPic($event,program._id)" type="file"
+                            <input style="display:none;"  type="file"
                                 id="file" accept="image/*" name="img_logo" class="dropzone"
                                 *ngIf="program.user === this.userId">
                             <button class="uploadbanner" type="button" *ngIf="program.user === this.userId"
@@ -33,13 +33,13 @@
 
                                                 <img *ngIf="program.category?.logoUrl" src="{{baseUrl+program.category?.logoUrl}}" alt="logo">
                                                 <img *ngIf="!program.category?.logoUrl" src="assets/gray_background.jpeg" alt="logo">
-                                                <a class="edit_logo" *ngIf="program.user === this.userId">
+                                                <!-- <a class="edit_logo" *ngIf="program.user === this.userId">
                                                     <label class="cursor"> <input style="display: none;" #file
                                                             accept="image/*" (change)="uploadLogo($event)" type="file"
                                                             name="image" />
                                                         <img src="assets/edit_white.svg" alt="Profile Image">
                                                     </label>
-                                                </a>
+                                                </a> -->
 
                                             </div>
                                         </div>
@@ -189,12 +189,7 @@
                                 <h2>Session</h2>
                                 <div class="batchuter">
                                     <div *ngFor="let batch of program.sessions;  let i = index" class="batch_box">
-                                        <div align="right" class="cursor">
-                                            <a (click)="openModal(isBatch=true,batch)" data-toggle="modal"
-                                                *ngIf="program.user === this.userId" data-target="#programUpdateModal">
-                                                <img src="assets/edit_skyblue.svg" alt="Edit Image">
-                                            </a>
-                                        </div>
+
                                         <div class="batch_title">
                                             <p> {{batch.sessionName}}</p>
                                         </div>
@@ -233,12 +228,6 @@
                                 <h2>Program Description</h2>
                                 <p>{{program.description}}</p>
 
-                                <div class="edit_icon cursor">
-                                    <a (click)="openModal(isDescription=true,'')" *ngIf="program.user === this.userId"
-                                        data-toggle="modal" data-target="#programUpdateModal">
-                                        <img src="assets/edit_skyblue.svg" alt="Edit Image">
-                                    </a>
-                                </div>
                             </div>
 
                             <div class="description_text"  *ngIf='program.bookingCancelledIn.days && program.bookingCancelledIn.hours'>
@@ -248,13 +237,6 @@
                                     days {{program.bookingCancelledIn.hours}} Hours
                                 </p>
 
-                                <div class="edit_icon cursor">
-                                    <a (click)="openModal(isBookingCancle = true,'')"
-                                        *ngIf="program.user === this.userId" data-toggle="modal"
-                                        data-target="#programUpdateModal">
-                                        <img src="assets/edit_skyblue.svg" alt="Edit Image">
-                                    </a>
-                                </div>
                             </div>
 
                             <div class="description_text" *ngIf='program.specialInstructions'>
@@ -264,12 +246,7 @@
                                   <span><img src="assets/mountain-detail.svg">Outdoor</span>
                                 </div>
                                 <p>{{program.specialInstructions}}</p>
-                                <div class="edit_icon cursor">
-                                    <a (click)="openModal(isInstruction = true,'')" *ngIf="program.user === this.userId"
-                                        data-toggle="modal" data-target="#programUpdateModal">
-                                        <img src="assets/edit_skyblue.svg" alt="Edit Image">
-                                    </a>
-                                </div>
+
                             </div>
 
                             <div class="people-block" *ngIf="program.user !== this.userId">
@@ -682,301 +659,7 @@
             </div>
         </div>
     </section>
-    <!-- program update Modal -->
-    <div class="modal fade verification_modal password" id="programUpdateModal" data-backdrop="static"
-        data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <button (click)="closePopup()" type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true" class="icon-close"></span>
-                </button>
-                <div class="modal-body">
-                    <h2>Program</h2>
-                    <div class="verification_outer">
-                        <div class="add_note">
 
-                            <div *ngIf="isName" class="form-group">
-                                <label>Program Name </label>
-                                <input type="text" class="form-control" placeholder="Type" [(ngModel)]="program.name">
-                            </div>
-
-                            <div *ngIf="isDescription" class="form-group">
-                                <label>Description </label>
-                                <textarea model="noofchars" ng-trim="false" maxLength="3000" class="form-control"
-                                    cols="40" rows="7" placeholder="Type" [(ngModel)]="program.description"></textarea>
-                            </div>
-
-                            <div *ngIf="isInstruction" class="form-group">
-                                <label>Special Instructions </label>
-                                <textarea model="noofchars" ng-trim="false" maxLength="3000" class="form-control"
-                                    cols="40" rows="7" placeholder="Type"
-                                    [(ngModel)]="program.specialInstructions"></textarea>
-                            </div>
-
-                            <div *ngIf="isPricePerParticipant" class="form-group">
-                                <label>Price Per Participant</label>
-                                <input type="text" class="form-control" placeholder="Type"
-                                    [(ngModel)]="program.pricePerParticipant">
-                            </div>
-                            <div *ngIf="isBookingCancle" class="form-group">
-                                <label class="custom-label">BOOKING CANT'T BE CANCELLED BEFORE</label>
-                                <div class="row">
-                                    <div class="col-md-8">
-                                        <input type="text" class="form-control" placeholder="Days" name="Days"
-                                            [(ngModel)]="program.bookingCancelledIn.days">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <input type="text" class="form-control" placeholder="Hours" name="Hours"
-                                            [(ngModel)]="program.bookingCancelledIn.hours">
-                                    </div>
-                                </div>
-                            </div>
-                            <div *ngIf="isTag" class="form-group">
-                                <label class="custom-label">Intrests</label>
-                                <div class="input_outer">
-                                    <div class="ng-autocomplete">
-                                        <ng-autocomplete [data]="tags" [searchKeyword]="keyword"
-                                            (selected)='selectEvent($event)' (inputChanged)='onChangeSearch($event)'
-                                            (inputFocused)='onFocused($event)' [itemTemplate]="itemTemplate"
-                                            [notFoundTemplate]="notFoundTemplate">
-                                        </ng-autocomplete>
-
-                                        <ng-template #itemTemplate let-item>
-                                            <a [innerHTML]="item.name"></a>
-                                        </ng-template>
-
-                                        <ng-template #notFoundTemplate let-notFound>
-                                            <div *ngIf="tags" [innerHTML]="notFound"></div>
-                                        </ng-template>
-                                    </div>
-                                </div>
-                                <br>
-                                <mat-form-field>
-                                    <mat-chip-list>
-                                        <mat-chip *ngFor="let t of program.tags;let indx=index;"
-                                            [selectable]="selectable" [removable]="removable" (removed)="remove(t)">
-                                            {{t.name}}
-                                            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                                        </mat-chip>
-                                    </mat-chip-list>
-                                </mat-form-field>
-
-                            </div>
-
-                            <div *ngIf="isBatch">
-
-                                <div class="form-group">
-                                    <label> Name </label>
-                                    <input type="text" class="form-control" placeholder="Type"
-                                        [(ngModel)]="batchData.sessionName">
-                                </div>
-
-                                <div class="form-group">
-                                    <label> Instructor </label>
-                                    <input type="text" class="form-control" placeholder="Type"
-                                        [(ngModel)]="batchData.instructor">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Dates</label>
-                                    <div class="input-group mb-3">
-                                        <input [owlDateTimeTrigger]="dt3" placeholder="Start Date"
-                                            [(ngModel)]="batchData.sessionStartDate" class="form-control" [owlDateTime]="dt3"
-                                            readonly>
-                                        <owl-date-time [pickerType]="'calendar'" #dt3></owl-date-time>
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text custom-text">
-                                                <img src="assets/arrow-right.svg" alt="Arrow Image">
-
-                                            </div>
-                                        </div>
-                                        <input [owlDateTimeTrigger]="dt4" placeholder="End Date" class="form-control"
-                                            [owlDateTime]="dt4" [(ngModel)]="batchData.sessionEndDate" readonly>
-                                        <owl-date-time [pickerType]="'calendar'" #dt4></owl-date-time>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Time</label>
-
-                                    <div class="input-group mb-3">
-                                        <input [owlDateTimeTrigger]="dt5" [owlDateTime]="dt5" placeholder="Start Time"
-                                            class="form-control" [(ngModel)]="batchData.sessionStartTime" readonly>
-                                        <owl-date-time [pickerType]="'timer'" #dt5></owl-date-time>
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text custom-text">
-
-                                                <img src="assets/arrow-right.svg" alt="Arrow Image">
-                                            </div>
-                                        </div>
-                                        <input [owlDateTimeTrigger]="dt6" [owlDateTime]="dt6" placeholder="End Time"
-                                            class="form-control" [(ngModel)]="batchData.sessionEndTime" readonly>
-                                        <owl-date-time [pickerType]="'timer'" #dt6></owl-date-time>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label> No of Seats </label>
-                                    <input type="text" class="form-control" placeholder="Type"
-                                        [(ngModel)]="batchData.numberOfSeats">
-                                </div>
-
-
-                                <div class="form-group">
-                                    <label> Location </label>
-                                    <input type="text" class="form-control" placeholder="Type"
-                                        [(ngModel)]="batchData.sessionAddress">
-                                </div>
-                            </div>
-
-                            <div class="submit_btn">
-                                <button (click)="updateProgram(program._id)" data-dismiss="modal"
-                                    class="submitBtn">Update</button>
-                                <button type="button" (click)="closePopup()" data-dismiss="modal"
-                                    class="cancel_btn">Cancel</button>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-
-    <div class="modal fade verification_modal program-edit profile_edit password" id="UpdateModal"
-        data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true" class="icon-close"></span>
-                </button>
-                <div class="modal-body">
-
-                    <div class="verification_outer">
-                        <h2>Edit Program</h2>
-                        <!-- <div class="profile_outer">
-                            <div class="profile_img">
-                                <img *ngIf="user.avatarImages" src="{{user.avatarImages}}" (error)="'assets/otheruser.jpeg'"
-                                    alt="Profile">
-                            </div>
-
-                            <a>
-                                <label class="cursor icon-edit">
-                                    <input style="display: none;" #file accept="image/*"
-                                        (change)="providerImageSelect($event,user.id)" type="file" name="image" />
-                                </label>
-                            </a>
-
-                        </div> -->
-                        <div class="add_note">
-                            <div class="form-group upload">
-                                <label class="custom-label">Timeline Photos</label>
-                                <i class="glyphicon glyphicon-download-alt"></i>
-                                <app-drag-drop [isMultiple]="false">
-                                </app-drag-drop>
-                            </div>
-                            <div class="form-group">
-                                <label>Program Name </label>
-                                <input type="text" class="form-control" placeholder="Program name"
-                                    [(ngModel)]="program.name">
-                            </div>
-
-                            <div class="form-group">
-                                <label class="custom-label">Location </label>
-                                <input type="text" class="form-control" value="" [(ngModel)]="program.location"
-                                    (keydown.enter)="$event.preventDefault()" placeholder="Search Location"
-                                    autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #search>
-                            </div>
-
-                            <div class="form-group date_input">
-                                <label class="custom-label">Dates</label>
-
-                                <div class="input-group mb-3">
-                                    <input [owlDateTimeTrigger]="dt3" placeholder="Start Date" class="form-control"
-                                        [owlDateTime]="dt3" [(ngModel)]="fromDate" readonly>
-                                    <owl-date-time [pickerType]="'calendar'" #dt3></owl-date-time>
-                                    <!-- <input type="text" id="fromDateSelector" class="form-control" placeholder="Start Date"> -->
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text custom-text">
-                                            <img class="arrow" src="assets/right.png">
-                                        </div>
-                                    </div>
-                                    <input [owlDateTimeTrigger]="dt4" placeholder="End Date" class="form-control"
-                                        [owlDateTime]="dt4" [(ngModel)]="toDate" readonly>
-                                    <owl-date-time [pickerType]="'calendar'" #dt4></owl-date-time>
-
-                                </div>
-
-                            </div>
-
-
-                            <div class="form-group date_input">
-                                <label class="custom-label">Time</label>
-
-                                <div class="input-group mb-3">
-                                    <input [owlDateTimeTrigger]="dt5" [owlDateTime]="dt5" placeholder="Start Time"
-                                        class="form-control" [(ngModel)]="fromTime" (ngModelChange)="onChange($event)"
-                                        readonly>
-                                    <owl-date-time [pickerType]="'timer'" #dt5></owl-date-time>
-                                    <!-- <input type="text" class="form-control" placeholder="Start Time"> -->
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text custom-text">
-                                            <img class="arrow" src="assets/right.png">
-                                        </div>
-                                    </div>
-                                    <input [owlDateTimeTrigger]="dt6" [owlDateTime]="dt6" placeholder="End Time"
-                                        class="form-control" [(ngModel)]="toTime" (ngModelChange)="onChange($event)"
-                                        readonly>
-                                    <owl-date-time [pickerType]="'timer'" #dt6></owl-date-time>
-                                    <!-- <input type="text" class="form-control custom-text" placeholder="End Time"> -->
-                                </div>
-
-                            </div>
-
-                            <div class="form-group">
-                                <label>Duration </label>
-                                <input type="text" class="form-control" placeholder="e.g. John Doe"
-                                    [(ngModel)]="program.duration">
-                            </div>
-
-                            <div class="form-group participant_input">
-                                <label class="custom-label">Price Per Participant</label>
-
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">
-                                            $
-                                        </div>
-                                    </div>
-                                    <input type="text" class="form-control" placeholder="Type"
-                                        [(ngModel)]="program.pricePerParticipant">
-                                </div>
-
-                            </div>
-
-
-                            <div class="form-group">
-                                <label class="custom-label">Age Group</label>
-                                <br>
-                                <br>
-                                <ngx-slider [(value)]="minAge" [(highValue)]="maxAge" [options]="ageOption">
-                                </ngx-slider>
-                            </div>
-
-                            <div class="submit_btn">
-                                <button (click)="updateProgram(program._id)" data-dismiss="modal"
-                                    class="submitBtn">Save</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <app-footer2></app-footer2>
 </body>

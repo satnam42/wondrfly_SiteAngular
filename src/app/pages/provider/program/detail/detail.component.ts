@@ -6,13 +6,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Observable } from 'rxjs';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
-import { Claim } from 'src/app/core/models/claim.model';
 import { AuthsService } from 'src/app/core/services/auths.service';
 import { MapsAPILoader } from '@agm/core';
 import * as moment from 'moment';
 import { Title, Meta } from '@angular/platform-browser';
 import { Globals } from 'src/app/core/common/imageLoader';
-import { MapTheme } from 'src/app/core/common/map-theme';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { Options } from '@angular-slider/ngx-slider';
 import { ToastrService } from 'ngx-toastr';
@@ -47,17 +45,10 @@ export class DetailComponent implements OnInit {
 
   isLogin = false;
   providerRole: boolean = false;
-  claim = new Claim;
   updateProgramResponse: any;
   batchData: any;
-  isName = false;
-  isTag = false;
-  isDescription = false;
-  isBookingCancle = false;
-  isInstruction = false;
-  isBatch = false;
+
   isPricePerParticipant = false;
-  formData = new FormData();
   fileData: File = null;
   imagePath;
   msg: string;
@@ -131,7 +122,6 @@ export class DetailComponent implements OnInit {
     private ngxLoader: NgxUiLoaderService,
     private toastr: ToastrService,
     private activatedRoute: ActivatedRoute,
-    public mapTheme: MapTheme,
     public auth: AuthsService,
     public imageLoader: Globals,
     private dataService: DataService) {
@@ -199,67 +189,14 @@ export class DetailComponent implements OnInit {
   onFocused(e) {
     // do something when input is focused
   }
-  closePopup() {
-    this.isName = false;
-    this.isTag = false;
-    this.isDescription = false;
-    this.isBookingCancle = false;
-    this.isInstruction = false;
-    this.isBatch = false;
-    this.isPricePerParticipant = false;
-    this.isBookingCancle = false;
 
-  }
-
-  uploadCoverPic(event, id) {
-
-    this.fileData = event.target.files[0];
-    this.formData.append('image', this.fileData);
-
-    // --------------------preview image before upload ------------------------
-
-    if (event.target.files.length === 0)
-      return;
-    var reader = new FileReader();
-    this.imagePath = event.target.files;
-    reader.readAsDataURL(event.target.files[0]);
-    reader.onload = (_event) => {
-      this.programImgURL = reader.result;
-    }
-    var mimeType = event.target.files[0].type;
-    if (mimeType.match(/image\/*/) == null) {
-      this.msg = " only images are supported";
-      return;
-    }
-    // -------------------------------------------------------------------------------
-
-    this.ngxLoader.start();
-    this.apiservice.getPicUrl(this.formData).subscribe(res => {
-      this.getUrl = res;
-      this.updateProgram(id);
-      this.ngxLoader.stop();
-    });
-    this.ngxLoader.stop();
-  }
 
   // -----------------------------------drag and drop image--------------------------------------------
 
   onImageDrop = (event) => {
-    this.UploadImage(event)
+    // this.UploadImage(event)
   }
 
-
-  UploadImage(files) {
-
-    this.fileData = files[0];
-    this.formData.append('image', this.fileData);
-    this.apiservice.getPicUrl(this.formData).subscribe((res: any) => {
-      if (res) {
-        this.program.timelinePics = []
-        this.program.timelinePics.push(res)
-      }
-    })
-  }
 
 
 
@@ -267,45 +204,6 @@ export class DetailComponent implements OnInit {
 // ----------------------------------------------------------------------------------------------------------
 
 
-  uploadLogo(event) {
-
-    this.fileData = event.target.files[0];
-    this.formData.append('image', this.fileData);
-
-    // --------------------preview image before upload ------------------------
-
-    if (event.target.files.length === 0)
-      return;
-    var reader = new FileReader();
-    this.imagePath = event.target.files;
-    reader.readAsDataURL(event.target.files[0]);
-    reader.onload = (_event) => {
-      this.userLogo = reader.result;
-    }
-    var mimeType = event.target.files[0].type;
-    if (mimeType.match(/image\/*/) == null) {
-      this.msg = " only images are supported";
-      return;
-    }
-    // -------------------------------------------------------------------------------
-    this.ngxLoader.start();
-    this.apiservice.getPicUrl(this.formData).subscribe(res => {
-      this.ngxLoader.stop();
-      this.getUrl = res;
-      console.log('img url', res)
-      this.updateProviderById(this.program.user)
-    });
-    this.ngxLoader.stop();
-  }
-
-  updateProviderById(id) {
-    this.user.logo = this.getUrl
-    this.apiservice.updateProviderById(this.program.user, this.user).subscribe((res: any) => {
-      this.user = res.data
-      console.log('res', this.user)
-    });
-    this.ngxLoader.stop();
-  }
   getProviderById() {
     this.apiservice.getUserById(this.program.user).subscribe((res: any) => {
       this.user = res.data;
@@ -322,47 +220,6 @@ getRating(){
      console.log('ratinggggggggggggg', res)
    });
  }
-
-  updateProgram(id) {
-    this.program.ageGroup.from = this.minAge
-    this.program.ageGroup.to = this.maxAge
-    this.program.time.from = new Date(this.fromTime);
-    this.program.time.to = new Date(this.toTime);
-    this.program.date.from = moment(this.fromDate).format('YYYY-MM-DD')
-    this.program.date.to = moment(this.toDate).format("YYYY-MM-DD")
-
-
-    if(typeof this.program.isFree==='string'){this.program.isFree=false}
-    if(typeof this.program.isFav==='string'){this.program.isFav=false}
-    if(typeof this.program.adultAssistanceIsRequried==='string'){this.program.adultAssistanceIsRequried=false}
-    if(typeof this.program.isFree==='string'){this.program.isFav=false}
-    var batch: any;
-    this.closePopup();
-    this.program.programCoverPic = this.getUrl;
-    this.program.userId = this.user.id;
-    let totalBatch = this.program.batches.length - 1
-    if (this.batchData) {
-      for (let i = 0; i <= totalBatch; i++) {
-        batch = this.program.batches[i];
-
-        if (this.batchData._id === batch._id) {
-          this.program.batches[i] = this.batchData;
-
-        }
-      }
-    }
-
-    console.log('before update',this.program);
-    this.apiservice.updateProgram(id, this.program).subscribe((res: any) => {
-      console.log('after update',res);
-      this.ngxLoader.stop();
-      if (res) {
-      } else {
-      }
-    });
-    this.ngxLoader.stop();
-  }
-
 
   getProgramById() {
     this.ngxLoader.start();

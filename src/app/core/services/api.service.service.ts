@@ -6,15 +6,11 @@ import { Category } from '../models/category.model';
 import { Program } from '../models/program.model';
 import { Tag } from '../models/tag.model';
 import { LocalStorageService } from '.';
-import { Claim } from '../models/claim.model';
 import { environment } from 'src/environments/environment';
-import { Forum } from '../models/forum.model';
-import { Alert } from '../models/alert.model';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { SocialUser } from '../models/social.model';
 import { Observable, Subject } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
-
 @Injectable({
     providedIn: 'root'
 })
@@ -182,56 +178,6 @@ export class ApiService {
         return subject.asObservable();
     }
 
-    phoneVerify(model): Observable<User> {
-        const subject = new Subject<User>();
-        this.http.post(`${this.root}/twilio/otpVerify`, model, { headers: null }).subscribe((responseData: any) => {
-            if (responseData.statusCode !== 200) {
-                throw new Error('This request has failed ' + responseData.status);
-            }
-            const dataModel = responseData;
-            if (!dataModel.isSuccess) {
-                if (responseData.status === 200) {
-                    // this.toasty.error(dataModel.error);
-                    throw new Error(dataModel.code || dataModel.message || 'failed');
-                } else {
-                    throw new Error(responseData.status + '');
-                }
-            }
-            subject.next(responseData);
-        }, (error) => {
-            const dataModel = error;
-            // this.toasty.error(dataModel.error);
-            subject.next(dataModel.error);
-
-        });
-        return subject.asObservable();
-    }
-
-
-
-    deletePhoneNumber(id): Observable<User[]> {
-        const subject = new Subject<User[]>();
-        this.http.post(`${this.root}/providers/deletePhoneNumber?id=${id}`, "", this.getHeader()).subscribe((responseData: any) => {
-            if (responseData.statusCode !== 200) {
-                throw new Error('This request has failed ' + responseData.status);
-            }
-            const dataModel = responseData;
-            if (!dataModel.isSuccess) {
-                if (responseData.status === 200) {
-                    // this.toasty.error(dataModel.error);
-                    throw new Error(dataModel.code || dataModel.message || 'failed');
-                } else {
-                    throw new Error(responseData.status + '');
-                }
-            }
-            subject.next(responseData);
-        }, (error) => {
-            const dataModel = error;
-            subject.next(dataModel.error);
-        });
-        return subject.asObservable();
-    }
-
 
 
     //---------------------------- upload user Image ------------------------>
@@ -295,38 +241,6 @@ export class ApiService {
 
     }
 
-    //------------------------------- upload provider banner ----------------------->
-
-    uploadProviderBanner(id, model): Observable<any> {
-        const subject = new Subject<any>();
-        this.http.put(`${this.root}/providers/uploadBannerPic/${id}`, model, {
-            headers: new HttpHeaders({
-                'enctype': 'multipart/form-data',
-                'Accept': 'application/json',
-                'x-access-token': this.token
-            })
-        }).subscribe((responseData: any) => {
-            if (responseData.statusCode !== 200) {
-                throw new Error('This request has failed ' + responseData.status);
-            }
-            const dataModel = responseData;
-            if (!dataModel.isSuccess) {
-                if (responseData.status === 200) {
-                    // this.toasty.error(dataModel.error);
-                    throw new Error(dataModel.code || dataModel.message || 'failed');
-                } else {
-                    throw new Error(responseData.status + '');
-                }
-            }
-            subject.next(responseData);
-        }, (error) => {
-            const dataModel = error;
-            subject.next(dataModel.error);
-
-        });
-        return subject.asObservable();
-
-    }
 
     //----------------------------- upload child Image ----------------------->
 
@@ -501,30 +415,7 @@ export class ApiService {
         return subject.asObservable();
     }
 
-    //----------------------------- tell friend ------------------------->
 
-    tellFriend(model): Observable<User> {
-        const subject = new Subject<User>();
-        this.http.post(`${this.root}/users/tellAFriend`, model).subscribe((responseData: any) => {
-            if (responseData.statusCode !== 200) {
-                throw new Error('This request has failed ' + responseData.status);
-            }
-            const dataModel = responseData;
-            if (!dataModel.isSuccess) {
-                if (responseData.status === 200) {
-                    // this.toasty.error(dataModel.error);
-                    throw new Error(dataModel.code || dataModel.message || 'failed');
-                } else {
-                    throw new Error(responseData.status + '');
-                }
-            }
-            subject.next(responseData);
-        }, (error) => {
-            const dataModel = error;
-            subject.next(dataModel.error);
-        });
-        return subject.asObservable();
-    }
 
     //---------------------------- active/deactive user ------------------------>
 
@@ -544,83 +435,6 @@ export class ApiService {
                 }
             }
             subject.next(responseData);
-        }, (error) => {
-            const dataModel = error;
-            subject.next(dataModel.error);
-
-        });
-        return subject.asObservable();
-    }
-
-    // ----------------------------- give feedback --------------------------->
-
-    giveFeedback(model): Observable<User> {
-        const subject = new Subject<User>();
-        this.http.post(`${this.root}/users/feedback`, model).subscribe((responseData: any) => {
-            if (responseData.statusCode !== 200) {
-                throw new Error('This request has failed ' + responseData.status);
-            }
-            const dataModel = responseData;
-            if (!dataModel.isSuccess) {
-                if (responseData.status === 200) {
-                    throw new Error(dataModel.code || dataModel.message || 'failed');
-                } else {
-                    throw new Error(responseData.status + '');
-                }
-            }
-            subject.next(responseData);
-        }, (error) => {
-            const dataModel = error;
-            subject.next(dataModel.error);
-
-        });
-        return subject.asObservable();
-    }
-
-    // ----------------------------- claim Request -------------------------->
-
-    claimRequest(model): Observable<Claim> {
-        const subject = new Subject<Claim>();
-        this.http.post(`${this.root}/claims/request`, model, this.getHeader()).subscribe((responseData: any) => {
-            if (responseData.statusCode !== 200) {
-                throw new Error('This request has failed ' + responseData.status);
-            }
-            const dataModel = responseData;
-            if (!dataModel.isSuccess) {
-                if (responseData.status === 200) {
-                    // this.toasty.error(dataModel.error);
-                    throw new Error(dataModel.code || dataModel.message || 'failed');
-                } else {
-                    throw new Error(responseData.status + '');
-                }
-            }
-            subject.next(responseData.data);
-        }, (error) => {
-            const dataModel = error;
-            subject.next(dataModel.error);
-
-        });
-        return subject.asObservable();
-    }
-
-    //---------------------------- Claim Rquest List By Provider ---------------->
-
-    ClaimRquestListByProvider(id): Observable<Claim[]> {
-        const subject = new Subject<Claim[]>();
-        this.http.get(`${this.root}/claims/requestListByProvider?id=${id}`, this.getHeader()).subscribe((responseData: any) => {
-            if (responseData.statusCode !== 200) {
-                throw new Error('This request has failed ' + responseData.status);
-            }
-            const dataModel = responseData;
-            if (!dataModel.isSuccess) {
-                if (responseData.status === 200) {
-                    // this.toasty.error(dataModel.error);
-                    throw new Error(dataModel.code || dataModel.message || 'failed');
-                } else {
-                    throw new Error(responseData.status + '');
-                }
-            }
-            subject.next(responseData.data);
         }, (error) => {
             const dataModel = error;
             subject.next(dataModel.error);
@@ -654,33 +468,6 @@ export class ApiService {
         });
         return subject.asObservable();
     }
-
-    // -------------------------- get child by guardian Id ------------------------>
-
-    getChildByGuardianId(id): Observable<Child[]> {
-        const subject = new Subject<Child[]>();
-        this.http.get(`${this.root}/child/byGuardianId/${id}`, this.getHeader()).subscribe((responseData: any) => {
-            if (responseData.statusCode !== 200) {
-                throw new Error('This request has failed ' + responseData.status);
-            }
-            const dataModel = responseData;
-            if (!dataModel.isSuccess) {
-                if (responseData.status === 200) {
-                    // this.toasty.error(dataModel.error);
-                    throw new Error(dataModel.code || dataModel.message || 'failed');
-                } else {
-                    throw new Error(responseData.status + '');
-                }
-            }
-            subject.next(responseData.data);
-        }, (error) => {
-            const dataModel = error;
-            // this.toasty.error(dataModel.error);
-            subject.next(dataModel.error);
-        });
-        return subject.asObservable();
-    }
-
     // ----------------------------- add child ------------------------------->
 
     addChild(model): Observable<Child[]> {
@@ -707,30 +494,6 @@ export class ApiService {
         return subject.asObservable();
     }
 
-    // ----------------------------- delete child ------------------------------->
-
-    deleteChild(id): Observable<Child[]> {
-        const subject = new Subject<Child[]>();
-        this.http.put(`${this.root}/child/delete/${id}`, '', this.getHeader()).subscribe((responseData: any) => {
-            if (responseData.statusCode !== 200) {
-                throw new Error('This request has failed ' + responseData.status);
-            }
-            const dataModel = responseData;
-            if (!dataModel.isSuccess) {
-                if (responseData.status === 200) {
-                    // this.toasty.error(dataModel.error);
-                    throw new Error(dataModel.code || dataModel.message || 'failed');
-                } else {
-                    throw new Error(responseData.status + '');
-                }
-            }
-            subject.next(responseData);
-        }, (error) => {
-            const dataModel = error;
-            subject.next(dataModel.error);
-        });
-        return subject.asObservable();
-    }
 
     // ----------------------------- invite guardian ------------------------------->
 
@@ -780,30 +543,7 @@ export class ApiService {
         return subject.asObservable();
     }
 
-    // ----------------------------- delete guardian ------------------------------->
 
-    deleteGuardian(id): Observable<User[]> {
-        const subject = new Subject<User[]>();
-        this.http.delete(`${this.root}/guardians/remove/${id}`, this.getHeader()).subscribe((responseData: any) => {
-            if (responseData.statusCode !== 200) {
-                throw new Error('This request has failed ' + responseData.status);
-            }
-            const dataModel = responseData;
-            if (!dataModel.isSuccess) {
-                if (responseData.status === 200) {
-                    // this.toasty.error(dataModel.error);
-                    throw new Error(dataModel.code || dataModel.message || 'failed');
-                } else {
-                    throw new Error(responseData.status + '');
-                }
-            }
-            subject.next(responseData);
-        }, (error) => {
-            const dataModel = error;
-            subject.next(dataModel.error);
-        });
-        return subject.asObservable();
-    }
  // ----------------------------- delete guardian ------------------------------->
 
  activeDactiveChild(id,value): Observable<Child[]> {
@@ -905,31 +645,7 @@ export class ApiService {
         });
         return subject.asObservable();
     }
-    // ----------------------------- update Provider By Id -------------------------->
-    updateProviderById(id, model): Observable<User[]> {
-        const subject = new Subject<User[]>();
-        this.http.put(`${this.root}/providers/update/${id}`, model, this.getHeader()).subscribe((responseData: any) => {
-            if (responseData.statusCode !== 200) {
-                throw new Error('This request has failed ' + responseData.status);
-            }
-            const dataModel = responseData;
-            if (!dataModel.isSuccess) {
-                if (responseData.status === 200) {
-                    // this.toasty.error(dataModel.error);
-                    throw new Error(dataModel.code || dataModel.message || 'failed');
-                } else {
-                    throw new Error(responseData.status + '');
-                }
-            }
-            subject.next(responseData);
-        }, (error) => {
-            const dataModel = error;
-            subject.next(dataModel.error);
-        });
-        return subject.asObservable();
-    }
-
-    // ----------------------------- get category -------------------------->
+   //-------------------------- get category -------------------------->
 
     getCategory(): Observable<Category> {
         const subject = new Subject<Category>();
@@ -1273,30 +989,6 @@ onOffNotification(id,e): Observable<User> {
     });
     return subject.asObservable();
 }
-    // -------------------------- get provider by Id ------------------------->
-
-    getProviderById(id): Observable<User> {
-        const subject = new Subject<User>();
-        this.http.get(`${this.root}/providers/getById/${id}`, this.getHeader()).subscribe((responseData: any) => {
-            if (responseData.statusCode !== 200) {
-                throw new Error('This request has failed ' + responseData.status);
-            }
-            const dataModel = responseData;
-            if (!dataModel.isSuccess) {
-                if (responseData.status === 200) {
-                    // this.toasty.error(dataModel.error);
-                    throw new Error(dataModel.code || dataModel.message || 'failed');
-                } else {
-                    throw new Error(responseData.status + '');
-                }
-            }
-            subject.next(responseData.data);
-        }, (error) => {
-            const dataModel = error;
-            subject.next(dataModel.error);
-        });
-        return subject.asObservable();
-    }
 
     // -------------------------- get Profile Progress ------------------------->
 
@@ -1389,34 +1081,6 @@ onOffNotification(id,e): Observable<User> {
         return subject.asObservable();
     }
 
-    //-------------------------- get open programs ------------------------>
-
-    getOpenPrograms(pageNo, pageSize): Observable<Program> {
-        const subject = new Subject<Program>();
-        // this.ngxLoader.start();
-        // tslint:disable-next-line:max-line-length
-        this.http.get(`${this.root}/programs/openPrograms?pageNo=${pageNo}&pageSize=${pageSize}`, this.getHeader()).subscribe((responseData: any) => {
-            // this.ngxLoader.stop();
-            if (responseData.statusCode !== 200) {
-                throw new Error('This request has failed ' + responseData.status);
-            }
-            const dataModel = responseData;
-            if (!dataModel.isSuccess) {
-                if (responseData.status === 200) {
-                    // this.toasty.error(dataModel.error);
-                    throw new Error(dataModel.code || dataModel.message || 'failed');
-                } else {
-                    throw new Error(responseData.status + '');
-                }
-            }
-            subject.next(responseData.items);
-        }, (error) => {
-            const dataModel = error;
-            // this.toasty.error(dataModel.error);
-            subject.next(dataModel.error);
-        });
-        return subject.asObservable();
-    }
 
     // -------------------------- get Program by id ------------------------->
 
@@ -1493,55 +1157,6 @@ onOffNotification(id,e): Observable<User> {
         return subject.asObservable();
     }
 
-    // -------------------------- add Program ------------------------->
-
-    addProgram(model): Observable<Program[]> {
-        const subject = new Subject<Program[]>();
-        this.http.post(`${this.root}/programs/add`, model, this.getHeader()).subscribe((responseData: any) => {
-            if (responseData.statusCode !== 200) {
-                throw new Error('This request has failed ' + responseData.status);
-            }
-            const dataModel = responseData;
-            if (!dataModel.isSuccess) {
-                if (responseData.status === 200) {
-                    // this.toasty.error(dataModel.error);
-                    throw new Error(dataModel.code || dataModel.message || 'failed');
-                } else {
-                    throw new Error(responseData.status + '');
-                }
-            }
-            subject.next(responseData);
-        }, (error) => {
-            const dataModel = error;
-            subject.next(dataModel.error);
-        });
-        return subject.asObservable();
-    }
-
-    // -------------------------- program Active InActive ------------------------->
-
-    programActiveInActive(id, status) {
-        const subject = new Subject<Program[]>();
-        this.http.put(`${this.root}/programs/activeOrDecactive?id=${id}&status=${status}`, '', this.getHeader()).subscribe((responseData: any) => {
-            if (responseData.statusCode !== 200) {
-                throw new Error('This request has failed ' + responseData.status);
-            }
-            const dataModel = responseData;
-            if (!dataModel.isSuccess) {
-                if (responseData.status === 200) {
-                    // this.toasty.error(dataModel.error);
-                    throw new Error(dataModel.code || dataModel.message || 'failed');
-                } else {
-                    throw new Error(responseData.status + '');
-                }
-            }
-            subject.next(responseData);
-        }, (error) => {
-            const dataModel = error;
-            subject.next(dataModel.error);
-        });
-        return subject.asObservable();
-    }
 
     // -------------------------------- get view ------------------------------>
 
@@ -1561,106 +1176,6 @@ onOffNotification(id,e): Observable<User> {
                 }
             }
             subject.next(responseData.data);
-        }, (error) => {
-            const dataModel = error;
-            subject.next(dataModel.error);
-        });
-        return subject.asObservable();
-    }
-
-    // -------------------------- graph data ------------------------->
-
-    graphData(id): Observable<any> {
-        const subject = new Subject<any>();
-        this.http.get(`${this.root}/programs/getGraphData?id=${id}`, this.getHeader()).subscribe((responseData: any) => {
-            if (responseData.statusCode !== 200) {
-                throw new Error('This request has failed ' + responseData.status);
-            }
-            const dataModel = responseData;
-            if (!dataModel.isSuccess) {
-                if (responseData.status === 200) {
-                    // this.toasty.error(dataModel.error);
-                    throw new Error(dataModel.code || dataModel.message || 'failed');
-                } else {
-                    throw new Error(responseData.status + '');
-                }
-            }
-            subject.next(responseData.data);
-        }, (error) => {
-            const dataModel = error;
-            subject.next(dataModel.error);
-        });
-        return subject.asObservable();
-    }
-
-    // -------------------------- get program count ------------------------->
-
-    getProgramCount(id): Observable<any> {
-        const subject = new Subject<any>();
-        this.http.get(`${this.root}/programs/count?userId=${id}`, this.getHeader()).subscribe((responseData: any) => {
-            if (responseData.statusCode !== 200) {
-                throw new Error('This request has failed ' + responseData.status);
-            }
-            const dataModel = responseData;
-            if (!dataModel.isSuccess) {
-                if (responseData.status === 200) {
-                    // this.toasty.error(dataModel.error);
-                    throw new Error(dataModel.code || dataModel.message || 'failed');
-                } else {
-                    throw new Error(responseData.status + '');
-                }
-            }
-            subject.next(responseData.data);
-        }, (error) => {
-            const dataModel = error;
-            subject.next(dataModel.error);
-        });
-        return subject.asObservable();
-    }
-
-    // -------------------------- update program ------------------------->
-
-    updateProgram(id, model): Observable<Program[]> {
-        const subject = new Subject<Program[]>();
-        this.http.put(`${this.root}/programs/update/${id}`, model, this.getHeader()).subscribe((responseData: any) => {
-            if (responseData.statusCode !== 200) {
-                throw new Error('This request has failed ' + responseData.status);
-            }
-            const dataModel = responseData;
-            if (!dataModel.isSuccess) {
-                if (responseData.status === 200) {
-                    // this.toasty.error(dataModel.error);
-                    throw new Error(dataModel.code || dataModel.message || 'failed');
-                } else {
-                    throw new Error(responseData.status + '');
-                }
-            }
-            subject.next(responseData);
-        }, (error) => {
-            const dataModel = error;
-            subject.next(dataModel.error);
-        });
-        return subject.asObservable();
-    }
-
-    // -------------------------- verify Ans ------------------------->
-
-    verifyAns(id, model): Observable<User> {
-        const subject = new Subject<User>();
-        this.http.put(`${this.root}/users/verifySecuirtyAns/${id}`, model, this.getHeader()).subscribe((responseData: any) => {
-            if (responseData.statusCode !== 200) {
-                throw new Error('This request has failed ' + responseData.status);
-            }
-            const dataModel = responseData;
-            if (!dataModel.isSuccess) {
-                if (responseData.status === 200) {
-                    // this.toasty.error(dataModel.error);
-                    throw new Error(dataModel.code || dataModel.message || 'failed');
-                } else {
-                    throw new Error(responseData.status + '');
-                }
-            }
-            subject.next(responseData);
         }, (error) => {
             const dataModel = error;
             subject.next(dataModel.error);
@@ -1718,210 +1233,7 @@ onOffNotification(id,e): Observable<User> {
         return subject.asObservable();
     }
 
-    // --------------------------get form list ------------------------->
 
-    forumList(pageNo, pageSize): Observable<Forum[]> {
-        const subject = new Subject<Forum[]>();
-        this.http.get(`${this.root}/posts/list?pageNo=${pageNo}&pageSize=${pageSize}`, this.getHeader()).subscribe((responseData: any) => {
-            if (responseData.statusCode !== 200) {
-                throw new Error('This request has failed ' + responseData.status);
-            }
-            const dataModel = responseData;
-            if (!dataModel.isSuccess) {
-                if (responseData.status === 200) {
-                    // this.toasty.error(dataModel.error);
-                    throw new Error(dataModel.code || dataModel.message || 'failed');
-                } else {
-                    throw new Error(responseData.status + '');
-                }
-            }
-            subject.next(responseData.data);
-        }, (error) => {
-            const dataModel = error;
-            subject.next(dataModel.error);
-        });
-        return subject.asObservable();
-    }
-
-    // --------------------------get form list by Role ------------------------->
-
-    forumListByRole(role): Observable<Forum[]> {
-        const subject = new Subject<Forum[]>();
-        this.ngxLoader.start();
-        this.http.get(`${this.root}/posts/postsByRole?role=${role}`, this.getHeader()).subscribe((responseData: any) => {
-            this.ngxLoader.stop();
-            if (responseData.statusCode !== 200) {
-                throw new Error('This request has failed ' + responseData.status);
-            }
-            this.ngxLoader.stop();
-            const dataModel = responseData;
-            if (!dataModel.isSuccess) {
-                if (responseData.status === 200) {
-                    // this.toasty.error(dataModel.error);
-                    throw new Error(dataModel.code || dataModel.message || 'failed');
-                } else {
-                    throw new Error(responseData.status + '');
-                }
-            }
-            subject.next(responseData.data);
-        }, (error) => {
-            const dataModel = error;
-            subject.next(dataModel.error);
-        });
-        return subject.asObservable();
-    }
-
-    // -------------------------- form list by Id ------------------------->
-
-    forumById(id): Observable<Forum[]> {
-        const subject = new Subject<Forum[]>();
-        this.http.get(`${this.root}/posts/byId/${id}`, this.getHeader()).subscribe((responseData: any) => {
-            if (responseData.statusCode !== 200) {
-                throw new Error('This request has failed ' + responseData.status);
-            }
-            const dataModel = responseData;
-            if (!dataModel.isSuccess) {
-                if (responseData.status === 200) {
-                    // this.toasty.error(dataModel.error);
-                    throw new Error(dataModel.code || dataModel.message || 'failed');
-                } else {
-                    throw new Error(responseData.status + '');
-                }
-            }
-            subject.next(responseData.data);
-        }, (error) => {
-            const dataModel = error;
-            subject.next(dataModel.error);
-        });
-        return subject.asObservable();
-    }
-
-    // ----------------------------- form Search ---------------------------->
-
-    forumSearch(key, role): Observable<Forum> {
-        const subject = new Subject<Forum>();
-        this.http.get(`${this.root}/posts/search?name=${key}&role=${role}`, this.getHeader()).subscribe((responseData: any) => {
-            if (responseData.statusCode !== 200) {
-                throw new Error('This request has failed ' + responseData.status);
-            }
-            const dataModel = responseData;
-            if (!dataModel.isSuccess) {
-                if (responseData.status === 200) {
-                    // this.toasty.error(dataModel.error);
-                    throw new Error(dataModel.code || dataModel.message || 'failed');
-                } else {
-                    throw new Error(responseData.status + '');
-                }
-            }
-            subject.next(responseData.data);
-        }, (error) => {
-            const dataModel = error;
-            subject.next(dataModel.error);
-        });
-        return subject.asObservable();
-    }
-
-    // -------------------------- add comment ------------------------->
-
-    addComment(data): Observable<Forum[]> {
-        const subject = new Subject<Forum[]>();
-        this.http.post(`${this.root}/comments/create`, data, this.getHeader()).subscribe((responseData: any) => {
-            if (responseData.statusCode !== 200) {
-                throw new Error('This request has failed ' + responseData.status);
-            }
-            const dataModel = responseData;
-            if (!dataModel.isSuccess) {
-                if (responseData.status === 200) {
-                    // this.toasty.error(dataModel.error);
-                    throw new Error(dataModel.code || dataModel.message || 'failed');
-                } else {
-                    throw new Error(responseData.status + '');
-                }
-            }
-            subject.next(responseData);
-        }, (error) => {
-            const dataModel = error;
-            subject.next(dataModel.error);
-        });
-        return subject.asObservable();
-    }
-
-    // -------------------------- form like ------------------------->
-
-    forumLike(like): Observable<any[]> {
-        const subject = new Subject<any[]>();
-        this.http.post(`${this.root}/likes/like`, like, this.getHeader()).subscribe((responseData: any) => {
-            if (responseData.statusCode !== 200) {
-                throw new Error('This request has failed ' + responseData.status);
-            }
-            const dataModel = responseData;
-            if (!dataModel.isSuccess) {
-                if (responseData.status === 200) {
-                    // this.toasty.error(dataModel.error);
-                    throw new Error(dataModel.code || dataModel.message || 'failed');
-                } else {
-                    throw new Error(responseData.status + '');
-                }
-            }
-            subject.next(responseData);
-        }, (error) => {
-            const dataModel = error;
-            subject.next(dataModel.error);
-        });
-        return subject.asObservable();
-    }
-
-    // -------------------------- show alert ------------------------->
-
-    showAlert(): Observable<Alert> {
-        const subject = new Subject<Alert>();
-        this.http.get(`${this.root}/alert/showAlert`,).subscribe((responseData: any) => {
-            if (responseData.statusCode !== 200) {
-                throw new Error('This request has failed ' + responseData.status);
-            }
-            const dataModel = responseData;
-            if (!dataModel.isSuccess) {
-                if (responseData.status === 200) {
-                    // this.toasty.error(dataModel.error);
-                    throw new Error(dataModel.code || dataModel.message || 'failed');
-                } else {
-                    throw new Error(responseData.status + '');
-                }
-            }
-            subject.next(responseData.data);
-        }, (error) => {
-            const dataModel = error;
-            // this.toasty.error(dataModel.error);
-            subject.next(dataModel.error);
-        });
-        return subject.asObservable();
-    }
-
-    // -------------------------- deactivate alert ------------------------->
-
-    deactivateAlert(data): Observable<Alert> {
-        const subject = new Subject<Alert>();
-        this.http.put(`${this.root}/alert/deactivateAlert`, data, this.getHeader()).subscribe((responseData: any) => {
-            if (responseData.statusCode !== 200) {
-                throw new Error('This request has failed ' + responseData.status);
-            }
-            const dataModel = responseData;
-            if (!dataModel.isSuccess) {
-                if (responseData.status === 200) {
-                    // this.toasty.error(dataModel.error);
-                    throw new Error(dataModel.code || dataModel.message || 'failed');
-                } else {
-                    throw new Error(responseData.status + '');
-                }
-            }
-            subject.next(responseData);
-        }, (error) => {
-            const dataModel = error;
-            // this.toasty.error(dataModel.error);
-            subject.next(dataModel.error);
-        });
-        return subject.asObservable();
-    }
 
     //------------------------ get badge list --------------------------->
 

@@ -8,7 +8,6 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { Child, User } from 'src/app/core/models';
 import * as moment from 'moment';
 import { MapsAPILoader } from '@agm/core';
-import { MapTheme } from 'src/app/core/common/map-theme';
 import { Meta, Title } from '@angular/platform-browser';
 import { ToastrService } from 'ngx-toastr';
 @Component({
@@ -56,7 +55,6 @@ export class LoginParentComponent implements OnInit {
     private ngxLoader: NgxUiLoaderService,
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
-    public mapTheme:MapTheme,
     private titleService: Title,
     private metaTagService: Meta,
     private toastr: ToastrService,

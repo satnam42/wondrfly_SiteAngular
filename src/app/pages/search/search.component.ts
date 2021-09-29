@@ -6,7 +6,6 @@ import { MapsAPILoader } from '@agm/core';
 import * as moment from 'moment';
 import { Category, Child, User } from 'src/app/core/models';
 import { DataService } from 'src/app/core/services/dataservice.service ';
-import { MapTheme } from 'src/app/core/common/map-theme';
 import { environment } from 'src/environments/environment.prod';
 import { Meta, Title } from '@angular/platform-browser';
 import { Options } from '@angular-slider/ngx-slider';
@@ -138,7 +137,6 @@ export class SearchComponent implements OnInit {
     private ngxLoader: NgxUiLoaderService,
     private mapsAPILoader: MapsAPILoader,
     private dataservice: DataService,
-    public mapTheme: MapTheme,
     private ngZone: NgZone,
     private toast: ToastrService,
     private titleService: Title,

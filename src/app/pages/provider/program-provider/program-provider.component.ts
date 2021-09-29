@@ -1,15 +1,12 @@
-import { Component, OnInit, ViewChild, ɵConsole } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/core/services/api.service.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { FormGroup } from '@angular/forms';
 import { HeaderComponent } from 'src/app/core/components/header/header.component';
 import { Program } from 'src/app/core/models';
-import { Claim } from 'src/app/core/models/claim.model';
 import { AuthsService } from 'src/app/core/services/auths.service';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
-import { Globals } from 'src/app/core/common/imageLoader';
-import { MapTheme } from 'src/app/core/common/map-theme';
 import { Meta, Title } from '@angular/platform-browser';
 import { ToastrService } from 'ngx-toastr';
 import { DataService } from 'src/app/core/services/dataservice.service ';
@@ -45,7 +42,6 @@ export class ProgramProviderComponent implements OnInit {
 
   isLogin = false;
   userData: any = {};
-  claim = new Claim;
   program = new Program;
   user: any =[];
   rating: any;
@@ -90,7 +86,6 @@ export class ProgramProviderComponent implements OnInit {
     private auth: AuthsService,
     private toastr: ToastrService,
     private ngxLoader: NgxUiLoaderService,
-    public mapTheme: MapTheme,
     private activatedRoute: ActivatedRoute,
     private titleService: Title,
     private metaTagService: Meta,
@@ -122,36 +117,6 @@ export class ProgramProviderComponent implements OnInit {
     this.isGenOverview = false; this.isPeople = false; this.isActivities = true
     this.getProviderProgram()
   }
-
-
-  claimBusiness() {
-    this.claim.requestOn = this.user.id
-    if (this.userData && this.userData.role === 'provider') {
-      this.claim.status = "in-progress";
-      this.claim.requestBy = this.userData.id;
-      this.claim.requestOn = this.user.id;
-      this.ngxLoader.start();
-      this.apiservice.claimRequest(this.claim).subscribe(res => {
-        this.toastr.info('Info', this.claimMsg)
-        this.ngxLoader.stop();
-      });
-    }
-    else if (this.userData && this.userData.role === 'parent') {
-      this.ngxLoader.start();
-      let msg = 'please login as provider to claim this business!';
-      this.toastr.info('Info', msg)
-      this.router.navigate(['/login']);
-      this.ngxLoader.stop();
-    }
-    else {
-      this.ngxLoader.start();
-      let msg = 'please  register or login as provider to claim this business and try again!'
-      this.toastr.info('Info', msg)
-      this.router.navigate(['/login']);
-      this.ngxLoader.stop();
-    }
-  }
-
 
   getProviderById() {
     this.ngxLoader.start();

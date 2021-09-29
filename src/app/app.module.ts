@@ -12,7 +12,6 @@ import { LandingComponent } from './pages/landing/landing.component';
 import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
 import { AgmCoreModule } from '@agm/core';
 import { Globals } from './core/common/imageLoader';
-import { MapTheme } from './core/common/map-theme';
 import { ToastrModule } from 'ngx-toastr';
 import { MailchimpSubscribeFormModule } from './core/components/mailchimp-subscribe-form/mailchimp-subscribe-form.module';
 import { ChatService } from './core/services/chat.service';
@@ -50,7 +49,6 @@ const config: SocketIoConfig = { url: environment.socketUrl, options: {} };
     LocalStorageService,
     ChatService,
     Globals,
-    MapTheme,
   ],
   bootstrap: [AppComponent]
 })
