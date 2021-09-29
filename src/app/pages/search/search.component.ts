@@ -736,11 +736,14 @@ if(program.userId==''|| program.userId==undefined || !program.userId){ program.u
   suggestedSubCategories(id){
     window.scroll(0,0)
    this.apiservice.getSuggestedCategory(id).subscribe((res: any) => {
-     this.suggested = res;
+              res.forEach(suggested => {
+                if(suggested.id!==id){
+                  this.suggested.push(suggested)
+                }
+              });
      if(res.isSuccess==false){
        this.suggested=[]
      }
-     console.log('suggested subcategories', res);
    });
  }
 }

@@ -1448,7 +1448,9 @@ getSuggestedCategory(id): Observable<any> {
                 throw new Error(responseData.status + '');
             }
         }
-        subject.next(responseData.data);
+
+       subject.next(responseData.data);
+
     }, (error) => {
         const dataModel = error;
         subject.next(dataModel.error);
