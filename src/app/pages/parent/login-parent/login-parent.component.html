@@ -11,9 +11,9 @@
 <!-- <mat-progress-bar class="progress-bar" mode="determinate" [value]="progressBarVaue"></mat-progress-bar> -->
 
 <div class="main_container">
- 
+
   <div class="sub-main">
-      
+
         <div class="menu-box">
           <span class="wnderfly-btn">© 2021 WONDRFLY Inc.</span>
     <div [hidden]="!step1" class=" box text-center p-3 bg-white">
@@ -78,7 +78,7 @@
                   </div>
                   <input type="text" placeholder="Type" form  [formControl]="addChildForm.controls['name']" class="my_inputs"
                      [(ngModel)]="kid.name">
-           
+
               </div>
               <div class="business_name datef">
                 <div class="N_container_box_input_heading">
@@ -86,9 +86,9 @@
                 </div>
                 <input type="date" placeholder="mm/dd/yy"  [formControl]="addChildForm.controls['dob']" class="my_inputs"
                    [(ngModel)]="kid.dob">
-         
+
             </div>
-        
+
           </form>
       </div>
 
@@ -133,10 +133,10 @@
                   </ng-template>
 
                   <ng-template #notFoundTemplate let-notFound>
-                      <div *ngIf="searchTags.length" [innerHTML]="notFound"></div>
+                      <div *ngIf="searchTags?.length" [innerHTML]="notFound"></div>
                   </ng-template>
                 </div>
-              </div>   
+              </div>
               <br>
               <mat-form-field class="demo-chip-list">
                 <mat-chip-list>
@@ -159,7 +159,7 @@
                           <img class="cat_img my_box"
                               src="https://wondrfly.com/{{tag.categoryIds[0].iconUrl}}" alt="">
                             </div>
-                         
+
                           <span [ngClass]="{'active':tag.active}"> {{tag.name}}</span>
                       </div>
                   </div>
@@ -181,13 +181,13 @@
                           Next
                       </a>
                   </div>
-                 
+
 
               </div>
-            
-              
-            
-             
+
+
+
+
           </div>
       </div>
   </div>
@@ -216,8 +216,8 @@
                     <div *ngIf="searchesCatg.length" [innerHTML]="notFound"></div>
                 </ng-template>
               </div>
-            </div>   
-            
+            </div>
+
             <br>
             <mat-form-field class="demo-chip-list">
               <mat-chip-list>
@@ -240,7 +240,7 @@
                     <img class="cat_img my_box"
                         src="https://wondrfly.com/{{tag.categoryIds[0].iconUrl}}" alt="">
                       </div>
-                   
+
                     <span [ngClass]="{'active':tag.active}"> {{tag.name}}</span>
                 </div>
             </div>
@@ -278,7 +278,7 @@
       <div class="N_inputs_container">
           <form [formGroup]="addChildForm">
               <div class="business_name why-wonderflyinput">
-                  <input type="text"  placeholder="Where did you hear from us?" 
+                  <input type="text"  placeholder="Where did you hear from us?"
                   [formControl]="addChildForm.controls['fromWhereYouHeard']" [(ngModel)]="kid.fromWhereYouHeard" class="my_inputs" data-toggle="collapse"
                    href="#whywonderflydrop" role="button" aria-expanded="false" aria-controls="whywonderflydrop">
               </div>

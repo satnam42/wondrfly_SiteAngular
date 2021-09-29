@@ -1,6 +1,6 @@
     <app-header2 *ngIf="!auth.currentUser()"></app-header2>
     <app-header *ngIf="auth.currentUser()"></app-header>
-    
+
 <div class="imgage-corners">
     <img src="assets/Contact-leftcircle.png">
 </div>
@@ -14,8 +14,8 @@
                     </h1>
                     <h2>
                         Our mailing address is :
-                        <br>1732 1st Ave, #21026, New York, NY 10128 
-                        <br>Email: contact@wondrfly.com  
+                        <br>1732 1st Ave, #21026, New York, NY 10128
+                        <br>Email: contact@wondrfly.com
                     </h2>
                     <!-- <div class="social-icons">
                            <a href="#" class="fb">
@@ -68,7 +68,7 @@
                             *ngIf=" contactUsForm.controls['description'].hasError('required') && contactUsForm.controls['description'].touched"
                             class="form-error-msg">DESCRIPTION IS REQUIRED</small>
                             <div class="textarea_length">
-                                <p>({{contactUsForm.value.description.length}} of 3000)</p>
+                                <p>({{contactUsForm.value.description?.length}} of 3000)</p>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary"(click)="contactUs()" [disabled]="contactUsForm.invalid">Submit</button>

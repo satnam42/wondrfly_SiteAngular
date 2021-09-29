@@ -16,7 +16,7 @@ import { NgxFileDropEntry, FileSystemFileEntry, FileSystemDirectoryEntry } from 
     <div class="upload-table">
         <table class="table">
             <thead>
-                <tr *ngIf="images.length">
+                <tr *ngIf="images?.length">
                     <th>Image</th>
                     <th>Name</th>
                     <th>Size</th>

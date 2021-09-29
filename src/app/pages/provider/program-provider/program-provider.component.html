@@ -79,8 +79,8 @@
                                 <!-- <h5>Kids land owner</h5> -->
                             </div>
                             <div class="media-body">
-                                <p *ngIf="user.about && user.about.length>=230" >{{user.about | slice:360:1000}}}}</p>
-                                    <p *ngIf="user.note && user.note.length>=230">{{user.note | slice:360:1000}}</p>
+                                <p *ngIf="user.about && user.about?.length>=230" >{{user.about | slice:360:1000}}}}</p>
+                                    <p *ngIf="user.note && user.note?.length>=230">{{user.note | slice:360:1000}}</p>
                                 <div class="skills_sec" *ngIf='user?.categories?.length' >
                                     <h3>Skills</h3>
                                     <div class="skill_outer" *ngFor='let skill of user.subCategoryIds' >
@@ -168,7 +168,7 @@
                             </div>
                         </div>
                     </div>
-                    <div *ngIf="isGenOverview && user.healthAndSafety.length" class="description_text">
+                    <div *ngIf="isGenOverview && user.healthAndSafety?.length" class="description_text">
                         <h2>Health & Safety measures
                             <span><img src="assets/healthsafetyi.svg"></span>
                         </h2>
