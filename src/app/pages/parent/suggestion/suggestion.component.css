@@ -588,8 +588,15 @@ span.d-flex.justify-content-end {
 }
 .list-flex {
   display: flex;
-  width: 55%;
-  justify-content: space-between;
+    width: 70%;
+    justify-content: space-between;
+}
+img.card-img-top {
+  height: 230px;
+  object-fit: cover;
+}
+.list-flex p img {
+  margin-right: 7px;
 }
 .lower-resources-sec button {
   background: #53b2e8;
@@ -729,6 +736,20 @@ section.blog-explore .boxs {
   padding-left: 30px;
   padding-right: 30px;
 }
+.img-invite {
+  height: 100%;
+}
+.boxs .img-invite img {
+  height: 100%;
+  object-fit: cover;
+}
+
+
+
+
+
+
+
 @media only screen and (min-width: 1024px) and (max-width: 1366px) and (orientation: portrait) {
   .container,
   .container-lg,
@@ -751,6 +772,22 @@ section.blog-explore .boxs {
     letter-spacing: 0.005em;
     color: #494949;
   }
+  .lower-resources-sec .card .list p {
+    font-size: 8px;
+}
+.beta-suggestionheading h2{
+  font-size: 51px;}
+
+
+
+
+
+
+
+
+
+
+
 }
 
 @media screen and (min-width: 850px) and (max-width: 1023px) {
