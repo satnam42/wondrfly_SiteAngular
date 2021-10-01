@@ -13,7 +13,7 @@ import { DataService } from '../../services/dataservice.service ';
 
 
     <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="mr-auto cursor" (click)="logo()">
+        <a class="cursor header-logo" (click)="logo()">
             <img *ngIf="!logoPosition" src="assets/logo.png" alt="Logo">
             <img *ngIf="logoPosition" class="header-image-search" src="assets/logo.png" alt="Logo">
         </a>

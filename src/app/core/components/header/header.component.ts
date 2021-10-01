@@ -25,7 +25,7 @@ declare const $: any;
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <a class="cursor" (click)="logo()">
+          <a class="cursor header-logo" (click)="logo()">
             <img *ngIf="!logoPosition" class="header-image" src="assets/logo.png" alt="Logo">
             <img *ngIf="logoPosition"class="header-image-search" src="assets/logo.png" alt="Logo">
           </a>

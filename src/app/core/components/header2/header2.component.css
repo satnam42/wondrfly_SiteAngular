@@ -1,7 +1,8 @@
 header {
-    background-color: #fff;
-    padding:0 35px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.24);
+  background-color: #fff;
+  padding: 10px 35px;
+  box-shadow: 0px 4px 4px rgb(0 0 0 / 24%);
+  height:80px;
 }
 
 header .logo {
@@ -11,7 +12,9 @@ header .logo {
 header .logo img {
     max-width: 100%;
 }
-
+a.cursor.header-logo {
+  width: 12%;
+}
 .content_outer {
     padding-top: 99px;
     padding-bottom: 36px;
@@ -100,6 +103,7 @@ img.header-image-search {
   position: relative;
   border: 1px solid #E0E0E0;
   border-radius: 40px;
+  margin-left: 20px;
 }
 button.banner_button.cursor img {
   width: 60%;
@@ -255,6 +259,11 @@ button.banner_button.cursor img {
 .location-popup h2 img{
   margin-top: 10px;
 }
+a.cursor.header-logo img {
+  width: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
 @media only screen and (min-width:1024px) and (max-width:1366px) and (orientation: portrait)  {
 
     .banner_form .form-group input.camp_input {
@@ -271,10 +280,7 @@ button.banner_button.cursor img {
 .before-nav {
   margin-right: -83px;
 }
-/* header.search-header {
-  box-shadow: none;
-  border: 1px solid #E0E0E0;
-} */
+
 @media screen and (min-width:850px) and (max-width:1023px) {
 
   .activity .media-left {
