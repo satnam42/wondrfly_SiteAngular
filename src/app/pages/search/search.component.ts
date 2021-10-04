@@ -546,8 +546,8 @@ switch(this.timeSession){
 }
     console.log('time session>>>>>>>>>',this.timeSession)
     var filter = ``
-    from = this.fromTime.toISOString();
-    to = this.toTime.toISOString();
+    from = this.fromTime
+    to = this.toTime
     if(this.fromDate && this.toDate){
     this.fromDate = moment(this.fromDate).format(dateFormat);
     this.toDate = moment(this.toDate).format(dateFormat);

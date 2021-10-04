@@ -53,6 +53,7 @@ export class Program {
     averageFinalRating:any
     subCategoryIds:any=[]
     category:any = {}
+    realTime:any = {}
 
     constructor(obj?: any) {
 

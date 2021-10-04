@@ -46,7 +46,7 @@
 
 
                                         <div class="programText col-md-10">
-                                            <h3 >{{program.name}} <a align="right" class="cursor" data-toggle="modal"
+                                            <h3 >{{program?.name}} <a align="right" class="cursor" data-toggle="modal"
                                                     *ngIf="program?.user === this.userId" data-target="#UpdateModal">
                                                     <img src="assets/edit_skyblue.svg" alt="Edit Image">
                                                 </a> </h3>
@@ -159,10 +159,13 @@
                                             </p>
                                             <p><img src="assets/user_group_orange.svg" alt="Loction Pin">
                                                 {{program?.ageGroup.from}} - {{program?.ageGroup.to}} Yrs. </p>
-                                            <p><img src="assets/watch.svg" alt="Loction Pin">
+                                            <!-- <p><img src="assets/watch.svg" alt="Loction Pin">
                                                 {{program.time.from?.charAt(program.time.from?.length - 1) === 'Z' ? (program.time.from | date:'shortTime':'UTC') : (program.time.from?.concat('Z') | date:'shortTime':'UTC')}} -
                                                 {{program.time.to?.charAt(program.time.to?.length - 1) === 'Z' ? (program.time.to | date:'shortTime':'UTC') : (program.time.to?.concat('Z') | date:'shortTime':'UTC')}}
-                                            </p>
+                                            </p> -->
+                                            <p><img src="assets/watch.svg" alt="Loction Pin">
+                                              {{program.realTime.from}}:00<span *ngIf="program.realTime.from<12">AM</span><span *ngIf="program.realTime.from>12">PM</span> - {{program.realTime.to}}:00<span *ngIf="program.realTime.from<12">AM</span><span *ngIf="program.realTime.from>12">PM</span>
+                                          </p>
                                             <p  *ngIf="program.duration.hours || program.duration.minutes">
                                                 <img src="assets/timer.svg" alt="Loction Pin">{{program.duration.hours}} : {{program.duration.minutes}} Hours
                                             </p>
@@ -171,7 +174,7 @@
                                             <p *ngIf="program.isFree"><img src="assets/pricet.svg" alt="price tag"> Free </p>
                                         </div>
                                             <button class="camp-btn">
-                                             {{program?.subCategoryIds[0].name}}
+                                             {{program?.subCategoryIds[0]?.name}}
                                             </button>
 
                                         </div>
@@ -261,22 +264,22 @@
                                         <div class="media-left">
                                             <div class="people_profile">
                                                 <a data-toggle="modal" data-target="#profileModal">
-                                                    <img *ngIf="user.avatarImages" src="{{user.avatarImages}}"
+                                                    <img *ngIf="user?.avatarImages" src="{{user?.avatarImages}}"
                                                         alt="Profile">
-                                                    <img *ngIf="!user.avatarImages" src="assets/gray_background.jpeg"
+                                                    <img *ngIf="!user?.avatarImages" src="assets/gray_background.jpeg"
                                                         alt="Profile">
                                                 </a>
                                             </div>
-                                            <h4>{{user.firstName}}</h4>
+                                            <h4>{{user?.firstName}}</h4>
                                             <!-- <h5>Kids land owner</h5> -->
                                         </div>
                                         <div class="media-body">
                                             <h3>About</h3>
                                             <p>{{user?.note}} </p>
-                                            <div class="skills_sec" *ngIf='user.subCategoryIds'>
+                                            <div class="skills_sec" *ngIf='user?.subCategoryIds'>
                                                 <h3>Skills</h3>
-                                                <div class="skill_outer" *ngFor='let skill of user.subCategoryIds'>
-                                                    <span>{{skill.name}}</span>
+                                                <div class="skill_outer" *ngFor='let skill of user?.subCategoryIds'>
+                                                    <span>{{skill?.name}}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -310,7 +313,7 @@
                             </div>
 
 
-                            <div class="description_text people_section" *ngIf='user.healthAndSafety.length'>
+                            <div class="description_text people_section" *ngIf='user?.healthAndSafety?.length'>
 
 
                                     <img class="pencil-right" *ngIf="program.user === this.userId"
@@ -346,15 +349,15 @@
                                     <div>
                                         <agm-marker *ngIf="program.lat && program.lng" [iconUrl]="markerUrl"
                                             [latitude]="program.lat" [longitude]="program.lng" (markerClick)="clickedMarker(previous)">
-                                            <strong>{{program.name}}</strong>
+                                            <strong>{{program?.name}}</strong>
                                             <agm-info-window #previous>
 
                                               <div class="map-popup">
                                                 <h1>
-                                                  {{program.name}}
+                                                  {{program?.name}}
                                                 </h1>
                                                 <h2>
-                                                  by {{program.programOwner}}
+                                                  by {{program?.programOwner}}
                                                 </h2>
                                                 <div class="rating-starsearch">
                                                   <p>
@@ -455,14 +458,14 @@
                                     <div class="col-md-4 list_box">
                                         <div class="media">
                                             <div class="media-body">
-                                                <h4>{{user.firstName}}</h4>
+                                                <h4>{{user?.firstName}}</h4>
                                                  <!-- <h5>Kids land owner</h5> -->
                                             </div>
                                             <div class="media-left">
                                                 <div class="people_profile">
-                                                    <img *ngIf="user.avatarImages" src="{{user.avatarImages}}"
+                                                    <img *ngIf="user?.avatarImages" src="{{user?.avatarImages}}"
                                                         alt="Profile">
-                                                    <img *ngIf="!user.avatarImages" src="assets/gray_background.jpeg"
+                                                    <img *ngIf="!user?.avatarImages" src="assets/gray_background.jpeg"
                                                         alt="Profile">
                                                 </div>
                                             </div>
@@ -474,14 +477,14 @@
                                     <div class="col-md-4 list_box">
                                         <div class="media">
                                             <div class="media-body">
-                                                <h4>{{user.firstName}}</h4>
+                                                <h4>{{user?.firstName}}</h4>
                                                  <!-- <h5>Kids land owner</h5> -->
                                             </div>
                                             <div class="media-left">
                                                 <div class="people_profile">
-                                                    <img *ngIf="user.avatarImages" src="{{user.avatarImages}}"
+                                                    <img *ngIf="user?.avatarImages" src="{{user?.avatarImages}}"
                                                         alt="Profile">
-                                                    <img *ngIf="!user.avatarImages" src="assets/otheruser.jpeg"
+                                                    <img *ngIf="!user?.avatarImages" src="assets/otheruser.jpeg"
                                                         alt="Profile">
                                                 </div>
                                             </div>
@@ -493,14 +496,14 @@
                                     <div class="col-md-4 list_box">
                                         <div class="media">
                                             <div class="media-body">
-                                                <h4>{{user.firstName}}</h4>
+                                                <h4>{{user?.firstName}}</h4>
                                                  <!-- <h5>Kids land owner</h5> -->
                                             </div>
                                             <div class="media-left">
                                                 <div class="people_profile">
-                                                    <img *ngIf="user.avatarImages" src="{{user.avatarImages}}"
+                                                    <img *ngIf="user?.avatarImages" src="{{user?.avatarImages}}"
                                                         alt="Profile">
-                                                    <img *ngIf="!user.avatarImages" src="assets/otheruser.jpeg"
+                                                    <img *ngIf="!user?.avatarImages" src="assets/otheruser.jpeg"
                                                         alt="Profile">
                                                 </div>
                                             </div>
@@ -512,14 +515,14 @@
                                     <div class="col-md-4 list_box">
                                         <div class="media">
                                             <div class="media-body">
-                                                <h4>{{user.firstName}}</h4>
+                                                <h4>{{user?.firstName}}</h4>
                                                  <!-- <h5>Kids land owner</h5> -->
                                             </div>
                                             <div class="media-left">
                                                 <div class="people_profile">
-                                                    <img *ngIf="user.avatarImages" src="{{user.avatarImages}}"
+                                                    <img *ngIf="user?.avatarImages" src="{{user?.avatarImages}}"
                                                         alt="Profile">
-                                                    <img *ngIf="!user.avatarImages" src="assets/otheruser.jpeg"
+                                                    <img *ngIf="!user?.avatarImages" src="assets/otheruser.jpeg"
                                                         alt="Profile">
                                                 </div>
                                             </div>
@@ -536,7 +539,7 @@
 
 	<div class="container description_text slider carousel-cat"  *ngIf="programs?.length">
 			<div class="forth_section_heading">
-		  <h2 class="might-try">You might also try these <span class="subCat" (click)="setSubCategoryId(program.subCategoryIds[0]._id)">{{program.subCategoryIds[0].name}} </span> <span *ngIf="program.subCategoryIds?.length>1">or <span class="subCat" (click)="setSubCategoryId(program.subCategoryIds[1]._id)">{{program.subCategoryIds[1].name}}</span></span> activities:
+		  <h2 class="might-try">You might also try these <span class="subCat" (click)="setSubCategoryId(program?.subCategoryIds[0]._id)">{{program?.subCategoryIds[0]?.name}} </span> <span *ngIf="program?.subCategoryIds?.length>1">or <span class="subCat" (click)="setSubCategoryId(program?.subCategoryIds[1]._id)">{{program?.subCategoryIds[1]?.name}}</span></span> activities:
       	<span class="blue_heading cursor" (click)="goToProfile()">VIEW ALL</span>
       </h2>
 
@@ -559,7 +562,7 @@
 										 </div>
 										 <div class="slide_text">
 										   <h3>
-											  <span class="title cursor" (click)='clickedProgram(program)'>{{program.name}}</span>
+											  <span class="title cursor" (click)='clickedProgram(program)'>{{program?.name}}</span>
 											  <!-- <div class="rating_box">
 												<img src="assets/star.svg" alt="Star Image">
 												<span>5.0 (15)</span>
