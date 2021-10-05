@@ -2319,6 +2319,10 @@ button.map-buttonas {
 .location-popup h2 img{
   margin-top: 10px;
 }
+.logo-img{
+  width: 35%;
+  margin-bottom: 25px;
+}
 .sign_in_btn{
   text-align: center;
   margin:8px 0 0 0;
