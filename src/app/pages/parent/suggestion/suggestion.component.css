@@ -588,8 +588,8 @@ span.d-flex.justify-content-end {
 }
 .list-flex {
   display: flex;
-    width: 70%;
-    justify-content: space-between;
+  width: 70%;
+  justify-content: space-between;
 }
 img.card-img-top {
   height: 230px;
@@ -719,7 +719,7 @@ section.blog-explore .boxs {
   margin-bottom: 30px;
 }
 .beta-invitedata button {
-  background: #53B2E8;
+  background: #53b2e8;
   box-shadow: 0px 1px 1px rgb(0 0 0 / 25%);
   border-radius: 50px;
   font-family: Poppins;
@@ -730,7 +730,7 @@ section.blog-explore .boxs {
   text-align: justify;
   letter-spacing: 0.001em;
   text-transform: uppercase;
-  color: #FFFFFF;
+  color: #ffffff;
   border: 0px;
   padding: 12px;
   padding-left: 30px;
@@ -743,12 +743,6 @@ section.blog-explore .boxs {
   height: 100%;
   object-fit: cover;
 }
-
-
-
-
-
-
 
 @media only screen and (min-width: 1024px) and (max-width: 1366px) and (orientation: portrait) {
   .container,
@@ -774,20 +768,10 @@ section.blog-explore .boxs {
   }
   .lower-resources-sec .card .list p {
     font-size: 8px;
-}
-.beta-suggestionheading h2{
-  font-size: 51px;}
-
-
-
-
-
-
-
-
-
-
-
+  }
+  .beta-suggestionheading h2 {
+    font-size: 51px;
+  }
 }
 
 @media screen and (min-width: 850px) and (max-width: 1023px) {

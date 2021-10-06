@@ -1,23 +1,26 @@
-    <app-header2 *ngIf="!isLogin"></app-header2>
-    <app-header *ngIf="isLogin"></app-header>
+<app-header2 *ngIf="!isLogin"></app-header2>
+<app-header *ngIf="isLogin"></app-header>
 
-    <div class="main_outer">
-        <div class="container">
-          <div class="terms_outer">
-            <div class="terms_top">
-              <h1>{{data[0].Title}}</h1>
-              <h3>Last modified: {{data[0].updated_at | date:'medium'}} (view archived versions)</h3>
-              <p [innerHTML]="data[0].Content | markdown"></p>
-            </div>
+<div class="main_outer common-headermargin">
+  <div class="container">
+    <div class="terms_outer">
+      <div class="terms_top">
+        <h1>{{ data[0].Title }}</h1>
+        <h3>
+          Last modified: {{ data[0].updated_at | date: "medium" }} (view
+          archived versions)
+        </h3>
+        <p [innerHTML]="data[0].Content | markdown"></p>
+      </div>
 
-            <div class="terms_content_outer" *ngFor='let d of data | slice: 1:15'>
-              <div class="terms_box">
-                <h2>{{d.Title}}</h2>
-                  <p [innerHTML]="d.Content | markdown"></p>
-              </div>
-            </div>
-          </div>
+      <div class="terms_content_outer" *ngFor="let d of data | slice: 1:15">
+        <div class="terms_box">
+          <h2>{{ d.Title }}</h2>
+          <p [innerHTML]="d.Content | markdown"></p>
         </div>
       </div>
-    <app-footer2></app-footer2>
-      <ngx-ui-loader></ngx-ui-loader>
+    </div>
+  </div>
+</div>
+<app-footer2></app-footer2>
+<ngx-ui-loader></ngx-ui-loader>

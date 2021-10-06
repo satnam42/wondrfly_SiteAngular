@@ -1,131 +1,204 @@
 <body>
-    <app-header2 *ngIf="!auth.currentUser()"></app-header2>
-    <app-header *ngIf="auth.currentUser()"></app-header>
-    <!-- <app-alert *ngIf="auth.currentUser()"></app-alert> -->
-    <section class="landing_banner" [ngStyle]="{background: 'url(' + landingImages[landingImageIndex] + ')'}" title="{{altBanner}}">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="best_activities">
-                        <h1>Discover the Best kids activities near you
-                        </h1>
-                        <form class="banner_form" data-toggle="collapse" href="#dropdownprogram-provider" role="button" aria-expanded="false" aria-controls="dropdownprogram-provider">
-                            <div class="form-group">
-                                <input type="text" autocomplete="off" (keyup)="searchSubCategory(filterData.activityName);providerSearch(filterData.activityName)"placeholder="Search Activity"
-                                    class="form-control camp_input" name="activityName"
-                                    [(ngModel)]="filterData.activityName">
-                            </div>
+  <app-header2 *ngIf="!auth.currentUser()"></app-header2>
+  <app-header *ngIf="auth.currentUser()"></app-header>
+  <!-- <app-alert *ngIf="auth.currentUser()"></app-alert> -->
 
-                            <div class="form-group">
-                                <button (click)="searchActivityByNameDate()" class="banner_button" type="submit">
-                                    <img src="assets/search_icon.svg" alt="Search image">
-                                </button>
-                            </div>
-
-                            <div class=" dropdownprogram" *ngIf="(categoriesBySearch?.length || providersBySearch?.length ) && filterData.activityName">
-                                <div class="card card-body">
-                                  <div class="program-list" *ngIf="categoriesBySearch?.length">
-                                    <h6 *ngFor="let category of categoriesBySearch | slice:0:4" (click)="searchBySubCategory(category._id)">
-                                        {{category.name}}
-                                        <span class="search-programlist">
-                                            <img src="assets/program-search.svg">
-                                        </span>
-                                    </h6>
-                                  </div>
-                                  <hr>
-                                  <div class="provider-list" *ngIf="providersBySearch?.length">
-                                    <h5>
-                                        Providers
-                                    </h5>
-                                    <h6 (click)="goToProviderProfile(provider)" *ngFor="let provider of providersBySearch | slice:0:4">
-                                        {{provider.firstName}}
-                                    </h6>
-                                  </div>
-                                </div>
-                            </div>
-                        </form>
-
-
-                    </div>
+  <div class="common-headermargin">
+    <section
+      class="landing_banner"
+      [ngStyle]="{
+        background: 'url(' + landingImages[landingImageIndex] + ')'
+      }"
+      title="{{ altBanner }}"
+    >
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="best_activities">
+              <h1>Discover the Best kids activities near you</h1>
+              <form
+                class="banner_form"
+                data-toggle="collapse"
+                href="#dropdownprogram-provider"
+                role="button"
+                aria-expanded="false"
+                aria-controls="dropdownprogram-provider"
+              >
+                <div class="form-group">
+                  <input
+                    type="text"
+                    autocomplete="off"
+                    (keyup)="
+                      searchSubCategory(filterData.activityName);
+                      providerSearch(filterData.activityName)
+                    "
+                    placeholder="Search Activity"
+                    class="form-control camp_input"
+                    name="activityName"
+                    [(ngModel)]="filterData.activityName"
+                  />
                 </div>
+
+                <div class="form-group">
+                  <button
+                    (click)="searchActivityByNameDate()"
+                    class="banner_button"
+                    type="submit"
+                  >
+                    <img src="assets/search_icon.svg" alt="Search image" />
+                  </button>
+                </div>
+
+                <div
+                  class="dropdownprogram"
+                  *ngIf="
+                    (categoriesBySearch?.length || providersBySearch?.length) &&
+                    filterData.activityName
+                  "
+                >
+                  <div class="card card-body">
+                    <div
+                      class="program-list"
+                      *ngIf="categoriesBySearch?.length"
+                    >
+                      <h6
+                        *ngFor="let category of categoriesBySearch | slice: 0:4"
+                        (click)="searchBySubCategory(category._id)"
+                      >
+                        {{ category.name }}
+                        <span class="search-programlist">
+                          <img src="assets/program-search.svg" />
+                        </span>
+                      </h6>
+                    </div>
+                    <hr />
+                    <div
+                      class="provider-list"
+                      *ngIf="providersBySearch?.length"
+                    >
+                      <h5>Providers</h5>
+                      <h6
+                        (click)="goToProviderProfile(provider)"
+                        *ngFor="let provider of providersBySearch | slice: 0:4"
+                      >
+                        {{ provider.firstName }}
+                      </h6>
+                    </div>
+                  </div>
+                </div>
+              </form>
             </div>
+          </div>
         </div>
-        <div class="banner_overlay"></div>
+      </div>
+      <div class="banner_overlay"></div>
     </section>
-    <section class="activity_category " *ngIf="categories?.length>0">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <h2 class="title">Discover Activities in Your Child's Favourite Categories</h2>
-                </div>
-            </div>
-            <div class="activity_category_list">
-                <div class="row">
-                    <div class="col-md-4" *ngFor="let category of categories | slice:2:8; let i = index">
-                        <div class="category_list_box cursor" (click)="searchByCategory(category.id)">
-                            <a href="javascritpt:;">
-                                <div class="category_image">
-                                        <img [defaultImage]="defaultImage" [lazyLoad]="category?.imageUrl" alt="{{category?.alternativeText}}" />
-                                </div>
-                                <div class="category_title">
-                                    <p>{{category?.name}}<span class="title_arrow">
-                                            <img src="assets/category_arrow.svg" alt="Category_arrow">
-                                        </span></p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <section class="activity_category" *ngIf="categories?.length > 0">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <h2 class="title">
+              Discover Activities in Your Child's Favourite Categories
+            </h2>
+          </div>
         </div>
+        <div class="activity_category_list">
+          <div class="row">
+            <div
+              class="col-md-4"
+              *ngFor="let category of categories | slice: 2:8; let i = index"
+            >
+              <div
+                class="category_list_box cursor"
+                (click)="searchByCategory(category.id)"
+              >
+                <a href="javascritpt:;">
+                  <div class="category_image">
+                    <img
+                      [defaultImage]="defaultImage"
+                      [lazyLoad]="category?.imageUrl"
+                      alt="{{ category?.alternativeText }}"
+                    />
+                  </div>
+                  <div class="category_title">
+                    <p>
+                      {{ category?.name
+                      }}<span class="title_arrow">
+                        <img
+                          src="assets/category_arrow.svg"
+                          alt="Category_arrow"
+                        />
+                      </span>
+                    </p>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section class="blog-explore">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <h2 class="blog-heading">Explore the Blog</h2>
-                    <div class="box">
-                        <div class="upper-blog">
-                            <h2 class="upper-blog-heading">POPULAR POSTS
-                                <span class="upper-blog-view cursor" routerLink='/blogs'>view all</span>
-                            </h2>
-                        </div>
-                        <div class="lower-blog-sec">
-                            <div class="lower-blog" *ngFor='let b of blog |slice:0:3;'>
-                                <div class="lower-img">
-                                    <!-- <img class="blog_img cursor" src="{{blogUrl}}{{b?.image[0]?.url}}" (click)='setBlog(b)'> -->
-                                    <img class="blog_img cursor" src="{{blogUrl}}{{b?.image[0]?.url}}" alt="{{b?.image[0]?.alternativeText}}"  (click)='setBlog(b)'/>
-                                </div>
-                                <div class="lower-content" >
-                                    <h2 class="lower-blog-heading cursor" (click)='setBlog(b)'>{{b.title}}
-                                    </h2>
-                                    <h2 class="lower-blog-content cursor" (click)='setBlog(b)' [innerHTML]="b.content | markdown | slice:0:145">
-                                    </h2>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <h2 class="blog-heading">Explore the Blog</h2>
+            <div class="box">
+              <div class="upper-blog">
+                <h2 class="upper-blog-heading">
+                  POPULAR POSTS
+                  <span class="upper-blog-view cursor" routerLink="/blogs"
+                    >view all</span
+                  >
+                </h2>
+              </div>
+              <div class="lower-blog-sec">
+                <div class="lower-blog" *ngFor="let b of blog | slice: 0:3">
+                  <div class="lower-img">
+                    <!-- <img class="blog_img cursor" src="{{blogUrl}}{{b?.image[0]?.url}}" (click)='setBlog(b)'> -->
+                    <img
+                      class="blog_img cursor"
+                      src="{{ blogUrl }}{{ b?.image[0]?.url }}"
+                      alt="{{ b?.image[0]?.alternativeText }}"
+                      (click)="setBlog(b)"
+                    />
+                  </div>
+                  <div class="lower-content">
+                    <h2 class="lower-blog-heading cursor" (click)="setBlog(b)">
+                      {{ b.title }}
+                    </h2>
+                    <h2
+                      class="lower-blog-content cursor"
+                      (click)="setBlog(b)"
+                      [innerHTML]="b.content | markdown | slice: 0:145"
+                    ></h2>
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </section>
     <section class="upto_date">
       <div class="container">
-          <div class="row">
-              <div class="col-12">
-                  <div class="upto_inner">
-                      <h2 class="title">Subscribe</h2>
-                      <p>All the best programs, activities and experiences for your family in Hudson County
-                          delivered to your inbox. Plus special offers, partner discounts and more!</p>
-                          <mailchimp-subscribe-form></mailchimp-subscribe-form>
-                  </div>
-              </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="upto_inner">
+              <h2 class="title">Subscribe</h2>
+              <p>
+                All the best programs, activities and experiences for your
+                family in Hudson County delivered to your inbox. Plus special
+                offers, partner discounts and more!
+              </p>
+              <mailchimp-subscribe-form></mailchimp-subscribe-form>
+            </div>
           </div>
+        </div>
       </div>
-  </section>
-    <!----------------------------------------------------------------- footer ------------------------------------------------------------------>
-<app-footer></app-footer>
+    </section>
+  </div>
+  <!----------------------------------------------------------------- footer ------------------------------------------------------------------>
+  <app-footer></app-footer>
 </body>
-

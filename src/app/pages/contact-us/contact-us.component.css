@@ -1,107 +1,111 @@
-
 .contact-us {
-    padding: 100px;
+  padding: 100px;
 }
 .contact-us .contact-usdata {
-    padding: 30px;
-    padding-top: 0px;
+  padding: 30px;
+  padding-top: 0px;
 }
 .contact-usform form .form-group.text-lengthno {
-    position: relative;
+  position: relative;
 }
 .contact-us .contact-usdata h1 {
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 30px;
-    line-height: 45px;
-    text-transform: capitalize;
-    color: #494949;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 45px;
+  text-transform: capitalize;
+  color: #494949;
 }
 .contact-us .contact-usdata h2 {
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height:30px;
-    color: #494949;
-    padding-top: 15px;
-    padding-bottom: 30px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 30px;
+  color: #494949;
+  padding-top: 15px;
+  padding-bottom: 30px;
 }
 .contact-us .contact-usdata .social-icons a {
-    margin: 0px 12px 0px 0px;
+  margin: 0px 12px 0px 0px;
 }
 .contact-us .contact-usdata a.fb:hover img {
-    filter: invert(38%) sepia(7%) saturate(4607%) hue-rotate(182deg) brightness(96%) contrast(86%);
-    }
+  filter: invert(38%) sepia(7%) saturate(4607%) hue-rotate(182deg)
+    brightness(96%) contrast(86%);
+}
 .contact-us .contact-usdata a.insta:hover img {
-    filter: invert(31%) sepia(100%) saturate(1050%) hue-rotate(308deg) brightness(88%) contrast(103%);
-    }
+  filter: invert(31%) sepia(100%) saturate(1050%) hue-rotate(308deg)
+    brightness(88%) contrast(103%);
+}
 .contact-us .contact-usdata a.tweet:hover img {
-    filter: invert(47%) sepia(92%) saturate(1449%) hue-rotate(176deg) brightness(99%) contrast(91%);
-    }
+  filter: invert(47%) sepia(92%) saturate(1449%) hue-rotate(176deg)
+    brightness(99%) contrast(91%);
+}
 .contact-us .contact-usdata a.pin:hover img {
-    filter: invert(14%) sepia(71%) saturate(5505%) hue-rotate(342deg) brightness(91%) contrast(115%);
-    }
+  filter: invert(14%) sepia(71%) saturate(5505%) hue-rotate(342deg)
+    brightness(91%) contrast(115%);
+}
 .contact-us .contact-usdata a.link:hover img {
-    filter: invert(33%) sepia(47%) saturate(2010%) hue-rotate(173deg) brightness(94%) contrast(101%);
-    }
+  filter: invert(33%) sepia(47%) saturate(2010%) hue-rotate(173deg)
+    brightness(94%) contrast(101%);
+}
 .contact-usform form .form-group {
-    margin: 25px 0px 0px 0px;
+  margin: 25px 0px 0px 0px;
 }
 .contact-us .contact-usform .form-group label {
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 10px;
-    line-height: 15px;
-    letter-spacing: 0.01em;
-    text-transform: uppercase;
-    color: #494949;
-    padding-left: 0px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 10px;
+  line-height: 15px;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: #494949;
+  padding-left: 0px;
 }
 .contact-usform h1 {
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    color: #494949;
-    margin-top: 10px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  color: #494949;
+  margin-top: 10px;
 }
 .contact-usform form button {
-    background: #53B2E8;
-    border-radius: 20px;
-    font-family:"poppins";
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 16px;
-    text-align: center;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-    color: #FFFFFF;
-    border: none;
-    margin-top: 25px;
-    padding: 8px;
-    padding-left: 20px;
-    padding-right: 20px;
+  background: #53b2e8;
+  border-radius: 20px;
+  font-family: "poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #ffffff;
+  border: none;
+  margin-top: 25px;
+  padding: 8px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 .imgage-corners {
-    position: absolute;
-    top: 89px;
-    left: -41px;
+  position: absolute;
+  top: 89px;
+  left: -41px;
 }
 .imgage-corners img {
-    width: 250px;
+  width: 250px;
 }
 .contact-usform .image-corners {
-    position: absolute;
-    bottom: -95px;
-    right: -102px;
+  position: absolute;
+  bottom: -95px;
+  right: -102px;
 }
 .contact-usform {
-    position: relative;
+  position: relative;
 }
 .contact-usform .image-corners img {
-    width: 250px;
+  width: 250px;
 }

@@ -1,90 +1,90 @@
-
-
-<div class="search-reasultpage">
-    <div class="container">
-        <div class="row">
-            <div class="col-4">
-                <div class="search-result">
-                    <div class="tab1-data" *ngFor="let category of categories; index as i">
-                        <h6 class="cursor" *ngIf="!category?.collapsed"   data-toggle="collapse" (click)="category.collapsed=true" [attr.data-target]="'#collapseExample' + i" role="button" aria-expanded="false" aria-controls="collapseExample1" >{{category?.category}}
-                            <span class="plus-src cursor"
-                            >
-                            <img _ngcontent-rxp-c9="" src="assets/plus.png">
-                            </span>
-
-                        </h6>
-                        <h6 class="cursor" *ngIf="category?.collapsed" data-toggle="collapse"  (click)="category.collapsed=false" [attr.data-target]="'#collapseExample' + i" role="button" aria-expanded="false" aria-controls="collapseExample1">{{category?.category}}
-                            <span class="plus-src cursor"
-                            >
-                            <img _ngcontent-rxp-c9="" src="assets/minus.png">
-                            </span>
-
-                        </h6>
-                        <nav  id="collapseExample{{i}}" class="collapse">
-                            <ul *ngFor='let ques of category?.questions '>
-                                <li class="cursor"><a (click)='clickQuestion(ques)'> {{ques.question}}</a></li>
-
-                            </ul>
-                        </nav>
-                    </div>
-
-
-
-                </div>
-            </div>
-            <div class="col-8 search-width">
-                <div class="search-result">
-                    <h1>{{this.ans[0].question}}</h1>
-                    <h2>{{this.ans[0].answer}}.</h2>
-
-                    <hr>
-                    <div class="submit-search">
-                        <h1>Still Have A Question?</h1>
-                        <a  class="cursor" href="javascript:void(Tawk_API.toggle())"> <button><span class="mr-2"> <img src="assets/live-helpicon.png"> </span>Live help</button></a>
-                    </div>
-                    <div id="status"></div>
-
-                </div>
-
-            </div>
+<div class="search-reasultpage common-headermargin">
+  <div class="container">
+    <div class="row">
+      <div class="col-4">
+        <div class="search-result">
+          <div
+            class="tab1-data"
+            *ngFor="let category of categories; index as i"
+          >
+            <h6
+              class="cursor"
+              *ngIf="!category?.collapsed"
+              data-toggle="collapse"
+              (click)="category.collapsed = true"
+              [attr.data-target]="'#collapseExample' + i"
+              role="button"
+              aria-expanded="false"
+              aria-controls="collapseExample1"
+            >
+              {{ category?.category }}
+              <span class="plus-src cursor">
+                <img _ngcontent-rxp-c9="" src="assets/plus.png" />
+              </span>
+            </h6>
+            <h6
+              class="cursor"
+              *ngIf="category?.collapsed"
+              data-toggle="collapse"
+              (click)="category.collapsed = false"
+              [attr.data-target]="'#collapseExample' + i"
+              role="button"
+              aria-expanded="false"
+              aria-controls="collapseExample1"
+            >
+              {{ category?.category }}
+              <span class="plus-src cursor">
+                <img _ngcontent-rxp-c9="" src="assets/minus.png" />
+              </span>
+            </h6>
+            <nav id="collapseExample{{ i }}" class="collapse">
+              <ul *ngFor="let ques of category?.questions">
+                <li class="cursor">
+                  <a (click)="clickQuestion(ques)"> {{ ques.question }}</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
         </div>
+      </div>
+      <div class="col-8 search-width">
+        <div class="search-result">
+          <h1>{{ this.ans[0].question }}</h1>
+          <h2>{{ this.ans[0].answer }}.</h2>
+
+          <hr />
+          <div class="submit-search">
+            <h1>Still Have A Question?</h1>
+            <a class="cursor" href="javascript:void(Tawk_API.toggle())">
+              <button>
+                <span class="mr-2">
+                  <img src="assets/live-helpicon.png" /> </span
+                >Live help
+              </button></a
+            >
+          </div>
+          <div id="status"></div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 
 <!--Start of tawk.to Status Code-->
 
 <script type="text/javascript">
+  Tawk_API = Tawk_API || {};
 
-    Tawk_API = Tawk_API || {};
-
-    Tawk_API.onStatusChange = function (status){
-
-    if(status === 'online')
-
-    {
-
-    document.getElementById('status').innerHTML = '<a href="javascript:void(Tawk_API.toggle())">Online - Click to chat</a>';
-
+  Tawk_API.onStatusChange = function (status) {
+    if (status === "online") {
+      document.getElementById("status").innerHTML =
+        '<a href="javascript:void(Tawk_API.toggle())">Online - Click to chat</a>';
+    } else if (status === "away") {
+      document.getElementById("status").innerHTML = "We are currently away";
+    } else if (status === "offline") {
+      document.getElementById("status").innerHTML = "Live chat is Offline";
     }
+  };
+</script>
 
-    else if(status === 'away')
-
-    {
-
-    document.getElementById('status').innerHTML = 'We are currently away';
-
-    }
-
-    else if(status === 'offline')
-
-    {
-
-    document.getElementById('status').innerHTML = 'Live chat is Offline';
-
-    }
-
-    };
-
-    </script>
-
-    <!--End of tawk.to Status Code -->
+<!--End of tawk.to Status Code -->

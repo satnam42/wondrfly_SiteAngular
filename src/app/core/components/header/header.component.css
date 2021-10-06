@@ -7,6 +7,7 @@ header {
     z-index:999;
     padding-bottom: 0px;
     height:80px;
+    position: fixed;
 }
 a.cursor.header-logo img {
   width: 100%;
@@ -1768,9 +1769,7 @@ header .header_main .nav-link .icon {
     margin-top: 8px;
     margin-left: -20px;
 }
-img.header-image {
-    margin-left: -23px;
-}
+
 img.header-image-search {
     margin-left: -80px;
 }
@@ -2034,14 +2033,6 @@ select.ng-invalid.ng-touched {
     padding: 15px;
     padding-left: 70px;
     padding-right: 70px;
-}
-
-@media only screen and (min-width:1024px) and (max-width:1366px) and (orientation: portrait)  {
-
-    img.header-image-search {
-        margin-left: -8px;
-    }
-
 }
 
 /* dropdown program/provider */
@@ -2309,7 +2300,7 @@ span.icon.rel {
     margin-right:-17px;
   }
   img.header-image-search{
-      margin-left:-17px;
+      margin-left:10px;
   }
 }
 

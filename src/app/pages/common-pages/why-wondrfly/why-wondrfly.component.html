@@ -1,152 +1,168 @@
 <body class="terms_body">
-    <app-header2 *ngIf="!isLogin"></app-header2>
-    <app-header *ngIf="isLogin"></app-header>
+  <app-header2 *ngIf="!isLogin"></app-header2>
+  <app-header *ngIf="isLogin"></app-header>
 
-<div class="imgage-corners">
-    <img src="assets/whywonderfly-leftcircle.png">
-</div>
+  <div class="common-headermargin">
+    <div class="imgage-corners">
+      <img src="assets/whywonderfly-leftcircle.png" />
+    </div>
     <section class="webelieve-wonderfly">
-        <div class="container">
-            <div class="row">
-                    <div class="col-3 image-sec-1">
-                        <img class="mt-5 image-sec-1-1"  [defaultImage]="defaultImage"  lazyLoad="{{blogUrl}}{{data[0]?.images[1]?.url}}" alt="{{data[0]?.images[1]?.alternativeText}}" />
-                        <img class="mt-4 image-sec-1-2" [defaultImage]="defaultImage"  lazyLoad="{{blogUrl}}{{data[0]?.images[0]?.url}}"   alt="{{data[0]?.images[0]?.alternativeText}}"/>
-                    </div>
-                    <div class="col-3 image-sec-2">
-                        <img class="image-sec-2-1"  [defaultImage]="defaultImage"  lazyLoad="{{blogUrl}}{{data[0]?.images[2]?.url}}"  alt="{{data[0]?.images[2]?.alternativeText}}"/>
-                        <img class="mt-4 image-sec-2-2" [defaultImage]="defaultImage"  lazyLoad="{{blogUrl}}{{data[0]?.images[3]?.url}}"  alt="{{data[0]?.images[3]?.alternativeText}}"/>
-                    </div>
-                    <div class="col-6 terms_box">
-                        <h1>{{data[0].title}}</h1>
-                        <ul>
-                          <li>{{data[0].content1}}</li>
-                          <li>{{data[0].content2}}</li>
-                          <li> {{data[0].content3}}</li>
-                          <li>{{data[0].content4}}</li>
-                        </ul>
-                    </div>
-            </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-3 image-sec-1">
+            <img
+              class="mt-5 image-sec-1-1"
+              [defaultImage]="defaultImage"
+              lazyLoad="{{ blogUrl }}{{ data[0]?.images[1]?.url }}"
+              alt="{{ data[0]?.images[1]?.alternativeText }}"
+            />
+            <img
+              class="mt-4 image-sec-1-2"
+              [defaultImage]="defaultImage"
+              lazyLoad="{{ blogUrl }}{{ data[0]?.images[0]?.url }}"
+              alt="{{ data[0]?.images[0]?.alternativeText }}"
+            />
+          </div>
+          <div class="col-3 image-sec-2">
+            <img
+              class="image-sec-2-1"
+              [defaultImage]="defaultImage"
+              lazyLoad="{{ blogUrl }}{{ data[0]?.images[2]?.url }}"
+              alt="{{ data[0]?.images[2]?.alternativeText }}"
+            />
+            <img
+              class="mt-4 image-sec-2-2"
+              [defaultImage]="defaultImage"
+              lazyLoad="{{ blogUrl }}{{ data[0]?.images[3]?.url }}"
+              alt="{{ data[0]?.images[3]?.alternativeText }}"
+            />
+          </div>
+          <div class="col-6 terms_box">
+            <h1>{{ data[0].title }}</h1>
+            <ul>
+              <li>{{ data[0].content1 }}</li>
+              <li>{{ data[0].content2 }}</li>
+              <li>{{ data[0].content3 }}</li>
+              <li>{{ data[0].content4 }}</li>
+            </ul>
+          </div>
         </div>
+      </div>
     </section>
 
-
-
     <section class="family-wonderfly">
-    <div class="container">
+      <div class="container">
         <div class="row">
-            <div class="col-6 family-text">
-                <h1>
-                    {{data[1].title}}
-                </h1>
-                <p>
-                    {{data[1].content1}}
-                    <br>
-                    <br>
-                    <span> {{data[1].content2}}</span>
-                    <br>
-                    <br>
-                    {{data[1].content3}}
-                </p>
+          <div class="col-6 family-text">
+            <h1>
+              {{ data[1].title }}
+            </h1>
+            <p>
+              {{ data[1].content1 }}
+              <br />
+              <br />
+              <span> {{ data[1].content2 }}</span>
+              <br />
+              <br />
+              {{ data[1].content3 }}
+            </p>
+          </div>
+          <div class="col-6">
+            <div class="image-corners">
+              <img src="assets/whywonderfly-rightcircle.png" />
             </div>
-            <div class="col-6">
-                <div class="image-corners">
-                    <img src="assets/whywonderfly-rightcircle.png">
-                </div>
-                <div class="image-section">
-                    <img [defaultImage]="defaultImage"  lazyLoad="{{blogUrl}}{{data[1]?.images[0]?.url}}"  alt="{{data[1]?.images[0]?.alternativeText}}" />
-                </div>
+            <div class="image-section">
+              <img
+                [defaultImage]="defaultImage"
+                lazyLoad="{{ blogUrl }}{{ data[1]?.images[0]?.url }}"
+                alt="{{ data[1]?.images[0]?.alternativeText }}"
+              />
             </div>
+          </div>
         </div>
-    </div>
+      </div>
     </section>
 
     <section class="wave-sect">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 ">
-                    <div class="text-header">
-                    <div class="bar">
-
-                    </div>
-                    <h1>
-                        want to give it a try?
-                    </h1>
-                    <h2>
-                        it's as easy as...
-                    </h2>
-                     </div>
-                    <div class="wave-bar">
-                        <img src="assets/wave-line.svg">
-
-                        <div class="first-circle">
-                            <div class="circle-dots position-1">
-                                <h1>1</h1>
-                            </div>
-
-                            <h3>
-                                Sign up
-                            </h3>
-
-                            <h2>
-                                and create a quick and easyfamily profile
-                            </h2>
-
-                        </div>
-
-                        <div class="second-circle">
-                            <div class="circle-dots position-2">
-                                <h1>2</h1>
-                            </div>
-
-                            <h3>
-                                Customize
-                            </h3>
-
-                            <h2>
-                                your wondrfly experience by sharing your child's age, interests, and level so we can make smart suggestions of activity providers near you
-                            </h2>
-                        </div>
-
-                        <div class="third-circle">
-                            <div class="circle-dots position-3">
-                                <h1>3</h1>
-                            </div>
-
-                            <h3>
-                                Explore
-                            </h3>
-
-                            <h2>
-                                our database local pros anytime – find “just right” fun and learning for your little ones!
-                            </h2>
-                        </div>
-
-                    </div>
-                </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="text-header">
+              <div class="bar"></div>
+              <h1>want to give it a try?</h1>
+              <h2>it's as easy as...</h2>
             </div>
+            <div class="wave-bar">
+              <img src="assets/wave-line.svg" />
+
+              <div class="first-circle">
+                <div class="circle-dots position-1">
+                  <h1>1</h1>
+                </div>
+
+                <h3>Sign up</h3>
+
+                <h2>and create a quick and easyfamily profile</h2>
+              </div>
+
+              <div class="second-circle">
+                <div class="circle-dots position-2">
+                  <h1>2</h1>
+                </div>
+
+                <h3>Customize</h3>
+
+                <h2>
+                  your wondrfly experience by sharing your child's age,
+                  interests, and level so we can make smart suggestions of
+                  activity providers near you
+                </h2>
+              </div>
+
+              <div class="third-circle">
+                <div class="circle-dots position-3">
+                  <h1>3</h1>
+                </div>
+
+                <h3>Explore</h3>
+
+                <h2>
+                  our database local pros anytime – find “just right” fun and
+                  learning for your little ones!
+                </h2>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <div class="container">
-        <div class="row">
-            <div class="col-12 subscribe">
-               <h1>
-                Subscribe
-               </h1>
-               <h2>
-                All the best programs, activities and experiences for your family in Hudson County, delivered to your inbox. Plus special offers, partner discounts and more!
-               </h2>
-               <div class="search_bar">
-                   <div class="input-group">
-                       <input  class="form-control" placeholder="example@domain.com" type="text">
-                       <div  class="input-group-pend"><button  class="Submit_btn" type="button">Submit</button></div>
-                    </div>
-                </div>
+      <div class="row">
+        <div class="col-12 subscribe">
+          <h1>Subscribe</h1>
+          <h2>
+            All the best programs, activities and experiences for your family in
+            Hudson County, delivered to your inbox. Plus special offers, partner
+            discounts and more!
+          </h2>
+          <div class="search_bar">
+            <div class="input-group">
+              <input
+                class="form-control"
+                placeholder="example@domain.com"
+                type="text"
+              />
+              <div class="input-group-pend">
+                <button class="Submit_btn" type="button">Submit</button>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-<app-footer></app-footer>
+  </div>
+
+  <app-footer></app-footer>
 </body>
 <ngx-ui-loader></ngx-ui-loader>
-
-

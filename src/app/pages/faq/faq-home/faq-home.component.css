@@ -1,211 +1,210 @@
 .faq-page .searchwith-text .banner_form {
-    margin-top: 30px;
-    position: relative;
-    z-index: 2;
-    display: flex;
-    background: #FFFFFF;
-    border-radius: 44px;
-    padding: 11px 0 14px 16px;
-    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 30px;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  background: #ffffff;
+  border-radius: 44px;
+  padding: 11px 0 14px 16px;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
 }
 .searchwith-box {
-    background: #FFFFFF;
-    box-shadow: 4px 10px 24px rgb(0 0 0 / 5%);
-    border-radius: 40px;
-    position: absolute;
-    width: 67%;
-    z-index: 1;
-    top: 155px;
-    max-height: 300px;
-    overflow-y: hidden;
-    left: 22px;
-    padding: 50px;
-    padding-left: 24px;
+  background: #ffffff;
+  box-shadow: 4px 10px 24px rgb(0 0 0 / 5%);
+  border-radius: 40px;
+  position: absolute;
+  width: 67%;
+  z-index: 1;
+  top: 155px;
+  max-height: 300px;
+  overflow-y: hidden;
+  left: 22px;
+  padding: 50px;
+  padding-left: 24px;
 }
 .faq-page .searchwith-text .banner_form .form-group {
-    margin: 0;
+  margin: 0;
 }
 .faq-page .searchwith-text .banner_form .form-group input.camp_input {
-    min-width: 640px;
+  min-width: 640px;
 }
 .faq-page .searchwith-text .banner_form .banner_button {
-    background: #FA627D;
-    border: 1px solid #FA627D;
-    border-radius: 50%;
-    display: inline-block;
-    width: 52px;
-    height: 52px;
-    margin: 3px 0 0 60px;
-    padding: 0;
+  background: #fa627d;
+  border: 1px solid #fa627d;
+  border-radius: 50%;
+  display: inline-block;
+  width: 52px;
+  height: 52px;
+  margin: 3px 0 0 60px;
+  padding: 0;
 }
 .faq-page .searchwith-text .banner_form .form-group input {
-    min-height: 100%;
-    background-color: transparent;
-    border: none;
-    border-radius: 0;
-    padding: 0 25px;
+  min-height: 100%;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0 25px;
 }
 .faq-page .searchwith-text {
-    padding-top: 70px;
-    padding-bottom: 60px;
-    max-width: 70%;
+  padding-top: 70px;
+  padding-bottom: 60px;
+  max-width: 70%;
 }
 .faq-page .search-result h1 {
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 24px;
-    letter-spacing: 0.001em;
-    color: #53B2E8;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.001em;
+  color: #53b2e8;
 }
 .faq-page .search-result h2 {
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 300;
-    font-size: 14px;
-    line-height: 21px;
-    letter-spacing: 0.001em;
-    color: #000000;
-
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: 0.001em;
+  color: #000000;
 }
 .faq-page .searchwith-text .search-result {
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 36px;
-    line-height: 32px;
-    letter-spacing: 0.01em;
-    text-transform: capitalize;
-    color: #494949;
-    margin-top: 30px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 32px;
+  letter-spacing: 0.01em;
+  text-transform: capitalize;
+  color: #494949;
+  margin-top: 30px;
 }
 .faq-page .tab-bar .nav-tabs {
-    display: flex;
-    border-bottom: 4px solid #E5E9EC;
+  display: flex;
+  border-bottom: 4px solid #e5e9ec;
 }
 
 .faq-page .tab-bar .card {
-    border: none;
+  border: none;
 }
-.faq-page .tab-bar .card .collapse{
-    display:block;
+.faq-page .tab-bar .card .collapse {
+  display: block;
 }
 .faq-page .tab-bar .nav-tabs .nav-link {
-    border: none;
-    padding: 15px;
-    padding-left: 0px;
+  border: none;
+  padding: 15px;
+  padding-left: 0px;
 }
-.faq-page .tab-bar .nav-tabs .nav-item.show .nav-link, .faq-page .tab-bar .nav-tabs .nav-link.active{
-    background-color:transparent;
-    border:none;
-    border-bottom: 4px solid #53B2E8;
-    color: #53B2E8;
-    filter: invert(74%) sepia(93%) saturate(2423%) hue-rotate(173deg) brightness(96%) contrast(88%);
+.faq-page .tab-bar .nav-tabs .nav-item.show .nav-link,
+.faq-page .tab-bar .nav-tabs .nav-link.active {
+  background-color: transparent;
+  border: none;
+  border-bottom: 4px solid #53b2e8;
+  color: #53b2e8;
+  filter: invert(74%) sepia(93%) saturate(2423%) hue-rotate(173deg)
+    brightness(96%) contrast(88%);
 }
 .faq-page .tab-bar .nav-item.second-nav {
-    padding-left:10%;
+  padding-left: 10%;
 }
 .faq-page .tab-bar .card {
-    background-color: transparent;
-    border: none;
+  background-color: transparent;
+  border: none;
 }
 .faq-page .tab-bar .card-body {
-    padding-left: 0px;
+  padding-left: 0px;
 }
 .faq-page .tab1-data {
-    max-width: 28% !important;
-    margin-bottom: 30px;
+  max-width: 28% !important;
+  margin-bottom: 30px;
 }
 
 .faq-page .tab1-data .ques_cat {
-    max-height: 265px;
-    overflow-y: scroll;
-    -ms-overflow-style: none; 
-    scrollbar-width: none;
+  max-height: 265px;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .faq-page .tab1-data .ques_cat::-webkit-scrollbar {
-    display: none;
-    }
-
+  display: none;
+}
 
 .faq-page .tab-bar h1 {
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 30px;
-    letter-spacing: 0.001em;
-    color: #494949;
-    border-bottom: 2px solid #53B2E8;
-    padding: 10px;
-    padding-left: 0px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+  letter-spacing: 0.001em;
+  color: #494949;
+  border-bottom: 2px solid #53b2e8;
+  padding: 10px;
+  padding-left: 0px;
 }
-.faq-page .tab1-data ul li{
-    padding: 8px;
-    padding-left: 0px;
+.faq-page .tab1-data ul li {
+  padding: 8px;
+  padding-left: 0px;
 }
 .faq-page .tab1-data ul {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 .faq-page .tab1-data ul li a {
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 24px;
-    letter-spacing: 0.001em;
-    color: #494949;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.001em;
+  color: #494949;
 }
 .faq-page .tab-split {
-    display: flex;
-    justify-content: space-between;
-    margin-top:25px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
 }
-.faq-page a:hover{
-    color: #53B2E8 !important;
-    filter: invert(74%) sepia(93%) saturate(2423%) hue-rotate(173deg) brightness(96%) contrast(88%);
+.faq-page a:hover {
+  color: #53b2e8 !important;
+  filter: invert(74%) sepia(93%) saturate(2423%) hue-rotate(173deg)
+    brightness(96%) contrast(88%);
 }
 .faq-page .tab-bar .nav-link {
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 24px;
-    letter-spacing: 0.001em;
-    color: #494949;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.001em;
+  color: #494949;
 }
 .faq-page img.parent-icon {
-    width: 25px;
-    margin-right: 8px;
-    filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(0%);
+  width: 25px;
+  margin-right: 8px;
+  filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%)
+    contrast(0%);
 }
 .faq-page .nav-tabs .nav-item {
-        margin-bottom: -4px;
+  margin-bottom: -4px;
 }
 
 .faq-page .tab-bar {
-    padding-bottom: 100px;
+  padding-bottom: 100px;
 }
 .chat-icon {
-    background: #53B2E8;
-    border-radius: 50%;
-    width: 4%;
-    padding: 10px;
-    float: right;
+  background: #53b2e8;
+  border-radius: 50%;
+  width: 4%;
+  padding: 10px;
+  float: right;
 }
 
-
-@media only screen and (min-width:1024px) and (max-width:1366px) and (orientation: portrait)  {
-
-    .faq-page .searchwith-text .banner_form .banner_button{
-        margin: 3px 0 0 -74px;
-    }
-
+@media only screen and (min-width: 1024px) and (max-width: 1366px) and (orientation: portrait) {
+  .faq-page .searchwith-text .banner_form .banner_button {
+    margin: 3px 0 0 -74px;
+  }
 }
 
 .searchwith-text h1.heading {
-    text-transform: capitalize;
-    font-weight: bold;
+  text-transform: capitalize;
+  font-weight: bold;
 }

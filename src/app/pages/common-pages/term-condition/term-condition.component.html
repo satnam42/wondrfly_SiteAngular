@@ -2,25 +2,24 @@
   <app-header2 *ngIf="!isLogin"></app-header2>
   <app-header *ngIf="isLogin"></app-header>
 
-  <div class="main_outer">
+  <div class="main_outer common-headermargin">
     <div class="container">
       <div class="terms_outer">
         <div class="terms_top">
-          <!-- <h5>Terms and Conditions</h5> -->
-          <h1>{{terms[0]?.Title}}</h1>
-          <h3>Last modified: {{terms[0]?.updated_at | date:'medium'}} (view archived versions)</h3>
-          <p>{{terms[0]?.Content}}</p>
+          <h1>{{ terms[0]?.Title }}</h1>
+          <h3>
+            Last modified: {{ terms[0]?.updated_at | date: "medium" }} (view
+            archived versions)
+          </h3>
+          <p>{{ terms[0]?.Content }}</p>
         </div>
 
-        <div class="terms_content_outer" *ngFor='let t of terms | slice: 1:16'>
+        <div class="terms_content_outer" *ngFor="let t of terms | slice: 1:16">
           <div class="terms_box">
-            <h2>{{t?.Title}}</h2>
-              <p>{{t?.Content}}</p>
+            <h2>{{ t?.Title }}</h2>
+            <p>{{ t?.Content }}</p>
           </div>
-
-
         </div>
-
       </div>
     </div>
   </div>

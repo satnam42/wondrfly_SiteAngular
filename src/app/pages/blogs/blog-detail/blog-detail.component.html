@@ -1,247 +1,346 @@
+<div class="content box common-headermargin">
+  <br /><br />
+  <div class="container">
+    <div class="bloginterest-btn">
+      <button type="submit" class="btn">
+        {{ blogbyid?.categories[0]?.categoryName }}
+      </button>
+    </div>
 
+    <h1 class="main_heading">
+      {{ blogbyid?.title }}
+    </h1>
+    <div class="by_section">
+      by <span class="text-uppercase"> {{ blogbyid?.published_by }} </span>
+      <span class="circle-dotss"
+        ><svg
+          width="6"
+          height="6"
+          viewBox="0 0 6 6"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle cx="3" cy="3" r="3" fill="#B6B6B6" />
+        </svg>
+      </span>
+      <span class="date-blogdeatil"
+        >{{ blogbyid?.published_at | date: "mediumDate" }}
+      </span>
+    </div>
 
+    <div class="blog-social1">
+      <div class="social-icons">
+        <a (click)="genericSocialShare('facebook')" class="icon-button facebook"
+          ><i class="fa fa-facebook"></i><span></span
+        ></a>
+        <a
+          (click)="genericSocialShare('instagram')"
+          class="icon-button pinterest"
+          ><i class="fa fa-instagram"></i><span></span
+        ></a>
+        <a (click)="genericSocialShare('email')" class="icon-button mail"
+          ><i class="fa fa-envelope"></i><span></span
+        ></a>
+      </div>
+    </div>
 
-<div class="content box">
-	<br><br>
-	<div class="container">
+    <div class="main_img">
+      <img
+        [defaultImage]="defaultImage"
+        [errorImage]="errorImage"
+        lazyLoad="{{ blogUrl }}{{ blogbyid.image[0].url }}"
+        alt="{{ blogbyid.image[0]?.alternativeText }}"
+      />
+    </div>
 
-			<div class="bloginterest-btn">
-				<button type="submit" class="btn">{{blogbyid?.categories[0]?.categoryName}}</button>
-			</div>
+    <div class="text_section socialblog-rel">
+      `
+      <div class="blog-detailcontent1">
+        <div class="text_section_heading">
+          {{ blogbyid?.title }}
+        </div>
+        <div
+          [innerHTML]="blogbyid.content | markdown"
+          class="text_section_text"
+        ></div>
+      </div>
 
-	   <h1 class="main_heading">
-		  {{blogbyid?.title}} </h1>
-	   <div class="by_section">
-		by <span class="text-uppercase"> {{blogbyid?.published_by }}
-		  </span>
-		  <span class="circle-dotss"><svg width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-				<circle cx="3" cy="3" r="3" fill="#B6B6B6" />
-		</svg>
+      <div class="text_section_blue">
+        {{ blogbyid?.highlightedText }}
+      </div>
+    </div>
 
-		  </span>
-		  <span class="date-blogdeatil">{{blogbyid?.published_at | date:'mediumDate'}}
-		  </span>
-	   </div>
+    <div class="container description_text slider">
+      <div class="forth_section_heading">
+        Related Activities
+        <span class="blue_heading cursor" routerLink="search">VIEW ALL</span>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <!--Start carousel-->
+          <div
+            id="carouselExampleIndicators"
+            class="carousel slide activities-carousel"
+            data-ride="carousel"
+          >
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="row">
+                  <div
+                    class="
+                      col-12 col-md
+                      d-flex
+                      align-items-center
+                      justify-content-center
+                    "
+                    *ngFor="let program of programs | slice: 0:3"
+                  >
+                    <div class="activities_slide">
+                      <div class="slide_image">
+                        <img
+                          (click)="goToProgramDetail(program)"
+                          [defaultImage]="defaultImage"
+                          [lazyLoad]="baseUrl + program?.category[0]?.iconUrl"
+                          alt="{{ program?.category[0]?.alternativeText }}"
+                        />
+                      </div>
+                      <div class="slide_text">
+                        <h3>
+                          <span
+                            (click)="goToProgramDetail(program)"
+                            class="title"
+                            >{{ program?.name }}</span
+                          >
+                          <div class="rating_box"></div>
+                        </h3>
+                        <div class="sports_btn">
+                          <span>{{ program?.subCategoryIds[0]?.name }}</span>
+                        </div>
+                        <div class="date_age">
+                          <p>
+                            <img
+                              alt="Loction Pin"
+                              src="assets/calendar.svg"
+                            />date
+                          </p>
+                          <p>
+                            <img
+                              alt="Loction Pin"
+                              src="assets/user_group.svg"
+                            />
+                            age Yrs.
+                          </p>
+                          <p>
+                            <img
+                              alt="Loction Pin"
+                              src="assets/user_group.svg"
+                            />
+                            {{ program.date.to | date: "MMM d, " }}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="row">
+                  <div
+                    class="
+                      col-12 col-md
+                      d-flex
+                      align-items-center
+                      justify-content-center
+                    "
+                    *ngFor="let program of programs | slice: 3:6"
+                  >
+                    <div class="activities_slide">
+                      <div class="slide_image">
+                        <img
+                          (click)="goToProgramDetail(program)"
+                          [defaultImage]="defaultImage"
+                          [lazyLoad]="baseUrl + program?.category[0]?.iconUrl"
+                          alt="{{ program?.category[0]?.alternativeText }}"
+                        />
+                      </div>
+                      <div class="slide_text">
+                        <h3>
+                          <span
+                            (click)="goToProgramDetail(program)"
+                            class="title"
+                            >{{ program?.name }}</span
+                          >
+                          <div class="rating_box">
+                            <img src="assets/star.svg" alt="Star Image" />
+                            <span>5.0 (15)</span>
+                          </div>
+                        </h3>
+                        <div class="sports_btn">
+                          <span>{{ program?.subCategoryIds[0].name }}</span>
+                        </div>
+                        <div class="date_age">
+                          <p>
+                            <img
+                              alt="Loction Pin"
+                              src="assets/calendar.svg"
+                            />date
+                          </p>
+                          <p>
+                            <img
+                              alt="Loction Pin"
+                              src="assets/user_group.svg"
+                            />
+                            age Yrs.
+                          </p>
+                          <p>
+                            <img
+                              alt="Loction Pin"
+                              src="assets/user_group.svg"
+                            />
+                            {{ program.date.to | date: "MMM d, " }}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--End carousel-->
+        </div>
+        <div class="col-1 d-flex align-items-center justify-content-center">
+          <a href="#carouselExampleIndicators" data-slide="next">
+            <div class="carousel-nav-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 129 129"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <path
+                  d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z"
+                />
+              </svg>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
 
-	   <div class="blog-social1">
-			<div class="social-icons">
-			<a (click)="genericSocialShare('facebook')" class="icon-button facebook"><i class="fa fa-facebook"></i><span></span></a>
-			<a (click)="genericSocialShare('instagram')" class="icon-button pinterest"><i class="fa fa-instagram"></i><span></span></a>
-			<a (click)="genericSocialShare('email')" class="icon-button mail"><i class="fa fa-envelope"></i><span></span></a>
-		   </div>
-	   </div>
+    <hr class="grey_hr" />
 
+    <div class="comment_section">
+      <div class="number_of_comments">
+        {{ blogbyid?.comments?.length }} Comments
+        <span class="blue_heading cursor float-right" routerLink="/blogs"
+          >VIEW ALL</span
+        >
+      </div>
+      <div class="comments">
+        <div class="row" *ngFor="let coment of blogbyid?.comments">
+          <div class="col-1">
+            <img class="user_img" src="assets/demo_user.png" />
+          </div>
+          <div class="col-11 comments">
+            <h6>{{ coment?.published_at | date: "mediumDate" }}</h6>
+            <p class="mt-1">{{ coment?.content }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="leave_comment" *ngIf="auths.currentUser()">
+        Leave a Comment
+        <span
+          class="arrow-src cursor"
+          *ngIf="commentCollapsed"
+          (click)="commentCollapsed = false"
+          data-toggle="collapse"
+          href="#collapseExample"
+        >
+          <img src="assets/Arrowup-toggle.svg" />
+        </span>
+        <span
+          class="plus-src cursor"
+          *ngIf="!commentCollapsed"
+          (click)="commentCollapsed = true"
+          data-toggle="collapse"
+          href="#collapseExample"
+        >
+          <img src="assets/plus.png" />
+        </span>
+      </div>
+      <div class="collapse" id="collapseExample" *ngIf="auths.currentUser()">
+        <form [formGroup]="commentForm">
+          <div class="name form-group">
+            <!-- <label> Comment</label> -->
+            <textarea
+              rows="4"
+              type="text"
+              class="form-control"
+              placeholder="Type.."
+              [formControl]="commentForm.controls['content']"
+              [(ngModel)]="commentsData.content"
+            >
+            </textarea>
+          </div>
+          <div class="post_button">
+            <a
+              class="post cursor"
+              [ngClass]="{ disable_next: !commentsData.content }"
+              data-toggle="collapse"
+              href="#collapseExample"
+              (click)="postComment()"
+              >POST COMMENT</a
+            >
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 
+  <div class="container-fluid recent-section">
+    <div class="container">
+      <div class="forth_section">
+        <div class="forth_section_heading">
+          Recent Posts
+          <span class="blue_heading cursor" routerLink="/blogs">VIEW ALL</span>
+        </div>
+        <div class="forth_section_image_section">
+          <div class="row">
+            <div
+              class="col-4"
+              *ngFor="let b of blog | slice: 0:3; let i = index"
+            >
+              <img
+                class="forth_section_image cursor"
+                [defaultImage]="defaultImage"
+                [errorImage]="errorImage"
+                lazyLoad="{{ blogUrl }}{{ b?.image[0]?.url }}"
+                alt="{{ b?.image[0]?.alternativeText }}"
+                (click)="setBlog(b)"
+              />
 
-
-
-	   <div class="main_img">
-		  <img [defaultImage]="defaultImage" [errorImage]="errorImage" lazyLoad="{{blogUrl}}{{blogbyid.image[0].url}}" alt="{{blogbyid.image[0]?.alternativeText}}"/>
-	   </div>
-
-	   <div class="text_section socialblog-rel">
-
-`		<div class="blog-detailcontent1">
-		  <div class="text_section_heading">
-			 {{blogbyid?.title}} </div>
-		  <div [innerHTML]="blogbyid.content | markdown" class="text_section_text">
-
-
-		  </div>
-		</div>
-
-		  <div class="text_section_blue">
-			 {{blogbyid?.highlightedText}}
-		  </div>
-
-	   </div>
-
-
-		  <div class="container description_text slider">
-			<div class="forth_section_heading">
-				Related Activities
-				<span class="blue_heading cursor" routerLink="search">VIEW ALL</span>
-			 </div>
-			 <div class="row">
-
-					  <div class="col-12">
-						 <!--Start carousel-->
-						 <div id="carouselExampleIndicators" class="carousel slide activities-carousel" data-ride="carousel">
-
-							<div class="carousel-inner">
-							  <div class="carousel-item active">
-								<div class="row">
-								  <div class="col-12 col-md d-flex align-items-center justify-content-center" *ngFor="let program of programs | slice:0:3">
-									 <div class="activities_slide" >
-										 <div class="slide_image">
-
-												  <img (click)="goToProgramDetail(program)" [defaultImage]="defaultImage" [lazyLoad]="baseUrl+program?.category[0]?.iconUrl" alt="{{program?.category[0]?.alternativeText}}"/>
-										 </div>
-										 <div class="slide_text">
-										   <h3>
-											  <span (click)="goToProgramDetail(program) " class="title">{{program?.name}}</span>
-											  <div class="rating_box">
-
-											  </div>
-										   </h3>
-										   <div class="sports_btn">
-											  <span>{{program?.subCategoryIds[0]?.name}}</span>
-										   </div>
-										   <div class="date_age">
-											  <p>
-												<img alt="Loction Pin"
-												  src="assets/calendar.svg">date
-											  </p>
-											  <p>
-												<img alt="Loction Pin" src="assets/user_group.svg">
-												age Yrs.
-											  </p>
-											  <p>
-												<img alt="Loction Pin" src="assets/user_group.svg">
-												{{program.date.to | date: 'MMM d, '}}
-											  </p>
-										   </div>
-										 </div>
-									   </div>
-								  </div>
-
-								</div>
-							  </div>
-							  <div class="carousel-item">
-								<div class="row">
-								  <div class="col-12 col-md d-flex align-items-center justify-content-center" *ngFor="let program of programs | slice:3:6">
-									 <div class="activities_slide" >
-										 <div class="slide_image">
-
-												  <img (click)="goToProgramDetail(program)" [defaultImage]="defaultImage" [lazyLoad]="baseUrl+program?.category[0]?.iconUrl" alt="{{program?.category[0]?.alternativeText}}"/>
-
-										 </div>
-										 <div class="slide_text">
-										   <h3>
-											  <span (click)="goToProgramDetail(program) " class="title">{{program?.name}}</span>
-											  <div class="rating_box">
-												<img src="assets/star.svg" alt="Star Image">
-												<span>5.0 (15)</span>
-											  </div>
-										   </h3>
-										   <div class="sports_btn">
-											<span>{{program?.subCategoryIds[0].name}}</span>
-										</div>
-										   <div class="date_age">
-											  <p>
-												<img alt="Loction Pin"
-												  src="assets/calendar.svg">date
-											  </p>
-											  <p>
-												<img alt="Loction Pin" src="assets/user_group.svg">
-												age Yrs.
-											  </p>
-											  <p>
-												<img alt="Loction Pin" src="assets/user_group.svg">
-												{{program.date.to | date: 'MMM d, '}}
-											  </p>
-										   </div>
-										 </div>
-									   </div>
-								  </div>
-
-								</div>
-							  </div>
-							</div>
-						 </div>
-						 <!--End carousel-->
-					   </div>
-					   <div class="col-1 d-flex align-items-center justify-content-center"><a  href="#carouselExampleIndicators" data-slide="next">
-						 <div class="carousel-nav-icon">
-							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" xmlns:xlink="http://www.w3.org/1999/xlink">
-							  <path d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z"/>
-							</svg>
-						 </div>
-						 </a>
-					   </div>
-
-
-			 </div>
-		  </div>
-
-		  <hr class="grey_hr">
-
-
-	   <div class="comment_section">
-		  <div class="number_of_comments">
-			 {{blogbyid?.comments?.length}} Comments
-			 <span class="blue_heading cursor float-right" routerLink='/blogs'>VIEW ALL</span>
-		  </div>
-		  <div class="comments">
-			 <div class="row" *ngFor='let coment of blogbyid?.comments'>
-				<div class="col-1">
-				   <img class="user_img" src="assets/demo_user.png">
-
-				</div>
-				<div class="col-11 comments">
-
-				<h6>{{coment?.published_at   | date:'mediumDate'}}</h6>
-				<p class="mt-1">{{coment?.content}}</p>
-
-				</div>
-			 </div>
-		  </div>
-		  <div class="leave_comment" *ngIf="auths.currentUser()">
-			 Leave a Comment
-			 <span class="arrow-src cursor" *ngIf="commentCollapsed" (click)="commentCollapsed=false"   data-toggle="collapse" href="#collapseExample">
-				 <img src="assets/Arrowup-toggle.svg">
-			 </span>
-			 <span class="plus-src cursor" *ngIf="!commentCollapsed" (click)="commentCollapsed=true"  data-toggle="collapse" href="#collapseExample">
-				 <img src="assets/plus.png">
-			 </span>
-		  </div>
-		  <div class="collapse" id="collapseExample" *ngIf="auths.currentUser()">
-		  <form [formGroup]="commentForm">
-		  <div class="name form-group">
-			 <!-- <label> Comment</label> -->
-			 <textarea rows="4" type="text" class="form-control" placeholder="Type.."
-			 [formControl]="commentForm.controls['content']"  [(ngModel)]="commentsData.content" > </textarea>
-		  </div>
-		  <div class="post_button" >
-			 <a class="post cursor" [ngClass]="{'disable_next':!commentsData.content}" data-toggle="collapse" href="#collapseExample" (click)='postComment()' >POST COMMENT</a>
-		  </div>
-	   </form>
-	   </div>
-	   </div>
-	</div>
-
-	<div class="container-fluid recent-section">
-		<div class="container">
-			<div class="forth_section ">
-				<div class="forth_section_heading">
-				  Recent Posts
-				   <span class="blue_heading cursor" routerLink='/blogs'>VIEW ALL</span>
-				</div>
-				<div class="forth_section_image_section">
-				   <div class="row">
-
-					  <div class="col-4" *ngFor="let b of blog | slice:0:3; let i=index">
-						 <img class="forth_section_image cursor"  [defaultImage]="defaultImage" [errorImage]="errorImage" lazyLoad="{{blogUrl}}{{b?.image[0]?.url}}" alt="{{b?.image[0]?.alternativeText}}" (click)="setBlog(b)"/>
-
-						 <div class="date">
-							<span class="blue_heading">{{b?.published_at | date:'mediumDate'}}</span>
-						 </div>
-						 <div class="forth_section_title cursor" (click)="setBlog(b)">
-							{{b?.title}}
-						 </div>
-						 <div class="content_text">
-							<app-read-more (click)="ngOnInit()"[content]="b?.content" [limit]="100"   [blogData]='b'>
-							</app-read-more>                    <!-- <span class="blue_heading">Learn More</span> -->
-						 </div>
-
-					  </div>
-				   </div>
-				</div>
-			 </div>
-		</div>
-	</div>
-
-
-
- </div>
-
+              <div class="date">
+                <span class="blue_heading">{{
+                  b?.published_at | date: "mediumDate"
+                }}</span>
+              </div>
+              <div class="forth_section_title cursor" (click)="setBlog(b)">
+                {{ b?.title }}
+              </div>
+              <div class="content_text">
+                <app-read-more
+                  (click)="ngOnInit()"
+                  [content]="b?.content"
+                  [limit]="100"
+                  [blogData]="b"
+                >
+                </app-read-more>
+                <!-- <span class="blue_heading">Learn More</span> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

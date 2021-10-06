@@ -1,91 +1,35 @@
-
-<!--
-<div class="search-reasultpage">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 search-width">
-                <h1 class="heading">Results for “Lorem Ipsum” </h1>
-                <div class="search-result cursor " [routerLink]="['/faqHelp']">
-                    <h3>Help for Providers</h3>
-                    <h1>Ultrices aliquet imperdiet</h1>
-                    <h2>Euismod eleifend massa velit molestie pharetra, tincidunt metus, bibendum odio. </h2>
-                </div>
-                <div class="search-result cursor" [routerLink]="['/faqHelp']">
-                    <h3>Help for Parents</h3>
-                    <h1>Ultrices aliquet imperdiet</h1>
-                    <h2>Euismod eleifend massa velit molestie pharetra, tincidunt metus, bibendum odio. </h2>
-                </div>
-                <div class="search-result cursor" [routerLink]="['/faqHelp']">
-                    <h3>Help for parents</h3>
-                    <h1>Ultrices aliquet imperdiet</h1>
-                    <h2>Euismod eleifend massa velit molestie pharetra, tincidunt metus, bibendum odio. </h2>
-                </div>
-                <div class="search-result cursor" [routerLink]="['/faqHelp']">
-                    <h3>Help for parents</h3>
-                    <h1>Ultrices aliquet imperdiet</h1>
-                    <h2>Euismod eleifend massa velit molestie pharetra, tincidunt metus, bibendum odio. </h2>
-                </div>
-                <hr>
-                <div class="submit-search">
-                    <h1>Still Have A Question?</h1>
-                    <a class="cursor" href="javascript:void(Tawk_API.toggle())"><button><span class="mr-2"> <img src="assets/live-helpicon.png"> </span>Live help</button></a>
-                </div>
-            </div>
+<!-- 0 result found -->
+<div class="search-reasultpage common-headermargin">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 search-width">
+        <h1 class="heading">0 Results for “{{ filterData }}”</h1>
+        <div class="search-live">
+          <h1>
+            Try different keywords or use our Live Help
+            <a href="javascript:void(Tawk_API.toggle())">Live Help</a>
+          </h1>
         </div>
+      </div>
     </div>
-</div> -->
-
-
-
-    <!-- 0 result found -->
-    <div class="search-reasultpage">
-        <div class="container">
-        <div class="row">
-            <div class="col-12 search-width">
-                    <h1 class="heading">0 Results for “{{filterData}}” </h1>
-                    <div class="search-live">
-                            <h1>Try different keywords or use our Live Help
-                            <a href="javascript:void(Tawk_API.toggle())">Live Help</a></h1>
-                    </div>
-            </div>
-        </div>
-        </div>
-    </div>
+  </div>
+</div>
 
 <!--Start of tawk.to Status Code-->
 
 <script type="text/javascript">
+  Tawk_API = Tawk_API || {};
 
-    Tawk_API = Tawk_API || {};
-
-    Tawk_API.onStatusChange = function (status){
-
-    if(status === 'online')
-
-    {
-
-    document.getElementById('status').innerHTML = '<a href="javascript:void(Tawk_API.toggle())">Online - Click to chat</a>';
-
+  Tawk_API.onStatusChange = function (status) {
+    if (status === "online") {
+      document.getElementById("status").innerHTML =
+        '<a href="javascript:void(Tawk_API.toggle())">Online - Click to chat</a>';
+    } else if (status === "away") {
+      document.getElementById("status").innerHTML = "We are currently away";
+    } else if (status === "offline") {
+      document.getElementById("status").innerHTML = "Live chat is Offline";
     }
+  };
+</script>
 
-    else if(status === 'away')
-
-    {
-
-    document.getElementById('status').innerHTML = 'We are currently away';
-
-    }
-
-    else if(status === 'offline')
-
-    {
-
-    document.getElementById('status').innerHTML = 'Live chat is Offline';
-
-    }
-
-    };
-
-    </script>
-
-    <!--End of tawk.to Status Code -->
+<!--End of tawk.to Status Code -->

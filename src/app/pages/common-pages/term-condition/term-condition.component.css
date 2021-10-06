@@ -1,91 +1,90 @@
-
 /* start terms page css */
 
 .terms_body {
-    background-color: #FFFFFF;
+  background-color: #ffffff;
 }
 
 .terms_outer {
-    padding: 30px 0;
+  padding: 30px 0;
 }
 
 .terms_outer .terms_top h5 {
-    font-weight: 600;
-    font-size: 13px;
-    line-height: 18px;
-    letter-spacing: 0.001em;
-    color: #53B2E8;
-    margin: 0;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 18px;
+  letter-spacing: 0.001em;
+  color: #53b2e8;
+  margin: 0;
 }
 
 .terms_outer .terms_top h1 {
-    font-weight: 700;
-    font-size: 30px;
-    line-height: 32px;
-    letter-spacing: 0.01em;
-    color: #494949;
-    margin: 17px 0 0 0;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 32px;
+  letter-spacing: 0.01em;
+  color: #494949;
+  margin: 17px 0 0 0;
 }
 
 .terms_outer .terms_top h3 {
-    font-weight: 700;
-    font-size: 15px;
-    line-height: 22px;
-    text-align: justify;
-    letter-spacing: 0.02em;
-    color: #53B2E8;
-    margin:2px 0 0 0;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 22px;
+  text-align: justify;
+  letter-spacing: 0.02em;
+  color: #53b2e8;
+  margin: 2px 0 0 0;
 }
 
 .terms_outer .terms_box {
-    margin:25px 0 0 0;
+  margin: 25px 0 0 0;
 }
 
 .terms_outer p {
-    margin: 21px 0 0 0;
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 21px;
-    text-align: justify;
-    letter-spacing: 0.001em;
-    color: #494949;
-    white-space: pre-wrap;
-    word-wrap: break-word;
+  margin: 21px 0 0 0;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 21px;
+  text-align: justify;
+  letter-spacing: 0.001em;
+  color: #494949;
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
 .terms_content_outer .terms_box h2 {
-    font-weight: 700;
-    font-size: 24px;
-    line-height: 32px;
-    letter-spacing: 0.01em;
-    color: #494949;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: 0.01em;
+  color: #494949;
 }
 
 .terms_content_outer .terms_box ul li {
-    font-weight: normal;
-    font-size: 13px;
-    line-height: 16px;
-    text-align: justify;
-    letter-spacing: 0.001em;
-    color: #494949;
-    position: relative;
-    padding-left: 28px;
-    margin: 3px 0 0 0;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 16px;
+  text-align: justify;
+  letter-spacing: 0.001em;
+  color: #494949;
+  position: relative;
+  padding-left: 28px;
+  margin: 3px 0 0 0;
 }
 
 .terms_content_outer .terms_box ul {
-    margin-top: 16px;
+  margin-top: 16px;
 }
 
 .terms_content_outer .terms_box ul li::before {
-    content: '';
-    width: 5.33px;
-    height: 5.33px;
-    position: absolute;
-    top: 7px;
-    left: 9px;
-    background: #F23459;
-    border-radius: 50%;
+  content: "";
+  width: 5.33px;
+  height: 5.33px;
+  position: absolute;
+  top: 7px;
+  left: 9px;
+  background: #f23459;
+  border-radius: 50%;
 }

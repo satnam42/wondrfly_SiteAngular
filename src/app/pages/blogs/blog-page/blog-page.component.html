@@ -1,214 +1,330 @@
-
-<div class="content box">
-
-    <div class="container">
-
+<div class="content box common-headermargin">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h1 class="main_heading">Blog</h1>
+      </div>
+      <div class="col-12">
+        <div class="bloginterest-btn">
+          <button
+            type="submit"
+            class="btn"
+            *ngFor="let category of categories"
+            (click)="searchCatg(category)"
+          >
+            {{ category?.categoryName }}
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="images_section">
+      <div class="row">
+        <div class="col-7">
+          <div class="main_img">
+            <img
+              class="blog_img cursor"
+              src="{{ blogUrl }}{{ blog[0].image[0]?.url }}"
+              alt="{{ blog[0]?.image[0]?.alternativeText }}"
+              (click)="setBlog(blog[0])"
+            />
+          </div>
+          <div class="date">
+            <span class="blue_heading">{{
+              blog[0]?.published_at | date: "mediumDate"
+            }}</span>
+          </div>
+          <div class="main_headings cursor">
+            <h2 (click)="setBlog(blog[0])">{{ blog[0]?.title }}</h2>
+          </div>
+          <div class="content_text">
+            <app-read-more
+              [content]="blog[0].content"
+              [limit]="200"
+              [completeWords]="true"
+              [blogData]="blog[0]"
+            >
+            </app-read-more>
+          </div>
+          <div class="third_section">
+            <span class="by_john"> by {{ blog[0]?.published_by }} </span>
+            <span class="comments">
+              {{ blog[0]?.comments?.length }} COMMENTS
+            </span>
+          </div>
+        </div>
+        <div class="col-5">
+          <div *ngFor="let blogg of blog | slice: 1:4; let i = index">
+            <div class="small_imgs_section">
+              <div class="small_img cursor">
+                <!-- <img (click)="setBlog(blogg)" style="height: 137px;width: 167px;" [defaultImage]="defaultImage" [errorImage]="errorImage" lazyLoad="{{blogUrl}}{{blogg?.image[0]?.url}}"/> -->
+                <img
+                  style="height: 137px; width: 167px"
+                  src="{{ blogUrl }}{{ blogg.image[0]?.url }}"
+                  alt="{{ blogg?.image[0]?.alternativeText }}"
+                  (click)="setBlog(blogg)"
+                />
+              </div>
+              <div class="small_imgs_content">
+                <div class="date">
+                  <span class="blue_heading">{{
+                    blogg?.published_at | date: "mediumDate"
+                  }}</span>
+                </div>
+                <div
+                  class="small_section_heading cursor"
+                  (click)="setBlog(blogg)"
+                >
+                  {{ blogg?.title }}
+                </div>
+                <div class="content_text">
+                  <app-read-more
+                    [content]="blogg?.content"
+                    [limit]="100"
+                    [completeWords]="true"
+                    [blogData]="blogg"
+                  >
+                  </app-read-more>
+                </div>
+              </div>
+            </div>
+            <hr class="small_line" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="forth_section" *ngIf="categories[0]?.blogs?.length">
+      <div class="forth_section_heading">
+        Exploring Their Interests
+        <span class="blue_heading cursor" (click)="searchCatg(categories[0])"
+          >VIEW ALL</span
+        >
+      </div>
+      <div class="forth_section_image_section">
         <div class="row">
-            <div class="col-12">
-                <h1 class="main_heading">
-                    Blog
-                </h1>
+          <div
+            class="col-4"
+            *ngFor="
+              let blog of categories[0]?.blogs | slice: 0:3;
+              let i = index
+            "
+          >
+            <img
+              (click)="setBlog(blog)"
+              class="forth_section_image cursor"
+              [defaultImage]="defaultImage"
+              [errorImage]="errorImage"
+              lazyLoad="{{ blogUrl }}{{ blog?.image[0]?.url }}"
+              alt="{{ blog?.image[0]?.alternativeText }}"
+            />
+            <div class="date">
+              <span class="blue_heading">{{
+                blog?.published_at | date: "mediumDate"
+              }}</span>
             </div>
-            <div class="col-12">
-                <div class="bloginterest-btn" >
-                    <button type="submit" class="btn" *ngFor='let category of categories' (click)="searchCatg(category)">{{category?.categoryName}}</button>
-                </div>
+            <div class="forth_section_title cursor" (click)="setBlog(blog)">
+              {{ blog?.title }}
             </div>
-
+            <div class="content_text">
+              <app-read-more
+                [content]="blog?.content"
+                [limit]="100"
+                [completeWords]="true"
+                [blogData]="blog"
+              >
+              </app-read-more>
+            </div>
+          </div>
         </div>
-        <div class="images_section">
-            <div class="row">
-                <div class="col-7">
-                    <div class="main_img">
-                        <img class="blog_img cursor" src="{{blogUrl}}{{blog[0].image[0]?.url}}" alt="{{blog[0]?.image[0]?.alternativeText}}" (click)="setBlog(blog[0])"/>
-
-                    </div>
-                    <div class="date">
-                        <span class="blue_heading">{{blog[0]?.published_at | date:'mediumDate'}}</span>
-                    </div>
-                    <div class="main_headings cursor">
-                        <h2  (click)="setBlog(blog[0])">{{blog[0]?.title }}</h2>
-                    </div>
-                    <div class="content_text">
-                        <app-read-more [content]="blog[0].content" [limit]="200" [completeWords]='true'  [blogData]="blog[0]">
-                        </app-read-more>
-                    </div>
-                    <div class="third_section">
-                        <span class="by_john">
-                            by {{blog[0]?.published_by }}
-                        </span>
-                        <span class="comments">
-                            {{blog[0]?.comments?.length}} COMMENTS
-                        </span>
-                    </div>
-                </div>
-                <div class="col-5">
-                    <div *ngFor="let blogg of blog |slice:1:4;let i = index;">
-                        <div class="small_imgs_section">
-                            <div class="small_img cursor">
-                                    <!-- <img (click)="setBlog(blogg)" style="height: 137px;width: 167px;" [defaultImage]="defaultImage" [errorImage]="errorImage" lazyLoad="{{blogUrl}}{{blogg?.image[0]?.url}}"/> -->
-                                    <img  style="height: 137px;width: 167px;" src="{{blogUrl}}{{blogg.image[0]?.url}}" alt="{{blogg?.image[0]?.alternativeText}}" (click)="setBlog(blogg)"/>
-                            </div>
-                            <div class="small_imgs_content">
-                                <div class="date">
-                                    <span class="blue_heading">{{blogg?.published_at | date:'mediumDate'}}</span>
-                                </div>
-                                <div class="small_section_heading cursor" (click)="setBlog(blogg)">
-                                    {{blogg?.title}}
-                                </div>
-                                <div class="content_text">
-                                    <app-read-more [content]="blogg?.content" [limit]="100" [completeWords]='true'   [blogData]='blogg'>
-                                    </app-read-more>
-                                </div>
-
-                            </div>
-                        </div>
-                        <hr class="small_line">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="forth_section" *ngIf="categories[0]?.blogs?.length">
-            <div class="forth_section_heading">
-                Exploring Their Interests
-                <span class="blue_heading cursor" (click)="searchCatg(categories[0])">VIEW ALL</span>
-            </div>
-            <div class="forth_section_image_section">
-                <div class="row">
-                    <div class="col-4" *ngFor="let blog of categories[0]?.blogs | slice:0:3; let i =index">
-                        <img (click)="setBlog(blog)"  class="forth_section_image cursor" [defaultImage]="defaultImage" [errorImage]="errorImage" lazyLoad="{{blogUrl}}{{blog?.image[0]?.url}}" alt="{{blog?.image[0]?.alternativeText}}" />
-                        <div class="date">
-                            <span class="blue_heading">{{blog?.published_at | date:'mediumDate'}}</span>
-                        </div>
-                        <div class="forth_section_title cursor" (click)="setBlog(blog)">
-                            {{blog?.title}}
-                        </div>
-                        <div class="content_text">
-                            <app-read-more [content]="blog?.content" [limit]="100" [completeWords]='true' [blogData]='blog'>
-                            </app-read-more>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="forth_section" *ngIf="categories[1]?.blogs?.length">
-            <div class="forth_section_heading">
-                Health & Happiness
-                <span class="blue_heading cursor" (click)="searchCatg(categories[1])">VIEW ALL</span>
-            </div>
-            <div class="forth_section_image_section">
-                <div class="row">
-                    <div class="col-4" *ngFor="let blog of categories[1]?.blogs | slice:0:3; let i =index">
-                        <img (click)="setBlog(blog)"  class="forth_section_image cursor" [defaultImage]="defaultImage" [errorImage]="errorImage" lazyLoad="{{blogUrl}}{{blog?.image[0]?.url}}" alt="{{blog?.image[0]?.alternativeText}}"/>
-                        <div class="date">
-                            <span class="blue_heading">{{blog?.published_at | date:'mediumDate'}}</span>
-                        </div>
-                        <div class="forth_section_title cursor" (click)="setBlog(blog)">
-                            {{blog?.title}}
-                        </div>
-                        <div class="content_text">
-                            <app-read-more [content]="blog?.content" [limit]="100" [completeWords]='true' [blogData]='blog'>
-                            </app-read-more>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="forth_section" *ngIf="categories[4]?.blogs?.length">
-            <div class="forth_section_heading">
-                Parents Plus
-                <span class="blue_heading cursor" (click)="searchCatg(categories[4])">VIEW ALL</span>
-            </div>
-            <div class="forth_section_image_section">
-                <div class="row">
-                    <div class="col-4" *ngFor="let blog of categories[4]?.blogs | slice:0:3; let i =index">
-                        <img (click)="setBlog(blog)"  class="forth_section_image cursor" [defaultImage]="defaultImage" [errorImage]="errorImage" lazyLoad="{{blogUrl}}{{blog?.image[0]?.url}}" alt="{{blog?.image[0]?.alternativeText}}"/>
-                        <div class="date">
-                            <span class="blue_heading">{{blog?.published_at | date:'mediumDate'}}</span>
-                        </div>
-                        <div class="forth_section_title cursor" (click)="setBlog(blog)">
-                            {{blog?.title}}
-                        </div>
-                        <div class="content_text">
-                            <app-read-more [content]="blog?.content" [limit]="100" [completeWords]='true' [blogData]='blog'>
-                            </app-read-more>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
-    <div class="fifth_section" *ngIf="categories[3]?.blogs?.length">
-        <div class="container">
-            <div class="row">
-                <div class="col-4">
-                    <div class="interested_title">
-                        you might be interested In
-                    </div>
-                </div>
 
-                <div class="col-4"  *ngFor="let blog of categories[3]?.blogs | slice:0:2; let i =index">
-                    <div class="small_section">
-                        <div class="small_section_img">
-                            <img (click)="setBlog(blog)"  class="small_section_img cursor" [defaultImage]="defaultImage" [errorImage]="errorImage" lazyLoad="{{blogUrl}}{{blog?.image[0]?.url}}" alt="{{blog?.image[0]?.alternativeText}}"/>
-                        </div>
-                        <div class="small_section_text cursor" (click)="setBlog(blog)">
-                            <div class="date">
-                                <span class="blue_heading">{{blog?.published_at | date:'mediumDate'}}</span>
-                            </div>
-                            {{blog?.title}}
-
-                        </div>
-                    </div>
-                </div>
-
+    <div class="forth_section" *ngIf="categories[1]?.blogs?.length">
+      <div class="forth_section_heading">
+        Health & Happiness
+        <span class="blue_heading cursor" (click)="searchCatg(categories[1])"
+          >VIEW ALL</span
+        >
+      </div>
+      <div class="forth_section_image_section">
+        <div class="row">
+          <div
+            class="col-4"
+            *ngFor="
+              let blog of categories[1]?.blogs | slice: 0:3;
+              let i = index
+            "
+          >
+            <img
+              (click)="setBlog(blog)"
+              class="forth_section_image cursor"
+              [defaultImage]="defaultImage"
+              [errorImage]="errorImage"
+              lazyLoad="{{ blogUrl }}{{ blog?.image[0]?.url }}"
+              alt="{{ blog?.image[0]?.alternativeText }}"
+            />
+            <div class="date">
+              <span class="blue_heading">{{
+                blog?.published_at | date: "mediumDate"
+              }}</span>
             </div>
+            <div class="forth_section_title cursor" (click)="setBlog(blog)">
+              {{ blog?.title }}
+            </div>
+            <div class="content_text">
+              <app-read-more
+                [content]="blog?.content"
+                [limit]="100"
+                [completeWords]="true"
+                [blogData]="blog"
+              >
+              </app-read-more>
+            </div>
+          </div>
         </div>
-
+      </div>
     </div>
-    <div class="container" *ngIf="categories[2]?.blogs?.length">
-        <div class="ages and stages">
-            <div class="forth_section">
-                <div class="forth_section_heading">
-                    Ages & Stages
-                    <span class="blue_heading cursor"(click)="searchCatg(categories[2])">VIEW ALL</span>
-                </div>
-                <div class="forth_section_image_section">
-                    <div class="row">
 
-                        <div class="col-6" *ngFor="let blog of categories[2]?.blogs | slice:0:2 ;let i =index">
-                            <img (click)="setBlog(blog)"  class="forth_section_image cursor" [defaultImage]="defaultImage" [errorImage]="errorImage" lazyLoad="{{blogUrl}}{{blog?.image[0]?.url}}" alt="{{blog?.image[0]?.alternativeText}}"/>
-                            <div class="date">
-                                <span class="blue_heading">{{blog?.published_at | date:'mediumDate'}}</span>
-                            </div>
-                            <div class="forth_section_title cursor" (click)="setBlog(blog)">
-                                {{blog?.title}}
-                            </div>
-                            <div class="content_text">
-                                <app-read-more [content]="blog?.content" [limit]="100" [completeWords]='true'  [blogData]='blog'>
-                                </app-read-more>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <div class="forth_section" *ngIf="categories[4]?.blogs?.length">
+      <div class="forth_section_heading">
+        Parents Plus
+        <span class="blue_heading cursor" (click)="searchCatg(categories[4])"
+          >VIEW ALL</span
+        >
+      </div>
+      <div class="forth_section_image_section">
+        <div class="row">
+          <div
+            class="col-4"
+            *ngFor="
+              let blog of categories[4]?.blogs | slice: 0:3;
+              let i = index
+            "
+          >
+            <img
+              (click)="setBlog(blog)"
+              class="forth_section_image cursor"
+              [defaultImage]="defaultImage"
+              [errorImage]="errorImage"
+              lazyLoad="{{ blogUrl }}{{ blog?.image[0]?.url }}"
+              alt="{{ blog?.image[0]?.alternativeText }}"
+            />
+            <div class="date">
+              <span class="blue_heading">{{
+                blog?.published_at | date: "mediumDate"
+              }}</span>
             </div>
+            <div class="forth_section_title cursor" (click)="setBlog(blog)">
+              {{ blog?.title }}
+            </div>
+            <div class="content_text">
+              <app-read-more
+                [content]="blog?.content"
+                [limit]="100"
+                [completeWords]="true"
+                [blogData]="blog"
+              >
+              </app-read-more>
+            </div>
+          </div>
         </div>
-
-        <div class="seventh_section">
-            <div class="up_to_date">
-                Stay upto date
-            </div>
-            <div class="seventh_section_content">
-                Stay upto date and receive best promotions directly in your inbox. <br>
-                We promise not to spam you.
-            </div>
-              <mailchimp-subscribe-form></mailchimp-subscribe-form>
-        </div>
-
+      </div>
     </div>
-    <br><br>
-    <br>
+  </div>
+  <div class="fifth_section" *ngIf="categories[3]?.blogs?.length">
+    <div class="container">
+      <div class="row">
+        <div class="col-4">
+          <div class="interested_title">you might be interested In</div>
+        </div>
+
+        <div
+          class="col-4"
+          *ngFor="let blog of categories[3]?.blogs | slice: 0:2; let i = index"
+        >
+          <div class="small_section">
+            <div class="small_section_img">
+              <img
+                (click)="setBlog(blog)"
+                class="small_section_img cursor"
+                [defaultImage]="defaultImage"
+                [errorImage]="errorImage"
+                lazyLoad="{{ blogUrl }}{{ blog?.image[0]?.url }}"
+                alt="{{ blog?.image[0]?.alternativeText }}"
+              />
+            </div>
+            <div class="small_section_text cursor" (click)="setBlog(blog)">
+              <div class="date">
+                <span class="blue_heading">{{
+                  blog?.published_at | date: "mediumDate"
+                }}</span>
+              </div>
+              {{ blog?.title }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container" *ngIf="categories[2]?.blogs?.length">
+    <div class="ages and stages">
+      <div class="forth_section">
+        <div class="forth_section_heading">
+          Ages & Stages
+          <span class="blue_heading cursor" (click)="searchCatg(categories[2])"
+            >VIEW ALL</span
+          >
+        </div>
+        <div class="forth_section_image_section">
+          <div class="row">
+            <div
+              class="col-6"
+              *ngFor="
+                let blog of categories[2]?.blogs | slice: 0:2;
+                let i = index
+              "
+            >
+              <img
+                (click)="setBlog(blog)"
+                class="forth_section_image cursor"
+                [defaultImage]="defaultImage"
+                [errorImage]="errorImage"
+                lazyLoad="{{ blogUrl }}{{ blog?.image[0]?.url }}"
+                alt="{{ blog?.image[0]?.alternativeText }}"
+              />
+              <div class="date">
+                <span class="blue_heading">{{
+                  blog?.published_at | date: "mediumDate"
+                }}</span>
+              </div>
+              <div class="forth_section_title cursor" (click)="setBlog(blog)">
+                {{ blog?.title }}
+              </div>
+              <div class="content_text">
+                <app-read-more
+                  [content]="blog?.content"
+                  [limit]="100"
+                  [completeWords]="true"
+                  [blogData]="blog"
+                >
+                </app-read-more>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="seventh_section">
+      <div class="up_to_date">Stay upto date</div>
+      <div class="seventh_section_content">
+        Stay upto date and receive best promotions directly in your inbox.
+        <br />
+        We promise not to spam you.
+      </div>
+      <mailchimp-subscribe-form></mailchimp-subscribe-form>
+    </div>
+  </div>
+  <br /><br />
+  <br />
 </div>
 <ngx-ui-loader></ngx-ui-loader>

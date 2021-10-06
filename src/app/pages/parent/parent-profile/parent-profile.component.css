@@ -27,7 +27,7 @@ button:focus {
   letter-spacing: 0.02em;
   text-transform: uppercase;
   font-weight: 600;
-  color: #53B2E8 !important;
+  color: #53b2e8 !important;
   -webkit-transition: 0.8s;
   transition: 0.8s;
 }
@@ -93,7 +93,7 @@ header .logo img {
   line-height: 18px;
   color: #494949;
   margin-top: 15px;
-  padding-left:38px;
+  padding-left: 38px;
   text-transform: capitalize;
 }
 
@@ -120,7 +120,7 @@ header .logo img {
   animation: animate-positive 2s;
   overflow: visible;
   width: 0%;
-  background: #53B2E8;
+  background: #53b2e8;
   border-radius: 2px;
 }
 
@@ -128,10 +128,10 @@ header .logo img {
   display: block;
   font-size: 15px;
   font-weight: 600;
-  color: #53B2E8;
+  color: #53b2e8;
   position: absolute;
   top: -22px;
-  left:21px;
+  left: 21px;
 }
 
 @-webkit-keyframes animate-positive {
@@ -405,7 +405,7 @@ header .logo img {
   background: rgba(255, 255, 255, 0.1);
   /* box-shadow: inset 0px 1px 0px rgba(0, 0, 0, 0.1); */
   width: 100%;
-  margin-top:30px;
+  margin-top: 30px;
 }
 span.parent-close {
   position: absolute;
@@ -419,8 +419,8 @@ span.parent-close {
 }
 
 .personal_details .social-icons {
-    margin-top: 30px;
-  }
+  margin-top: 30px;
+}
 
 .back_arrow span {
   vertical-align: middle;
@@ -430,8 +430,6 @@ span.parent-close {
 /* .btn_style.save_btn {
   float: right;
 } */
-
-
 
 /* guardins page css */
 
@@ -915,7 +913,7 @@ header .navbar-nav .btn_style {
 }
 
 .activity_category h2 {
-  font-family: 'poppins';
+  font-family: "poppins";
   font-weight: normal;
   font-size: 28px;
   line-height: 18px;
@@ -950,7 +948,7 @@ header .navbar-nav .btn_style {
 }
 
 .category_list_box .category_title p {
-  font-family: 'poppins';
+  font-family: "poppins";
   font-weight: normal;
   font-size: 28px;
   line-height: 18px;
@@ -1511,7 +1509,7 @@ span.search_btn {
 }
 .contact_list {
   padding-top: 20px;
-    overflow-y: scroll;
+  overflow-y: scroll;
   height: 350px;
 }
 .contact_image svg {
@@ -1544,42 +1542,42 @@ span.search_btn {
 .row.contact1 {
   padding-bottom: 20px;
 }
-.img_msg_send{
-			height:auto;
-			width: auto;
-	      	max-width: 200px;
-    }
-    .img_msg{
-			height:auto;
-			width: auto;
-			max-width: 200px;
-    }
+.img_msg_send {
+  height: auto;
+  width: auto;
+  max-width: 200px;
+}
+.img_msg {
+  height: auto;
+  width: auto;
+  max-width: 200px;
+}
 
-    .no_chat{
-      margin-top: 5px;
-      font-family: 'Poppins';
-      color:#828282;
-      text-align: center;
-    }
-    .disable_send{
-      pointer-events: none;
-    }
-.no_chat_img{
-max-height: 80px;
-max-width: 80px;
-margin: auto;
-margin-right: auto;
-margin-top: 30%;
-text-align: center;
-display: table-cell;
-vertical-align: middle;
-    }
+.no_chat {
+  margin-top: 5px;
+  font-family: "Poppins";
+  color: #828282;
+  text-align: center;
+}
+.disable_send {
+  pointer-events: none;
+}
+.no_chat_img {
+  max-height: 80px;
+  max-width: 80px;
+  margin: auto;
+  margin-right: auto;
+  margin-top: 30%;
+  text-align: center;
+  display: table-cell;
+  vertical-align: middle;
+}
 
 /* chat css end */
-.disable_next{
+.disable_next {
   background-color: #b5e4f9 !important;
-      pointer-events: none !important;
-    }
+  pointer-events: none !important;
+}
 @media (max-width: 991px) {
   .content_right .personal_details {
     padding: 47px 20px 38px 37px;
@@ -1724,10 +1722,9 @@ vertical-align: middle;
   }
 }
 
-
 /* -------------------card---------------------------------------------------------- */
 .description_text {
-  background: #FFFFFF;
+  background: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
   padding: 50px 35px;
@@ -1739,15 +1736,14 @@ vertical-align: middle;
   margin: 0;
 }
 
-
 .media {
-  background: #FFFFFF;
+  background: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
 }
 
 .activities_slide {
-  background: #FFFFFF;
+  background: #ffffff;
   border-radius: 20px;
   max-width: 321px;
   -webkit-filter: drop-shadow(-4px 4px 4px rgba(0, 0, 0, 0.1));
@@ -1757,8 +1753,9 @@ vertical-align: middle;
 h2.description-activities {
   padding-bottom: 20px;
 }
-.imgsvg{
-  filter: invert(61%) sepia(59%) saturate(442%) hue-rotate(159deg) brightness(95%) contrast(93%);
+.imgsvg {
+  filter: invert(61%) sepia(59%) saturate(442%) hue-rotate(159deg)
+    brightness(95%) contrast(93%);
 }
 .activities_slide .slide_image {
   filter: drop-shadow(3px 3px 3px rgba(0, 0, 0, 0.1));
@@ -1778,7 +1775,7 @@ h2.description-activities {
 }
 
 .activities_slide .slide_text h3 {
-  font-family: 'Poppins';
+  font-family: "Poppins";
   font-size: 20px;
   line-height: 30px;
   color: #494949;
@@ -1799,7 +1796,7 @@ h2.description-activities {
   display: inline-block;
   font-size: 12px;
   line-height: 16px;
-  font-family: 'poppins';
+  font-family: "poppins";
   color: #494949;
   margin: 0 13px 0 0;
   vertical-align: middle;
@@ -1820,8 +1817,8 @@ h2.description-activities {
 }
 
 .activities_slide .slide_text .sports_btn span {
-  font-family: 'poppins';
-  background:#e2f5ff;
+  font-family: "poppins";
+  background: #e2f5ff;
   display: inline-block;
   border-radius: 20px;
   min-width: 100px;
@@ -1840,14 +1837,14 @@ h2.description-activities {
 }
 
 .activity .coding_text {
-  display:flex;
-  margin-top:10px;
-  margin-bottom:10px;
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 10px;
   width: 100%;
 }
 
-.activity .coding-text-2{
-  margin-left:10px;
+.activity .coding-text-2 {
+  margin-left: 10px;
 }
 .activity .price-box span {
   color: #55b8f0;
@@ -1866,7 +1863,7 @@ h2.description-activities {
 }
 
 .rating_box {
-  float:left;
+  float: left;
 }
 
 .rating_box a {
@@ -1878,7 +1875,7 @@ h2.description-activities {
 .list_outer.row .icon-grpcalender {
   display: flex;
   padding-top: 12px;
-    padding-bottom: 5px;
+  padding-bottom: 5px;
 }
 .media.activity.spacing-media.ng-star-inserted .rating_box {
   margin-top: 3px;
@@ -1901,8 +1898,9 @@ h2.description-activities {
 .media.activity.spacing-media.ng-star-inserted {
   margin-top: 20px;
   margin-bottom: 20px;
-  background: #FFFFFF;
-  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2), 0px 3px 4px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.14);
+  background: #ffffff;
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2), 0px 3px 4px rgba(0, 0, 0, 0.12),
+    0px 2px 4px rgba(0, 0, 0, 0.14);
   border-radius: 20px;
 }
 
@@ -1910,38 +1908,34 @@ h2.description-activities {
   float: right;
 }
 
-.check_list h5{
+.check_list h5 {
   font-size: 10px;
 }
 
-.check_list{
+.check_list {
   display: flex;
 }
 
-.btn_noti{
-position: relative;
-margin: 26px 0px 0px 0px;
+.btn_noti {
+  position: relative;
+  margin: 26px 0px 0px 0px;
 }
 
-.smsNoti{
-
+.smsNoti {
   justify-content: space-between;
   align-items: center;
-  padding: 0 32px 0px 0px;}
-
-
+  padding: 0 32px 0px 0px;
+}
 
 /* children */
-
-
 
 .guardian_outer.personal_details.children a.btn_style.save_btn.cursor {
   float: right;
 }
 
 .Children_table {
-  padding:10px;
-  background: #FFFFFF;
+  padding: 10px;
+  background: #ffffff;
   box-shadow: 0px 4px 4px rgb(0 0 0 / 10%);
   border-radius: 20px;
   padding-top: 35px;
@@ -1954,7 +1948,7 @@ margin: 26px 0px 0px 0px;
   right: 30px;
 }
 .Children_table .page_heading h2 {
-  font-family: 'Poppins';
+  font-family: "Poppins";
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
@@ -1962,35 +1956,34 @@ margin: 26px 0px 0px 0px;
   letter-spacing: 0.001em;
   color: #494949;
   text-align: center;
-  text-transform:capitalize;
+  text-transform: capitalize;
   margin-top: 5px;
-    padding-left: 0px;
-    margin-left: -13px;
+  padding-left: 0px;
+  margin-left: -13px;
 }
 .Children_table .page_heading h3 {
-  font-family: 'Poppins';
+  font-family: "Poppins";
   font-style: normal;
   letter-spacing: 0.001em;
   font-size: 10px;
   line-height: 18px;
   text-align: center;
   text-transform: uppercase;
-  color: #53B2E8;
+  color: #53b2e8;
   margin-left: -11px;
 }
 .page_heading.small-box {
-  width:25%;
-  border-right: 1px solid #E0E0E0;
-
+  width: 25%;
+  border-right: 1px solid #e0e0e0;
 }
 .Children_table .profile_outer {
   padding-left: 28px;
 }
 .edit_profile.edit-12354 {
-  background: #53B2E8 !important;
+  background: #53b2e8 !important;
 }
 .content-childrenpart h2 {
-  font-family: 'Poppins';
+  font-family: "Poppins";
   font-style: normal;
   font-weight: normal;
   font-size: 14px !important;
@@ -1998,10 +1991,10 @@ margin: 26px 0px 0px 0px;
   letter-spacing: 0.01em;
   color: #494949;
   margin-top: 3px;
-    margin-left: 8px;
+  margin-left: 8px;
 }
 .content-childrenpart h3 {
-  font-family: 'Poppins';
+  font-family: "Poppins";
   font-style: normal;
   font-weight: normal;
   font-size: 14px !important;
@@ -2009,7 +2002,7 @@ margin: 26px 0px 0px 0px;
   letter-spacing: 0.01em;
   color: #494949;
   margin-top: 3px;
-    margin-left: 8px;
+  margin-left: 8px;
 }
 .Children_table .content-img img {
   width: 130px;
@@ -2022,16 +2015,16 @@ margin: 26px 0px 0px 0px;
   margin-top: 6px;
 }
 
-  .content-childrenpart p {
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 10px;
-    line-height: 15px;
-    letter-spacing: 0.01em;
-    text-transform: uppercase;
-    color: #494949;
-    padding-top: 20px;
+.content-childrenpart p {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 15px;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: #494949;
+  padding-top: 20px;
 }
 .content-childrenpart {
   padding: 20px;
@@ -2039,39 +2032,39 @@ margin: 26px 0px 0px 0px;
 }
 .content-btn button.btn_style.save_btn.cursor span {
   padding-right: 14px;
-    padding-left: 10px;
+  padding-left: 10px;
 }
 .content-btn button.btn_style.save_btn.cursor {
   width: auto;
-    padding: 0px;
-    text-align: left;
-    padding-left: 18px;
-    padding-right: 18px;
-    margin-left: 3px;
-    margin-top: 5px;
+  padding: 0px;
+  text-align: left;
+  padding-left: 18px;
+  padding-right: 18px;
+  margin-left: 3px;
+  margin-top: 5px;
 }
 .content-btn {
   padding-top: 10px;
 }
-.text-form{
+.text-form {
   position: relative;
 }
-span.text-absolu{
+span.text-absolu {
   position: absolute;
   bottom: 14px;
-  right:34px;
+  right: 34px;
   font-size: 12px;
   line-height: 18px;
   letter-spacing: 0.001em;
-  color: #E5E9EC;
+  color: #e5e9ec;
 }
 .text-form input.form-control {
-  background: #FFFFFF;
-  border: 1px solid #E5E9EC;
+  background: #ffffff;
+  border: 1px solid #e5e9ec;
   box-sizing: border-box;
   border-radius: 20px;
   margin-top: 9px;
-  min-height:84px !important;
+  min-height: 84px !important;
 }
 .text-form .form-group textarea.form-control {
   min-height: 80px;
@@ -2081,7 +2074,7 @@ span.text-absolu{
   margin-left: 20px !important;
 }
 .notifications h3 {
-  font-family: 'Poppins';
+  font-family: "Poppins";
   font-style: normal;
   font-weight: 600;
   font-size: 12px;
@@ -2102,7 +2095,7 @@ span.text-absolu{
 }
 
 .notifications.down-spacing h6 {
-  font-family: 'Poppins';
+  font-family: "Poppins";
   font-style: normal;
   font-weight: 500;
   font-size: 10px;
@@ -2113,7 +2106,7 @@ span.text-absolu{
 }
 .modal_custom .modal-content.child-modal {
   border: none;
-  background: #FFFFFF;
+  background: #ffffff;
   border-radius: 20px;
 }
 .modal-content.child-modal .modal-body {
@@ -2145,7 +2138,7 @@ span.parent-edit {
   padding-top: 80px;
 }
 .modal-content.child-modal .form-group.interest label {
-  color: #53B2E8 !important;
+  color: #53b2e8 !important;
   font-style: normal;
   font-weight: 400 !important;
   font-size: 11px !important;
@@ -2171,7 +2164,7 @@ span.parent-edit {
   font-size: 18px !important;
   line-height: 18px !important;
   letter-spacing: 0.005em;
-  color: #53B2E8 !important;
+  color: #53b2e8 !important;
   margin-right: 20px !important;
 }
 .beta-heading button {
@@ -2183,8 +2176,8 @@ span.parent-edit {
   text-align: center;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  color: #FFFFFF;
-  background: #53B2E8;
+  color: #ffffff;
+  background: #53b2e8;
   border-radius: 50px;
   border: 0px;
   padding: 8px;
@@ -2200,7 +2193,7 @@ span.parent-edit {
   font-weight: normal;
   font-size: 14px;
   line-height: 18px;
-  color: #4F4F4F;
+  color: #4f4f4f;
 }
 .table-beta th {
   font-family: "Poppins";
@@ -2221,13 +2214,13 @@ tr.beta-row {
   font-weight: normal;
   font-size: 14px;
   line-height: 18px;
-  color: #4F4F4F;
+  color: #4f4f4f;
   padding-top: 30px;
   padding-bottom: 30px;
 }
 #betaInvite input.form-control {
-  background: #FFFFFF;
-  border: 1px solid #E5E9EC;
+  background: #ffffff;
+  border: 1px solid #e5e9ec;
   box-sizing: border-box;
   border-radius: 20px !important;
 }
@@ -2237,20 +2230,20 @@ tr.beta-row {
 #betaInvite .btn_style {
   float: none;
   padding: 4px !important;
-  padding-left: 25px!important;
-  padding-right: 25px!important;
+  padding-left: 25px !important;
+  padding-right: 25px !important;
   width: auto !important;
   font-family: "poppins";
 }
- /*Empty checkbox*/
- .k-checkbox {
-  background:transparent;
+/*Empty checkbox*/
+.k-checkbox {
+  background: transparent;
   color: white !important;
 }
 
 /*Checked checkbox*/
 .k-checkbox {
-  border-color: rgba(0,0,0,.08);
+  border-color: rgba(0, 0, 0, 0.08);
   color: transparent;
   background-color: #fff;
 }
@@ -2270,41 +2263,42 @@ tr.beta-row {
   position: relative;
   -webkit-appearance: none;
 }
-.k-checkbox.k-checked::before, .k-checkbox:checked::before {
+.k-checkbox.k-checked::before,
+.k-checkbox:checked::before {
   border-radius: 2px;
-  -webkit-transform: scale(1) translate(-50%,-50%);
-  -ms-transform: scale(1) translate(-50%,-50%);
-  transform: scale(1) translate(-50%,-50%);
+  -webkit-transform: scale(1) translate(-50%, -50%);
+  -ms-transform: scale(1) translate(-50%, -50%);
+  transform: scale(1) translate(-50%, -50%);
 }
 .k-checkbox::before {
   width: 12px;
   height: 12px;
   font-size: 12px;
   line-height: 1;
-  -webkit-transform: scale(0) translate(-50%,-50%);
-  -ms-transform: scale(0) translate(-50%,-50%);
-  transform: scale(0) translate(-50%,-50%);
+  -webkit-transform: scale(0) translate(-50%, -50%);
+  -ms-transform: scale(0) translate(-50%, -50%);
+  transform: scale(0) translate(-50%, -50%);
   overflow: hidden;
   position: absolute;
   top: 54%;
   left: 48%;
   content: "\2713";
-  font-family: 'poppins';
+  font-family: "poppins";
 }
 .form-check.copy-link {
   padding: 0px !important;
-  color: #53B2E8;
+  color: #53b2e8;
 }
 .checkbox-ask .form-check {
   padding: 22px;
   padding-left: 0px;
 }
 input#flexCheckDefault {
-  border: 1px solid #53B2E8 !important;
+  border: 1px solid #53b2e8 !important;
   top: -2px;
 }
 .k-checkbox:checked {
-  background: #53B2E8;
+  background: #53b2e8;
   color: white !important;
 }
 #betaInvite span.invite-clr {
@@ -2313,7 +2307,7 @@ input#flexCheckDefault {
   font-weight: normal;
   font-size: 16px;
   line-height: 18px;
-  color: #53B2E8;
+  color: #53b2e8;
 }
 #betaInvite h2.title {
   text-align: left;
