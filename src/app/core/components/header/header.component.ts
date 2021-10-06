@@ -636,6 +636,8 @@ export class HeaderComponent implements OnInit {
       this.logoPosition = true;
     }
     // if(this.routeName === '/search'|| this.routeName === '/'){ this.searchBar=true}
+    if( this.routeName === '/'){ this.searchBar=true}
+
     if (this.user.role === "provider" || this.user.role === "parent") {
       if (this.user.role === "provider") {
         this.isLogin = true;
@@ -804,14 +806,11 @@ export class HeaderComponent implements OnInit {
   }
 
   goToProviderProfile(provider) {
-    this.filterData.activityName = "";
+    console.log(provider)
     provider.firstName = provider.firstName.toLowerCase();
     provider.firstName = provider.firstName.replace(/ /g, "-");
     provider.firstName = provider.firstName.replace(/\?/g, "-");
-    this.router.navigate([
-      "/program-provider",
-      provider.firstName,
-      provider._id,
+    this.router.navigate(["/provider/program-provider", provider.firstName, provider._id,
     ]);
   }
 

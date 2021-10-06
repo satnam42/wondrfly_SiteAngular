@@ -51,7 +51,7 @@ this.getCategory()
     );
     this.metaTagService.addTag(
       { name: 'keywords', content: 'kids activities blog,blogs for kids, kids friendly blogs,kids activity blog'}
-    ); 
+    );
 
     window.scroll(0, 0);
     }

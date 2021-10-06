@@ -8,7 +8,7 @@
                     <div class="otp_form">
 
                         <div class="sing_text">
-                            <img src="assets/logo.png">
+                            <img routerLink="/" src="assets/logo.png">
                         </div>
                         <div class="tab_outer">
 
@@ -107,7 +107,7 @@
 
                                         <div class="sign_in_btn">
                                             <button data-toggle="modal" data-target="#joinModal" class="SignBtn" (click)="askToJoin()" [disabled]="parentForm.invalid || !isTerms || !isParent || !isbetaActivity">Submit Request</button>
-                                            <button class="SignBtn cancel" [routerLink]="['/login']">Cancel</button>
+                                            <button class="SignBtn cancel" [routerLink]="['/']">Cancel</button>
                                         </div>
 
                                         <div class="row forgot_password">
@@ -163,7 +163,7 @@
             <div class="modal-body">
               <div class="location-popup">
                 <h1>
-                  Thanks for accepting our invitation to join the wondrfly Beta program!
+                  Thank you for your interest, Admin will approve
                 </h1>
 
                 <h2>

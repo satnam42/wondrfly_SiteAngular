@@ -141,12 +141,12 @@ import { DataService } from "../../services/dataservice.service ";
               <li class="nav-item">
                 <a class="nav-link cursor" [routerLink]="['/blogs']">Blog</a>
               </li>
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a class="nav-link cursor" [routerLink]="['/faq']">FAQ</a>
-              </li>
+              </li> -->
               <li class="nav-item">
                 <a class="nav-link cursor" [routerLink]="['/ask-to-join']"
-                  >Ask to join</a
+                  >Join the Beta</a
                 >
               </li>
               <li>
@@ -181,7 +181,7 @@ export class Header2Component implements OnInit {
     if (this.routeName === "/search") {
       this.logoPosition = true;
     }
-    // if(this.routeName === '/search'|| this.routeName === '/'){ this.searchBar=true}
+    if( this.routeName === '/'){ this.searchBar=true}
   }
   searchActivityByNameDate() {
     this.dataservice.setOption(this.filterData);
@@ -220,10 +220,7 @@ export class Header2Component implements OnInit {
     provider.firstName = provider.firstName.toLowerCase();
     provider.firstName = provider.firstName.replace(/ /g, "-");
     provider.firstName = provider.firstName.replace(/\?/g, "-");
-    this.router.navigate([
-      "/program-provider",
-      provider.firstName,
-      provider._id,
-    ]);
+    this.router.navigate(["/provider/program-provider", provider.firstName, provider._id])
+
   }
 }
