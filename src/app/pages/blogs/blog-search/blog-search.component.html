@@ -75,12 +75,15 @@
           class="col-4"
           *ngFor="let blog of searchCatgData?.blogs | slice: 0:9; let i = index"
         >
+        <div class="img-overflow">
           <img oncontextmenu="return false;"
-            (click)="setBlog(blog)"
-            class="forth_section_image cursor"
-            src="{{ blogUrl }}{{ blog?.image[0]?.url }}"
-            alt="{{ blog?.image[0]?.alternativeText }}"
-          />
+          (click)="setBlog(blog)"
+          class="forth_section_image cursor"
+          src="{{ blogUrl }}{{ blog?.image[0]?.url }}"
+          alt="{{ blog?.image[0]?.alternativeText }}"
+        />
+        </div>
+
           <div class="date">
             <span class="blue_heading">{{
               blog?.published_at | date: "mediumDate"

@@ -148,17 +148,19 @@ hr.small_line {
   font-weight: normal;
   font-size: 18px;
   line-height: 24px;
-  letter-spacing: 0.1em;
   text-transform: capitalize;
   color: #494949;
   padding-bottom: 10px;
   padding-top: 5px;
 }
+.forth_section_title.cursor:hover {
+  color:#53b2e8;
+}
 img.forth_section_image {
-  padding-bottom: 17px;
-  height: 50%;
+  height:250px;
   width: 100%;
   object-fit: cover;
+  transition: 1s;
 }
 .forth_section_image_section {
   padding-bottom: 45px;
@@ -484,6 +486,7 @@ div#location .col-3 {
     font-size: 10px;
     text-transform: capitalize;
     color: #494949;
+    margin-bottom: 30px;
   }
   span.search_bar input[type="text"] {
     background: #f9fafa;
@@ -626,4 +629,15 @@ div#location .col-3 {
   padding: 10px 0px 7px 10px;
   min-width: 212px;
   max-width: 248px;
+}
+h1.painting-header:hover {
+  color:#53b2e8;
+}
+.img-overflow {
+  overflow: hidden;
+  transition: 1s;
+  margin-bottom: 17px;
+}
+img.forth_section_image:hover {
+  transform: scale(1.2);
 }

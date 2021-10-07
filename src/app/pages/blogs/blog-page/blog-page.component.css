@@ -97,15 +97,23 @@ span.comments {
 .images_section {
   padding-top: 50px;
 }
+h1.main_heading:hover {
+  color:#53b2e8;
+}
 .main_img {
-  padding-bottom: 25px;
+  margin-bottom: 25px;
   border-radius: 2px;
+  overflow: hidden;
+}
+.blog_img:hover {
+  transform: scale(1.2);
 }
 .images_section .main_heading {
   padding-bottom: 16px;
 }
 .small_imgs_section {
   display: flex;
+  justify-content: space-between;
 }
 .small_section_heading {
   font-family: "Poppins";
@@ -124,7 +132,10 @@ span.comments {
   object-fit: cover;
 }
 .small_img {
-  padding-right: 32px;
+  overflow: hidden;
+}
+.small_imgs_content {
+  width:59%;
 }
 .images_section .col-5 {
   align-items: center;
@@ -138,7 +149,7 @@ hr.small_line {
   float: right;
   cursor: pointer;
 }
-.forth_section_heading {
+.forth_section_heading h1 {
   font-family: "Poppins";
   font-style: normal;
   font-weight: 600;
@@ -163,13 +174,42 @@ hr.small_line {
   padding-top: 5px;
 }
 img.forth_section_image {
-  padding-bottom: 17px;
   height: 50%;
   width: 100%;
   object-fit: cover;
+  transition: 1s;
+}
+.forth_section_title.cursor:hover {
+  color:#53b2e8;
 }
 .forth_section_image_section {
   padding-bottom: 45px;
+}
+.images_section .main_headings.cursor h2:hover {
+  color: #53b2e8;
+}
+.small_section_heading:hover {
+  color: #53b2e8;
+}
+.forth_section_heading h1:hover {
+  color: #53b2e8;
+}
+.interested_title:hover {
+  color: #53b2e8;
+}
+.img-overflow {
+  overflow: hidden;
+  transition: 1s;
+  margin-bottom: 17px;
+}
+.forth_section_heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+img.forth_section_image:hover {
+  transform: scale(1.2);
 }
 .interested_title {
   font-family: "Poppins";
@@ -499,12 +539,7 @@ div#location .col-3 {
     padding: 4px;
     cursor: pointer;
   }
-  /* .small_imgs_section {
-        align-items: center;
-    } */
-  /* .small_imgs_section .small_img img {
-        width: 100%;
-    } */
+
 }
 
 .searchR {
@@ -562,12 +597,17 @@ div#location .col-3 {
 .small_imgs_section .small_img img {
   height: 100% !important;
   object-fit: cover;
+  transition: 1s;
+}
+.small_imgs_section .small_img img:hover{
+  transform: scale(1.2);
 }
 .blog_img {
   width: 100%;
   height: 380px;
   object-fit: cover;
   border-radius: 2px;
+  transition: 1s;
 }
 .ages.and.stages .forth_section_image_section {
   padding-bottom: 0px !important;

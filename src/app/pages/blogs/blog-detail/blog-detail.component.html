@@ -8,7 +8,10 @@
     </div>
 
     <h1 class="main_heading">
-      {{ blogbyid?.title }}
+      <h1>
+        {{ blogbyid?.title }}
+      </h1>
+
     </h1>
     <div class="by_section">
       by <span class="text-uppercase"> {{ blogbyid?.published_by }} </span>
@@ -72,7 +75,10 @@
 
     <div class="container description_text slider">
       <div class="forth_section_heading">
-        Related Activities
+        <h1>
+          Related Activities
+        </h1>
+
         <span class="blue_heading cursor" routerLink="search">VIEW ALL</span>
       </div>
       <div class="row">
@@ -301,7 +307,10 @@
     <div class="container">
       <div class="forth_section">
         <div class="forth_section_heading">
-          Recent Posts
+          <h1>
+            Recent Posts
+          </h1>
+
           <span class="blue_heading cursor" routerLink="/blogs">VIEW ALL</span>
         </div>
         <div class="forth_section_image_section">
@@ -310,14 +319,17 @@
               class="col-4"
               *ngFor="let b of blog | slice: 0:3; let i = index"
             >
+            <div class="img-overflow">
               <img oncontextmenu="return false;"
-                class="forth_section_image cursor"
-                [defaultImage]="defaultImage"
-                [errorImage]="errorImage"
-                lazyLoad="{{ blogUrl }}{{ b?.image[0]?.url }}"
-                alt="{{ b?.image[0]?.alternativeText }}"
-                (click)="setBlog(b)"
-              />
+              class="forth_section_image cursor"
+              [defaultImage]="defaultImage"
+              [errorImage]="errorImage"
+              lazyLoad="{{ blogUrl }}{{ b?.image[0]?.url }}"
+              alt="{{ b?.image[0]?.alternativeText }}"
+              (click)="setBlog(b)"
+            />
+            </div>
+
 
               <div class="date">
                 <span class="blue_heading">{{

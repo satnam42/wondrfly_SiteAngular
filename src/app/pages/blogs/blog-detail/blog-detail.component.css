@@ -11,7 +11,7 @@ li,
 a {
   list-style-type: disc !important;
 }
-.main_heading {
+.main_heading h1{
   font-family: "Poppins";
   font-style: normal;
   font-weight: 500;
@@ -22,12 +22,25 @@ a {
   color: #494949;
   padding-bottom: 10px;
 }
+.main_heading h1:hover{
+  color:#53b2e8;
+}
+.main_img {
+  overflow: hidden;
 
+}
+.forth_section_title.cursor:hover {
+  color:#53b2e8;
+}
+.main_img img:hover {
+  transform: scale(1.2);
+}
 .main_img img {
   height: 454px;
   width: 100%;
   object-fit: cover;
   object-position: top;
+  transition: 1s;
 }
 span.more-programscolor {
   color: #53b2e8;
@@ -186,13 +199,21 @@ a.post {
   color: #fff;
   padding: 20px 60px;
 }
-.forth_section_heading span.blue_heading {
-  float: right;
-}
+
 .forth_section {
   padding-top: 50px;
 }
 .forth_section_heading {
+  display: flex;
+  justify-content: space-between;
+  align-items:baseline;
+}
+.img-overflow {
+  overflow: hidden;
+  transition: 1s;
+  margin-bottom: 17px;
+}
+.forth_section_heading h1 {
   font-family: "Poppins";
   font-style: normal;
   font-weight: 600;
@@ -216,10 +237,13 @@ a.post {
   padding-top: 5px;
 }
 img.forth_section_image {
-  padding-bottom: 17px;
   width: 357px;
   height: 238px;
   object-fit: cover;
+  transition: 1s;
+}
+img.forth_section_image:hover {
+  transform: scale(1.2);
 }
 .forth_section_image_section {
   padding-bottom: 45px;
@@ -292,10 +316,10 @@ h2.description-activities {
   padding-bottom: 35px;
 }
 .activities_slide .slide_image {
-  /* filter: drop-shadow(3px 0px 3px rgba(0, 0, 0, 0.1)); */
   border-radius: 20px 20px 0px 0px;
   max-height: 321px;
   max-width: 100%;
+  overflow: hidden;
 }
 
 .activities_slide .slide_image img {
@@ -303,8 +327,11 @@ h2.description-activities {
   min-height: 100%;
   object-fit: cover;
   border-radius: 20px 20px 0px 0px;
+  transition: 1s;
 }
-
+.activities_slide .slide_image img:hover{
+  transform: scale(1.2);
+}
 .activities_slide .slide_text {
   padding: 12px 22px 22px 19px;
   box-shadow: 1px 0px 6px rgba(0, 0, 0, 0.05);
