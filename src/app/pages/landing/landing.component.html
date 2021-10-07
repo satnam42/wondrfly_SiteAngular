@@ -24,68 +24,104 @@
                 aria-expanded="false"
                 aria-controls="dropdownprogram-provider"
               >
-                <div class="form-group">
-                  <input
-                    type="text"
-                    autocomplete="off"
-                    (keyup)="
-                      searchSubCategory(filterData.activityName);
-                      providerSearch(filterData.activityName)
-                    "
-                    placeholder="Search Activity"
-                    class="form-control camp_input"
-                    name="activityName"
-                    [(ngModel)]="filterData.activityName"
-                  />
-                </div>
-
-                <div class="form-group">
-                  <button
-                    (click)="searchActivityByNameDate()"
-                    class="banner_button"
-                    type="submit"
-                  >
-                    <img src="assets/search_icon.svg" alt="Search image" />
-                  </button>
-                </div>
-
-                <div
-                  class="dropdownprogram"
-                  *ngIf="
-                    (categoriesBySearch?.length || providersBySearch?.length) &&
-                    filterData.activityName
-                  "
-                >
-                  <div class="card card-body">
-                    <div
-                      class="program-list"
-                      *ngIf="categoriesBySearch?.length"
+              <div class="left-searchpd">
+                <div class="left_search">
+                  <div>
+                    <form
+                      class="banner_form"
+                      data-toggle="collapse"
+                      href="#dropdownprogram-provider"
+                      role="button"
+                      aria-expanded="false"
+                      aria-controls="dropdownprogram-provider"
                     >
-                      <h6
-                        *ngFor="let category of categoriesBySearch | slice: 0:4"
-                        (click)="searchBySubCategory(category._id)"
+                      <div class="form-group ">
+                        <input
+                          type="text"
+                          autocomplete="off"
+                          (keyup)="
+                            searchSubCategory(filterData.activityName);
+                            providerSearch(filterData.activityName)
+                          "
+                          [(ngModel)]="filterData.activityName"
+                          placeholder="Search Activity..."
+                          class="form-control camp_input "
+                          name="activityName"
+                        />
+                      </div>
+                      <div class="search-location">
+                        <span data-toggle="modal" data-target="#locationModal">
+                          <img src="assets/search-location.png"
+                        /></span>
+                        <input
+                          placeholder="Search Location"
+                          (keydown.enter)="$event.preventDefault()"
+                          autocorrect="off"
+                          autocapitalize="off"
+                          spellcheck="off"
+                          #search
+                        />
+                      </div>
+                      <div class="form-group cursor">
+                        <button
+                          class="banner_button cursor"
+                          type="submit"
+                          routerLink="search"
+                          (click)="searchActivityByNameDate()"
+                        >
+                          <img
+                            src="assets/search_icon.svg"
+                            alt="Search image"
+                          />
+                        </button>
+                      </div>
+
+                      <div
+                        class="dropdownprogram"
+                        *ngIf="
+                          (categoriesBySearch?.length ||
+                            providersBySearch?.length) &&
+                          filterData.activityName
+                        "
                       >
-                        {{ category.name }}
-                        <span class="search-programlist">
-                          <img src="assets/program-search.svg" />
-                        </span>
-                      </h6>
-                    </div>
-                    <hr />
-                    <div
-                      class="provider-list"
-                      *ngIf="providersBySearch?.length"
-                    >
-                      <h5>Providers</h5>
-                      <h6
-                        (click)="goToProviderProfile(provider)"
-                        *ngFor="let provider of providersBySearch | slice: 0:4"
-                      >
-                        {{ provider.firstName }}
-                      </h6>
-                    </div>
+                        <div class="card card-body">
+                          <div
+                            class="program-list"
+                            *ngIf="categoriesBySearch?.length"
+                          >
+                            <h6
+                              (click)="searchBySubCategory(category._id)"
+                              *ngFor="
+                                let category of categoriesBySearch | slice: 0:4
+                              "
+                            >
+                              {{ category.name }}
+                              <span class="search-programlist">
+                                <img src="assets/program-search.svg" />
+                              </span>
+                            </h6>
+                          </div>
+                          <hr />
+                          <div
+                            class="provider-list"
+                            *ngIf="providersBySearch?.length"
+                          >
+                            <h5>Providers</h5>
+                            <h6
+                              (click)="goToProviderProfile(provider)"
+                              *ngFor="
+                                let provider of providersBySearch | slice: 0:4
+                              "
+                            >
+                              {{ provider.firstName }}
+                            </h6>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
                   </div>
                 </div>
+              </div>
               </form>
             </div>
           </div>
@@ -199,6 +235,57 @@
       </div>
     </section>
   </div>
+
+  <!----------------------------------------- location Modal ------------------------------------------------------->
+
+<div
+class="modal fade verification_modal Location-Modal"
+id="locationModal"
+data-backdrop="static"
+data-keyboard="false"
+tabindex="-1"
+role="dialog"
+aria-labelledby="staticBackdropLabel"
+aria-hidden="true"
+>
+<div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content">
+    <button
+      type="button"
+      class="close"
+      id="close_modal"
+      data-dismiss="modal"
+      aria-label="Close"
+    >
+      <span aria-hidden="true" class="icon-close"></span>
+    </button>
+    <div class="modal-body">
+      <div class="location-popup">
+        <span><img class="logo-img" src="assets/logo.png" /></span>
+
+        <h1>Would allow us to use your location?</h1>
+
+        <h2>
+          <span><img src="assets/location-search1.png" /></span>
+          Your location will help us to find the best activities near you
+        </h2>
+      </div>
+
+      <div class="sign_in_btn">
+        <button class="SignBtn cancel" data-dismiss="modal">Not Now</button>
+        <button
+
+          data-dismiss="modal"
+          type="submit"
+          class="SignBtn"
+        >
+          Allow
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
   <!----------------------------------------------------------------- footer ------------------------------------------------------------------>
   <app-footer></app-footer>
 </body>

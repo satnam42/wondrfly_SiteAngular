@@ -11,86 +11,7 @@
   line-height: 60px;
   color: #ffffff;
   width: 80%;
-}
-
-.banner_form {
-  margin-top: 30px;
-  display: flex;
-  background: #ffffff;
-  border-radius: 44px;
-  padding: 11px 0 14px 16px;
-  width: 80%;
-  height: 80px;
-  position: relative;
-}
-
-.banner_form .form-group {
-  margin: 0;
-}
-
-.banner_form .form-group input {
-  min-height: 100%;
-  background-color: transparent;
-  border: none;
-  border-radius: 0;
-  padding: 0 25px;
-}
-
-.banner_form .form-group input.camp_input {
-  min-width: 440px;
-  position: relative;
-  z-index: 999;
-}
-
-.banner_form .form-group input.date_input {
-  background: #efefef;
-  border-radius: 30px;
-  margin-left: 30px;
-}
-
-.banner_form .form-group input::-webkit-input-placeholder,
-.banner_form .form-group .form-control::-webkit-input-placeholder {
-  color: #748494;
-}
-
-.banner_form .form-group input::-moz-placeholder,
-.banner_form .form-group .form-control::-moz-placeholder {
-  color: #748494;
-}
-
-.banner_form .form-group input::placeholder,
-.banner_form .form-group .form-control::placeholder {
-  color: #748494;
-}
-
-.banner_form
-  .form-group
-  .form-control.date_input::-webkit-calendar-picker-indicator {
-  display: none;
-  -webkit-appearance: none;
-}
-
-.banner_form .form-group input::placeholder {
-  color: #494949;
-}
-
-.banner_form .form-group input::-webkit-input-placeholder {
-  color: #494949;
-}
-
-.banner_form .form-group input:-moz-placeholder {
-  color: #494949;
-}
-
-.banner_form .banner_button {
-  background: #fa627d;
-  border: 1px solid #fa627d;
-  border-radius: 50%;
-  width: 52px;
-  height: 52px;
-  position: absolute;
-  right: 15px;
-  top: 15px;
+  margin-bottom: 40px;
 }
 
 /* start activity_category css */
@@ -283,7 +204,7 @@ span.upper-blog-view {
 
 .dropdownprogram {
   position: absolute;
-  top: 20px;
+  top:-10px;
 }
 .dropdownprogram .card {
   background: #ffffff;
@@ -328,7 +249,230 @@ span.upper-blog-view {
   padding-bottom: 10px;
   cursor: pointer;
 }
+button.banner_button.cursor img {
+  width: 60%;
+}
 
+.banner_form {
+  display: flex;
+    background: #FFFFFF;
+    border-radius: 44px;
+    padding: 0;
+    justify-content: space-between;
+    width: 81%;
+}
+
+.banner_form .form-group {
+  margin: 0;
+}
+
+.banner_form .form-group input {
+  min-height: 100%;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0 25px;
+  position: relative;
+  z-index: 999;
+}
+
+.banner_form .form-group input.camp_input{
+  min-width:250px;
+  height: 55px;
+  margin-top: 0px !important;
+}
+
+.banner_form .form-group input.date_input {
+  background: #EFEFEF;
+  border-radius: 30px;
+  margin-left: 27px;
+  max-width: 215px;
+  min-width: auto;
+}
+
+.banner_form .form-group input::-webkit-input-placeholder,
+.banner_form .form-group .form-control::-webkit-input-placeholder {
+  color: #858585;
+}
+
+.banner_form .form-group input::-moz-placeholder,
+.banner_form .form-group .form-control::-moz-placeholder {
+  color: #858585;
+}
+
+.banner_form .form-group input::placeholder,
+.banner_form .form-group .form-control::placeholder {
+  color: #858585;
+}
+.banner_form .form-group.daterange input::placeholder,
+.banner_form .form-group.daterange .form-control::placeholder {
+  color: #494949 !important;
+}
+
+.banner_form .form-group .form-control.date_input::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
+}
+
+.banner_form .form-group input::placeholder {
+  color: #D5DCE1;
+}
+
+.banner_form .form-group input::-webkit-input-placeholder {
+  color: #D5DCE1;
+}
+
+.banner_form .form-group input:-moz-placeholder {
+  color: #D5DCE1;
+}
+
+.banner_form .banner_button {
+  background: #FA627D;
+  border: 1px solid #FA627D;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  position: absolute;
+  right: 15px;
+  top: 5px;
+}
+
+.search-results {
+  max-height: calc(100vh - -736px);
+  overflow: hidden;
+  scrollbar-color: #ddd #ccc;
+  scrollbar-width: thin;
+  height: 100%;
+  overflow-y: auto;
+  padding-top:20px;
+  padding-left: 40px;
+  padding-right:20px;
+}
+.search-results::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+/* search location */
+.search-location input {
+  min-width:275px;
+    background-color: transparent;
+
+}
+.search-location:before {
+  content: "";
+  width: 2px;
+  height: 40px;
+  background-color: #E0E0E0;
+  position: absolute;
+  left:43%;
+  top: 7px;
+}
+
+/* locatrion-popup */
+.logo-img{
+  width: 35%;
+  margin-bottom: 25px;
+}
+.sign_in_btn button.SignBtn {
+  margin-left: 20px;
+}
+.SignBtn.cancel {
+  background: transparent;
+  border: 1px solid #53b2e8;
+  color: #53b2e8;
+  margin: 0 auto 0 16px;
+}
+.sign_in_btn{
+  text-align: center;
+  margin: 8px 0 0 0;
+}
+.SignBtn{
+  background: #53b2e8;
+  border: 1px solid #53b2e8;
+  box-sizing: border-box;
+  box-shadow: 0px 2px 2px rgb(0 0 0 / 12%);
+  border-radius: 50px;
+  min-width: 205px;
+  min-height: 55px;
+  line-height: 55px;
+  text-align: center;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 13px;
+  margin: 0 auto;
+  text-transform: uppercase;
+  transition: 0.8s;
+}
+.location-popup span img {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+.location-popup {
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+.location-popup h1 {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 36px;
+  text-align: center;
+  color: #494949;
+}
+.location-popup h2 {
+  font-family: "Poppins";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 36px;
+    text-align: center;
+    color: #494949;
+    padding-left: 40px;
+    padding-right: 80px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: baseline;
+}
+.location-popup h2 img{
+  margin-top: 10px;
+}
+.header_main .left-searchpd {
+    margin-right: auto;
+}
+.after-nav {
+  margin-right: -84px;
+}
+.Button-badge {
+  position: absolute;
+  bottom: 44%;
+  right:-57%;
+  background-color: #fa627d;
+  font-size: 10px;
+  font-weight: 500;
+  color: #fff;
+  border-radius: 100%;
+  height: 20px;
+  width: 20px;
+  padding: 3px;
+  text-align: center;
+}
+span.icon.rel {
+    position: relative;
+}
+.left_search {
+    position: relative;
+}
+.search-location {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+.left-searchpd {
+  padding: 5px;
+}
 @media only screen and (min-width: 1024px) and (max-width: 1366px) and (orientation: portrait) {
   .container,
   .container-lg,
