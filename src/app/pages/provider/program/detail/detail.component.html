@@ -245,14 +245,8 @@
 
                         <p>
                           <img src="assets/watch.svg" alt="Loction Pin" />
-                          {{ program.realTime.from }}:00<span
-                            *ngIf="program.realTime.from < 12"
-                            >AM</span
-                          ><span *ngIf="program.realTime.from >= 12">PM</span> -
-                          {{ program.realTime.to }}:00<span
-                            *ngIf="program.realTime.from < 12"
-                            >AM</span
-                          ><span *ngIf="program.realTime.from > 12">PM</span>
+                          {{ program.realTime.from }}:00 -
+                          {{ program.realTime.to }}:00
                         </p>
                         <p
                           *ngIf="
