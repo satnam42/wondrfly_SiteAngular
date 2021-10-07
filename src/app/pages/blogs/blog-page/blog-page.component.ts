@@ -68,10 +68,11 @@ searchCatg(data) {
 // ------------------------------------------------get blogs  -------------------------------------------
 getBlog(){
   this.ngxLoader.start()
-  const responcee = axios.get(`${this.blogUrl}/blogs?_start=0&_limit=4`).then(response => {
+  const responcee = axios.get(`${this.blogUrl}/blogs?_sort=published_at:DESC&_start=0&_limit=4`).then(response => {
     this.blog = response.data
+    console.log('response',response)
     console.log(this.blog)
-    this.blog.reverse()
+    // this.blog.reverse()
     this.ngxLoader.stop()
   });
   }
