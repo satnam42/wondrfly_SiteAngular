@@ -863,14 +863,14 @@
     <div class="row row-0" *ngIf="showReset">
       <div class="col-4">
         <div class="chip-set">
-          <h1>Looking for <span>Violin</span> in <span>Jersey</span></h1>
+          <h1>Looking for <span>{{searchedSubCategory}}</span> in <span>Jersey</span></h1>
         </div>
       </div>
       <div class="col-8">
         <div class="chip-set-bar">
-          <button class="btn_style save_btn cursor">
+          <!-- <button class="btn_style save_btn cursor">
             Music
-            <span class="ml-2"><img src="assets/white-close.png" /></span>
+            <span class="ml-2"><img src="assets/white-close.png"/></span>
           </button>
           <button class="btn_style save_btn cursor">
             Age 2-8 years
@@ -883,9 +883,9 @@
           <button class="btn_style save_btn cursor">
             Tuesday
             <span class="ml-2"><img src="assets/white-close.png" /></span>
-          </button>
+          </button> -->
           <span>
-            <span>&times;</span>
+            <!-- <span>&times;</span> -->
             <a class="ml-2 clear-text cursor" (click)="resetFilter()"
               >Clear all</a
             >

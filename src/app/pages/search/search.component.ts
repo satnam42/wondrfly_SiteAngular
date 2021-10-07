@@ -131,6 +131,8 @@ export class SearchComponent implements OnInit {
   selectedSubCategories:any = [];
   catData: any;
   isBetaPopUp:boolean = false;
+  recentFilters:any =[]
+  searchedSubCategory = ''
   constructor(
     private router: Router,
     private apiservice: ApiService,
@@ -455,6 +457,7 @@ if(toggle){
       console.log('response', res);
       if (res.isSuccess) {
         this.programs = res.data;
+        this.searchedSubCategory = this.programs[0].category[0].name
       }
     });  }
 
@@ -472,6 +475,7 @@ if(toggle){
         this.ngxLoader.stop();
         this.programs = res.data
         this.showReset = true
+        this.searchedSubCategory = this.activityName;
       });
     }
     this.ngxLoader.stop();
@@ -741,11 +745,14 @@ if(program.userId==''|| program.userId==undefined || !program.userId){ program.u
               res.forEach(suggested => {
                 if(suggested.id!==id){
                   this.suggested.push(suggested)
+                }else{
+                  this.searchedSubCategory = suggested.name
                 }
               });
      if(res.isSuccess===false){
        this.suggested=[]
      }
    });
+   this.showReset = true;
  }
 }
