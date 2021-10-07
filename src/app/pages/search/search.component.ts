@@ -295,6 +295,7 @@ this.toDate=e.endDate._d
 
 
   resetFilter() {
+    this.searchedSubCategory = ''
     this.activityName = ''
     this.showReset = false;
     this.isOpenFilter = false;
