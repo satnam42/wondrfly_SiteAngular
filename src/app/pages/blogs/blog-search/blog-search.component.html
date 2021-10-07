@@ -23,7 +23,7 @@
             data-target="#location"
             data-toggle="collapse"
           >
-            <img src="assets/down_arrow_blog.png" />
+            <img oncontextmenu="return false;"  src="assets/down_arrow_blog.png" />
           </span>
           <div
             class="dropdown-box"
@@ -41,7 +41,7 @@
             >
               Recent posts
               <span class="arrow-down cursor">
-                <img
+                <img oncontextmenu="return false;"
                   src="assets/down_arrow_blog.png"
                   *ngIf="categoryName != 'Most Viewed'"
                 />
@@ -58,7 +58,7 @@
             >
               Most Viewed
               <span class="arrow-down cursor">
-                <img
+                <img oncontextmenu="return false;"
                   src="assets/down_arrow_blog.png"
                   *ngIf="categoryName == 'Most Viewed'"
               /></span>
@@ -75,7 +75,7 @@
           class="col-4"
           *ngFor="let blog of searchCatgData?.blogs | slice: 0:9; let i = index"
         >
-          <img
+          <img oncontextmenu="return false;"
             (click)="setBlog(blog)"
             class="forth_section_image cursor"
             src="{{ blogUrl }}{{ blog?.image[0]?.url }}"

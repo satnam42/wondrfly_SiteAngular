@@ -45,7 +45,7 @@
     </div>
 
     <div class="main_img">
-      <img
+      <img oncontextmenu="return false;"
         [defaultImage]="defaultImage"
         [errorImage]="errorImage"
         lazyLoad="{{ blogUrl }}{{ blogbyid.image[0].url }}"
@@ -97,7 +97,7 @@
                   >
                     <div class="activities_slide">
                       <div class="slide_image">
-                        <img
+                        <img oncontextmenu="return false;"
                           (click)="goToProgramDetail(program)"
                           [defaultImage]="defaultImage"
                           [lazyLoad]="baseUrl + program?.category[0]?.iconUrl"
@@ -118,20 +118,20 @@
                         </div>
                         <div class="date_age">
                           <p>
-                            <img
+                            <img oncontextmenu="return false;"
                               alt="Loction Pin"
                               src="assets/calendar.svg"
                             />date
                           </p>
                           <p>
-                            <img
+                            <img oncontextmenu="return false;"
                               alt="Loction Pin"
                               src="assets/user_group.svg"
                             />
                             age Yrs.
                           </p>
                           <p>
-                            <img
+                            <img oncontextmenu="return false;"
                               alt="Loction Pin"
                               src="assets/user_group.svg"
                             />
@@ -156,7 +156,7 @@
                   >
                     <div class="activities_slide">
                       <div class="slide_image">
-                        <img
+                        <img oncontextmenu="return false;"
                           (click)="goToProgramDetail(program)"
                           [defaultImage]="defaultImage"
                           [lazyLoad]="baseUrl + program?.category[0]?.iconUrl"
@@ -171,7 +171,7 @@
                             >{{ program?.name }}</span
                           >
                           <div class="rating_box">
-                            <img src="assets/star.svg" alt="Star Image" />
+                            <img oncontextmenu="return false;"  src="assets/star.svg" alt="Star Image" />
                             <span>5.0 (15)</span>
                           </div>
                         </h3>
@@ -180,20 +180,20 @@
                         </div>
                         <div class="date_age">
                           <p>
-                            <img
+                            <img oncontextmenu="return false;"
                               alt="Loction Pin"
                               src="assets/calendar.svg"
                             />date
                           </p>
                           <p>
-                            <img
+                            <img oncontextmenu="return false;"
                               alt="Loction Pin"
                               src="assets/user_group.svg"
                             />
                             age Yrs.
                           </p>
                           <p>
-                            <img
+                            <img oncontextmenu="return false;"
                               alt="Loction Pin"
                               src="assets/user_group.svg"
                             />
@@ -239,7 +239,7 @@
       <div class="comments">
         <div class="row" *ngFor="let coment of blogbyid?.comments">
           <div class="col-1">
-            <img class="user_img" src="assets/demo_user.png" />
+            <img oncontextmenu="return false;"  class="user_img" src="assets/demo_user.png" />
           </div>
           <div class="col-11 comments">
             <h6>{{ coment?.published_at | date: "mediumDate" }}</h6>
@@ -256,7 +256,7 @@
           data-toggle="collapse"
           href="#collapseExample"
         >
-          <img src="assets/Arrowup-toggle.svg" />
+          <img oncontextmenu="return false;"  src="assets/Arrowup-toggle.svg" />
         </span>
         <span
           class="plus-src cursor"
@@ -265,7 +265,7 @@
           data-toggle="collapse"
           href="#collapseExample"
         >
-          <img src="assets/plus.png" />
+          <img oncontextmenu="return false;"  src="assets/plus.png" />
         </span>
       </div>
       <div class="collapse" id="collapseExample" *ngIf="auths.currentUser()">
@@ -310,7 +310,7 @@
               class="col-4"
               *ngFor="let b of blog | slice: 0:3; let i = index"
             >
-              <img
+              <img oncontextmenu="return false;"
                 class="forth_section_image cursor"
                 [defaultImage]="defaultImage"
                 [errorImage]="errorImage"

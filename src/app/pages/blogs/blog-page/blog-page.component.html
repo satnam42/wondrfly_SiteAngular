@@ -21,7 +21,7 @@
       <div class="row">
         <div class="col-7">
           <div class="main_img">
-            <img
+            <img oncontextmenu="return false;"
               class="blog_img cursor"
               src="{{ blogUrl }}{{ blog[0].image[0]?.url }}"
               alt="{{ blog[0]?.image[0]?.alternativeText }}"
@@ -56,8 +56,8 @@
           <div *ngFor="let blogg of blog | slice: 1:4; let i = index">
             <div class="small_imgs_section">
               <div class="small_img cursor">
-                <!-- <img (click)="setBlog(blogg)" style="height: 137px;width: 167px;" [defaultImage]="defaultImage" [errorImage]="errorImage" lazyLoad="{{blogUrl}}{{blogg?.image[0]?.url}}"/> -->
-                <img
+                <!-- <img oncontextmenu="return false;"  (click)="setBlog(blogg)" style="height: 137px;width: 167px;" [defaultImage]="defaultImage" [errorImage]="errorImage" lazyLoad="{{blogUrl}}{{blogg?.image[0]?.url}}"/> -->
+                <img oncontextmenu="return false;"
                   style="height: 137px; width: 167px"
                   src="{{ blogUrl }}{{ blogg.image[0]?.url }}"
                   alt="{{ blogg?.image[0]?.alternativeText }}"
@@ -108,7 +108,7 @@
               let i = index
             "
           >
-            <img
+            <img oncontextmenu="return false;"
               (click)="setBlog(blog)"
               class="forth_section_image cursor"
               [defaultImage]="defaultImage"
@@ -154,7 +154,7 @@
               let i = index
             "
           >
-            <img
+            <img oncontextmenu="return false;"
               (click)="setBlog(blog)"
               class="forth_section_image cursor"
               [defaultImage]="defaultImage"
@@ -200,7 +200,7 @@
               let i = index
             "
           >
-            <img
+            <img oncontextmenu="return false;"
               (click)="setBlog(blog)"
               class="forth_section_image cursor"
               [defaultImage]="defaultImage"
@@ -243,7 +243,7 @@
         >
           <div class="small_section">
             <div class="small_section_img">
-              <img
+              <img oncontextmenu="return false;"
                 (click)="setBlog(blog)"
                 class="small_section_img cursor"
                 [defaultImage]="defaultImage"
@@ -283,7 +283,7 @@
                 let i = index
               "
             >
-              <img
+              <img oncontextmenu="return false;"
                 (click)="setBlog(blog)"
                 class="forth_section_image cursor"
                 [defaultImage]="defaultImage"
