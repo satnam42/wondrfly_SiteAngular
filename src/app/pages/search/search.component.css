@@ -2358,6 +2358,9 @@ button.map-buttonas {
   border: none !important;
   margin-bottom: 0px !important;
 }
+.chip-set-bar { 
+  margin-top: 10px;
+}
 .sub-categoriesfilterheader h2 span button {
   background: #53b2e8;
   border-radius: 25.1946px;
