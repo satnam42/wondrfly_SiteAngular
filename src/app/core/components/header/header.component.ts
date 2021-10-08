@@ -345,32 +345,16 @@ declare const $: any;
               >ENABLE</mat-slide-toggle
             >
             <div class="heading_alert">
-              Alerts
-              <span class="red_dot"
-                ><svg
-                  width="4"
-                  height="4"
-                  viewBox="0 0 4 4"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <circle cx="2" cy="2" r="2" fill="#FA627D" />
-                </svg>
-              </span>
-              <span class="red_heading_alert">
-                {{ user.notices?.count }} New</span
-              >
+            You have 3 New Notifications
               <span class="three_dots">
-                <p class="noti-read">Mark All as Read</p>
-                <!-- <svg width="20" height="4" viewBox="0 0 20 4" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="2" cy="2" r="2" fill="#C4C4C4" />
-              <circle cx="10" cy="2" r="2" fill="#C4C4C4" />
-              <circle cx="18" cy="2" r="2" fill="#C4C4C4" />
-            </svg> -->
+                <p class="noti-read">
+                  <span><img src="assets/dotshorizontal.png"></span>
+                </p>
                 <span *ngIf="isLogin" (click)="clearAll()"> clear all </span>
               </span>
             </div>
             <hr class="grey_line" />
+            <h6 class="today-heading">Today</h6>
             <div
               class="notification"
               *ngFor="
@@ -378,11 +362,12 @@ declare const $: any;
                 let i = index
               "
             >
-              <div class="noti_heading">
-                <span class="red_dot"
+            <div class="img-notif">
+                <img src="assets/notic1.png">
+                <span class="red_dot dots-span"
                   ><svg
-                    width="4"
-                    height="4"
+                    width="7"
+                    height="7"
                     viewBox="0 0 4 4"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -390,88 +375,53 @@ declare const $: any;
                     <circle cx="2" cy="2" r="2" fill="#FA627D" />
                   </svg>
                 </span>
-                <!-- Today, 11:55 PM -->
-                {{ notification.updatedOn | date: "MMM d,h:mm a" }}
-                <span
-                  class="in_close cursor"
-                  (click)="deleteNotification(notification, i)"
-                  ><svg
-                    width="6"
-                    height="6"
-                    viewBox="0 0 6 6"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M6 0.707027L5.29297 0L2.99999 2.29297L0.707027 0L0 0.707027L2.29297 2.99999L0 5.29297L0.707027 6L2.99999 3.70703L5.29296 6L5.99998 5.29297L3.70703 2.99999L6 0.707027Z"
-                      fill="#C5CED6"
-                    />
-                  </svg>
-                </span>
-              </div>
+            </div>
+            <div>
               <div class="noti_description">
                 {{ notification.description }}
               </div>
-            </div>
-            <div class="heading_alert info">
-              Updates<span class="blue_dot"
-                ><svg
-                  width="4"
-                  height="4"
-                  viewBox="0 0 4 4"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <circle cx="2" cy="2" r="2" fill="#53B2E8" />
-                </svg>
-              </span>
-              <span class="blue_heading_alert"> 2 New</span>
-            </div>
-            <hr class="grey_line" />
-            <div class="notification">
               <div class="noti_heading">
-                <span class="blue_dot"
-                  ><svg
-                    width="4"
-                    height="4"
-                    viewBox="0 0 4 4"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <circle cx="2" cy="2" r="2" fill="#53B2E8" />
-                  </svg>
-                </span>
-                Today, 11:55 PM
-              </div>
-              <div class="noti_description">
-                Neque iaculis neque, gravida est. Tempus, duis quis in ac,
-                placerat morbi purus etiam.
-              </div>
-            </div>
-            <div class="notification">
-              <div class="noti_heading">
-                <span class="blue_dot"
-                  ><svg
-                    width="4"
-                    height="4"
-                    viewBox="0 0 4 4"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <circle cx="2" cy="2" r="2" fill="#53B2E8" />
-                  </svg>
-                </span>
-                Today, 11:55 PM
-              </div>
-              <div class="noti_description">
-                Neque iaculis neque, gravida est. Tempus, duis quis in ac,
-                placerat morbi purus etiam.
+              {{ notification.updatedOn | date: "MMM d,h:mm a" }}
               </div>
             </div>
 
-            <div class="view_all">
-              <a> View All </a>
+
+
             </div>
+
+            <hr class="grey_line" />
+            <h6 class="today-heading">Earlier</h6>
+            <div
+              class="notification"
+              *ngFor="
+                let notification of user?.notices.notifications;
+                let i = index
+              "
+            >
+            <div class="img-notif">
+                <img src="assets/notic3.png">
+                <span class="red_dot dots-span"
+                  ><svg
+                    width="7"
+                    height="7"
+                    viewBox="0 0 4 4"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle cx="2" cy="2" r="2" fill="#FA627D" />
+                  </svg>
+                </span>
+            </div>
+            <div>
+              <div class="noti_description">
+                {{ notification.description }}
+              </div>
+              <div class="noti_heading">
+              {{ notification.updatedOn | date: "MMM d,h:mm a" }}
+              </div>
+            </div>
+
+
           </div>
         </div>
       </div>

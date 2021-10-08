@@ -212,7 +212,7 @@ header .navbar {
 	padding: 0px;
     }
     .modal-content .close {
-    color: #748494;
+      color: #C5CED6;
     position: absolute;
     top: 15px;
     right: 15px;
@@ -221,7 +221,7 @@ header .navbar {
 .modal-body.N_modal1 h2 {
     text-align: center;
     font-size: 20px;
-    color: #748494;
+    color: #C5CED6;
 }
 
 .bottom_btns .btn.delete_btn {
@@ -239,7 +239,7 @@ header .navbar {
 
 .heading_alert {
     color: #494949;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 500;
 
 }
@@ -247,12 +247,20 @@ span.red_heading_alert {
     color: #FA627D;
 }
 .noti_description {
-    font-size: 14px;
-    color: #494949;
+  font-size: 14px;
+  color: #494949;
+  margin-top: 7px;
 }
 .noti_heading {
-    color: #748494;
-    padding-bottom: 5px;
+  padding-bottom: 5px;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 18px;
+    text-align: justify;
+    letter-spacing: 0.001em;
+    color: #858585;
 }
 .modal-content.noti_modal {
     width: 70%;
@@ -262,9 +270,23 @@ span.red_heading_alert {
 }
 .modal-content.noti_modal .modal-body.N_modal1 {
     padding-right: 50px;
-    padding-left: 30px;}
+    padding-left: 30px;
+    padding-bottom: 30px;
+  }
 .notification {
     margin-top: 20px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+}
+span.red_dot.dots-span {
+  position: absolute;
+  top: -8px;
+  left: 16px;
+}
+.img-notif {
+  position: relative;
+  margin-right: 20px;
 }
 p.noti-read {
     font-family: 'Poppins';
@@ -278,7 +300,7 @@ p.noti-read {
     cursor: pointer;
 }
 .heading_alert {
-    margin-top: 30px;
+    margin-top: 40px;
 }
 span.blue_heading_alert {
     color: #53B2E8;
@@ -300,10 +322,11 @@ span.three_dots {
     float: right;
 }
 .notification:hover {
-    background: #EEF9FF;
+  background: #EEF9FF;
     border-radius: 8px;
-    padding: 5px;
-    transition: 0.2s;
+    padding-left: 7px;
+    padding-right: 7px;
+    transition: 0.5s;
 }
 span.in_close {
     float: right;
@@ -2271,6 +2294,18 @@ button.banner_button.cursor img {
 span.icon.rel {
     position: relative;
 }
+h6.today-heading {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 21px;
+  text-align: justify;
+  letter-spacing: 0.001em;
+  color: #748494;
+}
+
+
 @media screen and (min-width:850px) and (max-width:1023px)  {
 
   img.header-image-search {
