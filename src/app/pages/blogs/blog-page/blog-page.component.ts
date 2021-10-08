@@ -96,7 +96,10 @@ getBlog(){
       title = title.toLowerCase();
       title = title.replace(/ /g,"-");
       title = title.replace(/\?/g,"-");
-      this.router.navigate(['blogs/',title, data.id])
+      const url = this.router.serializeUrl(
+        this.router.createUrlTree(['blogs/',title, data.id])
+      );
+      window.open(url, '_blank');
     }
 
   }
