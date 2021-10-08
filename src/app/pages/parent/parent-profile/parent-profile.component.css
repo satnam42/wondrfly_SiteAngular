@@ -83,7 +83,7 @@ header .logo img {
 }
 
 .page_heading {
-  margin-top: 11px;
+  margin-top:50px;
 }
 
 .page_heading h2 {
@@ -235,6 +235,7 @@ header .logo img {
   box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
   padding: 50px 34px 20px 100px;
+  margin-top:50px;
 }
 
 .content_right .guardian_outer {
