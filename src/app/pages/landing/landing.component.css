@@ -22,11 +22,10 @@
 
 h2.title {
   font-family: "Poppins";
-  font-weight: normal;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 26px;
   line-height: 18px;
-  color: #494949;
+  color: #53b2e8;
 }
 
 .activity_category_list {
@@ -472,6 +471,32 @@ span.icon.rel {
 }
 .left-searchpd {
   padding: 5px;
+}
+.got-newsletter {
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.newsletter-div {
+  background: #DCF3FF;
+  border-radius: 20px;
+  padding: 60px;
+  position: relative;
+  padding-top: 75px;
+  padding-bottom: 70px;
+}
+.beta-suggestionbox .image-corners img {
+  width: 194px;
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+}
+.beta-suggestionbox .imgage-corners img {
+  width: 194px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
 }
 @media only screen and (min-width: 1024px) and (max-width: 1366px) and (orientation: portrait) {
   .container,
