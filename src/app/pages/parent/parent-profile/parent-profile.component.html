@@ -51,7 +51,7 @@
               <ul class="cursor">
                 <li>
                   <a [class.active]="profile" (click)="onProfile()"
-                    >Parent Details</a
+                    >Account Info</a
                   >
                 </li>
                 <!-- <li>
@@ -61,14 +61,14 @@
                   <a
                     [class.active]="children"
                     (click)="onChildren(currentUser.id)"
-                    >Children</a
+                    >Child Info</a
                   >
                 </li>
                 <li>
                   <a
                     [class.active]="guardian"
                     (click)="onGuardian(currentUser.id)"
-                    >Co-Parent</a
+                    >Co-Users</a
                   >
                 </li>
                 <li>
@@ -117,7 +117,7 @@
             <!-- ----------------------------my profile------------------------------- -->
 
             <div *ngIf="isProfile" class="personal_details">
-              <h2>Parent Details</h2>
+              <h2>Account Info</h2>
               <div class="row">
                 <div class="col-md-8">
                   <form [formGroup]="updateForm" class="details_form">
@@ -680,7 +680,7 @@
               class="guardian_outer personal_details children"
             >
               <h2>
-                Co-Parent Information
+                Co-Users
                 <a
                   [ngClass]="{ disable_next: guardianResponse?.length }"
                   data-toggle="modal"
@@ -794,7 +794,7 @@
               class="guardian_outer personal_details children"
             >
               <h2>
-                Child Information
+                Child Info
                 <a
                   data-toggle="modal"
                   data-target="#editModal"
@@ -1389,11 +1389,11 @@
                       Female
                     </option>
                     <option *ngIf="kid.sex === 'decline to answer'" selected>
-                      Decline To Answer
+                      Prefer not to say
                     </option>
                     <option value="male">Male</option>
                     <option value="female">Female</option>
-                    <option value="decline to answer">Decline To Answer</option>
+                    <option value="decline to answer">Prefer not to say</option>
                   </select>
                 </div>
               </div>

@@ -40,7 +40,7 @@ button:focus {
 .custom_select {
   height: auto;
   display: inline-block;
-  border-radius: 20px;
+  border-radius: 20px !important;
   min-width: 200px;
   min-height: 52px;
   line-height: 52px;
@@ -49,7 +49,9 @@ button:focus {
   padding: 0;
   width: 100%;
 }
-
+.custom_select:hover{
+  border: 1px solid #53b2e8;
+}
 header {
   background-color: #fff;
   padding: 19px 35px;
@@ -303,16 +305,23 @@ header .logo img {
 .form-group .form-control,
 .form-group input {
   width: 100%;
-  background: #ffffff;
-  border-radius: 20px;
-  border: 1px solid #e5e9ec;
-  min-height: 52px;
-  height: auto;
-  font-size: 13px;
-  color: #494949;
-  transition: 0.8s;
-  padding: 14px;
+    min-height: 52px;
+    height: auto;
+    font-size: 13px;
+    color: #494949;
+    transition: 0.8s;
+    padding: 14px;
+    background: #FFFFFF;
+    border: 1px solid #E5E9EC !important;
+    box-sizing: border-box;
+    border-radius: 20px !important;
 }
+.form-group .form-control:hover,
+.form-group input:hover{
+  border: 1px solid #53b2e8 !important;
+}
+
+
 
 .form-group textarea.form-control {
   min-height: 180px;
