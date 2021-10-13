@@ -532,6 +532,55 @@ declare const $: any;
         </div>
       </div>
     </div>
+
+    <!----------------------------------------- location Modal ------------------------------------------------------->
+
+<div
+  class="modal fade verification_modal Location-Modal"
+  id="locationModal"
+  data-backdrop="static"
+  data-keyboard="false"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <button
+        type="button"
+        class="close"
+        id="close_modal"
+        data-dismiss="modal"
+        aria-label="Close">
+        <span aria-hidden="true" class="icon-close"></span>
+      </button>
+      <div class="modal-body">
+        <div class="location-popupl">
+          <span><img class="logo-imgl" src="assets/logo.png" /></span>
+
+          <h1>May we access your location? </h1>
+
+          <h2>
+            <span><img src="assets/location-search1.png" /></span>
+            Help us find the best activities near you.
+          </h2>
+        </div>
+
+        <div class="sign_in_btn">
+          <button class="SignBtn cancel" data-dismiss="modal">Not Now</button>
+          <button
+          
+            data-dismiss="modal"
+            type="submit"
+            class="SignBtn"
+          >
+            Allow
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
   `,
   styleUrls: ["./header.component.css"],
 })
