@@ -738,14 +738,14 @@
             >
               <div class="forth_section_heading">
                 <h2 class="might-try">
-                  You might also try these
+                  You might also like these
                   <span
                     class="subCat"
                     (click)="setSubCategoryId(program?.subCategoryIds[0]._id)"
                     >{{ program?.subCategoryIds[0]?.name }}
                   </span>
                   <span *ngIf="program?.subCategoryIds?.length > 1"
-                    >or
+                    >and
                     <span
                       class="subCat"
                       (click)="setSubCategoryId(program?.subCategoryIds[1]._id)"
