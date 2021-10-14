@@ -3,6 +3,7 @@ import axios from 'axios';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { environment } from 'src/environments/environment';
 import { Title, Meta } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-why-wondrfly',
@@ -18,12 +19,17 @@ export class WhyWondrflyComponent implements OnInit {
   title = 'Why Choose Us? - Wondrfly';
   constructor(private ngxLoader: NgxUiLoaderService,
     private titleService: Title,
+    private router: Router,
     private metaTagService: Meta,) {
     this.userData = JSON.parse(localStorage.getItem('userData'));
 
     if (this.userData) {
       this.isLogin = true;
     }
+  }
+
+  gotoProfile(){
+    this.router.navigate(["parent/profile", this.userData.id]);
   }
 
 

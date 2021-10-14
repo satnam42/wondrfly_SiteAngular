@@ -100,8 +100,8 @@
                   <h1>1</h1>
                 </div>
 
-                <h3>Sign up</h3>
-
+                <h3 class="cursor"  *ngIf="!isLogin" [routerLink]="['/ask-to-join']">Sign up</h3>
+                <h3  *ngIf="isLogin" >Sign up</h3>
                 <h2>and create a quick and easyfamily profile</h2>
               </div>
 
@@ -110,7 +110,8 @@
                   <h1>2</h1>
                 </div>
 
-                <h3>Customize</h3>
+                <h3 class="cursor" *ngIf="isLogin" (click)='gotoProfile()'>Customize</h3>
+                <h3 class="cursor" *ngIf="!isLogin" [routerLink]="['/login']">Customize</h3>
 
                 <h2>
                   your wondrfly experience by sharing your child's age,
@@ -124,7 +125,7 @@
                   <h1>3</h1>
                 </div>
 
-                <h3>Explore</h3>
+                <h3 class="cursor"  [routerLink]="['/search']">Explore</h3>
 
                 <h2>
                   our database local pros anytime – find “just right” fun and
