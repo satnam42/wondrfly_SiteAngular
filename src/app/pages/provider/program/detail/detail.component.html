@@ -245,18 +245,18 @@
 
                         <p>
                           <img src="assets/watch.svg" alt="Loction Pin" />
-                          {{ program.realTime.from }}:00 -
-                          {{ program.realTime.to }}:00
+                          {{ program?.realTime.from }}:00 -
+                          {{ program?.realTime.to }}:00
                         </p>
                         <p
                           *ngIf="
-                            program.duration.hours || program.duration.minutes
+                            program.duration?.hours || program.duration?.minutes
                           "
                         >
                           <img src="assets/timer.svg" alt="Loction Pin" />{{
-                            program.duration.hours
+                            program.duration?.hours
                           }}
-                          : {{ program.duration.minutes }} Hours
+                          : {{ program.duration?.minutes }} Hours
                         </p>
 
                         <p *ngIf="!program.isFree">
@@ -335,15 +335,15 @@
               <div
                 class="description_text"
                 *ngIf="
-                  program.bookingCancelledIn.days &&
-                  program.bookingCancelledIn.hours
+                  program.bookingCancelledIn?.days &&
+                  program.bookingCancelledIn?.hours
                 "
               >
                 <h2>Cancellation Policy</h2>
                 <p>
                   <label>Booking can’t be cancelled before</label>
-                  {{ program.bookingCancelledIn.days }} days
-                  {{ program.bookingCancelledIn.hours }} Hours
+                  {{ program.bookingCancelledIn?.days }} days
+                  {{ program.bookingCancelledIn?.hours }} Hours
                 </p>
               </div>
 
