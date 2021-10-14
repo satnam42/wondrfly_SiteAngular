@@ -249,11 +249,10 @@ export class Header2Component implements OnInit {
     this.router.navigate(["/search"]);
   }
   logo() {
-    if (this.logoPosition) {
-      this.router.navigate([""]);
-    } else {
-      this.router.navigate(["/search"]);
-    }
+    this.router
+    .navigateByUrl("", { skipLocationChange: true })
+    .then(() => this.router.navigate(["/"]));
+      // this.router.navigate([""]);
   }
   ngOnInit() {}
 

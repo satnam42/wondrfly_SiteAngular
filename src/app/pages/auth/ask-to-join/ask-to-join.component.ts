@@ -1,4 +1,4 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -45,7 +45,8 @@ export class AskToJoinComponent implements OnInit {
     private apiservice: ApiService,
     public imageLoader: Globals,
     private toastr: ToastrService,
-    private activatedRoute: ActivatedRoute) {
+    private activatedRoute: ActivatedRoute,
+    private router: Router) {
       this.activatedRoute.params.subscribe(params => {
         if(params['id'].length>1){
         this.userData.userId = params['id'];
@@ -59,7 +60,11 @@ export class AskToJoinComponent implements OnInit {
     const num = Math.floor(Math.random() * this.signUpImages.length);
     this.signUpImage = this.signUpImages[num];
   }
-
+cancel(){
+  this.router
+  .navigateByUrl("", { skipLocationChange: true })
+  .then(() => this.router.navigate(["/"]));
+}
 
   askToJoin() {
     let email = this.userData.email.toLowerCase();

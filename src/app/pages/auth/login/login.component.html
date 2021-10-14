@@ -76,7 +76,7 @@
                             <div class="sign_in_btn">
                                 <button class="SignBtn" type="submit" (click)="signin()" [disabled]="signinForm.invalid">Sign
                                     IN</button>
-                                <button routerLink="/" class="SignBtn cancel">Cancel</button>
+                                <button class="SignBtn cancel" (click)="cancel()">Cancel</button>
                             </div>
                         </form>
                         <div class="row forgot_password">

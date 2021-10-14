@@ -64,9 +64,12 @@ export class LoginComponent implements OnInit {
   onPassword() {
     this.hide = !this.hide;
   }
-  cancel() {
-    this.router.navigate([""]);
+  cancel(){
+    this.router
+    .navigateByUrl("", { skipLocationChange: true })
+    .then(() => this.router.navigate(["/"]));
   }
+
   randomImage() {
     const num = Math.floor(Math.random() * this.signInImages.length);
     this.signInImage = this.signInImages[num];

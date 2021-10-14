@@ -291,9 +291,9 @@ declare const $: any;
                       <a class="dropdown-item cursor active-head" (click)="profile()"
                         ><img src="assets/Profile.svg" />Profile</a
                       >
-                      <a class="dropdown-item cursor active-head"><img src="assets/invites.svg"/>Invites (2)</a
+                      <a class="dropdown-item cursor active-head"><img src="assets/invites.svg" (click)="goToInviteList()"/>Invites (2)</a
                       >
-                      <a class="dropdown-item cursor active-head"><img src="assets/saved-prog.svg"/>Saved Activities (3)</a
+                      <a class="dropdown-item cursor active-head"><img src="assets/saved-prog.svg"(click)="savedList()" />Saved Activities (3)</a
                       >
                       <a class="dropdown-item cursor active-head"(click)="logout()"><img src="assets/Logout.svg" />Logout</a
                       >
@@ -647,7 +647,7 @@ export class HeaderComponent implements OnInit {
       this.logoPosition = true;
     }
     // if(this.routeName === '/search'|| this.routeName === '/'){ this.searchBar=true}
-    if( this.routeName === '/'){ this.searchBar=true}
+    if( this.routeName === '/' || this.routeName === '/parent/my-wondrfly'){ this.searchBar=true}
 
     if (this.user.role === "provider" || this.user.role === "parent") {
       if (this.user.role === "provider") {
@@ -661,11 +661,10 @@ export class HeaderComponent implements OnInit {
     this.getProfileProgress();
   }
   logo() {
-    if (this.logoPosition) {
-      this.router.navigate(["/parent/my-wondrfly"]);
-    } else {
-      this.router.navigate(["/search"]);
-    }
+    this.router
+    .navigateByUrl("/", { skipLocationChange: true })
+    .then(() => this.router.navigate(["parent/my-wondrfly"]));
+      // this.router.navigate([""]);
   }
   addProgram() {
     this.router.navigate(["/provider/program/add"]);
@@ -682,9 +681,8 @@ export class HeaderComponent implements OnInit {
   savedList() {
     if (this.user.role === "parent") {
       this.store.setItem("savedList", "1");
-      this.router
-        .navigateByUrl("/", { skipLocationChange: true })
-        .then(() => this.router.navigate(["parent/profile", this.user.id]));
+      this.router.navigateByUrl("/", { skipLocationChange: true }).then(() =>
+       this.router.navigate(["parent/profile", this.user.id]));
     }
   }
   getProfileProgress() {
@@ -771,6 +769,10 @@ export class HeaderComponent implements OnInit {
   }
   logout() {
     window.document.getElementById("open_feedback_modal").click();
+  }
+  goToInviteList(){
+    this.store.setItem('sendInvite','1')
+    this.router.navigate(['/parent/profile',this.user.id]);
   }
   submitFeedback() {
     this.feedbackData.id = this.user.id;
