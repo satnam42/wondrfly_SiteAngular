@@ -291,10 +291,8 @@ declare const $: any;
                       <a class="dropdown-item cursor active-head" (click)="profile()"
                         ><img src="assets/Profile.svg" />Profile</a
                       >
-                      <a class="dropdown-item cursor active-head"><img src="assets/invites.svg" (click)="goToInviteList()"/>Invites (2)</a
-                      >
-                      <a class="dropdown-item cursor active-head"><img src="assets/saved-prog.svg"(click)="savedList()" />Saved Activities (3)</a
-                      >
+                      <a class="dropdown-item cursor active-head"  (click)="goToInviteList()"><img src="assets/invites.svg"/>Invites</a>
+                      <a class="dropdown-item cursor active-head" (click)="savedList()"><img src="assets/saved-prog.svg"  />Saved Activities</a>
                       <a class="dropdown-item cursor active-head"(click)="logout()"><img src="assets/Logout.svg" />Logout</a
                       >
                   </div>
