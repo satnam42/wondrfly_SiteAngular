@@ -556,8 +556,8 @@ declare const $: any;
         <span aria-hidden="true" class="icon-close"></span>
       </button>
       <div class="modal-body">
-        <div class="location-popupl">
-          <span><img class="logo-imgl" src="assets/logo.png" /></span>
+        <div class="location-popup">
+          <span><img class="logo-img" src="assets/logo.png" /></span>
 
           <h1>May we access your location? </h1>
 
@@ -634,7 +634,7 @@ export class HeaderComponent implements OnInit {
     private apiservice: ApiService,
     private userdataservice: UserDataService,
     public imageLoader: Globals,
-    private toastr: ToastrService,  
+    private toastr: ToastrService,
     private mapsAPILoader: MapsAPILoader,
     private dataservice: DataService,
     public store: LocalStorageService

@@ -228,7 +228,7 @@ header .navbar {
     font-size: 14px;
     color: #748494;
 }
-.modal-dialog.modal-dialog-centered {
+#NotificationModal .modal-dialog.modal-dialog-centered {
     max-width: 800px;
 }
 
