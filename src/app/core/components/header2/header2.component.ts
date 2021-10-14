@@ -182,8 +182,8 @@ import { DataService } from "../../services/dataservice.service ";
         <span aria-hidden="true" class="icon-close"></span>
       </button>
       <div class="modal-body">
-        <div class="location-popupl">
-          <span><img class="logo-imgl" src="assets/logo.png" /></span>
+        <div class="location-popup">
+          <span><img class="logo-img" src="assets/logo.png" /></span>
 
           <h1>May we access your location? </h1>
 
@@ -227,7 +227,7 @@ export class Header2Component implements OnInit {
     lat: '',
     lng:'',
   }
- 
+
   zoom = 14;
   address: string;
   private geoCoder;

@@ -2019,3 +2019,87 @@ body {
   color: #ffffff;
   font-size:15px;
 }
+.modal-open .modal {
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.modal-open .modal::-webkit-scrollbar {
+  display: none;
+}
+
+
+// location popup
+.location-popup span img{
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+.logo-img{
+  width: 35%;
+  margin-bottom: 25px;
+}
+.location-popup {
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+.location-popup h1, .location-popup h2 {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  line-height: 36px;
+  text-align: center;
+  color: #494949;
+}
+.location-popup h1 {
+  font-size: 24px;
+}
+.location-popup h2 {
+  font-size: 20px;
+  padding-left: 40px;
+  padding-right: 80px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+}
+.location-popup h1, .location-popup h2 {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  line-height: 36px;
+  text-align: center;
+  color: #494949;
+}
+.sign_in_btn {
+  text-align: center;
+  margin: 8px 0 0;
+}
+.sign_in_btn button.SignBtn {
+  margin-left: 20px;
+}
+.SignBtn.cancel {
+  background: transparent;
+  border: 1px solid #53b2e8;
+  color: #53b2e8;
+  margin: 0 auto 0 16px;
+}
+.SignBtn {
+  background: #53b2e8;
+  border: 1px solid #53b2e8;
+  box-sizing: border-box;
+  box-shadow: 0 2px 2px rgb(0 0 0 / 12%);
+  border-radius: 50px;
+  min-width: 205px;
+  min-height: 55px;
+  line-height: 55px;
+  text-align: center;
+  color: #fff;
+  font-weight: 600;
+  font-size: 13px;
+  margin: 0 auto;
+  text-transform: uppercase;
+  transition: .8s;
+}
+.sign_in_btn button.SignBtn {
+  margin-left: 20px;
+}
+
