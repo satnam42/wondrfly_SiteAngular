@@ -40,6 +40,7 @@ export class SearchComponent implements OnInit {
   activityName: any = ''
   rating: any;
   filterData: any = {}
+  locationData: any ={}
   favPrograms: any;
   isMap: boolean = true;
   locations = [];
@@ -133,6 +134,8 @@ export class SearchComponent implements OnInit {
   isBetaPopUp:boolean = false;
   recentFilters:any =[]
   searchedSubCategory = ''
+  latt: any;
+  lngg: any;
   constructor(
     private router: Router,
     private apiservice: ApiService,
@@ -144,6 +147,16 @@ export class SearchComponent implements OnInit {
     private titleService: Title,
     private metaTagService: Meta,
   ) {
+    this.locationData = dataservice.getLocation()
+    console.log('this.locationData', this.locationData)
+    if(this.locationData){
+      if (this.locationData.lat && this.locationData.lng) {
+        this.latt =this.locationData.lat
+        this.lngg= this.locationData.lng
+      }
+    }
+
+
     this.filterData = dataservice.getOption()
     if(this.filterData){
     if (this.filterData.categoryId) {
@@ -198,6 +211,7 @@ this.toDate=e.endDate._d
   this.clickedMarker(e)
  }
   ngOnInit() {
+    console.log('latt', this.latt);
     this.titleService.setTitle(this.title);
     this.metaTagService.updateTag(
       { name: 'description', content: `Looking for some easy and fun summer activities for your kids? By visiting Wondrfly's search page you can find best programs or classes. ` }
@@ -219,6 +233,11 @@ this.toDate=e.endDate._d
           else if(this.selectedSubCategories.length){
                this.programBySubCategoryIds()
             }
+            else if(this.latt ||this.lngg ){
+              this.lat=this.latt
+              this.lng=this.lngg
+              this.programByLatLng();
+           }
        else {
         this.getPublishedProgram();
       }
@@ -265,7 +284,7 @@ this.toDate=e.endDate._d
   programByLatLng(){
     this.apiservice.programByLatLng(this.lat, this.lng).subscribe((res:any) => {
       this.showReset = true;
-      console.log('programs', res);
+      console.log('latlong', res);
       this.programs = res;
     });
   }

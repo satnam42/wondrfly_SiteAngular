@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class DataService {
   private data: any;
+  private location: any;
   setOption(option) {
     console.log('setOption', option);
     this.data = option;
@@ -12,5 +13,14 @@ export class DataService {
   getOption() {
     return this.data;
   }
+  setLocation(option) {
+    console.log('setOption', option);
+    this.location = option;
+  }
+  getLocation() {
+    return this.location;
+  }
+
+
   constructor() { }
 }

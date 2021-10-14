@@ -1,3 +1,4 @@
+import { MapsAPILoader } from "@agm/core";
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { ApiService } from "../../services/api.service.service";
@@ -195,7 +196,7 @@ import { DataService } from "../../services/dataservice.service ";
         <div class="sign_in_btn">
           <button class="SignBtn cancel" data-dismiss="modal">Not Now</button>
           <button
-          
+          (click)="setCurrentLocation()"
             data-dismiss="modal"
             type="submit"
             class="SignBtn"
@@ -222,10 +223,19 @@ export class Header2Component implements OnInit {
     subcatId: "",
     activityName: "",
   };
+  locationData: any = {
+    lat: '',
+    lng:'',
+  }
+ 
+  zoom = 14;
+  address: string;
+  private geoCoder;
   providersBySearch: any;
   constructor(
     private router: Router,
     private apiservice: ApiService,
+    private mapsAPILoader: MapsAPILoader,
     private dataservice: DataService
   ) {
     this.routeName = this.router.url;
@@ -274,4 +284,27 @@ export class Header2Component implements OnInit {
     this.router.navigate(["/provider/program-provider", provider.firstName, provider._id])
 
   }
+
+  // Get Current Location Coordinates
+  setCurrentLocation() {
+    this.mapsAPILoader.load().then(() => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position:any) => {
+          this.zoom = 14;
+          this.locationData.lat = position.coords.latitude;
+          this.locationData.lng = position.coords.longitude;
+          this.dataservice.setLocation(this.locationData)
+          this.router.navigate(['/search']);
+
+          if (this.routeName === "/search") {
+            this.router
+              .navigateByUrl("/", { skipLocationChange: true })
+              .then(() => this.router.navigate(["search"]));
+          }
+          // this.getAddress(this.lat, this.lng);
+        });
+      }      this.geoCoder = new google.maps.Geocoder;
+    });
+  }
+
 }

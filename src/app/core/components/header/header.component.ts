@@ -8,6 +8,7 @@ import { Globals } from "../../common/imageLoader";
 import { LocalStorageService } from "../../services";
 import { DataService } from "../../services/dataservice.service ";
 import { ToastrService } from "ngx-toastr";
+import { MapsAPILoader } from "@agm/core";
 
 declare const $: any;
 @Component({
@@ -569,7 +570,7 @@ declare const $: any;
         <div class="sign_in_btn">
           <button class="SignBtn cancel" data-dismiss="modal">Not Now</button>
           <button
-          
+          (click)="setCurrentLocation()"
             data-dismiss="modal"
             type="submit"
             class="SignBtn"
@@ -600,6 +601,10 @@ export class HeaderComponent implements OnInit {
     subcatId: "",
     activityName: "",
   };
+  locationData: any = {
+    lat: '',
+    lng:'',
+  }
 
   initialUrl: any;
   feedbackData: any = {
@@ -618,13 +623,19 @@ export class HeaderComponent implements OnInit {
   autoHide: number = 4000;
   categoriesBySearch: any;
   providersBySearch: any;
+  lat = 40.712776;
+  lng = -74.005974;
+  zoom = 14;
+  address: string;
+  private geoCoder;
   constructor(
     private router: Router,
     private auth: AuthsService,
     private apiservice: ApiService,
     private userdataservice: UserDataService,
     public imageLoader: Globals,
-    private toastr: ToastrService,
+    private toastr: ToastrService,  
+    private mapsAPILoader: MapsAPILoader,
     private dataservice: DataService,
     public store: LocalStorageService
   ) {
@@ -817,4 +828,26 @@ export class HeaderComponent implements OnInit {
     this.dataservice.setOption(this.filterData);
     this.router.navigate(["/search"]);
   }
+
+    // Get Current Location Coordinates
+    setCurrentLocation() {
+      this.mapsAPILoader.load().then(() => {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition((position:any) => {
+            this.zoom = 14;
+            this.locationData.lat = position.coords.latitude;
+            this.locationData.lng = position.coords.longitude;
+            this.dataservice.setLocation(this.locationData)
+            this.router.navigate(['/search']);
+            if (this.routeName === "/search") {
+              this.router
+                .navigateByUrl("/", { skipLocationChange: true })
+                .then(() => this.router.navigate(["search"]));
+            }
+            console.log(this.lat,this.lng)
+            // this.getAddress(this.lat, this.lng);
+          });
+        }      this.geoCoder = new google.maps.Geocoder;
+      });
+    }
 }
