@@ -287,6 +287,8 @@ this.toDate=e.endDate._d
       console.log('latlong', res);
       this.programs = res;
     });
+   this.locationData=''
+    this.dataservice.setLocation(this.locationData)
   }
   getAddress(latitude, longitude) {
     this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {
@@ -675,6 +677,7 @@ var providerName = provider.firstName;
     window.document.getElementById("close_modal").click();
     // window.document.getElementById("close_morefilter").click();
     window.document.getElementById("close_sharemodal").click();
+    
   }
 
    // ---------------------------------navigate to program detail page -------------------------------------------
