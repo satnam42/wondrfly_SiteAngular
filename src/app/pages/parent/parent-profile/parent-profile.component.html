@@ -686,7 +686,7 @@
                   data-toggle="modal"
                   data-target="#inviteGuardianModal"
                   class="btn_style save_btn cursor"
-                  >Invite</a
+                  >Invite User</a
                 >
               </h2>
 
@@ -902,7 +902,7 @@
                             ><span class="icon icon-edit"></span>Edit</a
                           >
                           <a
-                            *ngIf="kid?.isActivated"
+                            *ngIf="kid.isActivated"
                             class="dropdown-item cursor"
                             (click)="
                               activeDactiveChild(kid.id, false, currentUser.id)
@@ -910,7 +910,7 @@
                             ><span class="icon icon-trash"></span>Deactivate</a
                           >
                           <a
-                            *ngIf="!kid?.isActivated"
+                            *ngIf="!kid.isActivated"
                             class="dropdown-item cursor"
                             (click)="
                               activeDactiveChild(kid.id, true, currentUser.id)
