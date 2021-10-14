@@ -231,19 +231,37 @@ declare const $: any;
                 class="header_right row"
                 [ngClass]="{ 'after-nav': logoPosition }"
               >
-                <!-- <div class="headers_menu">
-              <ul>
-                <li class="cursor">
-                  <a [routerLink]="['/about-wondrfly']"> About Us</a>
-                </li>
-                <li class="cursor">
-                  <a [routerLink]="['/blogs']">Blog</a>
-                </li>
-                <li class="cursor">
-                  <a [routerLink]="['/faq']">FAQ</a>
-                </li>
-              </ul>
-            </div> -->
+
+            <div class="header-lefticons" *ngIf="!isLogin">
+                  <a class="share-lefticon cursor">
+                    <span class="icon rel"
+                      ><img src="assets/gift-box.svg"/>
+                      <span class="Button-badge noti">
+                        <span>1</span>
+                      </span>
+                    </span>
+                  </a>
+                  <a
+                    class="noti-lefticon cursor"
+                    data-toggle="modal"
+                    data-target="#NotificationModal"
+                  >
+                    <span class="icon rel"
+                      ><img src="assets/Notification-icon.svg" alt="Logo" />
+                      <span class="Button-badge" *ngIf="user.notices?.count">
+                        <span *ngIf="user.notices?.count <= 10">{{
+                          user.notices?.count
+                        }}</span>
+                        <span *ngIf="user.notices?.count > 10">{{ 10 }}+</span>
+                      </span>
+                    </span>
+                  </a>
+                  <!-- <a class="share-lefticon cursor" (click)="savedList()">
+                    <span class="icon rel"
+                      ><img src="assets/bookmark_gray.svg" alt="Logo" />
+                    </span>
+                  </a> -->
+                </div>
                 <div class="progress-imagewith">
                   <a
                     class="cursor"
@@ -269,14 +287,18 @@ declare const $: any;
                       </div>
                     </div>
                   </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item cursor" (click)="profile()"
-                      ><img src="assets/profile.svg" /> Profile</a
-                    >
-                    <a class="dropdown-item cursor" (click)="logout()"
-                      ><img src="assets/logout.svg" /> Logout</a
-                    >
+                  <div class="dropdown-menu header-logoutdrop" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item cursor active-head" (click)="profile()"
+                        ><img src="assets/Profile.svg" />Profile</a
+                      >
+                      <a class="dropdown-item cursor active-head"><img src="assets/invites.svg"/>Invites (2)</a
+                      >
+                      <a class="dropdown-item cursor active-head"><img src="assets/saved-prog.svg"/>Saved Activities (3)</a
+                      >
+                      <a class="dropdown-item cursor active-head"(click)="logout()"><img src="assets/Logout.svg" />Logout</a
+                      >
                   </div>
+
                   <div class="profile-completion">
                     <a class="progress_bar">
                       <div class="progress profile_text" id="progress">
@@ -288,28 +310,7 @@ declare const $: any;
                   </div>
                 </div>
 
-                <div class="header-lefticons" *ngIf="!isLogin">
-                  <a
-                    class="noti-lefticon cursor"
-                    data-toggle="modal"
-                    data-target="#NotificationModal"
-                  >
-                    <span class="icon rel"
-                      ><img src="assets/Notification-icon.svg" alt="Logo" />
-                      <span class="Button-badge" *ngIf="user.notices?.count">
-                        <span *ngIf="user.notices?.count <= 10">{{
-                          user.notices?.count
-                        }}</span>
-                        <span *ngIf="user.notices?.count > 10">{{ 10 }}+</span>
-                      </span>
-                    </span>
-                  </a>
-                  <a class="share-lefticon cursor" (click)="savedList()">
-                    <span class="icon rel"
-                      ><img src="assets/bookmark_gray.svg" alt="Logo" />
-                    </span>
-                  </a>
-                </div>
+
               </div>
             </div>
           </nav>

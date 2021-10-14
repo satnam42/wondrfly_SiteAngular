@@ -2281,7 +2281,7 @@ button.banner_button.cursor img {
   position: absolute;
   bottom: 44%;
   right:-57%;
-  background-color: #fa627d;
+  background-color: #53B2E8;
   font-size: 10px;
   font-weight: 500;
   color: #fff;
@@ -2290,6 +2290,9 @@ button.banner_button.cursor img {
   width: 20px;
   padding: 3px;
   text-align: center;
+}
+.Button-badge.noti{
+  background-color: #F99964 !important;
 }
 span.icon.rel {
     position: relative;
@@ -2304,6 +2307,27 @@ h6.today-heading {
   letter-spacing: 0.001em;
   color: #748494;
 }
+.header-logoutdrop .active-head:hover{
+  background: #EEF9FF;
+  border-radius: 20px !important;
+  color:#53B2E8;
+}
+.profile-completion {
+  display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 @media screen and (min-width:850px) and (max-width:1023px)  {
