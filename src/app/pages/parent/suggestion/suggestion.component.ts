@@ -44,7 +44,9 @@ export class SuggestionComponent implements OnInit {
     private store:LocalStorageService
    ) {
     this.currentUser = this.auth.currentUser();
-
+if(!this.currentUser){
+  this.router.navigate(['/']);
+}
   }
   searchSubCategory(key){
     this.apiservice.searchTag(key).subscribe((res:any)=>{
