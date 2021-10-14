@@ -2026,20 +2026,20 @@ body {
 
 
 // location popup
-#locationModal .location-popup span img{
+.Location-Modal .location-popup span img{
   margin-left: auto;
   margin-right: auto;
   display: block;
 }
-#locationModal .logo-img{
+.Location-Modal .logo-img{
   width: 35%;
   margin-bottom: 25px;
 }
-#locationModal .location-popup {
+.Location-Modal .location-popup {
   padding-top: 25px;
   padding-bottom: 25px;
 }
-#locationModal .location-popup h1, #locationModal .location-popup h2 {
+.Location-Modal .location-popup h1, .Location-Modal .location-popup h2 {
   font-family: "Poppins";
   font-style: normal;
   font-weight: 500;
@@ -2047,10 +2047,10 @@ body {
   text-align: center;
   color: #494949;
 }
-#locationModal .location-popup h1 {
+.Location-Modal .location-popup h1 {
   font-size: 24px;
 }
-#locationModal .location-popup h2 {
+.Location-Modal .location-popup h2 {
   font-size: 20px;
   padding-left: 40px;
   padding-right: 80px;
@@ -2058,7 +2058,7 @@ body {
   justify-content: flex-start;
   align-items: baseline;
 }
-#locationModal .location-popup h1, .location-popup h2 {
+.Location-Modal .location-popup h1, .location-popup h2 {
   font-family: "Poppins";
   font-style: normal;
   font-weight: 500;
@@ -2066,20 +2066,20 @@ body {
   text-align: center;
   color: #494949;
 }
-#locationModal .sign_in_btn {
+.Location-Modal .sign_in_btn {
   text-align: center;
   margin: 8px 0 0;
 }
-#locationModal .sign_in_btn button.SignBtn {
+.Location-Modal .sign_in_btn button.SignBtn {
   margin-left: 20px;
 }
-#locationModal .SignBtn.cancel {
+.Location-Modal .SignBtn.cancel {
   background: transparent;
   border: 1px solid #53b2e8;
   color: #53b2e8;
   margin: 0 auto 0 16px;
 }
-#locationModal .SignBtn {
+.Location-Modal .SignBtn {
   background: #53b2e8;
   border: 1px solid #53b2e8;
   box-sizing: border-box;
@@ -2096,7 +2096,7 @@ body {
   text-transform: uppercase;
   transition: .8s;
 }
-#locationModal .sign_in_btn button.SignBtn {
+.Location-Modal .sign_in_btn button.SignBtn {
   margin-left: 20px;
 }
 
