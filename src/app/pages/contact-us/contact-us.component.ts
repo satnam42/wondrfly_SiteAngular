@@ -43,10 +43,10 @@ export class ContactUsComponent implements OnInit {
       this.ngxLoader.stop();
       if(res.isSuccess){
         this.contactUsForm.reset();
-        this.toastr.info( 'Success', res.data)
+        // this.toastr.info( 'Success', res.data)
       }
       else {
-        this.toastr.info(res.error )
+        this.toastr.error(res.error )
       }
 });
 this.ngxLoader.stop();

@@ -200,16 +200,16 @@ export class SignupPopupComponent implements OnInit {
           window.document.getElementById("close_modal").click();
           this.store.setObject('userData', res.data);
           this.store.setItem('token', res.data.token);
-          this.toastr.info('Success', this.message );
+          // this.toastr.info('Success', this.message );
           this.router.navigate(['parent/login-parent']);
         }
         else {
-          this.toastr.info(res.error )
+          this.toastr.error(res.error )
         }
       })
     }
   }).catch(error => {
-    this.toastr.info(  error.response.data.data[0].messages[0].message )
+    this.toastr.error(  error.response.data.data[0].messages[0].message )
   });
   }
 

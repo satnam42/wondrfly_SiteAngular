@@ -76,15 +76,14 @@ export class SignUpGuardianComponent implements OnInit {
       this.ngxLoader.stop();
       if (res.isSuccess) {
         this.router.navigate(['/login']);
-        this.toastr.info('Success',this.message);
+        // this.toastr.info('Success',this.message);
       }else {
-        this.toastr.info(res.error);
-        this.toastr.info( res.error );
+        this.toastr.error(res.error);
       }
     });
         }
       }).catch(error => {
-        this.toastr.info( error.response.data.data[0].messages[0].message)
+        this.toastr.error( error.response.data.data[0].messages[0].message)
       });
   }
 

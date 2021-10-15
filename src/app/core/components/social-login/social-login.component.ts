@@ -145,7 +145,7 @@ export class SocialLoginComponent implements OnInit {
    }
   }
 }).catch(error => {
-  this.toastr.info( error.response.data.data[0].messages[0].message )
+  this.toastr.error( error.response.data.data[0].messages[0].message )
 });
   }
 
@@ -174,7 +174,7 @@ strapiSignup(){
     if(error.response.data.statusCode===400){
       this.strapiLogin()
     }else{
-    this.toastr.info(error.response.data.data[0].messages[0].message)
+    this.toastr.error(error.response.data.data[0].messages[0].message)
     }
   });
 }

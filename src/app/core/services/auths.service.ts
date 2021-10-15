@@ -55,7 +55,7 @@ export class AuthsService {
       const dataModel = responseData
       if (!dataModel.isSuccess) {
         if (responseData.status === 200) {
-          this.toastr.info(dataModel.error);
+          this.toastr.error(dataModel.error);
           throw new Error(dataModel.code || dataModel.message || 'failed');
         } else {
           throw new Error(responseData.status + '');

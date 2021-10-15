@@ -114,16 +114,16 @@ export class SignUpComponent implements OnInit {
         if (res.isSuccess === true) {
           this.store.setObject('userData', res.data);
           this.store.setItem('token', res.data.token);
-          this.toastr.info( 'Success',  this.message);
+          // this.toastr.info( 'Success',  this.message);
           this.router.navigate(['login-parent']);
         }
         else {
-          this.toastr.info(res.error )
+          this.toastr.error(res.error )
         }
       });
         }
       }).catch(error => {
-        this.toastr.info( error.response.data.data[0].messages[0].message)
+        this.toastr.error( error.response.data.data[0].messages[0].message)
       });
     }
 
@@ -148,15 +148,15 @@ export class SignUpComponent implements OnInit {
         if (res.isSuccess === true) {
           this.store.setObject('userData', res.data);
           this.store.setItem('token', res.data.token);
-          this.toastr.info('Success', this.message );
+          // this.toastr.info('Success', this.message );
           this.router.navigate(['loginProvider']);
         } else {
-          this.toastr.info( res.error)
+          this.toastr.error( res.error)
         }
       });
         }
       }).catch(error => {
-        this.toastr.info(  error.response.data.data[0].messages[0].message)
+        this.toastr.error(  error.response.data.data[0].messages[0].message)
       });
 
     }
