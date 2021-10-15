@@ -139,7 +139,7 @@ export class LoginComponent implements OnInit {
     axios
       .post(`${this.blogUrl}/auth/local`, {
         password: "strapipassword",
-        identifier: this.user.email,
+        identifier: this.credentials.email,
       })
       .then((response) => {
         if (response.status === 200) {
@@ -151,6 +151,8 @@ export class LoginComponent implements OnInit {
             this.router.navigate(["profile", this.user.id]);
           } else if (this.user.role === "provider") {
             // this.toastr.success(this.message);
+          } else if (!this.user.isOnBoardingDone && this.user.role === "provider") {
+            this.toastr.success(this.message);
             this.router.navigate(["loginProvider"]);
           } else if (
             this.user.isOnBoardingDone &&
@@ -160,6 +162,8 @@ export class LoginComponent implements OnInit {
             this.router.navigate(["parent/my-wondrfly"]);
           } else if (this.user.role === "parent") {
             // this.toastr.success(this.message);
+          } else if (this.user.role === "parent" && !this.user.isOnBoardingDone) {
+            this.toastr.success(this.message);
             this.router.navigate(["parent/login-parent"]);
           } else if (this.user.role === "superAdmin") {
             // this.toastr.success("Please Login As Provider Or Parent Only!");
@@ -181,7 +185,7 @@ export class LoginComponent implements OnInit {
     axios
       .post(`${this.blogUrl}/auth/local/register`, {
         username: this.user.firstName,
-        email: this.user.email,
+        email: this.credentials.email,
         password: "strapipassword",
       })
       .then((response) => {
@@ -204,6 +208,11 @@ export class LoginComponent implements OnInit {
           } else if (this.user.role === "parent") {
             // this.toastr.success(this.message);
             this.router.navigate(["login-parent"]);
+            this.toastr.success(this.message);
+            this.router.navigate(["parent/my-wondrfly"]);
+          } else if (this.user.role === "parent" && !this.user.isOnBoardingDone) {
+            this.toastr.success(this.message);
+            this.router.navigate(["parent/login-parent"]);
           } else if (this.user.role === "superAdmin") {
             // this.toastr.success(
             //   "You Are An Admin!",
