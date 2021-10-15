@@ -81,10 +81,10 @@ if(!this.currentUser){
     });
   }
 
-  // ------------------------------------------------get blogs  -------------------------------------------
+  // ------------------------------------------------get resources  -------------------------------------------
 
-  getBlog() {
-    axios.get(`${this.blogUrl}/resources`).then(response => {
+  getResources() {
+    axios.get(`${this.blogUrl}/resources?_start=0&_limit=2`).then(response => {
       this.resources = response.data
       console.log('resources',this.resources)
     });
@@ -125,7 +125,7 @@ sendInvite(){
     this.getChildByParentId()
     this.getCategoryList();
     this.feedbackSurveyList();
-    this.getBlog();
+    this.getResources();
     this.titleService.setTitle(this.title);
     this.metaTagService.updateTag(
       { name: 'description', content: 'Looking for the best programs and activities for your kids? Wondrfly is the leading platform for parents to discover indoor and outdoor activities for kids ages 3-14 years.' },
