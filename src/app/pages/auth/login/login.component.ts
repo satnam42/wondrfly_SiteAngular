@@ -152,7 +152,7 @@ export class LoginComponent implements OnInit {
           } else if (this.user.role === "provider") {
             // this.toastr.success(this.message);
           } else if (!this.user.isOnBoardingDone && this.user.role === "provider") {
-            this.toastr.success(this.message);
+            // this.toastr.success(this.message);
             this.router.navigate(["loginProvider"]);
           } else if (
             this.user.isOnBoardingDone &&
@@ -163,7 +163,7 @@ export class LoginComponent implements OnInit {
           } else if (this.user.role === "parent") {
             // this.toastr.success(this.message);
           } else if (this.user.role === "parent" && !this.user.isOnBoardingDone) {
-            this.toastr.success(this.message);
+            // this.toastr.success(this.message);
             this.router.navigate(["parent/login-parent"]);
           } else if (this.user.role === "superAdmin") {
             // this.toastr.success("Please Login As Provider Or Parent Only!");
@@ -208,10 +208,10 @@ export class LoginComponent implements OnInit {
           } else if (this.user.role === "parent") {
             // this.toastr.success(this.message);
             this.router.navigate(["login-parent"]);
-            this.toastr.success(this.message);
+            // this.toastr.success(this.message);
             this.router.navigate(["parent/my-wondrfly"]);
           } else if (this.user.role === "parent" && !this.user.isOnBoardingDone) {
-            this.toastr.success(this.message);
+            // this.toastr.success(this.message);
             this.router.navigate(["parent/login-parent"]);
           } else if (this.user.role === "superAdmin") {
             // this.toastr.success(
