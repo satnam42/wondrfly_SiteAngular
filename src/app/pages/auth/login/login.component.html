@@ -9,11 +9,11 @@
                             <img src="assets/logo.png">
                         </div>
                         <form class="form" [formGroup]="signinForm">
-                            <div class="form-grongup socialicons-input">
+                            <!-- <div class="form-grongup socialicons-input">
                                 <div class="input_outer">
                                    <app-social-login></app-social-login>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="form-group mt-5">
                                 <label>Email</label>
                                 <div class="input_outer">
@@ -81,7 +81,7 @@
                         </form>
                         <div class="row forgot_password">
                             <div class="col-md-6 forgot_text">
-                                <p>Not a member yet? <a class="cursor" routerLink="/sign-up">SIGN Up</a></p>
+                                <p>Not a member yet? <a class="cursor"  [routerLink]="['/ask-to-join']">SIGN Up</a></p>
                             </div>
                             <div class="col-md-6 forgot_text right">
                                 <p><a class="cursor" (click)="onForgotPassword()">forgot password</a></p>

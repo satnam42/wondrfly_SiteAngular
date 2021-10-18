@@ -7,10 +7,12 @@ import { WhyWondrflyComponent } from './why-wondrfly/why-wondrfly.component';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { CoreModule } from 'src/app/core/core.module';
 import { MarkdownModule } from 'src/app/core/shared/markdown/markdown.module';
+import { AboutJoinBetaComponent } from './about-join-beta/about-join-beta.component';
+
 
 
 @NgModule({
-  declarations: [TermConditionComponent,PrivacyPolicyComponent,WhyWondrflyComponent],
+  declarations: [TermConditionComponent,PrivacyPolicyComponent,WhyWondrflyComponent, AboutJoinBetaComponent],
   imports: [
     CommonModule,
     CoreModule,

@@ -61,11 +61,11 @@ export class ForgotPasswordComponent implements OnInit {
     this.apiservice.otpRequest(this.credentials.email).subscribe((res: any) => {
       this.ngxLoader.stop();
       if (res.isSuccess === true) {
-        // this.isOTP = true;
-        // this.isNewPassword = false;
+        this.isOTP = true;
+        this.isNewPassword = false;
         window.document.getElementById("sendotp").click();
-        // this.isForgot = false;
-        // this.credentials.otpToken = res.message.otpToken
+        this.isForgot = false;
+        this.credentials.otpToken = res.message.otpToken
     }
       else {
         // this.isForgot = true;
@@ -96,6 +96,9 @@ export class ForgotPasswordComponent implements OnInit {
       }
     });
   }
+
+
+
   resetPassword() {
     window.scroll(0, 0);
     this.ngxLoader.start();
