@@ -2100,3 +2100,19 @@ body {
   margin-left: 20px;
 }
 
+
+// initial alpha logo css
+.initial-alpha {
+  position: relative;
+  background: #dcf3ff;
+}
+.initial-alpha h1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #53b2e8;
+  font-size: 40px;
+  font-family: "poppins";
+}
+// initial alpha logo css end
