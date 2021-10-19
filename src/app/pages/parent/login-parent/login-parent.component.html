@@ -8,9 +8,9 @@
       <span class="wnderfly-btn">© 2021 WONDRFLY Inc.</span>
       <div [hidden]="!step1" class="box text-center p-3 bg-white">
         <p></p>
-        <h2 class="my_heading1">Where do you live?</h2>
+        <h2 class="my_heading1">Where are you?</h2>
         <p class="pt-1">
-          Your location will help us to find the best activities near by you
+          Help us find the best activities near you.
         </p>
         <form [formGroup]="locationForm">
           <div class="N_inputs_container">
@@ -310,8 +310,8 @@
       </div>
 
       <div *ngIf="step5" class="box text-center p-3 bg-white">
-        <h2 class="my_heading1">Welcome to Wondrfly</h2>
-        <div class="N_inputs_container">
+        <h2 class="my_heading1">Welcome to Wondrfly!</h2>
+        <!-- <div class="N_inputs_container">
           <form [formGroup]="addChildForm">
             <div class="business_name why-wonderflyinput">
               <input
@@ -370,7 +370,7 @@
               >
             </div>
           </form>
-        </div>
+        </div> -->
         <div class="welcomeImg">
           <img src="assets/welcomeScreen.png" class="welcomeImg" alt="" />
         </div>

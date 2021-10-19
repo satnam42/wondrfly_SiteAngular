@@ -22,6 +22,7 @@ export class ContactUsComponent implements OnInit {
     private ngxLoader:NgxUiLoaderService) {
   }
   ngOnInit() {
+    window.scroll(0,0);
     this.titleService.setTitle(this.title);
     this.metaTagService.updateTag(
       { name: 'description', content: `If you have any questions or concerns about Wondrfly's online classes, activites or programs for kids? Contact us over phone or mail or fill the form below. ` }
