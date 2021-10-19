@@ -236,9 +236,9 @@ declare const $: any;
                   <a class="share-lefticon cursor">
                     <span class="icon rel"
                       ><img src="assets/gift-box.svg"/>
-                      <span class="Button-badge noti">
+                      <!-- <span class="Button-badge noti">
                         <span>1</span>
-                      </span>
+                      </span> -->
                     </span>
                   </a>
                   <a
