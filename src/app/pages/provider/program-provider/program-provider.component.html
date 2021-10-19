@@ -85,7 +85,7 @@
                                 <div class="skills_sec" *ngIf='user?.categories?.length' >
                                     <h3>Skills</h3>
                                     <div class="skill_outer" *ngFor='let skill of user.subCategoryIds' >
-                                        <span>{{skill.name}}</span>
+                                        <span>{{skill?.name}}</span>
                                     </div>
                                                                   </div>
                             </div>
@@ -181,7 +181,7 @@
                                             [ngClass]="{'health_icon_disable':!health.status}" src="{{health.img}}">
                                     </div>
                                     <div class="media-footer">
-                                        <p class="health_name">{{health.name}}</p>
+                                        <p class="health_name">{{health?.name}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -202,7 +202,7 @@
                                     </div>
                                     <div class="slide_text">
 
-                                            <h3 (click)='goToProgramDetail(program)'> <span class="title cursor">{{program.name}} </span>
+                                            <h3 (click)='goToProgramDetail(program)'> <span class="title cursor">{{program?.name}} </span>
                                                 <!-- <span class="rating_box">
                                                     <img src="assets/star.svg" alt="Star Image">
                                                     <span>5.0 (15)</span>
@@ -240,15 +240,15 @@
                         <div *ngFor='let p of programs' (mapClick)="mapClicked(previous)">
                             <agm-marker *ngIf="p.lat && p.lng" [iconUrl]="markerUrl" [latitude]="p.lat"
                                 [longitude]="p.lng" (markerClick)="clickedMarker(previous)">
-                                <strong>{{p.name}}</strong>
+                                <strong>{{p?.name}}</strong>
                                 <agm-info-window #previous>
 
                                   <div class="map-popup">
                                     <h1>
-                                      {{p.name}}
+                                      {{p?.name}}
                                     </h1>
                                     <h2>
-                                      by {{p.programOwner}}
+                                      by {{p?.programOwner}}
                                     </h2>
                                     <div class="rating-starsearch">
                                       <p>
@@ -344,7 +344,7 @@
 
 
                 <div class="provider_full carousel-cat" *ngIf="isGenOverview && programs?.length">
-                    <h4 class="might-try">You might also like these <span class="subCat" (click)="setSubCategoryId(user.subCategoryIds[0]._id)">{{user.subCategoryIds[0].name}} </span> <span *ngIf="user.subCategoryIds?.length>1">and <span class="subCat" (click)="setSubCategoryId(user.subCategoryIds[1]._id)">{{user.subCategoryIds[1].name}}</span></span> activities: <a class="view_all cursor" (click)="onActivities()">View all</a> </h4>
+                    <h4 class="might-try">You might also like these <span class="subCat" (click)="setSubCategoryId(user.subCategoryIds[0]._id)">{{user.subCategoryIds[0]?.name}} </span> <span *ngIf="user.subCategoryIds?.length>1">and <span class="subCat" (click)="setSubCategoryId(user.subCategoryIds[1]._id)">{{user.subCategoryIds[1]?.name}}</span></span> activities: <a class="view_all cursor" (click)="onActivities()">View all</a> </h4>
                      <div class="row">
                         <div class="col-12" *ngIf="programs?.length">
                           <!--Start carousel-->
@@ -361,7 +361,7 @@
                                           </div>
                                           <div class="slide_text">
                                             <h3>
-                                                <span class="title cursor"  (click)='goToProgramDetail(program)' >{{program.name}}</span>
+                                                <span class="title cursor"  (click)='goToProgramDetail(program)' >{{program?.name}}</span>
                                                 <!-- <div class="rating_box">
                                                   <img src="assets/star.svg" alt="Star Image">
                                                   <span>5.0 (15)</span>
@@ -403,7 +403,7 @@
                                               </div>
                                               <div class="slide_text">
                                                 <h3>
-                                                  <span class="title cursor"  (click)='goToProgramDetail(program)' >{{program.name}}</span>
+                                                  <span class="title cursor"  (click)='goToProgramDetail(program)' >{{program?.name}}</span>
                                                   <!-- <div class="rating_box">
                                                     <img src="assets/star.svg" alt="Star Image">
                                                     <span>5.0 (15)</span>
