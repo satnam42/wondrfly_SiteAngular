@@ -1,5 +1,5 @@
 .beta-suggestionheading {
-  margin-top: 100px;
+  margin-top:70px;
 }
 .beta-suggestionheading h1 {
   font-family: "Poppins";
@@ -33,6 +33,7 @@
   padding: 20px;
   padding-top: 50px;
   padding-bottom: 50px;
+  border-radius: 20px;
 }
 .beta-suggestionbox h1 {
   font-family: "Poppins";
@@ -49,14 +50,14 @@
 .beta-suggestionbox .imgage-corners img {
   width: 194px;
   position: absolute;
-  left: 0px;
-  top: 0px;
+  left: 2px;
+  top: 4px;
 }
 .beta-suggestionbox .image-corners img {
   width: 194px;
   position: absolute;
-  right: 0px;
-  bottom: 0px;
+  right: 2px;
+  bottom: 4px;
 }
 .search-filterupper {
   padding: 20px;
@@ -453,6 +454,7 @@ span.upper-blog-view {
 span.d-flex.justify-content-end {
   cursor: pointer;
   color: #53b2e8;
+  text-transform: capitalize;
 }
 .lower-blog-sec .card {
   background: #ffffff;
@@ -748,6 +750,46 @@ section.blog-explore .boxs {
   height: 100%;
   object-fit: cover;
 }
+.blog-explore.explore-fixed .beta-invitedata{
+  padding: 10px;
+}
+.blog-explore.explore-fixed {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  z-index: 999;
+}
+.blog-explore.explore-fixed .boxs {
+  background: #FFFFFF;
+  border-radius: 10px;
+  box-shadow: 0px 2px 10px rgb(0 0 0 / 15%);
+}
+.blog-explore.explore-fixed .boxs .col-md-6 {
+  padding-left: 0px;
+}
+.blog-explore.explore-fixed .beta-invitedata h1{
+  color: #53B2E8;
+  padding-top: 30px;
+}
+.blog-explore.explore-fixed .beta-invitedata a {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 140%;
+  letter-spacing: 0.001em;
+  text-decoration-line: underline;
+  color: #53B2E8;
+  float: right;
+  margin-top: 20px;
+}
+.blog-explore.explore-fixed .beta-invitedata img {
+  float: right;
+}
+
+
+
+
 
 @media only screen and (min-width: 1024px) and (max-width: 1366px) and (orientation: portrait) {
   .container,
