@@ -702,25 +702,25 @@
               >
                 <div class="col-12">
                   <div class="Children_table">
-                    <div _ngcontent-flq-c2="" class="page_heading small-box">
-                      <div _ngcontent-flq-c2="" class="profile_outer">
-                        <div _ngcontent-flq-c2="" class="content-img">
+                    <div class="page_heading small-box">
+                      <div class="profile_outer">
+                        <div class="content-img">
                           <img
-                            _ngcontent-flq-c2=""
+                          
                             *ngIf="guardian?.avatarImages"
                             alt="Profile Image"
                             src="{{ guardian?.avatarImages }}"
                           />
                           <img
-                            _ngcontent-flq-c2=""
+                          
                             *ngIf="!guardian?.avatarImages"
                             alt="Profile Image"
                             src="assets/default_img.png"
                           />
                         </div>
                       </div>
-                      <h2 _ngcontent-flq-c2="">{{ guardian?.firstName }}</h2>
-                      <h3 _ngcontent-flq-c2="">
+                      <h2>{{ guardian?.firstName }}</h2>
+                      <h3>
                         {{ guardian?.relationToChild }}
                       </h3>
                     </div>
@@ -815,47 +815,48 @@
               >
                 <div class="col-12">
                   <div class="Children_table">
-                    <div _ngcontent-flq-c2="" class="page_heading small-box">
-                      <div _ngcontent-flq-c2="" class="profile_outer">
-                        <div _ngcontent-flq-c2="" class="content-img">
+                    <div class="page_heading small-box">
+                      <div class="profile_outer" >
+                        <div class="content-img">
                           <img
-                            _ngcontent-flq-c2=""
+                          
                             alt="Profile Image"
                             *ngIf="kid.avtar"
                             src="{{ kid.avtar }}"
                           />
+                          <!-- <h1 *ngIf="!kid.avtar" [class.initial-alpha]="!kid.avtar">{{kid.name.charAt(0)}}</h1> -->
                           <img
-                            _ngcontent-flq-c2=""
+                          
                             alt="Profile Image"
                             *ngIf="!kid.avtar"
                             src="assets/default_img.png"
                           />
                         </div>
                         <div
-                          _ngcontent-flq-c2=""
+                        
                           class="edit_profile edit-12354"
                         >
-                          <a _ngcontent-flq-c2=""
-                            ><label _ngcontent-flq-c2="" class="cursor">
+                          <a
+                            ><label class="cursor">
                               <input
-                                _ngcontent-flq-c2=""
+                              
                                 accept="image/*"
                                 (change)="childImageUpdate($event, i)"
                                 name="image"
                                 style="display: none"
                                 type="file" />
                               <img
-                                _ngcontent-flq-c2=""
+                              
                                 alt="Profile Image"
                                 src="assets/edit_white.svg" /></label
                           ></a>
                         </div>
                       </div>
-                      <h2 _ngcontent-flq-c2="">{{ kid.name }}</h2>
-                      <h3 _ngcontent-flq-c2="" *ngIf="kid.sex == 'male'">
+                      <h2>{{ kid.name }}</h2>
+                      <h3 *ngIf="kid.sex == 'male'">
                         Son
                       </h3>
-                      <h3 _ngcontent-flq-c2="" *ngIf="kid.sex == 'female'">
+                      <h3 *ngIf="kid.sex == 'female'">
                         Daughter
                       </h3>
                     </div>

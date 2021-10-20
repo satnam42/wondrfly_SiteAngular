@@ -234,7 +234,7 @@ declare const $: any;
 
             <div class="header-lefticons" *ngIf="!isLogin">
                   <a class="share-lefticon cursor">
-                    <span class="icon rel"
+                    <span class="icon rel" routerLink='/invite'
                       ><img src="assets/gift-box.svg"/>
                       <!-- <span class="Button-badge noti">
                         <span>1</span>
@@ -271,7 +271,7 @@ declare const $: any;
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <div class="head_profile">
+                    <div class="head_profile" [class.initial-alpha]="!user?.avatarImages">
                       <div class="progress" id="progress">
                         <span class="progress-left">
                           <span class="progress-bar"></span>
@@ -279,11 +279,11 @@ declare const $: any;
                         <span class="progress-right">
                           <span class="progress-bar"></span>
                         </span>
-                        <img
+                        <img *ngIf="user?.avatarImages"
                           [src]="user?.avatarImages"
-                          (error)="user.avatarImages = 'assets/default_img.png'"
                           alt="Profile image"
                         />
+                        <h4 *ngIf="!user?.avatarImages" [class.initial-alpha]="!user?.avatarImages">{{user.firstName.charAt(0)}}<span *ngIf="user.lastName">{{user.lastName.charAt(0)}}</span></h4>
                       </div>
                     </div>
                   </a>
@@ -645,7 +645,7 @@ export class HeaderComponent implements OnInit {
       this.logoPosition = true;
     }
     // if(this.routeName === '/search'|| this.routeName === '/'){ this.searchBar=true}
-    if( this.routeName === '/' || this.routeName === '/parent/my-wondrfly'){ this.searchBar=true}
+    if( this.routeName === '/' || this.routeName === '/parent/my-wondrfly' || this.routeName==='/invite'){ this.searchBar=true}
 
     if (this.user.role === "provider" || this.user.role === "parent") {
       if (this.user.role === "provider") {
