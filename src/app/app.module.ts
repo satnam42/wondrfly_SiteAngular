@@ -17,6 +17,7 @@ import { MailchimpSubscribeFormModule } from './core/components/mailchimp-subscr
 import { ChatService } from './core/services/chat.service';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { MarkdownModule } from './core/shared/markdown/markdown.module';
+import { TypeFormComponent } from './pages/type-form/type-form.component';
 
 
 const config: SocketIoConfig = { url: environment.socketUrl, options: {} };
@@ -26,6 +27,7 @@ const config: SocketIoConfig = { url: environment.socketUrl, options: {} };
   declarations: [
     AppComponent,
     LandingComponent,
+    TypeFormComponent
   ],
   imports: [
     BrowserModule,
