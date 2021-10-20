@@ -2316,6 +2316,67 @@ h6.today-heading {
   display: none;
 }
 
+.box {
+  width:245px;
+  background-color: #53B2E8;;
+  color: #fff;
+  padding:10px;
+  position:absolute;
+  border-radius: 6px;
+  right: -35px;
+  top: 39px;
+  display: none;
+}
+.box.arrow-top button {
+  background: #FFFFFF;
+  border-radius: 20px;
+  border: 0px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 10px;
+  line-height: 15px;
+  letter-spacing: 0.001em;
+  color: #53B2E8;
+  margin-top:8px;
+  float: right;
+}
+
+.box.arrow-top h2 {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 15px;
+  letter-spacing: 0.001em;
+  color: #FFFFFF;
+  margin-top: 5px;
+}
+.box.arrow-top h1 {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: 0.001em;
+  color: #FFFFFF;
+}
+.box.arrow-top:after {
+  content: " ";
+  position: absolute;
+  right: 30px;
+  top: -15px;
+  border-top: none;
+  border-right: 15px solid transparent;
+  border-left: 15px solid transparent;
+  border-bottom: 15px solid #53B2E8;;
+}
+span.icon.rel:hover .box{
+  display: block;
+}
+
 
 .initial-alpha h4{
     position: absolute;

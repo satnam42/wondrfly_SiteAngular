@@ -239,6 +239,12 @@ declare const $: any;
                       <!-- <span class="Button-badge noti">
                         <span>1</span>
                       </span> -->
+                      <div class="box arrow-top">
+                        <h1>Try new feature</h1>
+                        <h2>Laoreet enim, id nulla iaculis dictumst nunc sem. Odio egestas mattis et pulvinar nunc velit eu sit felis.</h2>
+                        <button>Ok</button>
+                      </div>
+
                     </span>
                   </a>
                   <a
