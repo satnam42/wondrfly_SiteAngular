@@ -10,6 +10,11 @@
   color: #53b2e8;
   text-align: center;
 }
+.upper-blog {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
 .beta-suggestionheading h2 {
   font-family: "Poppins";
   font-style: normal;
