@@ -8,11 +8,12 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { CoreModule } from 'src/app/core/core.module';
 import { MarkdownModule } from 'src/app/core/shared/markdown/markdown.module';
 import { AboutJoinBetaComponent } from './about-join-beta/about-join-beta.component';
+import { MoreResourcesComponent } from './more-resources/more-resources.component';
 
 
 
 @NgModule({
-  declarations: [TermConditionComponent,PrivacyPolicyComponent,WhyWondrflyComponent, AboutJoinBetaComponent],
+  declarations: [TermConditionComponent,PrivacyPolicyComponent,WhyWondrflyComponent, AboutJoinBetaComponent, MoreResourcesComponent],
   imports: [
     CommonModule,
     CoreModule,

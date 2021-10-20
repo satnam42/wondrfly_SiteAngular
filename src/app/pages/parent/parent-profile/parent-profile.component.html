@@ -21,13 +21,19 @@
           >
             <div class="page_heading">
               <div class="profile_outer">
-                <div class="profile_image">
-                  <img
+                <div class="profile_image" [class.initial-alpha]="!user?.avatarImages">
+                  <img 
+                  *ngIf="user?.avatarImages"
                     src="{{ user.avatarImages }}"
-                    (error)="user.avatarImages = 'assets/default_img.png'"
                     alt="Profile Image"
                   />
+                  <h1 *ngIf="!user?.avatarImages" [class.initial-alpha]="!user?.avatarImages">{{user.firstName.charAt(0)}}<span *ngIf="user.lastName">{{user.lastName.charAt(0)}}</span></h1>
+
                 </div>
+                
+                  
+
+               
                 <div class="edit_profile">
                   <a>
                     <label class="cursor">

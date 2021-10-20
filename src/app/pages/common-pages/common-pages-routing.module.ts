@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutJoinBetaComponent } from './about-join-beta/about-join-beta.component';
+import { MoreResourcesComponent } from './more-resources/more-resources.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { TermConditionComponent } from './term-condition/term-condition.component';
 import { WhyWondrflyComponent } from './why-wondrfly/why-wondrfly.component';
@@ -10,6 +11,7 @@ const routes: Routes = [
   {path: 'about-wondrfly', component:WhyWondrflyComponent},
   {path: 'privacyPolicy', component: PrivacyPolicyComponent },
   {path: 'about-beta', component: AboutJoinBetaComponent },
+  {path: 'resources', component: MoreResourcesComponent },
 
 ];
 
