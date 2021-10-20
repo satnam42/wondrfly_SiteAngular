@@ -7,6 +7,7 @@ import { LocalStorageService } from 'src/app/core/services';
 import { ApiService } from 'src/app/core/services/api.service.service';
 import { AuthsService } from 'src/app/core/services/auths.service';
 import { DataService } from 'src/app/core/services/dataservice.service ';
+import { TypeFormService } from 'src/app/core/services/typeform.service';
 import { environment } from 'src/environments/environment.prod';
 @Component({
   selector: 'parent-suggestion',
@@ -41,7 +42,8 @@ export class SuggestionComponent implements OnInit {
     public auth: AuthsService,
     private titleService: Title,
     private metaTagService: Meta,
-    private store:LocalStorageService
+    private store:LocalStorageService,
+    private typeFormService: TypeFormService
    ) {
     this.currentUser = this.auth.currentUser();
 if(!this.currentUser){
@@ -121,11 +123,17 @@ sendInvite(){
   this.store.setItem('sendInvite','1')
   this.router.navigate(['/parent/profile',this.currentUser.id]);
 }
+getForms(){
+  this.typeFormService.getForms().subscribe((res: any) => {
+    console.log('typeFormService', res)
+  });
+}
   ngOnInit() {
     this.getChildByParentId()
     this.getCategoryList();
     this.feedbackSurveyList();
     this.getResources();
+    this.getForms();
     this.titleService.setTitle(this.title);
     this.metaTagService.updateTag(
       { name: 'description', content: 'Looking for the best programs and activities for your kids? Wondrfly is the leading platform for parents to discover indoor and outdoor activities for kids ages 3-14 years.' },
