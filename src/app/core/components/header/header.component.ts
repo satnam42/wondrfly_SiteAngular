@@ -297,7 +297,7 @@ declare const $: any;
                       <a class="dropdown-item cursor active-head" (click)="profile()"
                         ><img src="assets/new-profile.svg" />Profile</a
                       >
-                      <a class="dropdown-item cursor active-head"  (click)="goToInviteList()"><img src="assets/invites.svg"/>Invites</a>
+                      <a class="dropdown-item cursor active-head"  (click)="goToInviteList()"><img src="assets/invites.svg"/>Beta Invites</a>
                       <a class="dropdown-item cursor active-head" (click)="savedList()"><img src="assets/saved-prog.svg"  />Saved Activities</a>
                       <a class="dropdown-item cursor active-head"(click)="logout()"><img src="assets/new-logout.svg" />Logout</a
                       >
