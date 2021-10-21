@@ -69,7 +69,7 @@ export class InvitesComponent implements OnInit {
 
 
   ngOnInit(): void {
-
+    this.betaProgramInvitedUsers(this.user.id)
     this.inviteForm = new FormGroup({
       fullName: new FormControl("", [Validators.required]),
       email: new FormControl("", [Validators.required, Validators.email]),

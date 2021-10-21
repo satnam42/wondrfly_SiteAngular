@@ -11,13 +11,57 @@
                     <h1>Your Beta Invites</h1>
                     <h2>
                       <img src="assets/invite-open.svg">
-                      Your invites: 3
+                      Your invites: {{invitedUsers?.length}}
                     </h2>
                   </div>
                   <div class="betainvite-btnnew">
-                    <h3>Aliquam sit sem faucibus ac, faucibus amet in diam malesuada. Tempus amet, eget non posuere ac risus adipiscing.</h3>
+                    <h3 *ngIf="!invitedUsers?.length">Aliquam sit sem faucibus ac, faucibus amet in diam malesuada. Tempus amet, eget non posuere ac risus adipiscing.</h3>
 
-                  </div>
+                    <div class="table-beta" *ngIf="invitedUsers?.length">
+                      <table class="table table-borderless">
+                        <thead>
+                          <tr>
+                            <th scope="col" class="align-item-center">
+                              Full Name
+                              <span class="ml-2"
+                                ><img src="assets/refresh.png"
+                              /></span>
+                            </th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Expires in</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr class="beta-row" *ngFor="let invited of invitedUsers">
+                            <td class="align-item-center">
+                              <span class="mr-2"
+                                ><img src="assets/beta-img.png"
+                              /></span>
+                              {{ invited.name }}
+                            </td>
+                            <td>{{ invited.email }}</td>
+                            <td *ngIf="invited.joined" class="align-item-center">
+                              <span class="mr-2"
+                                ><img src="assets/tick-sucess.png"
+                              /></span>
+                              Accepted
+                            </td>
+                            <td *ngIf="!invited?.joined">
+                              <span class="mr-2"><img src="assets/spin.png" /></span>
+                              Pending
+                            </td>
+
+                            <td>
+                              <span *ngIf="invited.date">
+                                <!-- <counter [futureString]="invited?.date"></counter> -->
+                              </span>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                                    </div>
 
                   <button class="beta-btninvite"  data-toggle="modal"  data-target="#betaInvite">
                     SEND Invite

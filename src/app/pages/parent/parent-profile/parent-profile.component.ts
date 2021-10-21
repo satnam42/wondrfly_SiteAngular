@@ -431,7 +431,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked,OnDestro
       this.favourite = "active";
       this.isProfile = false;
       this.profile = "";
-    
+
     this.isSetting = false;
     this.setting = "";
     this.isChat = false;
