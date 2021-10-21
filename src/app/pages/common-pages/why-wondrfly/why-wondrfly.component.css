@@ -289,7 +289,42 @@ section.family-wonderfly .image-corners img {
 section.family-wonderfly {
   position: relative;
 }
-
+.got-newsletter {
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.newsletter-div {
+  background: #DCF3FF;
+  border-radius: 20px;
+  padding: 60px;
+  position: relative;
+  padding-top: 75px;
+  padding-bottom: 70px;
+}
+.beta-suggestionbox .image-corners img {
+  width: 194px;
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+}
+.beta-suggestionbox .imgage-corners img {
+  width: 194px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.imgage-corners.newslett {
+  position: static;
+}
+h2.title{
+  font-family: "Poppins";
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 18px;
+  color: #53b2e8;
+}
 @media only screen and (min-width: 1024px) and (max-width: 1366px) and (orientation: portrait) {
   section.wave-sect .wave-bar .first-circle {
     max-width: 150px;

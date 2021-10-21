@@ -2326,6 +2326,7 @@ h6.today-heading {
   right: -35px;
   top: 39px;
   display: none;
+  transition: 0.5s;
 }
 .box.arrow-top button {
   background: #FFFFFF;
@@ -2375,6 +2376,7 @@ h6.today-heading {
 }
 span.icon.rel:hover .box{
   display: block;
+  transition: 0.5s;
 }
 
 

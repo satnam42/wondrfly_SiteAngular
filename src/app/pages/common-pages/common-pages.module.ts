@@ -9,6 +9,7 @@ import { CoreModule } from 'src/app/core/core.module';
 import { MarkdownModule } from 'src/app/core/shared/markdown/markdown.module';
 import { AboutJoinBetaComponent } from './about-join-beta/about-join-beta.component';
 import { MoreResourcesComponent } from './more-resources/more-resources.component';
+import { MailchimpSubscribeFormModule } from 'src/app/core/components/mailchimp-subscribe-form/mailchimp-subscribe-form.module';
 
 
 
@@ -20,6 +21,7 @@ import { MoreResourcesComponent } from './more-resources/more-resources.componen
     CommonPagesRoutingModule,
     LazyLoadImageModule,
     MarkdownModule,
+    MailchimpSubscribeFormModule
   ]
 })
 export class CommonPagesModule { }
