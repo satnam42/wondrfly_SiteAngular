@@ -92,13 +92,14 @@ export class FaqHomeComponent implements OnInit {
 
 
   ngOnInit() {
+    window.scroll(0,0)
     this.titleService.setTitle(this.title);
     this.metaTagService.updateTag(
       { name: 'description', content: "Check out our FAQ section to find out some of the most frequently asked questions about the online classes for kids. Visit our website for more info." }
     );
     this.metaTagService.addTag(
       { name: 'keywords', content: 'frequently asked questions about kids activities, fun questions for kids'}
-    ); 
+    );
 
 
     console.log('all questions', this.allQuestions)

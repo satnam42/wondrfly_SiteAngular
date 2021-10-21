@@ -109,3 +109,12 @@
 .contact-usform .image-corners img {
   width: 250px;
 }
+.chat-icon {
+  position: relative;
+  background: #53b2e8;
+  border-radius: 50%;
+  width: 4%;
+  padding: 10px;
+  float: right;
+}
+

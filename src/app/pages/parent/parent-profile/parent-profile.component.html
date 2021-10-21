@@ -22,7 +22,7 @@
             <div class="page_heading">
               <div class="profile_outer">
                 <div class="profile_image" [class.initial-alpha]="!user?.avatarImages">
-                  <img 
+                  <img
                   *ngIf="user?.avatarImages"
                     src="{{ user.avatarImages }}"
                     alt="Profile Image"
@@ -30,10 +30,10 @@
                   <h1 *ngIf="!user?.avatarImages" [class.initial-alpha]="!user?.avatarImages">{{user.firstName.charAt(0)}}<span *ngIf="user.lastName">{{user.lastName.charAt(0)}}</span></h1>
 
                 </div>
-                
-                  
 
-               
+
+
+
                 <div class="edit_profile">
                   <a>
                     <label class="cursor">
@@ -706,13 +706,13 @@
                       <div class="profile_outer">
                         <div class="content-img">
                           <img
-                          
+
                             *ngIf="guardian?.avatarImages"
                             alt="Profile Image"
                             src="{{ guardian?.avatarImages }}"
                           />
                           <img
-                          
+
                             *ngIf="!guardian?.avatarImages"
                             alt="Profile Image"
                             src="assets/default_img.png"
@@ -819,34 +819,34 @@
                       <div class="profile_outer" >
                         <div class="content-img">
                           <img
-                          
+
                             alt="Profile Image"
                             *ngIf="kid.avtar"
                             src="{{ kid.avtar }}"
                           />
                           <!-- <h1 *ngIf="!kid.avtar" [class.initial-alpha]="!kid.avtar">{{kid.name.charAt(0)}}</h1> -->
                           <img
-                          
+
                             alt="Profile Image"
                             *ngIf="!kid.avtar"
                             src="assets/default_img.png"
                           />
                         </div>
                         <div
-                        
+
                           class="edit_profile edit-12354"
                         >
                           <a
                             ><label class="cursor">
                               <input
-                              
+
                                 accept="image/*"
                                 (change)="childImageUpdate($event, i)"
                                 name="image"
                                 style="display: none"
                                 type="file" />
                               <img
-                              
+
                                 alt="Profile Image"
                                 src="assets/edit_white.svg" /></label
                           ></a>
@@ -868,7 +868,7 @@
                       </div>
                       <div class="ist-contentimg">
                         <span><img src="assets/building.png" /></span>
-                        <h3>{{ kid.schoolInfo }}</h3>
+                        <h3>{{ kid.age }} Years old</h3>
                       </div>
 
                       <p>Interests</p>
@@ -1417,7 +1417,7 @@
                   />
                 </div>
               </div>
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <label>School</label>
                 <div class="input_outer">
                   <input
@@ -1434,7 +1434,7 @@
                     ><img src="assets/pencil-blue.png"
                   /></span>
                 </div>
-              </div>
+              </div> -->
 
               <div class="form-group">
                 <label>Grade Level</label>
@@ -1449,19 +1449,32 @@
                     <option *ngIf="kid.gradeLevel === 'kindergarten'" selected>
                       Kindergarten
                     </option>
-                    <option *ngIf="kid.gradeLevel === 'grade 1-12'" selected>
+                    <!-- <option *ngIf="kid.gradeLevel === 'grade 1-12'" selected>
                       Grade 1-12
-                    </option>
+                    </option> -->
                     <option value="pre-school or earlier">
                       Pre-school or earlier
                     </option>
                     <option value="kindergarten" selected>Kindergarten</option>
-                    <option value="grade 1-12" selected>Grade 1-12</option>
+                    <option value="grade 1" selected>Grade 1</option>
+                    <option value="grade 2" selected>Grade 2</option>
+                    <option value="grade 3" selected>Grade 3</option>
+                    <option value="grade 4" selected>Grade 4</option>
+                    <option value="grade 5" selected>Grade 5</option>
+                    <option value="grade 6" selected>Grade 6</option>
+                    <option value="grade 7" selected>Grade 7</option>
+                    <option value="grade 8" selected>Grade 8</option>
+                    <option value="grade 9" selected>Grade 9</option>
+                    <option value="grade 10" selected>Grade 10</option>
+                    <option value="grade 11" selected>Grade 11</option>
+                    <option value="grade 12" selected>Grade 12</option>
+
+
                   </select>
                 </div>
               </div>
 
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <label>Relationship to child</label>
                 <div class="custom_select">
                   <select
@@ -1492,7 +1505,7 @@
                     <option value="other">Other</option>
                   </select>
                 </div>
-              </div>
+              </div> -->
 
               <div class="form-group interest">
                 <label>Intrests</label>
