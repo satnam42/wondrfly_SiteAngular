@@ -63,7 +63,7 @@
                     </div>
                                     </div>
 
-                  <button class="beta-btninvite"  data-toggle="modal"  data-target="#betaInvite">
+                  <button  [disabled]="invitedUsers?.length>=3" class="beta-btninvite"  data-toggle="modal"  data-target="#betaInvite">
                     SEND Invite
                   </button>
 
