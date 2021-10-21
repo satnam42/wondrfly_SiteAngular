@@ -18,55 +18,40 @@
                     <h3 *ngIf="!invitedUsers?.length">Aliquam sit sem faucibus ac, faucibus amet in diam malesuada. Tempus amet, eget non posuere ac risus adipiscing.</h3>
                     <div class="table-beta" *ngIf="invitedUsers?.length">
                       <div class="container">
-                        <div class="row beta-row">
+                        <div class="row beta-row" *ngFor="let invitedUser of invitedUsers" [ngClass]="{'highlight':invitedUser?.joined}">
                           <div class="col-md-2">
-                            <h1>Janet Jackson </h1>
+                            <h1>{{invitedUser?.name}} </h1>
                           </div>
                           <div class="col-md-2">
-                            <h1>vishi@yopmail.com</h1>
+                            <h1>{{invitedUser?.email}}</h1>
                           </div>
                           <div class="col-md-2">
-                            <div class="btn-flex">
+                            <div class="btn-flex" *ngIf="!invitedUser?.joined">
                               <span class="mr-2"><img src="assets/spin.png" /></span>
                               <h1>Pending</h1>
                             </div>
+                            <div class="btn-flex" *ngIf="invitedUser?.joined">
+                              <span class="mr-2"><img src="assets/tick-sucess.png" /></span>
+                              <h1 class="accep-clr">Accepted</h1>
+                            </div>
+                            <!-- <div class="btn-flex">
+                              <span class="mr-2"><img src="assets/red-close.png" /></span>
+                              <h1 class="ntaccep-clr">Not accepted</h1>
+                            </div> -->
 
                           </div>
                           <div class="col-md-3">
-                            <h1>Expires in:1d 10h 30m</h1>
+                            <h1>Expires in: 1d 0h 9m</h1>
                           </div>
                           <div class="col-md-2">
                             <div class="btn-flex">
                               <!-- <button class="beta-btninvite">RESEND</button> -->
-                              <button class="beta-btninvite ml-2">CANCEL</button>
+                              <button [hidden]="invitedUser?.joined"class="beta-btninvite ml-2">CANCEL</button>
                             </div>
                           </div>
                         </div>
-                        <div class="row beta-row highlight">
-                          <div class="col-md-2">
-                            <h1>Janet Jackson </h1>
-                          </div>
-                          <div class="col-md-2">
-                            <h1>vishi@yopmail.com</h1>
-                          </div>
-                          <div class="col-md-2">
-                            <div class="btn-flex">
-                              <span class="mr-2"><img src="assets/tick-sucess.png" /></span>
-                              <h1 class="accep-clr">Accepted</h1>
-                            </div>
 
-                          </div>
-                          <div class="col-md-3">
-                            <h1>Expires in:1d 10h 30m</h1>
-                          </div>
-                          <div class="col-md-2">
-                            <div class="btn-flex">
-                              <!-- <button class="beta-btninvite">RESEND</button>
-                              <button class="beta-btninvite ml-2">CANCEL</button> -->
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row beta-row">
+                        <!-- <div class="row beta-row">
                           <div class="col-md-2">
                             <h1>Janet Jackson </h1>
                           </div>
@@ -88,7 +73,7 @@
                               <button class="beta-btninvite ml-2">CANCEL</button>
                             </div>
                           </div>
-                        </div>
+                        </div> -->
                       </div>
                     </div>
 
