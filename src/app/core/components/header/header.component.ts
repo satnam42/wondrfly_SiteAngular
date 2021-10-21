@@ -235,7 +235,7 @@ declare const $: any;
             <div class="header-lefticons" *ngIf="!isLogin">
                   <a class="share-lefticon cursor">
                     <span class="icon rel" routerLink='/invite'
-                      ><img src="assets/gift-box.svg"/>
+                      ><img src="{{gitBoxImage}}"/>
                       <!-- <span class="Button-badge noti">
                         <span>1</span>
                       </span> -->
@@ -633,6 +633,7 @@ export class HeaderComponent implements OnInit {
   zoom = 14;
   address: string;
   private geoCoder;
+  gitBoxImage='assets/gift-box.svg';
   constructor(
     private router: Router,
     private auth: AuthsService,
@@ -649,6 +650,9 @@ export class HeaderComponent implements OnInit {
     this.routeName = this.router.url;
     if (this.routeName === "/search") {
       this.logoPosition = true;
+    }
+    if (this.routeName === "/invite") {
+      this.gitBoxImage = 'assets/invite-open.svg';
     }
     // if(this.routeName === '/search'|| this.routeName === '/'){ this.searchBar=true}
     if( this.routeName === '/' || this.routeName === '/parent/my-wondrfly' || this.routeName==='/invite'){ this.searchBar=true}
