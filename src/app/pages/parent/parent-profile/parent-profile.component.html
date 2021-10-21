@@ -914,7 +914,7 @@
                             (click)="
                               activeDactiveChild(kid.id, false, currentUser.id)
                             "
-                            ><span class="icon icon-trash"></span>Deactivate</a
+                            ><span class="icon icon-trash"></span>Remove</a
                           >
                           <a
                             *ngIf="!kid.isActivated"
@@ -1215,7 +1215,7 @@
         </button>
         <div class="modal-body">
           <div class="form_outer">
-            <h2 class="title">Guardian Information</h2>
+            <h2 class="title">Co-User Info</h2>
 
             <form class="details_form" [formGroup]="addGuardianForm">
               <div class="form-group">
