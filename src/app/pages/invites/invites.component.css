@@ -7,7 +7,7 @@
     position: relative;
   }
   .box {
-    width: 60%;
+    width: 83%;
     padding-top: 45px !important;
     border-radius: 20px;
     background: #ffffff;
@@ -18,12 +18,8 @@
     min-height: 400px;
   }
   .menu-box {
-    position: absolute;
-    width: 100%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    padding-top: 80px;
+    padding-top: 150px;
+    padding-bottom: 150px;
 }
 .wnderfly-btn h1 {
   font-family: "Poppins";
@@ -221,4 +217,46 @@ span.parent-edit{
   font-weight: 600;
   color: #53b2e8 !important;
   transition: 0.8s;
+}
+.table-beta {
+  margin-top: 30px;
+}
+.beta-row {
+  border: 1px solid #53B2E8;
+box-sizing: border-box;
+border-radius: 20px;
+padding: 20px;
+align-items: baseline;
+margin-bottom: 20px;
+}
+.btn-flex button.beta-btninvite {
+  margin-top: 0px !important;
+}
+.btn-flex {
+  display: flex;
+  align-items: baseline;
+}
+h1.ntaccep-clr {
+  color: #FA627D !important;
+}
+h1.accep-clr {
+  color: #53B2E8!important;
+}
+button.beta-btninvite.ml-2 {
+  background: transparent;
+  color: #53b2e8;
+  border: 1px solid #53b2e8;
+}
+.beta-row h1 {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 18px;
+  color: #494949;
+}
+.row.beta-row.highlight {
+  background: #EAF8FF;
+  border-radius: 20px;
+  border: 0px;
 }

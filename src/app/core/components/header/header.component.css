@@ -1929,11 +1929,13 @@ img.header-image-search {
 mat-icon.field-icon {
     float: right;
     margin-right: 5px;
-    margin-top:-45px;
+    margin-top:-38px;
     position: relative;
     z-index: 2;
 }
-
+img.invite-gift {
+  width: 23px;
+}
 .form-error-msg {
     color: red;
 }

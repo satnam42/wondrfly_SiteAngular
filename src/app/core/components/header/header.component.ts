@@ -235,7 +235,7 @@ declare const $: any;
             <div class="header-lefticons" *ngIf="!isLogin">
                   <a class="share-lefticon cursor">
                     <span class="icon rel" routerLink='/invite'
-                      ><img src="{{gitBoxImage}}"/>
+                      ><img class="invite-gift" src="{{gitBoxImage}}"/>
                       <!-- <span class="Button-badge noti">
                         <span>1</span>
                       </span> -->

@@ -247,7 +247,7 @@
 mat-icon.field-icon {
     float: right;
     margin-right: 5px;
-    margin-top: -37px;
+    margin-top: -38px;
     position: relative;
     z-index: 2;
 }
@@ -285,7 +285,7 @@ select.ng-invalid.ng-touched {
     color: #beb4b4;
 }
 
-    
+
 .fb_button {
     background: #4560B4;
     border-radius: 20px;
