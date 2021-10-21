@@ -35,7 +35,7 @@ export class SuggestionComponent implements OnInit {
   activityName:any=''
   currentUser: any;
   kids:Child[];
-
+  isNewFeaturePopUp:boolean;
   constructor(private router: Router,
     private apiservice: ApiService,
     private dataservice: DataService,

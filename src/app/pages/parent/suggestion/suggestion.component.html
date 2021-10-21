@@ -190,7 +190,7 @@
       </div>
     </section>
 
-    <section class="blog-explore">
+    <section class="blog-explore" >
       <div class="container">
         <div class="row">
           <div class="col-md-12">
@@ -219,7 +219,7 @@
       </div>
     </section>
 
-    <div class="blog-explore explore-fixed">
+    <div class="blog-explore explore-fixed" [hidden]="isNewFeaturePopUp">
       <div class="container">
         <div class="row">
           <div class="col-md-8">
@@ -227,12 +227,12 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="img-invite">
-                    <img src="assets/beta-invite.png" alt="invite-image" />
+                    <img src="assets/beta-invite.png" alt="invite-image"  />
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="beta-invitedata">
-                    <img src="assets/closecolor.svg">
+                    <img class="cursor" src="assets/closecolor.svg" (click)="isNewFeaturePopUp=!isNewFeaturePopUp">
                     <h1>New Feature: Invites</h1>
                     <p>This is your chance to tell others about Wondrfly beta!</p>
                     <a href="#">TRY NOW</a>
