@@ -115,7 +115,11 @@ h1.ask-heading {
   text-align: center;
   letter-spacing: 0.001em;
   color: #777CEA;
-  margin-bottom: 15px;
+  margin-bottom: 25px;
+  margin-top: 50px;
+}
+span.beta-span {
+    color: #53B2E8;
 }
 .otp_outer {
     position: relative;

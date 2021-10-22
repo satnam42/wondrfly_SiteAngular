@@ -21,10 +21,10 @@
                                                <app-social-login [role]="userData.role"></app-social-login>
                                             </div>
                                         </div> -->
-                                        <h1 class="ask-heading">Request to join our Beta program!</h1>
+                                        <h1 class="ask-heading">Join our Beta program!</h1>
 
                                         <div class="form-group">
-                                            <label>Parent Name</label>
+                                            <label>Full Name</label>
                                             <div class="input_outer">
                                                 <input type="text" class="form-control" placeholder="Enter name"
                                                     [formControl]="parentForm.controls['name']"
@@ -93,13 +93,13 @@
                                             <div class="form-check">
                                               <input class="form-check-input k-checkbox" type="checkbox" #termsc  [checked]="isTerms"  (change)="isTerms=!isTerms">
                                               <label class="form-check-label k-checkbox-label" for="flexCheckChecked">
-                                                I agree to participate in wondrfly’s beta program and weekly provide the feedback
+                                                I am looking for kids’ activities in Jersey City, NJ
                                               </label>
                                             </div>
                                             <div class="form-check">
                                               <input class="form-check-input k-checkbox" type="checkbox" #forbetaactivity [checked]="isbetaActivity"  (change)="isbetaActivity=!isbetaActivity">
                                               <label class="form-check-label k-checkbox-label" for="flexCheckChecked">
-                                                I will be active in the <span class="beta-span">Wondrfly beta program</span> and spend 15 mins every week to experience the product and provide timely feedback to the product team
+                                                I will be active in the <span class="beta-span" [routerLink]="['/about-beta']">Wondrfly beta program</span> and spend 15 mins every week to experience the product and provide timely feedback to the product team
                                               </label>
                                             </div>
                                           </div>
@@ -112,8 +112,9 @@
 
                                         <div class="row forgot_password">
                                           <div class="col-12 forgot_text">
-                                              <p> By clicking sign up I hereby agree with Letsplay’s
-                                                  <a [routerLink]="['/term-condition']" target="_blank">Terms & Conditions</a></p>
+                                              <p> By clicking SUBMIT REQUEST I hereby agree to the WONDRFLY
+                                                  <!-- <a [routerLink]="['/term-condition']" target="_blank">Terms & Conditions</a> -->
+                                                </p>
                                           </div>
                                       </div>
                                     </div>
@@ -126,7 +127,7 @@
                     </div>
                     <div class="row forgot_password">
                         <div class="col-12 forgot_text">
-                            <p class="member-123"><a class="cursor" [routerLink]="['/about-beta']" target="_blank" >ABOUT BETA</a> and <a class="cursor" [routerLink]="['/privacyPolicy']" target="_blank">PRIVACY POLICY</a></p>
+                            <p class="member-123"><a class="cursor"  target="_blank" [routerLink]="['/term-condition']" >Terms & Conditions</a> and <a class="cursor" [routerLink]="['/privacyPolicy']" target="_blank">PRIVACY POLICY</a></p>
                         </div>
                     </div>
                     <div class="row forgot_password">
