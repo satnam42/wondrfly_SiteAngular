@@ -400,7 +400,7 @@
                         data-toggle="collapse"
                         (click)="programFilter()"
                       >
-                        Set Date
+                        Apply
                       </button>
                     </div>
                   </div>
@@ -1147,9 +1147,9 @@
                 <div class="list col-md-6">
                   <p>
                     <img src="assets/calendar.svg " alt="School image " />{{
-                      program.date.from | date: "MMM d, "
+                      program.date.from | date: "MMM d "
                     }}
-                    – {{ program.date.to | date: "MMM d, " }}
+                    – {{ program.date.to | date: "MMM d " }}
                   </p>
                 </div>
               </div>

@@ -85,11 +85,11 @@ export class SearchComponent implements OnInit {
   totalRating:any = '';
 
   //  ng5slider start age group
-  minAge: number = 3;
-  maxAge: number = 12;
+  minAge: number = 0;
+  maxAge: number = 5;
   ageOption: Options = {
     floor: 0,
-    ceil: 21,
+    ceil: 15,
     translate: (value: number): string => {
       return value + ' YRS';
     }

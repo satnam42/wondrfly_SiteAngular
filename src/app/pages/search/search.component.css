@@ -2046,7 +2046,7 @@ button.btn1-filtersearch.active {
   padding: 10px;
   padding-left: 15px;
   padding-right: 15px;
-  border: none;
+  border: 1px solid #53b2e8;
   color: #fff;
 }
 ::ng-deep .md-drppicker.ltr {
