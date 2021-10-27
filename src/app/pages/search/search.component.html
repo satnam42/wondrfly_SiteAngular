@@ -583,149 +583,36 @@
                       <div class="input_outer">
                         <h1>Select Days</h1>
                         <form action="">
-                          <div class="typess-flex">
-                            <input
-                              type="radio"
-                              class="k-checkbox radio-check"
-                              id="Days1"
-                              data-target="#Dayss"
-                              data-toggle="collapse"
-                              name="Days1"
-                              (change)="
-                                $event.target.checked
-                                  ? (daysChecked = 'monday')
-                                  : (daysChecked = '');
-                                programFilter()
-                              "
-                              value="monday"
-                            />
-                            <label for="Days1" class="k-checkbox-label"
-                              >Mon</label
-                            >
-                          </div>
-                          <div class="typess-flex">
-                            <input
-                              type="radio"
-                              class="k-checkbox radio-check"
-                              id="Days2"
-                              data-target="#Dayss"
-                              data-toggle="collapse"
-                              name="Days1"
-                              (change)="
-                                $event.target.checked
-                                  ? (daysChecked = 'tuesday')
-                                  : (daysChecked = '');
-                                programFilter()
-                              "
-                              value="tuesday"
-                            />
-                            <label for="Days2" class="k-checkbox-label"
-                              >Tue</label
-                            >
-                          </div>
-                          <div class="typess-flex">
-                            <input
-                              type="radio"
-                              class="k-checkbox radio-check"
-                              id="Days3"
-                              data-target="#Dayss"
-                              data-toggle="collapse"
-                              name="Days1"
-                              (change)="
-                                $event.target.checked
-                                  ? (daysChecked = 'wednesday')
-                                  : (daysChecked = '');
-                                programFilter()
-                              "
-                              value="wednesday"
-                            />
-                            <label for="Days3" class="k-checkbox-label"
-                              >Wed</label
-                            >
-                          </div>
-                          <div class="typess-flex">
-                            <input
-                              type="radio"
-                              class="k-checkbox radio-check"
-                              id="Days4"
-                              data-target="#Dayss"
-                              data-toggle="collapse"
-                              name="Days1"
-                              (change)="
-                                $event.target.checked
-                                  ? (daysChecked = 'thursday')
-                                  : (daysChecked = '');
-                                programFilter()
-                              "
-                              value="thursday"
-                            />
-                            <label for="Days4" class="k-checkbox-label"
-                              >Thur</label
-                            >
-                          </div>
-                          <div class="typess-flex">
-                            <input
-                              type="radio"
-                              class="k-checkbox radio-check"
-                              id="Days5"
-                              data-target="#Dayss"
-                              data-toggle="collapse"
-                              name="Days1"
-                              (change)="
-                                $event.target.checked
-                                  ? (daysChecked = 'friday')
-                                  : (daysChecked = '');
-                                programFilter()
-                              "
-                              value="friday"
-                            />
-                            <label for="Days5" class="k-checkbox-label"
-                              >Fri</label
-                            >
-                          </div>
-                          <div class="typess-flex">
-                            <input
-                              type="radio"
-                              class="k-checkbox radio-check"
-                              id="Days6"
-                              data-target="#Dayss"
-                              data-toggle="collapse"
-                              name="Days1"
-                              (change)="
-                                $event.target.checked
-                                  ? (daysChecked = 'saturday')
-                                  : (daysChecked = '');
-                                programFilter()
-                              "
-                              value="saturday"
-                            />
-                            <label for="Days6" class="k-checkbox-label"
-                              >Sat</label
-                            >
-                          </div>
-                          <div class="typess-flex">
-                            <input
-                              type="radio"
-                              class="k-checkbox radio-check"
-                              id="Days7"
-                              data-target="#Dayss"
-                              data-toggle="collapse"
-                              name="Days1"
-                              (change)="
-                                $event.target.checked
-                                  ? (daysChecked = 'sunday')
-                                  : (daysChecked = '');
-                                programFilter()
-                              "
-                              value="sunday"
-                            />
-                            <label for="Days7" class="k-checkbox-label"
-                              >Sun</label
-                            >
-                          </div>
-                        </form>
+                          <div class="typess-flex" *ngFor="let day of weakDays; let i = index">
+                          <input type="checkbox" class="k-checkbox" id="Days" name="Days" (change)="onDayChange(i,day, $event.target.checked)" value="{{day}}">
+                          <label for="Days1" class="k-checkbox-label">{{day.charAt(0)+day.charAt(1)+day.charAt(2)}}</label></div>
+                      </form>
                       </div>
                     </div>
+                    <div class="submit_btn">
+                      <button
+                        (click)="resetFilter()"
+                        type="button"
+                        aria-controls="collapseExample"
+                        aria-expanded="true"
+                        data-target="#Dayss"
+                        data-toggle="collapse"
+                        class="cancel_btn"
+                      >
+                        Clear
+                      </button>
+  
+                      <button
+                        (click)="programFilter()"
+                        scrollToTop.scrollTop="0"
+                        data-target="#Dayss"
+                        data-toggle="collapse"
+                        class="submitBtn"
+                      >
+                        Save
+                      </button>
+                    </div>
+
                   </div>
                 </div>
               </li>

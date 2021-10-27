@@ -70,8 +70,6 @@ export class SearchComponent implements OnInit {
   fromTime: any;
   timeSession = ''
   typeChecked =''
-  daysChecked=''
-  day=''
   toTime: any;
   dateRange:any = {};
   minPrice: any = 50;
@@ -136,6 +134,8 @@ export class SearchComponent implements OnInit {
   searchedSubCategory = ''
   latt: any;
   lngg: any;
+  weakDays = ['sunday','monday','tuesday','wednesday','thrusday','friday','saturday']
+  selectedDays:any = []
   constructor(
     private router: Router,
     private apiservice: ApiService,
@@ -210,6 +210,17 @@ this.toDate=e.endDate._d
  mapClicked(e){
   this.clickedMarker(e)
  }
+ onDayChange(indx: number, day: string, isChecked: boolean) {
+  if (isChecked) {
+    this.selectedDays.push(day)
+    console.log(this.selectedDays)
+  } else {
+    this.selectedDays.splice(day,-1)
+    let el = this.selectedDays.find(itm => itm === day);
+    if (el) this.selectedDays.splice(this.selectedDays.indexOf(el), 1);
+    console.log(this.selectedDays)
+  }
+}
   ngOnInit() {
     console.log('latt', this.latt);
     this.titleService.setTitle(this.title);
@@ -524,12 +535,6 @@ if(toggle){
       inpersonOrVirtual='inperson'
     }
     else {inpersonOrVirtual='' }
- // -------------------------------------------days filter-----------------------------------------
-    if(this.daysChecked){
-      this.day= this.daysChecked
-    }else{
-      this.day=''
-    }
 
   // -------------------------------------------type filter-----------------------------------------
     // if(this.typeChecked && !this.type1){
@@ -605,8 +610,22 @@ switch(this.timeSession){
       break;
     }
    case 'day':{
-      filter = `day=${this.day}`
-      break;
+    if(this.selectedDays.length){
+      let day='';
+      for(let i in this.selectedDays)
+      {
+        if(i=='0')
+        {
+          day+= this.selectedDays[i]
+        }
+        else
+        {
+          day+= ','+this.selectedDays[i]
+        }
+      }
+      filter += `day=${day}`
+    }  
+        break;
     }
   }
       // filter = `ageFrom=${this.minAge}&ageTo=${this.maxAge}&fromTime=${from}&toTime=${to}&fromDate=${this.fromDate}&toDate=${this.toDate}&priceFrom=${this.minPrice}&priceTo=${this.maxPrice}&inpersonOrVirtual=${inpersonOrVirtual}&type1=${this.type1}&type2=${this.type2}&day=${this.day}`
