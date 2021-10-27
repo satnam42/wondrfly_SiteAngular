@@ -130,7 +130,7 @@ export class SearchComponent implements OnInit {
   filterName='';
   selectedCat: any;
   selectedSubCategories:any = [];
-  catData: any;
+  catData: Category[];
   isBetaPopUp:boolean = false;
   recentFilters:any =[]
   searchedSubCategory = ''
@@ -389,7 +389,6 @@ this.toDate=e.endDate._d
       this.categories = this.categories.filter((item) => item.id !== idToRemove);
       this.categories.push(removedCategory[0])
       this.catData = this.categories
-      console.log('category list ',this.categories);
     });
   }
 

@@ -384,10 +384,10 @@ declare const $: any;
             </div>
             <div>
               <div class="noti_description">
-                {{ notification.description }}
+                {{ notification?.description }}
               </div>
               <div class="noti_heading">
-              {{ notification.updatedOn | date: "MMM d,h:mm a" }}
+              <date-format [date]="notification?.updatedOn"></date-format>
               </div>
             </div>
 

@@ -11,6 +11,7 @@ import { RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import {MatChipsModule} from '@angular/material/chips';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
+import { DateFormateModule } from './components/date-format/date-format.module';
 
 
 const components = [
@@ -23,7 +24,7 @@ const thirdPartyModules = [
   MatIconModule,
   MatChipsModule,
   NgxUiLoaderModule,
-
+DateFormateModule,
 
   // ImageCropModule,
 ];
