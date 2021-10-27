@@ -57,8 +57,14 @@ export class LandingComponent implements OnInit {
     this.router.navigate(['/search']);
   }
   getCategoryList() {
+    let removedCategory;
     this.apiservice.getCategory().subscribe((res: any) => {
       this.categories = res;
+      const idToRemove = '60b47687bb70a952280bfa7b';
+      removedCategory = this.categories.filter((item) => item.id === idToRemove);
+      this.categories = this.categories.filter((item) => item.id !== idToRemove);
+      this.categories.push(removedCategory[0])
+      console.log('category list ',this.categories);
     });
   }
  searchActivityByNameDate() {

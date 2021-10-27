@@ -2,6 +2,7 @@
 export class Category {
 
     _id: string;
+    id: string;
     token: string;
     name: string;
     description: String;
@@ -13,6 +14,7 @@ export class Category {
             return;
         }
         this._id = obj._id;
+        this.id = obj.id;
         this.token = obj.token;
         this.name = obj.name;
         this.description = obj.description

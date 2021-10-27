@@ -44,7 +44,7 @@ export class SearchComponent implements OnInit {
   favPrograms: any;
   isMap: boolean = true;
   locations = [];
-  categories = new Category;
+  categories:Category[];
   categoriesBySearch : any = new Category;
   isActive: boolean=false
   providersBySearch : any= new User;
@@ -381,11 +381,16 @@ this.toDate=e.endDate._d
 
   // ---------------------------------------------get categories-------------------------------------
   getCategory() {
+    let removedCategory;
     this.apiservice.getCategory().subscribe((res: any) => {
-      this.categories = res
+      this.categories = res;
+      const idToRemove = '60b47687bb70a952280bfa7b';
+      removedCategory = this.categories.filter((item) => item.id === idToRemove);
+      this.categories = this.categories.filter((item) => item.id !== idToRemove);
+      this.categories.push(removedCategory[0])
       this.catData = this.categories
-      console.log('categories', this.categories)
-    })
+      console.log('category list ',this.categories);
+    });
   }
 
   // ---------------------------------------------get subCateById-------------------------------------
