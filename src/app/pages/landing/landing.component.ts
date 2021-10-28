@@ -64,6 +64,7 @@ export class LandingComponent implements OnInit {
       removedCategory = this.categories.filter((item) => item.id === idToRemove);
       this.categories = this.categories.filter((item) => item.id !== idToRemove);
       this.categories.push(removedCategory[0])
+      this.categories = this.categories.filter((item) => item.isActivated !== false);
       console.log('category list ',this.categories);
     });
   }
@@ -92,6 +93,9 @@ export class LandingComponent implements OnInit {
   searchSubCategory(key){
     this.apiservice.searchTag(key).subscribe((res:any)=>{
   this.categoriesBySearch = res;
+  this.categoriesBySearch = this.categoriesBySearch.filter((item) => item.isActivated !== false);
+
+  
     })
   }
   providerSearch(key){

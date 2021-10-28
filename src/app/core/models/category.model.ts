@@ -7,6 +7,7 @@ export class Category {
     name: string;
     description: String;
     length: any;
+    isActivated:boolean;
 
     constructor(obj?: any) {
 
@@ -18,5 +19,7 @@ export class Category {
         this.token = obj.token;
         this.name = obj.name;
         this.description = obj.description
+        this.isActivated = obj.isActivated
+
     }
 }

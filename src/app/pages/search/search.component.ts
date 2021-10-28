@@ -399,6 +399,7 @@ this.toDate=e.endDate._d
       removedCategory = this.categories.filter((item) => item.id === idToRemove);
       this.categories = this.categories.filter((item) => item.id !== idToRemove);
       this.categories.push(removedCategory[0])
+      this.categories = this.categories.filter((item) => item.isActivated !== false);
       this.catData = this.categories
     });
   }
@@ -410,6 +411,7 @@ this.toDate=e.endDate._d
     this.selectedSubCategories=[]
     this.apiservice.getTagByCategoryId(this.selectedCat).subscribe((res: any) => {
       this.subCats = res.data
+      this.subCats = this.subCats.filter((item) => item.isActivated !== false);
       console.log(this.subCats)
     })
   }
@@ -672,6 +674,8 @@ switch(this.timeSession){
 searchCategory(key){
   this.apiservice.searchTag(key).subscribe((res:any)=>{
 this.categoriesBySearch = res;
+this.categoriesBySearch = this.categoriesBySearch.filter((item) => item.isActivated !== false);
+
   })
 }
 providerSearch(key){

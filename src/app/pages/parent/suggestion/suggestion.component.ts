@@ -53,6 +53,8 @@ if(!this.currentUser){
   searchSubCategory(key){
     this.apiservice.searchTag(key).subscribe((res:any)=>{
   this.categoriesBySearch = res;
+  this.categoriesBySearch = this.categoriesBySearch.filter((item) => item.isActivated !== false);
+
     })
   }
   filterByNameDate(){}
@@ -73,6 +75,7 @@ if(!this.currentUser){
   getCategoryList() {
     this.apiservice.getCategory().subscribe((res: any) => {
       this.categories = res;
+      this.categories = this.categories.filter((item) => item.isActivated !== false);
     });
   }
 
