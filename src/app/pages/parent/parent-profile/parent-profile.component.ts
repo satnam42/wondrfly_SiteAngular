@@ -35,7 +35,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked,OnDestro
   user = new User();
   isToggle:boolean;
   guardianData = new User();
-  kids = new Child();
+  kids:Child[];
   isSideBar: Boolean = true;
   msg: string;
   guardianResponse: any = [];
@@ -352,6 +352,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked,OnDestro
     this.ngxLoader.start();
     this.apiservice.getChildByParentId(id).subscribe((res: any) => {
       this.kids = res
+      this.kids = this.kids.filter((item) => item.isActivated !== false);
       console.log('children List', res)
       this.ngxLoader.stop();
     });
