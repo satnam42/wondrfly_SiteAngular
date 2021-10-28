@@ -116,6 +116,7 @@ if(!this.currentUser){
 getChildByParentId(){
   this.apiservice.getChildByParentId(this.currentUser.id).subscribe((res: any) => {
     this.kids = res
+    this.kids = this.kids.filter((item) => item.isActivated !== false);
     console.log('children List', res)
   });
 }
