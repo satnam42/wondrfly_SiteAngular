@@ -156,6 +156,7 @@ export class LoginParentComponent implements OnInit {
       this.ngxLoader.start();
       this.apiservice.searchTag(key).subscribe((res: any) => {
         this.searchTags = res;
+        this.searchTags = this.searchTags.filter((item) => item.isActivated === true);
         this.ngxLoader.stop()
       });
     }
@@ -169,6 +170,7 @@ export class LoginParentComponent implements OnInit {
   getCategoryList() {
     this.apiservice.getCategory().subscribe((res: any) => {
       this.categories = res;
+      this.categories = this.categories.filter((item) => item.isActivated === true);
       console.log('catg list', this.categories)
     });
   }
@@ -177,6 +179,7 @@ export class LoginParentComponent implements OnInit {
   getTagList() {
     this.apiservice.getTag().subscribe((res: any) => {
       this.tags = res.data;
+      this.tags = this.tags.filter((item) => item.isActivated === true);
       console.log('catg list', this.tags)
     });
   }

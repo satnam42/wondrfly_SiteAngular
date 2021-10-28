@@ -259,6 +259,7 @@ export class Header2Component implements OnInit {
   searchSubCategory(key) {
     this.apiservice.searchTag(key).subscribe((res: any) => {
       this.categoriesBySearch = res;
+      this.categoriesBySearch = this.categoriesBySearch.filter((item) => item.isActivated !== false);
     });
   }
 

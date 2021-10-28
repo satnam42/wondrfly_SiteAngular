@@ -210,6 +210,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked,OnDestro
     this.tags = [];
     this.apiservice.searchTag(key).subscribe((res: any) => {
       this.tags = res;
+      this.tags = this.tags.filter((item) => item.isActivated === true);
       this.ngxLoader.stop();
       this.isLoading = false;
     });
@@ -352,7 +353,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked,OnDestro
     this.ngxLoader.start();
     this.apiservice.getChildByParentId(id).subscribe((res: any) => {
       this.kids = res
-      this.kids = this.kids.filter((item) => item.isActivated !== false);
+      this.kids = this.kids.filter((item) => item.isActivated === true);
       console.log('children List', res)
       this.ngxLoader.stop();
     });
