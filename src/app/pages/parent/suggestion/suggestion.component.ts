@@ -70,8 +70,6 @@ if(!this.currentUser){
     this.dataservice.setOption(this.filterData)
     this.router.navigate(['/search']);
   }
-
-
   getCategoryList() {
     this.apiservice.getCategory().subscribe((res: any) => {
       this.categories = res;
@@ -85,7 +83,6 @@ if(!this.currentUser){
       console.log('feedback',this.feedback)
     });
   }
-
   // ------------------------------------------------get resources  -------------------------------------------
 
   getResources() {
