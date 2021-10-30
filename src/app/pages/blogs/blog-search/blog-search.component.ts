@@ -73,6 +73,8 @@ export class BlogSearchComponent implements OnInit {
   getBlogByCat() {
     const responcee = axios.get(`${this.blogUrl}/categories/?id=${this.catg.id}`).then(response => {
       this.searchCatgData = response.data[0]
+      this.searchCatgData.blogs.reverse()
+      console.log('response.data[0]',response.data[0])
       this.categoryName = this.searchCatgData.categoryName;
     });
   }
