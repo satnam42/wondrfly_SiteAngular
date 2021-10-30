@@ -1582,7 +1582,19 @@ span.search_btn {
   display: table-cell;
   vertical-align: middle;
 }
-
+.grown-uptext h1 {
+  display: flex;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 26px;
+  line-height: 18px;
+  letter-spacing: 0.005em;
+  color: #858585;
+  justify-content: center;
+  align-items: center;
+  height: 475px;
+}
 /* chat css end */
 .disable_next {
   background-color: #b5e4f9 !important;

@@ -201,11 +201,17 @@ h2.my_heading1 {
   width: 100%;
   border-radius: 30px !important;
 }
-/* .dynamic-img{
-        border-radius: 50% !important;
-        width: 226.8px;
-        height: 230.8px;
-    } */
+.laststep-onboarding h6 {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 26px;
+  line-height: 39px;
+  text-align: center;
+  color: #000000;
+  margin-top: 70px;
+  margin-bottom: 70px;
+}
 agm-map {
   border-radius: 10px;
   height: 288px;

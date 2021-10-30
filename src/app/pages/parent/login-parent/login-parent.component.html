@@ -10,39 +10,22 @@
         <p></p>
         <h2 class="my_heading1">Where are you?</h2>
         <p class="pt-1">
-          Help us find the best activities near you.
+          Your location will help us to find the best activities near you
         </p>
         <form [formGroup]="locationForm">
           <div class="N_inputs_container">
             <div class="business_name">
-              <input
-                class="my_inputs"
-                placeholder="Type"
-                value=""
-                formControlName="location"
-                (keydown.enter)="$event.preventDefault()"
-                autocorrect="off"
-                autocapitalize="off"
-                spellcheck="off"
-                #search
-              />
+              <input class="my_inputs" placeholder="Type" value="" formControlName="location"
+                (keydown.enter)="$event.preventDefault()" autocorrect="off" autocapitalize="off" spellcheck="off"
+                #search />
             </div>
           </div>
           <div class="img_container">
             <div class="map">
-              <agm-map
-                [latitude]="latitude"
-                [longitude]="longitude"
-                [zoom]="zoom"
-                [zoomControl]="false"
-                [streetViewControl]="false"
-              >
+              <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom" [zoomControl]="false"
+                [streetViewControl]="false">
                 <div>
-                  <agm-marker
-                    [iconUrl]="markerUrl"
-                    [latitude]="latitude"
-                    [longitude]="longitude"
-                  >
+                  <agm-marker [iconUrl]="markerUrl" [latitude]="latitude" [longitude]="longitude">
                     <strong>{{ parent.firstName }}</strong>
                   </agm-marker>
                 </div>
@@ -58,15 +41,11 @@
               </div>
             </div>
             <div class="col-6">
-              <div
-                [ngClass]="{
+              <div [ngClass]="{
                   disable_next:
                     !locationForm.value.location ||
                     !locationForm.value.addressLine1
-                }"
-                (click)="nextStep()"
-                class="next_btn cursor"
-              >
+                }" (click)="nextStep()" class="next_btn cursor">
                 <a> Next </a>
               </div>
             </div>
@@ -76,33 +55,27 @@
 
       <div *ngIf="step2" class="box text-center p-3 bg-white">
         <p></p>
-        <h2 class="my_heading1">About Your Child</h2>
+        <h2 class="my_heading1">Tell us about your child</h2>
         <p class="pt-1">
-          This will help us customise suggestions for your child
+          These details will help us find personalized activity recommendations <br> based on your child's age,
+          interests and availability
         </p>
 
         <div class="N_inputs_container">
           <form [formGroup]="addChildForm">
             <div class="business_name">
               <div class="N_container_box_input_heading">NAME</div>
-              <input
-                type="text"
-                placeholder="Type"
-                form
-                [formControl]="addChildForm.controls['name']"
-                class="my_inputs"
-                [(ngModel)]="kid.name"
-              />
+              <input type="text" placeholder="Type" form [formControl]="addChildForm.controls['name']" class="my_inputs"
+                [(ngModel)]="kid.name" />
             </div>
             <div class="business_name datef">
               <div class="N_container_box_input_heading">DATE OF BIRTH</div>
-              <input
-                type="date"
-                placeholder="mm/dd/yy"
-                [formControl]="addChildForm.controls['dob']"
-                class="my_inputs"
-                [(ngModel)]="kid.dob"
-              />
+              <input type="date" placeholder="mm/dd/yy" [formControl]="addChildForm.controls['dob']" class="my_inputs"
+                [(ngModel)]="kid.dob" />
+            </div>
+            <div class="business_name">
+              <div class="N_container_box_input_heading">how did you hear about us?</div>
+              <input type="text" placeholder="Type" class="my_inputs"/>
             </div>
           </form>
         </div>
@@ -115,11 +88,7 @@
               </div>
             </div>
             <div class="col-6">
-              <div
-                [ngClass]="{ disable_next: !kid.name || !kid.dob }"
-                (click)="validAge()"
-                class="next_btn cursor"
-              >
+              <div [ngClass]="{ disable_next: !kid.name || !kid.dob }" (click)="validAge()" class="next_btn cursor">
                 <a> Next </a>
               </div>
             </div>
@@ -129,22 +98,16 @@
 
       <div *ngIf="step3" class="box text-center p-3 bg-white">
         <p></p>
-        <h2 class="my_heading1">Select your child’s interests</h2>
+        <h2 class="my_heading1">What’s your child interested in?</h2>
         <br />
         <form>
           <div class="N_inputs_container">
             <div class="form-group">
               <div class="input_outer">
                 <div class="ng-autocomplete">
-                  <ng-autocomplete
-                    [data]="searchTags"
-                    placeholder="Type"
-                    [searchKeyword]="keyword"
-                    (selected)="selectEvent($event)"
-                    (inputChanged)="onChangeSearch($event)"
-                    [itemTemplate]="itemTemplate"
-                    [notFoundTemplate]="notFoundTemplate"
-                  >
+                  <ng-autocomplete [data]="searchTags" placeholder="Type" [searchKeyword]="keyword"
+                    (selected)="selectEvent($event)" (inputChanged)="onChangeSearch($event)"
+                    [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate">
                   </ng-autocomplete>
 
                   <ng-template #itemTemplate let-item>
@@ -152,22 +115,15 @@
                   </ng-template>
 
                   <ng-template #notFoundTemplate let-notFound>
-                    <div
-                      *ngIf="searchTags?.length"
-                      [innerHTML]="notFound"
-                    ></div>
+                    <div *ngIf="searchTags?.length" [innerHTML]="notFound"></div>
                   </ng-template>
                 </div>
               </div>
               <br />
               <mat-form-field class="demo-chip-list">
                 <mat-chip-list>
-                  <mat-chip
-                    *ngFor="let t of selectedTags"
-                    [selectable]="selectable"
-                    [removable]="removable"
-                    (removed)="remove(t)"
-                  >
+                  <mat-chip *ngFor="let t of selectedTags" [selectable]="selectable" [removable]="removable"
+                    (removed)="remove(t)">
                     {{ t.name }}
                     <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                   </mat-chip>
@@ -180,18 +136,13 @@
               <div class="col-3" *ngFor="let tag of tags | slice: 0:8">
                 <div class="category_list" (click)="selectSkills(tag)">
                   <div class="box-border" [ngClass]="{ active: tag.active }">
-                    <img
-                      class="cat_img my_box"
-                      src="https://wondrfly.com/{{
+                    <img class="cat_img my_box" src="https://wondrfly.com/{{
                         tag.categoryIds[0].iconUrl
-                      }}"
-                      alt="location"
-                    />
+                      }}" alt="location" />
                   </div>
 
                   <span [ngClass]="{ active: tag.active }">
-                    {{ tag.name }}</span
-                  >
+                    {{ tag.name }}</span>
                 </div>
               </div>
             </div>
@@ -205,11 +156,7 @@
               </div>
             </div>
             <div class="col-6">
-              <div
-                [ngClass]="{ disable_next: selectedTags?.length <= 0 }"
-                (click)="nextStep()"
-                class="next_btn cursor"
-              >
+              <div [ngClass]="{ disable_next: selectedTags?.length <= 0 }" (click)="nextStep()" class="next_btn cursor">
                 <a> Next </a>
               </div>
             </div>
@@ -219,32 +166,23 @@
 
       <div *ngIf="step4" class="box text-center p-3 bg-white">
         <p></p>
-        <h2 class="my_heading1">Select more interests</h2>
+        <h2 class="my_heading1">Tell us more about your child’s interests</h2>
         <br />
         <form>
           <div class="N_inputs_container">
             <div class="form-group">
               <div class="input_outer">
                 <div class="ng-autocomplete">
-                  <ng-autocomplete
-                    [data]="searchTags"
-                    placeholder="Type"
-                    [searchKeyword]="keyword"
-                    (selected)="selectEvent($event)"
-                    (inputChanged)="onChangeSearch($event)"
-                    [itemTemplate]="itemTemplate"
-                    [notFoundTemplate]="notFoundTemplate"
-                  >
+                  <ng-autocomplete [data]="searchTags" placeholder="Type" [searchKeyword]="keyword"
+                    (selected)="selectEvent($event)" (inputChanged)="onChangeSearch($event)"
+                    [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate">
                   </ng-autocomplete>
                   <ng-template #itemTemplate let-item>
                     <a [innerHTML]="item.name"></a>
                   </ng-template>
 
                   <ng-template #notFoundTemplate let-notFound>
-                    <div
-                      *ngIf="searchesCatg.length"
-                      [innerHTML]="notFound"
-                    ></div>
+                    <div *ngIf="searchesCatg.length" [innerHTML]="notFound"></div>
                   </ng-template>
                 </div>
               </div>
@@ -252,12 +190,8 @@
               <br />
               <mat-form-field class="demo-chip-list">
                 <mat-chip-list>
-                  <mat-chip
-                    *ngFor="let t of selectedTags"
-                    [selectable]="selectable"
-                    [removable]="removable"
-                    (removed)="remove(t)"
-                  >
+                  <mat-chip *ngFor="let t of selectedTags" [selectable]="selectable" [removable]="removable"
+                    (removed)="remove(t)">
                     {{ t.name }}
                     <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                   </mat-chip>
@@ -270,18 +204,13 @@
               <div class="col-3" *ngFor="let tag of tags | slice: 9:17">
                 <div class="category_list" (click)="selectSkills(tag)">
                   <div class="box-border" [ngClass]="{ active: tag.active }">
-                    <img
-                      class="cat_img my_box"
-                      src="https://wondrfly.com/{{
+                    <img class="cat_img my_box" src="https://wondrfly.com/{{
                         tag.categoryIds[0].iconUrl
-                      }}"
-                      alt="location"
-                    />
+                      }}" alt="location" />
                   </div>
 
                   <span [ngClass]="{ active: tag.active }">
-                    {{ tag.name }}</span
-                  >
+                    {{ tag.name }}</span>
                 </div>
               </div>
             </div>
@@ -298,11 +227,7 @@
               <div (click)="nextStep()" class="next_btn cursor">
                 <a> Next </a>
               </div>
-              <!-- <div  [ngClass]="{'disable_next':selectedTags?.length<=0}" (click)="addChild();updateParent()"  class="next_btn cursor">
-                  <a>
-                      Next
-                  </a>
-              </div> -->
+           
             </div>
           </div>
         </div>
@@ -370,8 +295,17 @@
             </div>
           </form>
         </div> -->
-        <div class="welcomeImg">
+        <!-- <div class="welcomeImg">
           <img src="assets/welcomeScreen.png" class="welcomeImg" alt="" />
+        </div> -->
+        <div class="laststep-onboarding">
+          <h6>
+            Enjoy exploring our kids’ activity resouces!
+            <br>
+            Remember to stay in touch and send us weekly
+            <br>
+            <br> feedback. We can’t wait to hear from you!
+          </h6>
         </div>
         <div class="N_btns">
           <div class="row">
@@ -381,11 +315,8 @@
               </div>
             </div>
             <div class="col-6">
-              <div
-                [ngClass]="{ disable_next: !kid.fromWhereYouHeard }"
-                (click)="addChild(); updateParent()"
-                class="next_btn cursor"
-              >
+              <div (click)="addChild(); updateParent()"
+                class="next_btn cursor">
                 <a> Finish </a>
               </div>
             </div>
