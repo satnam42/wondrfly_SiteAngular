@@ -236,9 +236,9 @@ declare const $: any;
                   <a class="share-lefticon cursor">
                     <span class="icon rel" routerLink='/invite'
                       ><img class="invite-gift" src="{{gitBoxImage}}"/>
-                      <!-- <span class="Button-badge noti">
+                      <span class="Button-badge noti">
                         <span>1</span>
-                      </span> -->
+                      </span>
                       <div class="box arrow-top">
                         <h1>Try new feature</h1>
                         <h2>Laoreet enim, id nulla iaculis dictumst nunc sem. Odio egestas mattis et pulvinar nunc velit eu sit felis.</h2>
@@ -297,7 +297,7 @@ declare const $: any;
                       <a class="dropdown-item cursor active-head" (click)="profile()"
                         ><img src="assets/new-profile.svg" />Profile</a
                       >
-                      <a class="dropdown-item cursor active-head"  (click)="goToInviteList()"><img src="assets/invites.svg"/>Beta Invites</a>
+                      <!-- <a class="dropdown-item cursor active-head"  (click)="goToInviteList()"><img src="assets/invites.svg"/>Beta Invites</a> -->
                       <a class="dropdown-item cursor active-head" (click)="savedList()"><img src="assets/saved-prog.svg"  />Saved Activities</a>
                       <a class="dropdown-item cursor active-head"(click)="logout()"><img src="assets/new-logout.svg" />Logout</a
                       >
