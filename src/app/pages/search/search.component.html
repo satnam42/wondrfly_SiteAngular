@@ -781,7 +781,7 @@
       </div>
     </div>
 
-    <div class="row row-0 borderserach" *ngIf="isInPerson">
+    <div class="row row-0 borderserach" *ngIf="isInPerson && contentLoaded" >
       <div class="col-md-6 list_left">
         <div
           class="search-results"
@@ -791,7 +791,7 @@
           [infiniteScrollThrottle]="500"
           (scrolled)="onScroll()"
           [scrollWindow]="false"
-          *ngIf="programs?.length && contentLoaded"
+          *ngIf="programs?.length"
         >
           <!-- <div class="list-group "> -->
           <div
@@ -1088,7 +1088,6 @@
           </div>
           <!-- suggested ends -->
         </div>
-        <ngx-skeleton-loader *ngIf="!contentLoaded" count="5" appearance="circle"></ngx-skeleton-loader>
 
         <div *ngIf="!programs?.length" class="suggested-searchresult">
           <div class="suggested-text">
@@ -1283,7 +1282,7 @@
 
 <!-- <ngx-ui-loader fgsSize="40" bgsSize="40" overlayColor="rgba(40,40,40,0.12)">
 </ngx-ui-loader> -->
-
+<ngx-skeleton-loader *ngIf="!contentLoaded" count="20" appearance=" "></ngx-skeleton-loader>
 <app-footer2></app-footer2>
 
 <!----------------------------------------- location Modal ------------------------------------------------------->
