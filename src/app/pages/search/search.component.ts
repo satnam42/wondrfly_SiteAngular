@@ -136,10 +136,11 @@ export class SearchComponent implements OnInit {
   lngg: any;
   weakDays = ['sunday','monday','tuesday','wednesday','thrusday','friday','saturday']
   selectedDays:any = []
+  contentLoaded=false;
   constructor(
     private router: Router,
     private apiservice: ApiService,
-    private ngxLoader: NgxUiLoaderService,
+    // private ngxLoader: NgxUiLoaderService,
     private mapsAPILoader: MapsAPILoader,
     private dataservice: DataService,
     private ngZone: NgZone,
@@ -378,15 +379,17 @@ this.toDate=e.endDate._d
   getPublishedProgram() {
     this.activityName = ''
     this.showReset = false
-      this.ngxLoader.start()
+      // this.ngxLoader.start()
+      this.contentLoaded = false;
       this.apiservice.getPublishedProgram(this.pageNo, this.pageSize, 'published').subscribe((res:any) => {
-        this.ngxLoader.stop()
+        // this.ngxLoader.stop()
+        this.contentLoaded = true;
           this.programs = res.items;
           if(!this.selectedSubCategories.length && !this.categoryId){
           this.isScrol = true;
           }
       });
-    this.ngxLoader.stop()
+      this.contentLoaded = true;
   }
 
 
@@ -469,7 +472,8 @@ if(toggle){
     this.isSavedFilter = true
     this.programs = []
     this.showReset = true
-    this.ngxLoader.start();
+    // this.ngxLoader.start();
+    this.contentLoaded = false;
     this.apiservice.getFavouriteByParentId(id).subscribe((res: any) => {
       console.log('fav', res)
       res.forEach(program => {
@@ -478,7 +482,7 @@ if(toggle){
         console.log('fav programs', this.programs)
 
       });
-      this.ngxLoader.stop();
+      this.contentLoaded = true;
     });
   }
   else{
@@ -490,9 +494,11 @@ if(toggle){
     window.scroll(0,0)
     this.categoryId = id
     var filter = `categoryId=${this.categoryId}`
-    this.ngxLoader.start()
+    // this.ngxLoader.start()
+    this.contentLoaded = false;
     this.apiservice.programFilter(filter, this.pageNo, this.pageSize).subscribe((res: any) => {
-    this.ngxLoader.stop()
+    // this.ngxLoader.stop()
+    this.contentLoaded = true;
       console.log('response', res);
       if (res.isSuccess) {
         this.programs = res.data;
@@ -507,17 +513,18 @@ if(toggle){
     this.isPriceFilter = false
     this.isOpenFilter = false
     this.isSavedFilter = false
-    this.ngxLoader.start();
+    // this.ngxLoader.start();
+    this.contentLoaded = false;
     if (this.activityName) {
       this.apiservice.activityByNameDate(this.activityName).subscribe((res: any) => {
         console.log('filterbyNameDate', res)
-        this.ngxLoader.stop();
+        this.contentLoaded = true;
         this.programs = res.data
         this.showReset = true
         this.searchedSubCategory = this.activityName;
       });
     }
-    this.ngxLoader.stop();
+    this.contentLoaded = true;
   }
 
   programFilter() {
@@ -632,26 +639,31 @@ switch(this.timeSession){
   }
       // filter = `ageFrom=${this.minAge}&ageTo=${this.maxAge}&fromTime=${from}&toTime=${to}&fromDate=${this.fromDate}&toDate=${this.toDate}&priceFrom=${this.minPrice}&priceTo=${this.maxPrice}&inpersonOrVirtual=${inpersonOrVirtual}&type1=${this.type1}&type2=${this.type2}&day=${this.day}`
       console.log('filter>>>>>>>>>>>>',filter)
-    this.ngxLoader.start()
+    // this.ngxLoader.start()
+    this.contentLoaded = false;
     this.apiservice.programFilter(filter, this.pageNo, this.pageSize).subscribe((res: any) => {
       console.log('filter response', res);
       if (res.isSuccess) {
         this.isTopFilterCheckBox=false
         this.programs = res.data;
         this.isScrol = true;
-        this.ngxLoader.stop()
+        // this.ngxLoader.stop()
+        this.contentLoaded = true;
       }
     });
-    this.ngxLoader.stop()
+    // this.ngxLoader.stop()
+    this.contentLoaded = true;
   }
 
    // ---------------------------------------------getinpersonOrVirtual------------------------------
   inpersonOrVirtual(e){
     var filter=``
     filter = `inpersonOrVirtual=${e}`
-    this.ngxLoader.start()
+    // this.ngxLoader.start()
+    this.contentLoaded = false;
     this.apiservice.programFilter(filter, this.pageNo, this.pageSize).subscribe((res: any) => {
-      this.ngxLoader.stop()
+      // this.ngxLoader.stop()
+      this.contentLoaded = true;
       console.log('inpersonVirtual response', res);
       if (res.isSuccess) {
         this.showReset = true;
@@ -721,18 +733,23 @@ if(program.userId==''|| program.userId==undefined || !program.userId){ program.u
   this.categoryId=''
   this.showReset = true;
   if(this.isTopFilterCheckBox == true){
-    this.ngxLoader.start()
+    // this.ngxLoader.start()
+    this.contentLoaded = false;
     this.apiservice.getTopRated().subscribe((res: any) => {
-      this.ngxLoader.stop()
+      // this.ngxLoader.stop()
+      this.contentLoaded = true;
       this.programs = res
     });
   }
     else if(this.isTopFilterCheckBox ==!true){
       this.showReset=true
       this.resetFilter();
-      this.ngxLoader.stop()
+      // this.ngxLoader.stop()
+      this.contentLoaded = true;
+
   }
-  this.ngxLoader.stop()
+  // this.ngxLoader.stop()
+  this.contentLoaded = true;
  }
 
  updateCheckedSubCategories(i, event) {
@@ -774,9 +791,11 @@ if(program.userId==''|| program.userId==undefined || !program.userId){ program.u
      };
      console.log(filter)
      if(i<=5){
-       this.ngxLoader.start()
+      //  this.ngxLoader.start()
+      this.contentLoaded = false;
     this.apiservice.programBySubCategoryIds(filter,1,100).subscribe((res: any) => {
-      this.ngxLoader.stop()
+      // this.ngxLoader.stop()
+      this.contentLoaded = true;
       this.showReset = true;
       this.programs = res.data
       console.log('programBySubCategoryIds', res);

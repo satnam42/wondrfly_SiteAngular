@@ -791,7 +791,7 @@
           [infiniteScrollThrottle]="500"
           (scrolled)="onScroll()"
           [scrollWindow]="false"
-          *ngIf="programs?.length"
+          *ngIf="programs?.length && contentLoaded"
         >
           <!-- <div class="list-group "> -->
           <div
@@ -1088,6 +1088,7 @@
           </div>
           <!-- suggested ends -->
         </div>
+        <ngx-skeleton-loader *ngIf="!contentLoaded" count="5" appearance="circle"></ngx-skeleton-loader>
 
         <div *ngIf="!programs?.length" class="suggested-searchresult">
           <div class="suggested-text">
@@ -1280,8 +1281,9 @@
 
 <share-popup [shareData]="selectedProgram"></share-popup>
 
-<ngx-ui-loader fgsSize="40" bgsSize="40" overlayColor="rgba(40,40,40,0.12)">
-</ngx-ui-loader>
+<!-- <ngx-ui-loader fgsSize="40" bgsSize="40" overlayColor="rgba(40,40,40,0.12)">
+</ngx-ui-loader> -->
+
 <app-footer2></app-footer2>
 
 <!----------------------------------------- location Modal ------------------------------------------------------->
