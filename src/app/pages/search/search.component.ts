@@ -151,6 +151,7 @@ export class SearchComponent implements OnInit {
     this.locationData = dataservice.getLocation()
     console.log('this.locationData', this.locationData)
     if(this.locationData){
+      this.contentLoaded=true;
       if (this.locationData.lat && this.locationData.lng) {
         this.latt =this.locationData.lat
         this.lngg= this.locationData.lng
@@ -160,6 +161,7 @@ export class SearchComponent implements OnInit {
 
     this.filterData = dataservice.getOption()
     if(this.filterData){
+      this.contentLoaded=true;
     if (this.filterData.categoryId) {
       console.log('this.filterData.categoryId', this.filterData)
       this.categoryId = this.filterData.categoryId
@@ -732,13 +734,13 @@ if(program.userId==''|| program.userId==undefined || !program.userId){ program.u
  getTopRated() {
   this.categoryId=''
   this.showReset = true;
+  this.contentLoaded = false;
   if(this.isTopFilterCheckBox == true){
     // this.ngxLoader.start()
-    this.contentLoaded = false;
     this.apiservice.getTopRated().subscribe((res: any) => {
       // this.ngxLoader.stop()
-      this.contentLoaded = true;
       this.programs = res
+      this.contentLoaded = true;
     });
   }
     else if(this.isTopFilterCheckBox ==!true){
