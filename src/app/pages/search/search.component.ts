@@ -530,7 +530,6 @@ if(toggle){
   }
 
   programFilter() {
-    this.contentLoaded = false;
     console.log('selected cat id', this.selectedSubCategories)
     const dateFormat = "YYYY-MM-DD";
     const timeFormat = "YYYY-MM-DD HH:mm:ss"
@@ -643,8 +642,10 @@ switch(this.timeSession){
       // filter = `ageFrom=${this.minAge}&ageTo=${this.maxAge}&fromTime=${from}&toTime=${to}&fromDate=${this.fromDate}&toDate=${this.toDate}&priceFrom=${this.minPrice}&priceTo=${this.maxPrice}&inpersonOrVirtual=${inpersonOrVirtual}&type1=${this.type1}&type2=${this.type2}&day=${this.day}`
       console.log('filter>>>>>>>>>>>>',filter)
     // this.ngxLoader.start()
+    this.contentLoaded = false;
     this.apiservice.programFilter(filter, this.pageNo, this.pageSize).subscribe((res: any) => {
       console.log('filter response', res);
+      this.contentLoaded = true;
       if (res.isSuccess) {
         this.isTopFilterCheckBox=false
         this.programs = res.data;
@@ -654,7 +655,6 @@ switch(this.timeSession){
       }
     });
     // this.ngxLoader.stop()
-    this.contentLoaded = true;
   }
 
    // ---------------------------------------------getinpersonOrVirtual------------------------------
@@ -751,7 +751,6 @@ if(program.userId==''|| program.userId==undefined || !program.userId){ program.u
 
   }
   // this.ngxLoader.stop()
-  this.contentLoaded = true;
  }
 
  updateCheckedSubCategories(i, event) {
