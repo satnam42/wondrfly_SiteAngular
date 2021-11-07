@@ -1,12 +1,13 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, NgZone, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
 import { Globals } from 'src/app/core/common/imageLoader';
 import { environment } from 'src/environments/environment';
 import { AuthsService } from 'src/app/core/services/auths.service';
 import { ApiService } from 'src/app/core/services/api.service.service';
+import { MapsAPILoader } from '@agm/core';
 @Component({
   selector: 'ask-to-join',
   templateUrl: './ask-to-join.component.html',
@@ -18,11 +19,20 @@ export class AskToJoinComponent implements OnInit {
   blogUrl = environment.blogsUrl;
   parentForm: FormGroup;
   providerForm: FormGroup;
-
+  private geoCoder;
+  @ViewChild('search', { static: false }) searchElementRef: ElementRef;
   userData: any = {
     firstName: '',
     email: '',
     password: '',
+    bookedActivityFor: '',
+    lookingkidsActivityIn: '',
+    lat: '',
+    lng:  '',
+    bookedActivityInLastSixMonths:  false,
+    wantWondrflyBetaUserBecause:  '',
+    occupation:  '',
+    willActive: false,
     confirmPassword:'',
     role: 'parent',
     userId:''
@@ -41,8 +51,12 @@ export class AskToJoinComponent implements OnInit {
   'assets/preOnboarding/6.jpg',
   'assets/preOnboarding/11.jpg',
   ]
+  step1= true
+  step2 = false
   constructor(private auth:AuthsService,
     private apiservice: ApiService,
+    private mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone,
     public imageLoader: Globals,
     private toastr: ToastrService,
     private activatedRoute: ActivatedRoute,
@@ -67,6 +81,7 @@ cancel(){
 }
 
   askToJoin() {
+    console.log(this.userData)
     let email = this.userData.email.toLowerCase();
     this.userData.email = email;
       this.apiservice.askToJoin(this.userData).subscribe((res: any) => {
@@ -94,9 +109,36 @@ cancel(){
       name: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
       password:  new FormControl('', [Validators.required]),
+      bookedActivityFor:  new FormControl('', [Validators.required]),
+      lookingkidsActivityIn:  new FormControl('', [Validators.required]),
+      bookedActivityInLastSixMonths:  new FormControl('',),
+      wantWondrflyBetaUserBecause:  new FormControl('', [Validators.required]),
+      occupation:  new FormControl('',),
+      willActive:  new FormControl('',),
+
+
       // password: password2,
       // confirmPassword : confirmPassword2
       // rememberMe: new FormControl(false)
+    });
+
+    this.mapsAPILoader.load().then(() => {
+      this.geoCoder = new google.maps.Geocoder;
+      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);
+      autocomplete.addListener('place_changed', () => {
+        this.ngZone.run(() => {
+          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+          this.parentForm.value.lookingkidsActivityIn = place.formatted_address;
+          this.userData.lookingkidsActivityIn = place.formatted_address;
+          if (place.geometry === undefined || place.geometry === null) {
+            return;
+          }
+
+          // set latitude, longitude
+          this.userData.lat = String(place.geometry.location.lat());
+          this.userData.lng = String(place.geometry.location.lng());
+        });
+      });
     });
   }
 }
