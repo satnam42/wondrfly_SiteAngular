@@ -791,7 +791,7 @@
           [infiniteScrollThrottle]="500"
           (scrolled)="onScroll()"
           [scrollWindow]="false"
-          *ngIf="programs?.length"
+          *ngIf="programs?.length && contentLoaded"
         >
           <!-- <div class="list-group "> -->
           <div
@@ -1089,7 +1089,33 @@
           <!-- suggested ends -->
         </div>
 
-        <div *ngIf="!programs?.length" class="suggested-searchresult">
+
+
+
+        <main class="page" *ngIf="!contentLoaded">
+          <!-- Title -->
+          <!-- Content -->
+          <div class="page-content" *ngFor="let i of fakeLoaderData">
+              <!-- Placeholder Content -->
+              <div class="placeholder-content">
+                  <div class="placeholder-content_item"></div>
+                  <div class="placeholder-content_item"></div>
+                  <div class="placeholder-content_item"></div>
+                  <div class="placeholder-content_item"></div>
+                  <div class="placeholder-content_item"></div>
+                  <div class="placeholder-content_item"></div>
+                  <div class="placeholder-content_item"></div>
+                  <div class="placeholder-content_item"></div>
+                  <div class="placeholder-content_item"></div>
+                  <div class="placeholder-content_item"></div>
+                  <div class="placeholder-content_item"></div>
+              </div>
+              
+          </div>
+      </main>
+
+
+        <div *ngIf="!programs?.length && contentLoaded" class="suggested-searchresult">
           <div class="suggested-text">
             <h1>Sorry no results found :(</h1>
             <h2>
