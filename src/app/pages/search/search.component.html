@@ -781,7 +781,7 @@
       </div>
     </div>
 
-    <div class="row row-0 borderserach" *ngIf="isInPerson" >
+    <div class="row row-0 borderserach" *ngIf="isInPerson">
       <div class="col-md-6 list_left">
         <div
           class="search-results"
@@ -791,7 +791,7 @@
           [infiniteScrollThrottle]="500"
           (scrolled)="onScroll()"
           [scrollWindow]="false"
-          *ngIf="programs?.length && contentLoaded"
+          *ngIf="programs?.length"
         >
           <!-- <div class="list-group "> -->
           <div
@@ -1088,15 +1088,8 @@
           </div>
           <!-- suggested ends -->
         </div>
-        <ngx-skeleton-loader *ngIf="!contentLoaded" count="12" 
-        [theme]="{ 
-      'border-radius': '0px',
-      height: '50px',
-      'background-color': '#ccc',
-      border: '1px solid white'
-    }"></ngx-skeleton-loader>
 
-        <div *ngIf="!programs?.length && contentLoaded" class="suggested-searchresult">
+        <div *ngIf="!programs?.length" class="suggested-searchresult">
           <div class="suggested-text">
             <h1>Sorry no results found :(</h1>
             <h2>
