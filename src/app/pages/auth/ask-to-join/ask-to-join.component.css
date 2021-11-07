@@ -168,8 +168,8 @@ span.beta-span {
     margin-top: 10px;
 }
 .forgot_text p.member-123 {
-    padding-bottom: 70px;
-    padding-top: 10px;
+    padding-bottom:0px;
+    padding-top:0px;
 }
 .otp_img .img-fluid{
     max-width: 100%;
@@ -418,7 +418,84 @@ select.ng-invalid.ng-touched {
   bottom:5px;
   right: 5px;
 }
+.form-group.choose-acti {
+    position: relative;
+}
+.dropdown-activities h6:hover {
+    background: #EEF9FF;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+}
+.dropdown-activities h6 {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 21px;
+    text-align: justify;
+    letter-spacing: 0.001em;
+    color: #494949;
+    padding: 10px;
+    padding-left: 15px;
+}
+.dropdown-activities {
+    background: #FFFFFF;
+    border: 1px solid #E5E9EC;
+    box-sizing: border-box;
+    border-radius: 20px;
+    position: absolute;
+    width: 100%;
+    padding: 15px;
+    z-index: 1;
+    left: 25%;
+    top: -55%;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+}
+.form-check.booked {
+    display: flex;
+    padding-left: 3px;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 35px;
+    color: #494949;
+    margin-bottom: 40px;
+    margin-top: 20px;
+}
 
+label.form-check-label.k-checkbox-label.booked-label {
+    margin-left: 45px;
+}
+label.label-occupation span {
+    float: right;
+    color: #AAAAAA;
+}
+label.label-occupation {
+    width: 100%;
+    margin-top: 30px;
+}
+.checkbox-ask {
+    margin-top: 15px;
+}
+input.form-check-input.k-checkbox.bookeds {
+    width: 30px;
+    left: 34%;
+    height: 30px;
+    border-radius: 6px !important;
+    top: 5px;
+    border: 1px solid #E5E9EC;
+    -webkit-border-radius: 6px !important;
+    -moz-border-radius: 6px !important;
+    -ms-border-radius: 6px !important;
+    -o-border-radius: 6px !important;
+}
 
 @media(max-width:767px) {
     .tab_outer .nav-tabs .nav-link {
