@@ -384,7 +384,7 @@ this.toDate=e.endDate._d
     this.showReset = false
       // this.ngxLoader.start()
       this.contentLoaded = false;
-      this.apiservice.getPublishedProgram(this.pageNo, this.pageSize, 'published').subscribe((res:any) => {
+      this.apiservice.getProgram(this.pageNo, this.pageSize).subscribe((res:any) => {
         // this.ngxLoader.stop()
         this.contentLoaded = true;
           this.programs = res.items;

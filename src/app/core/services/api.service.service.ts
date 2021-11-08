@@ -1082,6 +1082,20 @@ onOffNotification(id,e): Observable<User> {
     }
 
 
+
+  // -------------------------- get Program All ------------------------->
+    getProgram(pageNo, pageSize): Observable<Program> {
+        const subject = new Subject<Program>();
+        this.http.get(`${this.root}/programs/list?pageNo=${pageNo}&pageSize=${pageSize}`, this.getHeader()).subscribe((responseData: any) => {
+            subject.next(responseData);
+        }, (error) => {
+            subject.next(error.error);
+        });
+        return subject.asObservable();
+    }
+
+
+
     // -------------------------- get Program by id ------------------------->
 
     getProgramById(id): Observable<Program> {
