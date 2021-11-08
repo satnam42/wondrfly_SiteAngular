@@ -23,11 +23,6 @@
     letter-spacing: 0.001em;
     color: #748494;
 }
-
-.otp_form .form .form-group .input_outer {
-    position: relative;
-}
-
 .otp_form .form .form-group .input_outer:focus::after,
 .otp_form .form .form-group .input_outer:focus-within::after {
     opacity: 1;
@@ -258,6 +253,7 @@ span.beta-span {
 .tab_outer .form-group .form-control, .tab_outer .form-group input{
     min-height: 47px;
     padding: 10px 14px;
+    position: relative;
 }
 
 .tab_outer .nav-tabs .nav-link span {
@@ -450,8 +446,8 @@ select.ng-invalid.ng-touched {
     width: 100%;
     padding: 15px;
     z-index: 1;
-    left: 25%;
-    top: -55%;
+    left: 0px;
+    top: 80px;
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
     -ms-border-radius: 20px;
@@ -468,10 +464,6 @@ select.ng-invalid.ng-touched {
     color: #494949;
     margin-bottom: 40px;
     margin-top: 20px;
-}
-
-label.form-check-label.k-checkbox-label.booked-label {
-    margin-left: 45px;
 }
 label.label-occupation span {
     float: right;
@@ -497,6 +489,18 @@ input.form-check-input.k-checkbox.bookeds {
     -o-border-radius: 6px !important;
 }
 
+.form-check.booked select {
+  width: 40px;
+  height: 35px;
+  margin-right: 6px;
+  border: 1px solid #E5E9EC;
+  box-sizing: border-box;
+  border-radius: 6px;
+}
+.far{
+    font-variant: all-petite-caps;
+    color: #beb4b4;
+}
 @media(max-width:767px) {
     .tab_outer .nav-tabs .nav-link {
         padding: 15px 0 !important;
@@ -513,11 +517,6 @@ input.form-check-input.k-checkbox.bookeds {
     }
 }
 
-
-.far{
-    font-variant: all-petite-caps;
-    color: #beb4b4;
-}
 @media (max-width: 1024px){
 
 .otp_img {
