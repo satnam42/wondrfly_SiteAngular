@@ -2358,7 +2358,7 @@ button.map-buttonas {
   border: none !important;
   margin-bottom: 0px !important;
 }
-.chip-set-bar { 
+.chip-set-bar {
   margin-top: 10px;
 }
 .sub-categoriesfilterheader h2 span button {
@@ -2515,6 +2515,114 @@ button.map-buttonas {
   padding-right: 40px;
   margin-top: 30px;
 }
+
+/* exploring wondrfly */
+div#Exploring-Wonderfly .modal-dialog {
+  max-width: 700px!important;
+}
+div#Exploring-Wonderfly img.exploring-img {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+div#Exploring-Wonderfly .carousel-indicators li.active {
+  background-color:#53b2e8;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+}
+div#Exploring-Wonderfly .carousel-indicators li{
+  border:1px solid #53b2e8;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+}
+div#Exploring-Wonderfly .carousel-caption {
+  position: relative;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  z-index: 10;
+  padding-top: 20px;
+  padding-bottom: 60px;
+  color: #494949;
+  text-align: center;
+}
+div#Exploring-Wonderfly .got-newsletter h2.title{
+  font-family: "Poppins";
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 18px;
+  color: #494949;
+  margin-top: 60px;
+}
+div#Exploring-Wonderfly .got-newsletter p {
+  font-size: 13px;
+  line-height: 19px;
+  letter-spacing: 0.001em;
+  color: #494949;
+  margin: 31px 0 0 0;
+  word-spacing: 0.4px;
+  margin-bottom:20px;
+}
+div#Exploring-Wonderfly .got-newsletter{
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  max-width: 400px;
+}
+div#Exploring-Wonderfly button.done-btn {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 18px;
+  text-align: justify;
+  letter-spacing: 0.001em;
+  text-transform: uppercase;
+  color: #53B2E8;
+  border: 1px solid #53b2e8;
+  background: transparent;
+  padding: 10px;
+  margin-top: 40px;
+  border-radius: 26px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+div#Exploring-Wonderfly .modal-content .modal-tour img.tour-img2 {
+  top: 15px;
+  right: 15px;
+  position: absolute;
+  z-index:1;
+}
+div#Exploring-Wonderfly .modal-content .modal-tour img.tour-img1 {
+  top: 15px;
+  left: 15px;
+  position: absolute;
+  z-index:1;
+}
+div#Exploring-Wonderfly .modal-content {
+  position: relative;
+}
+div#Exploring-Wonderfly .carousel-item h1 {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 36px;
+  letter-spacing: 0.001em;
+  color: #494949;
+  text-align: center;
+  margin-top: 60px;
+}
+
+
+
+
+
+
+
 
 @media only screen and (min-width: 1024px) and (max-width: 1366px) and (orientation: portrait) {
   .activity .media-left {

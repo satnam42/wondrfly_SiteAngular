@@ -19,11 +19,7 @@
           <div class="category_list" id="accordionExample">
             <ul>
               <li class="cursor">
-                <a
-                  aria-expanded="true"
-                  data-target="#category"
-                  [ngClass]="{ active: isCategoryFilter }"
-                  (click)="
+                <a aria-expanded="true" data-target="#category" [ngClass]="{ active: isCategoryFilter }" (click)="
                     openModal(
                       (isCategoryFilter = true),
                       (isTypeFilter = false),
@@ -38,21 +34,14 @@
                       (isAgeModal = false),
                       (isTimeModal = false)
                     )
-                  "
-                  data-toggle="collapse"
-                  >Categories</a
-                >
-                <div
-                  class="
+                  " data-toggle="collapse">Categories</a>
+                <div class="
                     collapse
                     main_collpase
                     time_collpase
                     verification_modal
                     partcategory
-                  "
-                  id="category"
-                  data-parent="#accordionExample"
-                >
+                  " id="category" data-parent="#accordionExample">
                   <div class="collpase_content cate-dilter">
                     <div class="container">
                       <div class="row categories-filt">
@@ -65,19 +54,11 @@
 
                             <span>
                               <span>
-                                <a
-                                  class="clear cusror"
-                                  data-target="#category"
-                                  data-toggle="collapse"
-                                  (click)="resetFilter()"
-                                  >Clear all</a
-                                >
+                                <a class="clear cusror" data-target="#category" data-toggle="collapse"
+                                  (click)="resetFilter()">Clear all</a>
                               </span>
-                              <button
-                                data-target="#category"
-                                data-toggle="collapse"
-                                (click)="programBySubCategoryIds()"
-                              >
+                              <button data-target="#category" data-toggle="collapse"
+                                (click)="programBySubCategoryIds()">
                                 APPLY FILTER
                               </button>
                             </span>
@@ -86,29 +67,18 @@
                       </div>
                       <div class="row">
                         <div class="col-5 categories-filtercontent">
-                          <h3
-                            *ngFor="let cat of categories"
-                            [ngClass]="{ active: selectedCat == cat.id }"
-                            (click)="getSubCateById(cat)"
-                          >
+                          <h3 *ngFor="let cat of categories" [ngClass]="{ active: selectedCat == cat.id }"
+                            (click)="getSubCateById(cat)">
                             {{ cat.name }}
                           </h3>
                         </div>
                         <div class="col-7 sub-categoriesfiltercontent">
                           <h2 *ngFor="let s of subCats; let i = index">
-                            <span
-                              ><input
-                                type="checkbox"
-                                [disabled]="!s?.programCount"
-                                class="k-checkbox categories-checkbox"
-                                id="categoriescheck"
-                                name="categoriescheck"
-                                value="{{ s }}"
-                                [checked]="s.checked"
-                                (change)="
+                            <span><input type="checkbox" [disabled]="!s?.programCount"
+                                class="k-checkbox categories-checkbox" id="categoriescheck" name="categoriescheck"
+                                value="{{ s }}" [checked]="s.checked" (change)="
                                   updateCheckedSubCategories(i, $event)
-                                "
-                            /></span>
+                                " /></span>
                             <h3 [class.checkbox-checked-name]="s.checked">
                               {{ s.name }}<span>({{ s.programCount }})</span>
                             </h3>
@@ -120,9 +90,7 @@
                 </div>
               </li>
               <li class="cursor">
-                <a
-                  [ngClass]="{ active: isAgeFilter }"
-                  (click)="
+                <a [ngClass]="{ active: isAgeFilter }" (click)="
                     filterName = 'age';
                     openModal(
                       (isCategoryFilter = false),
@@ -138,61 +106,32 @@
                       (isAgeModal = true),
                       (isTimeModal = false)
                     )
-                  "
-                  aria-controls="collapseExample"
-                  aria-expanded="true"
-                  data-target="#ageGroup"
-                  data-toggle="collapse"
-                  >Age
+                  " aria-controls="collapseExample" aria-expanded="true" data-target="#ageGroup"
+                  data-toggle="collapse">Age
                 </a>
-                <div
-                  class="collapse main_collpase verification_modal"
-                  id="ageGroup"
-                  data-parent="#accordionExample"
-                >
+                <div class="collapse main_collpase verification_modal" id="ageGroup" data-parent="#accordionExample">
                   <div class="collpase_content">
                     <div class="form-group">
-                      <ngx-slider
-                        [(value)]="minAge"
-                        [(highValue)]="maxAge"
-                        [options]="ageOption"
-                      >
+                      <ngx-slider [(value)]="minAge" [(highValue)]="maxAge" [options]="ageOption">
                       </ngx-slider>
                     </div>
                   </div>
                   <div class="submit_btn">
-                    <button
-                      (click)="resetFilter()"
-                      type="button"
-                      aria-controls="collapseExample"
-                      aria-expanded="true"
-                      data-target="#ageGroup"
-                      data-toggle="collapse"
-                      class="cancel_btn"
-                    >
+                    <button (click)="resetFilter()" type="button" aria-controls="collapseExample" aria-expanded="true"
+                      data-target="#ageGroup" data-toggle="collapse" class="cancel_btn">
                       Clear
                     </button>
 
-                    <button
-                      (click)="programFilter()"
-                      scrollToTop.scrollTop="0"
-                      data-target="#ageGroup"
-                      data-toggle="collapse"
-                      class="submitBtn"
-                    >
+                    <button (click)="programFilter()" scrollToTop.scrollTop="0" data-target="#ageGroup"
+                      data-toggle="collapse" class="submitBtn">
                       Save
                     </button>
                   </div>
                 </div>
               </li>
               <li class="cursor">
-                <a
-                  aria-expanded="true"
-                  [ngClass]="{ active: isTypeFilter }"
-                  aria-expanded="true"
-                  data-target="#typess"
-                  data-toggle="collapse"
-                  (click)="
+                <a aria-expanded="true" [ngClass]="{ active: isTypeFilter }" aria-expanded="true" data-target="#typess"
+                  data-toggle="collapse" (click)="
                     filterName = 'type';
                     openModal(
                       (isCategoryFilter = false),
@@ -208,100 +147,52 @@
                       (isDateModal = false),
                       (isAgeModal = false)
                     )
-                  "
-                  >Type</a
-                >
-                <div
-                  class="collapse main_collpase typess verification_modal"
-                  id="typess"
-                  data-parent="#accordionExample"
-                >
+                  ">Type</a>
+                <div class="collapse main_collpase typess verification_modal" id="typess"
+                  data-parent="#accordionExample">
                   <div class="collpase_content">
                     <div class="form-group typess">
                       <div class="input_outer">
                         <form action="">
                           <div class="typess-flex">
-                            <input
-                              type="radio"
-                              id="type1"
-                              data-target="#typess"
-                              data-toggle="collapse"
-                              class="k-checkbox"
-                              name="type1"
-                              (change)="
+                            <input type="radio" id="type1" data-target="#typess" data-toggle="collapse"
+                              class="k-checkbox" name="type1" (change)="
                                 $event.target.checked
                                   ? (typeChecked = 'Camps')
                                   : (typeChecked = '');
                                 programFilter()
-                              "
-                              value="camps"
-                            />
-                            <label
-                              for="type2"
-                              class="k-checkbox-label"
-                              for="type1"
-                              >Camps</label
-                            >
+                              " value="camps" />
+                            <label for="type2" class="k-checkbox-label" for="type1">Camps</label>
                           </div>
                           <div class="typess-flex">
-                            <input
-                              type="radio"
-                              id="type2"
-                              data-target="#typess"
-                              data-toggle="collapse"
-                              class="k-checkbox"
-                              name="type1"
-                              (change)="
+                            <input type="radio" id="type2" data-target="#typess" data-toggle="collapse"
+                              class="k-checkbox" name="type1" (change)="
                                 $event.target.checked
                                   ? (typeChecked = 'Semesters')
                                   : (typeChecked = '');
                                 programFilter()
-                              "
-                              value="semesters"
-                            />
-                            <label for="type2" class="k-checkbox-label"
-                              >Semesters</label
-                            >
+                              " value="semesters" />
+                            <label for="type2" class="k-checkbox-label">Semesters</label>
                           </div>
                           <div class="typess-flex">
-                            <input
-                              type="radio"
-                              id="type3"
-                              data-target="#typess"
-                              data-toggle="collapse"
-                              class="k-checkbox"
-                              name="type1"
-                              (change)="
+                            <input type="radio" id="type3" data-target="#typess" data-toggle="collapse"
+                              class="k-checkbox" name="type1" (change)="
                                 $event.target.checked
                                   ? (typeChecked = 'Drops-in')
                                   : (typeChecked = '');
                                 programFilter()
-                              "
-                              value="drop-ins"
-                            />
-                            <label for="type3" class="k-checkbox-label"
-                              >Drop-ins</label
-                            >
+                              " value="drop-ins" />
+                            <label for="type3" class="k-checkbox-label">Drop-ins</label>
                           </div>
                           <div class="typess-flex">
-                            <input
-                              type="radio"
-                              id="type4"
-                              data-target="#typess"
-                              data-toggle="collapse"
-                              class="k-checkbox"
-                              name="type1"
-                              (change)="
+                            <input type="radio" id="type4" data-target="#typess" data-toggle="collapse"
+                              class="k-checkbox" name="type1" (change)="
                                 $event.target.checked
                                   ? (typeChecked = 'Ondemand')
                                   : (typeChecked = '');
                                 programFilter()
-                              "
-                              value="on-demand"
-                            />
-                            <label for="type4" class="k-checkbox-label"
-                              >Other</label
-                            >
+                              " value="on-demand" />
+                            <label for="type4" class="k-checkbox-label">Other</label>
                           </div>
                           <!-- <div class="typess-flex">
                             <input
@@ -330,9 +221,7 @@
                 </div>
               </li>
               <li class="cursor">
-                <a
-                  [ngClass]="{ active: isDateFilter }"
-                  (click)="
+                <a [ngClass]="{ active: isDateFilter }" (click)="
                     filterName = 'date';
                     openModal(
                       (isCategoryFilter = false),
@@ -348,26 +237,14 @@
                       (isAgeModal = false),
                       (isTimeModal = false)
                     )
-                  "
-                  aria-expanded="true"
-                  data-target="#date"
-                  data-toggle="collapse"
-                  >Dates</a
-                >
-                <div
-                  class="
+                  " aria-expanded="true" data-target="#date" data-toggle="collapse">Dates</a>
+                <div class="
                     collapse
                     main_collpase
                     verification_modal
                     date-rangecal
-                  "
-                  id="date"
-                  data-parent="#accordionExample"
-                >
-                  <ngx-daterangepicker-material
-                    (choosedDate)="choosedDate($event)"
-                    [autoApply]="true"
-                  >
+                  " id="date" data-parent="#accordionExample">
+                  <ngx-daterangepicker-material (choosedDate)="choosedDate($event)" [autoApply]="true">
                   </ngx-daterangepicker-material>
 
                   <div class="calender-botoombox">
@@ -387,19 +264,11 @@
                       </div>
                     </div>
                     <div class="calender-buttons">
-                      <button
-                        class="calender-buttons1"
-                        data-target="#date"
-                        data-toggle="collapse"
-                      >
+                      <button class="calender-buttons1" data-target="#date" data-toggle="collapse">
                         Cancel
                       </button>
-                      <button
-                        class="calender-buttons2"
-                        data-target="#date"
-                        data-toggle="collapse"
-                        (click)="programFilter()"
-                      >
+                      <button class="calender-buttons2" data-target="#date" data-toggle="collapse"
+                        (click)="programFilter()">
                         Apply
                       </button>
                     </div>
@@ -407,10 +276,7 @@
                 </div>
               </li>
               <li class="cursor">
-                <a
-                  aria-controls="collapseExample"
-                  [ngClass]="{ active: isTimeFilter }"
-                  (click)="
+                <a aria-controls="collapseExample" [ngClass]="{ active: isTimeFilter }" (click)="
                     filterName = 'time';
                     openModal(
                       (isCategoryFilter = false),
@@ -426,120 +292,57 @@
                       (isAgeModal = false),
                       (isTimeModal = true)
                     )
-                  "
-                  aria-expanded="true"
-                  data-target="#timess"
-                  data-toggle="collapse"
-                  >Time</a
-                >
-                <div
-                  class="collapse main_collpase typess verification_modal"
-                  id="timess"
-                  data-parent="#accordionExample"
-                >
+                  " aria-expanded="true" data-target="#timess" data-toggle="collapse">Time</a>
+                <div class="collapse main_collpase typess verification_modal" id="timess"
+                  data-parent="#accordionExample">
                   <div class="collpase_content">
                     <div class="form-group typess">
                       <div class="input_outer">
                         <form action="">
                           <div class="typess-flex">
-                            <input
-                              type="radio"
-                              class="k-checkbox"
-                              id="time1"
-                              name="time1"
-                              (change)="
+                            <input type="radio" class="k-checkbox" id="time1" name="time1" (change)="
                                 $event.target.checked
                                   ? (timeSession = 'early-morning')
                                   : (timeSession = '');
                                 programFilter()
-                              "
-                              data-target="#timess"
-                              data-toggle="collapse"
-                              value="early-morning"
-                            />
-                            <label for="time1" class="k-checkbox-label"
-                              >Early Morning (6am - 9am)</label
-                            >
+                              " data-target="#timess" data-toggle="collapse" value="early-morning" />
+                            <label for="time1" class="k-checkbox-label">Early Morning (6am - 9am)</label>
                           </div>
                           <div class="typess-flex">
-                            <input
-                              type="radio"
-                              id="time2"
-                              class="k-checkbox"
-                              name="time1"
-                              (change)="
+                            <input type="radio" id="time2" class="k-checkbox" name="time1" (change)="
                                 $event.target.checked
                                   ? (timeSession = 'morning')
                                   : (timeSession = '');
                                 programFilter()
-                              "
-                              data-target="#timess"
-                              data-toggle="collapse"
-                              value="morning"
-                            />
-                            <label for="time2" class="k-checkbox-label"
-                              >Morning (9am - 12pm)</label
-                            >
+                              " data-target="#timess" data-toggle="collapse" value="morning" />
+                            <label for="time2" class="k-checkbox-label">Morning (9am - 12pm)</label>
                           </div>
                           <div class="typess-flex">
-                            <input
-                              type="radio"
-                              id="time3"
-                              class="k-checkbox"
-                              name="time1"
-                              (change)="
+                            <input type="radio" id="time3" class="k-checkbox" name="time1" (change)="
                                 $event.target.checked
                                   ? (timeSession = 'afternoon')
                                   : (timeSession = '');
                                 programFilter()
-                              "
-                              data-target="#timess"
-                              data-toggle="collapse"
-                              value="afternoon"
-                            />
-                            <label for="time3" class="k-checkbox-label"
-                              >Afternoon (12pm - 3pm)</label
-                            >
+                              " data-target="#timess" data-toggle="collapse" value="afternoon" />
+                            <label for="time3" class="k-checkbox-label">Afternoon (12pm - 3pm)</label>
                           </div>
                           <div class="typess-flex">
-                            <input
-                              type="radio"
-                              id="time4"
-                              class="k-checkbox"
-                              name="time1"
-                              (change)="
+                            <input type="radio" id="time4" class="k-checkbox" name="time1" (change)="
                                 $event.target.checked
                                   ? (timeSession = 'late-afternoon')
                                   : (timeSession = '');
                                 programFilter()
-                              "
-                              data-target="#timess"
-                              data-toggle="collapse"
-                              value="late-afternoon"
-                            />
-                            <label for="time4" class="k-checkbox-label"
-                              >Late Afternoon (3pm - 6pm)</label
-                            >
+                              " data-target="#timess" data-toggle="collapse" value="late-afternoon" />
+                            <label for="time4" class="k-checkbox-label">Late Afternoon (3pm - 6pm)</label>
                           </div>
                           <div class="typess-flex">
-                            <input
-                              type="radio"
-                              id="time5"
-                              class="k-checkbox"
-                              name="time1"
-                              (change)="
+                            <input type="radio" id="time5" class="k-checkbox" name="time1" (change)="
                                 $event.target.checked
                                   ? (timeSession = 'evening')
                                   : (timeSession = '');
                                 programFilter()
-                              "
-                              data-target="#timess"
-                              data-toggle="collapse"
-                              value="evening"
-                            />
-                            <label for="time5" class="k-checkbox-label"
-                              >Evening (6pm - 9pm)</label
-                            >
+                              " data-target="#timess" data-toggle="collapse" value="evening" />
+                            <label for="time5" class="k-checkbox-label">Evening (6pm - 9pm)</label>
                           </div>
                         </form>
                       </div>
@@ -549,10 +352,7 @@
               </li>
 
               <li class="cursor">
-                <a
-                  aria-expanded="true"
-                  [ngClass]="{ active: isDaysFilter }"
-                  (click)="
+                <a aria-expanded="true" [ngClass]="{ active: isDaysFilter }" (click)="
                     filterName = 'day';
                     openModal(
                       (isCategoryFilter = false),
@@ -568,47 +368,31 @@
                       (isAgeModal = false),
                       (isTimeModal = false)
                     )
-                  "
-                  data-target="#Dayss"
-                  data-toggle="collapse"
-                  >Days</a
-                >
-                <div
-                  class="collapse main_collpase typess verification_modal"
-                  id="Dayss"
-                  data-parent="#accordionExample"
-                >
+                  " data-target="#Dayss" data-toggle="collapse">Days</a>
+                <div class="collapse main_collpase typess verification_modal" id="Dayss"
+                  data-parent="#accordionExample">
                   <div class="collpase_content">
                     <div class="form-group typess">
                       <div class="input_outer">
                         <h1>Select Days</h1>
                         <form action="">
                           <div class="typess-flex" *ngFor="let day of weakDays; let i = index">
-                          <input type="checkbox" class="k-checkbox" id="Days" name="Days" (change)="onDayChange(i,day, $event.target.checked)" value="{{day}}">
-                          <label for="Days1" class="k-checkbox-label">{{day.charAt(0)+day.charAt(1)+day.charAt(2)}}</label></div>
-                      </form>
+                            <input type="checkbox" class="k-checkbox" id="Days" name="Days"
+                              (change)="onDayChange(i,day, $event.target.checked)" value="{{day}}">
+                            <label for="Days1"
+                              class="k-checkbox-label">{{day.charAt(0)+day.charAt(1)+day.charAt(2)}}</label>
+                          </div>
+                        </form>
                       </div>
                     </div>
                     <div class="submit_btn">
-                      <button
-                        (click)="resetFilter()"
-                        type="button"
-                        aria-controls="collapseExample"
-                        aria-expanded="true"
-                        data-target="#Dayss"
-                        data-toggle="collapse"
-                        class="cancel_btn"
-                      >
+                      <button (click)="resetFilter()" type="button" aria-controls="collapseExample" aria-expanded="true"
+                        data-target="#Dayss" data-toggle="collapse" class="cancel_btn">
                         Clear
                       </button>
-  
-                      <button
-                        (click)="programFilter()"
-                        scrollToTop.scrollTop="0"
-                        data-target="#Dayss"
-                        data-toggle="collapse"
-                        class="submitBtn"
-                      >
+
+                      <button (click)="programFilter()" scrollToTop.scrollTop="0" data-target="#Dayss"
+                        data-toggle="collapse" class="submitBtn">
                         Apply
                       </button>
                     </div>
@@ -617,9 +401,7 @@
                 </div>
               </li>
               <li class="cursor">
-                <a
-                  [ngClass]="{ active: isPriceFilter }"
-                  (click)="
+                <a [ngClass]="{ active: isPriceFilter }" (click)="
                     filterName = 'price';
                     openModal(
                       (isCategoryFilter = false),
@@ -635,48 +417,24 @@
                       (isAgeModal = false),
                       (isTimeModal = false)
                     )
-                  "
-                  aria-controls="collapseExample"
-                  aria-expanded="true"
-                  data-target="#priceGroup"
-                  data-toggle="collapse"
-                  >Price
+                  " aria-controls="collapseExample" aria-expanded="true" data-target="#priceGroup"
+                  data-toggle="collapse">Price
                 </a>
-                <div
-                  class="collapse main_collpase verification_modal"
-                  id="priceGroup"
-                  data-parent="#accordionExample"
-                >
+                <div class="collapse main_collpase verification_modal" id="priceGroup" data-parent="#accordionExample">
                   <div class="collpase_content">
                     <div class="form-group">
-                      <ngx-slider
-                        [(value)]="minPrice"
-                        [(highValue)]="maxPrice"
-                        [options]="priceOption"
-                      >
+                      <ngx-slider [(value)]="minPrice" [(highValue)]="maxPrice" [options]="priceOption">
                       </ngx-slider>
                     </div>
                   </div>
                   <div class="submit_btn">
-                    <button
-                      (click)="resetFilter()"
-                      type="button"
-                      aria-controls="collapseExample"
-                      aria-expanded="true"
-                      data-target="#priceGroup"
-                      data-toggle="collapse"
-                      class="cancel_btn"
-                    >
+                    <button (click)="resetFilter()" type="button" aria-controls="collapseExample" aria-expanded="true"
+                      data-target="#priceGroup" data-toggle="collapse" class="cancel_btn">
                       Clear
                     </button>
 
-                    <button
-                      (click)="programFilter()"
-                      scrollToTop.scrollTop="0"
-                      data-target="#priceGroup"
-                      data-toggle="collapse"
-                      class="submitBtn"
-                    >
+                    <button (click)="programFilter()" scrollToTop.scrollTop="0" data-target="#priceGroup"
+                      data-toggle="collapse" class="submitBtn">
                       Save
                     </button>
                   </div>
@@ -684,11 +442,7 @@
               </li>
 
               <li class="cursor">
-                <a
-                  class="top-rateds"
-                  aria-expanded="true"
-                  [ngClass]="{ active: isTopFilter }"
-                  (click)="
+                <a class="top-rateds" aria-expanded="true" [ngClass]="{ active: isTopFilter }" (click)="
                     openModal(
                       (isCategoryFilter = false),
                       (isDaysFilter = false),
@@ -703,16 +457,11 @@
                       (isAgeModal = false),
                       (isTimeModal = false)
                     )
-                  "
-                  ><span class="simple-toggle">
+                  "><span class="simple-toggle">
                     Top Rated
                     <span>
                       <label class="switch1">
-                        <input
-                          [(ngModel)]="isTopFilterCheckBox"
-                          (change)="getTopRated()"
-                          type="checkbox"
-                        />
+                        <input [(ngModel)]="isTopFilterCheckBox" (change)="getTopRated()" type="checkbox" />
                         <span class="slider1"></span>
                       </label>
                     </span>
@@ -726,22 +475,17 @@
 
       <div class="col-md-4 toggle-border">
         <div class="toggle-filtersearch">
-          <button
-            [class.active]="isOnline"
-            (click)="
+          <button data-toggle="modal" data-target="#Exploring-Wonderfly">
+            search
+          </button>
+          <button [class.active]="isOnline" (click)="
               isInPerson = false; isOnline = true; inpersonOrVirtual('online')
-            "
-            class="btn1-filtersearch"
-          >
+            " class="btn1-filtersearch">
             Online
           </button>
-          <button
-            [class.active]="isInPerson"
-            (click)="
+          <button [class.active]="isInPerson" (click)="
               isOnline = false; isInPerson = true; inpersonOrVirtual('inperson')
-            "
-            class="btn2-filtersearch"
-          >
+            " class="btn2-filtersearch">
             In person
           </button>
         </div>
@@ -773,9 +517,7 @@
           </button> -->
           <span>
             <!-- <span>&times;</span> -->
-            <a class="ml-2 clear-text cursor" (click)="resetFilter()"
-              >Clear all</a
-            >
+            <a class="ml-2 clear-text cursor" (click)="resetFilter()">Clear all</a>
           </span>
         </div>
       </div>
@@ -783,62 +525,30 @@
 
     <div class="row row-0 borderserach" *ngIf="isInPerson">
       <div class="col-md-6 list_left">
-        <div
-          class="search-results"
-          #scrollToTop
-          infiniteScroll
-          [infiniteScrollDistance]="2"
-          [infiniteScrollThrottle]="500"
-          (scrolled)="onScroll()"
-          [scrollWindow]="false"
-          *ngIf="programs?.length && contentLoaded"
-        >
+        <div class="search-results" #scrollToTop infiniteScroll [infiniteScrollDistance]="2"
+          [infiniteScrollThrottle]="500" (scrolled)="onScroll()" [scrollWindow]="false"
+          *ngIf="programs?.length && contentLoaded">
           <!-- <div class="list-group "> -->
-          <div
-            *ngFor="let program of programs; index as i"
-            class="media activity"
-          >
-            <div
-              class="media-left activity-imgs"
-              (click)="goToProgramDetail(program)"
-            >
-              <img
-                [defaultImage]="defaultImage"
-                [errorImage]="errorImage"
-                [lazyLoad]="baseUrl + program?.category[0]?.iconUrl"
-              />
+          <div *ngFor="let program of programs; index as i" class="media activity">
+            <div class="media-left activity-imgs" (click)="goToProgramDetail(program)">
+              <img [defaultImage]="defaultImage" [errorImage]="errorImage"
+                [lazyLoad]="baseUrl + program?.category[0]?.iconUrl" />
             </div>
             <div class="media-body">
               <div class="share_icon">
-                <a
-                  data-toggle="modal"
-                  (click)="selectedProgram = program"
-                  data-target="#ShareModal"
-                  class="cursor"
-                >
+                <a data-toggle="modal" (click)="selectedProgram = program" data-target="#ShareModal" class="cursor">
                   <img src="assets/share_gray.svg " alt="Share Icon " />
                 </a>
                 <div class="bookmark_outer">
-                  <a
-                    *ngIf="!program.isFav && parentRole && isLogin"
-                    (click)="addFavProgram(userData.id, program._id, i)"
-                    class="bookmark_icon cursor"
-                    ><img src="assets/bookmark_gray.svg " alt="Menu Image "
-                  /></a>
+                  <a *ngIf="!program.isFav && parentRole && isLogin"
+                    (click)="addFavProgram(userData.id, program._id, i)" class="bookmark_icon cursor"><img
+                      src="assets/bookmark_gray.svg " alt="Menu Image " /></a>
 
-                  <a
-                    *ngIf="!isLogin"
-                    routerLink="/login"
-                    class="bookmark_icon cursor"
-                    ><img src="assets/bookmark_gray.svg " alt="Menu Image "
-                  /></a>
+                  <a *ngIf="!isLogin" routerLink="/login" class="bookmark_icon cursor"><img
+                      src="assets/bookmark_gray.svg " alt="Menu Image " /></a>
 
-                  <a
-                    *ngIf="program.isFav && parentRole && isLogin"
-                    (click)="deleteFavProgram(program._id, i)"
-                    class="bookmark_icon cursor"
-                    ><img src="assets/bookmarkOrange.svg " alt="Menu Image "
-                  /></a>
+                  <a *ngIf="program.isFav && parentRole && isLogin" (click)="deleteFavProgram(program._id, i)"
+                    class="bookmark_icon cursor"><img src="assets/bookmarkOrange.svg " alt="Menu Image " /></a>
                 </div>
               </div>
               <h2 class="cursor" (click)="goToProgramDetail(program)">
@@ -849,18 +559,11 @@
                   <p>by {{ program.programOwner }}</p>
                 </div>
                 <div class="rating-starsearch">
-                  <p
-                    (click)="
+                  <p (click)="
                       getRating(program);
                       programOwnerData.firstName = program.programOwner
-                    "
-                    class="cursor"
-                    data-toggle="collapse"
-                    [attr.data-target]="'#collapseExamplestar' + i"
-                    role="button"
-                    aria-expanded="false"
-                    aria-controls="collapseExamplestar"
-                  >
+                    " class="cursor" data-toggle="collapse" [attr.data-target]="'#collapseExamplestar' + i"
+                    role="button" aria-expanded="false" aria-controls="collapseExamplestar">
                     <span *ngIf="program.averageFinalRating == 0">
                       <span class="fa fa-star-o"></span>
                       <span class="fa fa-star-o"></span>
@@ -875,12 +578,10 @@
                       <span class="fa fa-star-o"></span>
                       <span class="fa fa-star-o"></span>
                     </span>
-                    <span
-                      *ngIf="
+                    <span *ngIf="
                         program.averageFinalRating > 1 &&
                         program.averageFinalRating < 2
-                      "
-                    >
+                      ">
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star-half-o checked"></span>
                       <span class="fa fa-star-o"></span>
@@ -894,12 +595,10 @@
                       <span class="fa fa-star-o"></span>
                       <span class="fa fa-star-o"></span>
                     </span>
-                    <span
-                      *ngIf="
+                    <span *ngIf="
                         program.averageFinalRating > 2 &&
                         program.averageFinalRating < 3
-                      "
-                    >
+                      ">
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star-half-o checked"></span>
@@ -913,12 +612,10 @@
                       <span class="fa fa-star-o"></span>
                       <span class="fa fa-star-o"></span>
                     </span>
-                    <span
-                      *ngIf="
+                    <span *ngIf="
                         program.averageFinalRating > 3 &&
                         program.averageFinalRating < 4
-                      "
-                    >
+                      ">
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
@@ -932,12 +629,10 @@
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star-o"></span>
                     </span>
-                    <span
-                      *ngIf="
+                    <span *ngIf="
                         program.averageFinalRating > 4 &&
                         program.averageFinalRating < 5
-                      "
-                    >
+                      ">
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
@@ -953,67 +648,36 @@
                     </span>
                     <!-- <a><span *ngIf="program.averageFinalRating">{{program.averageFinalRating}}</span><span *ngIf="!program.averageFinalRating">0</span> out of 5 </a> -->
                     <a *ngIf="program.totalReviews">
-                      ({{ program.totalReviews }} reviews)</a
-                    >
+                      ({{ program.totalReviews }} reviews)</a>
                     <a *ngIf="!program.totalReviews"> (0 reviews)</a>
                   </p>
-                  <div
-                    *ngIf="rating"
-                    class="collapse star-daialogbox"
-                    id="collapseExamplestar{{ i }}"
-                  >
-                    <button
-                      type="button"
-                      data-toggle="collapse"
-                      [attr.data-target]="'#collapseExamplestar' + i"
-                      class="close star-daialogicon"
-                      aria-label="Close"
-                    >
-                      <span aria-hidden="true"
-                        ><img src="assets/grey-close.png"
-                      /></span>
+                  <div *ngIf="rating" class="collapse star-daialogbox" id="collapseExamplestar{{ i }}">
+                    <button type="button" data-toggle="collapse" [attr.data-target]="'#collapseExamplestar' + i"
+                      class="close star-daialogicon" aria-label="Close">
+                      <span aria-hidden="true"><img src="assets/grey-close.png" /></span>
                     </button>
-                    <app-rating
-                      [rating]="rating"
-                      [user]="programOwnerData"
-                    ></app-rating>
+                    <app-rating [rating]="rating" [user]="programOwnerData"></app-rating>
                   </div>
                 </div>
                 <div class="coding_text">
-                  <div
-                    *ngIf="program?.subCategoryIds?.length"
-                    class="coding-text-1"
-                  >
-                    <h3
-                      *ngFor="
+                  <div *ngIf="program?.subCategoryIds?.length" class="coding-text-1">
+                    <h3 *ngFor="
                         let subCat of program?.subCategoryIds | slice: 0:2
-                      "
-                    >
+                      ">
                       {{ subCat?.name }}
                     </h3>
-                    <h6
-                      *ngIf="program?.subCategoryIds?.length > 2"
-                      class=""
-                      data-toggle="collapse"
-                      href="#morecategories"
-                      [attr.data-target]="'#morecategories' + i"
-                    >
+                    <h6 *ngIf="program?.subCategoryIds?.length > 2" class="" data-toggle="collapse"
+                      href="#morecategories" [attr.data-target]="'#morecategories' + i">
                       +{{ program?.subCategoryIds?.length - 2 }} more
-                      <div
-                        class="collapse main_collpases verification_modal"
-                        id="morecategories{{ i }}"
-                        data-parent="#accordionExample"
-                      >
+                      <div class="collapse main_collpases verification_modal" id="morecategories{{ i }}"
+                        data-parent="#accordionExample">
                         <div class="collpase_content">
                           <div class="categories-content">
                             <span><img src="assets/grey-close.png" /> </span>
-                            <h5
-                              *ngFor="
+                            <h5 *ngFor="
                                 let subCat of program?.subCategoryIds
                                   | slice: 2:program.subCategoryIds?.length
-                              "
-                              class="collapse-btn"
-                            >
+                              " class="collapse-btn">
                               {{ subCat?.name }}
                             </h5>
                           </div>
@@ -1026,7 +690,7 @@
                 <div class="list col-md-4">
                   <p>
                     <img src="assets/user_group.svg " alt="School image " />{{
-                      program?.ageGroup?.from + "-" + program?.ageGroup?.to
+                    program?.ageGroup?.from + "-" + program?.ageGroup?.to
                     }}
                     Yrs
                   </p>
@@ -1034,7 +698,7 @@
                 <div class="list col-md-6">
                   <p>
                     <img src="assets/calendar.svg " alt="School image " />{{
-                      program.date.from | date: "MMM d "
+                    program.date.from | date: "MMM d "
                     }}
                     – {{ program.date.to | date: "MMM d " }}
                   </p>
@@ -1042,13 +706,10 @@
               </div>
               <div class="price-box">
                 <p *ngIf="!program.isFree">
-                  <span
-                    ><img src="assets/price.svg" />${{
-                      program.pricePerParticipant
-                    }}<span *ngIf="program.pricePeriod.periodAmount"
-                      >/{{ program.pricePeriod.periodAmount }}</span
-                    ></span
-                  >
+                  <span><img src="assets/price.svg" />${{
+                    program.pricePerParticipant
+                    }}<span *ngIf="program.pricePeriod.periodAmount">/{{ program.pricePeriod.periodAmount
+                      }}</span></span>
                 </p>
                 <p *ngIf="program.isFree"><span>Free</span></p>
               </div>
@@ -1065,20 +726,13 @@
               <h3>You might want to explore similar Categories</h3>
               <div class="similar-categories container">
                 <div class="row">
-                  <div
-                    class="col-md-4 cursor"
-                    *ngFor="let subCategory of suggested"
-                    (click)="
+                  <div class="col-md-4 cursor" *ngFor="let subCategory of suggested" (click)="
                       selectedSubCategories[0] = subCategory.id;
                       programBySubCategoryIds()
-                    "
-                  >
+                    ">
                     <div class="similar-cate">
                       <!-- <img src="assets/similarcategories1.png"> -->
-                      <img
-                        [defaultImage]="defaultImage"
-                        [lazyLoad]="subCategory?.imageUrl"
-                      />
+                      <img [defaultImage]="defaultImage" [lazyLoad]="subCategory?.imageUrl" />
                       <h1>{{ subCategory.name }}</h1>
                     </div>
                   </div>
@@ -1096,23 +750,23 @@
           <!-- Title -->
           <!-- Content -->
           <div class="page-content" *ngFor="let i of fakeLoaderData">
-              <!-- Placeholder Content -->
-              <div class="placeholder-content">
-                  <div class="placeholder-content_item"></div>
-                  <div class="placeholder-content_item"></div>
-                  <div class="placeholder-content_item"></div>
-                  <div class="placeholder-content_item"></div>
-                  <div class="placeholder-content_item"></div>
-                  <div class="placeholder-content_item"></div>
-                  <div class="placeholder-content_item"></div>
-                  <div class="placeholder-content_item"></div>
-                  <div class="placeholder-content_item"></div>
-                  <div class="placeholder-content_item"></div>
-                  <div class="placeholder-content_item"></div>
-              </div>
-              
+            <!-- Placeholder Content -->
+            <div class="placeholder-content">
+              <div class="placeholder-content_item"></div>
+              <div class="placeholder-content_item"></div>
+              <div class="placeholder-content_item"></div>
+              <div class="placeholder-content_item"></div>
+              <div class="placeholder-content_item"></div>
+              <div class="placeholder-content_item"></div>
+              <div class="placeholder-content_item"></div>
+              <div class="placeholder-content_item"></div>
+              <div class="placeholder-content_item"></div>
+              <div class="placeholder-content_item"></div>
+              <div class="placeholder-content_item"></div>
+            </div>
+
           </div>
-      </main>
+        </main>
 
 
         <div *ngIf="!programs?.length && contentLoaded" class="suggested-searchresult">
@@ -1130,16 +784,10 @@
             </h3>
             <div class="similar-categories container">
               <div class="row">
-                <div
-                  class="col-md-4 cursor"
-                  *ngFor="let Category of catData | slice: 6:9"
-                  (click)="filterByCategory(Category.id)"
-                >
+                <div class="col-md-4 cursor" *ngFor="let Category of catData | slice: 6:9"
+                  (click)="filterByCategory(Category.id)">
                   <div class="similar-cate">
-                    <img
-                      [defaultImage]="defaultImage"
-                      [lazyLoad]="Category.imageUrl"
-                    />
+                    <img [defaultImage]="defaultImage" [lazyLoad]="Category.imageUrl" />
                     <h1>{{ Category.name }}</h1>
                   </div>
                 </div>
@@ -1150,25 +798,12 @@
       </div>
       <div class="col-md-6">
         <div class="map_section">
-          <agm-map
-            style="width: 100%; height: 100%"
-            (centerChange)="centerChange($event)"
-            [zoom]="zoom"
-            [usePanning]="true"
-            [fitBounds]="true"
-            [latitude]="lat"
-            [longitude]="lng"
-            (mapClick)="mapClicked(previous)"
-          >
+          <agm-map style="width: 100%; height: 100%" (centerChange)="centerChange($event)" [zoom]="zoom"
+            [usePanning]="true" [fitBounds]="true" [latitude]="lat" [longitude]="lng" (mapClick)="mapClicked(previous)">
             <div *ngFor="let program of programs">
-              <agm-marker
-                *ngIf="program.lat && program.lng"
-                [iconUrl]="markerUrl"
-                (markerClick)="clickedMarker(previous)"
-                [latitude]="program.lat"
-                [longitude]="program.lng"
-                [agmFitBounds]="true"
-              >
+              <agm-marker *ngIf="program.lat && program.lng" [iconUrl]="markerUrl"
+                (markerClick)="clickedMarker(previous)" [latitude]="program.lat" [longitude]="program.lng"
+                [agmFitBounds]="true">
                 <agm-info-window #previous>
                   <div class="map-popup">
                     <h1>
@@ -1191,12 +826,10 @@
                           <span class="fa fa-star-o"></span>
                           <span class="fa fa-star-o"></span>
                         </span>
-                        <span
-                          *ngIf="
+                        <span *ngIf="
                             program.averageFinalRating > 1 &&
                             program.averageFinalRating < 2
-                          "
-                        >
+                          ">
                           <span class="fa fa-star checked"></span>
                           <span class="fa fa-star-half-o checked"></span>
                           <span class="fa fa-star-o"></span>
@@ -1210,12 +843,10 @@
                           <span class="fa fa-star-o"></span>
                           <span class="fa fa-star-o"></span>
                         </span>
-                        <span
-                          *ngIf="
+                        <span *ngIf="
                             program.averageFinalRating > 2 &&
                             program.averageFinalRating < 3
-                          "
-                        >
+                          ">
                           <span class="fa fa-star checked"></span>
                           <span class="fa fa-star checked"></span>
                           <span class="fa fa-star-half-o checked"></span>
@@ -1229,12 +860,10 @@
                           <span class="fa fa-star-o"></span>
                           <span class="fa fa-star-o"></span>
                         </span>
-                        <span
-                          *ngIf="
+                        <span *ngIf="
                             program.averageFinalRating > 3 &&
                             program.averageFinalRating < 4
-                          "
-                        >
+                          ">
                           <span class="fa fa-star checked"></span>
                           <span class="fa fa-star checked"></span>
                           <span class="fa fa-star checked"></span>
@@ -1248,12 +877,10 @@
                           <span class="fa fa-star checked"></span>
                           <span class="fa fa-star-o"></span>
                         </span>
-                        <span
-                          *ngIf="
+                        <span *ngIf="
                             program.averageFinalRating > 4 &&
                             program.averageFinalRating < 5
-                          "
-                        >
+                          ">
                           <span class="fa fa-star checked"></span>
                           <span class="fa fa-star checked"></span>
                           <span class="fa fa-star checked"></span>
@@ -1268,8 +895,7 @@
                           <span class="fa fa-star checked"></span>
                         </span>
                         <a *ngIf="program.totalReviews">
-                          ({{ program.totalReviews }} reviews)</a
-                        >
+                          ({{ program.totalReviews }} reviews)</a>
                         <a *ngIf="!program.totalReviews"> (0 reviews)</a>
                       </p>
                     </div>
@@ -1280,10 +906,7 @@
                         {{ program.location }}
                       </h3>
                     </div>
-                    <button
-                      (click)="goToProgramDetail(program)"
-                      class="map-buttonas"
-                    >
+                    <button (click)="goToProgramDetail(program)" class="map-buttonas">
                       View
                     </button>
                   </div>
@@ -1296,10 +919,7 @@
       </div>
     </div>
     <div *ngIf="isOnline">
-      <online-programs
-        [programs]="programs"
-        [categories]="categories"
-      ></online-programs>
+      <online-programs [programs]="programs" [categories]="categories"></online-programs>
     </div>
   </div>
 </section>
@@ -1310,51 +930,61 @@
 </ngx-ui-loader>
 <app-footer2></app-footer2>
 
-<!----------------------------------------- location Modal ------------------------------------------------------->
 
-<!-- <div
-  class="modal fade verification_modal Location-Modal"
-  id="locationModal"
-  data-backdrop="static"
-  data-keyboard="false"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="staticBackdropLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
+
+
+
+<!-- Exploring Wonderfly Modal -->
+<div class="modal fade" id="Exploring-Wonderfly" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <button
-        type="button"
-        class="close"
-        id="close_modal"
-        data-dismiss="modal"
-        aria-label="Close">
-        <span aria-hidden="true" class="icon-close"></span>
-      </button>
+      <div class="modal-tour">
+        <img class="tour-img1" src="assets/tourside-1.png">
+        <img class="tour-img2" src="assets/tourside-2.png">
+      </div>
       <div class="modal-body">
-        <div class="location-popup">
-          <span><img class="logo-img" src="assets/logo.png" /></span>
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+          </ol>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <h1>Start exploring Wondrfly now!</h1>
+              <img class="exploring-img" src="assets/tour-1.png" alt="First slide">
+              <div class="carousel-caption">
+                <h5>Use filters for better results</h5>
+                <p>Filter activities by category, age range, date and time, <br> price, and more!.</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <h1>Start exploring Wondrfly now!</h1>
+              <img class="exploring-img" src="assets/tour-2.png" alt="Second slide">
+              <div class="carousel-caption">
+                <h5>Contact Providers</h5>
+                <p>Click the Connect button under any provider’s picture to <br> contact them directly. </p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="upto_date">
+                <div class="got-newsletter">
+                  <h2 class="title">Get our Newsletter</h2>
+                  <p>
+                    Stay up to date on the best promotions,<br> parenting tips, and news about kids’ activities.
+                  </p>
+                  <mailchimp-subscribe-form></mailchimp-subscribe-form>
 
-          <h1>May we access your location? </h1>
+                  <button class="done-btn">
+                    DONE!
+                  </button>
+                </div>
+              </div>
 
-          <h2>
-            <span><img src="assets/location-search1.png" /></span>
-            Help us find the best activities near you.
-          </h2>
-        </div>
-
-        <div class="sign_in_btn">
-          <button class="SignBtn cancel" data-dismiss="modal">Not Now</button>
-          <button
-            (click)="setCurrentLocation()"
-            data-dismiss="modal"
-            type="submit"
-            class="SignBtn"
-          >
-            Allow
-          </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div> -->
+</div>

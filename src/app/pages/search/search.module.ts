@@ -1,3 +1,4 @@
+import { MailchimpSubscribeFormModule } from './../../core/components/mailchimp-subscribe-form/mailchimp-subscribe-form.module';
 import { sharePopupModule } from './../../core/components/share-popup/share-popup.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -28,6 +29,7 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
     AgmCoreModule,
     NgxSliderModule,
     sharePopupModule,
+    MailchimpSubscribeFormModule
   ]
 })
 export class SearchModule { }
