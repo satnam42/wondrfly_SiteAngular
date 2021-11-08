@@ -17,6 +17,7 @@ import { MailchimpSubscribeFormModule } from './core/components/mailchimp-subscr
 import { ChatService } from './core/services/chat.service';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { MarkdownModule } from './core/shared/markdown/markdown.module';
+import { JoyrideModule } from 'ngx-joyride';
 
 
 const config: SocketIoConfig = { url: environment.socketUrl, options: {} };
@@ -42,6 +43,7 @@ const config: SocketIoConfig = { url: environment.socketUrl, options: {} };
       libraries: ['places']
     }),
     ToastrModule.forRoot(),
+    JoyrideModule.forRoot(),
 
   ],
   providers: [

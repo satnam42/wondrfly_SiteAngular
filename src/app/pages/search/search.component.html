@@ -18,7 +18,7 @@
         <div class="search-filterss">
           <div class="category_list" id="accordionExample">
             <ul>
-              <li class="cursor">
+              <li class="cursor" >
                 <a aria-expanded="true" data-target="#category" [ngClass]="{ active: isCategoryFilter }" (click)="
                     openModal(
                       (isCategoryFilter = true),
@@ -34,7 +34,8 @@
                       (isAgeModal = false),
                       (isTimeModal = false)
                     )
-                  " data-toggle="collapse">Categories</a>
+                  " data-toggle="collapse"
+                  joyrideStep="firstStep" title="demoTour" text="Hi, Welcome to demo tour">Categories</a>
                 <div class="
                     collapse
                     main_collpase
@@ -475,9 +476,6 @@
 
       <div class="col-md-4 toggle-border">
         <div class="toggle-filtersearch">
-          <button data-toggle="modal" data-target="#Exploring-Wonderfly">
-            search
-          </button>
           <button [class.active]="isOnline" (click)="
               isInPerson = false; isOnline = true; inpersonOrVirtual('online')
             " class="btn1-filtersearch">
@@ -537,12 +535,12 @@
             <div class="media-body">
               <div class="share_icon">
                 <a data-toggle="modal" (click)="selectedProgram = program" data-target="#ShareModal" class="cursor">
-                  <img src="assets/share_gray.svg " alt="Share Icon " />
+                  <img src="assets/share_gray.svg " class="section1" joyrideStep="secondStep" title="demoTour" text="Hi, Welcome to demo tour" alt="Share Icon " />
                 </a>
                 <div class="bookmark_outer">
                   <a *ngIf="!program.isFav && parentRole && isLogin"
                     (click)="addFavProgram(userData.id, program._id, i)" class="bookmark_icon cursor"><img
-                      src="assets/bookmark_gray.svg " alt="Menu Image " /></a>
+                      src="assets/bookmark_gray.svg " alt="Menu Image " class="section2" joyrideStep="thirdStep" title="demoTour" text="Hi, Welcome to demo tour" /></a>
 
                   <a *ngIf="!isLogin" routerLink="/login" class="bookmark_icon cursor"><img
                       src="assets/bookmark_gray.svg " alt="Menu Image " /></a>
@@ -932,7 +930,7 @@
 
 
 
-
+<div data-toggle="modal" data-target="#Exploring-Wonderfly" id='exploreModal'></div>
 
 <!-- Exploring Wonderfly Modal -->
 <div class="modal fade" id="Exploring-Wonderfly" tabindex="-1" role="dialog" aria-hidden="true">

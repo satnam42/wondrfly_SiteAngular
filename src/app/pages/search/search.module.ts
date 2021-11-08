@@ -14,6 +14,7 @@ import { RatingModule } from 'src/app/core/components/rating/rating.module';
 import { SignupPopupModule } from 'src/app/core/components/signup-popup/signup-popup.module';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { JoyrideModule } from 'ngx-joyride';
 @NgModule({
   declarations: [SearchComponent, OnlineProgramsComponent],
   imports: [
@@ -29,7 +30,8 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
     AgmCoreModule,
     NgxSliderModule,
     sharePopupModule,
-    MailchimpSubscribeFormModule
+    MailchimpSubscribeFormModule,
+    JoyrideModule,
   ]
 })
 export class SearchModule { }

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, NgZone, AfterViewInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/core/services/api.service.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
@@ -10,12 +10,13 @@ import { environment } from 'src/environments/environment.prod';
 import { Meta, Title } from '@angular/platform-browser';
 import { Options } from '@angular-slider/ngx-slider';
 import { ToastrService } from 'ngx-toastr';
+import { JoyrideService } from 'ngx-joyride';
 @Component({
   selector: 'search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
   defaultImage = 'https://miro.medium.com/max/441/1*9EBHIOzhE1XfMYoKz1JcsQ.gif';
   errorImage = 'assets/guitar.png';
   isDateFilter: boolean = false;
@@ -148,6 +149,7 @@ export class SearchComponent implements OnInit {
     private toast: ToastrService,
     private titleService: Title,
     private metaTagService: Meta,
+    private joyride: JoyrideService
   ) {
     this.locationData = dataservice.getLocation()
     console.log('this.locationData', this.locationData)
@@ -188,6 +190,10 @@ export class SearchComponent implements OnInit {
     }
   }
 
+  startTour() {
+    this.joyride.startTour({ steps: ['firstStep', 'secondStep', 'thirdStep'] });
+  }
+
 choosedDate(e){
 this.fromDate =e.startDate._d
 this.toDate=e.endDate._d
@@ -226,6 +232,7 @@ this.toDate=e.endDate._d
   }
 }
   ngOnInit() {
+    // this.startTour()
     console.log('latt', this.latt);
     this.titleService.setTitle(this.title);
     this.metaTagService.updateTag(
@@ -710,10 +717,7 @@ var providerName = provider.firstName;
   providerName = providerName.replace(/\?/g,"-");
     this.router.navigate(['/program-provider', providerName, provider._id]);
 }
-  ngAfterViewInit() {
-    // this.signUpModal()
-
-  }
+  
   ngOnDestroy() {
     window.document.getElementById("close_modal").click();
     // window.document.getElementById("close_morefilter").click();
@@ -825,4 +829,21 @@ if(program.userId==''|| program.userId==undefined || !program.userId){ program.u
    });
    this.showReset = true;
  }
+
+// ----------------------------------exploreModal functionality--------------------------------------
+exploreModal() {
+  if (localStorage.getItem("token")) {
+    setTimeout(() => {
+      console.log('timerrrrrr')
+      window.document.getElementById("exploreModal").click();
+    }, 20000);
+  }
+}
+
+ngAfterViewInit() {
+  this.exploreModal()
+}
+
+
+
 }
