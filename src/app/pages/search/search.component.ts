@@ -832,11 +832,12 @@ if(program.userId==''|| program.userId==undefined || !program.userId){ program.u
 
 // ----------------------------------exploreModal functionality--------------------------------------
 exploreModal() {
-  if (localStorage.getItem("token")) {
+  if (localStorage.getItem("token") && !localStorage.getItem('em')) {
     setTimeout(() => {
       console.log('timerrrrrr')
       window.document.getElementById("exploreModal").click();
-    }, 20000);
+      localStorage.setItem('em', '1')
+    },);
   }
 }
 
