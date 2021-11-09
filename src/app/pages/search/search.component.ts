@@ -191,7 +191,7 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   startTour() {
-    this.joyride.startTour({ steps: ['firstStep', 'secondStep', 'thirdStep'] });
+    this.joyride.startTour({ steps: ['firstStep', 'secondStep0', 'thirdStep0'] });
   }
 
 choosedDate(e){
@@ -232,7 +232,7 @@ this.toDate=e.endDate._d
   }
 }
   ngOnInit() {
-    // this.startTour()
+    this.startTour()
     console.log('latt', this.latt);
     this.titleService.setTitle(this.title);
     this.metaTagService.updateTag(

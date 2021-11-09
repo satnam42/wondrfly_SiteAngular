@@ -527,7 +527,7 @@
           [infiniteScrollThrottle]="500" (scrolled)="onScroll()" [scrollWindow]="false"
           *ngIf="programs?.length && contentLoaded">
           <!-- <div class="list-group "> -->
-          <div *ngFor="let program of programs; index as i" class="media activity">
+          <div *ngFor="let program of programs; let i = index" class="media activity">
             <div class="media-left activity-imgs" (click)="goToProgramDetail(program)">
               <img [defaultImage]="defaultImage" [errorImage]="errorImage"
                 [lazyLoad]="baseUrl + program?.category[0]?.iconUrl" />
@@ -535,12 +535,12 @@
             <div class="media-body">
               <div class="share_icon">
                 <a data-toggle="modal" (click)="selectedProgram = program" data-target="#ShareModal" class="cursor">
-                  <img src="assets/share_gray.svg " class="section1" joyrideStep="secondStep" title="demoTour" text="Hi, Welcome to demo tour" alt="Share Icon " />
+                  <img src="assets/share_gray.svg " class="section1" joyrideStep="secondStep{{i}}" title="demoTour" text="Hi, Welcome to demo tour" alt="Share Icon " />
                 </a>
                 <div class="bookmark_outer">
                   <a *ngIf="!program.isFav && parentRole && isLogin"
                     (click)="addFavProgram(userData.id, program._id, i)" class="bookmark_icon cursor"><img
-                      src="assets/bookmark_gray.svg " alt="Menu Image " class="section2" joyrideStep="thirdStep" title="demoTour" text="Hi, Welcome to demo tour" /></a>
+                      src="assets/bookmark_gray.svg " alt="Menu Image " class="section2" joyrideStep="thirdStep{{i}}" title="demoTour" text="Hi, Welcome to demo tour" /></a>
 
                   <a *ngIf="!isLogin" routerLink="/login" class="bookmark_icon cursor"><img
                       src="assets/bookmark_gray.svg " alt="Menu Image " /></a>
