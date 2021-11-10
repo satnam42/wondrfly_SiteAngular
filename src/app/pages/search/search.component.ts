@@ -840,6 +840,15 @@ exploreModal() {
     },);
   }
 }
+removeRecentSearches(indx){
+  this.selectedDays.splice(indx, 1);
+  if(this.selectedDays.length){
+    this.programFilter();
+  }
+  else {
+    this.resetFilter();
+  }
+}
 
 ngAfterViewInit() {
   this.exploreModal()

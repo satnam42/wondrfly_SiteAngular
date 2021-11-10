@@ -499,15 +499,19 @@
         <div class="chip-set-bar">
           <button class="btn_style save_btn cursor" *ngIf="searchedSubCategory">
             {{searchedSubCategory}}
-            <span class="ml-2"><img src="assets/white-close.png"/></span>
+            <span class="ml-2" (click)="resetFilter()"><img src="assets/white-close.png"/></span>
           </button>
           <button class="btn_style save_btn cursor" *ngIf="filterName=='age'">
             Age {{minAge}}-{{maxAge}} years
-            <span class="ml-2"><img src="assets/white-close.png" /></span>
-          </button>
-          <button class="btn_style save_btn cursor"  *ngFor="let day of this.selectedDays">
-            {{day}}
             <span (click)="resetFilter()" class="ml-2"><img src="assets/white-close.png" /></span>
+          </button>
+          <button class="btn_style save_btn cursor" *ngIf="isTopFilterCheckBox">
+            Top Rated
+            <span (click)="resetFilter()" class="ml-2"><img src="assets/white-close.png" /></span>
+          </button>
+          <button class="btn_style save_btn cursor"  *ngFor="let day of this.selectedDays;index as i">
+            {{day}}
+            <span (click)="removeRecentSearches(i)" class="ml-2"><img src="assets/white-close.png" /></span>
           </button>
           <span>
             <!-- <span>&times;</span> -->
