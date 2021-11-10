@@ -24,7 +24,6 @@ export class AppComponent implements OnInit {
   }
   deviceDetector() {
     this.currentOS = this.deviceService.getDeviceInfo().os;
-
     console.log(this.currentOS);
   }
 }
