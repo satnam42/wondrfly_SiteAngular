@@ -86,20 +86,16 @@
                                       </div>
                                     </div>
 
-                                    <div class="after-next" *ngIf="step2">
+                                    <div class="after-next" [hidden]="!step2">
                                         <div class="form-check booked">
                                           <label class="k-checkbox-label">I have booked <br> in the last 6 months</label>
-                                          <select>
-                                            <option selected value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
-                                            <option value="7">7</option>
-                                            <option value="8">8</option>
-                                            <option value="9">9</option>
-                                            <option value="10">10</option>
+                                          <select [(ngModel)]="userData.bookedActivityInLastMonths">
+                                            <option selected value="0" >0</option>
+                                            <option  value="1-5">1-5</option>
+                                            <option value="6-10">6-10</option>
+                                            <option value="11-15">11-15</option>
+                                            <option value="15+">15+</option>
+
                                           </select>
                                           <label class="form-check-label k-checkbox-label booked-label" for="flexCheckChecked">
                                             online or in-person activities for kids
@@ -140,7 +136,7 @@
 
                                         <div class="sign_in_btn">
                                             <button class="SignBtn" *ngIf="step1" (click)="step2=true;step1=false">Next</button>
-                                            <button class="SignBtn" *ngIf="step2" data-toggle="modal" data-target="#joinModal" (click)="askToJoin()" [disabled]="parentForm.invalid">Submit Request</button>
+                                            <button class="SignBtn" *ngIf="step2" data-toggle="modal" data-target="#joinModal" (click)="askToJoin()" [disabled]="!parentForm.valid">Submit Request</button>
                                             <!-- <button data-toggle="modal" data-target="#joinModal" class="SignBtn" (click)="askToJoin()" [disabled]="parentForm.invalid || !isTerms || !isParent || !isbetaActivity">Submit Request</button> -->
                                             <button class="SignBtn cancel" *ngIf="step1" (click)="cancel()">Cancel</button>
                                             <button class="SignBtn cancel" *ngIf="step2" (click)="step1=true;step2=false">Back</button>
@@ -160,7 +156,7 @@
 
 
                     </div>
-                    <div class="row forgot_password"  *ngIf="step1">
+                    <div class="row forgot_password"  [hidden]="!step1">
                         <div class="col-12 forgot_text">
                             <p class="member-123"><a class="cursor"  target="_blank" [routerLink]="['/term-condition']" >Terms & Conditions</a> and <a class="cursor" [routerLink]="['/privacyPolicy']" target="_blank">PRIVACY POLICY</a></p>
                         </div>

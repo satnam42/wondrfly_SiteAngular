@@ -455,16 +455,16 @@ select.ng-invalid.ng-touched {
     -o-border-radius: 20px;
 }
 .form-check.booked {
-    display: flex;
-    padding-left: 3px;
-    font-family: "Poppins";
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 35px;
-    color: #494949;
-    margin-bottom: 40px;
-    margin-top: 20px;
+  display: flex;
+  padding-left: 3px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 30px;
+  color: #494949;
+  margin-bottom: 40px;
+  margin-top: 20px;
 }
 label.label-occupation span {
     float: right;
@@ -491,7 +491,7 @@ input.form-check-input.k-checkbox.bookeds {
 }
 
 .form-check.booked select {
-  width: 40px;
+  width: 55px;
   height: 35px;
   margin-right: 6px;
   border: 1px solid #E5E9EC;
