@@ -9,6 +9,7 @@ import { LocalStorageService } from "../../services";
 import { DataService } from "../../services/dataservice.service ";
 import { ToastrService } from "ngx-toastr";
 import { MapsAPILoader } from "@agm/core";
+import { DeviceDetectorService } from 'ngx-device-detector';
 
 declare const $: any;
 @Component({
@@ -643,7 +644,8 @@ export class HeaderComponent implements OnInit {
     private toastr: ToastrService,
     private mapsAPILoader: MapsAPILoader,
     private dataservice: DataService,
-    public store: LocalStorageService
+    public store: LocalStorageService,
+    public deviceDetector: DeviceDetectorService,
   ) {
     this.user = this.auth.currentUser();
     this.auth.userChanges.subscribe((user) => (this.user = user));
@@ -733,6 +735,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log('device detected:',this.deviceDetector)
     this.getUserById();
 
     if ((this.routeName === "/profile", this.user.id)) {
