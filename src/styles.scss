@@ -2118,12 +2118,6 @@ body {
 // initial alpha logo css end
 
 
-body.mac-class .container{
-  max-width: 1231px;
-}
-
-
-
 
 
 
@@ -2264,4 +2258,10 @@ body.mac-class img.header-image-search {
 }
 body.mac-class .before-nav{
   margin-right: -130px;
+}
+body.mac-class .container{
+  max-width: 1231px;
+}
+body.mac-class .otp_img img.img-fluid {
+  height: 730px;
 }
