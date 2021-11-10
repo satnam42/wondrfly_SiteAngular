@@ -115,6 +115,7 @@ h1.ask-heading {
 }
 span.beta-span {
     color: #53B2E8;
+    cursor: pointer;
 }
 .otp_outer {
     position: relative;

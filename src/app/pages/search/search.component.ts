@@ -539,7 +539,7 @@ if(toggle){
   programFilter() {
     console.log('selected cat id', this.selectedSubCategories)
     const dateFormat = "YYYY-MM-DD";
-    const timeFormat = "YYYY-MM-DD HH:mm:ss"
+    // const timeFormat = "YYYY-MM-DD HH:mm:ss"
     this.activityName = ''
     this.showReset = true;
     var from: any
@@ -642,7 +642,7 @@ switch(this.timeSession){
         }
       }
       filter += `day=${day}`
-    }  
+    }
         break;
     }
   }
@@ -717,12 +717,12 @@ var providerName = provider.firstName;
   providerName = providerName.replace(/\?/g,"-");
     this.router.navigate(['/program-provider', providerName, provider._id]);
 }
-  
+
   ngOnDestroy() {
     window.document.getElementById("close_modal").click();
     // window.document.getElementById("close_morefilter").click();
     window.document.getElementById("close_sharemodal").click();
-    
+
   }
 
    // ---------------------------------navigate to program detail page -------------------------------------------

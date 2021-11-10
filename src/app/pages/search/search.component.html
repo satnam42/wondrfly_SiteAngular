@@ -497,22 +497,18 @@
       </div>
       <div class="col-8">
         <div class="chip-set-bar">
-          <!-- <button class="btn_style save_btn cursor">
-            Music
+          <button class="btn_style save_btn cursor" *ngIf="searchedSubCategory">
+            {{searchedSubCategory}}
             <span class="ml-2"><img src="assets/white-close.png"/></span>
           </button>
-          <button class="btn_style save_btn cursor">
-            Age 2-8 years
+          <button class="btn_style save_btn cursor" *ngIf="filterName=='age'">
+            Age {{minAge}}-{{maxAge}} years
             <span class="ml-2"><img src="assets/white-close.png" /></span>
           </button>
-          <button class="btn_style save_btn cursor">
-            Monday
-            <span class="ml-2"><img src="assets/white-close.png" /></span>
+          <button class="btn_style save_btn cursor"  *ngFor="let day of this.selectedDays">
+            {{day}}
+            <span (click)="resetFilter()" class="ml-2"><img src="assets/white-close.png" /></span>
           </button>
-          <button class="btn_style save_btn cursor">
-            Tuesday
-            <span class="ml-2"><img src="assets/white-close.png" /></span>
-          </button> -->
           <span>
             <!-- <span>&times;</span> -->
             <a class="ml-2 clear-text cursor" (click)="resetFilter()">Clear all</a>
