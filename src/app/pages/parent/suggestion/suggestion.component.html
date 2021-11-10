@@ -9,7 +9,7 @@
           <div class="col-12">
             <div class="beta-suggestionheading">
               <h1>Hi Cyril. Welcome to Wondrfly!</h1>
-              <h2>Here Are Your Personalized Activity Recommendations!</h2>
+              <h2>We’ve prepared these activity recommendations just for you!</h2>
             </div>
           </div>
         </div>
@@ -22,36 +22,22 @@
           <div class="row">
             <div class="col-12 activities-flex">
               <h2 class="title">Activities for {{ kid?.name }}</h2>
-              <span routerLink="/search" class="d-flex justify-content-end"
-                >view all</span
-              >
+              <span routerLink="/search" class="d-flex justify-content-end">view all</span>
             </div>
           </div>
           <div class="activity_category_list">
             <div class="row">
-              <div
-                class="col-md-4"
-                *ngFor="let category of categories | slice: 2:5; let i = index"
-              >
-                <div
-                  class="category_list_box cursor"
-                  (click)="searchByCategory(category.id)"
-                >
+              <div class="col-md-4" *ngFor="let category of categories | slice: 2:5; let i = index">
+                <div class="category_list_box cursor" (click)="searchByCategory(category.id)">
                   <a href="javascritpt:;">
                     <div class="category_image">
-                      <img
-                        [defaultImage]="defaultImage"
-                        [lazyLoad]="category?.imageUrl"
-                      />
+                      <img [defaultImage]="defaultImage" [lazyLoad]="category?.imageUrl" />
                     </div>
                     <div class="category_title">
                       <p>
                         {{ category?.name
                         }}<span class="title_arrow">
-                          <img
-                            src="assets/category_arrow.svg"
-                            alt="Category_arrow"
-                          />
+                          <img src="assets/category_arrow.svg" alt="Category_arrow" />
                         </span>
                       </p>
                     </div>
@@ -79,78 +65,38 @@
                   <div class="left-searchss">
                     <div class="">
                       <div>
-                        <form
-                          class="banner_form"
-                          data-toggle="collapse"
-                          href="#dropdownprogram-provider"
-                          role="button"
-                          aria-expanded="false"
-                          aria-controls="dropdownprogram-provider"
-                        >
+                        <form class="banner_form" data-toggle="collapse" href="#dropdownprogram-provider" role="button"
+                          aria-expanded="false" aria-controls="dropdownprogram-provider">
                           <div class="form-group">
-                            <input
-                              type="text"
-                              autocomplete="off"
-                              (keyup)="
+                            <input type="text" autocomplete="off" (keyup)="
                                 searchSubCategory(activityName);
                                 providerSearch(activityName)
-                              "
-                              placeholder="Search activity or provider..."
-                              class="form-control camp_input"
-                              name="activityName"
-                              [(ngModel)]="activityName"
-                            />
+                              " placeholder="Search activity or provider..." class="form-control camp_input"
+                              name="activityName" [(ngModel)]="activityName" />
                           </div>
                           <div class="search-location">
-                            <span
-                              data-toggle="modal"
-                              data-target="#locationModal"
-                            >
-                              <img src="assets/search-location.png"
-                            /></span>
-                            <input
-                              placeholder="Search Location"
-                              (keydown.enter)="$event.preventDefault()"
-                              autocorrect="off"
-                              autocapitalize="off"
-                              spellcheck="off"
-                              #search
-                            />
+                            <span data-toggle="modal" data-target="#locationModal">
+                              <img src="assets/search-location.png" /></span>
+                            <input placeholder="Search Location" (keydown.enter)="$event.preventDefault()"
+                              autocorrect="off" autocapitalize="off" spellcheck="off" #search />
                           </div>
                           <div class="form-group">
-                            <button
-                              (click)="filterByNameDate()"
-                              class="banner_button"
-                              type="submit"
-                            >
-                              <img
-                                src="assets/search_icon.svg"
-                                alt="Search image"
-                              />
+                            <button (click)="filterByNameDate()" class="banner_button" type="submit">
+                              <img src="assets/search_icon.svg" alt="Search image" />
                             </button>
                           </div>
 
-                          <div
-                            class="dropdownprogram"
-                            *ngIf="
+                          <div class="dropdownprogram" *ngIf="
                               (providersBySearch?.length ||
                                 categoriesBySearch?.length) &&
                               activityName
-                            "
-                          >
+                            ">
                             <div class="card card-body">
-                              <div
-                                class="program-list"
-                                *ngIf="categoriesBySearch?.length"
-                              >
-                                <h6
-                                  (click)="searchBySubCategory(category._id)"
-                                  *ngFor="
+                              <div class="program-list" *ngIf="categoriesBySearch?.length">
+                                <h6 (click)="searchBySubCategory(category._id)" *ngFor="
                                     let category of categoriesBySearch
                                       | slice: 0:4
-                                  "
-                                  (click)="searchBySubCategory('')"
-                                >
+                                  " (click)="searchBySubCategory('')">
                                   {{ category.name }}
                                   <span class="search-programlist">
                                     <img src="assets/program-search.svg" />
@@ -158,18 +104,12 @@
                                 </h6>
                               </div>
                               <hr />
-                              <div
-                                class="provider-list"
-                                *ngIf="providersBySearch?.length"
-                              >
+                              <div class="provider-list" *ngIf="providersBySearch?.length">
                                 <h5>Providers</h5>
-                                <h6
-                                  (click)="goToProviderProfile(provider)"
-                                  *ngFor="
+                                <h6 (click)="goToProviderProfile(provider)" *ngFor="
                                     let provider of providersBySearch
                                       | slice: 0:4
-                                  "
-                                >
+                                  ">
                                   {{ provider.firstName }}
                                 </h6>
                               </div>
@@ -190,7 +130,7 @@
       </div>
     </section>
 
-    <section class="blog-explore" >
+    <section class="blog-explore">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
@@ -227,7 +167,7 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="img-invite">
-                    <img src="assets/beta-invite.png" alt="invite-image"  />
+                    <img src="assets/beta-invite.png" alt="invite-image" />
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -256,16 +196,10 @@
               </div>
               <div class="lower-blog-sec">
                 <div class="row">
-                  <div
-                    class="col-md-3"
-                    *ngFor="let survey of feedback; let i = index"
-                  >
-                    <div
-                      class="card"
-                      [class.activated-survey]="
+                  <div class="col-md-3" *ngFor="let survey of feedback; let i = index">
+                    <div class="card" [class.activated-survey]="
                         feedback[0] === feedback[i] ? true : false
-                      "
-                    >
+                      ">
                       <div class="card-body">
                         <h5 class="card-title">{{ survey?.feedback }}</h5>
                         <p class="card-text">{{ survey?.description }}</p>
@@ -273,15 +207,11 @@
                           <span>Not Completed </span><br />
                           this week
                         </h6>
-                        <a href="https://vocw882cklq.typeform.com/to/CgxzBUp9" target="_blank"
-                          ><button
-                            [disabled]="
+                        <a href="https://vocw882cklq.typeform.com/to/CgxzBUp9" target="_blank"><button [disabled]="
                               feedback[0] !== feedback[i] ? true : false
-                            "
-                          >
+                            ">
                             START NOW
-                          </button></a
-                        >
+                          </button></a>
                       </div>
                     </div>
                   </div>
@@ -300,46 +230,91 @@
             <div class="box">
               <div class="upper-blog">
                 <h2 class="upper-blog-heading">Resources</h2>
-                <span  class="d-flex justify-content-end" routerLink="/resources" >view all</span>
+                <!-- <span class="d-flex justify-content-end" >view all</span> -->
               </div>
               <div class="lower-resources-sec">
                 <div class="row">
-                  <div class="col-md-4" *ngFor="let res of resources">
+                  <div class="col-md-4">
                     <div class="card">
-                      <img
-                        class="card-img-top"
-                        src="{{ blogUrl }}{{ res?.image?.url }}"
-                        alt="Card image cap"
-                      />
-                      <div class="card-body">
-                        <h5 class="card-title">{{ res.title }}</h5>
-                        <p class="card-text">{{ res.description }}</p>
-                        <div class="list">
-                          <div class="list-flex">
-                            <p>
-                              <img
-                                src="assets/calendar.svg "
-                                alt="School image "
-                              />{{ res.start_date }}
-                            </p>
-                            <p>
-                              <img
-                                src="assets/user_group.svg "
-                                alt="School image "
-                              />{{ res.end_date }}
-                            </p>
-                          </div>
-                          <p>
-                            <a href="{{ res.url }}" target="_blank"
-                              >READ MORE</a
-                            >
-                          </p>
+                      <div class="resourcenew-upper">
+                        <div class="content-upper">
+                          <img src="assets/fluent_print-20-filled.png">
+                          <h1>Printables</h1>
                         </div>
                       </div>
+                      <div class="card-body">
+                        <div class="resourcenew-lower">
+                          <div class="resouce-download">
+                            <h1>
+                              Dui ornare gravida quis at massa
+                              <img src="assets/bx_bxs-cloud-download.png">
+                            </h1>
+                            <h1>
+                              Dui ornare gravida quis at massa
+                              <img src="assets/bx_bxs-cloud-download.png">
+                            </h1>
+                            <h1>
+                              Dui ornare gravida quis at massa
+                              <img src="assets/bx_bxs-cloud-download.png">
+                            </h1>
+                          </div>
+                        </div>
+                      </div>
+                      <a routerLink="/resources" class="btn-sec">VIEW ALL</a>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="card">
+                      <div class="resourcenew-upper">
+                        <div class="content-upper">
+                          <img src="assets/bx_bxs-book-reader.png">
+                          <h1>Featured Blogs</h1>
+                        </div>
+                      </div>
+                      <div class="card-body">
+                        <div class="resourcenew-lower">
+                          <div class="resouce-download">
+                            <h1>
+                              <img src="assets/parent-resource.png">
+                              <div class="landing-content">
+                                <h3>25 Oct 2021</h3>
+                                <h2>Quisque laoreet urna aenean et nibh neque enim sagittis viverra</h2>
+                              </div>
+                            </h1>
+                            <h1>
+                              <img src="assets/parent-resource.png">
+                              <div class="landing-content">
+                                <h3>25 Oct 2021</h3>
+                                <h2>Quisque laoreet urna aenean et nibh neque enim sagittis viverra</h2>
+                              </div>
+                            </h1>
+
+                          </div>
+                        </div>
+                      </div>
+                      <a href="#" class="btn-sec">READ ALL</a>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="card">
+                      <div class="resourcenew-upper">
+                        <div class="content-upper">
+                          <img src="assets/bi_twitter.png">
+                          <h1>Funny tweets</h1>
+                        </div>
+                      </div>
+                      <div class="card-body">
+                        <div class="resourcenew-lower">
+                          <div class="dummy-twitter">
+                            <img src="assets/dummy-twitter.png">
+                          </div>
+                        </div>
+                      </div>
+                      <a href="#" class="btn-sec">CHECK FOR MORE!</a>
                     </div>
                   </div>
 
-                  <div class="col-md-4">
+                  <!-- <div class="col-md-4">
                     <div class="card comming-soon">
                       <div class="imgage-corners">
                         <img src="assets/resouces-circle.png" />
@@ -353,7 +328,7 @@
                         <img src="assets/beta-image.png" />
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>
