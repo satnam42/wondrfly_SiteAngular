@@ -22,6 +22,10 @@ export class SuggestionComponent implements OnInit {
   title = 'Best Activities and Programs for Kids in Jersey City - Wondrfly';
   categories: any = new Category;
   feedback: any = [];
+  blogs:any = []
+  printables:any=[]
+  tweetData:any = []
+  tweetDataBlogPath:any = ''
   filterData: any = {
     subcatId: '',
     categoryId:'',
@@ -36,6 +40,7 @@ export class SuggestionComponent implements OnInit {
   currentUser: any;
   kids:Child[];
   isNewFeaturePopUp:boolean;
+  blogByCategory: any;
   constructor(private router: Router,
     private apiservice: ApiService,
     private dataservice: DataService,
@@ -92,6 +97,46 @@ if(!this.currentUser){
     });
   }
 
+  downloadFile(){
+
+  }
+
+  getTweet() {
+    const responcee = axios.get(`${this.blogUrl}/funny-tweets`).then((response) => {
+      this.tweetData = response.data;
+      this.tweetDataBlogPath = new URL (this.tweetData[0].blogLink).pathname;
+      console.log('tweetData',this.tweetData)
+    });
+  }
+
+    // ------------------------------------------------get printables data  -------------------------------------------
+
+    getPrintables() {
+      const responcee = axios.get(`${this.blogUrl}/printables?_sort=published_at:DESC&_limit=2`).then((response) => {
+        this.printables = response.data;
+        console.log('tweetData',this.printables)
+      });
+    }
+
+  // ------------------------------------------------get blogs  -------------------------------------------
+
+  getBlog() {
+    const responcee = axios.get(`${this.blogUrl}/blogs?_sort=published_at:DESC&_limit=2`).then((response) => {
+      this.blogs = response.data;
+      console.log(this.blogs);
+    });
+  }
+
+  getBlogByCat(){
+    const responcee = axios.get(`${this.blogUrl}/categories/?id=12`).then(response => {
+      this.blogByCategory = response.data[0];
+      this.blogByCategory.blogs.reverse();
+      console.log(this.blogByCategory.blogs,'blogByCategory');
+
+
+    });
+}
+
   // setBlog(data) {
   //   var title = data.title
   //   title = title.toLowerCase();
@@ -130,6 +175,10 @@ getForms(){
   });
 }
   ngOnInit() {
+    this.getTweet()
+    this.getPrintables()
+    this.getBlogByCat()
+    this.getBlog()
     this.getChildByParentId()
     this.getCategoryList();
     this.feedbackSurveyList();

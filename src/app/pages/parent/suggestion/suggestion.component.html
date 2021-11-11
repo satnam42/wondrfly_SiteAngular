@@ -245,18 +245,15 @@
                       <div class="card-body">
                         <div class="resourcenew-lower">
                           <div class="resouce-download">
-                            <h1>
-                              Dui ornare gravida quis at massa
-                              <img src="assets/bx_bxs-cloud-download.png">
-                            </h1>
-                            <h1>
-                              Dui ornare gravida quis at massa
-                              <img src="assets/bx_bxs-cloud-download.png">
-                            </h1>
-                            <h1>
-                              Dui ornare gravida quis at massa
-                              <img src="assets/bx_bxs-cloud-download.png">
-                            </h1>
+                            <h1 *ngFor=" let printable of printables">
+                              {{printable?.title}}
+                               <img class="downloadicon cursor" (click)="downloadFile()" src="assets/bx_bxs-cloud-download.png">
+                             </h1>
+                             
+                             <h1>
+                               {{blogByCategory?.blogs[0]?.title}}
+                               <img routerLink="/blogs/category/Do-Togethers-%28DIYs-&-More%29/12" class="downloadicon cursor" src="assets/bx_bxs-cloud-download.png">
+                             </h1>
                           </div>
                         </div>
                       </div>
@@ -274,18 +271,12 @@
                       <div class="card-body">
                         <div class="resourcenew-lower">
                           <div class="resouce-download">
-                            <h1>
-                              <img src="assets/parent-resource.png">
+                            <h1 *ngFor="let blog of blogs">
+                              <img  *ngIf="blog.image[0]?.url" src="{{blogUrl}}{{blog.image[0]?.url}}">
+                              <img *ngIf="!blog.image[0]?.url" src="assets/parent-resource.png">
                               <div class="landing-content">
-                                <h3>25 Oct 2021</h3>
-                                <h2>Quisque laoreet urna aenean et nibh neque enim sagittis viverra</h2>
-                              </div>
-                            </h1>
-                            <h1>
-                              <img src="assets/parent-resource.png">
-                              <div class="landing-content">
-                                <h3>25 Oct 2021</h3>
-                                <h2>Quisque laoreet urna aenean et nibh neque enim sagittis viverra</h2>
+                                <h3>{{blog?.published_at  | date:'mediumDate'}}</h3>
+                                <h2>{{blog?.title}}</h2>
                               </div>
                             </h1>
 
@@ -306,11 +297,12 @@
                       <div class="card-body">
                         <div class="resourcenew-lower">
                           <div class="dummy-twitter">
-                            <img src="assets/dummy-twitter.png">
+                            <!-- <img src="assets/dummy-twitter.png"> -->
+                            <div [innerHTML]="tweetData[0]?.embededTweet | markdown"></div>
                           </div>
                         </div>
                       </div>
-                      <a href="#" class="btn-sec">CHECK FOR MORE!</a>
+                      <a routerLink="{{tweetDataBlogPath}}" class="btn-sec">CHECK FOR MORE!</a>
                     </div>
                   </div>
 

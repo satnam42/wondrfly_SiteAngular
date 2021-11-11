@@ -11,15 +11,16 @@ export class MoreResourcesComponent implements OnInit {
   blogUrl = environment.blogsUrl;
   resources: any;
 
+  
   constructor() { 
-    this.getResources()
+    this.getPrintables()
   }
 
 
    // ------------------------------------------------get resources  -------------------------------------------
 
-   getResources() {
-    axios.get(`${this.blogUrl}/resources`).then(response => {
+   getPrintables() {
+    axios.get(`${this.blogUrl}/printables`).then(response => {
       this.resources = response.data
       console.log('resources',this.resources)
     });
