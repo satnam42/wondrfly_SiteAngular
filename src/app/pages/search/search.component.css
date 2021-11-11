@@ -2616,14 +2616,81 @@ div#Exploring-Wonderfly .carousel-item h1 {
   text-align: center;
   margin-top: 60px;
 }
-
-
-
-
-
-
-
-
+::ng-deep .joyride-step__container {
+  height: auto !important;
+  color: #fff!important;
+  background-color: #53B2E8!important;
+  padding: 10px!important;
+  box-shadow: none!important;
+  border-radius: 6px;
+}
+::ng-deep .joyride-step__body {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 15px;
+  letter-spacing: 0.001em;
+  color: #FFFFFF;
+  padding: 7px 7px !important;
+}
+::ng-deep .joyride-arrow__top {
+  border-bottom: 11px solid #53B2E8!important;
+}
+::ng-deep .joyride-arrow__right{
+  border-left: 11px solid #53B2E8!important;
+}
+::ng-deep .joyride-step__title {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500 !important;
+  font-size: 12px !important;
+  line-height: 18px;
+  letter-spacing: 0.001em;
+  color: #FFFFFF!important;
+}
+::ng-deep button.joyride-button {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0px !important;
+  line-height: 15px;
+  letter-spacing: 0.001em;
+  color: #53B2E8 !important;
+  background: #fff !important;
+  border-radius: 20px;
+   padding: 3px!important;
+  padding-left: 17px!important;
+  padding-right: 47px!important;
+  margin-top: 10px;
+  border: none !important;
+}
+::ng-deep button.joyride-button:hover {
+  border: none !important;
+}
+::ng-deep joy-close-button.joyride-step__close svg {
+  display: none;
+}
+::ng-deep .joyride-step__header {
+  padding-bottom: 0px!important;
+}
+::ng-deep .joyride-step__counter {
+  display: none;
+}
+::ng-deep joyride-button.joyride-step__prev-button {
+  display: none;
+}
+::ng-deep button.joyride-button:before {
+  content: "Got it";
+  position: absolute;
+  font-size: 10px !important;
+}
+::ng-deep #joyride-step-firstStep .joyride-step__container {
+  left: 36px;
+}
+::ng-deep .backdrop-target {
+  display: none;
+}
 @media only screen and (min-width: 1024px) and (max-width: 1366px) and (orientation: portrait) {
   .activity .media-left {
     max-width: 200px;
