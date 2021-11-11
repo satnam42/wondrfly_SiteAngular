@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import axios from 'axios';
 import { environment } from 'src/environments/environment';
-
+import * as FileSaver from 'file-saver';
 @Component({
   selector: 'app-more-resources',
   templateUrl: './more-resources.component.html',
@@ -26,7 +26,9 @@ export class MoreResourcesComponent implements OnInit {
     });
   }
 
-
+  downloadFile(file){
+    FileSaver.saveAs(this.blogUrl+file.url,file.name);
+  }
   ngOnInit(): void {
   }
 
