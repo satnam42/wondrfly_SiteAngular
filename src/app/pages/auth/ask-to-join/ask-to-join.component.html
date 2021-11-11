@@ -8,7 +8,7 @@
                     <div class="otp_form">
 
                         <div class="sing_text">
-                            <img routerLink="/" src="assets/logo.png">
+                            <img routerLink="/" src="assets/logo-betawndr.png">
                         </div>
                         <div class="tab_outer">
 
@@ -89,9 +89,9 @@
                                     <div class="after-next" [hidden]="!step2">
                                         <div class="form-check booked">
                                           <label class="k-checkbox-label">I have booked <br> in the last 6 months</label>
-                                          <select [(ngModel)]="userData.bookedActivityInLastMonths">
-                                            <option selected value="0" >0</option>
-                                            <option  value="1-5">1-5</option>
+                                          <select type="text" [formControl]="parentForm.controls['bookedActivityInLastMonths']" name="bookedActivityInLastMonths" [(ngModel)]="userData.bookedActivityInLastMonths">
+                                            <option value="" selected >0</option>
+                                            <option value="1-5">1-5</option>
                                             <option value="6-10">6-10</option>
                                             <option value="11-15">11-15</option>
                                             <option value="15+">15+</option>
@@ -195,11 +195,11 @@
             <div class="modal-body">
               <div class="location-popup">
                 <h1>
-                  Thank you for your interest, Admin will approve
+                  Thank you for your interest
                 </h1>
 
                 <h2>
-                  We’re thrilled to have you on board.
+                  We will get back to you shortly!
                 </h2>
               </div>
 

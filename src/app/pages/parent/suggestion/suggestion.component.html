@@ -247,7 +247,7 @@
                           <div class="resouce-download">
                             <h1 *ngFor=" let printable of printables">
                               {{printable?.title}}
-                               <img class="downloadicon cursor" (click)="downloadFile()" src="assets/bx_bxs-cloud-download.png">
+                               <img class="downloadicon cursor" (click)="downloadFile(printable?.file)" src="assets/bx_bxs-cloud-download.png">
                              </h1>
                              
                              <h1>

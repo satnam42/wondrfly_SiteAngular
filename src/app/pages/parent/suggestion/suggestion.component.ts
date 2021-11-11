@@ -9,6 +9,7 @@ import { AuthsService } from 'src/app/core/services/auths.service';
 import { DataService } from 'src/app/core/services/dataservice.service ';
 import { TypeFormService } from 'src/app/core/services/typeform.service';
 import { environment } from 'src/environments/environment.prod';
+import * as FileSaver from 'file-saver';
 @Component({
   selector: 'parent-suggestion',
   templateUrl: './suggestion.component.html',
@@ -97,8 +98,8 @@ if(!this.currentUser){
     });
   }
 
-  downloadFile(){
-
+  downloadFile(file){
+    FileSaver.saveAs(this.blogUrl+file.url,file.name);
   }
 
   getTweet() {

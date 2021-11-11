@@ -33,7 +33,6 @@ export class AskToJoinComponent implements OnInit {
     wantWondrflyBetaUserBecause:  '',
     occupation:  '',
     willActive: false,
-    confirmPassword:'',
     role: 'parent',
     userId:''
   }
