@@ -869,7 +869,9 @@ a.btn-sec {
 }
 
 
-
+.resouce-download .resource-blogs { 
+  justify-content: flex-start !important;
+}
 @media only screen and (min-width: 1024px) and (max-width: 1366px) and (orientation: portrait) {
   .container,
   .container-lg,
