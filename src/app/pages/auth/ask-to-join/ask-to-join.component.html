@@ -102,16 +102,19 @@
                                           </label>
                                         </div>
 
-                                      <div class="form-group">
+                                      <div class="form-group choose-acti">
                                         <label>I want to be a Wondrfly Beta User because</label>
-                                        <select class="form-control"  [formControl]="parentForm.controls['wantWondrflyBetaUserBecause']" [(ngModel)]="userData.wantWondrflyBetaUserBecause">
-                                          <option selected value="reason 1">reason 1</option>
-                                          <option value="reason 2">reason 2</option>
-                                          <option value="reason 3">reason 3</option>
-                                        </select>
-                                        <p class="cant_blank"
-                                        *ngIf="parentForm.controls['wantWondrflyBetaUserBecause'].hasError('required') && parentForm.controls['wantWondrflyBetaUserBecause'].touched">
-                                        CAN'T LEAVE IT BLANK</p>
+                                        <div class="input_outer" data-toggle="collapse" data-target="#choose-activ">
+                                          <input type="text" class="form-control" placeholder="Choose"  [formControl]="parentForm.controls['wantWondrflyBetaUserBecause']" [(ngModel)]="userData.wantWondrflyBetaUserBecause">
+                                          <p class="cant_blank"
+                                          *ngIf="parentForm.controls['wantWondrflyBetaUserBecause'].hasError('required') && parentForm.controls['wantWondrflyBetaUserBecause'].touched">
+                                          CAN'T LEAVE IT BLANK</p>
+                                      </div>
+                                      <div class="collapse dropdown-activities cursor" data-toggle="collapse" data-target="#choose-activ" id="choose-activ">
+                                        <h6 (click)="userData.bookedActivityFor='My kids'">I want to find the best kids' activities near me</h6>
+                                        <h6 (click)="userData.bookedActivityFor='Relative’s kids'">I want to play a role in developing a revolutionary product for parents. </h6>
+                                        <h6 (click)="userData.bookedActivityFor='Friend’s kids'">I want access to exclusive parenting resources.</h6>  
+                                      </div>
                                       </div>
                                       <div class="form-group">
                                         <label class="label-occupation">Occupation

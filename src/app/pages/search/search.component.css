@@ -2616,6 +2616,11 @@ div#Exploring-Wonderfly .carousel-item h1 {
   text-align: center;
   margin-top: 60px;
 }
+.chip-set-bar{
+  padding: 20px 36px 30px !important;
+}
+
+/* product tour */
 ::ng-deep .joyride-step__container {
   height: auto !important;
   color: #fff!important;
@@ -2691,6 +2696,10 @@ div#Exploring-Wonderfly .carousel-item h1 {
 ::ng-deep .backdrop-target {
   display: none;
 }
+
+
+
+
 @media only screen and (min-width: 1024px) and (max-width: 1366px) and (orientation: portrait) {
   .activity .media-left {
     max-width: 200px;
