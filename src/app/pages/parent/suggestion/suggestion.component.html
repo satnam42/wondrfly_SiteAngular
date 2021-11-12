@@ -250,9 +250,9 @@
                                <img class="downloadicon cursor" (click)="downloadFile(printable?.file)" src="assets/bx_bxs-cloud-download.png">
                              </h1>
                              
-                             <h1>
-                               {{blogByCategory?.blogs[0]?.title}}
-                               <img routerLink="/blogs/category/Do-Togethers-%28DIYs-&-More%29/12" class="downloadicon cursor" src="assets/bx_bxs-cloud-download.png">
+                             <h1 class="printable-blog" routerLink="/blogs/category/Do-Togethers-%28DIYs-&-More%29/12">
+                               <a>{{blogByCategory?.blogs[0]?.title}}</a>
+                               <!-- <img routerLink="/blogs/category/Do-Togethers-%28DIYs-&-More%29/12" class="downloadicon cursor" src="assets/bx_bxs-cloud-download.png"> -->
                              </h1>
                           </div>
                         </div>

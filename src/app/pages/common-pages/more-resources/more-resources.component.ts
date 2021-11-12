@@ -20,7 +20,7 @@ export class MoreResourcesComponent implements OnInit {
    // ------------------------------------------------get resources  -------------------------------------------
 
    getPrintables() {
-    axios.get(`${this.blogUrl}/printables`).then(response => {
+    axios.get(`${this.blogUrl}/printables?_sort=published_at:DESC`).then(response => {
       this.resources = response.data
       console.log('resources',this.resources)
     });

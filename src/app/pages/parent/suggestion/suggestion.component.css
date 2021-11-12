@@ -867,8 +867,13 @@ a.btn-sec {
   height: 24px !important;
   object-fit: cover;
 }
-
-
+h1.printable-blog a:hover {
+  text-decoration: underline !important;
+}
+h1.printable-blog a {
+  color: #53b2e8 !important;
+  cursor: pointer;
+}
 .resouce-download .resource-blogs { 
   justify-content: flex-start !important;
 }
