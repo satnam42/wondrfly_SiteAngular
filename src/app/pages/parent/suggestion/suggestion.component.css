@@ -874,8 +874,15 @@ h1.printable-blog a {
   color: #53b2e8 !important;
   cursor: pointer;
 }
-.resouce-download .resource-blogs { 
+.resouce-download .resource-blogs {
   justify-content: flex-start !important;
+}
+.dummy-twitter {
+  max-height: 186px;
+  overflow-y: scroll;
+}
+.dummy-twitter::-webkit-scrollbar {
+  display: none;
 }
 @media only screen and (min-width: 1024px) and (max-width: 1366px) and (orientation: portrait) {
   .container,
