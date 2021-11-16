@@ -85,6 +85,7 @@ name = name.replace(/\?/g,"-");
          return true;
        }
        case 'email': {
+        navigator.clipboard.writeText(this.shareUrl).then().catch(e => console.error(e));
          this.url = `mailto:?subject=wondrfly&amp;body=${this.shareUrl}`;
          window.open( this.url, 'sharer', 'toolbar=0,status=0,width=648,height=395');
          return true;
@@ -95,7 +96,7 @@ name = name.replace(/\?/g,"-");
          return true;
        }
        case 'messenger': {
-
+        navigator.clipboard.writeText(this.shareUrl).then().catch(e => console.error(e));
          window.open( 'https://m.me', 'sharer', 'toolbar=0,status=0,width=1000,height=600');
          return true;
        }
