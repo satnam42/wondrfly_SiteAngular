@@ -59,7 +59,9 @@ if(!this.currentUser){
   searchSubCategory(key){
     this.apiservice.searchTag(key).subscribe((res:any)=>{
   this.categoriesBySearch = res;
-  this.categoriesBySearch = this.categoriesBySearch.filter((item) => item.isActivated !== false);
+  this.categoriesBySearch.category = this.categoriesBySearch.category.filter((item) => item.isActivated !== false);
+  this.categoriesBySearch.tags = this.categoriesBySearch.tags.filter((item) => item.isActivated !== false);
+
 
     })
   }
