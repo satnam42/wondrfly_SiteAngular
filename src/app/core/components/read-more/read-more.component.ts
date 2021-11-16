@@ -41,9 +41,9 @@ export class ReadMoreComponent implements OnInit {
 
   formatContent(content: string) {
     if (this.completeWords) {
-      this.limit = content.substr(0, this.limit).lastIndexOf(' ');
+      this.limit = content?.substr(0, this.limit).lastIndexOf(' ');
     }
-    return `${content.substr(0, this.limit)}...`;
+    return `${content?.substr(0, this.limit)}...`;
   }
   blogDetail() {
     this.blogData.title = this.blogData.title.toLowerCase();

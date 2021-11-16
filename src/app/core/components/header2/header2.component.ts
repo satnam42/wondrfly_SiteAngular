@@ -80,12 +80,19 @@ import { DataService } from "../../services/dataservice.service ";
                     <div class="card card-body">
                       <div
                         class="program-list"
-                        *ngIf="categoriesBySearch?.length"
+                        *ngIf="categoriesBySearch?.category?.length || categoriesBySearch?.tags?.length"
                       >
+                      <h6   *ngFor=" let category of categoriesBySearch?.category | slice: 0:1  "  (click)="searchByCategory(category?._id)"
+                            >
+                              {{ category.name }}
+                              <span class="search-programlist">
+                                <img src="assets/program-search.svg" />
+                              </span>
+                            </h6>
                         <h6
                           (click)="searchActivityByCategory(category._id)"
                           *ngFor="
-                            let category of categoriesBySearch | slice: 0:4
+                            let category of categoriesBySearch?.tags | slice: 0:3
                           "
                         >
                           {{ category.name }}
@@ -247,6 +254,11 @@ export class Header2Component implements OnInit {
   searchActivityByNameDate() {
     this.dataservice.setOption(this.filterData);
     this.router.navigate(["/search"]);
+    if (this.routeName === "/search") {
+      this.router
+        .navigateByUrl("/", { skipLocationChange: true })
+        .then(() => this.router.navigate(["search"]));
+    }
   }
   logo() {
     this.router
@@ -259,10 +271,22 @@ export class Header2Component implements OnInit {
   searchSubCategory(key) {
     this.apiservice.searchTag(key).subscribe((res: any) => {
       this.categoriesBySearch = res;
-      this.categoriesBySearch = this.categoriesBySearch.filter((item) => item.isActivated !== false);
-    });
+      console.log(this.categoriesBySearch,'categoriesBySearch')
+      this.categoriesBySearch.category = this.categoriesBySearch.category.filter((item) => item.isActivated !== false);
+      this.categoriesBySearch.tags = this.categoriesBySearch.tags.filter((item) => item.isActivated !== false);    });
+      
   }
-
+  searchByCategory(id) {
+    console.log(id)
+    this.filterData.activityName=''
+    this.filterData.categoryId = id
+    this.dataservice.setOption(this.filterData)
+    this.router.navigate(["/search"]);
+    if (this.routeName === "/search") {
+      this.router
+        .navigateByUrl("/", { skipLocationChange: true })
+        .then(() => this.router.navigate(["search"]));
+    }  }
   providerSearch(key) {
     this.apiservice.searchUsers(key, "provider").subscribe((res: any) => {
       this.providersBySearch = res.data;

@@ -94,7 +94,9 @@ export class LandingComponent implements OnInit {
     this.apiservice.searchTag(key).subscribe((res:any)=>{
       console.log(res,'res')
   this.categoriesBySearch = res;
-  this.categoriesBySearch = this.categoriesBySearch.filter((item) => item.isActivated !== false);
+  this.categoriesBySearch.category = this.categoriesBySearch.category.filter((item) => item.isActivated !== false);
+  this.categoriesBySearch.tags = this.categoriesBySearch.tags.filter((item) => item.isActivated !== false);
+
 
 
     })

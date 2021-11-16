@@ -109,12 +109,22 @@ declare const $: any;
                         <div class="card card-body">
                           <div
                             class="program-list"
-                            *ngIf="categoriesBySearch?.length"
+                            *ngIf="categoriesBySearch?.category?.length || categoriesBySearch?.tags?.length"
                           >
+                          <h6
+                              *ngFor="
+                                let category of categoriesBySearch?.category | slice: 0:1" (click)="searchByCategory(category?._id)"
+                              
+                            >
+                              {{ category.name }}
+                              <span class="search-programlist">
+                                <img src="assets/program-search.svg" />
+                              </span>
+                            </h6>
                             <h6
                               (click)="searchBySubCategory(category._id)"
                               *ngFor="
-                                let category of categoriesBySearch | slice: 0:4
+                                let category of categoriesBySearch?.tags | slice: 0:3
                               "
                             >
                               {{ category.name }}
@@ -805,7 +815,8 @@ export class HeaderComponent implements OnInit {
   searchSubCategory(key) {
     this.apiservice.searchTag(key).subscribe((res: any) => {
       this.categoriesBySearch = res;
-      this.categoriesBySearch = this.categoriesBySearch.filter((item) => item.isActivated !== false);
+      this.categoriesBySearch.category = this.categoriesBySearch.category.filter((item) => item.isActivated !== false);
+      this.categoriesBySearch.tags = this.categoriesBySearch.tags.filter((item) => item.isActivated !== false);
     });
   }
 
@@ -826,7 +837,17 @@ export class HeaderComponent implements OnInit {
         .then(() => this.router.navigate(["search"]));
     }
   }
-
+  searchByCategory(id) {
+    console.log(id)
+    this.filterData.activityName=''
+    this.filterData.categoryId = id
+    this.dataservice.setOption(this.filterData)
+    this.router.navigate(["/search"]);
+    if (this.routeName === "/search") {
+      this.router
+        .navigateByUrl("/", { skipLocationChange: true })
+        .then(() => this.router.navigate(["search"]));
+    }  }
   goToProviderProfile(provider) {
     console.log(provider)
     provider.firstName = provider.firstName.toLowerCase();
