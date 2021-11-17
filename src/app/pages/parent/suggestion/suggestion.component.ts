@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, NgZone, OnInit, ViewChild } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import axios from 'axios';
@@ -10,6 +10,7 @@ import { DataService } from 'src/app/core/services/dataservice.service ';
 import { TypeFormService } from 'src/app/core/services/typeform.service';
 import { environment } from 'src/environments/environment.prod';
 import * as FileSaver from 'file-saver';
+import { MapsAPILoader } from '@agm/core';
 @Component({
   selector: 'parent-suggestion',
   templateUrl: './suggestion.component.html',
@@ -31,6 +32,8 @@ export class SuggestionComponent implements OnInit {
     subcatId: '',
     categoryId:'',
     activityName: '',
+    lat:'',
+    lng:''
   }
   categoryResponse: any;
   hide: boolean = true;
@@ -42,6 +45,10 @@ export class SuggestionComponent implements OnInit {
   kids:Child[];
   isNewFeaturePopUp:boolean;
   blogByCategory: any;
+  private geoCoder;
+  @ViewChild('search') searchElementRef: ElementRef;
+  lat: string
+ lng : string
   constructor(private router: Router,
     private apiservice: ApiService,
     private dataservice: DataService,
@@ -49,7 +56,9 @@ export class SuggestionComponent implements OnInit {
     private titleService: Title,
     private metaTagService: Meta,
     private store:LocalStorageService,
-    private typeFormService: TypeFormService
+    private typeFormService: TypeFormService,
+    private mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone,
    ) {
     this.currentUser = this.auth.currentUser();
 if(!this.currentUser){
@@ -65,14 +74,26 @@ if(!this.currentUser){
 
     })
   }
-  filterByNameDate(){}
+  searchByLocation() {
+    this.filterData.activityName=''
+    this.filterData.categoryId = ''
+    this.filterData.subcatId= ''
+    this.filterData.lat = this.lat
+    this.filterData.lng = this.lng
+    this.dataservice.setLocation(this.filterData)
+    this.router.navigate(['/search']);
+  }
   searchBySubCategory(id) {
     this.filterData.activityName=''
+    this.filterData.categoryId = ''
+    this.filterData.lat = ''
+    this.filterData.lng = ''
     this.filterData.subcatId = id
     this.dataservice.setOption(this.filterData)
     this.router.navigate(['/search']);
   }
   searchByCategory(id) {
+    this.filterData.subcatId= ''
     this.filterData.activityName=''
     this.filterData.categoryId = id
     this.dataservice.setOption(this.filterData)
@@ -195,5 +216,23 @@ getForms(){
     this.metaTagService.addTag(
       { name: 'keywords', content: 'Best Activities and Programs, activities near me for toddlers, fitness classes for kids, online music lessons, online art classes' }
     );
+
+        
+    this.mapsAPILoader.load().then(() => {
+      this.geoCoder = new google.maps.Geocoder;
+      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);
+      autocomplete.addListener('place_changed', () => {
+        this.ngZone.run(() => {
+          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+          if (place.geometry === undefined || place.geometry === null) {
+            return;
+          }
+
+          // set latitude, longitude
+          this.lat = String(place.geometry.location.lat());
+          this.lng = String(place.geometry.location.lng());
+        });
+      });
+    });
   }
 }

@@ -63,7 +63,7 @@ import { DataService } from "../../services/dataservice.service ";
                       class="banner_button cursor"
                       type="submit"
                       routerLink="search"
-                      (click)="searchActivityByNameDate()"
+                      (click)="setCurrentLocation()"
                     >
                       <img src="assets/search_icon.svg" alt="Search image" />
                     </button>
@@ -74,7 +74,7 @@ import { DataService } from "../../services/dataservice.service ";
                     *ngIf="
                       (categoriesBySearch?.length ||
                         providersBySearch?.length) &&
-                      filterData.activityName
+                      filterData?.activityName
                     "
                   >
                     <div class="card card-body">
@@ -84,18 +84,18 @@ import { DataService } from "../../services/dataservice.service ";
                       >
                       <h6   *ngFor=" let category of categoriesBySearch?.category | slice: 0:1  "  (click)="searchByCategory(category?._id)"
                             >
-                              {{ category.name }}
+                              {{ category?.name }}
                               <span class="search-programlist">
                                 <img src="assets/program-search.svg" />
                               </span>
                             </h6>
                         <h6
-                          (click)="searchActivityByCategory(category._id)"
+                          (click)="searchBySubCategory(category?._id)"
                           *ngFor="
                             let category of categoriesBySearch?.tags | slice: 0:3
                           "
                         >
-                          {{ category.name }}
+                          {{ category?.name }}
                           <span class="search-programlist">
                             <img src="assets/program-search.svg" />
                           </span>
@@ -113,7 +113,7 @@ import { DataService } from "../../services/dataservice.service ";
                             let provider of providersBySearch | slice: 0:4
                           "
                         >
-                          {{ provider.firstName }}
+                          {{ provider?.firstName }}
                         </h6>
                       </div>
                     </div>
@@ -228,7 +228,10 @@ export class Header2Component implements OnInit {
   categoriesBySearch: any;
   filterData: any = {
     subcatId: "",
+    categoryId:'',
     activityName: "",
+    lat:'',
+    lng:'',
   };
   locationData: any = {
     lat: '',
@@ -239,6 +242,8 @@ export class Header2Component implements OnInit {
   address: string;
   private geoCoder;
   providersBySearch: any;
+  lat:string
+  lng:string
   @ViewChild('search', { static: false }) searchElementRef: ElementRef;
   constructor(
     private router: Router,
@@ -256,6 +261,20 @@ export class Header2Component implements OnInit {
   searchActivityByNameDate() {
     this.dataservice.setOption(this.filterData);
     this.router.navigate(["/search"]);
+    if (this.routeName === "/search") {
+      this.router
+        .navigateByUrl("/", { skipLocationChange: true })
+        .then(() => this.router.navigate(["search"]));
+    }
+  }
+  searchBySubCategory(id) {
+    this.filterData.activityName=''
+    this.filterData.lat = ''
+    this.filterData.lng = ''
+    this.filterData.categoryId =''
+    this.filterData.subcatId = id
+    this.dataservice.setOption(this.filterData)
+    this.router.navigate(['/search']);
     if (this.routeName === "/search") {
       this.router
         .navigateByUrl("/", { skipLocationChange: true })
@@ -281,8 +300,8 @@ export class Header2Component implements OnInit {
           }
 
           // set latitude, longitude
-          // this.userData.lat = String(place.geometry.location.lat());
-          // this.userData.lng = String(place.geometry.location.lng());
+          this.lat = String(place.geometry.location.lat());
+          this.lng = String(place.geometry.location.lng());
         });
       });
     });
@@ -301,6 +320,9 @@ export class Header2Component implements OnInit {
     console.log(id)
     this.filterData.activityName=''
     this.filterData.categoryId = id
+    this.filterData.subcatId=''
+    this.filterData.lat=''
+    this.filterData.lng =''
     this.dataservice.setOption(this.filterData)
     this.router.navigate(["/search"]);
     if (this.routeName === "/search") {
@@ -308,6 +330,20 @@ export class Header2Component implements OnInit {
         .navigateByUrl("/", { skipLocationChange: true })
         .then(() => this.router.navigate(["search"]));
     }  }
+    // searchByLocation() {
+    //   this.filterData.activityName=''
+    //   this.filterData.categoryId = ''
+    //   this.filterData.subcatId= ''
+    //   this.filterData.lat = this.lat
+    //   this.filterData.lng = this.lng
+    //   this.dataservice.setLocation(this.filterData)
+    //   this.router.navigate(['/search']);
+    //   if (this.routeName === "/search") {
+    //     this.router
+    //       .navigateByUrl("/", { skipLocationChange: true })
+    //       .then(() => this.router.navigate(["search"]));
+    //   }
+    // }
   providerSearch(key) {
     this.apiservice.searchUsers(key, "provider").subscribe((res: any) => {
       this.providersBySearch = res.data;
@@ -350,7 +386,6 @@ export class Header2Component implements OnInit {
               .navigateByUrl("/", { skipLocationChange: true })
               .then(() => this.router.navigate(["search"]));
           }
-          // this.getAddress(this.lat, this.lng);
         });
       }      this.geoCoder = new google.maps.Geocoder;
     });

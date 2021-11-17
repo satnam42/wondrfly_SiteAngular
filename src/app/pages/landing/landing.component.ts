@@ -20,10 +20,15 @@ export class LandingComponent implements OnInit {
   loggedIn: boolean;
   title = 'Best Activities and Programs for Kids in Jersey City - Wondrfly';
   categories: any = new Category;
+  lat:string
+  lng:string
   filterData: any = {
     subcatId: '',
     categoryId:'',
     activityName: '',
+      lat:'',
+      lng:'',
+  
   }
   categoryResponse: any;
   hide: boolean = true;
@@ -36,7 +41,7 @@ export class LandingComponent implements OnInit {
   providersBySearch: any = new User;
   altBanner:any  = ''
   private geoCoder;
-  @ViewChild('search', { static: false }) searchElementRef: ElementRef;
+  @ViewChild('search') searchElementRef: ElementRef;
   constructor(private router: Router,
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
@@ -49,6 +54,9 @@ export class LandingComponent implements OnInit {
   }
   searchBySubCategory(id) {
     this.filterData.activityName=''
+    this.filterData.lat = ''
+    this.filterData.lng = ''
+    this.filterData.categoryId =''
     this.filterData.subcatId = id
     this.dataservice.setOption(this.filterData)
     this.router.navigate(['/search']);
@@ -57,8 +65,19 @@ export class LandingComponent implements OnInit {
   searchByCategory(id) {
     console.log(id)
     this.filterData.activityName=''
-    this.filterData.categoryId = id
+    this.filterData.lat = ''
+    this.filterData.lng = ''
+    this.filterData.subcatId = ''
+      this.filterData.categoryId = id
     this.dataservice.setOption(this.filterData)
+    this.router.navigate(['/search']);
+  }
+  searchByLocation() {
+    this.filterData.activityName=''
+    this.filterData.categoryId = ''
+    this.filterData.lat = this.lat
+    this.filterData.lng = this.lng
+    this.dataservice.setLocation(this.filterData)
     this.router.navigate(['/search']);
   }
   getCategoryList() {
@@ -73,10 +92,10 @@ export class LandingComponent implements OnInit {
       console.log('category list ',this.categories);
     });
   }
- searchActivityByNameDate() {
-  this.dataservice.setOption(this.filterData)
-  this.router.navigate(['/search']);
-}
+//  searchActivityByNameDate() {
+//   this.dataservice.setOption(this.filterData)
+//   this.router.navigate(['/search']);
+// }
 
   // ------------------------------------------------get blogs  -------------------------------------------
 
@@ -150,8 +169,8 @@ export class LandingComponent implements OnInit {
           }
 
           // set latitude, longitude
-          // this.userData.lat = String(place.geometry.location.lat());
-          // this.userData.lng = String(place.geometry.location.lng());
+          this.lat = String(place.geometry.location.lat());
+          this.lng = String(place.geometry.location.lng());
         });
       });
     });

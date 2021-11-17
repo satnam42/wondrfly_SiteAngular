@@ -89,7 +89,7 @@ declare const $: any;
                           class="banner_button cursor"
                           type="submit"
                           routerLink="search"
-                          (click)="searchActivityByNameDate()"
+                          (click)="searchByLocation()"
                         >
                           <img
                             src="assets/search_icon.svg"
@@ -612,9 +612,14 @@ export class HeaderComponent implements OnInit {
   helpClass: string = "";
   forumClass: string = "";
   chatClass: string = "";
+  lat:string;
+  lng:string
   filterData: any = {
-    subcatId: "",
-    activityName: "",
+    subcatId: '',
+    categoryId : '',
+    activityName: '',
+    lat:'',
+    lng:'',
   };
   locationData: any = {
     lat: '',
@@ -638,8 +643,6 @@ export class HeaderComponent implements OnInit {
   autoHide: number = 4000;
   categoriesBySearch: any;
   providersBySearch: any;
-  lat = 40.712776;
-  lng = -74.005974;
   zoom = 14;
   address: string;
   private geoCoder;
@@ -793,8 +796,8 @@ export class HeaderComponent implements OnInit {
           }
 
           // set latitude, longitude
-          // this.userData.lat = String(place.geometry.location.lat());
-          // this.userData.lng = String(place.geometry.location.lng());
+          this.lat = String(place.geometry.location.lat());
+          this.lng = String(place.geometry.location.lng());
         });
       });
     });
@@ -843,9 +846,24 @@ export class HeaderComponent implements OnInit {
       this.providersBySearch = res.data;
     });
   }
-
+  searchByLocation() {
+    this.filterData.activityName=''
+    this.filterData.categoryId = ''
+    this.filterData.subcatId= ''
+    this.filterData.lat = this.lat
+    this.filterData.lng = this.lng
+    this.dataservice.setLocation(this.filterData)
+    this.router.navigate(['/search']);
+    if (this.routeName === "/search") {
+      this.router
+        .navigateByUrl("/", { skipLocationChange: true })
+        .then(() => this.router.navigate(["search"]));
+    }
+  }
   searchBySubCategory(id) {
-    this.filterData.activityName = "";
+    this.filterData.activityName = '';
+    this.filterData.lat=''
+    this.filterData.lng=''
     this.filterData.subcatId = id;
     this.dataservice.setOption(this.filterData);
     this.router.navigate(["/search"]);
@@ -858,7 +876,10 @@ export class HeaderComponent implements OnInit {
   searchByCategory(id) {
     console.log(id)
     this.filterData.activityName=''
+    this.filterData.subcatId =''
     this.filterData.categoryId = id
+    this.filterData.lat=''
+    this.filterData.lng=''
     this.dataservice.setOption(this.filterData)
     this.router.navigate(["/search"]);
     if (this.routeName === "/search") {
