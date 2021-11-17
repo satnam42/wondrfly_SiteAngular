@@ -195,9 +195,9 @@
                             <div class="col-md-6" *ngFor="let program of programs" >
                                 <div class="activities_slide" >
                                     <div class="slide_image cursor" (click)='goToProgramDetail(program)'>
-                                        <img *ngIf='!program.category[0].iconUrl' src="assets/category2.jpg"
+                                        <img *ngIf='!program.category[0]?.iconUrl' src="assets/category2.jpg"
                                                     alt="Activity">
-                                                    <img *ngIf='program.category[0].iconUrl' src="https://wondrfly.com/{{program.category[0].iconUrl}}"
+                                                    <img *ngIf='program.category[0]?.iconUrl' src="https://wondrfly.com/{{program.category[0]?.iconUrl}}"
                                                     alt="Activity">
                                     </div>
                                     <div class="slide_text">
