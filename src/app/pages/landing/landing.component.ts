@@ -1,4 +1,4 @@
-import { Component, OnInit, } from '@angular/core';
+import { Component, ElementRef, NgZone, OnInit, ViewChild, } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/core/services/api.service.service';
 import { Category, User } from 'src/app/core/models';
@@ -7,6 +7,7 @@ import { DataService } from 'src/app/core/services/dataservice.service ';
 import { Title, Meta } from '@angular/platform-browser';
 import axios from 'axios';
 import { environment } from 'src/environments/environment';
+import { MapsAPILoader } from '@agm/core';
 
 @Component({
   selector: 'app-landing',
@@ -34,7 +35,11 @@ export class LandingComponent implements OnInit {
   categoriesBySearch: any = new Category;
   providersBySearch: any = new User;
   altBanner:any  = ''
+  private geoCoder;
+  @ViewChild('search', { static: false }) searchElementRef: ElementRef;
   constructor(private router: Router,
+    private mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone,
     private apiservice: ApiService,
     private dataservice: DataService,
     public auth: AuthsService,
@@ -132,5 +137,24 @@ export class LandingComponent implements OnInit {
     this.metaTagService.addTag(
       { name: 'keywords', content: 'Best Activities and Programs, activities near me for toddlers, fitness classes for kids, online music lessons, online art classes' }
     );
+
+    
+    this.mapsAPILoader.load().then(() => {
+      this.geoCoder = new google.maps.Geocoder;
+      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);
+      autocomplete.addListener('place_changed', () => {
+        this.ngZone.run(() => {
+          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+          if (place.geometry === undefined || place.geometry === null) {
+            return;
+          }
+
+          // set latitude, longitude
+          // this.userData.lat = String(place.geometry.location.lat());
+          // this.userData.lng = String(place.geometry.location.lng());
+        });
+      });
+    });
   }
+
 }

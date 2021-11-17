@@ -8,7 +8,7 @@
         <div class="row">
           <div class="col-12">
             <div class="beta-suggestionheading">
-              <h1>Hi Cyril. Welcome to Wondrfly!</h1>
+              <h1>Hi {{currentUser?.firstName}}. Welcome to Wondrfly!</h1>
               <h2>We’ve prepared these activity recommendations just for you!</h2>
             </div>
           </div>
@@ -26,10 +26,10 @@
             </div>
           </div>
           <div class="activity_category_list">
-            <div class="row">
-              <div class="col-md-4" *ngFor="let category of categories | slice: 2:5; let i = index">
-                <div class="category_list_box cursor" (click)="searchByCategory(category.id)">
-                  <a href="javascritpt:;">
+            <div class="row" *ngIf="kid?.interestInfo?.length">
+              <div class="col-md-4" *ngFor="let category of kid?.interestInfo ; let i = index">
+                <div class="category_list_box cursor" (click)="searchByCategory(category._id)">
+                  <a>
                     <div class="category_image">
                       <img [defaultImage]="defaultImage" [lazyLoad]="category?.imageUrl" />
                     </div>
@@ -45,6 +45,30 @@
                 </div>
               </div>
             </div>
+
+
+            <div class="row" *ngIf="!kid?.interestInfo?.length">
+              <div class="col-md-4" *ngFor="let category of categories | slice:0:3 ; let i = index">
+                <div class="category_list_box cursor" (click)="searchByCategory(category._id)">
+                  <a>
+                    <div class="category_image">
+                      <img [defaultImage]="defaultImage" [lazyLoad]="category?.imageUrl" />
+                    </div>
+                    <div class="category_title">
+                      <p>
+                        {{ category?.name
+                        }}<span class="title_arrow">
+                          <img src="assets/category_arrow.svg" alt="Category_arrow" />
+                        </span>
+                      </p>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+
+
           </div>
         </div>
       </section>
@@ -77,7 +101,7 @@
                           <div class="search-location">
                             <span data-toggle="modal" data-target="#locationModal">
                               <img src="assets/search-location.png" /></span>
-                            <input placeholder="Search Location" (keydown.enter)="$event.preventDefault()"
+                            <input placeholder="Search Jercy City" (keydown.enter)="$event.preventDefault()"
                               autocorrect="off" autocapitalize="off" spellcheck="off" #search />
                           </div>
                           <div class="form-group">

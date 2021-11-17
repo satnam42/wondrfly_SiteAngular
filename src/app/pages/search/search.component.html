@@ -659,9 +659,12 @@
                 </div>
                 <div class="coding_text">
                   <div *ngIf="program?.subCategoryIds?.length" class="coding-text-1">
-                    <h3 *ngFor="
+                    <h3 class="cursor" *ngFor="
                         let subCat of program?.subCategoryIds | slice: 0:2
-                      ">
+                      "  (click)="
+                      selectedSubCategories[0] = subCat._id;
+                      programBySubCategoryIds()
+                    " >
                       {{ subCat?.name }}
                     </h3>
                     <h6 *ngIf="program?.subCategoryIds?.length > 2" class="" data-toggle="collapse"
@@ -675,7 +678,10 @@
                             <h5 *ngFor="
                                 let subCat of program?.subCategoryIds
                                   | slice: 2:program.subCategoryIds?.length
-                              " class="collapse-btn">
+                              " class="collapse-btn cursor"  (click)="
+                              selectedSubCategories[0] = subCat._id;
+                              programBySubCategoryIds()
+                            " >
                               {{ subCat?.name }}
                             </h5>
                           </div>

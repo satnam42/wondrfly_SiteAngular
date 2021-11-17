@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, ElementRef, NgZone, OnInit, ViewChild } from "@angular/core";
 import { Router } from "@angular/router";
 import { User } from "../../models";
 import { AuthsService } from "../../services/auths.service";
@@ -76,7 +76,7 @@ declare const $: any;
                           <img src="assets/search-location.png"
                         /></span>
                         <input
-                          placeholder="Search Location"
+                          placeholder="Search Jercy City"
                           (keydown.enter)="$event.preventDefault()"
                           autocorrect="off"
                           autocapitalize="off"
@@ -643,7 +643,7 @@ export class HeaderComponent implements OnInit {
   zoom = 14;
   address: string;
   private geoCoder;
-  gitBoxImage='assets/gift-box.svg';
+  @ViewChild('search', { static: false }) searchElementRef: ElementRef;  gitBoxImage='assets/gift-box.svg';
   constructor(
     private router: Router,
     private auth: AuthsService,
@@ -652,6 +652,7 @@ export class HeaderComponent implements OnInit {
     public imageLoader: Globals,
     private toastr: ToastrService,
     private mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone,
     private dataservice: DataService,
     public store: LocalStorageService
   ) {
@@ -780,6 +781,23 @@ export class HeaderComponent implements OnInit {
       this.chatClass = "active";
       this.profileClass = "";
     }
+
+    this.mapsAPILoader.load().then(() => {
+      this.geoCoder = new google.maps.Geocoder;
+      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);
+      autocomplete.addListener('place_changed', () => {
+        this.ngZone.run(() => {
+          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+          if (place.geometry === undefined || place.geometry === null) {
+            return;
+          }
+
+          // set latitude, longitude
+          // this.userData.lat = String(place.geometry.location.lat());
+          // this.userData.lng = String(place.geometry.location.lng());
+        });
+      });
+    });
   }
 
   ngOnDestroy() {

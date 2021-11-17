@@ -1,5 +1,5 @@
 import { MapsAPILoader } from "@agm/core";
-import { Component, OnInit } from "@angular/core";
+import { Component, ElementRef, NgZone, OnInit, ViewChild } from "@angular/core";
 import { Router } from "@angular/router";
 import { ApiService } from "../../services/api.service.service";
 import { DataService } from "../../services/dataservice.service ";
@@ -50,7 +50,7 @@ import { DataService } from "../../services/dataservice.service ";
                       <img src="assets/search-location.png"
                     /></span>
                     <input
-                      placeholder="Search Location"
+                      placeholder="Search Jercy City"
                       (keydown.enter)="$event.preventDefault()"
                       autocorrect="off"
                       autocapitalize="off"
@@ -239,11 +239,13 @@ export class Header2Component implements OnInit {
   address: string;
   private geoCoder;
   providersBySearch: any;
+  @ViewChild('search', { static: false }) searchElementRef: ElementRef;
   constructor(
     private router: Router,
     private apiservice: ApiService,
     private mapsAPILoader: MapsAPILoader,
-    private dataservice: DataService
+    private dataservice: DataService,
+    private ngZone: NgZone,
   ) {
     this.routeName = this.router.url;
     if (this.routeName === "/search") {
@@ -266,7 +268,26 @@ export class Header2Component implements OnInit {
     .then(() => this.router.navigate(["/"]));
       // this.router.navigate([""]);
   }
-  ngOnInit() {}
+  ngOnInit() {
+
+    this.mapsAPILoader.load().then(() => {
+      this.geoCoder = new google.maps.Geocoder;
+      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);
+      autocomplete.addListener('place_changed', () => {
+        this.ngZone.run(() => {
+          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+          if (place.geometry === undefined || place.geometry === null) {
+            return;
+          }
+
+          // set latitude, longitude
+          // this.userData.lat = String(place.geometry.location.lat());
+          // this.userData.lng = String(place.geometry.location.lng());
+        });
+      });
+    });
+
+  }
 
   searchSubCategory(key) {
     this.apiservice.searchTag(key).subscribe((res: any) => {

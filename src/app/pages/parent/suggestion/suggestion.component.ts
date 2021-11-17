@@ -82,6 +82,7 @@ if(!this.currentUser){
     this.apiservice.getCategory().subscribe((res: any) => {
       this.categories = res;
       this.categories = this.categories.filter((item) => item.isActivated !== false);
+      console.log('categories',this.categories)
     });
   }
 
@@ -117,7 +118,7 @@ if(!this.currentUser){
     getPrintables() {
       const responcee = axios.get(`${this.blogUrl}/printables?_sort=published_at:DESC&_limit=2`).then((response) => {
         this.printables = response.data;
-        console.log('tweetData',this.printables)
+        console.log('printables',this.printables)
       });
     }
 
@@ -126,7 +127,6 @@ if(!this.currentUser){
   getBlog() {
     const responcee = axios.get(`${this.blogUrl}/blogs?_sort=published_at:DESC&_limit=2`).then((response) => {
       this.blogs = response.data;
-      console.log(this.blogs);
     });
   }
 
@@ -165,7 +165,8 @@ getChildByParentId(){
   this.apiservice.getChildByParentId(this.currentUser.id).subscribe((res: any) => {
     this.kids = res
     this.kids = this.kids.filter((item) => item.isActivated !== false);
-    console.log('children List', res)
+    console.log('children List', this.kids)
+
   });
 }
 sendInvite(){
