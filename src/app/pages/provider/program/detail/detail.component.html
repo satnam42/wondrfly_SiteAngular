@@ -44,8 +44,8 @@
                     <div class="col-md-2">
                       <div class="learn_code cursor" (click)="goToProfile()" [class.initial-alpha]="!program.category?.logoUrl">
                         <img
-                          *ngIf="program.category?.logoUrl"
-                          src="{{ baseUrl + program.category?.logoUrl }}"
+                          *ngIf="program?.category?.logoUrl"
+                          src="{{ baseUrl + program?.category?.logoUrl }}"
                           alt="logo"
                         />
                         <!-- <img
@@ -53,7 +53,7 @@
                           src="assets/gray_background.jpeg"
                           alt="logo"
                         /> -->
-                        <h1 *ngIf="!program.category?.logoUrl" [class.initial-alpha]="!program.category?.logoUrl">{{program.name.charAt(0)}}</h1>
+                        <h1 *ngIf="!program.category?.logoUrl" [class.initial-alpha]="!program?.category?.logoUrl">{{program?.name?.charAt(0)}}</h1>
                       </div>
                     </div>
 
@@ -386,7 +386,7 @@
                             src="assets/gray_background.jpeg"
                             alt="Profile"
                           /> -->
-                          <h1 *ngIf="!user?.avatarImages" [class.initial-alpha]="!user?.avatarImages">{{user.firstName.charAt(0)}}<span *ngIf="user.lastName">{{user.lastName.charAt(0)}}</span></h1>
+                          <h1 *ngIf="!user?.avatarImages" [class.initial-alpha]="!user?.avatarImages">{{user?.firstName?.charAt(0)}}<span *ngIf="user.lastName">{{user?.lastName?.charAt(0)}}</span></h1>
                         </a>
                       </div>
                       <h4>{{ user?.firstName }}</h4>
@@ -644,7 +644,7 @@
                             src="assets/gray_background.jpeg"
                             alt="Profile"
                           /> -->
-                          <h1 *ngIf="!user?.avatarImages" [class.initial-alpha]="!user?.avatarImages">{{user.firstName.charAt(0)}}<span *ngIf="user.lastName">{{user.lastName.charAt(0)}}</span></h1>
+                          <h1 *ngIf="!user?.avatarImages" [class.initial-alpha]="!user?.avatarImages">{{user?.firstName?.charAt(0)}}<span *ngIf="user.lastName">{{user?.lastName?.charAt(0)}}</span></h1>
                         </div>
                       </div>
                     </div>
