@@ -46,7 +46,7 @@ import { DataService } from "../../services/dataservice.service ";
                     />
                   </div>
                   <div class="search-location">
-                    <span data-toggle="modal" data-target="#locationModal">
+                    <span data-toggle="modal" data-target="#locationMod">
                       <img src="assets/search-location.png"
                     /></span>
                     <input
@@ -56,6 +56,7 @@ import { DataService } from "../../services/dataservice.service ";
                       autocapitalize="off"
                       spellcheck="off"
                       #search
+                      readonly
                     />
                   </div>
                   <div class="form-group cursor">
@@ -63,7 +64,7 @@ import { DataService } from "../../services/dataservice.service ";
                       class="banner_button cursor"
                       type="submit"
                       routerLink="search"
-                      (click)="setCurrentLocation()"
+                      (click)="searchActivityByNameDate()"
                     >
                       <img src="assets/search_icon.svg" alt="Search image" />
                     </button>
@@ -259,8 +260,11 @@ export class Header2Component implements OnInit {
     if( this.routeName === '/'){ this.searchBar=true}
   }
   searchActivityByNameDate() {
-    this.dataservice.setOption(this.filterData);
-    this.router.navigate(["/search"]);
+    this.filterData.categoryId = ''
+    this.filterData.lat = ''
+    this.filterData.lng = ''
+    this.dataservice.setOption(this.filterData)
+    this.router.navigate(['/search']);
     if (this.routeName === "/search") {
       this.router
         .navigateByUrl("/", { skipLocationChange: true })

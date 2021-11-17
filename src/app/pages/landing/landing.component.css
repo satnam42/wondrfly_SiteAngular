@@ -496,7 +496,11 @@ span.icon.rel {
   width: 194px;
   position: absolute;
   left: 0px;
-  top: 0px;
+  top: 0px
+  ;
+}
+.search-location input::placeholder{
+  color:rgb(190, 187, 187);
 }
 @media only screen and (min-width: 1024px) and (max-width: 1366px) and (orientation: portrait) {
   .container,

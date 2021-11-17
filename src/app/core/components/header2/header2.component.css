@@ -267,6 +267,9 @@ a.cursor.header-logo img {
   -o-object-fit: cover;
   object-fit: cover;
 }
+.search-location input::placeholder{
+  color:rgb(190, 187, 187);
+}
 @media only screen and (min-width:1024px) and (max-width:1366px) and (orientation: portrait)  {
 
     .banner_form .form-group input.camp_input {

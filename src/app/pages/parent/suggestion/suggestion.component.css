@@ -884,7 +884,9 @@ h1.printable-blog a {
 .dummy-twitter::-webkit-scrollbar {
   display: none;
 }
-@media only screen and (min-width: 1024px) and (max-width: 1366px) and (orientation: portrait) {
+.search-location input::placeholder{
+  color:rgb(190, 187, 187);
+}@media only screen and (min-width: 1024px) and (max-width: 1366px) and (orientation: portrait) {
   .container,
   .container-lg,
   .container-md,

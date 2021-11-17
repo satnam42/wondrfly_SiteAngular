@@ -2397,7 +2397,9 @@ span.icon.rel:hover .box{
 
 
 
-
+  .search-location input::placeholder{
+    color:rgb(190, 187, 187);
+  }
 
 
 

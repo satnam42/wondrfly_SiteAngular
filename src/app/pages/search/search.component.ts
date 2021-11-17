@@ -151,28 +151,30 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
     private metaTagService: Meta,
     private joyride: JoyrideService
   ) {
-    this.locationData = dataservice.getLocation()
-    console.log('this.locationData', this.locationData)
-    if(this.locationData){
-      this.contentLoaded=true;
-      if (this.locationData.lat && this.locationData.lng) {
-        this.latt =this.locationData.lat
-        this.lngg= this.locationData.lng
-      }
-    }
-
-
+    // this.locationData = dataservice.getLocation()
+    // console.log('this.locationData', this.locationData)
+    // if(this.locationData){
+    //   this.contentLoaded=true;
+    //   if (this.locationData.lat && this.locationData.lng) {
+    //     this.latt =this.locationData.lat
+    //     this.lngg= this.locationData.lng
+    //   }
+    // }
     this.filterData = dataservice.getOption()
     if(this.filterData){
       this.contentLoaded=true;
     if (this.filterData.categoryId) {
       console.log('this.filterData.categoryId', this.filterData)
       this.categoryId = this.filterData.categoryId
-      this.activityName = this.filterData.activityName
+      // this.activityName = this.filterData.activityName
     }
     if(this.filterData.subcatId ){
       console.log('this.filterData.subcatId',this.filterData)
      this.selectedSubCategories[0]=this.filterData.subcatId;
+    }
+    if(this.filterData.activityName){
+      this.activityName = this.filterData.activityName
+      this.filterByNameDate()
     }
   }
     var retrievedObject = localStorage.getItem('userData');

@@ -92,10 +92,13 @@ export class LandingComponent implements OnInit {
       console.log('category list ',this.categories);
     });
   }
-//  searchActivityByNameDate() {
-//   this.dataservice.setOption(this.filterData)
-//   this.router.navigate(['/search']);
-// }
+ searchActivityByNameDate() {
+  this.filterData.categoryId = ''
+  this.filterData.lat = ''
+  this.filterData.lng = ''
+  this.dataservice.setOption(this.filterData)
+  this.router.navigate(['/search']);
+}
 
   // ------------------------------------------------get blogs  -------------------------------------------
 

@@ -40,7 +40,6 @@ export class SuggestionComponent implements OnInit {
   resources: any;
   categoriesBySearch: any = new Category;
   providersBySearch: any = new User;
-  activityName:any=''
   currentUser: any;
   kids:Child[];
   isNewFeaturePopUp:boolean;
@@ -74,13 +73,20 @@ if(!this.currentUser){
 
     })
   }
-  searchByLocation() {
-    this.filterData.activityName=''
+  // searchByLocation() {
+  //   this.filterData.activityName=''
+  //   this.filterData.categoryId = ''
+  //   this.filterData.subcatId= ''
+  //   this.filterData.lat = this.lat
+  //   this.filterData.lng = this.lng
+  //   this.dataservice.setLocation(this.filterData)
+  //   this.router.navigate(['/search']);
+  // }
+  searchActivityByNameDate() {
     this.filterData.categoryId = ''
-    this.filterData.subcatId= ''
-    this.filterData.lat = this.lat
-    this.filterData.lng = this.lng
-    this.dataservice.setLocation(this.filterData)
+    this.filterData.lat = ''
+    this.filterData.lng = ''
+    this.dataservice.setOption(this.filterData)
     this.router.navigate(['/search']);
   }
   searchBySubCategory(id) {

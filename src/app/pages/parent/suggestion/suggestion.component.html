@@ -93,19 +93,19 @@
                           aria-expanded="false" aria-controls="dropdownprogram-provider">
                           <div class="form-group">
                             <input type="text" autocomplete="off" (keyup)="
-                                searchSubCategory(activityName);
-                                providerSearch(activityName)
+                                searchSubCategory(filterData.activityName);
+                                providerSearch(filterData.activityName)
                               " placeholder="Search activity or provider..." class="form-control camp_input"
-                              name="activityName" [(ngModel)]="activityName" />
+                              name="activityName" [(ngModel)]="filterData.activityName" />
                           </div>
                           <div class="search-location">
-                            <span data-toggle="modal" data-target="#locationModal">
+                            <span data-toggle="modal" data-target="#locationMod">
                               <img src="assets/search-location.png" /></span>
                             <input placeholder="Search Jercy City" (keydown.enter)="$event.preventDefault()"
-                              autocorrect="off" autocapitalize="off" spellcheck="off" #search />
+                              autocorrect="off" autocapitalize="off" spellcheck="off" #search readonly />
                           </div>
                           <div class="form-group">
-                            <button (click)="searchByLocation()" class="banner_button" type="submit">
+                            <button (click)="searchActivityByNameDate()" class="banner_button" type="submit">
                               <img src="assets/search_icon.svg" alt="Search image" />
                             </button>
                           </div>
@@ -113,7 +113,7 @@
                           <div class="dropdownprogram" *ngIf="
                               (providersBySearch?.length ||
                                 categoriesBySearch?.length) &&
-                              activityName
+                                filterData.activityName
                             ">
                             <div class="card card-body">
                               <div class="program-list" *ngIf="categoriesBySearch?.category?.length || categoriesBySearch?.tags?.length">

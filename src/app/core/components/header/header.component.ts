@@ -72,7 +72,7 @@ declare const $: any;
                         />
                       </div>
                       <div class="search-location">
-                        <span data-toggle="modal" data-target="#locationModal">
+                        <span data-toggle="modal" data-target="#locationMod">
                           <img src="assets/search-location.png"
                         /></span>
                         <input
@@ -82,6 +82,7 @@ declare const $: any;
                           autocapitalize="off"
                           spellcheck="off"
                           #search
+                          readonly
                         />
                       </div>
                       <div class="form-group cursor">
@@ -89,7 +90,7 @@ declare const $: any;
                           class="banner_button cursor"
                           type="submit"
                           routerLink="search"
-                          (click)="searchByLocation()"
+                          (click)="searchActivityByNameDate()"
                         >
                           <img
                             src="assets/search_icon.svg"
@@ -896,9 +897,18 @@ export class HeaderComponent implements OnInit {
     ]);
   }
 
+
   searchActivityByNameDate() {
-    this.dataservice.setOption(this.filterData);
-    this.router.navigate(["/search"]);
+    this.filterData.categoryId = ''
+    this.filterData.lat = ''
+    this.filterData.lng = ''
+    this.dataservice.setOption(this.filterData)
+    this.router.navigate(['/search']);
+    if (this.routeName === "/search") {
+      this.router
+        .navigateByUrl("/", { skipLocationChange: true })
+        .then(() => this.router.navigate(["search"]));
+    }
   }
 
     // Get Current Location Coordinates

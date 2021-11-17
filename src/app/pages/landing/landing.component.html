@@ -50,7 +50,7 @@
                         />
                       </div>
                       <div class="search-location">
-                        <span data-toggle="modal" data-target="#locationModal">
+                        <span data-toggle="modal" data-target="#locationMod">
                           <img src="assets/search-location.png"
                         /></span>
                         <input
@@ -60,6 +60,7 @@
                           autocapitalize="off"
                           spellcheck="off"
                           #search
+                          readonly
                         />
                       </div>
                       <div class="form-group cursor">
@@ -67,7 +68,7 @@
                           class="banner_button cursor"
                           type="submit"
                           routerLink="search"
-                          (click)="searchByLocation()"
+                          (click)="searchActivityByNameDate()"
                         >
                           <img
                             src="assets/search_icon.svg"
