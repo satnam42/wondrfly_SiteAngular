@@ -88,7 +88,7 @@ export class LandingComponent implements OnInit {
       removedCategory = this.categories.filter((item) => item.id === idToRemove);
       this.categories = this.categories.filter((item) => item.id !== idToRemove);
       this.categories.push(removedCategory[0])
-      this.categories = this.categories.filter((item) => item.isActivated !== false);
+      this.categories = this.categories.filter((item) => item.isActivated === true);
       console.log('category list ',this.categories);
     });
   }
