@@ -210,7 +210,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked,OnDestro
     this.tags = [];
     this.apiservice.searchTag(key).subscribe((res: any) => {
       this.tags = res;
-      this.tags = this.tags.filter((item) => item.isActivated === true);
+      this.tags.tags = this.tags.tags.filter((item) => item.isActivated === true);
       this.ngxLoader.stop();
       this.isLoading = false;
     });

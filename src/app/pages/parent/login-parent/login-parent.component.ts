@@ -156,7 +156,7 @@ export class LoginParentComponent implements OnInit {
       this.ngxLoader.start();
       this.apiservice.searchTag(key).subscribe((res: any) => {
         this.searchTags = res;
-        this.searchTags = this.searchTags.filter((item) => item.isActivated === true);
+        this.searchTags.tags = this.searchTags.tags.filter((item) => item.isActivated === true);
         this.ngxLoader.stop()
       });
     }

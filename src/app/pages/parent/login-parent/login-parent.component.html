@@ -119,7 +119,7 @@
             <div class="form-group">
               <div class="input_outer">
                 <div class="ng-autocomplete">
-                  <ng-autocomplete [data]="searchTags" placeholder="Type" [searchKeyword]="keyword"
+                  <ng-autocomplete [data]="searchTags?.tags" placeholder="Type" [searchKeyword]="keyword"
                     (selected)="selectEvent($event)" (inputChanged)="onChangeSearch($event)"
                     [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate">
                   </ng-autocomplete>
@@ -129,7 +129,7 @@
                   </ng-template>
 
                   <ng-template #notFoundTemplate let-notFound>
-                    <div *ngIf="searchTags?.length" [innerHTML]="notFound"></div>
+                    <div *ngIf="searchTags?.tags?.length" [innerHTML]="notFound"></div>
                   </ng-template>
                 </div>
               </div>

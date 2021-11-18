@@ -971,7 +971,7 @@
                 <label>Intrests</label>
                 <div class="input_outer">
                   <div class="ng-autocomplete">
-                    <ng-autocomplete [data]="tags" placeholder="Add Intrests" [searchKeyword]="keyword"
+                    <ng-autocomplete [data]="tags?.tags" placeholder="Add Intrests" [searchKeyword]="keyword"
                       (selected)="selectEvent($event)" (inputChanged)="onChangeSearch($event)"
                       (inputFocused)="onFocused($event)" [itemTemplate]="itemTemplate"
                       [notFoundTemplate]="notFoundTemplate">
@@ -982,7 +982,7 @@
                     </ng-template>
 
                     <ng-template #notFoundTemplate let-notFound>
-                      <div *ngIf="tags.length" [innerHTML]="notFound"></div>
+                      <div *ngIf="tags?.tags?.length" [innerHTML]="notFound"></div>
                     </ng-template>
                   </div>
                 </div>
