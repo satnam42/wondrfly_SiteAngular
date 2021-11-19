@@ -83,6 +83,8 @@ export class OnlineProgramsComponent implements OnInit {
   programOwnerData:any = User
   isOnline:boolean = false;
   isInPerson:boolean = true;
+  @Input() contentLoaded:boolean;
+  fakeLoaderData = [1,2,3,4,5]
   @ViewChild(SearchComponent, { static: true }) searchComponent: SearchComponent;
   constructor( public imageLoader: Globals,
     private apiservice: ApiService,

@@ -1,8 +1,7 @@
 ﻿
 <div class="online-searchresult">
 
-<div class="search-results"  *ngIf="programs?.length">
-<!-- <div class="list-group "> -->
+<div class="search-results"  *ngIf="programs?.length && contentLoaded">
   <div class="container-fluid search-onlineprog">
     <div class="row">
       <div *ngFor="let program of programs | slice:0:8; index as i" class="col-6">
@@ -163,9 +162,7 @@
                     <p *ngIf='program.isFree'><span>Free</span></p>
                 </div>
                   <div class="rating_box ">
-                      <!-- <a href="javascript:; ">
-                          <img src="assets/star.svg " alt="Star "> 5.0 (15)
-                      </a> -->
+                
                   </div>
 
           </div>
@@ -178,7 +175,6 @@
 
   </div>
 
-<!-- suggested starts -->
 
       <div *ngIf="programs?.length" class="suggested-searchresult">
         <div class="suggested-result">
@@ -187,7 +183,7 @@
             </h3>
             <div class="similar-categories">
               <div class="row">
-                <div class="col-md-3 cursor" *ngFor='let subcat of categories | slice:4:8' (click)="setCategoryId(subcat.id)">
+                <div class="col-md-3 cursor" *ngFor='let subcat of categories | slice:0:4' (click)="setCategoryId(subcat.id)">
                   <div class="similarcate-flex">
                     <div class="similar-cate">
                         <img [defaultImage]="defaultImage" [lazyLoad]="subcat?.imageUrl"/>
@@ -201,7 +197,31 @@
 
           </div>
       </div>
-<!-- suggested ends -->
+
+    </div>
+<div *ngIf="!programs?.length && contentLoaded">
+    <div class="suggested-text">
+        <h1>Sorry no results found :(</h1>
+      </div>
 </div>
+<main class="page" *ngIf="!contentLoaded">
+
+    <div class="page-content" *ngFor="let i of fakeLoaderData">
+      <div class="placeholder-content">
+        <div class="placeholder-content_item"></div>
+        <div class="placeholder-content_item"></div>
+        <div class="placeholder-content_item"></div>
+        <div class="placeholder-content_item"></div>
+        <div class="placeholder-content_item"></div>
+        <div class="placeholder-content_item"></div>
+        <div class="placeholder-content_item"></div>
+        <div class="placeholder-content_item"></div>
+        <div class="placeholder-content_item"></div>
+        <div class="placeholder-content_item"></div>
+        <div class="placeholder-content_item"></div>
+      </div>
+
+    </div>
+  </main>
 </div>
 <share-popup [shareData]="selectedProgram"></share-popup>
