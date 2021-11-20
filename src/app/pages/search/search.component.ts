@@ -536,6 +536,11 @@ clearProgramTime(){
   }
 
   programFilter() {
+    this.isTimeFilter = false;
+    this.isDaysFilter = false;
+    this.isTopFilter= false;
+    this.isTypeFilter = false;
+    this.isCategoryFilter = false;
     if( this.categoryId || this.selectedDays.length || this.selectedProgramTypes.length || this.selectedSubCategories.length || this.selectedProgramTime.length || this.isOnline || this.isInPerson || this.isDateFilter || this.isPriceFilter || this.isAgeFilter){
     
       let filter = ``
@@ -549,11 +554,6 @@ clearProgramTime(){
       let typesCount=1
       let tagsCount=1
       let timesCount=1
-      this.isTimeFilter = false;
-      this.isDaysFilter = false;
-      this.isTopFilter= false;
-      this.isTypeFilter = false;
-      this.isCategoryFilter = false;
       if(this.categoryId){
         this.isCategoryFilter=true;
         categoryId=this.categoryId
