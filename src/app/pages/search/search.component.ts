@@ -24,18 +24,11 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
   isDaysFilter: boolean = false;
   isAgeFilter: boolean = false;
   isTopFilter: boolean= false;
-  isTopFilterCheckBox:boolean=false;
   isPriceFilter: boolean = false;
   isTypeFilter: boolean = false;
-  isOpenFilter: boolean = false;
-  isSavedFilter: boolean = false;
   isCategoryFilter: boolean = false;
-  isDateModal: boolean = false;
-  isTimeModal: boolean = false;
-  isAgeModal: boolean = false;
-  isPriceModal: boolean = false;
-  isDaysModal: boolean = false;
-  isCategoryModal: boolean = false;
+  isTopFilterCheckBox:boolean=false;
+ 
   isFav: boolean = false;
   categoryId: any = ''
   activityName: any = ''
@@ -170,11 +163,12 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.filterData.categoryId) {
       console.log('this.filterData.categoryId', this.filterData)
       this.categoryId = this.filterData.categoryId
-      // this.activityName = this.filterData.activityName
+      this.programFilter()
     }
     if(this.filterData.subcatId ){
       console.log('this.filterData.subcatId',this.filterData)
      this.selectedSubCategories[0]=this.filterData.subcatId;
+     this.programFilter()
     }
     if(this.filterData.activityName){
       this.activityName = this.filterData.activityName
@@ -284,6 +278,7 @@ clearProgramTypes(){
   this.types.forEach((element) => {
     element.nativeElement.checked = false;
   });
+  this.programFilter()
 }
 
 @ViewChildren("days") days: QueryList<ElementRef>;
@@ -292,6 +287,7 @@ clearProgramDays(){
   this.days.forEach((element) => {
     element.nativeElement.checked = false;
   });
+  this.programFilter()
 }
 @ViewChildren("times") times: QueryList<ElementRef>;
 clearProgramTime(){
@@ -299,9 +295,11 @@ clearProgramTime(){
   this.times.forEach((element) => {
     element.nativeElement.checked = false;
   });
+  this.programFilter()
 }
 
   ngOnInit() {
+    window.scroll(0, 0);
     this.startTour()
     console.log('latt', this.latt);
     this.titleService.setTitle(this.title);
@@ -312,28 +310,14 @@ clearProgramTime(){
       { name: 'keywords', content: 'kid friendly search,kids activities search, kids programs search'}
     );
 
-    window.scroll(0, 0);
     if (this.categoryId) {
       this.isCategoryFilter = true
       this.programFilter()
            this.showReset =true
            }
-           else {
-               if (this.activityName) {
-                 this.filterByNameDate()
-               }
-          else if(this.selectedSubCategories.length){
-               this.programBySubCategoryIds()
-            }
-            else if(this.latt ||this.lngg ){
-              this.lat=this.latt
-              this.lng=this.lngg
-              this.programByLatLng();
+           else{
+             this.getPublishedProgram();
            }
-       else {
-        this.getPublishedProgram();
-      }
-    }
     this.getCategory();
     this.mapsAPILoader.load().then(() => {
    let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);
@@ -400,24 +384,16 @@ clearProgramTime(){
     });
   }
 
-  openModal(a, b, c, d, e, f, g, h, i, j, k, l) {
-
-  }
-
-
-
-
   resetFilter() {
     this.searchedSubCategory,this.activityName = ''
-    this.isOnline,this.isInPerson,this.activityName,this.showReset=false
-    this.isOpenFilter = false;
+    this.isInPerson=false
+    this.showReset=false
     this.isTypeFilter=false
     this.categoryId=''
     this.isOnline=false;
     this.isDaysFilter=false
     this.isInPerson=true
     this.isTimeFilter = false;
-    this.isSavedFilter = false;
     this.isTopFilterCheckBox=false
     this.isTopFilter= false;
     this.isAgeFilter = false;
@@ -528,42 +504,11 @@ clearProgramTime(){
       if (this.showReset) {
         if (this.activityName) {
           this.filterByNameDate()
-        }else if(!this.selectedSubCategories.length && !this.categoryId.length){
+        }else{
             this.programFilter()
         }
       }
-       else {
-            this.getPublishedProgram()
-            }
 }
-  getFav(id,toggle) {
-    console.log('toggle',toggle)
-if(toggle){
-    this.isDateFilter = false;
-    this.isAgeFilter = false;
-    this.isPriceFilter = false
-    this.isOpenFilter = false
-    this.isCategoryFilter = false
-    this.isSavedFilter = true
-    this.programs = []
-    this.showReset = true
-    // this.ngxLoader.start();
-    this.contentLoaded = false;
-    this.apiservice.getFavouriteByParentId(id).subscribe((res: any) => {
-      console.log('fav', res)
-      res.forEach(program => {
-        program.program.isFav = true;
-        this.programs.push(program.program)
-        console.log('fav programs', this.programs)
-
-      });
-      this.contentLoaded = true;
-    });
-  }
-  else{
-    this.resetFilter();
-  }
-  }
 
 
   filterByNameDate() {
@@ -571,11 +516,14 @@ if(toggle){
     this.isDateFilter = false
     this.isAgeFilter = false
     this.isPriceFilter = false
-    this.isOpenFilter = false
-    this.isSavedFilter = false
-    // this.ngxLoader.start();
+    this.isTimeFilter = false;
+    this.isDaysFilter = false;
+    this.isTopFilter= false;
+    this.isTypeFilter = false;
+    this.isOnline = false;
+    this.isInPerson= false;
+
     this.contentLoaded = false;
-    if (this.activityName) {
       this.apiservice.activityByNameDate(this.activityName).subscribe((res: any) => {
         console.log('filterbyNameDate', res)
         this.contentLoaded = true;
@@ -583,96 +531,106 @@ if(toggle){
         this.showReset = true
         this.searchedSubCategory = this.activityName;
       });
-    }
+    
     this.contentLoaded = true;
   }
 
   programFilter() {
-    let inpersonOrVirtual=''
-    let days=''
-    let categoryId=''
-    let tags=''
-    let types=''
-    let times=''
-    let daysCount=1
-    let typesCount=1
-    let tagsCount=1
-    let timesCount=1
-
-    for(let day of this.selectedDays){
-      if(daysCount===1){
-        days+=day
-        daysCount++
+    if( this.categoryId || this.selectedDays.length || this.selectedProgramTypes.length || this.selectedSubCategories.length || this.selectedProgramTime.length || this.isOnline || this.isInPerson || this.isDateFilter || this.isPriceFilter || this.isAgeFilter){
+      let inpersonOrVirtual=''
+      let days=''
+      let categoryId=''
+      let tags=''
+      let types=''
+      let times=''
+      let daysCount=1
+      let typesCount=1
+      let tagsCount=1
+      let timesCount=1
+      this.isTimeFilter = false;
+      this.isDaysFilter = false;
+      this.isTopFilter= false;
+      this.isTypeFilter = false;
+      this.isCategoryFilter = false;
+      if(this.categoryId){
+        this.isCategoryFilter=true;
+        categoryId=this.categoryId
+      }
+      for(let day of this.selectedDays){
+        this.isDaysFilter=true;
+        if(daysCount===1){
+          days+=day
+          daysCount++
+        }
+        else{
+          days+=','+day
+        }
+      }
+      for(let type of this.selectedProgramTypes){
+        this.isTypeFilter=true
+        if(typesCount===1){
+          types+=type
+          typesCount++
+        }
+        else{
+          types+=','+type
+        }
+      }
+      for(let tag of this.selectedSubCategories){
+        this.isCategoryFilter=true
+        if(tagsCount===1){
+          this.suggestedSubCategories(tag)
+          tags+=tag
+          tagsCount++
+        }
+        else{
+          tags+=','+tag
+        }
+      }
+      for(let time of this.selectedProgramTime){
+        this.isTimeFilter=true
+        if(timesCount===1){
+          times+=time
+          timesCount++
+        }
+        else{
+          times+=','+time
+        }
+      }
+      if(this.isOnline){
+        inpersonOrVirtual='online'
+      }
+      else if(this.isInPerson){
+        inpersonOrVirtual='inperson'
       }
       else{
-        days+=','+day
+        inpersonOrVirtual=''
       }
-    }
-    for(let type of this.selectedProgramTypes){
-      if(typesCount===1){
-        types+=type
-        typesCount++
-      }
-      else{
-        types+=','+type
-      }
-    }
-    for(let tag of this.selectedSubCategories){
-      if(tagsCount===1){
-        tags+=tag
-        tagsCount++
-      }
-      else{
-        tags+=','+tag
-      }
-    }
-    for(let time of this.selectedProgramTime){
-      if(timesCount===1){
-        times+=time
-        timesCount++
-      }
-      else{
-        times+=','+time
-      }
-    }
-    if(this.isOnline){
-      inpersonOrVirtual='online'
-    }
-    else if(this.isInPerson){
-      inpersonOrVirtual='inperson'
+      console.log('selected cat id', this.selectedSubCategories)
+      const dateFormat = "YYYY-MM-DD";
+      var filter = ``
+      this.fromDate = moment(this.fromDate).format(dateFormat);
+      this.toDate = moment(this.toDate).format(dateFormat);
+        console.log('filter>>>>>>>>>>>>',filter)
+      this.contentLoaded = false;
+      filter = `time=${times}&categoryId=${categoryId}&tagsIds=${tags}&type=${types}&ageFrom=${this.minAge}&ageTo=${this.maxAge}&fromDate=${this.fromDate}&toDate=${this.toDate}&priceFrom=${this.minPrice}&priceTo=${this.maxPrice}&inpersonOrVirtual=${inpersonOrVirtual}&day=${days}`
+    console.log('filters query ', filter)
+      this.apiservice.programFilter(filter, this.pageNo, this.pageSize).subscribe((res: any) => {
+        console.log('filter response', res);
+        this.contentLoaded = true;
+        if (res.isSuccess) {
+          this.isTopFilterCheckBox=false
+          this.programs = res.data;
+          this.isScrol = true;
+          this.contentLoaded = true;
+        }
+      });
     }
     else{
-      inpersonOrVirtual=''
+this.getPublishedProgram();
     }
-    console.log('selected cat id', this.selectedSubCategories)
-    const dateFormat = "YYYY-MM-DD";
-    var filter = ``
-    this.fromDate = moment(this.fromDate).format(dateFormat);
-    this.toDate = moment(this.toDate).format(dateFormat);
-      console.log('filter>>>>>>>>>>>>',filter)
-    this.contentLoaded = false;
-    filter = `time=${times}&categoryId=${categoryId}&tagsIds=${tags}&type=${types}&ageFrom=${this.minAge}&ageTo=${this.maxAge}&fromDate=${this.fromDate}&toDate=${this.toDate}&priceFrom=${this.minPrice}&priceTo=${this.maxPrice}&inpersonOrVirtual=${inpersonOrVirtual}&day=${days}`
-  console.log('filters query ', filter)
-    this.apiservice.programFilter(filter, this.pageNo, this.pageSize).subscribe((res: any) => {
-      console.log('filter response', res);
-      this.contentLoaded = true;
-      if (res.isSuccess) {
-        this.isTopFilterCheckBox=false
-        this.programs = res.data;
-        this.isScrol = true;
-        this.contentLoaded = true;
-      }
-    });
+  
   }
-  // signUpModal() {
-  //   if (localStorage.getItem("token") === null) {
-  //     setTimeout(() => {
-  //       console.log('timerrrrrr')
-  //       window.document.getElementById("modal1").click();
-  //     }, 1000000);
-  //   }
-  // }
-
 
 searchCategory(key){
   this.apiservice.searchTag(key).subscribe((res:any)=>{
@@ -718,9 +676,23 @@ if(program.userId==''|| program.userId==undefined || !program.userId){ program.u
 
  //----------------------------------------search history get ---------------------------------------------------------
  getTopRated() {
-  this.contentLoaded,this.isOnline,this.isInPerson = false;
+
+  this.contentLoaded=false
+  this.isOnline=false
+  this.isInPerson = false;
   this.categoryId=''
   this.showReset = true;
+
+
+  this.isDateFilter = false;
+  this.isTimeFilter = false;
+  this.isDaysFilter = false;
+  this.isAgeFilter = false;
+  this.isTopFilter= false;
+  this.isPriceFilter = false;
+  this.isTypeFilter = false;
+  this.isCategoryFilter = false;
+
   if(this.isTopFilterCheckBox == true){
     // this.ngxLoader.start()
     this.apiservice.getTopRated().subscribe((res: any) => {
@@ -740,47 +712,9 @@ if(program.userId==''|| program.userId==undefined || !program.userId){ program.u
  }
 
 
-
-// / ---------------------------------------------get programs by sub category ids--------------------------------
-   programBySubCategoryIds(){
-     if(this.categoryId.length){
-      this.programFilter()    }
-    else{
-    this.programs=[]
-    let filter = ``;
-    let i = 1;
-    let id;
-    console.log(this.selectedSubCategories)
-   for(let catId of this.selectedSubCategories) {
-     if(i<2){
-      id =  `subId${i}=${catId}`
-     }
-     else{id =  `&subId${i}=${catId}`
-    }
-      filter+=id;
-      i++;
-     };
-     console.log(filter)
-     if(i<=5){
-      //  this.ngxLoader.start()
-      this.contentLoaded = false;
-    this.apiservice.programBySubCategoryIds(filter,1,100).subscribe((res: any) => {
-      // this.ngxLoader.stop()
-      this.contentLoaded = true;
-      this.showReset = true;
-      this.programs = res.data
-      console.log('programBySubCategoryIds', res);
-      this.suggestedSubCategories(this.selectedSubCategories[0])
-    })
-  }else { this.toast.info('You Selected More Than 5 SubCategories')}
-}
-}
-
-
   // ---------------------suggested sub categories by sub catids -----------------------
   suggestedSubCategories(id){
     window.scroll(0,0)
-    if(!id)return
    this.apiservice.getSuggestedCategory(id).subscribe((res: any) => {
      console.log(res,'ressssss suggested')
               res.forEach(suggested => {

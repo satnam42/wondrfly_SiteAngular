@@ -19,22 +19,7 @@
           <div class="category_list" id="accordionExample">
             <ul>
               <li class="cursor" >
-                <a aria-expanded="true" data-target="#category" [ngClass]="{ active: isCategoryFilter }" (click)="
-                    openModal(
-                      (isCategoryFilter = true),
-                      (isTypeFilter = false),
-                      (isDaysFilter = false),
-                      (isPriceFilter = false),
-                      (isDateFilter = false),
-                      (isAgeFilter = false),
-                      (isTimeFilter = false),
-                      (isCategoryModal = true),
-                      (isPriceModal = false),
-                      (isDateModal = false),
-                      (isAgeModal = false),
-                      (isTimeModal = false)
-                    )
-                  " data-toggle="collapse"
+                <a aria-expanded="true" data-target="#category" [ngClass]="{ active: isCategoryFilter }"  data-toggle="collapse"
                   joyrideStep="firstStep" title="💡 Search with filters" text="Narrow down your search by clicking on any of the filters above. ">Categories</a>
                 <div class="
                     collapse
@@ -56,10 +41,10 @@
                             <span>
                               <span>
                                 <a class="clear cusror" data-target="#category" data-toggle="collapse"
-                                  (click)="selectedCat='';subCats=[];selectedSubCategories=[]">Clear all</a>
+                                  (click)="selectedCat='';categoryId='';subCats=[];selectedSubCategories=[];programFilter()">Clear all</a>
                               </span>
                               <button data-target="#category" data-toggle="collapse"
-                                (click)="programBySubCategoryIds()">
+                                (click)="programFilter()">
                                 APPLY FILTER
                               </button>
                             </span>
@@ -91,23 +76,7 @@
                 </div>
               </li>
               <li class="cursor">
-                <a [ngClass]="{ active: isAgeFilter }" (click)="
-                    filterName = 'age';
-                    openModal(
-                      (isCategoryFilter = false),
-                      (isDaysFilter = false),
-                      (isPriceFilter = false),
-                      (isDateFilter = false),
-                      (isAgeFilter = true),
-                      (isTimeFilter = false),
-                      (isCategoryModal = false),
-                      (isTypeFilter = false),
-                      (isPriceModal = false),
-                      (isDateModal = false),
-                      (isAgeModal = true),
-                      (isTimeModal = false)
-                    )
-                  " aria-controls="collapseExample" aria-expanded="true" data-target="#ageGroup"
+                <a [ngClass]="{ active: isAgeFilter }"  aria-controls="collapseExample" aria-expanded="true" data-target="#ageGroup"
                   data-toggle="collapse">Age
                 </a>
                 <div class="collapse main_collpase verification_modal" id="ageGroup" data-parent="#accordionExample">
@@ -118,12 +87,13 @@
                     </div>
                   </div>
                   <div class="submit_btn">
-                    <button (click)="resetFilter()" type="button" aria-controls="collapseExample" aria-expanded="true"
+                    <button (click)="isAgeFilter=false;programFilter()" type="button" aria-controls="collapseExample" aria-expanded="true"
                       data-target="#ageGroup" data-toggle="collapse" class="cancel_btn">
                       Clear
                     </button>
 
-                    <button (click)="programFilter()" scrollToTop.scrollTop="0" data-target="#ageGroup"
+                    <button (click)="isAgeFilter=true
+                    ;programFilter()" scrollToTop.scrollTop="0" data-target="#ageGroup"
                       data-toggle="collapse" class="submitBtn">
                       Apply
                     </button>
@@ -132,23 +102,7 @@
               </li>
               <li class="cursor">
                 <a aria-expanded="true" [ngClass]="{ active: isTypeFilter }" aria-expanded="true" data-target="#typess"
-                  data-toggle="collapse" (click)="
-                    filterName = 'type';
-                    openModal(
-                      (isCategoryFilter = false),
-                      'l',
-                      (isPriceFilter = false),
-                      (isDateFilter = false),
-                      (isAgeFilter = false),
-                      (isTimeFilter = false),
-                      (isCategoryModal = false),
-                      's',
-                      (isPriceModal = false),
-                      (isTypeFilter = true),
-                      (isDateModal = false),
-                      (isAgeModal = false)
-                    )
-                  ">Type</a>
+                  data-toggle="collapse">Type</a>
                 <div class="collapse main_collpase typess verification_modal" id="typess"
                   data-parent="#accordionExample">
                   <div class="collpase_content">
@@ -180,23 +134,7 @@
                 </div>
               </li>
               <li class="cursor">
-                <a [ngClass]="{ active: isDateFilter }" (click)="
-                    filterName = 'date';
-                    openModal(
-                      (isCategoryFilter = false),
-                      (isTypeFilter = false),
-                      (isPriceFilter = false),
-                      (isDateFilter = true),
-                      (isAgeFilter = false),
-                      (isTimeFilter = false),
-                      (isCategoryModal = false),
-                      'h',
-                      (isPriceModal = false),
-                      (isDateModal = true),
-                      (isAgeModal = false),
-                      (isTimeModal = false)
-                    )
-                  " aria-expanded="true" data-target="#date" data-toggle="collapse">Dates</a>
+                <a [ngClass]="{ active: isDateFilter }"  aria-expanded="true" data-target="#date" data-toggle="collapse">Dates</a>
                 <div class="
                     collapse
                     main_collpase
@@ -223,11 +161,11 @@
                       </div>
                     </div>
                     <div class="calender-buttons">
-                      <button class="calender-buttons1" data-target="#date" data-toggle="collapse">
+                      <button class="calender-buttons1" data-target="#date" data-toggle="collapse" (click)="isDateFilter=false">
                         Cancel
                       </button>
                       <button class="calender-buttons2" data-target="#date" data-toggle="collapse"
-                        (click)="programFilter()">
+                        (click)="isDateFilter=true;programFilter()">
                         Apply
                       </button>
                     </div>
@@ -235,23 +173,7 @@
                 </div>
               </li>
               <li class="cursor">
-                <a aria-controls="collapseExample" [ngClass]="{ active: isTimeFilter }" (click)="
-                    filterName = 'time';
-                    openModal(
-                      (isCategoryFilter = false),
-                      (isTypeFilter = false),
-                      (isDaysFilter = false),
-                      (isPriceFilter = false),
-                      (isDateFilter = false),
-                      (isAgeFilter = false),
-                      (isTimeFilter = true),
-                      (isCategoryModal = false),
-                      (isPriceModal = false),
-                      (isDateModal = false),
-                      (isAgeModal = false),
-                      (isTimeModal = true)
-                    )
-                  " aria-expanded="true" data-target="#timess" data-toggle="collapse">Time</a>
+                <a aria-controls="collapseExample" [ngClass]="{ active: isTimeFilter }" aria-expanded="true" data-target="#timess" data-toggle="collapse">Time</a>
                 <div class="collapse main_collpase typess verification_modal" id="timess"
                   data-parent="#accordionExample">
                   <div class="collpase_content">
@@ -285,23 +207,7 @@
               </li>
 
               <li class="cursor">
-                <a aria-expanded="true" [ngClass]="{ active: isDaysFilter }" (click)="
-                    filterName = 'day';
-                    openModal(
-                      (isCategoryFilter = false),
-                      (isTypeFilter = false),
-                      (isDaysFilter = true),
-                      (isPriceFilter = false),
-                      (isDateFilter = false),
-                      (isAgeFilter = false),
-                      (isTimeFilter = false),
-                      (isCategoryModal = false),
-                      (isPriceModal = false),
-                      (isDateModal = false),
-                      (isAgeModal = false),
-                      (isTimeModal = false)
-                    )
-                  " data-target="#Dayss" data-toggle="collapse">Days</a>
+                <a aria-expanded="true" [ngClass]="{ active: isDaysFilter }"  data-target="#Dayss" data-toggle="collapse">Days</a>
                 <div class="collapse main_collpase typess verification_modal" id="Dayss"
                   data-parent="#accordionExample">
                   <div class="collpase_content">
@@ -334,23 +240,7 @@
                 </div>
               </li>
               <li class="cursor">
-                <a [ngClass]="{ active: isPriceFilter }" (click)="
-                    filterName = 'price';
-                    openModal(
-                      (isCategoryFilter = false),
-                      (isDaysFilter = false),
-                      (isPriceFilter = true),
-                      (isDateFilter = false),
-                      (isAgeFilter = false),
-                      (isTimeFilter = false),
-                      (isCategoryModal = false),
-                      (isDaysModal = false),
-                      (isPriceModal = true),
-                      (isDateModal = false),
-                      (isAgeModal = false),
-                      (isTimeModal = false)
-                    )
-                  " aria-controls="collapseExample" aria-expanded="true" data-target="#priceGroup"
+                <a [ngClass]="{ active: isPriceFilter }"  aria-controls="collapseExample" aria-expanded="true" data-target="#priceGroup"
                   data-toggle="collapse">Price
                 </a>
                 <div class="collapse main_collpase verification_modal" id="priceGroup" data-parent="#accordionExample">
@@ -361,12 +251,12 @@
                     </div>
                   </div>
                   <div class="submit_btn">
-                    <button (click)="minPrice = 50;maxPrice = 300" type="button" aria-controls="collapseExample" aria-expanded="true"
+                    <button (click)="minPrice = 50;maxPrice = 300;isPriceFilter=false;programFilter()" type="button" aria-controls="collapseExample" aria-expanded="true"
                       data-target="#priceGroup" data-toggle="collapse" class="cancel_btn">
                       Clear
                     </button>
 
-                    <button (click)="programFilter()" scrollToTop.scrollTop="0" data-target="#priceGroup"
+                    <button (click)="isPriceFilter=true;programFilter()" scrollToTop.scrollTop="0" data-target="#priceGroup"
                       data-toggle="collapse" class="submitBtn">
                       Apply
                     </button>
@@ -375,22 +265,7 @@
               </li>
 
               <li class="cursor">
-                <a class="top-rateds" aria-expanded="true" [ngClass]="{ active: isTopFilter }" (click)="
-                    openModal(
-                      (isCategoryFilter = false),
-                      (isDaysFilter = false),
-                      (isPriceFilter = false),
-                      (isDateFilter = false),
-                      (isAgeFilter = false),
-                      (isTimeFilter = false),
-                      (isCategoryModal = false),
-                      (isDaysModal = false),
-                      (isPriceModal = false),
-                      (isDateModal = false),
-                      (isAgeModal = false),
-                      (isTimeModal = false)
-                    )
-                  "><span class="simple-toggle">
+                <a class="top-rateds" aria-expanded="true" [ngClass]="{ active: isTopFilter }" ><span class="simple-toggle">
                     Top Rated
                     <span>
                       <label class="switch1">
@@ -424,7 +299,7 @@
           <h1>Looking for <span>{{searchedSubCategory}}</span> in <span>Jersey</span></h1>
         </div>
       </div>
-      <div class="col-8">
+      <!-- <div class="col-8">
         <div class="chip-set-bar">
           <button class="btn_style save_btn cursor" *ngIf="searchedSubCategory">
             {{searchedSubCategory}}
@@ -443,11 +318,11 @@
             <span (click)="removeRecentSearches(i)" class="ml-2"><img src="assets/white-close.png" /></span>
           </button>
           <span>
-            <!-- <span>&times;</span> -->
+            <span>&times;</span>
             <a class="ml-2 clear-text cursor" (click)="resetFilter()">Clear all</a>
           </span>
         </div>
-      </div>
+      </div> -->
     </div>
 
     <div class="row row-0 borderserach" *ngIf="!isOnline">
@@ -592,7 +467,7 @@
                         let subCat of program?.subCategoryIds | slice: 0:2
                       "  (click)="
                       selectedSubCategories[0] = subCat._id;
-                      programBySubCategoryIds()
+                      programFilter()
                     " >
                       {{ subCat?.name }}
                     </h3>
@@ -609,7 +484,7 @@
                                   | slice: 2:program.subCategoryIds?.length
                               " class="collapse-btn cursor"  (click)="
                               selectedSubCategories[0] = subCat._id;
-                              programBySubCategoryIds()
+                              programFilter()
                             " >
                               {{ subCat?.name }}
                             </h5>
@@ -661,7 +536,7 @@
                 <div class="row">
                   <div class="col-md-4 cursor" *ngFor="let subCategory of suggested" (click)="
                       selectedSubCategories[0] = subCategory.id;
-                      programBySubCategoryIds()
+                      programFilter()
                     ">
                     <div class="similar-cate">
                       <!-- <img src="assets/similarcategories1.png"> -->
