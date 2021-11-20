@@ -291,7 +291,7 @@ clearProgramDays(){
 }
 @ViewChildren("times") times: QueryList<ElementRef>;
 clearProgramTime(){
-  this.selectedProgram=[]
+  this.selectedProgramTime=[]
   this.times.forEach((element) => {
     element.nativeElement.checked = false;
   });
