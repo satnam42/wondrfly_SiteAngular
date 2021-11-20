@@ -537,6 +537,8 @@ clearProgramTime(){
 
   programFilter() {
     if( this.categoryId || this.selectedDays.length || this.selectedProgramTypes.length || this.selectedSubCategories.length || this.selectedProgramTime.length || this.isOnline || this.isInPerson || this.isDateFilter || this.isPriceFilter || this.isAgeFilter){
+    
+      let filter = ``
       let inpersonOrVirtual=''
       let days=''
       let categoryId=''
@@ -608,12 +610,21 @@ clearProgramTime(){
       }
       console.log('selected cat id', this.selectedSubCategories)
       const dateFormat = "YYYY-MM-DD";
-      var filter = ``
       this.fromDate = moment(this.fromDate).format(dateFormat);
       this.toDate = moment(this.toDate).format(dateFormat);
         console.log('filter>>>>>>>>>>>>',filter)
       this.contentLoaded = false;
-      filter = `time=${times}&categoryId=${categoryId}&tagsIds=${tags}&type=${types}&ageFrom=${this.minAge}&ageTo=${this.maxAge}&fromDate=${this.fromDate}&toDate=${this.toDate}&priceFrom=${this.minPrice}&priceTo=${this.maxPrice}&inpersonOrVirtual=${inpersonOrVirtual}&day=${days}`
+     
+      filter = `time=${times}&categoryId=${categoryId}&tagsIds=${tags}&type=${types}&inpersonOrVirtual=${inpersonOrVirtual}&day=${days}`
+      if(this.isDateFilter){
+        filter+= `&fromDate=${this.fromDate}&toDate=${this.toDate}`
+      }
+      if(this.isPriceFilter){
+        filter+= `&priceFrom=${this.minPrice}&priceTo=${this.maxPrice}`
+      }
+      if(this.isAgeFilter){
+        filter+= `&ageFrom=${this.minAge}&ageTo=${this.maxAge}`
+      }
     console.log('filters query ', filter)
       this.apiservice.programFilter(filter, this.pageNo, this.pageSize).subscribe((res: any) => {
         console.log('filter response', res);
