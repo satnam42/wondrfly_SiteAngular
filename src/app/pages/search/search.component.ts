@@ -391,7 +391,6 @@ clearProgramTime(){
     this.categoryId=''
     this.isOnline=false;
     this.isDaysFilter=false
-    this.isInPerson=true
     this.isTimeFilter = false;
     this.isTopFilterCheckBox=false
     this.isTopFilter= false;
@@ -404,6 +403,18 @@ clearProgramTime(){
     this.minAge = 0;
     this.pageNo = 1;
     this.pageSize = 20;
+    this.selectedProgramTime=[]
+    this.times.forEach((element) => {
+      element.nativeElement.checked = false;
+    });
+    this.selectedDays=[]
+    this.days.forEach((element) => {
+      element.nativeElement.checked = false;
+    });
+    this.selectedProgramTypes=[]
+    this.types.forEach((element) => {
+      element.nativeElement.checked = false;
+    });
     this.getPublishedProgram();
   }
 
@@ -687,27 +698,39 @@ if(program.userId==''|| program.userId==undefined || !program.userId){ program.u
 
  //----------------------------------------search history get ---------------------------------------------------------
  getTopRated() {
-
-  this.contentLoaded=false
-  this.isOnline=false
-  this.isInPerson = false;
+  this.contentLoaded =false
+  this.searchedSubCategory,this.activityName = ''
+  this.isInPerson=false
+  this.showReset=true
+  this.isTypeFilter=false
   this.categoryId=''
-  this.showReset = true;
-
-
-  this.isDateFilter = false;
+  this.isOnline=false;
+  this.isDaysFilter=false
   this.isTimeFilter = false;
-  this.isDaysFilter = false;
-  this.isAgeFilter = false;
   this.isTopFilter= false;
+  this.isAgeFilter = false;
+  this.isDateFilter = false;
+  this.selectedSubCategories=[];
   this.isPriceFilter = false;
-  this.isTypeFilter = false;
   this.isCategoryFilter = false;
-
+  this.maxAge = 5;
+  this.minAge = 0;
+  this.pageNo = 1;
+  this.pageSize = 20;
+  this.selectedProgramTime=[]
+  this.times.forEach((element) => {
+    element.nativeElement.checked = false;
+  });
+  this.selectedDays=[]
+  this.days.forEach((element) => {
+    element.nativeElement.checked = false;
+  });
+  this.selectedProgramTypes=[]
+  this.types.forEach((element) => {
+    element.nativeElement.checked = false;
+  });
   if(this.isTopFilterCheckBox == true){
-    // this.ngxLoader.start()
     this.apiservice.getTopRated().subscribe((res: any) => {
-      // this.ngxLoader.stop()
       this.programs = res
       this.contentLoaded = true;
     });
@@ -715,11 +738,8 @@ if(program.userId==''|| program.userId==undefined || !program.userId){ program.u
     else if(this.isTopFilterCheckBox ==!true){
       this.showReset=true
       this.resetFilter();
-      // this.ngxLoader.stop()
       this.contentLoaded = true;
-
   }
-  // this.ngxLoader.stop()
  }
 
 
@@ -755,8 +775,10 @@ exploreModal() {
 removeRecentSearches(type,indx){
   switch(type){
     case 'days':{
+      console.log(this.days,'days event')
+
       this.days.forEach((element) => {
-        console.log(element)
+        console.log(element,'element')
         if(element.nativeElement.defaultValue===this.selectedDays[indx]){
           this.selectedDays.splice(indx, 1);
           element.nativeElement.checked = false;
