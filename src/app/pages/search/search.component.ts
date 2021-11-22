@@ -755,14 +755,29 @@ exploreModal() {
 removeRecentSearches(type,indx){
   switch(type){
     case 'days':{
-      this.selectedDays.splice(indx, 1);
+      this.days.forEach((element) => {
+        console.log(element)
+        if(element.nativeElement.defaultValue===this.selectedDays[indx]){
+          this.selectedDays.splice(indx, 1);
+          element.nativeElement.checked = false;
+        }
+      });
     }
     case 'times':{
-      this.selectedProgramTime.splice(indx, 1);
-    }
+      this.times.forEach((element) => {
+        console.log(element)
+        if(element.nativeElement.value===this.selectedProgramTime[indx]){
+          this.selectedProgramTime.splice(indx, 1);
+          element.nativeElement.checked = false;
+        }
+      });    }
     case 'types':{
-      this.selectedProgramTypes.splice(indx, 1);
-    }
+      this.types.forEach((element) => {
+        console.log(element)
+        if(element.nativeElement.value===this.selectedProgramTypes[indx]){
+          this.selectedProgramTypes.splice(indx, 1);
+          element.nativeElement.checked = false;
+        }      });    }
   }
     this.programFilter();
 

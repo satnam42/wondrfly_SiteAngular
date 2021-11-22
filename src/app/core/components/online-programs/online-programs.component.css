@@ -2145,8 +2145,18 @@ hr.N_line {
     padding-left: 15px;
     padding-right: 15px;
 }
-
-
+.page-content {
+    background: #fff0;
+    padding: 25px 0;
+    width: 48% !important;
+}
+.page {
+    width: 100% !important;
+    background: transparent;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
 
 
 @media only screen and (min-width:1024px) and (max-width:1366px) and (orientation: portrait)  {
