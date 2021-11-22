@@ -313,7 +313,6 @@ clearProgramTime(){
     if (this.categoryId) {
       this.isCategoryFilter = true
       this.programFilter()
-           this.showReset =true
            }
            else{
              this.getPublishedProgram();
@@ -542,7 +541,6 @@ clearProgramTime(){
     this.isTypeFilter = false;
     this.isCategoryFilter = false;
     if( this.categoryId || this.selectedDays.length || this.selectedProgramTypes.length || this.selectedSubCategories.length || this.selectedProgramTime.length || this.isOnline || this.isInPerson || this.isDateFilter || this.isPriceFilter || this.isAgeFilter){
-    
       let filter = ``
       let inpersonOrVirtual=''
       let days=''
@@ -627,6 +625,7 @@ clearProgramTime(){
       }
     console.log('filters query ', filter)
       this.apiservice.programFilter(filter, this.pageNo, this.pageSize).subscribe((res: any) => {
+        this.showReset=true
         console.log('filter response', res);
         this.contentLoaded = true;
         if (res.isSuccess) {
@@ -638,6 +637,7 @@ clearProgramTime(){
       });
     }
     else{
+      this.isTopFilterCheckBox=false
 this.getPublishedProgram();
     }
   
@@ -752,14 +752,20 @@ exploreModal() {
     },);
   }
 }
-removeRecentSearches(indx){
-  this.selectedDays.splice(indx, 1);
-  if(this.selectedDays.length){
+removeRecentSearches(type,indx){
+  switch(type){
+    case 'days':{
+      this.selectedDays.splice(indx, 1);
+    }
+    case 'times':{
+      this.selectedProgramTime.splice(indx, 1);
+    }
+    case 'types':{
+      this.selectedProgramTypes.splice(indx, 1);
+    }
+  }
     this.programFilter();
-  }
-  else {
-    this.resetFilter();
-  }
+
 }
 
 ngAfterViewInit() {

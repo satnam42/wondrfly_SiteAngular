@@ -299,30 +299,56 @@
           <h1>Looking for <span>{{searchedSubCategory}}</span> in <span>Jersey</span></h1>
         </div>
       </div>
-      <!-- <div class="col-8">
+      <div class="col-8">
         <div class="chip-set-bar">
           <button class="btn_style save_btn cursor" *ngIf="searchedSubCategory">
             {{searchedSubCategory}}
-            <span class="ml-2" (click)="resetFilter()"><img src="assets/white-close.png"/></span>
+            <span class="ml-2"  (click)="selectedSubCategories=[];categoryId='';programFilter()"><img src="assets/white-close.png"/></span>
           </button>
-          <button class="btn_style save_btn cursor" *ngIf="filterName=='age'">
+          <button class="btn_style save_btn cursor" *ngIf="!isInPerson && isOnline" >
+            online
+            <span class="ml-2" (click)="isOnline=!isOnline;programFilter()"><img src="assets/white-close.png"/></span>
+          </button>
+          <button class="btn_style save_btn cursor" *ngIf="isInPerson && !isOnline">
+            in-persion
+            <span class="ml-2"  (click)="isInPerson=!isInPerson;programFilter()"><img src="assets/white-close.png"/></span>
+          </button>
+
+
+          <button class="btn_style save_btn cursor" *ngIf="isAgeFilter">
             Age {{minAge}}-{{maxAge}} years
-            <span (click)="resetFilter()" class="ml-2"><img src="assets/white-close.png" /></span>
+            <span  class="ml-2"  (click)="isAgeFilter=!isAgeFilter;programFilter()"><img src="assets/white-close.png" /></span>
           </button>
-          <button class="btn_style save_btn cursor" *ngIf="isTopFilterCheckBox">
+          <button class="btn_style save_btn cursor" *ngIf="isPriceFilter">
+            Price ${{minPrice}}-${{maxPrice}}
+            <span  class="ml-2"  (click)="isPriceFilter=!isPriceFilter;programFilter()"><img src="assets/white-close.png" /></span>
+          </button>
+          <button class="btn_style save_btn cursor" *ngIf="isDateFilter">
+            {{fromDate | date: "MMM d " }}-{{toDate | date: "MMM d " }}
+            <span  class="ml-2"  (click)="isDateFilter=!isDateFilter;programFilter()"><img src="assets/white-close.png" /></span>
+          </button>
+          <button class="btn_style save_btn cursor" *ngIf="isTopFilterCheckBox" >
             Top Rated
-            <span (click)="resetFilter()" class="ml-2"><img src="assets/white-close.png" /></span>
+            <span  class="ml-2" (click)="programFilter()"><img src="assets/white-close.png" /></span>
           </button>
           <button class="btn_style save_btn cursor"  *ngFor="let day of this.selectedDays;index as i">
             {{day}}
-            <span (click)="removeRecentSearches(i)" class="ml-2"><img src="assets/white-close.png" /></span>
+            <span (click)="removeRecentSearches('days',i)" class="ml-2" ><img src="assets/white-close.png" /></span>
+          </button>
+          <button class="btn_style save_btn cursor"  *ngFor="let type of this.selectedProgramTypes;index as i">
+            {{type}}
+            <span (click)="removeRecentSearches('types',i)" class="ml-2" ><img src="assets/white-close.png" /></span>
+          </button>
+          <button class="btn_style save_btn cursor"  *ngFor="let time of this.selectedProgramTime;index as i">
+            {{time}}
+            <span (click)="removeRecentSearches('times',i)" class="ml-2" ><img src="assets/white-close.png" /></span>
           </button>
           <span>
             <span>&times;</span>
             <a class="ml-2 clear-text cursor" (click)="resetFilter()">Clear all</a>
           </span>
         </div>
-      </div> -->
+      </div>
     </div>
 
     <div class="row row-0 borderserach" *ngIf="!isOnline">
