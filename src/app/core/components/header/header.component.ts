@@ -300,7 +300,7 @@ declare const $: any;
                           [src]="user?.avatarImages"
                           alt="Profile image"
                         />
-                        <h4 *ngIf="!user?.avatarImages" [class.initial-alpha]="!user?.avatarImages">{{user.firstName.charAt(0)}}<span *ngIf="user.lastName">{{user.lastName.charAt(0)}}</span></h4>
+                        <h4 *ngIf="!user?.avatarImages" [class.initial-alpha]="!user?.avatarImages">{{user?.firstName?.charAt(0)+user?.firstName?.charAt(1)}}</h4>
                       </div>
                     </div>
                   </a>

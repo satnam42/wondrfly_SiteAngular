@@ -21,7 +21,7 @@
                 <div class="profile_image" [class.initial-alpha]="!user?.avatarImages">
                   <img *ngIf="user?.avatarImages" src="{{ user.avatarImages }}" alt="Profile Image" />
                   <h1 *ngIf="!user?.avatarImages" [class.initial-alpha]="!user?.avatarImages">
-                    {{user.firstName.charAt(0)}}<span *ngIf="user.lastName">{{user.lastName.charAt(0)}}</span></h1>
+                    {{user?.firstName?.charAt(0)+user?.firstName?.charAt(1)}}</h1>
 
                 </div>
 
@@ -489,10 +489,10 @@
                   <div class="Children_table">
                     <div class="page_heading small-box">
                       <div class="profile_outer">
-                        <div class="content-img">
+                        <div class="content-img"  [class.initial-alpha-profile]="!kid?.avtar">
                           <img alt="Profile Image" *ngIf="kid.avtar" src="{{ kid.avtar }}" />
-                          <!-- <h1 *ngIf="!kid.avtar" [class.initial-alpha]="!kid.avtar">{{kid.name.charAt(0)}}</h1> -->
-                          <img alt="Profile Image" *ngIf="!kid.avtar" src="assets/default_img.png" />
+                          <h1 *ngIf="!kid.avtar" >{{kid?.name?.charAt(0)+kid?.name?.charAt(1)}}</h1>
+                          <!-- <img alt="Profile Image" *ngIf="!kid.avtar" src="assets/default_img.png" /> -->
                         </div>
                         <div class="edit_profile edit-12354">
                           <a><label class="cursor">

@@ -11,7 +11,7 @@
                     <div class="profile" [class.initial-alpha]="!user.categories[0]?.logoUrl">
                         <img *ngIf="user.categories[0]?.logoUrl" src="{{baseUrl+user.categories[0]?.logoUrl}}" alt="Profile image">
                         <!-- <img *ngIf="!user.categories[0]?.logoUrl" src="assets/gray_background.jpeg" alt="Profile image"> -->
-                        <h1 *ngIf="!user.categories[0]?.logoUrl" [class.initial-alpha]="!user.categories[0]?.logoUrl">{{user?.firstName.charAt(0)}}<span *ngIf="user?.lastName">{{user?.lastName.charAt(0)}}</span></h1>
+                        <h1 *ngIf="!user.categories[0]?.logoUrl" [class.initial-alpha]="!user.categories[0]?.logoUrl">{{user?.firstName.charAt(0)+user?.firstName.charAt(1)}}</h1>
                     </div>
                     <h2 class="provider_name star-daialog">{{user.firstName}}
                         <p class="cursor"   (mouseover)="isRating=true" (mouseout)="isRating=false">
@@ -74,6 +74,15 @@
                                         alt="Profile">
                                         <img *ngIf="!user.avatarImages"class="cursor" src="assets/otheruser.jpeg"
                                         alt="Profile">
+                                            <div class="people_profile" [class.initial-alpha]="!user?.avatarImages">
+                                              <img  *ngIf="!user?.avatarImages" src="assets/otheruser.jpeg" alt="Profile" />
+                                              <img
+                                              *ngIf="user?.avatarImages"
+                                              src="{{ user?.avatarImages }}"
+                                              alt="Profile"
+                                            />
+                                              <h1 *ngIf="!user?.avatarImages" [class.initial-alpha]="!user?.avatarImages">{{user?.firstName?.charAt(0)+user?.firstName?.charAt(1)}}</h1>
+                                            </div>
                                     </a>
                                 </div>
                                 <h4>{{user.firstName}}</h4>
