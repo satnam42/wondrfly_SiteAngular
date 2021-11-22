@@ -415,6 +415,10 @@ clearProgramTime(){
     this.types.forEach((element) => {
       element.nativeElement.checked = false;
     });
+    this.selectedCat='';
+    this.categoryId='';
+    this.subCats=[];
+    this.selectedSubCategories=[]
     this.getPublishedProgram();
   }
 

@@ -303,7 +303,7 @@
         <div class="chip-set-bar">
           <button class="btn_style save_btn cursor" *ngIf="searchedSubCategory">
             {{searchedSubCategory}}
-            <span class="ml-2"  (click)="selectedSubCategories=[];categoryId='';programFilter()"><img src="assets/white-close.png"/></span>
+            <span class="ml-2"  (click)="selectedCat='';categoryId='';subCats=[];selectedSubCategories=[];programFilter()"><img src="assets/white-close.png"/></span>
           </button>
           <button class="btn_style save_btn cursor" *ngIf="!isInPerson && isOnline" >
             online
