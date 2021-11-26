@@ -619,6 +619,7 @@ export class HeaderComponent implements OnInit {
     subcatId: '',
     categoryId : '',
     activityName: '',
+    searchedCategoryKey:'',
     lat:'',
     lng:'',
   };
@@ -848,6 +849,7 @@ export class HeaderComponent implements OnInit {
     });
   }
   searchByLocation() {
+    this.filterData.searchedCategoryKey=this.filterData.activityName
     this.filterData.activityName=''
     this.filterData.categoryId = ''
     this.filterData.subcatId= ''
@@ -862,6 +864,7 @@ export class HeaderComponent implements OnInit {
     }
   }
   searchBySubCategory(id) {
+    this.filterData.searchedCategoryKey=this.filterData.activityName
     this.filterData.activityName = '';
     this.filterData.lat=''
     this.filterData.lng=''
@@ -875,7 +878,7 @@ export class HeaderComponent implements OnInit {
     }
   }
   searchByCategory(id) {
-    console.log(id)
+    this.filterData.searchedCategoryKey=this.filterData.activityName
     this.filterData.activityName=''
     this.filterData.subcatId =''
     this.filterData.categoryId = id

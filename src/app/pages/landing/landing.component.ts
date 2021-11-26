@@ -26,6 +26,7 @@ export class LandingComponent implements OnInit {
     subcatId: '',
     categoryId:'',
     activityName: '',
+    searchedCategoryKey:'',
       lat:'',
       lng:'',
   
@@ -53,6 +54,7 @@ export class LandingComponent implements OnInit {
    ) {
   }
   searchBySubCategory(id) {
+    this.filterData.searchedCategoryKey=this.filterData.activityName
     this.filterData.activityName=''
     this.filterData.lat = ''
     this.filterData.lng = ''
@@ -63,7 +65,7 @@ export class LandingComponent implements OnInit {
   }
 
   searchByCategory(id) {
-    console.log(id)
+    this.filterData.searchedCategoryKey=this.filterData.activityName
     this.filterData.activityName=''
     this.filterData.lat = ''
     this.filterData.lng = ''
@@ -73,6 +75,7 @@ export class LandingComponent implements OnInit {
     this.router.navigate(['/search']);
   }
   searchByLocation() {
+    this.filterData.searchedCategoryKey=this.filterData.activityName
     this.filterData.activityName=''
     this.filterData.categoryId = ''
     this.filterData.lat = this.lat

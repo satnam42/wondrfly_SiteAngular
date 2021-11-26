@@ -159,21 +159,25 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
     // }
     this.filterData = dataservice.getOption()
     if(this.filterData){
-      this.contentLoaded=true;
     if (this.filterData.categoryId) {
       console.log('this.filterData.categoryId', this.filterData)
       this.categoryId = this.filterData.categoryId
+     this.searchedSubCategory = this.filterData.searchedCategoryKey
       this.programFilter()
     }
-    if(this.filterData.subcatId ){
+    else if(this.filterData.subcatId ){
       console.log('this.filterData.subcatId',this.filterData)
      this.selectedSubCategories[0]=this.filterData.subcatId;
+     this.searchedSubCategory = this.filterData.searchedCategoryKey
      this.programFilter()
     }
-    if(this.filterData.activityName){
+    else if(this.filterData.activityName){
       this.activityName = this.filterData.activityName
       this.filterByNameDate()
     }
+  }
+  else{
+    this.getPublishedProgram()
   }
     var retrievedObject = localStorage.getItem('userData');
     this.userData = JSON.parse(retrievedObject);
@@ -310,13 +314,13 @@ clearProgramTime(){
       { name: 'keywords', content: 'kid friendly search,kids activities search, kids programs search'}
     );
 
-    if (this.categoryId) {
-      this.isCategoryFilter = true
-      this.programFilter()
-           }
-           else{
-             this.getPublishedProgram();
-           }
+    // if (this.categoryId || this.subCats) {
+    //   this.isCategoryFilter = true
+    //   this.programFilter()
+    //        }
+    //        else{
+    //          this.getPublishedProgram();
+    //        }
     this.getCategory();
     this.mapsAPILoader.load().then(() => {
    let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);
@@ -481,9 +485,9 @@ clearProgramTime(){
     this.categoryId = cat.id
     this.selectedCat= cat.id
     this.selectedSubCategories=[]
-    this.apiservice.getTagByCategoryId(this.selectedCat).subscribe((res: any) => {
+    this.apiservice.getTagByCategoryId(cat.id).subscribe((res: any) => {
       this.subCats = res.data
-      this.subCats = this.subCats.filter((item) => item.isActivated !== false);
+      this.subCats = this.subCats.filter((item) => item.isActivated === true);
       console.log(this.subCats)
     })
   }
@@ -785,7 +789,7 @@ removeRecentSearches(type,indx){
         console.log(element,'element')
         if(element.nativeElement.defaultValue===this.selectedDays[indx]){
           this.selectedDays.splice(indx, 1);
-          element.nativeElement.checked = false;
+           element.nativeElement.checked = false;
         }
       });
     }

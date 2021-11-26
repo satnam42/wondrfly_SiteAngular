@@ -231,6 +231,7 @@ export class Header2Component implements OnInit {
     subcatId: "",
     categoryId:'',
     activityName: "",
+    searchedCategoryKey:'',
     lat:'',
     lng:'',
   };
@@ -260,6 +261,7 @@ export class Header2Component implements OnInit {
     if( this.routeName === '/'){ this.searchBar=true}
   }
   searchActivityByNameDate() {
+    this.filterData.searchedCategoryKey=this.filterData.activityName
     this.filterData.categoryId = ''
     this.filterData.lat = ''
     this.filterData.lng = ''
@@ -272,6 +274,7 @@ export class Header2Component implements OnInit {
     }
   }
   searchBySubCategory(id) {
+    this.filterData.searchedCategoryKey=this.filterData.activityName
     this.filterData.activityName=''
     this.filterData.lat = ''
     this.filterData.lng = ''
@@ -321,7 +324,7 @@ export class Header2Component implements OnInit {
       
   }
   searchByCategory(id) {
-    console.log(id)
+    this.filterData.searchedCategoryKey=this.filterData.activityName
     this.filterData.activityName=''
     this.filterData.categoryId = id
     this.filterData.subcatId=''

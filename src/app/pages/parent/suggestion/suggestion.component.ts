@@ -32,6 +32,7 @@ export class SuggestionComponent implements OnInit {
     subcatId: '',
     categoryId:'',
     activityName: '',
+    searchedCategoryKey:'',
     lat:'',
     lng:''
   }
@@ -83,6 +84,7 @@ if(!this.currentUser){
   //   this.router.navigate(['/search']);
   // }
   searchActivityByNameDate() {
+    this.filterData.searchedCategoryKey=this.filterData.activityName
     this.filterData.categoryId = ''
     this.filterData.lat = ''
     this.filterData.lng = ''
@@ -90,6 +92,7 @@ if(!this.currentUser){
     this.router.navigate(['/search']);
   }
   searchBySubCategory(id) {
+    this.filterData.searchedCategoryKey=this.filterData.activityName
     this.filterData.activityName=''
     this.filterData.categoryId = ''
     this.filterData.lat = ''
@@ -99,6 +102,7 @@ if(!this.currentUser){
     this.router.navigate(['/search']);
   }
   searchByCategory(id) {
+    this.filterData.searchedCategoryKey=this.filterData.activityName
     this.filterData.subcatId= ''
     this.filterData.activityName=''
     this.filterData.categoryId = id

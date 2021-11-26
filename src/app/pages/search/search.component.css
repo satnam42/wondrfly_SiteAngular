@@ -2462,7 +2462,7 @@ button.map-buttonas {
 }
 .chip-set {
   padding: 20px;
-  padding-left: 38px;
+  /* padding-left: 38px; */
   padding-bottom: 30px;
 }
 .chip-set-bar {
