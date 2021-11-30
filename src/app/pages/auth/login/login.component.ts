@@ -146,22 +146,9 @@ export class LoginComponent implements OnInit {
           this.auth.setUser(this.user);
           this.store.setObject("strapiData", response.data);
           this.store.setItem("jwt", response.data.jwt);
-          if (this.user.isOnBoardingDone && this.user.role === "provider") {
-            // this.toastr.success(this.message);
-            this.router.navigate(["profile", this.user.id]);
-          } else if (this.user.role === "provider") {
-            // this.toastr.success(this.message);
-          } else if (!this.user.isOnBoardingDone && this.user.role === "provider") {
-            // this.toastr.success(this.message);
-            this.router.navigate(["loginProvider"]);
-          } else if (
-            this.user.isOnBoardingDone &&
-            this.user.role === "parent"
-          ) {
+           if (this.user.isOnBoardingDone && this.user.role === "parent") {
             // this.toastr.success(this.message);
             this.router.navigate(["parent/my-wondrfly"]);
-          } else if (this.user.role === "parent") {
-            // this.toastr.success(this.message);
           } else if (this.user.role === "parent" && !this.user.isOnBoardingDone) {
             // this.toastr.success(this.message);
             this.router.navigate(["parent/login-parent"]);
@@ -196,21 +183,11 @@ export class LoginComponent implements OnInit {
           if (this.user.isOnBoardingDone && this.user.role === "provider") {
             // this.toastr.success(this.message);
             this.router.navigate(["profile", this.user.id]);
-          } else if (this.user.role === "provider") {
-            // this.toastr.success(this.message);
-            this.router.navigate(["loginProvider"]);
-          } else if (
-            this.user.isOnBoardingDone &&
-            this.user.role === "parent"
-          ) {
-            // this.toastr.success(this.message);
-            this.router.navigate(["/search"]);
-          } else if (this.user.role === "parent") {
-            // this.toastr.success(this.message);
-            this.router.navigate(["login-parent"]);
+          }  else if (this.user.isOnBoardingDone &&this.user.role === "parent") {
             // this.toastr.success(this.message);
             this.router.navigate(["parent/my-wondrfly"]);
-          } else if (this.user.role === "parent" && !this.user.isOnBoardingDone) {
+          }
+            else if (this.user.role === "parent" && !this.user.isOnBoardingDone) {
             // this.toastr.success(this.message);
             this.router.navigate(["parent/login-parent"]);
           } else if (this.user.role === "superAdmin") {

@@ -30,13 +30,13 @@
               <div class="col-md-4" *ngFor="let category of kid?.interestInfo ; let i = index">
                 <div class="category_list_box cursor" (click)="searchByCategory(category._id)">
                   <a>
-                    <div class="category_image">
-                      <img [defaultImage]="defaultImage" [lazyLoad]="category?.imageUrl" />
+                    <div class="category_image" >
+                      <img  [src]="category?.categories?.imageUrl" />
                     </div>
                     <div class="category_title">
                       <p>
-                        {{ category?.name
-                        }}<span class="title_arrow">
+                        {{ category?.name}}
+                        <span class="title_arrow">
                           <img src="assets/category_arrow.svg" alt="Category_arrow" />
                         </span>
                       </p>
@@ -52,7 +52,7 @@
                 <div class="category_list_box cursor" (click)="searchByCategory(category._id)">
                   <a>
                     <div class="category_image">
-                      <img [defaultImage]="defaultImage" [lazyLoad]="category?.imageUrl" />
+                      <img [defaultImage]="defaultImage" [lazyLoad]="category?.categories?.imageUrl" />
                     </div>
                     <div class="category_title">
                       <p>

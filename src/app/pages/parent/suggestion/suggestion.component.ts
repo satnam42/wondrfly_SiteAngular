@@ -227,7 +227,7 @@ getForms(){
       { name: 'keywords', content: 'Best Activities and Programs, activities near me for toddlers, fitness classes for kids, online music lessons, online art classes' }
     );
 
-        
+
     this.mapsAPILoader.load().then(() => {
       this.geoCoder = new google.maps.Geocoder;
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);

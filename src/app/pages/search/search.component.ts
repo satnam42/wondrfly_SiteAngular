@@ -28,7 +28,7 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
   isTypeFilter: boolean = false;
   isCategoryFilter: boolean = false;
   isTopFilterCheckBox:boolean=false;
- 
+
   isFav: boolean = false;
   categoryId: any = ''
   activityName: any = ''
@@ -549,7 +549,7 @@ clearProgramTime(){
         this.showReset = true
         this.searchedSubCategory = this.activityName;
       });
-    
+
     this.contentLoaded = true;
   }
 
@@ -631,7 +631,7 @@ clearProgramTime(){
       this.toDate = moment(this.toDate).format(dateFormat);
         console.log('filter>>>>>>>>>>>>',filter)
       this.contentLoaded = false;
-     
+
       filter = `time=${times}&categoryId=${categoryId}&tagsIds=${tags}&type=${types}&inpersonOrVirtual=${inpersonOrVirtual}&day=${days}`
       if(this.isDateFilter){
         filter+= `&fromDate=${this.fromDate}&toDate=${this.toDate}`
@@ -659,7 +659,7 @@ clearProgramTime(){
       this.isTopFilterCheckBox=false
 this.getPublishedProgram();
     }
-  
+
   }
 
 searchCategory(key){
