@@ -4,7 +4,7 @@ header {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.24);
     display: inline-block;
     width: 100%;
-    z-index:999;
+    z-index:998;
     padding-bottom: 0px;
     height:80px;
     position: fixed;

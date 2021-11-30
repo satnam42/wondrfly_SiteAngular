@@ -1,0 +1,25 @@
+.alert-box {
+    background-color: #FA627D;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    opacity: 0.7;
+    padding: 6px;
+    position: fixed;
+    z-index: 999;
+    top: 0px;
+    width: 100%;
+}
+.alert-box h1 {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    color: #FFFFFF;
+}
+.alert-box span img {
+    padding-right: 5px;
+    width: 6%;
+}

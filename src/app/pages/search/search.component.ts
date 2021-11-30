@@ -28,7 +28,7 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
   isTypeFilter: boolean = false;
   isCategoryFilter: boolean = false;
   isTopFilterCheckBox:boolean=false;
-
+  isAlert: boolean= true;
   isFav: boolean = false;
   categoryId: any = ''
   activityName: any = ''
