@@ -1,4 +1,4 @@
-<div class="alert-box">
+<div class="alert-box" *ngIf="isShow">
     <h2>
 
     </h2>
@@ -7,6 +7,6 @@
         Missing Information! Please confirm your phone number
     </h1>
     <h3>
-        <img src="assets/white-close.png">
+        <img src="assets/white-close.png" (click)="isShow=!isShow">
     </h3>
 </div>
