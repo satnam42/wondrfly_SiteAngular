@@ -551,7 +551,6 @@ clearProgramTime(){
         this.showReset = true
         this.searchedSubCategory = this.activityName;
       });
-
     this.contentLoaded = true;
   }
 
