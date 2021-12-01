@@ -15,6 +15,7 @@ import { LocalStorageService } from "src/app/core/services";
 import { MatAutocompleteSelectedEvent } from "@angular/material/autocomplete";
 import { ToastrService } from "ngx-toastr";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { environment } from "src/environments/environment";
 
 @Component({
   selector: "parent-profile",
@@ -22,6 +23,7 @@ import { MatSnackBar } from "@angular/material/snack-bar";
   styleUrls: ["./parent-profile.component.css"],
 })
 export class ParentProfileComponent implements OnInit, AfterViewChecked,OnDestroy {
+  baseUrl= environment.baseUrl;
   @ViewChild('messageBox', { static: false }) myScrollContainer: ElementRef;
   updateForm: FormGroup;
   resetPasswordForm: FormGroup;

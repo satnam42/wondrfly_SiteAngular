@@ -19,6 +19,7 @@ import { MapsAPILoader } from '@agm/core';
 export class SuggestionComponent implements OnInit {
   defaultImage = 'https://miro.medium.com/max/441/1*9EBHIOzhE1XfMYoKz1JcsQ.gif';
   blogUrl = environment.blogsUrl;
+  baseUrl =environment.baseUrl;
   currentDate = new Date()
   loggedIn: boolean;
   title = 'Best Activities and Programs for Kids in Jersey City - Wondrfly';

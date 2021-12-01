@@ -156,26 +156,14 @@
               class="col-md-4"
               *ngFor="let category of categories | slice: 0:6; let i = index"
             >
-              <div
-                class="category_list_box cursor"
-                (click)="searchByCategory(category.id)"
-              >
+              <div class="category_list_box cursor" (click)="searchByCategory(category.id)">
                 <a href="javascritpt:;">
                   <div class="category_image">
-                    <img
-                      [defaultImage]="defaultImage"
-                      [lazyLoad]="category?.imageUrl"
-                      alt="{{ category?.alternativeText }}"
-                    />
+                    <img [defaultImage]="defaultImage" [lazyLoad]="category?.imageUrl" alt="{{ category?.alternativeText }}"/>
                   </div>
                   <div class="category_title">
-                    <p>
-                      {{ category?.name
-                      }}<span class="title_arrow">
-                        <img
-                          src="assets/category_arrow.svg"
-                          alt="Category_arrow"
-                        />
+                    <p>{{ category?.name}}<span class="title_arrow">
+                        <img src="assets/category_arrow.svg" alt="Category_arrow" />
                       </span>
                     </p>
                   </div>

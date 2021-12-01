@@ -195,7 +195,10 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   startTour() {
-    this.joyride.startTour({ steps: ['firstStep', 'secondStep0', 'thirdStep0'] });
+    if (!localStorage.getItem('tr')) {
+        this.joyride.startTour({ steps: ['firstStep', 'secondStep0', 'thirdStep0'] });
+        localStorage.setItem('tr', '1')  
+    } 
   }
 
 choosedDate(e){
@@ -388,11 +391,12 @@ clearProgramTime(){
   }
 
   resetFilter() {
-    this.searchedSubCategory,this.activityName = ''
-    this.isInPerson=false
-    this.showReset=false
-    this.isTypeFilter=false
-    this.categoryId=''
+    this.searchedSubCategory='';
+    this.activityName = '';
+    this.isInPerson=false;
+    this.showReset=false;
+    this.isTypeFilter=false;
+    this.categoryId='';
     this.isOnline=false;
     this.isDaysFilter=false
     this.isTimeFilter = false;
@@ -519,13 +523,11 @@ clearProgramTime(){
 
   loadMore() {
     this.pageSize += 20;
-      if (this.showReset) {
         if (this.activityName) {
           this.filterByNameDate()
         }else{
             this.programFilter()
         }
-      }
 }
 
 
@@ -659,10 +661,9 @@ clearProgramTime(){
       this.isTopFilterCheckBox=false
 this.getPublishedProgram();
     }
+  };
 
-  }
-
-searchCategory(key){
+searchCategory(key?){
   this.apiservice.searchTag(key).subscribe((res:any)=>{
 this.categoriesBySearch = res;
 this.categoriesBySearch = this.categoriesBySearch.filter((item) => item.isActivated !== false);
@@ -816,7 +817,4 @@ removeRecentSearches(type,indx){
 ngAfterViewInit() {
   this.exploreModal()
 }
-
-
-
 }
