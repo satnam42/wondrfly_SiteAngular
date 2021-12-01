@@ -7,6 +7,7 @@ import { DataService } from "../../services/dataservice.service ";
 @Component({
   selector: "app-header2",
   template: `
+  <app-alert></app-alert>
     <header [ngClass]="{ 'search-header': logoPosition }">
       <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light">

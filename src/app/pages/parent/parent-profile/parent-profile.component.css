@@ -1623,6 +1623,7 @@ span.search_btn {
   background-color: #b5e4f9 !important;
   pointer-events: none !important;
 }
+
 @media (max-width: 991px) {
   .content_right .personal_details {
     padding: 47px 20px 38px 37px;
@@ -2053,6 +2054,7 @@ h2.description-activities {
   width: 130px;
   height: 130px;
   border-radius: 100%;
+  object-fit: cover;
 }
 .content-childrenpart .ist-contentimg {
   display: flex;

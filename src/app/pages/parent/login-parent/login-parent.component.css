@@ -483,3 +483,6 @@ span.wnderfly-btn {
 .welcomeImg img {
   margin-top: 30px;
 }
+::ng-deep .mat-standard-chip .mat-chip-remove.mat-icon {
+  margin-top: -6px !important;
+}
