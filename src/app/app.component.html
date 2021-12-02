@@ -1,2 +1,5 @@
 
-<body [ngClass]="currentOS == 'Mac' ? 'mac-class' : 'windows-class'"><router-outlet></router-outlet></body>
+<body [ngClass]="currentOS == 'Mac' ? 'mac-class' : 'windows-class'">
+    <app-alert></app-alert>
+    <router-outlet></router-outlet>
+</body>

@@ -8,6 +8,7 @@ header {
     padding-bottom: 0px;
     height:80px;
     position: fixed;
+    top:34px;
 }
 a.cursor.header-logo img {
   width: 100%;

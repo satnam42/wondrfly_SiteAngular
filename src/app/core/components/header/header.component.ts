@@ -15,7 +15,6 @@ declare const $: any;
   selector: "app-header",
   template: `
     <body>
-    <app-alert></app-alert>
       <header [ngClass]="{ 'search-header': logoPosition }">
         <div class="container">
           <nav class="navbar navbar-expand-lg navbar-light header_main">
