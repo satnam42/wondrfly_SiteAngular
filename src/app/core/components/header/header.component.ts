@@ -877,6 +877,7 @@ export class HeaderComponent implements OnInit {
         .then(() => this.router.navigate(["search"]));
     }
   }
+
   searchByCategory(id) {
     this.filterData.searchedCategoryKey=this.filterData.activityName
     this.filterData.activityName=''
@@ -891,6 +892,7 @@ export class HeaderComponent implements OnInit {
         .navigateByUrl("/", { skipLocationChange: true })
         .then(() => this.router.navigate(["search"]));
     }  }
+    
   goToProviderProfile(provider) {
     console.log(provider)
     provider.firstName = provider.firstName.toLowerCase();
@@ -902,10 +904,10 @@ export class HeaderComponent implements OnInit {
 
 
   searchActivityByNameDate() {
-    this.filterData.categoryId = ''
-    this.filterData.lat = ''
-    this.filterData.lng = ''
-    this.dataservice.setOption(this.filterData)
+    this.filterData.categoryId = '';
+    this.filterData.lat = '';
+    this.filterData.lng = '';
+    this.dataservice.setOption(this.filterData);
     this.router.navigate(['/search']);
     if (this.routeName === "/search") {
       this.router
