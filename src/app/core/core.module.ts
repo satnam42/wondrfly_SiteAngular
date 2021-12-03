@@ -13,6 +13,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { DateFormateModule } from './components/date-format/date-format.module';
 import { AlertComponent } from './components/alert/alert.component';
+import { CookiesPopupComponent } from './components/cookies-popup/cookies-popup.component';
 
 
 const components = [
@@ -20,7 +21,8 @@ const components = [
   FooterComponent,
   Header2Component,
   Footer2Component,
-  AlertComponent
+  AlertComponent,
+  CookiesPopupComponent
 ]
 const thirdPartyModules = [
   MatIconModule,
