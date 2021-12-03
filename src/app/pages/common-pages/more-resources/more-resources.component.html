@@ -23,7 +23,7 @@
                     </div>
                   </div>
                 </div>
-              
+
               </div>
             </div>
           </div>
@@ -36,8 +36,114 @@
     </div>
   </section>
 </div>
+<div class="content box common-headermargin">
+  <div class="container">
+
+<div class="forth_section" *ngIf="categories[1]?.blogs?.length">
+  <div class="forth_section_heading">
+    <h1>
+      Health & Happiness
+    </h1>
+
+    <span class="blue_heading cursor" (click)="searchCatg(categories[1])"
+      >VIEW ALL</span
+    >
+  </div>
+  <div class="forth_section_image_section">
+    <div class="row">
+      <div
+        class="col-4"
+        *ngFor="
+          let blog of categories[1]?.blogs | slice: 0:3;
+          let i = index
+        "
+      >
+      <div class="img-overflow">
+        <img oncontextmenu="return false;"
+        (click)="setBlog(blog)"
+        class="forth_section_image cursor"
+        [defaultImage]="defaultImage"
+        [errorImage]="errorImage"
+        lazyLoad="{{ blogUrl }}{{ blog?.image[0]?.url }}"
+        alt="{{ blog?.image[0]?.alternativeText }}"
+      />
+      </div>
+
+        <div class="date">
+          <span class="blue_heading">{{
+            blog?.published_at | date: "mediumDate"
+          }}</span>
+        </div>
+        <div class="forth_section_title cursor" (click)="setBlog(blog)">
+          {{ blog?.title }}
+        </div>
+        <div class="content_text">
+          <app-read-more
+            [content]="blog?.content"
+            [limit]="100"
+            [completeWords]="true"
+            [blogData]="blog"
+          >
+          </app-read-more>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="container-fluid recent-section">
+  <div class="container">
+    <div class="forth_section">
+      <div class="forth_section_heading">
+        <h1>
+          Recent Posts
+        </h1>
+
+        <span class="blue_heading cursor" routerLink="/blogs">VIEW ALL</span>
+      </div>
+      <div class="forth_section_image_section">
+        <div class="row">
+          <div
+            class="col-4"
+            *ngFor="let b of blog | slice: 0:3; let i = index"
+          >
+          <div class="img-overflow">
+            <img oncontextmenu="return false;"
+            class="forth_section_image cursor"
+            [defaultImage]="defaultImage"
+            [errorImage]="errorImage"
+            lazyLoad="{{ blogUrl }}{{ b?.image[0]?.url }}"
+            alt="{{ b?.image[0]?.alternativeText }}"
+            (click)="setBlogg(b)"
+          />
+          </div>
 
 
-
+            <div class="date">
+              <span class="blue_heading">{{
+                b?.published_at | date: "mediumDate"
+              }}</span>
+            </div>
+            <div class="forth_section_title cursor" (click)="setBlogg(b)">
+              {{ b?.title }}
+            </div>
+            <div class="content_text">
+              <app-read-more
+                (click)="ngOnInit()"
+                [content]="b?.content"
+                [limit]="100"
+                [blogData]="b"
+              >
+              </app-read-more>
+              <!-- <span class="blue_heading">Learn More</span> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <app-footer></app-footer>
