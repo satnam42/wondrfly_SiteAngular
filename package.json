@@ -43,6 +43,7 @@
     "ng2-search-filter": "^0.5.1",
     "ng2-validation": "^4.2.0",
     "ngx-content-loading": "^0.2.1",
+    "ngx-cookie-service": "^12.0.3",
     "ngx-daterangepicker-material": "^2.1.8",
     "ngx-device-detector": "^2.1.1",
     "ngx-file-drop": "^11.1.0",
