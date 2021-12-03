@@ -63,7 +63,7 @@ export class SuggestionComponent implements OnInit {
    ) {
     this.currentUser = this.auth.currentUser();
 if(!this.currentUser){
-  this.router.navigate(['/']);
+  this.router.navigate(['/login']);
 }
   }
   searchSubCategory(key){

@@ -202,7 +202,7 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
 
   startTour() {
       this.joyride.startTour({ steps: ['firstStep', 'secondStep0', 'thirdStep0'] }); 
-      
+
       if(this.cookiesData && this.cookiesData!=='!'){
       this.cookies.set('isTour', '1');
       }
@@ -782,11 +782,9 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
 
   // ----------------------------------exploreModal functionality--------------------------------------
   exploreModal() {
-    if (localStorage.getItem("token") && !localStorage.getItem('em')) {
+    if (this.cookiesData!=='1') {
       setTimeout(() => {
-        console.log('timerrrrrr')
         window.document.getElementById("exploreModal").click();
-        localStorage.setItem('em', '1')
       });
     }
   }
