@@ -164,6 +164,9 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
     // }
     this.currentUser = auth.currentUser();
     this.filterData = dataservice.getOption()
+    this.cookiesData = this.cookies.get('isTour');
+    var retrievedObject = localStorage.getItem('userData');
+    this.userData = JSON.parse(retrievedObject);
       if (this.filterData.subcatId || this.filterData.categoryId) {
         console.log('this.filterData.categoryId', this.filterData)
         console.log('this.filterData.subcatId', this.filterData)
@@ -179,8 +182,9 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
     else {
       this.getPublishedProgram()
     }
-    var retrievedObject = localStorage.getItem('userData');
-    this.userData = JSON.parse(retrievedObject);
+    if(this.cookiesData!=='1'){
+    this.startTour()
+    }
     if (this.userData) {
       this.isLogin = true;
       if (this.userData.role === 'provider') {
@@ -198,7 +202,10 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
 
   startTour() {
       this.joyride.startTour({ steps: ['firstStep', 'secondStep0', 'thirdStep0'] }); 
+      
+      if(this.cookiesData && this.cookiesData!=='!'){
       this.cookies.set('isTour', '1');
+      }
   }
 
   choosedDate(e) {
@@ -307,12 +314,7 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.cookiesData = this.cookies.get('isTour');
-    console.log('cookiesdata', this.cookiesData)
     window.scroll(0, 0);
-    if(this.cookiesData!=='1'){
-    this.startTour()
-    }
     console.log('latt', this.latt);
     this.titleService.setTitle(this.title);
     this.metaTagService.updateTag(

@@ -23,6 +23,11 @@ export class CookiesPopupComponent implements OnInit {
       this.cookiesData = this.cookies.get('isTour');
      }
 
+     decline(){
+      this.cookies.set('isTour', '!');
+      this.cookiesData = this.cookies.get('isTour');
+     }
+
   ngOnInit(){
     this.cookiesData = this.cookies.get('isTour');
     console.log('cookiesdata', this.cookiesData)
