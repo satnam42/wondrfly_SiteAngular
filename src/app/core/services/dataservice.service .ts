@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class DataService {
-  private data: any;
+  private data: any={};
   private location: any;
   
   setOption(option) {

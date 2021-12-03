@@ -16,14 +16,16 @@ export class CookiesPopupComponent implements OnInit {
    }
 
    acceptCookies(){
-    if(this.currentUser){
-      this.cookies.set('X-Auth-Token', 'cookies');
-      this.cookiesData = this.cookies.get('X-Auth-Token');
+      this.cookies.set('isTour', '0');
+      if(this.currentUser){
+      this.cookies.set('_ui', this.currentUser.id);
       }
-   }
+      this.cookiesData = this.cookies.get('isTour');
+     }
 
   ngOnInit(){
-   
+    this.cookiesData = this.cookies.get('isTour');
+    console.log('cookiesdata', this.cookiesData)
   }
 
 }

@@ -11,6 +11,8 @@ import { Meta, Title } from '@angular/platform-browser';
 import { Options } from '@angular-slider/ngx-slider';
 import { ToastrService } from 'ngx-toastr';
 import { JoyrideService } from 'ngx-joyride';
+import { AuthsService } from 'src/app/core/services/auths.service';
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'search',
   templateUrl: './search.component.html',
@@ -33,7 +35,7 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
   categoryId: any = ''
   activityName: any = ''
   rating: any;
-  filterData: any = {}
+  filterData:any = {};
   locationData: any = {}
   favPrograms: any;
   isMap: boolean = true;
@@ -136,16 +138,19 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
   selectedProgramTime: any = []
   contentLoaded = false;
   fakeLoaderData = [1, 2, 3, 4, 5]
+  currentUser: any;
+  cookiesData: string;
   constructor(
     private router: Router,
     private apiservice: ApiService,
-    // private ngxLoader: NgxUiLoaderService,
+    private auth: AuthsService,
     private mapsAPILoader: MapsAPILoader,
     private dataservice: DataService,
     private ngZone: NgZone,
     private toast: ToastrService,
     private titleService: Title,
     private metaTagService: Meta,
+    private cookies: CookieService,
     private joyride: JoyrideService
   ) {
     // this.locationData = dataservice.getLocation()
@@ -157,9 +162,9 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
     //     this.lngg= this.locationData.lng
     //   }
     // }
+    this.currentUser = auth.currentUser();
     this.filterData = dataservice.getOption()
-    if (this.filterData) {
-       if (this.filterData.subcatId || this.filterData.categoryId) {
+      if (this.filterData.subcatId || this.filterData.categoryId) {
         console.log('this.filterData.categoryId', this.filterData)
         console.log('this.filterData.subcatId', this.filterData)
         this.categoryId = this.filterData.categoryId
@@ -171,7 +176,6 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
         this.activityName = this.filterData.activityName
         this.filterByNameDate()
       }
-    }
     else {
       this.getPublishedProgram()
     }
@@ -188,13 +192,13 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
         this.providerRole = false;
       }
     }
+
+
   }
 
   startTour() {
-    if (!localStorage.getItem('tr')) {
-      this.joyride.startTour({ steps: ['firstStep', 'secondStep0', 'thirdStep0'] });
-      localStorage.setItem('tr', '1')
-    }
+      this.joyride.startTour({ steps: ['firstStep', 'secondStep0', 'thirdStep0'] }); 
+      this.cookies.set('isTour', '1');
   }
 
   choosedDate(e) {
@@ -260,7 +264,7 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
     this.categoryId = ''
     this.subCats[i].checked = event.target.checked;
     if (this.subCats[i].checked) {
-      this.searchedSubCategory=this.subCats[i].name;
+      this.searchedSubCategory = this.subCats[i].name;
       this.selectedSubCategories.push(this.subCats[i]._id);
       console.log(this.selectedSubCategories)
     }
@@ -303,8 +307,12 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.cookiesData = this.cookies.get('isTour');
+    console.log('cookiesdata', this.cookiesData)
     window.scroll(0, 0);
+    if(this.cookiesData!=='1'){
     this.startTour()
+    }
     console.log('latt', this.latt);
     this.titleService.setTitle(this.title);
     this.metaTagService.updateTag(
@@ -488,7 +496,7 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
     this.categoryId = cat.id
     this.selectedCat = cat.id
     this.selectedSubCategories = []
-    this.searchedSubCategory =cat.name
+    this.searchedSubCategory = cat.name
     this.apiservice.getTagByCategoryId(cat.id).subscribe((res: any) => {
       this.subCats = res.data
       this.subCats = this.subCats.filter((item) => item.isActivated === true);
@@ -525,10 +533,10 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
     this.pageSize += 20;
     if (this.categoryId || this.selectedSubCategories.length) {
       this.programFilter()
-    } else if(this.activityName)  {
+    } else if (this.activityName) {
       this.filterByNameDate()
     }
-    else{
+    else {
       this.programFilter()
     }
   }
@@ -711,8 +719,8 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
   //----------------------------------------search history get ---------------------------------------------------------
   getTopRated() {
     this.contentLoaded = false
-    this.searchedSubCategory='',
-     this.activityName = ''
+    this.searchedSubCategory = '',
+      this.activityName = ''
     this.isInPerson = false
     this.showReset = true
     this.isTypeFilter = false
@@ -759,9 +767,7 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
   // ---------------------suggested sub categories by sub catids -----------------------
   suggestedSubCategories(id) {
     window.scroll(0, 0)
-    this.contentLoaded = false;
     this.apiservice.getSuggestedCategory(id).subscribe((res: any) => {
-      this.contentLoaded =true
       console.log(res, 'ressssss suggested')
       this.suggested = res.filter(item => item.id !== id)
       // this.searchedSubCategory = this.suggested[0].name
@@ -769,7 +775,6 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
         this.suggested = []
       }
     });
-    this.contentLoaded =true
     this.showReset = true;
   }
 
