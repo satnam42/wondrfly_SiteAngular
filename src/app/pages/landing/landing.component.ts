@@ -54,7 +54,6 @@ export class LandingComponent implements OnInit {
    ) {
   }
   searchBySubCategory(id) {
-    this.filterData.searchedCategoryKey=this.filterData.activityName
     this.filterData.activityName=''
     this.filterData.lat = ''
     this.filterData.lng = ''
@@ -65,7 +64,6 @@ export class LandingComponent implements OnInit {
   }
 
   searchByCategory(id) {
-    this.filterData.searchedCategoryKey=this.filterData.activityName
     this.filterData.activityName=''
     this.filterData.lat = ''
     this.filterData.lng = ''

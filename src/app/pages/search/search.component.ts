@@ -159,14 +159,10 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
     // }
     this.filterData = dataservice.getOption()
     if (this.filterData) {
-      if (this.filterData.categoryId) {
+       if (this.filterData.subcatId || this.filterData.categoryId) {
         console.log('this.filterData.categoryId', this.filterData)
-        this.categoryId = this.filterData.categoryId
-        this.searchedSubCategory = this.filterData.searchedCategoryKey
-        this.programFilter()
-      }
-      else if (this.filterData.subcatId) {
         console.log('this.filterData.subcatId', this.filterData)
+        this.categoryId = this.filterData.categoryId
         this.selectedSubCategories[0] = this.filterData.subcatId;
         this.searchedSubCategory = this.filterData.searchedCategoryKey
         this.programFilter()
@@ -264,6 +260,7 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
     this.categoryId = ''
     this.subCats[i].checked = event.target.checked;
     if (this.subCats[i].checked) {
+      this.searchedSubCategory=this.subCats[i].name;
       this.selectedSubCategories.push(this.subCats[i]._id);
       console.log(this.selectedSubCategories)
     }
@@ -490,6 +487,7 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
     this.categoryId = cat.id
     this.selectedCat = cat.id
     this.selectedSubCategories = []
+    this.searchedSubCategory =cat.name
     this.apiservice.getTagByCategoryId(cat.id).subscribe((res: any) => {
       this.subCats = res.data
       this.subCats = this.subCats.filter((item) => item.isActivated === true);
@@ -524,9 +522,12 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
 
   loadMore() {
     this.pageSize += 20;
-    if (this.activityName) {
+    if (this.categoryId || this.selectedSubCategories.length) {
+      this.programFilter()
+    } else if(this.activityName)  {
       this.filterByNameDate()
-    } else {
+    }
+    else{
       this.programFilter()
     }
   }
@@ -761,7 +762,7 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
       this.contentLoaded =true
       console.log(res, 'ressssss suggested')
       this.suggested = res.filter(item => item.id !== id)
-      this.searchedSubCategory = this.suggested[0].name
+      // this.searchedSubCategory = this.suggested[0].name
       if (res.isSuccess === false) {
         this.suggested = []
       }

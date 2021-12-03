@@ -114,7 +114,7 @@ declare const $: any;
                           >
                           <h6
                               *ngFor="
-                                let category of categoriesBySearch?.category | slice: 0:1" (click)="searchByCategory(category?._id)"
+                                let category of categoriesBySearch?.category | slice: 0:1" (click)="filterData.searchedCategoryKey=category.name;searchByCategory(category?._id)"
                               
                             >
                               {{ category.name }}
@@ -123,7 +123,7 @@ declare const $: any;
                               </span>
                             </h6>
                             <h6
-                              (click)="searchBySubCategory(category._id)"
+                              (click)="filterData.searchedCategoryKey=category.name;searchBySubCategory(category._id)"
                               *ngFor="
                                 let category of categoriesBySearch?.tags | slice: 0:3
                               "
@@ -864,7 +864,6 @@ export class HeaderComponent implements OnInit {
     }
   }
   searchBySubCategory(id) {
-    this.filterData.searchedCategoryKey=this.filterData.activityName
     this.filterData.activityName = '';
     this.filterData.lat=''
     this.filterData.lng=''
@@ -879,7 +878,6 @@ export class HeaderComponent implements OnInit {
   }
 
   searchByCategory(id) {
-    this.filterData.searchedCategoryKey=this.filterData.activityName
     this.filterData.activityName=''
     this.filterData.subcatId =''
     this.filterData.categoryId = id

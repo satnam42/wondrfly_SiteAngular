@@ -559,8 +559,8 @@
             <h3>You might want to explore similar Categories</h3>
             <div class="similar-categories container">
               <div class="row">
-                <div class="col-md-4 cursor" *ngFor="let subCategory of suggested" (click)="
-                    selectedSubCategories[0] = subCategory.id;
+                <div class="col-md-4 cursor" *ngFor="let subCategory of suggested"
+                 (click)="selectedCat='';categoryId='';subCats=[];searchedSubCategory=subCategory.name; selectedSubCategories[0] = subCategory.id;
                     programFilter()
                   ">
                   <div class="similar-cate">
