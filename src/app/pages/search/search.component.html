@@ -559,13 +559,13 @@
             <h3>You might want to explore similar Categories</h3>
             <div class="similar-categories container">
               <div class="row">
-                <div class="col-md-4 cursor" *ngFor="let subCategory of suggested"
+                <div class="col-md-4 cursor" *ngFor="let subCategory of suggested | slice:0:3"
                  (click)="selectedCat='';categoryId='';subCats=[];searchedSubCategory=subCategory.name; selectedSubCategories[0] = subCategory.id;
                     programFilter()
                   ">
                   <div class="similar-cate">
                     <!-- <img src="assets/similarcategories1.png"> -->
-                    <img [defaultImage]="defaultImage" [lazyLoad]="subCategory?.imageUrl" />
+                    <img [defaultImage]="defaultImage" [lazyLoad]="subCategory?.iconUrl" />
                     <h1>{{ subCategory.name }}</h1>
                   </div>
                 </div>
