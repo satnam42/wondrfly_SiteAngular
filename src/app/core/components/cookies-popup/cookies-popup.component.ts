@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
+import { AuthsService } from '../../services/auths.service';
 
 @Component({
   selector: 'app-cookies-popup',
@@ -6,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cookies-popup.component.css']
 })
 export class CookiesPopupComponent implements OnInit {
-  constructor() { }
+  cookiesData: any
+  currentUser: any;
+  constructor(private cookies: CookieService,
+    private auth: AuthsService) {
+    this.currentUser = this.auth.currentUser();
+   }
 
-  ngOnInit(): void {
+   acceptCookies(){
+    if(this.currentUser){
+      this.cookies.set('X-Auth-Token', 'cookies');
+      this.cookiesData = this.cookies.get('X-Auth-Token');
+      }
+   }
+
+  ngOnInit(){
+   
   }
 
 }

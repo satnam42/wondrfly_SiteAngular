@@ -16,6 +16,7 @@ import { AlertComponent } from './components/alert/alert.component';
 import { CookiesPopupComponent } from './components/cookies-popup/cookies-popup.component';
 
 
+
 const components = [
   HeaderComponent,
   FooterComponent,

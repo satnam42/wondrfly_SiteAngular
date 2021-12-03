@@ -18,6 +18,7 @@ import { ChatService } from './core/services/chat.service';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { MarkdownModule } from './core/shared/markdown/markdown.module';
 import { JoyrideModule } from 'ngx-joyride';
+import { CookieService } from 'ngx-cookie-service';
 
 
 const config: SocketIoConfig = { url: environment.socketUrl, options: {} };
@@ -50,6 +51,7 @@ const config: SocketIoConfig = { url: environment.socketUrl, options: {} };
     LocalStorageService,
     ChatService,
     Globals,
+    CookieService,
   ],
   bootstrap: [AppComponent]
 })
