@@ -455,6 +455,7 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
     this.showReset = false
     // this.ngxLoader.start()
     this.contentLoaded = false;
+    this.suggested=[]
     this.apiservice.getProgram(this.pageNo, this.pageSize).subscribe((res: any) => {
       // this.ngxLoader.stop()
       this.contentLoaded = true;
@@ -562,6 +563,7 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
     this.isTopFilter = false;
     this.isTypeFilter = false;
     this.isCategoryFilter = false;
+    this.suggested=[]
     if (this.categoryId || this.selectedDays.length || this.selectedProgramTypes.length || this.selectedSubCategories.length || this.selectedProgramTime.length || this.isOnline || this.isInPerson || this.isDateFilter || this.isPriceFilter || this.isAgeFilter) {
       let filter = ``
       let inpersonOrVirtual = ''
