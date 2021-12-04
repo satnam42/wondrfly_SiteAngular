@@ -554,12 +554,12 @@
               </div>
             </div>
         </div>
-        <div *ngIf="suggested?.length && contentLoaded" class="suggested-searchresult">
+        <div *ngIf="suggested?.length && contentLoaded && programs?.length" class="suggested-searchresult">
           <div class="suggested-result suggested-text in-built">
             <h3>You might want to explore similar Categories</h3>
             <div class="similar-categories container">
               <div class="row">
-                <div class="col-md-4 cursor" *ngFor="let subCategory of suggested | slice:0:3"
+                <div class="col-md-4 cursor" *ngFor="let subCategory of suggested"
                  (click)="selectedCat='';categoryId='';subCats=[];searchedSubCategory=subCategory.name; selectedSubCategories[0] = subCategory.id;
                     programFilter()
                   ">

@@ -288,12 +288,12 @@
                                <a>{{blogByCategory?.blogs[0]?.title}}</a>
     
                              </h1> -->
-                             <h1 *ngFor="let blog of blogs | slice:0:1" class="resource-blogs">
-                              <img  *ngIf="blog.image[0]?.url" src="{{blogUrl}}{{blog.image[0]?.url}}">
+                             <h1  class="resource-blogs cursor" routerLink="/blogs/category/Do-Togethers-%28DIYs-&-More%29/12">
+                              <img  *ngIf="blogByCategory?.blogs[0]?.image[0]?.url" src="{{blogUrl}}{{blogByCategory?.blogs[0]?.image[0]?.url}}">
                               <!-- <img *ngIf="!blog.image[0]?.url" src="assets/parent-resource.png"> -->
                               <div class="landing-content">
-                                <h3>{{blog?.published_at  | date:'mediumDate'}}</h3>
-                                <h2>{{blog?.title}}</h2>
+                                <h3>{{blogByCategory?.blogs[0]?.published_at  | date:'mediumDate'}}</h3>
+                                <h2>{{blogByCategory?.blogs[0]?.title}}</h2>
                               </div>
                             </h1>
                           </div>
