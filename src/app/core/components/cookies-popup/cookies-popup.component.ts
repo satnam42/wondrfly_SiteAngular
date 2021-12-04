@@ -13,23 +13,36 @@ export class CookiesPopupComponent implements OnInit {
   constructor(private cookies: CookieService,
     private auth: AuthsService) {
     this.currentUser = this.auth.currentUser();
+    this.cookiesData = this.cookies.get('_ui');
    }
 
    acceptCookies(){
-      this.cookies.set('isTour', '0');
+      // this.cookies.set('isTour', '0');
       if(this.currentUser){
       this.cookies.set('_ui', this.currentUser.id);
       }
-      this.cookiesData = this.cookies.get('isTour');
+      else{
+        this.cookies.set('_ui', 'anonymous');
+      }
+      this.cookiesData = this.cookies.get('_ui');
+      // this.cookiesData = this.cookies.get('isTour');
      }
 
      decline(){
-      this.cookies.set('isTour', '!');
-      this.cookiesData = this.cookies.get('isTour');
+      // this.cookies.set('isTour', '!');
+      // this.cookiesData = this.cookies.get('isTour');
+      // this.cookies.set('isTour', '0');
+      if(this.currentUser){
+      this.cookies.set('_ui', this.currentUser.id,30);
+      }
+      else{
+        this.cookies.set('_ui', 'anonymous',30);
+      }
+      this.cookiesData = this.cookies.get('_ui');
+      // this.cookiesData = this.cookies.get('isTour');
      }
 
   ngOnInit(){
-    this.cookiesData = this.cookies.get('isTour');
     console.log('cookiesdata', this.cookiesData)
   }
 

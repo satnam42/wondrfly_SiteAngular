@@ -203,9 +203,9 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
   startTour() {
       this.joyride.startTour({ steps: ['firstStep', 'secondStep0', 'thirdStep0'] }); 
 
-      if(this.cookiesData && this.cookiesData!=='!'){
+      // if(this.cookiesData && this.cookiesData!=='!'){
       this.cookies.set('isTour', '1');
-      }
+      // }
   }
 
   choosedDate(e) {

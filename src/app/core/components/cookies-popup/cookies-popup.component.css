@@ -6,7 +6,7 @@
     padding-bottom: 30px;
     position: fixed;
     bottom: 0px;
-    z-index: 990;
+    z-index: 999;
 }
 .cookies h1 {
     font-family: "Poppins";
