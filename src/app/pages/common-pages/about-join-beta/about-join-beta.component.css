@@ -11,7 +11,7 @@ section.webelieve-wonderfly img {
 }
 section.webelieve-wonderfly {
   padding: 50px;
-  padding-top: 30px;
+  padding-top: 70px;
 
 }
 section.webelieve-wonderfly .image-sec-1-1 {
@@ -40,11 +40,15 @@ section.family-wonderfly ul li {
   margin:20px 0 0 0;
   font-family: "Poppins";
   font-style: normal;
-  font-weight: 300;
-  font-size: 18px;
+  font-weight: 400;
+  font-size: 17px;
   color: #494949;
   line-height: 21px;
 }
+.image-section {
+  margin-top: 25%;
+}
+
 
 section.family-wonderfly ul {
   margin-top: 16px;
@@ -66,7 +70,7 @@ section.family-wonderfly ul li::before {
 .webelieve-wonderfly .terms_box p {
   font-family: "Poppins";
   font-style: normal;
-  font-weight: 300;
+  font-weight: 400;
   font-size: 18px;
   line-height: 150%;
   color: #494949;
@@ -88,7 +92,7 @@ section.family-wonderfly .family-text {
 }
 section.family-wonderfly .image-section img {
   width: 100%;
-  height: 506.2px;
+  height: 600px;
   object-fit: cover;
 }
 section.family-wonderfly {
@@ -193,7 +197,7 @@ section.beta-upperpart h1 {
   font-family: "Poppins";
   font-style: normal;
   font-weight: 600;
-  font-size:60px;
+  font-size:50px;
   line-height: 120%;
   text-align: center;
   color: #53B2E8;
@@ -221,9 +225,11 @@ section.beta-upperpart p {
   letter-spacing: 0.001em;
   color: #545454;
   margin-bottom: 15px;
+  width: 60%;
 }
 .tab1-data span.plus-src.cursor {
   margin-left: 15%;
+  float: right;
 }
 .tab1-data h6 span.plus-src.cursor img {
   width: 12.33px;

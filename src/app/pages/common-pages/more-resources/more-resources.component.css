@@ -147,6 +147,8 @@
 }
 section.resouves-beta {
   padding: 80px;
+  padding-top: 40px;
+  padding-bottom: 20px;
 }
 .list.join-flex {
   margin-top: 15px;
@@ -186,7 +188,7 @@ h3.date-watch {
   font-family: "Poppins";
   font-style: normal;
   font-weight: 600;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 40px;
   letter-spacing: 0.05em;
   text-transform: capitalize;
@@ -252,7 +254,17 @@ img.forth_section_image {
 img.forth_section_image:hover {
   transform: scale(1.2);
 }
-
+h6.box-heading {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 34px;
+  line-height: 40px;
+  letter-spacing: 0.05em;
+  text-transform: capitalize;
+  color: #494949;
+  margin-bottom: 30px;
+}
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
   li.search_bar {
     width: 90% !important;

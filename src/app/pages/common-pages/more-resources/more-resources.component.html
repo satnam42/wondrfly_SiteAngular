@@ -7,6 +7,12 @@
       <div class="row">
         <div class="col-12">
           <div class="box">
+            <h6 class="box-heading">Do together</h6>
+            <div class="forth_section_heading">
+              <h1>
+                Printables
+              </h1>
+            </div>
             <div class="lower-resources-sec">
               <div class="row">
                 <div class="col-md-3" *ngFor="let printable of resources">
@@ -36,18 +42,16 @@
     </div>
   </section>
 </div>
-<div class="content box common-headermargin">
+<div class="content box">
   <div class="container">
 
 <div class="forth_section" *ngIf="categories[1]?.blogs?.length">
   <div class="forth_section_heading">
     <h1>
-      Health & Happiness
+      Articles
     </h1>
 
-    <span class="blue_heading cursor" (click)="searchCatg(categories[1])"
-      >VIEW ALL</span
-    >
+  
   </div>
   <div class="forth_section_image_section">
     <div class="row">
@@ -98,7 +102,7 @@
     <div class="forth_section">
       <div class="forth_section_heading">
         <h1>
-          Recent Posts
+          You  might also like
         </h1>
 
         <span class="blue_heading cursor" routerLink="/blogs">VIEW ALL</span>
