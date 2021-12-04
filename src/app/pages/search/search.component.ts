@@ -140,6 +140,7 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
   fakeLoaderData = [1, 2, 3, 4, 5]
   currentUser: any;
   cookiesData: string;
+  explore_modal_cookies_data:string;
   constructor(
     private router: Router,
     private apiservice: ApiService,
@@ -165,6 +166,7 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
     this.currentUser = auth.currentUser();
     this.filterData = dataservice.getOption()
     this.cookiesData = this.cookies.get('isTour');
+    this.explore_modal_cookies_data = this.cookies.get('exploreModal');
     var retrievedObject = localStorage.getItem('userData');
     this.userData = JSON.parse(retrievedObject);
       if (this.filterData.subcatId || this.filterData.categoryId) {
@@ -182,9 +184,6 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
     else {
       this.getPublishedProgram()
     }
-    if(this.cookiesData!=='1'){
-    this.startTour()
-    }
     if (this.userData) {
       this.isLogin = true;
       if (this.userData.role === 'provider') {
@@ -196,16 +195,17 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
         this.providerRole = false;
       }
     }
-
-
   }
 
   startTour() {
+    if(this.cookiesData!=='1' && this.contentLoaded && this.programs.length){
       this.joyride.startTour({ steps: ['firstStep', 'secondStep0', 'thirdStep0'] }); 
 
       // if(this.cookiesData && this.cookiesData!=='!'){
       this.cookies.set('isTour', '1');
       // }
+      }
+
   }
 
   choosedDate(e) {
@@ -312,9 +312,11 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
     });
     this.programFilter()
   }
-
-  ngOnInit() {
+  mailChimpCompleted(){
     window.scroll(0, 0);
+    this.cookies.set('exploreModal', '1');
+  }
+  ngOnInit() {
     console.log('latt', this.latt);
     this.titleService.setTitle(this.title);
     this.metaTagService.updateTag(
@@ -470,6 +472,7 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
       // this.ngxLoader.stop()
       this.contentLoaded = true;
       this.programs = res.items;
+      this.startTour()
       console.log(this.programs, 'response program list')
       if (!this.selectedSubCategories.length && !this.categoryId) {
         this.isScrol = true;
@@ -561,6 +564,7 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
       console.log('filterbyNameDate', res)
       this.contentLoaded = true;
       this.programs = res.data
+      this.startTour()
       this.showReset = true
       this.searchedSubCategory = this.activityName;
     });
@@ -665,6 +669,7 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
         if (res.isSuccess) {
           this.isTopFilterCheckBox = false
           this.programs = res.data;
+          this.startTour()
           this.isScrol = true;
           this.contentLoaded = true;
         }
@@ -703,6 +708,7 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    this.cookies.set('exploreModal', '1');
     window.document.getElementById("close_modal").click();
     // window.document.getElementById("close_morefilter").click();
     window.document.getElementById("close_sharemodal").click();
@@ -782,7 +788,7 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
 
   // ----------------------------------exploreModal functionality--------------------------------------
   exploreModal() {
-    if (this.cookiesData!=='1') {
+    if (this.explore_modal_cookies_data!=='1') {
       setTimeout(() => {
         window.document.getElementById("exploreModal").click();
       });
@@ -827,4 +833,5 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit() {
     this.exploreModal()
   }
+
 }
