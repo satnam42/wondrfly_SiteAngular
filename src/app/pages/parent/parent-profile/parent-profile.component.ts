@@ -1060,7 +1060,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked,OnDestro
   }
 
 copyInvite(){
-  navigator.clipboard.writeText(`https://www.wondrfly.com/ask-to-join/${this.user.id}`).then().catch(e => console.error(e));
+  navigator.clipboard.writeText(`https://www.wondrfly.com/ask-to-join?id=${this.user.id}`).then().catch(e => console.error(e));
          this.snack.open('Link copied','', { duration: 500 });
 }
 

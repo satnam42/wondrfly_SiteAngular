@@ -36,6 +36,7 @@ export class AskToJoinComponent implements OnInit {
     role: 'parent',
     userId:''
   }
+  isGuardianInvitation = false;
   isTerms: boolean;
   isParent: boolean;
   isbetaActivity:boolean;
@@ -61,9 +62,11 @@ export class AskToJoinComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router) {
       this.activatedRoute.params.subscribe(params => {
-        if(params['id'].length>1){
-        this.userData.userId = params['id'];
-        }
+        // if(params['id'].length>1){
+        // this.userData.userId = params['id'];
+        // }
+        if(params['name']==='grown-ups' ){
+this.isGuardianInvitation=true          }
       });
   }
   onPassword() {
@@ -83,6 +86,16 @@ cancel(){
     console.log(this.userData)
     let email = this.userData.email.toLowerCase();
     this.userData.email = email;
+    if(this.isGuardianInvitation){
+      this.apiservice.guardianAsktojoin(this.userData).subscribe((res: any) => {
+        console.log(res)
+        if(res.isSuccess){
+    // this.toastr.info(this.message)
+        }
+        else{this.toastr.error(res.error) }
+    })
+    }
+    else{
       this.apiservice.askToJoin(this.userData).subscribe((res: any) => {
         console.log(res)
         if(res.isSuccess){
@@ -90,6 +103,7 @@ cancel(){
         }
         else{this.toastr.error(res.error) }
     })
+    }  
 
   }
 
