@@ -499,7 +499,7 @@ export class ApiService {
 
     inviteGuardian(model): Observable<User[]> {
         const subject = new Subject<User[]>();
-        this.http.post(`${this.root}/guardians/sendOtp`, model, this.getHeader()).subscribe((responseData: any) => {
+        this.http.post(`${this.root}/guardians/inviteToJoin`, model, this.getHeader()).subscribe((responseData: any) => {
             if (responseData.statusCode !== 200) {
                 throw new Error('This request has failed ' + responseData.status);
             }
@@ -1493,7 +1493,27 @@ InviteAsktojoin(model): Observable<any[]> {
     });
     return subject.asObservable();
 }
-
+guardianAsktojoin(model): Observable<any[]> {
+  const subject = new Subject<any[]>();
+  this.http.post(`${this.root}/guardians/askToJoin`, model).subscribe((responseData: any) => {
+      if (responseData.statusCode !== 200) {
+          throw new Error('This request has failed ' + responseData.status);
+      }
+      const dataModel = responseData;
+      if (!dataModel.isSuccess) {
+          if (responseData.status === 200) {
+              throw new Error(dataModel.code || dataModel.message || 'failed');
+          } else {
+              throw new Error(responseData.status + '');
+          }
+      }
+      subject.next(responseData);
+  }, (error) => {
+      const dataModel = error;
+      subject.next(dataModel.error);
+  });
+  return subject.asObservable();
+}
 feedbackSurveyList(): Observable<any[]> {
   const subject = new Subject<any[]>();
   this.http.get(`${this.root}/justfeedback/list`, this.getHeader()).subscribe((responseData:any) => {
