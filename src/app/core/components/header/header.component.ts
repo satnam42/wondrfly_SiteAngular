@@ -469,7 +469,6 @@ declare const $: any;
             id="close_feedback_modal"
             (click)="cancelFeedback()"
             data-dismiss="modal"
-            routerLink="/login"
             aria-label="Close"
           >
             <span aria-hidden="true" class="icon-close"></span>
@@ -823,7 +822,7 @@ export class HeaderComponent implements OnInit {
         this.auth.logout();
         this.userdataservice.logout();
         localStorage.clear();
-        this.router.navigate(["login"]);
+        this.router.navigate([""]);
       }
     });
   }
@@ -832,7 +831,7 @@ export class HeaderComponent implements OnInit {
     this.auth.logout();
     this.userdataservice.logout();
     localStorage.clear();
-    this.router.navigate(["/login"]);
+    this.router.navigate([""]);
   }
 
   searchSubCategory(key) {
