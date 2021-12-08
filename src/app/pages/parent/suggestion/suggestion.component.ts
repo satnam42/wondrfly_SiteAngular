@@ -208,6 +208,20 @@ getForms(){
     console.log('typeFormService', res)
   });
 }
+
+setBlog(data){
+  console.log('clicked blog', data)
+  var title = data.title;
+  title = title.toLowerCase();
+  title = title.replace(/ /g,"-");
+  title = title.replace(/\?/g,"-");
+  const url = this.router.serializeUrl(
+    this.router.createUrlTree(['blogs/',title, data.id])
+  );
+  window.open(url, '_blank');
+}
+
+
   ngOnInit() {
     this.getTweet()
     this.getPrintables()

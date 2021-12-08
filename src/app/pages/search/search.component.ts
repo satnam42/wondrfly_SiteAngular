@@ -163,6 +163,7 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
     //     this.lngg= this.locationData.lng
     //   }
     // }
+    this.contentLoaded = false
     this.currentUser = auth.currentUser();
     this.filterData = dataservice.getOption()
     this.cookiesData = this.cookies.get('isTour');
@@ -317,6 +318,7 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
     this.cookies.set('exploreModal', '1');
   }
   ngOnInit() {
+    this.contentLoaded = false
     console.log('latt', this.latt);
     this.titleService.setTitle(this.title);
     this.metaTagService.updateTag(

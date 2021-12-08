@@ -15,7 +15,7 @@
                             <div class="tab-content">
                                 <div class="tab-pane active" id="parent" role="tabpanel">
                                     <div class="form" [formGroup]="parentForm">
-                                        <h1 class="ask-heading">Join our Beta program!</h1>
+                                        <h1 class="ask-heading cursor"  target="_blank" [routerLink]="['/about-beta']">Join our Beta program!</h1>
 
                                     <div class="before-next"  *ngIf="step1">
                                         <div class="form-group">
@@ -72,7 +72,7 @@
                                       <div class="form-group choose-acti">
                                         <label>I book activities for...​</label>
                                         <div class="input_outer" data-toggle="collapse" data-target="#choose-activ">
-                                            <input type="text" class="form-control" placeholder="Choose" [formControl]="parentForm.controls['bookedActivityFor']" [(ngModel)]="userData.bookedActivityFor" >
+                                            <input type="text" class="form-control" readonly placeholder="Choose" [formControl]="parentForm.controls['bookedActivityFor']" [(ngModel)]="userData.bookedActivityFor" >
                                             <p class="cant_blank"
                                             *ngIf="parentForm.controls['bookedActivityFor'].hasError('required') && parentForm.controls['bookedActivityFor'].touched">
                                             CAN'T LEAVE IT BLANK</p>
@@ -105,7 +105,7 @@
                                       <div class="form-group choose-acti">
                                         <label>I want to be a Wondrfly Beta User because</label>
                                         <div class="input_outer" data-toggle="collapse" data-target="#choose-activ">
-                                          <input type="text" class="form-control" placeholder="Choose"  [formControl]="parentForm.controls['wantWondrflyBetaUserBecause']" [(ngModel)]="userData.wantWondrflyBetaUserBecause">
+                                          <input type="text" class="form-control" readonly placeholder="Choose"  [formControl]="parentForm.controls['wantWondrflyBetaUserBecause']" [(ngModel)]="userData.wantWondrflyBetaUserBecause">
                                           <p class="cant_blank"
                                           *ngIf="parentForm.controls['wantWondrflyBetaUserBecause'].hasError('required') && parentForm.controls['wantWondrflyBetaUserBecause'].touched">
                                           CAN'T LEAVE IT BLANK</p>

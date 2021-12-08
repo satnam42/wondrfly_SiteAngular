@@ -314,9 +314,9 @@
                         <div class="resourcenew-lower">
                           <div class="resouce-download">
                             <h1 *ngFor="let blog of blogs" class="resource-blogs">
-                              <img  *ngIf="blog.image[0]?.url" src="{{blogUrl}}{{blog.image[0]?.url}}">
+                              <img  *ngIf="blog.image[0]?.url" src="{{blogUrl}}{{blog?.image[0]?.url}}">
                               <!-- <img *ngIf="!blog.image[0]?.url" src="assets/parent-resource.png"> -->
-                              <div class="landing-content">
+                              <div class="landing-content cursor" (click)="setBlog(blog)">
                                 <h3>{{blog?.published_at  | date:'mediumDate'}}</h3>
                                 <h2>{{blog?.title}}</h2>
                               </div>
@@ -333,7 +333,7 @@
                       <div class="resourcenew-upper">
                         <div class="content-upper">
                           <img src="assets/bi_twitter.png">
-                          <h1>Funny tweets</h1>
+                          <h1>Funny Tweets</h1>
                         </div>
                       </div>
                       <div class="card-body">
