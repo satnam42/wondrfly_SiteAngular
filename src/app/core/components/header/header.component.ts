@@ -76,7 +76,7 @@ declare const $: any;
                           <img src="assets/search-location.png"
                         /></span>
                         <input
-                          placeholder="Search Jercy City"
+                          placeholder="Search Jersey City"
                           (keydown.enter)="$event.preventDefault()"
                           autocorrect="off"
                           autocapitalize="off"

@@ -138,8 +138,9 @@
                                     </div>
 
                                         <div class="sign_in_btn">
-                                            <button class="SignBtn" *ngIf="step1" (click)="step2=true;step1=false">Next</button>
-                                            <button class="SignBtn" *ngIf="step2" data-toggle="modal" data-target="#joinModal" (click)="askToJoin()" [disabled]="!parentForm.valid">Submit Request</button>
+                                            <button class="SignBtn" *ngIf="step1" (click)="step2=true;step1=false" 
+                                            [disabled]="!userData.firstName || !userData.email || !userData.password || !userData.bookedActivityFor || !userData.lat">Next</button>
+                                            <button class="SignBtn" *ngIf="step2" data-toggle="modal" data-target="#joinModal" (click)="askToJoin()" [disabled]="!parentForm.valid || !userData.willActive">Submit Request</button>
                                             <!-- <button data-toggle="modal" data-target="#joinModal" class="SignBtn" (click)="askToJoin()" [disabled]="parentForm.invalid || !isTerms || !isParent || !isbetaActivity">Submit Request</button> -->
                                             <button class="SignBtn cancel" *ngIf="step1" (click)="cancel()">Cancel</button>
                                             <button class="SignBtn cancel" *ngIf="step2" (click)="step1=true;step2=false">Back</button>
