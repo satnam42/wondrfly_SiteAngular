@@ -36,7 +36,6 @@ export class AuthsService {
   currentUser(): User {
     // if (this._user) {
       this._user = this.store.getObject('userData') as User;
-
       return this._user
     // }
 // else{

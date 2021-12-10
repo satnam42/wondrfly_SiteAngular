@@ -778,10 +778,13 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
   suggestedSubCategories(id) {
     window.scroll(0, 0)
     this.apiservice.getSuggestedCategory(id).subscribe((res: any) => {
-      console.log(res, 'ressssss suggested')
-      this.suggested = res
+      console.log('ressssss suggested',res)
+      if(typeof(res)!=='string'){
+        this.suggested = res
+
+      }
       // this.searchedSubCategory = this.suggested[0].name
-      if (res.isSuccess === false) {
+      else{
         this.suggested = []
       }
     });

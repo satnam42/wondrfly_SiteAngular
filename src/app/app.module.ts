@@ -19,7 +19,7 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { MarkdownModule } from './core/shared/markdown/markdown.module';
 import { JoyrideModule } from 'ngx-joyride';
 import { CookieService } from 'ngx-cookie-service';
-
+import { ActiveUser } from './core/guards';
 
 const config: SocketIoConfig = { url: environment.socketUrl, options: {} };
 
@@ -48,6 +48,7 @@ const config: SocketIoConfig = { url: environment.socketUrl, options: {} };
 
   ],
   providers: [
+    ActiveUser,
     LocalStorageService,
     ChatService,
     Globals,
