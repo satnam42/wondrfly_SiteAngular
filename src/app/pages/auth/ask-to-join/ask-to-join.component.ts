@@ -77,9 +77,7 @@ this.isGuardianInvitation=true          }
     this.signUpImage = this.signUpImages[num];
   }
 cancel(){
-  this.router
-  .navigateByUrl("", { skipLocationChange: true })
-  .then(() => this.router.navigate(["/"]));
+ this.router.navigate(["/"]);
 }
 
   askToJoin() {

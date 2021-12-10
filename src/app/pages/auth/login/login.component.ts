@@ -65,9 +65,7 @@ export class LoginComponent implements OnInit {
     this.hide = !this.hide;
   }
   cancel(){
-    this.router
-    .navigateByUrl("", { skipLocationChange: true })
-    .then(() => this.router.navigate(["/"]));
+    this.router.navigate(["/"]);
   }
 
   randomImage() {
