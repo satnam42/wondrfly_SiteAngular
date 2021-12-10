@@ -256,14 +256,14 @@
       </div>
     </section>
 
-    <section class="blog-explore">
+    <!-- <section class="blog-explore">
       <div class="container">
         <div class="row">
           <div class="col-12">
             <div class="box">
               <div class="upper-blog">
                 <h2 class="upper-blog-heading">Resources</h2>
-                <!-- <span class="d-flex justify-content-end" >view all</span> -->
+              
               </div>
               <div class="lower-resources-sec">
                 <div class="row">
@@ -284,13 +284,10 @@
                               
                              </h1>
 
-                             <!-- <h1 class="printable-blog" routerLink="/blogs/category/Do-Togethers-%28DIYs-&-More%29/12">
-                               <a>{{blogByCategory?.blogs[0]?.title}}</a>
-    
-                             </h1> -->
+                            
                              <h1  class="resource-blogs cursor" routerLink="/blogs/category/Do-Togethers-%28DIYs-&-More%29/12">
                               <img  *ngIf="blogByCategory?.blogs[0]?.image[0]?.url" src="{{blogUrl}}{{blogByCategory?.blogs[0]?.image[0]?.url}}">
-                              <!-- <img *ngIf="!blog.image[0]?.url" src="assets/parent-resource.png"> -->
+                            
                               <div class="landing-content">
                                 <h3>{{blogByCategory?.blogs[0]?.published_at  | date:'mediumDate'}}</h3>
                                 <h2>{{blogByCategory?.blogs[0]?.title}}</h2>
@@ -315,7 +312,7 @@
                           <div class="resouce-download">
                             <h1 *ngFor="let blog of blogs" class="resource-blogs">
                               <img  *ngIf="blog.image[0]?.url" src="{{blogUrl}}{{blog?.image[0]?.url}}">
-                              <!-- <img *ngIf="!blog.image[0]?.url" src="assets/parent-resource.png"> -->
+                              
                               <div class="landing-content cursor" (click)="setBlog(blog)">
                                 <h3>{{blog?.published_at  | date:'mediumDate'}}</h3>
                                 <h2>{{blog?.title}}</h2>
@@ -339,7 +336,7 @@
                       <div class="card-body">
                         <div class="resourcenew-lower">
                           <div class="dummy-twitter">
-                            <!-- <img src="assets/dummy-twitter.png"> -->
+                            
                             <div [innerHTML]="tweetData[0]?.embededTweet | markdown"></div>
                           </div>
                         </div>
@@ -348,7 +345,7 @@
                     </div>
                   </div>
 
-                  <!-- <div class="col-md-4">
+                  <div class="col-md-4">
                     <div class="card comming-soon">
                       <div class="imgage-corners">
                         <img src="assets/resouces-circle.png" />
@@ -362,14 +359,245 @@
                         <img src="assets/beta-image.png" />
                       </div>
                     </div>
-                  </div> -->
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </section> -->
+    <section class="blog-explore new-resources">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="box">
+              <div class="upper-blog">
+                <h2 class="upper-blog-heading">Resources</h2>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="new-resourcesleft">
+                    <button class="cmn-resbtn">
+                      <img src="assets/do-together.png">
+                      <h1>Do Together</h1>
+                    </button>
+                    <button class="cmn-resbtn">
+                      <img src="assets/fluent_print-20-filled.png">
+                      <h1>Printables</h1>
+                    </button>
+                    <button class="cmn-resbtn">
+                      <img src="assets/bx_bxs-book-reader.png">
+                      <h1>Featured Blogs</h1>
+                    </button>
+                    <button class="cmn-resbtn">
+                      <img src="assets/bi_twitter.png">
+                      <h1>Funny tweets</h1>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="col-md-8">
+                  <div class="new-resourcesright">
+                    <div id="carouselExampleIndicators" class="carousel slide activities-carousel" data-ride="carousel">
+                      <div class="carousel-inner">
+                        <div class="carousel-item active container">
+                          <div class="row">
+                            <div class="col-12 col-md">
+                              <div class="lower-resources-sec">
+                                <div class="row">
+                                  <div class="col-md-5" *ngFor="let printable of resources">
+                                    <div class="card card-beta">
+                                      <img *ngIf="printable?.coverPic?.url" class="card-img-top" src="{{blogUrl}}{{printable?.coverPic?.url}}" />
+                                      <img *ngIf="!printable?.coverPic?.url" class="card-img-top" src="assets/resource-view2.png" />
+                                      <div class="card-body">
+                                        <div class="list join-flex">
+                                          <h5>{{printable?.title}}</h5>
+                                          <p>
+                                            <a class="cursor" (click)="downloadFile(printable?.file)">DOWNLOAD</a>
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="carousel-item">
+                          <div class="row">
+                            <div class="col-12 col-md">
+                              <div class="lower-resources-sec">
+                                <div class="row">
+                                  <div class="col-md-5" *ngFor="let printable of resources">
+                                    <div class="card card-beta">
+                                      <img *ngIf="printable?.coverPic?.url" class="card-img-top" src="{{blogUrl}}{{printable?.coverPic?.url}}" />
+                                      <img *ngIf="!printable?.coverPic?.url" class="card-img-top" src="assets/resource-view2.png" />
+                                      <div class="card-body">
+                                        <div class="list join-flex">
+                                          <h5>{{printable?.title}}</h5>
+                                          <p>
+                                            <a class="cursor" (click)="downloadFile(printable?.file)">DOWNLOAD</a>
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>   
+                  </div>
+                  <div class="">
+                    <a href="#carouselExampleIndicators" data-slide="next">
+                      <div class="carousel-nav-icon">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 129 129"
+                          xmlns:xlink="http://www.w3.org/1999/xlink"
+                        >
+                          <path
+                            d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z"
+                          />
+                        </svg>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>  <section class="blog-explore new-resources">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="box">
+              <div class="upper-blog">
+                <h2 class="upper-blog-heading">Resources</h2>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="new-resourcesleft">
+                    <button class="cmn-resbtn" data-toggle="collapse" href="#collapseExample">
+                      <img src="assets/do-together.png">
+                      <h1>Do Together</h1>
+                    </button>
+                    <button class="cmn-resbtn">
+                      <img src="assets/fluent_print-20-filled.png">
+                      <h1>Printables</h1>
+                    </button>
+                    <button class="cmn-resbtn">
+                      <img src="assets/bx_bxs-book-reader.png">
+                      <h1>Featured Blogs</h1>
+                    </button>
+                    <button class="cmn-resbtn">
+                      <img src="assets/bi_twitter.png">
+                      <h1>Funny tweets</h1>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="col-md-8">
+                  <div>
+
+                  </div>
+
+                  <div class="new-resourcesright">
+                    <div id="carouselExampleIndicators" class="carousel slide activities-carousel" data-ride="carousel">
+                      <div class="carousel-inner">
+                        <div class="carousel-item active container">
+                          <div class="row">
+                            <div class="col-12 col-md">
+                              <div class="lower-resources-sec">
+                                <div class="row">
+                                  <div class="col-md-5" *ngFor="let printable of resources">
+                                    <div class="card card-beta">
+                                      <img *ngIf="printable?.coverPic?.url" class="card-img-top" src="{{blogUrl}}{{printable?.coverPic?.url}}" />
+                                      <img *ngIf="!printable?.coverPic?.url" class="card-img-top" src="assets/resource-view2.png" />
+                                      <div class="card-body">
+                                        <div class="list join-flex">
+                                          <h5>{{printable?.title}}</h5>
+                                          <p>
+                                            <a class="cursor" (click)="downloadFile(printable?.file)">DOWNLOAD</a>
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="carousel-item">
+                          <div class="row">
+                            <div class="col-12 col-md">
+                              <div class="lower-resources-sec">
+                                <div class="row">
+                                  <div class="col-md-5" *ngFor="let printable of resources">
+                                    <div class="card card-beta">
+                                      <img *ngIf="printable?.coverPic?.url" class="card-img-top" src="{{blogUrl}}{{printable?.coverPic?.url}}" />
+                                      <img *ngIf="!printable?.coverPic?.url" class="card-img-top" src="assets/resource-view2.png" />
+                                      <div class="card-body">
+                                        <div class="list join-flex">
+                                          <h5>{{printable?.title}}</h5>
+                                          <p>
+                                            <a class="cursor" (click)="downloadFile(printable?.file)">DOWNLOAD</a>
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>   
+                  </div>
+
+                  <div>
+
+                  </div>
+
+                  <div>
+
+                  </div>
+
+
+                  
+                  <div class="">
+                    <a href="#carouselExampleIndicators" data-slide="next">
+                      <div class="carousel-nav-icon">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 129 129"
+                          xmlns:xlink="http://www.w3.org/1999/xlink"
+                        >
+                          <path
+                            d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z"
+                          />
+                        </svg>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
+ 
   </div>
 
   <app-footer></app-footer>
