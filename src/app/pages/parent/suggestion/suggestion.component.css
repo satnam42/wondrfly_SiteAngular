@@ -894,7 +894,223 @@ h1.printable-blog a {
 }
 .search-location input::placeholder{
   color:rgb(190, 187, 187);
-}@media only screen and (min-width: 1024px) and (max-width: 1366px) and (orientation: portrait) {
+}
+
+
+
+/* new resources slider */
+
+button.cmn-resbtn img {
+  width: 24px;
+  height: 24px;
+  object-fit: cover;
+  margin-right: 10px;
+}
+button.cmn-resbtn {
+  background: #FFF;
+    box-shadow: 0px 2px 10px rgb(0 0 0 / 15%);
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    width: 300px;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+    height: 80px;
+    border: 0px;
+}
+button.cmn-resbtn:hover{
+  background: #DCF3FF;
+}
+button.cmn-resbtn h1{
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 18px;
+  letter-spacing: 0.005em;
+  color: #53B2E8;
+
+}
+.lower-blog-sec .card h5.card-title {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 18px;
+  letter-spacing: 0.005em;
+  color: #494949;
+  margin-top: 20px;
+}
+.lower-blog-sec .card p.card-text {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  text-align: center;
+  letter-spacing: 0.001em;
+  color: #494949;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  min-height: 67px;
+}
+.lower-resources-sec .card img {
+  border-radius: 20px 20px 0px 0px;
+}
+.lower-blog-sec .card h6 {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+  text-align: center;
+  letter-spacing: 0.001em;
+  color: #494949;
+  margin-bottom: 25px;
+  min-height: 42px;
+}
+.lower-blog-sec .card button {
+  background: #53b2e8;
+  box-shadow: 0px 1px 1px rgb(0 0 0 / 25%);
+  border-radius: 50px;
+  padding: 15px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: 0.001em;
+  text-transform: uppercase;
+  color: #ffffff;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 0px;
+}
+.lower-blog-sec .card button a {
+  color: #ffffff;
+}
+.lower-blog-sec .card span {
+  color: #fa627d;
+}
+.lower-resources-sec .card {
+  background: #ffffff;
+  box-shadow: 0px 2px 10px rgb(0 0 0 / 15%);
+  border-radius: 20px;
+  border: 0px;
+  min-height: 320px;
+}
+.list.join-flex h5 {
+  min-height: 50px;
+}
+.lower-resources-sec .card h5.card-title {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 18px;
+  letter-spacing: 0.005em;
+  color: #494949;
+}
+.lower-resources-sec .card p.card-text {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 140%;
+  letter-spacing: 0.001em;
+  color: #494949;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.lower-resources-sec .card .list {
+  display: flex;
+  justify-content: center !important;
+  flex-direction: column;
+  align-items: center;
+}
+.lower-resources-sec .card .list p {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 18px;
+  color: #494949;
+  display: flex;
+  align-items: center;
+}
+.lower-resources-sec .card .list p a {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0.001em;
+  text-decoration-line: underline;
+  text-transform: uppercase;
+  color: #53b2e8;
+  margin-top: 40px;
+}
+.list-flex {
+  display: flex;
+  width: 70%;
+  justify-content: space-between;
+}
+.list-flex p img {
+  margin-right: 7px;
+}
+.lower-resources-sec button {
+  background: #53b2e8;
+  box-shadow: 0px 1px 1px rgb(0 0 0 / 25%);
+  border-radius: 50px;
+  border: 0px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: 0.001em;
+  text-transform: uppercase;
+  color: #ffffff;
+  padding: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  float: right;
+}
+.carousel-inner{
+  height: 400px;
+}
+.carousel-nav-icon svg {
+  width: 20px;
+  height: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  margin-top: 13px;
+}
+.carousel-nav-icon{
+  height: 48px;
+  width: 48px;
+  background: #fff;
+  border: 1px solid #ededed;
+  box-sizing: border-box;
+  color: #494949;
+  border-radius: 50%;
+  top: 50%;
+  position: absolute;
+  right: -2%;
+}
+
+
+
+
+
+
+
+
+
+@media only screen and (min-width: 1024px) and (max-width: 1366px) and (orientation: portrait) {
   .container,
   .container-lg,
   .container-md,
