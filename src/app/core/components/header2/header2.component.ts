@@ -289,10 +289,7 @@ export class Header2Component implements OnInit {
     }
   }
   logo() {
-    this.router
-    .navigateByUrl("", { skipLocationChange: true })
-    .then(() => this.router.navigate(["/"]));
-      // this.router.navigate([""]);
+      this.router.navigate([""]);
   }
   ngOnInit() {
 

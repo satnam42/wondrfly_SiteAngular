@@ -41,7 +41,7 @@ export class MailchimpSubscribeForm {
 			this.http.jsonp<MailChimpResponse>(mailChimpUrl, 'c').subscribe(response => {
 					this.submitted = true;
 					if(response.result=='success'){
-						// this.toastr.info( '', response.msg )
+						this.toastr.info( '', response.msg )
 					}
 					else{
 						this.toastr.error(this.emailControl.value +' is already subscribed to Wondrfly')
