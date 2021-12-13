@@ -18,6 +18,8 @@ import { MapsAPILoader } from '@agm/core';
 })
 export class SuggestionComponent implements OnInit {
   @ViewChild('widgetsContent') widgetsContent: ElementRef;
+  rightDisabled: boolean = false;
+  leftDisabled: boolean = true;
   defaultImage = 'https://miro.medium.com/max/441/1*9EBHIOzhE1XfMYoKz1JcsQ.gif';
   blogUrl = environment.blogsUrl;
   baseUrl =environment.baseUrl;
@@ -71,12 +73,22 @@ if(!this.currentUser){
 
   scrollLeft(){
     this.widgetsContent.nativeElement.scrollLeft -= 650;
+    this.checkScroll()
   }
 
   scrollRight(){
     this.widgetsContent.nativeElement.scrollLeft += 650;
+    this.checkScroll()
   }
 
+  checkScroll(){
+    this.widgetsContent.nativeElement.scrollLeft==0? this.leftDisabled = true :this.leftDisabled = false;
+
+    let newScrollLeft = this.widgetsContent.nativeElement.scrollLeft;
+    let width = this.widgetsContent.nativeElement.clientWidth;
+    let scrollWidth = this.widgetsContent.nativeElement.scrollWidth;
+    scrollWidth - (newScrollLeft+width)==0? this.rightDisabled = true :this.rightDisabled = false;
+  }
 
   searchSubCategory(key){
     this.apiservice.searchTag(key).subscribe((res:any)=>{
