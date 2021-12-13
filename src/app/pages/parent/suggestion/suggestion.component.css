@@ -1085,15 +1085,22 @@ button.cmn-resbtn.active{
 .carousel-inner{
   height: 400px;
 }
-.carousel-nav-icon svg {
+
+.resourves-width {
+  width: 270px;
+  min-width: 270px;
+  margin-right: 20px;
+}
+.right-resourcebtn .carousel-nav-icon svg {
   width: 20px;
   height: 20px;
   margin-left: auto;
   margin-right: auto;
   display: block;
   margin-top: 13px;
+  filter: invert(68%) sepia(8%) saturate(3771%) hue-rotate(170deg) brightness(96%) contrast(88%);
 }
-.carousel-nav-icon{
+.right-resourcebtn .carousel-nav-icon{
   height: 48px;
   width: 48px;
   background: #fff;
@@ -1104,11 +1111,48 @@ button.cmn-resbtn.active{
   top: 50%;
   position: absolute;
   right: -2%;
+  z-index: 1;
+}
+.left-resourcebtn .carousel-nav-icon svg {
+  width: 20px;
+  height: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  margin-top: 13px;
+  transform: rotate(180deg);
+  filter: invert(68%) sepia(8%) saturate(3771%) hue-rotate(170deg) brightness(96%) contrast(88%);
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+}
+.left-resourcebtn .carousel-nav-icon{
+  height: 48px;
+  width: 48px;
+  background: #fff;
+  border: 1px solid #ededed;
+  box-sizing: border-box;
+  color: #494949;
+  border-radius: 50%;
+  top: 50%;
+  position: absolute;
+  left: -2%;
+  z-index: 1;
 }
 
+.custom-slider-main{
+  display: flex;
+  overflow: hidden;    
+  scroll-behavior: smooth; 
+  height: 400px;
 
+}
 
+.visibility{
+  display: none !important;
 
+}
 
 
 
@@ -1154,11 +1198,4 @@ button.cmn-resbtn.active{
   .activity .media-left {
     max-width: 300px;
   }
-}
-
-.custom-slider-main{
-  display: flex;
-  overflow: hidden;    
-  scroll-behavior: smooth;
-  transition: all 2s ease-in-out;
 }
