@@ -922,6 +922,7 @@ button.cmn-resbtn {
 button.cmn-resbtn:hover{
   background: #DCF3FF;
 }
+
 button.cmn-resbtn h1{
   font-family: "Poppins";
   font-style: normal;
@@ -931,6 +932,9 @@ button.cmn-resbtn h1{
   letter-spacing: 0.005em;
   color: #53B2E8;
 
+}
+button.cmn-resbtn.active{
+  background: #DCF3FF;
 }
 .lower-blog-sec .card h5.card-title {
   font-family: "Poppins";

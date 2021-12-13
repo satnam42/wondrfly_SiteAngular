@@ -50,6 +50,7 @@ export class SuggestionComponent implements OnInit {
   @ViewChild('search') searchElementRef: ElementRef;
   lat: string
  lng : string
+ resourcesType='do-together'
   constructor(private router: Router,
     private apiservice: ApiService,
     private dataservice: DataService,
