@@ -176,6 +176,7 @@ button:focus {
   color: #494949;
   font-family: "Poppins";
   max-width: 70%;
+  word-break: break-word;
 }
 .activity .price-box {
   font-size: 13px;
