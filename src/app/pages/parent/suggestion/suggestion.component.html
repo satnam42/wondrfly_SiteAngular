@@ -399,69 +399,83 @@
            
 
                 <div class="col-md-8" >
+
+
                   <div class="new-resourcesright">
-                    <div id="carouselExampleIndicators" class="carousel slide activities-carousel" data-ride="carousel">
-                      <div class="carousel-inner">
-                        <div class="carousel-item active container">
-                          <div class="row">
-                            <div class="col-12 col-md">
+
                               <div *ngIf="resourcesType==='do-together'">DO</div>
+
                               <div class="lower-resources-sec" *ngIf="resourcesType==='printable'">
-                                <div class="row">
-                                  <div class="col-md-4" *ngFor="let printable of resources">
+                                <div #widgetsContent class="custom-slider-main" >
+                              
+                                  <div class="resourves-width" >
                                     <div class="card card-beta">
-                                      <img *ngIf="printable?.coverPic?.url" class="card-img-top" src="{{blogUrl}}{{printable?.coverPic?.url}}" />
-                                      <img *ngIf="!printable?.coverPic?.url" class="card-img-top" src="assets/resource-view2.png" />
+                                      <!-- <img *ngIf="printable?.coverPic?.url" class="card-img-top" src="{{blogUrl}}{{printable?.coverPic?.url}}" /> -->
+                                      <img class="card-img-top" src="assets/resource-view2.png" />
                                       <div class="card-body">
                                         <div class="list join-flex">
-                                          <h5>{{printable?.title}}</h5>
+                                          <h5>printable?.title</h5>
                                           <p>
-                                            <a class="cursor" (click)="downloadFile(printable?.file)">DOWNLOAD</a>
+                                            <a class="cursor">DOWNLOAD</a>
                                           </p>
                                         </div>
                                       </div>
+                                    
                                     </div>
                                   </div>
-                                </div>
+                                  <div class="resourves-width" >
+                                    <div class="card card-beta">
+                                      <!-- <img *ngIf="printable?.coverPic?.url" class="card-img-top" src="{{blogUrl}}{{printable?.coverPic?.url}}" /> -->
+                                      <img class="card-img-top" src="assets/resource-view2.png" />
+                                      <div class="card-body">
+                                        <div class="list join-flex">
+                                          <h5>printable?.title</h5>
+                                          <p>
+                                            <a class="cursor">DOWNLOAD</a>
+                                          </p>
+                                        </div>
+                                      </div>
+                                    
+                                    </div>
+                                  </div>
+                                  <div class="resourves-width" >
+                                    <div class="card card-beta">
+                                      <!-- <img *ngIf="printable?.coverPic?.url" class="card-img-top" src="{{blogUrl}}{{printable?.coverPic?.url}}" /> -->
+                                      <img class="card-img-top" src="assets/resource-view2.png" />
+                                      <div class="card-body">
+                                        <div class="list join-flex">
+                                          <h5>printable?.title</h5>
+                                          <p>
+                                            <a class="cursor">DOWNLOAD</a>
+                                          </p>
+                                        </div>
+                                      </div>
+                                    
+                                    </div>
+                                  </div>
+                                  <div class="resourves-width" >
+                                    <div class="card card-beta">
+                                      <!-- <img *ngIf="printable?.coverPic?.url" class="card-img-top" src="{{blogUrl}}{{printable?.coverPic?.url}}" /> -->
+                                      <img class="card-img-top" src="assets/resource-view2.png" />
+                                      <div class="card-body">
+                                        <div class="list join-flex">
+                                          <h5>printable?.title</h5>
+                                          <p>
+                                            <a class="cursor">DOWNLOAD</a>
+                                          </p>
+                                        </div>
+                                      </div>
+                                    
+                                    </div>
+                                  </div>
+                              </div>
                               </div>
 
                               <div *ngIf="resourcesType==='featured-blogs'">feature</div>
-                              <div *ngIf="resourcesType==='funny-tweets'">funny</div>
-
-                            </div>
-                          </div>
-                        </div>
-                        <div class="carousel-item">
-                          <div class="row">
-                            <div class="col-12 col-md">
-                              <div class="lower-resources-sec"*ngIf="resourcesType==='printable'">
-                                <div class="row">
-                                  <div class="col-md-5" *ngFor="let printable of resources">
-                                    <div class="card card-beta">
-                                      <img *ngIf="printable?.coverPic?.url" class="card-img-top" src="{{blogUrl}}{{printable?.coverPic?.url}}" />
-                                      <img *ngIf="!printable?.coverPic?.url" class="card-img-top" src="assets/resource-view2.png" />
-                                      <div class="card-body">
-                                        <div class="list join-flex">
-                                          <h5>{{printable?.title}}</h5>
-                                          <p>
-                                            <a class="cursor" (click)="downloadFile(printable?.file)">DOWNLOAD</a>
-                                          </p>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-
-
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>   
+                              <div *ngIf="resourcesType==='funny-tweets'">funny</div>  
                   </div>
                   <div class="">
-                    <a href="#carouselExampleIndicators" data-slide="next">
+                    <a (click)="scrollRight()">
                       <div class="carousel-nav-icon">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -484,6 +498,37 @@
         </div>
       </div>
     </section> 
+
+    <!-- <section>
+      <div class="pull-left mt-sm">
+        <i class="icon-arrow-left pointer" (click)="scrollLeft()"></i>
+        <button (click)="scrollLeft()">left</button>
+  </div>   
+
+<div #widgetsContent class="custom-slider-main">
+ 
+    <div class="col-md-4" *ngFor="let printable of this.blogByCategory.blogs">
+      <div class="card card-beta">
+        <img *ngIf="printable?.coverPic?.url" class="card-img-top" src="{{blogUrl}}{{printable?.coverPic?.url}}" />
+        <img *ngIf="!printable?.coverPic?.url" class="card-img-top" src="assets/resource-view2.png" />
+        <div class="card-body">
+          <div class="list join-flex">
+            <h5>{{printable?.title}}</h5>
+            <p>
+              <a class="cursor" (click)="downloadFile(printable?.file)">DOWNLOAD</a>
+            </p>
+          </div>
+        </div>
+  
+    </div>
+  </div>
+</div>
+
+<div class="pull-right mt-sm">
+<i class="icon-arrow-right pointer" (click)="scrollRight()"></i>
+<button (click)="scrollRight()">right</button>
+</div>
+    </section> -->
      
   </div>
 

@@ -17,6 +17,7 @@ import { MapsAPILoader } from '@agm/core';
   styleUrls: ['./suggestion.component.css']
 })
 export class SuggestionComponent implements OnInit {
+  @ViewChild('widgetsContent') widgetsContent: ElementRef;
   defaultImage = 'https://miro.medium.com/max/441/1*9EBHIOzhE1XfMYoKz1JcsQ.gif';
   blogUrl = environment.blogsUrl;
   baseUrl =environment.baseUrl;
@@ -67,6 +68,16 @@ if(!this.currentUser){
   this.router.navigate(['']);
 }
   }
+
+  scrollLeft(){
+    this.widgetsContent.nativeElement.scrollLeft -= 650;
+  }
+
+  scrollRight(){
+    this.widgetsContent.nativeElement.scrollLeft += 650;
+  }
+
+
   searchSubCategory(key){
     this.apiservice.searchTag(key).subscribe((res:any)=>{
   this.categoriesBySearch = res;
