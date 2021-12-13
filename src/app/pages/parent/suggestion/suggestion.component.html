@@ -396,18 +396,17 @@
                     </button>
                   </div>
                 </div>
-                <div class="col-md-8" *ngIf="resourcesType==='do-together'">
-                  do-together
-                </div>
+           
 
-                <div class="col-md-8" *ngIf="resourcesType==='printable'">
+                <div class="col-md-8" >
                   <div class="new-resourcesright">
                     <div id="carouselExampleIndicators" class="carousel slide activities-carousel" data-ride="carousel">
                       <div class="carousel-inner">
                         <div class="carousel-item active container">
                           <div class="row">
                             <div class="col-12 col-md">
-                              <div class="lower-resources-sec">
+                              <div *ngIf="resourcesType==='do-together'">DO</div>
+                              <div class="lower-resources-sec" *ngIf="resourcesType==='printable'">
                                 <div class="row">
                                   <div class="col-md-4" *ngFor="let printable of resources">
                                     <div class="card card-beta">
@@ -425,13 +424,17 @@
                                   </div>
                                 </div>
                               </div>
+
+                              <div *ngIf="resourcesType==='featured-blogs'">feature</div>
+                              <div *ngIf="resourcesType==='funny-tweets'">funny</div>
+
                             </div>
                           </div>
                         </div>
                         <div class="carousel-item">
                           <div class="row">
                             <div class="col-12 col-md">
-                              <div class="lower-resources-sec">
+                              <div class="lower-resources-sec"*ngIf="resourcesType==='printable'">
                                 <div class="row">
                                   <div class="col-md-5" *ngFor="let printable of resources">
                                     <div class="card card-beta">
@@ -449,6 +452,8 @@
                                   </div>
                                 </div>
                               </div>
+
+
                             </div>
                           </div>
                         </div>
@@ -471,14 +476,7 @@
                     </a>
                   </div>
                 </div>
-                <div class="col-md-8" *ngIf="resourcesType==='featured-blogs'">
-                  featured-blogs
-                </div>
-
-                <div class="col-md-8" *ngIf="resourcesType==='funny-tweets'">
-                  funny-tweets
-                </div>
-
+            
               </div>
 
             </div>
