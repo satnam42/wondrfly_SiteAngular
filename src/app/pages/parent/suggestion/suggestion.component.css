@@ -913,7 +913,7 @@ button.cmn-resbtn {
     padding: 20px;
     display: flex;
     align-items: center;
-    width: 300px;
+    width: 100%;
     justify-content: flex-start;
     margin-bottom: 20px;
     height: 80px;
@@ -1003,7 +1003,7 @@ button.cmn-resbtn.active{
   box-shadow: 0px 2px 10px rgb(0 0 0 / 15%);
   border-radius: 20px;
   border: 0px;
-  min-height: 320px;
+  min-height: 380px;
 }
 .list.join-flex h5 {
   min-height: 50px;
@@ -1153,9 +1153,81 @@ button.cmn-resbtn.active{
   display: none !important;
 
 }
+.cardss .card img.card-img-top {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  height: 150px;
+  object-fit: cover;
+  width: 100%;
+}
+.cardss .card {
+  background: #FFFFFF;
+  box-shadow: 0px 2px 10px rgb(0 0 0 / 15%);
+  border-radius: 20px;
+  margin-right: 20px;
+  width: 300px;
+  min-width: 300px;
+  border:0px;
+  margin-left: 20px;
+  max-height: 380px;
+}
+.cardss .card .card-body p.card-text {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 140%;
+  color: #494949;
+  margin-bottom: 10px;
+}
+.cardss .card .card-body h6.date {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 40px;
+  letter-spacing: 0.05em;
+  text-transform: capitalize;
+  color: #53B2E8;
+}
+.cardss .card .card-body h5.card-title {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 120%;
+  letter-spacing: 0.05em;
+  text-transform: capitalize;
+  color: #494949;
+}
+.cardss .card .card-body a.btn.learn-btn {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 140%;
+  text-decoration-line: underline;
+  text-transform: capitalize;
+  color: #53B2E8;
+}
+.card.cmn-card {
+  background: #DCF3FF !important;
+  display: flex;
+  justify-content: center;
+}
+.card.cmn-card a.btn.cmn-viewbtn{
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  text-decoration-line: underline;
+  text-transform: capitalize;
+  color: #53B2E8;
 
-
-
+}
 
 
 @media only screen and (min-width: 1024px) and (max-width: 1366px) and (orientation: portrait) {

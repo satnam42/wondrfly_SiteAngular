@@ -416,7 +416,34 @@
                     </a>
                   </div>
                   <div class="new-resourcesright">
-                        <div *ngIf="resourcesType==='do-together'">DO</div>
+                        <div *ngIf="resourcesType==='do-together'">
+                          <div class="do-together cardss">
+                            <div #widgetsContent class="custom-slider-main">
+                              <div class="card" >
+                                <img src="assets/why-family.png" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                  <h6 class="date">14 March 2021</h6>
+                                  <h5 class="card-title">Nulla enim nec elit ultricies</h5>
+                                  <p class="card-text">Sollicitudin non vitae imperdiet tempor scelerisque ut enim habitasse tempor. Dignissim praesent lectus molestie...</p>
+                                  <a href="" class="btn learn-btn">Learn More</a>
+                                </div>
+                              </div>
+                              <div class="card" >
+                                <img src="assets/why-family.png" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                  <h6 class="date">14 March 2021</h6>
+                                  <h5 class="card-title">Nulla enim nec elit ultricies</h5>
+                                  <p class="card-text">Sollicitudin non vitae imperdiet tempor scelerisque ut enim habitasse tempor. Dignissim praesent lectus molestie...</p>
+                                  <a href="" class="btn learn-btn">Learn More</a>
+                                </div>
+                              </div>
+                              <div class="card cmn-card" >
+                                <a routerLink="/resources" class="btn cmn-viewbtn">View All</a>
+                              </div>
+                            </div>
+                             
+                          </div>
+                        </div>
                         <div class="lower-resources-sec" *ngIf="resourcesType==='printable'">
                           <div #widgetsContent class="custom-slider-main" >
                             <div class="resourves-width" >
@@ -479,10 +506,43 @@
                               
                               </div>
                             </div>
+                            <div class="resourves-width" >
+                              <div class="card cmn-card" >
+                                <a routerLink="/resources" class="btn cmn-viewbtn">View All</a>
+                              </div>
+                            </div>
+                         
                         </div>
                         </div>
 
-                        <div *ngIf="resourcesType==='featured-blogs'">feature</div>
+                        <div *ngIf="resourcesType==='featured-blogs'">
+                          <div class="do-together cardss">
+                            <div #widgetsContent class="custom-slider-main">
+                              <div class="card" >
+                                <img src="assets/why-family.png" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                  <h6 class="date">14 March 2021</h6>
+                                  <h5 class="card-title">Nulla enim nec elit ultricies</h5>
+                                  <p class="card-text">Sollicitudin non vitae imperdiet tempor scelerisque ut enim habitasse tempor. Dignissim praesent lectus molestie...</p>
+                                  <a href="" class="btn learn-btn">Learn More</a>
+                                </div>
+                              </div>
+                              <div class="card" >
+                                <img src="assets/why-family.png" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                  <h6 class="date">14 March 2021</h6>
+                                  <h5 class="card-title">Nulla enim nec elit ultricies</h5>
+                                  <p class="card-text">Sollicitudin non vitae imperdiet tempor scelerisque ut enim habitasse tempor. Dignissim praesent lectus molestie...</p>
+                                  <a href="" class="btn learn-btn">Learn More</a>
+                                </div>
+                              </div>
+                              <div class="card cmn-card" >
+                                <a routerLink="/resources" class="btn cmn-viewbtn">View All</a>
+                              </div>
+                            </div>
+                             
+                          </div>
+                        </div>
                         <div *ngIf="resourcesType==='funny-tweets'">funny</div>  
                   </div>
                   <div class="right-resourcebtn" [ngClass]="this.rightDisabled ? 'visibility':''">
