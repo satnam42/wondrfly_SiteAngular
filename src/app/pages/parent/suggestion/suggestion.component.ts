@@ -146,14 +146,7 @@ if(!this.currentUser){
       console.log('feedback',this.feedback)
     });
   }
-  // ------------------------------------------------get resources  -------------------------------------------
-
-  getResources() {
-    axios.get(`${this.blogUrl}/resources?_start=0&_limit=2`).then(response => {
-      this.resources = response.data
-      console.log('resources',this.resources)
-    });
-  }
+ 
 
   downloadFile(file){
     FileSaver.saveAs(this.blogUrl+file.url,file.name);
@@ -170,7 +163,7 @@ if(!this.currentUser){
     // ------------------------------------------------get printables data  -------------------------------------------
 
     getPrintables() {
-      const responcee = axios.get(`${this.blogUrl}/printables?_sort=published_at:DESC&_limit=2`).then((response) => {
+      const responcee = axios.get(`${this.blogUrl}/printables?_sort=published_at:DESC&_limit=3`).then((response) => {
         this.printables = response.data;
         console.log('printables',this.printables)
       });
@@ -179,7 +172,7 @@ if(!this.currentUser){
   // ------------------------------------------------get blogs  -------------------------------------------
 
   getBlog() {
-    const responcee = axios.get(`${this.blogUrl}/blogs?_sort=published_at:DESC&_limit=2`).then((response) => {
+    const responcee = axios.get(`${this.blogUrl}/blogs?_sort=published_at:DESC&_limit=3`).then((response) => {
       this.blogs = response.data;
     });
   }
@@ -189,10 +182,8 @@ if(!this.currentUser){
       this.blogByCategory = response.data[0];
       this.blogByCategory.blogs.reverse();
       console.log(this.blogByCategory.blogs,'blogByCategory');
-
-
     });
-}
+};
 
   // setBlog(data) {
   //   var title = data.title
@@ -206,7 +197,8 @@ if(!this.currentUser){
     this.apiservice.searchUsers(key,'provider').subscribe((res:any)=>{
       this.providersBySearch = res.data;
     })
-  }
+  };
+
   goToProviderProfile(provider) {
     this.filterData.activityName=''
     var providerName =provider.firstName;
@@ -214,7 +206,8 @@ if(!this.currentUser){
     providerName = providerName.replace(/ /g,"-");
     providerName = providerName.replace(/\?/g,"-");
       this.router.navigate(['/program-provider', providerName, provider._id]);
-  }
+  };
+  
 getChildByParentId(){
   this.apiservice.getChildByParentId(this.currentUser.id).subscribe((res: any) => {
     this.kids = res
@@ -254,7 +247,6 @@ setBlog(data){
     this.getChildByParentId()
     this.getCategoryList();
     this.feedbackSurveyList();
-    this.getResources();
     this.getForms();
     this.titleService.setTitle(this.title);
     this.metaTagService.updateTag(
