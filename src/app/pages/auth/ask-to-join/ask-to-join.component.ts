@@ -61,13 +61,12 @@ export class AskToJoinComponent implements OnInit {
     private toastr: ToastrService,
     private activatedRoute: ActivatedRoute,
     private router: Router) {
-      this.activatedRoute.params.subscribe(params => {
-        // if(params['id'].length>1){
-        // this.userData.userId = params['id'];
-        // }
-        if(params['name']==='grown-ups' ){
-this.isGuardianInvitation=true          }
-      });
+
+      this.activatedRoute.queryParams.subscribe(params => {
+        let name = params['name'];
+if(name==='grown-ups'){
+  this.isGuardianInvitation=true
+}    });
   }
   onPassword() {
     this.hide = !this.hide;
