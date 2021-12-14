@@ -543,7 +543,50 @@
                              
                           </div>
                         </div>
-                        <div *ngIf="resourcesType==='funny-tweets'">funny</div>  
+                        <div *ngIf="resourcesType==='funny-tweets'">
+                          <div class="do-together cardss">
+                            <div #widgetsContent class="custom-slider-main">
+                              <div class="card">
+                                <div class="resourcenew-upper">
+                                  <div class="content-upper">
+                                    <img src="assets/bi_twitter.png">
+                                    <h1>Funny Tweets</h1>
+                                  </div>
+                                </div>
+                                <div class="card-body">
+                                  <div class="resourcenew-lower">
+                                    <div class="dummy-twitter">
+                                      
+                                      <div [innerHTML]="tweetData[0]?.embededTweet | markdown"></div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <a routerLink="{{tweetDataBlogPath}}" class="btn-sec">CHECK FOR MORE!</a>
+                              </div>
+                              <div class="card">
+                                <div class="resourcenew-upper">
+                                  <div class="content-upper">
+                                    <img src="assets/bi_twitter.png">
+                                    <h1>Funny Tweets</h1>
+                                  </div>
+                                </div>
+                                <div class="card-body">
+                                  <div class="resourcenew-lower">
+                                    <div class="dummy-twitter">
+                                      
+                                      <div [innerHTML]="tweetData[0]?.embededTweet | markdown"></div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <a routerLink="{{tweetDataBlogPath}}" class="btn-sec">CHECK FOR MORE!</a>
+                              </div>
+                              <div class="card cmn-card" >
+                                <a routerLink="/resources" class="btn cmn-viewbtn">View All</a>
+                              </div>
+                            </div>
+                             
+                          </div>
+                        </div>  
                   </div>
                   <div class="right-resourcebtn" [ngClass]="this.rightDisabled ? 'visibility':''">
                     <a (click)="scrollRight()">
