@@ -2263,6 +2263,7 @@ body.mac-class .before-nav{
 body.mac-class .container{
   max-width: 1231px;
 }
+
 // body.mac-class .otp_img img.img-fluid {
 //   height: 730px !important;
 // }
@@ -2288,8 +2289,12 @@ body.mac-class .container{
   .search-location:before { 
     left: 39% !important;
 }
-
-
+body.mac-class .container, body.mac-class .container-lg, body.mac-class .container-md, body.mac-class .container-sm, body.mac-class .container-xl {
+  max-width: 1440px;
+}
+body.mac-class .landing_banner {
+  min-height: 580px !important;
+}
 
 }
 
