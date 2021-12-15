@@ -1,6 +1,8 @@
 <div *ngIf='!cookiesData' class="cookies">
-    <h1> Your Privacy</h1>
-    <h2> We use cookies and similar technologies to help personalise content, tailor and measure ads, and provide a better experience. By clicking OK or turning an option on in Cookie Preferences, you agree to this, as outlined in our Cookie Policy. To change preferences or withdraw consent, please update your Cookie Preferences.</h2>
+  <a routerLink="privacyPolicy">
+  <h1> Cookies</h1>
+    <h2>Wondrfly uses cookies to provide a more personalized browsing experience. By clicking Accept All you agree with the use of cookies as outlined in our Privacy Policy. </h2>
+</a>
     <div class="butter-cookies">
         <button class="cursor" (click)="decline()">
             DECLINE ALL

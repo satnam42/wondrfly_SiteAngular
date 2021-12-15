@@ -448,11 +448,7 @@
                         <div class="form-group">
                           <textarea #guardianNotes class="form-control" (keydown.enter)="
                               updateGuardian(guardian, guardian.id)
-                            " placeholder="Type" maxLength="3000" [formControl]="
-                              tellFriendForm.controls['personalNote']
-                            " #Description maxlength="3000" [(ngModel)]="guardian.personalNote">
-                                  Type
-                                  </textarea>
+                            " placeholder="Type" maxLength="3000"  #Description maxlength="3000" [(ngModel)]="guardian.personalNote"></textarea>
                           <span class="text-absolu">({{ guardianNotes.value?.length }} of 3000)</span>
                         </div>
                       </div>
@@ -467,7 +463,7 @@
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                           <a *ngIf="guardian.isActivated" (click)="activedeactiveGuardian(guardian.id, false)"
                             class="dropdown-item cursor"><span class="icon icon-trash"></span>Deactivate</a>
-                          <a *ngIf="!guardian.isActivated" (click)="activedeactiveGuardian(guardian.id, true)"
+                          <a *ngIf="guardian.isActivated" (click)="activedeactiveGuardian(guardian.id, true)"
                             class="dropdown-item cursor"><span class="icon icon-trash"></span>Activate</a>
                         </div>
                       </div>
