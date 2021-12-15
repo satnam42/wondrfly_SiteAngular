@@ -31,7 +31,7 @@ import { Component, OnInit } from "@angular/core";
                     <a [routerLink]="['/term-condition']">Terms & Conditions</a>
                   </li>
                   <li class="cursor">
-                    <a [routerLink]="['/privacyPolicy']">Privacy Policy</a>
+                    <a [routerLink]="['/privacy-policy']">Privacy Policy</a>
                   </li>
                   <li class="cursor">
                     <a [routerLink]="['/contactUs']">Contact Us</a>

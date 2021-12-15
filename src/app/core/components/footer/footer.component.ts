@@ -29,7 +29,7 @@ import { Component, OnInit } from "@angular/core";
                       >
                     </li>
                     <li>
-                      <a [routerLink]="['/privacyPolicy']">Privacy Policy</a>
+                      <a [routerLink]="['/privacy-policy']">Privacy Policy</a>
                     </li>
 
                     <li>

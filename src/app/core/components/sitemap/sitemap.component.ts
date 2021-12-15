@@ -32,7 +32,7 @@ import { DataService } from '../../services/dataservice.service ';
                 <li><a href="about-wondrfly">About Us</a></li>
                 <li><a href="sign-up">Create an Account</a></li>
                 <li><a href="term-condition">Terms & Conditions</a></li>
-                <li><a href="privacyPolicy">Privacy Policy</a></li>
+                <li><a href="privacy-policy">Privacy Policy</a></li>
                 <li><a href="faq">FAQ</a></li>
                 <li><a href="contactUs">Contact Us</a></li>
               </ul>
