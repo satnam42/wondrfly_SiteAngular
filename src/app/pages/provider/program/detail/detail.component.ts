@@ -226,6 +226,8 @@ getRating(){
     this.apiservice.getProgramById(this.program.id).subscribe(res => {
       this.ngxLoader.stop();
       this.program = res
+      this.program.realTime.from = this.timeConversion(this.program.realTime.from)
+      this.program.realTime.to = this.timeConversion(this.program.realTime.to)
       console.log('res program by id',this.program)
       this.title = this.program.name
     console.log('catogsdsadasa', this.program)
@@ -241,6 +243,23 @@ getRating(){
     });
 
     this.ngxLoader.stop();
+  }
+
+  timeConversion(decimalTime){
+    decimalTime = decimalTime * 60 * 60;
+let hours = Math.floor((decimalTime / (60 * 60)));
+decimalTime = decimalTime - (hours * 60 * 60);
+var minutes = Math.floor((decimalTime / 60));
+decimalTime = decimalTime - (minutes * 60);
+if(hours < 10)
+{
+	hours = hours;
+}
+if(minutes < 10)
+{
+	minutes =minutes;
+}
+return hours + ":" + minutes
   }
 // --------------------------------map view popup -----------------------------------------
   clickedMarker(infowindow) {
