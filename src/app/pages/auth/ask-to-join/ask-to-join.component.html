@@ -15,7 +15,7 @@
                             <div class="tab-content">
                                 <div class="tab-pane active" id="parent" role="tabpanel">
                                     <div class="form" [formGroup]="parentForm">
-                                        <h1 class="ask-heading cursor" target="_blank" [routerLink]="['/about-beta']">Join our Beta program!</h1>
+                                        <h1 class="ask-heading" target="_blank">Join our <a target="_blank" [routerLink]="['/about-beta']">Beta program!</a></h1>
 
                                         <div class="before-next" *ngIf="step1">
                                             <div class="form-group">
@@ -106,7 +106,7 @@
                                           <span>Optional</span>
                                         </label>
                                                 <div class="input_outer">
-                                                    <input type="text" class="form-control" placeholder="Type" [formControl]="parentForm.controls['occupation']" [(ngModel)]="userData.occupation">
+                                                    <textarea type="text" class="form-control" placeholder="Type" [formControl]="parentForm.controls['occupation']" [(ngModel)]="userData.occupation"></textarea>
                                                     <p class="cant_blank" *ngIf="parentForm.controls['occupation'].hasError('required') && parentForm.controls['occupation'].touched">
                                                         CAN'T LEAVE IT BLANK</p>
                                                 </div>
