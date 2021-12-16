@@ -29,7 +29,7 @@
                         <div class="row" *ngIf="kid?.interestInfo?.length">
                             <div class="col-md-4" *ngFor="let category of kid?.categories | slice:0:3 ; let i = index">
                                 <div class="category_list_box cursor" (click)="searchByCategory(category._id)">
-                                    <a>
+                                    <a (click)="filterData.searchedCategoryKey=category.name;">
                                         <div class="category_image">
                                             <img [src]="baseUrl+category?.imageUrl" />
                                         </div>
