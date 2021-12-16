@@ -1,10 +1,9 @@
-import { Component, OnInit, ViewChild, ElementRef, NgZone, AfterViewInit, OnDestroy, QueryList, ViewChildren } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, NgZone, OnDestroy, QueryList, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/core/services/api.service.service';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { MapsAPILoader } from '@agm/core';
 import * as moment from 'moment';
-import { Category, Child, User } from 'src/app/core/models';
+import { Category, User } from 'src/app/core/models';
 import { DataService } from 'src/app/core/services/dataservice.service ';
 import { environment } from 'src/environments/environment.prod';
 import { Meta, Title } from '@angular/platform-browser';
@@ -18,7 +17,7 @@ import { CookieService } from 'ngx-cookie-service';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
+export class SearchComponent implements OnInit, OnDestroy {
   defaultImage = 'https://miro.medium.com/max/441/1*9EBHIOzhE1XfMYoKz1JcsQ.gif';
   errorImage = 'assets/guitar.png';
   isDateFilter: boolean = false;
@@ -168,6 +167,7 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
     this.filterData = dataservice.getOption()
     this.cookiesData = this.cookies.get('isTour');
     this.explore_modal_cookies_data = this.cookies.get('exploreModal');
+    this.exploreModal()
     var retrievedObject = localStorage.getItem('userData');
     this.userData = JSON.parse(retrievedObject);
       if (this.filterData.subcatId || this.filterData.categoryId) {
@@ -834,9 +834,4 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
     this.programFilter();
 
   }
-
-  ngAfterViewInit() {
-    this.exploreModal()
-  }
-
 }
