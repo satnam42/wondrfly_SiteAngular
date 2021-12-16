@@ -117,10 +117,6 @@ h1.ask-heading {
 
 h1.ask-heading a {
     color: #777CEA;
-}
-
-h1.ask-heading a:hover {
-    color: #777CEA;
     text-decoration: underline;
 }
 
