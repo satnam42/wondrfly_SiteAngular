@@ -29,6 +29,7 @@ export class SuggestionComponent implements OnInit {
   categories: any = new Category;
   feedback: any = [];
   blogs:any = []
+  featuredBlogs:any = []
   printables:any=[]
   tweetData:any = []
   tweetDataBlogPath:any = ''
@@ -176,7 +177,7 @@ tweetCategory(){
   }
 
   getTweet() {
-    const responcee = axios.get(`${this.blogUrl}/funny-tweets`).then((response) => {
+    const responcee = axios.get(`${this.blogUrl}/funny-tweets?_sort=published_at:DESC&_limit=3`).then((response) => {
       this.tweetData = response.data;
       this.tweetDataBlogPath = new URL (this.tweetData[0].blogLink).pathname;
       console.log('tweetData',this.tweetData)
@@ -199,6 +200,15 @@ tweetCategory(){
       this.blogs = response.data;
     });
   }
+
+    // ------------------------------------------------get featured blogs  -------------------------------------------
+
+    getfeaturedBlog() {
+      const responcee = axios.get(`${this.blogUrl}/blogs?_sort=published_at:DESC&isFeatured=true&_limit=3`).then((response) => {
+        this.featuredBlogs = response.data;
+        console.log('featuredblogs',this.featuredBlogs)
+      });
+    }
 
   getBlogByCat(){
     const responcee = axios.get(`${this.blogUrl}/categories/?id=12`).then(response => {
@@ -264,6 +274,7 @@ setBlog(data){
     this.getTweet();
     this.getPrintables();
     this.getBlogByCat();
+    this.getfeaturedBlog();
     this.getBlog();
     this.getChildByParentId();
     this.getCategoryList();
