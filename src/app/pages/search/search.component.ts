@@ -199,6 +199,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   startTour() {
+    window.scroll(0, 0);
     if(this.cookiesData!=='1' && this.contentLoaded && this.programs.length){
       this.joyride.startTour({ steps: ['firstStep', 'secondStep0', 'thirdStep0'] }); 
 
@@ -318,6 +319,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.cookies.set('exploreModal', '1');
   }
   ngOnInit() {
+    window.scroll(0, 0);
     this.contentLoaded = false
     console.log('latt', this.latt);
     this.titleService.setTitle(this.title);
@@ -574,6 +576,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   programFilter() {
+    window.scroll(0, 0);
     this.isTimeFilter = false;
     this.isDaysFilter = false;
     this.isTopFilter = false;

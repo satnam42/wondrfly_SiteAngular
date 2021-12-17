@@ -416,9 +416,10 @@ deleteFav() {
   this.apiservice.deleteFavProgram(this.program._id).subscribe(res => {
   });
 }
-setSubCategoryId(e) {
+setSubCategoryId(tag) {
   let   filterData: any = {
-    subcatId: e,
+    subcatId: tag._id,
+    searchedCategoryKey: tag.name
   }
   this.dataService.setOption(filterData)
   this.router.navigate(['/search'])
