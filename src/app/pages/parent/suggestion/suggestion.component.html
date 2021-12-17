@@ -26,8 +26,8 @@
                         </div>
                     </div>
                     <div class="activity_category_list">
-                        <div class="row" *ngIf="kid?.interestInfo?.length">
-                            <div class="col-md-4" *ngFor="let category of kid?.interestInfo | slice:0:3 ; let i = index">
+                        <div class="row" *ngIf="kid?.categories?.length">
+                            <div class="col-md-4" *ngFor="let category of kid?.categories | slice:0:3 ; let i = index">
                                 <div class="category_list_box cursor" (click)="searchByCategory(category._id)">
                                     <a (click)="filterData.searchedCategoryKey=category.name;">
                                         <div class="category_image">

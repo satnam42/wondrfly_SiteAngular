@@ -15,6 +15,7 @@ export class Child {
   sex: string;
   dob: string;
   interestInfo = [];
+  categories = [];
   relationToChild: string;
   avtar: string;
   contactOtherInfo: string;
