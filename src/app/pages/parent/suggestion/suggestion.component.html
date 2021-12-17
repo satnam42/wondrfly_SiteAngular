@@ -370,7 +370,7 @@
                                     <div class="new-resourcesleft">
                                         <button class="cmn-resbtn" [class.active]="resourcesType=='do-together'" (click)="resourcesType='do-together'">
                       <img src="assets/do-together.png">
-                      <h1>Do Together</h1>
+                      <h1>Do-at-Home</h1>
                     </button>
                                         <button class="cmn-resbtn" [class.active]="resourcesType=='printable'" (click)="resourcesType='printable'">
                       <img src="assets/fluent_print-20-filled.png">
@@ -417,7 +417,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="card cmn-card">
-                                                            <a routerLink="/resources" class="btn cmn-viewbtn">View All</a>
+                                                            <a (click)="doTogather(blogByCategory)" class="btn cmn-viewbtn">View All</a>
                                                         </div>
                                                     </div>
 
@@ -494,7 +494,7 @@
                                                         </div>
 
                                                         <div class="card cmn-card">
-                                                            <a routerLink="/resources" class="btn cmn-viewbtn">View All</a>
+                                                            <a (click)="tweetCategory()" class="btn cmn-viewbtn">View All</a>
                                                         </div>
                                                     </div>
 

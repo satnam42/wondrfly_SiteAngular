@@ -73,7 +73,7 @@
       <div class="row">
         <div
           class="col-4"
-          *ngFor="let blog of searchCatgData?.blogs | slice: 0:9; let i = index"
+          *ngFor="let blog of searchCatgData?.blogs; let i = index"
         >
         <div class="img-overflow">
           <img oncontextmenu="return false;"

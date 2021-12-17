@@ -19,7 +19,7 @@ import { MapsAPILoader } from '@agm/core';
 export class SuggestionComponent implements OnInit {
   @ViewChild('widgetsContent') widgetsContent: ElementRef;
   rightDisabled: boolean = false;
-  leftDisabled: boolean = true;
+  leftDisabled: boolean = false;
   defaultImage = 'https://miro.medium.com/max/441/1*9EBHIOzhE1XfMYoKz1JcsQ.gif';
   blogUrl = environment.blogsUrl;
   baseUrl =environment.baseUrl;
@@ -73,22 +73,22 @@ if(!this.currentUser){
 
   scrollLeft(){
     this.widgetsContent.nativeElement.scrollLeft -= 650;
-    this.checkScroll()
+    // this.checkScroll()
   }
 
   scrollRight(){
     this.widgetsContent.nativeElement.scrollLeft += 650;
-    this.checkScroll()
+    // this.checkScroll()
   }
 
-  checkScroll(){
-    this.widgetsContent.nativeElement.scrollLeft==0? this.leftDisabled = true :this.leftDisabled = false;
+  // checkScroll(){
+  //   this.widgetsContent.nativeElement.scrollLeft==0? this.leftDisabled = true :this.leftDisabled = false;
 
-    let newScrollLeft = this.widgetsContent.nativeElement.scrollLeft;
-    let width = this.widgetsContent.nativeElement.clientWidth;
-    let scrollWidth = this.widgetsContent.nativeElement.scrollWidth;
-    scrollWidth - (newScrollLeft+width)==0? this.rightDisabled = true :this.rightDisabled = false;
-  }
+  //   let newScrollLeft = this.widgetsContent.nativeElement.scrollLeft;
+  //   let width = this.widgetsContent.nativeElement.clientWidth;
+  //   let scrollWidth = this.widgetsContent.nativeElement.scrollWidth;
+  //   scrollWidth - (newScrollLeft+width)==0? this.rightDisabled = true :this.rightDisabled = false;
+  // }
 
   searchSubCategory(key){
     this.apiservice.searchTag(key).subscribe((res:any)=>{
@@ -132,6 +132,29 @@ if(!this.currentUser){
     this.dataservice.setOption(this.filterData)
     this.router.navigate(['/search']);
   }
+
+doTogather(data) {
+  var name = data.categoryName;
+  name = name.toLowerCase();
+      name = name.replace(/ /g,"-");
+      name = name.replace(/\?/g,"-");
+      this.router.navigate(['blogs/category/',name, data.id])
+}
+
+tweetCategory(){
+  let  data={
+    id: 14,
+    categoryName: 'Funny Tweets',
+  }
+  var name = data.categoryName;
+  name = name.toLowerCase();
+      name = name.replace(/ /g,"-");
+      name = name.replace(/\?/g,"-");
+      this.router.navigate(['blogs/category/',name, data.id])
+}
+
+
+
   getCategoryList() {
     this.apiservice.getCategory().subscribe((res: any) => {
       this.categories = res;
