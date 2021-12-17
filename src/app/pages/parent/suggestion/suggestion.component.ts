@@ -240,11 +240,11 @@ setBlog(data){
 
 
   ngOnInit() {
-    this.getTweet()
-    this.getPrintables()
-    this.getBlogByCat()
-    this.getBlog()
-    this.getChildByParentId()
+    this.getTweet();
+    this.getPrintables();
+    this.getBlogByCat();
+    this.getBlog();
+    this.getChildByParentId();
     this.getCategoryList();
     this.feedbackSurveyList();
     this.getForms();
@@ -273,5 +273,6 @@ setBlog(data){
         });
       });
     });
+    window.scroll(0,0);
   }
 }
