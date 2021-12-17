@@ -693,6 +693,9 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(["/provider/program/add"]);
   }
   profile() {
+    if(this.store.getItem('savedList')=='1'){
+      this.store.removeItem('savedList')
+    }
     if (this.user.role === "parent") {
       this.router.navigate(["parent/profile", this.user.id]);
     } else if (this.user.role === "provider") {

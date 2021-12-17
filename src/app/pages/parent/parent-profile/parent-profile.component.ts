@@ -979,7 +979,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked,OnDestro
     this.scrollToBottom();
   }
   ngOnDestroy(): void{
-    this.store.removeItem('savedList');
+    // this.store.removeItem('savedList');
     this.store.removeItem('sendInvite');
   }
 
