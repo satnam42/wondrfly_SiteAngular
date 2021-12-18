@@ -475,7 +475,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.apiservice.getProgram(this.pageNo, this.pageSize).subscribe((res: any) => {
       // this.ngxLoader.stop()
       this.contentLoaded = true;
-      this.programs = res.items;
+      this.programs = res.items
       this.startTour()
       console.log(this.programs, 'response program list')
       if (!this.selectedSubCategories.length && !this.categoryId) {
@@ -674,7 +674,8 @@ export class SearchComponent implements OnInit, OnDestroy {
         if (res.isSuccess) {
           this.isTopFilterCheckBox = false
           this.programs = res.data;
-          this.startTour()
+
+                   this.startTour()
           this.isScrol = true;
           this.contentLoaded = true;
         }

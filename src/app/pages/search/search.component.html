@@ -461,6 +461,10 @@
                                     <div class="coding_text">
                                         <div *ngIf="program?.subCategoryIds?.length" class="coding-text-1">
                                             <h3 class="cursor" *ngFor="
+                            let cat of program?.category" (click)="selectedCat='';categoryId='';selectedSubCategories=[];subCats=[];searchedSubCategory=cat?.name; categoryId = cat._id;programFilter() ">
+                                                {{ cat?.name }}
+                                            </h3>
+                                            <h3 class="cursor" *ngFor="
                             let subCat of program?.subCategoryIds | slice: 0:2
                           " (click)="selectedCat='';categoryId='';subCats=[];searchedSubCategory=subCat?.name; selectedSubCategories[0] = subCat._id;programFilter() ">
                                                 {{ subCat?.name }}
