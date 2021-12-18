@@ -91,50 +91,41 @@
               <div class="search-result">
                 <h1>Have a question?</h1>
                 <div class="tab1-data">
+                  <div *ngFor="let ques of categories?.questions;index as i ">
                   <h6
                     class="cursor"
-                    data-toggle="collapse" href="#bet1">
-                    What is Wondrfly’s Beta User program?
+                    data-toggle="collapse" href="#bet1" 
+                    *ngIf="!ques?.collapsed"
+              data-toggle="collapse"
+              (click)="ques.collapsed = true"
+              [attr.data-target]="'#collapseExample' + i"
+              role="button"
+              aria-expanded="false"
+              aria-controls="collapseExample1">
+                    {{ques?.question}}
                     <span class="plus-src cursor">
                       <img _ngcontent-rxp-c9="" src="assets/plus.png" />
                     </span>
                   </h6>
-                  <div class="collapse beta-show" id="bet1">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, debitis aut sequi eos laboriosam quo assumenda porro labore earum doloremque nesciunt pariatur, ducimus esse. Adipisci dolorum pariatur totam itaque dolor.
-                  </div>
                   <h6
                   class="cursor"
-                  data-toggle="collapse" href="#bet2">
-                  Who can become a Beta User? 
+                  *ngIf="ques?.collapsed"
+                  data-toggle="collapse"
+                  (click)="ques.collapsed = false"
+                  [attr.data-target]="'#collapseExample' + i"
+                  role="button"
+                  aria-expanded="false"
+                  aria-controls="collapseExample1"
+                >
+                  {{ ques?.question }}
                   <span class="plus-src cursor">
-                    <img _ngcontent-rxp-c9="" src="assets/plus.png" />
+                    <img _ngcontent-rxp-c9="" src="assets/minus.png" />
                   </span>
                 </h6>
-                <div class="collapse beta-show" id="bet2">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, debitis aut sequi eos laboriosam quo assumenda porro labore earum doloremque nesciunt pariatur, ducimus esse. Adipisci dolorum pariatur totam itaque dolor.
+                  <div class="collapse beta-show" id="collapseExample{{ i }}" class="collapse" id="bet1">
+                    {{ques?.answer}}
+                  </div>
                 </div>
-                <h6
-                    class="cursor"
-                    data-toggle="collapse" href="#bet3">
-                    Why should I become a Beta User?
-                    <span class="plus-src cursor">
-                      <img _ngcontent-rxp-c9="" src="assets/plus.png" />
-                    </span>
-                  </h6>
-                  <div class="collapse beta-show" id="bet3">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, debitis aut sequi eos laboriosam quo assumenda porro labore earum doloremque nesciunt pariatur, ducimus esse. Adipisci dolorum pariatur totam itaque dolor.
-                  </div>
-                  <h6
-                    class="cursor"
-                    data-toggle="collapse" href="#bet4">
-                    What are the benefits of becoming a Beta User?  
-                    <span class="plus-src cursor">
-                      <img _ngcontent-rxp-c9="" src="assets/plus.png" />
-                    </span>
-                  </h6>
-                  <div class="collapse beta-show" id="bet4">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, debitis aut sequi eos laboriosam quo assumenda porro labore earum doloremque nesciunt pariatur, ducimus esse. Adipisci dolorum pariatur totam itaque dolor.
-                  </div>
                 </div>
               </div>
             </div>

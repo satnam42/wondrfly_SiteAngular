@@ -811,7 +811,11 @@ export class HeaderComponent implements OnInit {
     window.document.getElementById("close_feedback_modal").click();
   }
   logout() {
-    window.document.getElementById("open_feedback_modal").click();
+    this.auth.logout();
+    this.userdataservice.logout();
+    localStorage.clear();
+    this.router.navigate([""]);
+    // window.document.getElementById("open_feedback_modal").click();
   }
   goToInviteList(){
     this.store.setItem('sendInvite','1')
