@@ -73,7 +73,7 @@ export class BlogSearchComponent implements OnInit {
   getBlogByCat() {
     const responcee = axios.get(`${this.blogUrl}/categories/?id=${this.catg.id}`).then(response => {
       this.searchCatgData = response.data[0]
-      this.searchCatgData.blogs.reverse()
+      this.searchCatgData.blogs
       console.log('response.data[0]',response.data[0])
       this.categoryName = this.searchCatgData.categoryName;
     });
@@ -81,18 +81,17 @@ export class BlogSearchComponent implements OnInit {
   mostViewed() {
     let empty: any;
     this.ngxLoader.start();
-    const responcee = axios.get(`${this.blogUrl}/blogs`).then((response: any) => {
-      this.ngxLoader.stop();
-      this.searchCatgData = response.data;
+    // const responcee = axios.get(`${this.blogUrl}/blogs`).then((response: any) => {
+      // this.ngxLoader.stop();
       let i = 0;
       let blogs: any = [];
-      this.searchCatgData.forEach(blog => {
+      this.searchCatgData.blogs.forEach(blog => {
         i++;
           blogs.push(blog);
         blogs.sort((a, b) => (a.views < b.views) ? 1 : (a.views < b.views) ? ((a.views < b.views) ? 1 : -1) : -1);
         this.searchCatgData.blogs = blogs.filter(this.onlyUnique);
       });
-    });
+      console.log('this.searchCatgData.blogs',this.searchCatgData.blogs)
     this.categoryName = 'Most Viewed';
   }
 

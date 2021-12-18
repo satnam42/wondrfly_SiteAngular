@@ -19,7 +19,7 @@ export class CookiesPopupComponent implements OnInit {
    acceptCookies(){
       // this.cookies.set('isTour', '0');
       if(this.currentUser){
-      this.cookies.set('_ui', this.currentUser.id);
+      this.cookies.set('_ui', this.currentUser.id,30);
       }
       else{
         this.cookies.set('_ui', 'anonymous');
@@ -33,16 +33,17 @@ export class CookiesPopupComponent implements OnInit {
       // this.cookiesData = this.cookies.get('isTour');
       // this.cookies.set('isTour', '0');
       if(this.currentUser){
-      this.cookies.set('_ui', this.currentUser.id,30);
+      this.cookies.set('_ui', this.currentUser.id,7);
       }
       else{
-        this.cookies.set('_ui', 'anonymous',30);
+        this.cookies.set('_ui', 'anonymous',7);
       }
       this.cookiesData = this.cookies.get('_ui');
       // this.cookiesData = this.cookies.get('isTour');
      }
 
   ngOnInit(){
+    this.cookiesData = this.cookies.get('_ui');
     console.log('cookiesdata', this.cookiesData)
   }
 

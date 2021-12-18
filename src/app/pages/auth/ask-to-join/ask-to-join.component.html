@@ -106,7 +106,7 @@
                                           <span>Optional</span>
                                         </label>
                                                 <div class="input_outer">
-                                                    <textarea type="text" class="form-control" placeholder="Type" [formControl]="parentForm.controls['occupation']" [(ngModel)]="userData.occupation"></textarea>
+                                                    <textarea type="text" class="form-control" placeholder="e.g. Stay-at-home parent, Designer, Consultant,  etc." [formControl]="parentForm.controls['occupation']" [(ngModel)]="userData.occupation"></textarea>
                                                     <p class="cant_blank" *ngIf="parentForm.controls['occupation'].hasError('required') && parentForm.controls['occupation'].touched">
                                                         CAN'T LEAVE IT BLANK</p>
                                                 </div>

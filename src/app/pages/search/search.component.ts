@@ -200,11 +200,11 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   startTour() {
     window.scroll(0, 0);
-    if(this.cookiesData!=='1' && this.contentLoaded && this.programs.length){
+    if(this.cookiesData!=='1' && this.contentLoaded && this.programs.length && this.currentUser){
       this.joyride.startTour({ steps: ['firstStep', 'secondStep0', 'thirdStep0'] }); 
 
       // if(this.cookiesData && this.cookiesData!=='!'){
-      this.cookies.set('isTour', '1');
+      this.cookies.set('isTour', '1', 30);
       // }
       }
 
@@ -316,7 +316,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
   mailChimpCompleted(){
     window.scroll(0, 0);
-    this.cookies.set('exploreModal', '1');
+    this.cookies.set('exploreModal', '1',30);
   }
   ngOnInit() {
     window.scroll(0, 0);
