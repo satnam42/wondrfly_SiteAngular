@@ -475,7 +475,11 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.apiservice.getProgram(this.pageNo, this.pageSize).subscribe((res: any) => {
       // this.ngxLoader.stop()
       this.contentLoaded = true;
-      this.programs = res.items
+      this.programs = res.items;
+for(let i in this.programs){
+  let category =  this.programs[i].category.filter((v,i) => this.programs[i].category.findIndex(item => item.name == v.name) === i);
+  this.programs[i].category = category
+}
       this.startTour()
       console.log(this.programs, 'response program list')
       if (!this.selectedSubCategories.length && !this.categoryId) {
@@ -568,6 +572,10 @@ export class SearchComponent implements OnInit, OnDestroy {
       console.log('filterbyNameDate', res)
       this.contentLoaded = true;
       this.programs = res.data
+      for(let i in this.programs){
+        let category =  this.programs[i].category.filter((v,i) => this.programs[i].category.findIndex(item => item.name == v.name) === i);
+        this.programs[i].category = category
+      }
       this.startTour()
       this.showReset = true
       this.searchedSubCategory = this.activityName;
@@ -674,7 +682,9 @@ export class SearchComponent implements OnInit, OnDestroy {
         if (res.isSuccess) {
           this.isTopFilterCheckBox = false
           this.programs = res.data;
-
+          for(let i in this.programs){
+            let category =  this.programs[i].category.filter((v,i) => this.programs[i].category.findIndex(item => item.name == v.name) === i);
+this.programs[i].category = category          }
                    this.startTour()
           this.isScrol = true;
           this.contentLoaded = true;
