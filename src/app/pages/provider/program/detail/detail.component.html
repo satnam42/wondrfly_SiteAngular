@@ -225,7 +225,7 @@
         <div class="batch_outer">
           <div class="row">
             <div class="col-md-8">
-              <div *ngIf="program?.sessions?.length" class="description_text">
+              <!-- <div *ngIf="program?.sessions?.length" class="description_text">
                 <h2>Session</h2>
                 <div class="batchuter">
                   <div
@@ -267,7 +267,7 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> -->
 
               <div class="description_text" *ngIf="program.description">
                 <h2>Program Description</h2>
@@ -360,13 +360,13 @@
                                                                 {{ user?.firstName?.charAt(0) + user?.firstName?.charAt(1) }}
                                                             </h1>
                                                         </div>
-                                                        <button class="bt-chat">Chat</button>
+                                                        <!-- <button class="bt-chat">Chat</button> -->
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div class="description_text people_section" *ngIf="user?.healthAndSafety?.length">
+                                        <!-- <div class="description_text people_section" *ngIf="user?.healthAndSafety?.length">
                                             <img class="pencil-right" *ngIf="program.user === this.userId" src="assets/edit_skyblue.svg" />
 
                                             <div class="health-upper">
@@ -408,223 +408,209 @@
                     ><img class="i-small" src="assets/healthsafetyi.svg" />
                   </h1>
                 </div>
-              </div>
-              <div class="batch_right map_provider">
-                <agm-map
-                  [latitude]="40.5682945"
-                  [longitude]="-74.0409239"
-                  [zoom]="7"
-                  [styles]=""
-                  [zoomControl]="false"
-                  [streetViewControl]="false"
-                  (mapClick)="mapClicked(previous)"
-                >
-                  <div>
-                    <agm-marker
-                      *ngIf="program.lat && program.lng"
-                      [iconUrl]="markerUrl"
-                      [latitude]="program.lat"
-                      [longitude]="program.lng"
-                      (markerClick)="clickedMarker(previous)"
-                    >
-                      <strong>{{ program?.name }}</strong>
-                      <agm-info-window #previous>
-                        <div class="map-popup">
-                          <h1>
-                            {{ program?.name }}
-                          </h1>
-                          <h2>by {{ program?.programOwner }}</h2>
-                          <div class="rating-starsearch">
-                            <p>
-                              <span *ngIf="program.averageFinalRating == 0">
+              </div> -->
+                                        <div class="batch_right map_provider">
+                                            <agm-map [latitude]="40.5682945" [longitude]="-74.0409239" [zoom]="7" [styles]="" [zoomControl]="false" [streetViewControl]="false" (mapClick)="mapClicked(previous)">
+                                                <div>
+                                                    <agm-marker *ngIf="program.lat && program.lng" [iconUrl]="markerUrl" [latitude]="program.lat" [longitude]="program.lng" (markerClick)="clickedMarker(previous)">
+                                                        <strong>{{ program?.name }}</strong>
+                                                        <agm-info-window #previous>
+                                                            <div class="map-popup">
+                                                                <h1>
+                                                                    {{ program?.name }}
+                                                                </h1>
+                                                                <h2>by {{ program?.programOwner }}</h2>
+                                                                <div class="rating-starsearch">
+                                                                    <p>
+                                                                        <span *ngIf="program.averageFinalRating == 0">
                                 <span class="fa fa-star-o"></span>
-                                                    <span class="fa fa-star-o"></span>
-                                                    <span class="fa fa-star-o"></span>
-                                                    <span class="fa fa-star-o"></span>
-                                                    <span class="fa fa-star-o"></span>
-                                                    </span>
-                                                    <span *ngIf="program.averageFinalRating == 1">
+                                                                        <span class="fa fa-star-o"></span>
+                                                                        <span class="fa fa-star-o"></span>
+                                                                        <span class="fa fa-star-o"></span>
+                                                                        <span class="fa fa-star-o"></span>
+                                                                        </span>
+                                                                        <span *ngIf="program.averageFinalRating == 1">
                                 <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star-o"></span>
-                                                    <span class="fa fa-star-o"></span>
-                                                    <span class="fa fa-star-o"></span>
-                                                    <span class="fa fa-star-o"></span>
-                                                    </span>
-                                                    <span *ngIf="
+                                                                        <span class="fa fa-star-o"></span>
+                                                                        <span class="fa fa-star-o"></span>
+                                                                        <span class="fa fa-star-o"></span>
+                                                                        <span class="fa fa-star-o"></span>
+                                                                        </span>
+                                                                        <span *ngIf="
                                   program.averageFinalRating > 1 &&
                                   program.averageFinalRating < 2
                                 ">
                                 <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star-half-o checked"></span>
-                                                    <span class="fa fa-star-o"></span>
-                                                    <span class="fa fa-star-o"></span>
-                                                    <span class="fa fa-star-o"></span>
-                                                    </span>
-                                                    <span *ngIf="program.averageFinalRating == 2">
+                                                                        <span class="fa fa-star-half-o checked"></span>
+                                                                        <span class="fa fa-star-o"></span>
+                                                                        <span class="fa fa-star-o"></span>
+                                                                        <span class="fa fa-star-o"></span>
+                                                                        </span>
+                                                                        <span *ngIf="program.averageFinalRating == 2">
                                 <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star-o"></span>
-                                                    <span class="fa fa-star-o"></span>
-                                                    <span class="fa fa-star-o"></span>
-                                                    </span>
-                                                    <span *ngIf="
+                                                                        <span class="fa fa-star checked"></span>
+                                                                        <span class="fa fa-star-o"></span>
+                                                                        <span class="fa fa-star-o"></span>
+                                                                        <span class="fa fa-star-o"></span>
+                                                                        </span>
+                                                                        <span *ngIf="
                                   program.averageFinalRating > 2 &&
                                   program.averageFinalRating < 3
                                 ">
                                 <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star-half-o checked"></span>
-                                                    <span class="fa fa-star-o"></span>
-                                                    <span class="fa fa-star-o"></span>
-                                                    </span>
-                                                    <span *ngIf="program.averageFinalRating == 3">
+                                                                        <span class="fa fa-star checked"></span>
+                                                                        <span class="fa fa-star-half-o checked"></span>
+                                                                        <span class="fa fa-star-o"></span>
+                                                                        <span class="fa fa-star-o"></span>
+                                                                        </span>
+                                                                        <span *ngIf="program.averageFinalRating == 3">
                                 <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star-o"></span>
-                                                    <span class="fa fa-star-o"></span>
-                                                    </span>
-                                                    <span *ngIf="
+                                                                        <span class="fa fa-star checked"></span>
+                                                                        <span class="fa fa-star checked"></span>
+                                                                        <span class="fa fa-star-o"></span>
+                                                                        <span class="fa fa-star-o"></span>
+                                                                        </span>
+                                                                        <span *ngIf="
                                   program.averageFinalRating > 3 &&
                                   program.averageFinalRating < 4
                                 ">
                                 <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star-half-o checked"></span>
-                                                    <span class="fa fa-star-o"></span>
-                                                    </span>
-                                                    <span *ngIf="program.averageFinalRating == 4">
+                                                                        <span class="fa fa-star checked"></span>
+                                                                        <span class="fa fa-star checked"></span>
+                                                                        <span class="fa fa-star-half-o checked"></span>
+                                                                        <span class="fa fa-star-o"></span>
+                                                                        </span>
+                                                                        <span *ngIf="program.averageFinalRating == 4">
                                 <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star-o"></span>
-                                                    </span>
-                                                    <span *ngIf="
+                                                                        <span class="fa fa-star checked"></span>
+                                                                        <span class="fa fa-star checked"></span>
+                                                                        <span class="fa fa-star checked"></span>
+                                                                        <span class="fa fa-star-o"></span>
+                                                                        </span>
+                                                                        <span *ngIf="
                                   program.averageFinalRating > 4 &&
                                   program.averageFinalRating < 5
                                 ">
                                 <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star-half-o checked"></span>
-                                                    </span>
-                                                    <span *ngIf="program.averageFinalRating == 5">
+                                                                        <span class="fa fa-star checked"></span>
+                                                                        <span class="fa fa-star checked"></span>
+                                                                        <span class="fa fa-star checked"></span>
+                                                                        <span class="fa fa-star-half-o checked"></span>
+                                                                        </span>
+                                                                        <span *ngIf="program.averageFinalRating == 5">
                                 <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    </span>
-                                                    <a> <span></span>(58 reviews)</a>
-                                                    </p>
-                                            </div>
-                                            <div class="map-locationtext">
-                                                <span><img src="assets/location-pintag.svg" />
+                                                                        <span class="fa fa-star checked"></span>
+                                                                        <span class="fa fa-star checked"></span>
+                                                                        <span class="fa fa-star checked"></span>
+                                                                        <span class="fa fa-star checked"></span>
+                                                                        </span>
+                                                                        <a> <span></span>(58 reviews)</a>
+                                                                    </p>
+                                                                </div>
+                                                                <div class="map-locationtext">
+                                                                    <span><img src="assets/location-pintag.svg" />
                             </span>
-                                                <h3>
-                                                    {{ program.location }}
-                                                </h3>
-                                            </div>
-                                        </div>
-                                        </agm-info-window>
-                                        </agm-marker>
-                                    </div>
-                                    </agm-map>
-                                </div>
-                            </div>
-                            <div class="col-12" *ngIf="program.user === this.userId">
-                                <div class="description_text people_section people_outer">
-                                    <h2>People <a href="javascript:;">View all</a></h2>
-                                    <div class="people_list">
-                                        <div class="col-md-4 list_box">
-                                            <div class="media">
-                                                <div class="media-body">
-                                                    <h4>{{ user?.firstName }}</h4>
-                                                    <!-- <h5>Kids land owner</h5> -->
+                                                                    <h3>
+                                                                        {{ program.location }}
+                                                                    </h3>
+                                                                </div>
+                                                            </div>
+                                                        </agm-info-window>
+                                                    </agm-marker>
                                                 </div>
-                                                <div class="media-left">
-                                                    <div class="people_profile" [class.initial-alpha]="!user?.avatarImages">
-                                                        <img *ngIf="user?.avatarImages" src="{{ user?.avatarImages }}" alt="Profile" />
-                                                        <!-- <img
+                                            </agm-map>
+                                        </div>
+                                    </div>
+                                    <div class="col-12" *ngIf="program.user === this.userId">
+                                        <div class="description_text people_section people_outer">
+                                            <h2>People <a href="javascript:;">View all</a></h2>
+                                            <div class="people_list">
+                                                <div class="col-md-4 list_box">
+                                                    <div class="media">
+                                                        <div class="media-body">
+                                                            <h4>{{ user?.firstName }}</h4>
+                                                            <!-- <h5>Kids land owner</h5> -->
+                                                        </div>
+                                                        <div class="media-left">
+                                                            <div class="people_profile" [class.initial-alpha]="!user?.avatarImages">
+                                                                <img *ngIf="user?.avatarImages" src="{{ user?.avatarImages }}" alt="Profile" />
+                                                                <!-- <img
                             *ngIf="!user?.avatarImages"
                             src="assets/gray_background.jpeg"
                             alt="Profile"
                           /> -->
-                                                        <h1 *ngIf="!user?.avatarImages" [class.initial-alpha]="!user?.avatarImages">
-                                                            {{ user?.firstName?.charAt(0) + user?.firstName?.charAt(1) }}
-                                                        </h1>
+                                                                <h1 *ngIf="!user?.avatarImages" [class.initial-alpha]="!user?.avatarImages">
+                                                                    {{ user?.firstName?.charAt(0) + user?.firstName?.charAt(1) }}
+                                                                </h1>
+                                                            </div>
+                                                        </div>
                                                     </div>
+                                                    <p>
+                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.
+                                                    </p>
                                                 </div>
-                                            </div>
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.
-                                            </p>
-                                        </div>
 
-                                        <div class="col-md-4 list_box">
-                                            <div class="media">
-                                                <div class="media-body">
-                                                    <h4>{{ user?.firstName }}</h4>
-                                                </div>
-                                                <div class="media-left">
-                                                    <div class="people_profile">
-                                                        <img *ngIf="user?.avatarImages" src="{{ user?.avatarImages }}" alt="Profile" />
-                                                        <img *ngIf="!user?.avatarImages" src="assets/otheruser.jpeg" alt="Profile" />
+                                                <div class="col-md-4 list_box">
+                                                    <div class="media">
+                                                        <div class="media-body">
+                                                            <h4>{{ user?.firstName }}</h4>
+                                                        </div>
+                                                        <div class="media-left">
+                                                            <div class="people_profile">
+                                                                <img *ngIf="user?.avatarImages" src="{{ user?.avatarImages }}" alt="Profile" />
+                                                                <img *ngIf="!user?.avatarImages" src="assets/otheruser.jpeg" alt="Profile" />
+                                                            </div>
+                                                        </div>
                                                     </div>
+                                                    <p>
+                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.
+                                                    </p>
                                                 </div>
-                                            </div>
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.
-                                            </p>
-                                        </div>
 
-                                        <div class="col-md-4 list_box">
-                                            <div class="media">
-                                                <div class="media-body">
-                                                    <h4>{{ user?.firstName }}</h4>
-                                                </div>
-                                                <div class="media-left">
-                                                    <div class="people_profile">
-                                                        <img *ngIf="user?.avatarImages" src="{{ user?.avatarImages }}" alt="Profile" />
-                                                        <img *ngIf="!user?.avatarImages" src="assets/otheruser.jpeg" alt="Profile" />
+                                                <div class="col-md-4 list_box">
+                                                    <div class="media">
+                                                        <div class="media-body">
+                                                            <h4>{{ user?.firstName }}</h4>
+                                                        </div>
+                                                        <div class="media-left">
+                                                            <div class="people_profile">
+                                                                <img *ngIf="user?.avatarImages" src="{{ user?.avatarImages }}" alt="Profile" />
+                                                                <img *ngIf="!user?.avatarImages" src="assets/otheruser.jpeg" alt="Profile" />
+                                                            </div>
+                                                        </div>
                                                     </div>
+                                                    <p>
+                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.
+                                                    </p>
                                                 </div>
-                                            </div>
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.
-                                            </p>
-                                        </div>
 
-                                        <div class="col-md-4 list_box">
-                                            <div class="media">
-                                                <div class="media-body">
-                                                    <h4>{{ user?.firstName }}</h4>
-                                                </div>
-                                                <div class="media-left">
-                                                    <div class="people_profile">
-                                                        <img *ngIf="user?.avatarImages" src="{{ user?.avatarImages }}" alt="Profile" />
-                                                        <img *ngIf="!user?.avatarImages" src="assets/otheruser.jpeg" alt="Profile" />
+                                                <div class="col-md-4 list_box">
+                                                    <div class="media">
+                                                        <div class="media-body">
+                                                            <h4>{{ user?.firstName }}</h4>
+                                                        </div>
+                                                        <div class="media-left">
+                                                            <div class="people_profile">
+                                                                <img *ngIf="user?.avatarImages" src="{{ user?.avatarImages }}" alt="Profile" />
+                                                                <img *ngIf="!user?.avatarImages" src="assets/otheruser.jpeg" alt="Profile" />
+                                                            </div>
+                                                        </div>
                                                     </div>
+                                                    <p>
+                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.
+                                                    </p>
                                                 </div>
                                             </div>
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.
-                                            </p>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
 
-                            <div class="container description_text slider carousel-cat" *ngIf="programs?.length">
-                                <div class="forth_section_heading">
-                                    <h2 class="might-try">
-                                        You might also like these
-                                        <span class="subCat" (click)="setSubCategoryId(program?.subCategoryIds[0])">{{ program?.subCategoryIds[0]?.name }}
+                                    <div class="container description_text slider carousel-cat" *ngIf="programs?.length">
+                                        <div class="forth_section_heading">
+                                            <h2 class="might-try">
+                                                You might also like these
+                                                <span class="subCat" (click)="setSubCategoryId(program?.subCategoryIds[0])">{{ program?.subCategoryIds[0]?.name }}
                   </span>
-                                        <span *ngIf="program?.subCategoryIds?.length > 1">and
+                                                <span *ngIf="program?.subCategoryIds?.length > 1">and
                     <span
                       class="subCat"
                       (click)="setSubCategoryId(program?.subCategoryIds[1]);"
@@ -677,35 +663,35 @@
                                   *ngFor="let cat of program?.category"
                                 >
                                   <span>{{ cat?.name }}</span>
-                                </div>
-                                <div class="date_age">
-                                    <p>
-                                        <img alt="Loction Pin" src="assets/calendar.svg" /> {{ program?.date.from | date: "mediumDate" }} - {{ program.date.to | date: "mediumDate" }}
-                                    </p>
-                                    <p>
-                                        <img alt="Loction Pin" src="assets/user_group.svg" /> {{ program?.ageGroup.from }} - {{ program?.ageGroup.to }} Yrs.
-                                    </p>
-                                    <p>
-                                        <img alt="Loction Pin" src="assets/user_group.svg" /> {{ program?.time.from | date: "shortTime" }} - {{ program.time.to | date: "shortTime" }}
-                                    </p>
+                                        </div>
+                                        <div class="date_age">
+                                            <p>
+                                                <img alt="Loction Pin" src="assets/calendar.svg" /> {{ program?.date.from | date: "mediumDate" }} - {{ program.date.to | date: "mediumDate" }}
+                                            </p>
+                                            <p>
+                                                <img alt="Loction Pin" src="assets/user_group.svg" /> {{ program?.ageGroup.from }} - {{ program?.ageGroup.to }} Yrs.
+                                            </p>
+                                            <p>
+                                                <img alt="Loction Pin" src="assets/user_group.svg" /> {{ program?.time.from | date: "shortTime" }} - {{ program.time.to | date: "shortTime" }}
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="carousel-item" *ngIf="programs?.length > 3">
-                <div class="row">
-                    <div class="col-12 col-md" *ngFor="let program of programs | slice: 3:6">
-                        <div class="activities_slide">
-                            <div class="slide_image cursor" (click)="clickedProgram(program)">
-                                <img [defaultImage]="defaultImage" [errorImage]="errorImage" [lazyLoad]="
+                    <div class="carousel-item" *ngIf="programs?.length > 3">
+                        <div class="row">
+                            <div class="col-12 col-md" *ngFor="let program of programs | slice: 3:6">
+                                <div class="activities_slide">
+                                    <div class="slide_image cursor" (click)="clickedProgram(program)">
+                                        <img [defaultImage]="defaultImage" [errorImage]="errorImage" [lazyLoad]="
                                     baseUrl + program?.category[0]?.iconUrl
                                   " />
-                            </div>
-                            <div class="slide_text">
-                                <h3>
-                                    <span class="title cursor" (click)="clickedProgram(program)">{{ program.name }}</span
+                                    </div>
+                                    <div class="slide_text">
+                                        <h3>
+                                            <span class="title cursor" (click)="clickedProgram(program)">{{ program.name }}</span
                                   >
                                 </h3>
                                 <div
@@ -713,24 +699,24 @@
                                   *ngFor="let cat of program?.category"
                                 >
                                   <span>{{ cat?.name }}</span>
-                            </div>
-                            <div class="date_age">
-                                <p>
-                                    <img alt="Loction Pin" src="assets/calendar.svg" /> {{ program?.date.from | date: "mediumDate" }} - {{ program.date.to | date: "mediumDate" }}
-                                </p>
-                                <p>
-                                    <img alt="Loction Pin" src="assets/user_group.svg" /> {{ program?.ageGroup.from }} - {{ program?.ageGroup.to }} Yrs.
-                                </p>
-                                <p>
-                                    <img alt="Loction Pin" src="assets/user_group.svg" /> {{ program?.time.from | date: "shortTime" }} - {{ program.time.to | date: "shortTime" }}
-                                </p>
+                                    </div>
+                                    <div class="date_age">
+                                        <p>
+                                            <img alt="Loction Pin" src="assets/calendar.svg" /> {{ program?.date.from | date: "mediumDate" }} - {{ program.date.to | date: "mediumDate" }}
+                                        </p>
+                                        <p>
+                                            <img alt="Loction Pin" src="assets/user_group.svg" /> {{ program?.ageGroup.from }} - {{ program?.ageGroup.to }} Yrs.
+                                        </p>
+                                        <p>
+                                            <img alt="Loction Pin" src="assets/user_group.svg" /> {{ program?.time.from | date: "shortTime" }} - {{ program.time.to | date: "shortTime" }}
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        </div>
         </div>
         <!--End carousel-->
         </div>

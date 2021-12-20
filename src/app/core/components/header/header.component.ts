@@ -244,7 +244,7 @@ declare const $: any;
               >
 
             <div class="header-lefticons" *ngIf="!isLogin">
-                  <a class="share-lefticon cursor">
+                  <!-- <a class="share-lefticon cursor">
                     <span class="icon rel" routerLink='/invite'
                       ><img class="invite-gift" src="{{gitBoxImage}}"/>
                       <span class="Button-badge noti">
@@ -257,7 +257,7 @@ declare const $: any;
                       </div>
 
                     </span>
-                  </a>
+                  </a> -->
                   <a
                     class="noti-lefticon cursor"
                     data-toggle="modal"
@@ -362,7 +362,7 @@ declare const $: any;
               >ENABLE</mat-slide-toggle
             >
             <div class="heading_alert">
-            You have 3 New Notifications
+            You have {{user?.notices.notifications?.length}} New Notifications
               <span class="three_dots">
                 <p class="noti-read">
                   <span><img src="assets/dotshorizontal.png"></span>
@@ -647,6 +647,7 @@ export class HeaderComponent implements OnInit {
   zoom = 14;
   address: string;
   private geoCoder;
+  todayNotifications=[];
   @ViewChild('search', { static: false }) searchElementRef: ElementRef;  gitBoxImage='assets/gift-box.svg';
   constructor(
     private router: Router,
@@ -722,6 +723,11 @@ export class HeaderComponent implements OnInit {
   getUserById() {
     this.apiservice.getUserById(this.user.id).subscribe((res: any) => {
       this.user = res.data;
+      this.user.notices.notifications.reverse();
+      console.log('user',this.user)
+      // this.user.notices.notifications = this.user.notices.notifications.filter(notification=>notification.createdOn.getTime() < new Date().getTime())
+      // this.todayNotifications = this.user.notices.notifications.filter(notification=>notification.createdOn.getTime() == new Date().getTime())
+      // console.log('todayNotifications',this.todayNotifications)
       if (this.user.notificationsOnOff === true) {
         this.isToggle = true;
       }

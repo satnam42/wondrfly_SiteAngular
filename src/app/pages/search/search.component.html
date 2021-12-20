@@ -459,7 +459,7 @@
                                         </div>
                                     </div>
                                     <div class="coding_text">
-                                        <div *ngIf="program?.subCategoryIds?.length" class="coding-text-1">
+                                        <div *ngIf="program?.subCategoryIds?.length || program?.category?.length" class="coding-text-1">
                                             <h3 class="cursor" *ngFor="
                             let cat of program?.category" (click)="selectedCat='';categoryId='';selectedSubCategories=[];subCats=[];searchedSubCategory=cat?.name; categoryId = cat._id;programFilter() ">
                                                 {{ cat?.name }}

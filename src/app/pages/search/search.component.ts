@@ -477,7 +477,7 @@ export class SearchComponent implements OnInit, OnDestroy {
       this.contentLoaded = true;
       this.programs = res.items;
 for(let i in this.programs){
-  let category =  this.programs[i].category.filter((v,i) => this.programs[i].category.findIndex(item => item.name == v.name) === i);
+  let category = this.programs[i].category.filter((v,num,a)=>a.findIndex(t=>(t.name===v.name))===num)
   this.programs[i].category = category
 }
       this.startTour()
@@ -573,7 +573,7 @@ for(let i in this.programs){
       this.contentLoaded = true;
       this.programs = res.data
       for(let i in this.programs){
-        let category =  this.programs[i].category.filter((v,i) => this.programs[i].category.findIndex(item => item.name == v.name) === i);
+        let category = this.programs[i].category.filter((v,num,a)=>a.findIndex(t=>(t.name===v.name))===num)
         this.programs[i].category = category
       }
       this.startTour()
@@ -683,7 +683,7 @@ for(let i in this.programs){
           this.isTopFilterCheckBox = false
           this.programs = res.data;
           for(let i in this.programs){
-            let category =  this.programs[i].category.filter((v,i) => this.programs[i].category.findIndex(item => item.name == v.name) === i);
+            let category = this.programs[i].category.filter((v,num,a)=>a.findIndex(t=>(t.name==v.name))===num)
 this.programs[i].category = category          }
                    this.startTour()
           this.isScrol = true;
