@@ -67,6 +67,8 @@ export class DetailComponent implements OnInit {
   filteredFruits: Observable<any[]>;
   filteredValues: Observable<any[]>;
   getTagResponse: any;
+  categoryArr:any=[];
+  subcatArr:any=[];
 
   tags: any = [];
   @ViewChild('fruitInput', { static: true }) fruitInput: ElementRef;
@@ -226,10 +228,15 @@ getRating(){
     this.apiservice.getProgramById(this.program.id).subscribe(res => {
       this.ngxLoader.stop();
       this.program = res
-      this.program.realTime.from = this.timeConversion(this.program.realTime.from)
-      this.program.realTime.to = this.timeConversion(this.program.realTime.to)
+      this.program.time.from =`${moment.utc(this.program.time.from).format("h:mm a")}`;
+      this.program.time.to = `${moment.utc(this.program.time.to).format("h:mm a")}`;
       console.log('res program by id',this.program)
       this.title = this.program.name
+      this.categoryArr=this.program.category;
+      this.subcatArr=this.program.subCategoryIds
+      // console.log('subcatArr==>',this.subcatArr)
+      // console.log('categoryArr==>',this.categoryArr)
+
     console.log('catogsdsadasa', this.program)
     this.titleService.setTitle(this.title+ ' - wondrfly');
     this.metaTagService.updateTag(

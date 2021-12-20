@@ -1697,3 +1697,29 @@ button.map-buttonas {
 .media-left.profile-text {
   display: grid;
 }
+div#cat-subcat {
+  display: flex;
+  flex-wrap: wrap;
+  width: 358px;
+}
+button.camp-btn{
+  background: #e2f5ff;
+  border-radius: 20px;
+  border: none;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: justify;
+  margin-top: -7px;
+  letter-spacing: 0.001em;
+  color: #53b2e8;
+  padding: 7px;
+  padding-left: 25px;
+  padding-right: 25px;
+  float: right;
+  margin-left: -24px;
+  margin-right: 28px;
+  margin-top: 3px;
+}

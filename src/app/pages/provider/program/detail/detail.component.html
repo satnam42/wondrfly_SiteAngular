@@ -190,7 +190,7 @@
                                                 </p>
 
                                                 <p>
-                                                    <img src="assets/watch.svg" alt="Loction Pin" /> {{ program?.realTime.from}} - {{ program?.realTime.to }}
+                                                    <img src="assets/watch.svg" alt="Loction Pin" /> {{ program?.time.from}} - {{ program?.time.to}}
                                                 </p>
                                                 <p *ngIf="
                             program.duration?.hours || program.duration?.minutes
@@ -207,9 +207,14 @@
                           <img src="assets/pricet.svg" alt="price tag" /> Free
                         </p>
                       </div>
-                      <button class="camp-btn">
-                        {{ program?.subCategoryIds[0]?.name }}
-                      </button>
+                      <div id="cat-subcat">
+                        <button class="camp-btn" *ngFor="let cat of categoryArr; let i=index">
+                          {{cat.name}}
+                        </button>
+                        <button class="camp-btn" *ngFor="let subcat of subcatArr; let i=index">
+                        {{ subcat.name }}
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
