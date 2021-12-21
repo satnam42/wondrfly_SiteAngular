@@ -3,19 +3,19 @@
     <div class="container1">
       <div class="row">
         <div class="col-md-6 button-spacing">
-          <h1 *ngIf="categoryName" class="painting-header">
-            {{ categoryName }}
+          <h1  class="painting-header">
+            {{ searchCatgData?.categoryName }}
           </h1>
         </div>
 
         <div class="col-md-1"></div>
         <div class="col-md-2"></div>
         <div class="col-md-2" id="accordionExample">
-          <h5 *ngIf="categoryName != 'Most Viewed'" class="dropdown-text">
+          <h5 *ngIf="!isMostViewed" class="dropdown-text">
             Sort by: Recent Posts
           </h5>
-          <h5 *ngIf="categoryName == 'Most Viewed'" class="dropdown-text">
-            Sort by: {{ categoryName }}
+          <h5 *ngIf="isMostViewed" class="dropdown-text">
+            Sort by: Most Viewed
           </h5>
           <span
             class="arrow-cross cursor"
@@ -35,7 +35,7 @@
               (click)="getBlogByCat()"
               type="button"
               class="btn drop-2"
-              [ngClass]="{ active: categoryName != 'Most Viewed' }"
+              [ngClass]="{ active: isMostViewed==false }"
               data-target="#location"
               data-toggle="collapse"
             >
@@ -43,7 +43,7 @@
               <span class="arrow-down cursor">
                 <img oncontextmenu="return false;"
                   src="assets/down_arrow_blog.png"
-                  *ngIf="categoryName != 'Most Viewed'"
+                  *ngIf=" isMostViewed==false "
                 />
               </span>
             </button>
@@ -52,7 +52,7 @@
               (click)="mostViewed()"
               type="button"
               class="btn drop-2"
-              [ngClass]="{ active: categoryName == 'Most Viewed' }"
+              [ngClass]="{ active:  isMostViewed==true  }"
               data-target="#location"
               data-toggle="collapse"
             >
@@ -60,7 +60,7 @@
               <span class="arrow-down cursor">
                 <img oncontextmenu="return false;"
                   src="assets/down_arrow_blog.png"
-                  *ngIf="categoryName == 'Most Viewed'"
+                  *ngIf=" isMostViewed==true "
               /></span>
             </button>
           </div>

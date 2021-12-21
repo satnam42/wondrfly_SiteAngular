@@ -21,7 +21,7 @@ export class BlogSearchComponent implements OnInit {
   selectedLocation = "";
   searchesCatg: any = [];
   searchCatgData: any;
-  categoryName: any;
+  isMostViewed:boolean=false;
   blog: any;
   location: any;
   blogsByLocation: any;
@@ -75,7 +75,7 @@ export class BlogSearchComponent implements OnInit {
       this.searchCatgData = response.data[0]
       this.searchCatgData.blogs
       console.log('response.data[0]',response.data[0])
-      this.categoryName = this.searchCatgData.categoryName;
+      this.isMostViewed = false
     });
   }
   mostViewed() {
@@ -91,8 +91,7 @@ export class BlogSearchComponent implements OnInit {
         blogs.sort((a, b) => (a.views < b.views) ? 1 : (a.views < b.views) ? ((a.views < b.views) ? 1 : -1) : -1);
         this.searchCatgData.blogs = blogs.filter(this.onlyUnique);
       });
-      console.log('this.searchCatgData.blogs',this.searchCatgData.blogs)
-  }
+      this.isMostViewed=true  }
 
   onlyUnique(value, index, self) {
     return self.indexOf(value) === index;
