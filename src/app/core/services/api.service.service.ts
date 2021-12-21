@@ -333,11 +333,11 @@ export class ApiService {
     }
     searchUsers(name, role): Observable<User[]> {
         const subject = new Subject<User[]>();
-        this.http.get(`${this.root}/users/search?name=${name}&role=${role}`, this.getHeader()).subscribe((responseData) => {
-            this.userResponse = responseData;
-            subject.next(this.userResponse);
-        }, (error) => {
-            subject.next(error.error);
+        this.http.get(`${this.root}/users/search?name=${name}&role=${role}`, this.getHeader()).subscribe((responseData:any) => {
+            if(responseData.isSuccess){
+                this.userResponse = responseData;
+                subject.next(this.userResponse);
+            }
         });
         return subject.asObservable();
     }
