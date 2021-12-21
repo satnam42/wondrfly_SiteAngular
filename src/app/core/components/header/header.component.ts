@@ -115,7 +115,7 @@ declare const $: any;
                           <h6
                               *ngFor="
                                 let category of categoriesBySearch?.category | slice: 0:1" (click)="filterData.searchedCategoryKey=category.name;searchByCategory(category?._id)"
-                              
+
                             >
                               {{ category.name }}
                               <span class="search-programlist">
@@ -720,10 +720,11 @@ export class HeaderComponent implements OnInit {
         $("#progress").attr("data-percentage", this.profileProgress);
       });
   }
-  getUserById() {
+  getUserById(id?) {
     this.apiservice.getUserById(this.user.id).subscribe((res: any) => {
       this.user = res.data;
       this.user.notices.notifications.reverse();
+      this.store.setObject('userData', this.user);
       console.log('user',this.user)
       // this.user.notices.notifications = this.user.notices.notifications.filter(notification=>notification.createdOn.getTime() < new Date().getTime())
       // this.todayNotifications = this.user.notices.notifications.filter(notification=>notification.createdOn.getTime() == new Date().getTime())
@@ -902,7 +903,7 @@ export class HeaderComponent implements OnInit {
         .navigateByUrl("/", { skipLocationChange: true })
         .then(() => this.router.navigate(["search"]));
     }  }
-    
+
   goToProviderProfile(provider) {
     console.log(provider)
     provider.firstName = provider.firstName.toLowerCase();

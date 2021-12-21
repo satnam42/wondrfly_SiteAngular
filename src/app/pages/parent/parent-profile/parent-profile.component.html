@@ -126,7 +126,7 @@
 
               <div class="row bottom_arrow">
                 <div class="col-12">
-                  <button (click)="updateParent(user)" class="btn_style save_btn cursor">
+                  <button [disabled]="!user?.firstName" (click)="updateParent(user)" class="btn_style save_btn cursor">
                     Save
                   </button>
                 </div>
