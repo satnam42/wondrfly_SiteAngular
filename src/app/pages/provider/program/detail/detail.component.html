@@ -211,9 +211,26 @@
                         <button class="camp-btn" *ngFor="let cat of categoryArr; let i=index">
                           {{cat.name}}
                         </button>
-                        <button class="camp-btn" *ngFor="let subcat of subcatArr; let i=index">
-                        {{ subcat.name }}
-                        </button>
+                        <div *ngFor="let subcat of subcatArr | slice: 0:2">
+                          <button class="camp-btn" >
+                            {{ subcat.name}}
+                            </button>
+                        </div>
+                        <p>
+                          <button *ngIf="subcatArr?.length > 2" class="btn btn-primary moreBtn" type="button" data-toggle="collapse" data-target="#collapseExample"  aria-expanded="false">
+                           + {{subcatArr?.length - 2}} more
+                          </button>
+                        </p>
+                        <div class="collapse" id="collapseExample" >
+                          <div class="card card-body" id="moreBtn-collapse">
+                            <span id="closeBtn"><img src="assets/grey-close.png" /> </span>
+                            <div class="d-flex">
+                              <h6 *ngFor="let subcat of subcatArr; let i=index">
+                                <p id="moreBtn-collapse-cursor" *ngIf="i>1">{{subcat.name}}</p>
+                              </h6>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
