@@ -273,11 +273,11 @@
             </div>
         </div>
         <div class="row row-0" *ngIf="showReset">
-            <div class="col-4" *ngIf="searchedSubCategory">
+            <!-- <div class="col-4" *ngIf="searchedSubCategory">
                 <div class="chip-set">
                     <h1>Looking for <span>{{searchedSubCategory}}</span><span *ngIf="selectedSubCategories?.length && selectedSubCategories?.length>1"> + {{selectedSubCategories?.length-1}} More</span> in <span>Jersey City</span></h1>
                 </div>
-            </div>
+            </div> -->
             <div class="col-8">
                 <div class="chip-set-bar">
                     <button class="btn_style save_btn cursor" *ngIf="searchedSubCategory">
@@ -574,10 +574,11 @@
                         </h3>
                         <div class="similar-categories container">
                             <div class="row">
-                                <div class="col-md-4 cursor" *ngFor="let Category of catData | slice: 6:9" (click)="categoryId=Category.id;searchedSubCategory=Category.name;programFilter()">
+                                <div class="col-md-4 cursor" *ngFor="let subCategory of suggested" (click)="selectedCat='';categoryId='';subCats=[];searchedSubCategory=subCategory.name; selectedSubCategories[0] = subCategory.id;
+                                programFilter()">
                                     <div class="similar-cate">
-                                        <img [defaultImage]="defaultImage" [lazyLoad]="Category.imageUrl" />
-                                        <h1>{{ Category.name }}</h1>
+                                        <img [defaultImage]="defaultImage" [lazyLoad]="subCategory.iconUrl" />
+                                        <h1>{{ subCategory.name }}</h1>
                                     </div>
                                 </div>
                             </div>
