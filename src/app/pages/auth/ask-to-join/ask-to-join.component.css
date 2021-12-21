@@ -604,11 +604,12 @@ input.form-check-input.k-checkbox.bookeds {
     width: 250px;
     object-fit: cover;
 }
+
 img#image-downArrow {
-  display: block;
-  margin-left: auto;
-  position: relative;
-  top: -30px;
-  right: 7px;
-  width: 15px;
+    display: block;
+    margin-left: auto;
+    position: relative;
+    top: -30px;
+    right: 10px;
+    width: 15px;
 }

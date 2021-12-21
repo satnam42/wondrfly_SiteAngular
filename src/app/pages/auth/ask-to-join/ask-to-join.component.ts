@@ -40,7 +40,6 @@ export class AskToJoinComponent implements OnInit {
   isTerms: boolean;
   isParent: boolean;
   isbetaActivity:boolean;
-  isDownArrow:boolean=true;
   message: string = 'Your request submitted!';
   categoryResponse: any;
   response: any;
@@ -69,9 +68,6 @@ if(name==='grown-ups'){
   this.isGuardianInvitation=true
 }    });
 
-  }
-  toggleArrow(){
-    this.isDownArrow=!this.isDownArrow
   }
   onPassword() {
     this.hide = !this.hide;
