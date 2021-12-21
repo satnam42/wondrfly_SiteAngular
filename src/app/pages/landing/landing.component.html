@@ -44,7 +44,7 @@
                           filterData.activityName
                         ">
                                                     <div class="card card-body">
-                                                        <div class="program-list" *ngIf="categoriesBySearch?.category?.length || categoriesBySearch?.tags?.length">
+                                                        <div class="program-list" *ngIf="categoriesBySearch.category?.length || categoriesBySearch.tags?.length">
                                                             <h6 (click)="filterData.searchedCategoryKey=category.name;searchByCategory(category._id)" *ngFor="
                             let category of categoriesBySearch?.category | slice: 0:1
                           ">

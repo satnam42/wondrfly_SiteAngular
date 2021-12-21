@@ -228,8 +228,12 @@ tweetCategory(){
 
   providerSearch(key){
     this.apiservice.searchUsers(key,'provider').subscribe((res:any)=>{
-      this.providersBySearch = res.data;
-    })
+      if(res.data){
+        this.providersBySearch = res.data;
+      }
+      else{
+        this.providersBySearch=[]
+      }    })
   };
 
   goToProviderProfile(provider) {
