@@ -101,7 +101,7 @@ export class FaqHelpDeskComponent implements OnInit {
     );
     this.metaTagService.addTag(
       { name: 'keywords', content: 'frequently asked questions about kids activities, fun questions for kids'}
-    ); 
+    );
 
     window.scroll(0,0);
 }
