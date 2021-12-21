@@ -92,7 +92,6 @@ export class BlogSearchComponent implements OnInit {
         this.searchCatgData.blogs = blogs.filter(this.onlyUnique);
       });
       console.log('this.searchCatgData.blogs',this.searchCatgData.blogs)
-    this.categoryName = 'Most Viewed';
   }
 
   onlyUnique(value, index, self) {
