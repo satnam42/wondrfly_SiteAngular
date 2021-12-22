@@ -365,7 +365,7 @@ declare const $: any;
             You have {{user?.notices.notifications?.length}} New Notifications
               <span class="three_dots">
                 <p class="noti-read">
-                  <span><img src="assets/dotshorizontal.png"></span>
+                  <!-- <span><img src="assets/dotshorizontal.png"></span> -->
                 </p>
                 <span *ngIf="isLogin" (click)="clearAll()"> clear all </span>
               </span>

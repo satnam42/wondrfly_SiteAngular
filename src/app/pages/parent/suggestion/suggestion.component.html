@@ -405,15 +405,15 @@
                                             <div *ngIf="resourcesType==='do-together'">
                                                 <div class="do-together cardss">
                                                     <div #widgetsContent class="custom-slider-main">
-                                                        <div class="card" *ngFor="let blog of blogByCategory?.blogs | slice: 0:4">
+                                                        <div class="card" *ngFor="let blog of blogByCategory?.blogs | slice: 0:3">
                                                             <!-- <img src="assets/why-family.png" class="card-img-top" alt="..."> -->
-                                                            <img src="{{blogUrl}}{{blog?.image[0]?.url}}" class="card-img-top" alt="...">
+                                                            <img src="{{blogUrl}}{{blog?.image[0]?.url}}" class="card-img-top cursor" (click)="setBlog(blog)" alt="...">
 
                                                             <div class="card-body">
                                                                 <h6 class="date">{{blog?.published_at | date:'mediumDate'}}</h6>
                                                                 <h5 class="card-title">{{blog?.title | slice: 0:32}} ...</h5>
                                                                 <p class="card-text" [innerHTML]="blog.content | markdown | slice: 0:50"></p>
-                                                                <a href="" class="btn learn-btn" (click)="setBlog(blog)">Learn More</a>
+                                                                <a class="btn learn-btn" (click)="setBlog(blog)">Learn More</a>
                                                             </div>
                                                         </div>
                                                         <div class="card cmn-card">
@@ -456,7 +456,7 @@
                                                     <div #widgetsContent class="custom-slider-main">
                                                         <div class="card" *ngFor="let blog of featuredBlogs">
                                                             <!-- <img src="assets/why-family.png" class="card-img-top" alt="..."> -->
-                                                            <img src="{{blogUrl}}{{blog?.image[0]?.url}}" class="card-img-top" alt="...">
+                                                            <img (click)="setBlog(blog)" src="{{blogUrl}}{{blog?.image[0]?.url}}" class="card-img-top cursor" alt="...">
 
                                                             <div class="card-body">
                                                                 <h6 class="date">{{blog?.published_at | date:'mediumDate'}}</h6>
@@ -477,10 +477,14 @@
                                                     <div #widgetsContent class="custom-slider-main">
                                                         <div class="card" *ngFor='let tweetData of tweetData'>
                                                             <div class="resourcenew-upper">
-                                                                <div class="content-upper">
-                                                                    <img src="assets/bi_twitter.png">
-                                                                    <h1>Funny Tweets</h1>
-                                                                </div>
+                                                                <a routerLink="{{tweetDataBlogPath}}" target="_blank">
+                                                                    <div class="content-upper cursor">
+
+                                                                        <img src="assets/bi_twitter.png">
+
+                                                                        <h1>Funny Tweets</h1>
+                                                                    </div>
+                                                                </a>
                                                             </div>
                                                             <div class="card-body">
                                                                 <div class="resourcenew-lower">
@@ -490,7 +494,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <a routerLink="{{tweetDataBlogPath}}" class="btn-sec">CHECK FOR MORE!</a>
+                                                            <a routerLink="{{tweetDataBlogPath}}" target="_blank" class="btn-sec">CHECK FOR MORE!</a>
                                                         </div>
 
                                                         <div class="card cmn-card">

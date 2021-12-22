@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import axios from 'axios';
+import { AuthsService } from 'src/app/core/services/auths.service';
 import { environment } from 'src/environments/environment.prod';
 
 @Component({
@@ -13,7 +14,10 @@ export class AboutJoinBetaComponent implements OnInit {
   quesData: any;
   plus: boolean=true
   minus: boolean=false
-  constructor() { }
+  currentUser:any;
+  constructor(private auth: AuthsService) { 
+    this.currentUser = auth.currentUser()
+}
 
      // ------------------------------------------------get  category  -------------------------------------------
      getParentCategory(){
