@@ -122,8 +122,8 @@
                     <img _ngcontent-rxp-c9="" src="assets/minus.png" />
                   </span>
                 </h6>
-                  <div class="collapse beta-show" id="collapseExample{{ i }}" class="collapse" id="bet1">
-                    {{ques?.answer}}
+                  <div class="collapse beta-show" id="collapseExample{{ i }}" [innerHtml]="ques?.answer | markdown" class="collapse" id="bet1">
+                  
                   </div>
                 </div>
                 </div>
