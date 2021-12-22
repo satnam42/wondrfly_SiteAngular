@@ -92,7 +92,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked,OnDestro
 
   // ---------------autucomplete-------------
   visible: boolean = true;
-  selectable: boolean = true;
+  selectable: boolean = false;
   removable: boolean = true;
   addOnBlur: boolean = false;
   addGuardianData: any = {
@@ -203,8 +203,13 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked,OnDestro
   }
 
   selectEvent(item) {
-    this.kid.interestInfo.push(item);
+    if(this.kid.interestInfo.indexOf(item) == -1){
+      if(!this.kid.interestInfo.find(category=>category.name === item.name)){
+        this.kid.interestInfo.push(item)
+        console.log('===>>',this.kid.interestInfo)
+      }
   }
+}
   onChangeSearch(key: string) {
 
     this.isLoading = true;
