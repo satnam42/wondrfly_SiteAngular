@@ -7,26 +7,21 @@
           <div class="banner_form">
             <div class="form-group">
               <input
-                data-toggle="collapse"
-                href="#collapseExample"
-                type="text"
                 placeholder="Search Your Question..."
                 [(ngModel)]="term"
+                (keyup)="getParentQuestionsByName(term)"
                 class="form-control camp_input"
               />
             </div>
             <div class="form-group float-last">
-              <button class="banner_button" (click)="goToResultPage(term)">
+              <button class="banner_button" (click)="getParentQuestionsByName(term)">
                 <img src="assets/search_icon.svg" alt="Search image" />
               </button>
             </div>
           </div>
 
-          <div class="searchwith-box collapse" id="collapseExample">
-            <div
-              class="search-result cursor"
-              *ngFor="let item of allQuestions | filter: term"
-            >
+          <div class="searchwith-box" *ngIf="allQuestions?.length">
+            <div class="search-result cursor" *ngFor="let item of allQuestions">
               <h1 (click)="selectQues(item)">{{ item.question }}</h1>
               <h2 (click)="selectQues(item)">
                 {{ item.answer | slice: 0:92 }}
@@ -54,7 +49,7 @@
             >Help for Parents</a
           >
         </li>
-        <li class="nav-item second-nav">
+        <!-- <li class="nav-item second-nav">
           <a
             id="tab-B"
             href="#pane-B"
@@ -65,7 +60,7 @@
             <span> <img class="parent-icon" src="assets/building.svg" /> </span
             >Help for Visitor</a
           >
-        </li>
+        </li> -->
       </ul>
 
       <div id="content" class="tab-content" role="tablist">

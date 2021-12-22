@@ -22,6 +22,7 @@ export class FaqHomeComponent implements OnInit {
   allQuestions: any = []
   term: string;
   title = 'Frequently Asked Questions - Wondrfly';
+  searches: any;
 
   constructor(private router: Router,
     private dataservice: DataService,
@@ -30,8 +31,6 @@ export class FaqHomeComponent implements OnInit {
 
     this.getParentCategory()
     this.getProviderCategory()
-    this.getParentQuestions()
-
   }
 
   // ------------------------------------------------get category  -------------------------------------------
@@ -54,17 +53,21 @@ export class FaqHomeComponent implements OnInit {
 
     // ------------------------------------------------get questions parent  -------------------------------------------
 
-  getParentQuestions(){
-    const responcee = axios.get(`${this.blogUrl}/parent-faq-questions`).then(response => {
-      this.parentQuestions = response.data
-      console.log( 'data on parentQuestions axios', this.parentQuestions);
-      for(let item of this.parentQuestions){
-        this.allQuestions.push(item)
-      }
+    getParentQuestionsByName(name){
+      if(name){   const responcee = axios.get(`${this.blogUrl}/parent-faq-questions?question_contains=${name}&_limit=5`).then((response:any) => {
+        console.log('response',response)
+        if(response.data.length){
+          this.allQuestions = response.data
+        }else{
+          this.allQuestions=[]
+        }
+      });}
+      else{
+        this.allQuestions=[]
 
-    });
-    this.getProviderQuestions();
-    }
+      }
+   
+      }
 
      // ------------------------------------------------get questions provider  -------------------------------------------
 
@@ -72,9 +75,7 @@ export class FaqHomeComponent implements OnInit {
     const responcee = axios.get(`${this.blogUrl}/provider-faq-questions`).then(response => {
       this.providerQuestions = response.data
       console.log( 'data on providerQuestions axios', this.providerQuestions);
-      for(let item of this.providerQuestions){
-        this.allQuestions.push(item)
-      }
+     
     });
     }
 
