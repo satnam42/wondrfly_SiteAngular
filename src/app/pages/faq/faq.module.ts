@@ -8,6 +8,7 @@ import { CoreModule } from 'src/app/core/core.module';
 import { FormsModule } from '@angular/forms';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FaqComponent } from './faq.component';
+import { MarkdownModule } from 'src/app/core/shared/markdown/markdown.module';
 
 
 @NgModule({
@@ -17,7 +18,7 @@ import { FaqComponent } from './faq.component';
     FaqRoutingModule,
     CoreModule,
     FormsModule,
-    Ng2SearchPipeModule
+    MarkdownModule
   ]
 })
 export class FaqModule { }

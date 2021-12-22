@@ -58,6 +58,7 @@ export class FaqHelpDeskComponent implements OnInit {
  getParentQues(){
   const responcee = axios.get(`${this.blogUrl}/parent-faq-questions/?id=${this.quesData.id}`).then(response => {
     this.ans = response.data
+    console.log(this.ans)
   });
   }
 

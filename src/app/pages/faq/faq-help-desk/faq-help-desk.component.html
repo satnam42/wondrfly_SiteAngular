@@ -50,7 +50,7 @@
       <div class="col-8 search-width">
         <div class="search-result">
           <h1>{{ this.ans[0].question }}</h1>
-          <h2>{{ this.ans[0].answer }}.</h2>
+          <h2 [innerHtml]='this.ans[0].answer | markdown'></h2>
           <img *ngIf="this.ans[0].screen_shot.length" src="{{blogUrl}}{{this.ans[0].screen_shot[0].url}}" alt="">
           <hr />
           <div class="submit-search">
