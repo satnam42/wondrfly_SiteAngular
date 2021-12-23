@@ -373,7 +373,7 @@ declare const $: any;
             <hr class="grey_line" />
             <h6 class="today-heading">Today</h6>
             <div
-              class="notification"
+              class="notification cursor"
               *ngFor="
                 let notification of user?.notices.notifications;
                 let i = index
