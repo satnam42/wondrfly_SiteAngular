@@ -100,7 +100,7 @@
                   <h1>1</h1>
                 </div>
 
-                <h3 class="cursor"  *ngIf="!isLogin" [routerLink]="['/ask-to-join']">Join The Beta</h3>
+                <h3 class="clickable cursor"  *ngIf="!isLogin" [routerLink]="['/ask-to-join']">Join The Beta</h3>
                 <h3  *ngIf="isLogin" >Join The Beta</h3>
                 <h2>Join the exclusive Wondrfly
                    Beta community today!</h2>
@@ -111,8 +111,8 @@
                   <h1>2</h1>
                 </div>
 
-                <h3 class="cursor" *ngIf="isLogin" (click)='gotoProfile()'>Customize</h3>
-                <h3 class="cursor" *ngIf="!isLogin" [routerLink]="['/login']">Customize</h3>
+                <h3 class="clickable cursor" *ngIf="isLogin" (click)='gotoProfile()'>Customize</h3>
+                <h3 class="clickable cursor" *ngIf="!isLogin" [routerLink]="['/login']">Customize</h3>
 
                 <h2>
                   your wondrfly experience with 

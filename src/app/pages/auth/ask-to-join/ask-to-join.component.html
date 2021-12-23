@@ -60,7 +60,7 @@
                                                 <label>I book activities for...​</label>
                                                 <div class="input_outer" data-toggle="collapse" data-target="#choose-activ">
                                                     <input type="text" class="form-control" readonly placeholder="Choose" [formControl]="parentForm.controls['bookedActivityFor']" [(ngModel)]="userData.bookedActivityFor">
-                                                    <img src="../../../../assets/downarrow.png" alt="" id="image-downArrow">
+                                                    <img src="assets/downarrow.png" alt="" id="image-downArrow">
                                                     <p class="cant_blank" *ngIf="parentForm.controls['bookedActivityFor'].hasError('required') && parentForm.controls['bookedActivityFor'].touched">
                                                         CAN'T LEAVE IT BLANK</p>
                                                 </div>
@@ -93,6 +93,7 @@
                                                 <label>I want to be a Wondrfly Beta User because</label>
                                                 <div class="input_outer" data-toggle="collapse" data-target="#choose-activ">
                                                     <input type="text" class="form-control" readonly placeholder="Choose" [formControl]="parentForm.controls['wantWondrflyBetaUserBecause']" [(ngModel)]="userData.wantWondrflyBetaUserBecause">
+                                                    <img src="assets/downarrow.png" alt="" id="image-downArrow">
                                                     <p class="cant_blank" *ngIf="parentForm.controls['wantWondrflyBetaUserBecause'].hasError('required') && parentForm.controls['wantWondrflyBetaUserBecause'].touched">
                                                         CAN'T LEAVE IT BLANK</p>
                                                 </div>

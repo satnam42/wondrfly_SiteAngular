@@ -246,6 +246,10 @@ section.wave-sect .first-circle h3 {
   margin-left: -7px;
   margin-top: 15px;
 }
+section.wave-sect .first-circle h3:hover{
+  color: #53b2e8;
+ }
+
 section.wave-sect .first-circle h2 {
   margin-left: -110px;
   margin-top: 10px;
@@ -254,6 +258,10 @@ section.wave-sect .second-circle h3 {
   margin-left: -20px;
   margin-top: 15px;
 }
+section.wave-sect .second-circle h3:hover{
+  color: #53b2e8;
+ }
+
 section.wave-sect .second-circle h2 {
   margin-left: -127px;
   margin-top: 10px;
@@ -262,6 +270,10 @@ section.wave-sect .third-circle h3 {
   margin-left: -4px;
   margin-top: 15px;
 }
+section.wave-sect .third-circle h3:hover{
+  color: #53b2e8;
+ }
+
 section.wave-sect .third-circle h2 {
   margin-left: -110px;
   margin-top: 10px;
@@ -325,6 +337,9 @@ h2.title{
   line-height: 18px;
   color: #53b2e8;
 }
+
+
+
 @media only screen and (min-width: 1024px) and (max-width: 1366px) and (orientation: portrait) {
   section.wave-sect .wave-bar .first-circle {
     max-width: 150px;

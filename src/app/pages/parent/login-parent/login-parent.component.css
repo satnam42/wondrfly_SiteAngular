@@ -387,6 +387,7 @@ span.wnderfly-btn {
     brightness(100%) contrast(92%);
 }
 
+
 @media only screen and (min-width: 1024px) and (max-width: 1366px) and (orientation: portrait) {
   .menu-box {
     position: absolute;
