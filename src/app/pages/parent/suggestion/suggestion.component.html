@@ -31,7 +31,7 @@
                                 <div class="category_list_box cursor" (click)="filterData.kidAge=kid.age;searchBySubCategory (category._id)">
                                     <a (click)="filterData.searchedCategoryKey=category.name;">
                                         <div class="category_image">
-                                            <img [src]="baseUrl+kid.categories[i]?.imageUrl" />
+                                            <img [src]="category?.image" />
                                         </div>
                                         <div class="category_title">
                                             <p>
