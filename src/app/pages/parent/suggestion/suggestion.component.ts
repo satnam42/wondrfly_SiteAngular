@@ -11,6 +11,7 @@ import { TypeFormService } from 'src/app/core/services/typeform.service';
 import { environment } from 'src/environments/environment.prod';
 import * as FileSaver from 'file-saver';
 import { MapsAPILoader } from '@agm/core';
+import { Console } from 'console';
 @Component({
   selector: 'parent-suggestion',
   templateUrl: './suggestion.component.html',
@@ -39,7 +40,8 @@ export class SuggestionComponent implements OnInit {
     activityName: '',
     searchedCategoryKey:'',
     lat:'',
-    lng:''
+    lng:'',
+    kidAge:''
   }
   categoryResponse: any;
   hide: boolean = true;
@@ -111,6 +113,7 @@ if(!this.currentUser){
   // }
   searchActivityByNameDate() {
     this.filterData.searchedCategoryKey=this.filterData.activityName
+    this.filterData.kidAge=''
     this.filterData.categoryId = ''
     this.filterData.lat = ''
     this.filterData.lng = ''
@@ -127,6 +130,7 @@ if(!this.currentUser){
     this.router.navigate(['/search']);
   }
   searchByCategory(id) {
+    this.filterData.kidAge=''
     this.filterData.subcatId= ''
     this.filterData.activityName=''
     this.filterData.categoryId = id
@@ -249,7 +253,7 @@ getChildByParentId(){
   this.apiservice.getChildByParentId(this.currentUser.id).subscribe((res: any) => {
     this.kids = res
     this.kids = this.kids.filter((item) => item.isActivated === true && item.interestInfo.length );
-  })
+console.log('kids',this.kids)  })
 }
 sendInvite(){
   this.store.setItem('sendInvite','1')

@@ -170,12 +170,19 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.exploreModal()
     var retrievedObject = localStorage.getItem('userData');
     this.userData = JSON.parse(retrievedObject);
-      if (this.filterData.subcatId || this.filterData.categoryId) {
-        console.log('this.filterData.categoryId', this.filterData)
-        console.log('this.filterData.subcatId', this.filterData)
+      if (this.filterData.subcatId || this.filterData.categoryId || this.filterData.kidAge) {
+        console.log('this.filterData.categoryId', this.filterData.categoryId)
+        console.log('this.filterData.subcatId', this.filterData.subcatId)
+        console.log('this.filterData.kidAge', this.filterData.kidAge)
+
         this.categoryId = this.filterData.categoryId
         this.selectedSubCategories[0] = this.filterData.subcatId;
         this.searchedSubCategory = this.filterData.searchedCategoryKey
+        if(this.filterData.kidAge){
+          this.isAgeFilter=true
+         this.maxAge = Number(this.filterData.kidAge)
+         this.minAge = 0
+        }
         this.programFilter()
       }
       else if (this.filterData.activityName) {
