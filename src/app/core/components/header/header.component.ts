@@ -265,11 +265,11 @@ declare const $: any;
                   >
                     <span class="icon rel"
                       ><img src="assets/Notification-icon.svg" alt="Logo" />
-                      <span class="Button-badge" *ngIf="user.notices?.count">
+                      <span class="Button-badge" *ngIf="newNotifications">
                         <span *ngIf="user.notices?.count <= 10">{{
-                          user.notices?.count
+                          newNotifications
                         }}</span>
-                        <span *ngIf="user.notices?.count > 10">{{ 10 }}+</span>
+                        <span *ngIf="newNotifications > 10">{{ 10 }}+</span>
                       </span>
                     </span>
                   </a>
@@ -362,7 +362,7 @@ declare const $: any;
               >ENABLE</mat-slide-toggle
             >
             <div class="heading_alert">
-            You have {{user?.notices.notifications?.length}} New Notifications
+            You have {{newNotifications}} New Notifications
               <span class="three_dots">
                 <p class="noti-read">
                   <!-- <span><img src="assets/dotshorizontal.png"></span> -->
@@ -378,10 +378,11 @@ declare const $: any;
                 let notification of user?.notices.notifications;
                 let i = index
               "
+              (mouseover)="readNotification(notification)"
             >
             <div class="img-notif">
                 <img src="assets/notic1.png">
-                <span class="red_dot dots-span"
+                <span  *ngIf="!notification.isRead" class="red_dot dots-span" 
                   ><svg
                     width="7"
                     height="7"
@@ -648,6 +649,7 @@ export class HeaderComponent implements OnInit {
   address: string;
   private geoCoder;
   todayNotifications=[];
+  newNotifications:any;
   @ViewChild('search', { static: false }) searchElementRef: ElementRef;  gitBoxImage='assets/gift-box.svg';
   constructor(
     private router: Router,
@@ -724,6 +726,9 @@ export class HeaderComponent implements OnInit {
     this.apiservice.getUserById(this.user.id).subscribe((res: any) => {
       this.user = res.data;
       this.user.notices.notifications.reverse();
+      let notifications=[]
+      notifications = this.user.notices.notifications.filter(notification=>notification.isRead===false)
+      this.newNotifications = notifications.length
       this.store.setObject('userData', this.user);
       console.log('user',this.user)
       // this.user.notices.notifications = this.user.notices.notifications.filter(notification=>notification.createdOn.getTime() < new Date().getTime())
@@ -750,6 +755,16 @@ export class HeaderComponent implements OnInit {
         this.getUserById();
       }
     });
+  }
+  readNotification(notification) {
+    if(!notification.isRead){
+      this.apiservice.readNotification(notification._id).subscribe((res: any) => {
+        if (res.isSuccess) {
+          this.getUserById();
+        }
+      });
+    }
+  
   }
   onOffNotification(id, e) {
     this.apiservice.onOffNotification(id, e).subscribe((res: any) => {
