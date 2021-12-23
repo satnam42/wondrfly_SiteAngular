@@ -801,8 +801,9 @@ this.programs[i].category = category          }
     this.apiservice.getSuggestedCategory(id).subscribe((res: any) => {
       console.log('ressssss suggested',res)
       if(typeof(res)!=='string'){
-        this.suggested = res
-
+        if(!res.error){
+          this.suggested = res
+        }
       }
       // this.searchedSubCategory = this.suggested[0].name
       else{
