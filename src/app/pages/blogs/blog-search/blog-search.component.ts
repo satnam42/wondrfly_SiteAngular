@@ -27,6 +27,8 @@ export class BlogSearchComponent implements OnInit {
   blogsByLocation: any;
   catg: any;
   blogsBycatg: any;
+  blogArray: any =[];
+
   constructor(
     private apiservice: ApiService,
     private router: Router,
@@ -73,8 +75,8 @@ export class BlogSearchComponent implements OnInit {
   getBlogByCat() {
     const responcee = axios.get(`${this.blogUrl}/categories/?id=${this.catg.id}`).then(response => {
       this.searchCatgData = response.data[0]
-      this.searchCatgData.blogs
-      console.log('response.data[0]',response.data[0])
+      this.blogArray= this.searchCatgData.blogs
+      this.blogArray = this.blogArray.sort((val1, val2)=> new Date(val2.created_at).getTime() - new Date(val1.created_at).getTime());
       this.isMostViewed = false
     });
   }
@@ -89,7 +91,7 @@ export class BlogSearchComponent implements OnInit {
         i++;
           blogs.push(blog);
         blogs.sort((a, b) => (a.views < b.views) ? 1 : (a.views < b.views) ? ((a.views < b.views) ? 1 : -1) : -1);
-        this.searchCatgData.blogs = blogs.filter(this.onlyUnique);
+        this.blogArray = blogs.filter(this.onlyUnique);
       });
       this.isMostViewed=true  }
 
