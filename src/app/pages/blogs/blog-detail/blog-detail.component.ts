@@ -66,9 +66,15 @@ title:string = ""
       firstName: new FormControl(''),
       email: new FormControl('')
     });
+  }
 
 
-
+  goToCategory(data) {
+    var name = data.categoryName;
+    name = name.toLowerCase();
+        name = name.replace(/ /g,"-");
+        name = name.replace(/\?/g,"-");
+        this.router.navigate(['blogs/category/',name, data.id])
   }
 
 // ------------------------------------------------get blogsById  -------------------------------------------

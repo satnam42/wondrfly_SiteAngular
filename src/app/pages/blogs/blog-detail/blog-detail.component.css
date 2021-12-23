@@ -449,6 +449,13 @@ span.circle-dotss {
   padding-right: 15px;
   margin-bottom: 15px;
 }
+
+.bloginterest-btn button.btn:hover {
+  color:#53b2e8;
+  background-color: transparent;
+  border: 1px solid #53b2e8;
+}
+
 .social-icons .icon-button.facebook {
   background: #53b2e8;
   color: #fff;
