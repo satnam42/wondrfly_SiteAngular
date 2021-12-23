@@ -270,6 +270,7 @@ span.beta-span {
     min-height: 47px;
     padding: 10px 14px;
     position: relative;
+    background-color: #fff;
 }
 
 .tab_outer .nav-tabs .nav-link span {
