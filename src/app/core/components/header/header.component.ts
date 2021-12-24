@@ -9,6 +9,7 @@ import { LocalStorageService } from "../../services";
 import { DataService } from "../../services/dataservice.service ";
 import { ToastrService } from "ngx-toastr";
 import { MapsAPILoader } from "@agm/core";
+import * as moment from "moment";
 
 declare const $: any;
 @Component({
@@ -371,11 +372,11 @@ declare const $: any;
               </span>
             </div>
             <hr class="grey_line" />
-            <h6 class="today-heading">Today</h6>
+            <h6 class="today-heading" *ngIf="todayNotifications?.length">Today</h6>
             <div
               class="notification cursor"
               *ngFor="
-                let notification of user?.notices.notifications;
+                let notification of todayNotifications ;
                 let i = index
               "
               (mouseover)="readNotification(notification)"
@@ -408,17 +409,19 @@ declare const $: any;
             </div>
 
             <hr class="grey_line" />
-            <h6 class="today-heading">Earlier</h6>
+            <h6 class="today-heading" *ngIf="earlierNotifications?.length">Earlier</h6>
             <div
               class="notification"
               *ngFor="
-                let notification of user?.notices.notifications;
+                let notification of earlierNotifications;
                 let i = index
               "
+              (mouseover)="readNotification(notification)"
             >
             <div class="img-notif">
-                <img src="assets/notic3.png">
-                <span class="red_dot dots-span"
+                <!-- <img src="assets/notic3.png"> -->
+                <img src="assets/notic1.png">
+                <span *ngIf="!notification.isRead" class="red_dot dots-span"
                   ><svg
                     width="7"
                     height="7"
@@ -435,7 +438,7 @@ declare const $: any;
                 {{ notification.description }}
               </div>
               <div class="noti_heading">
-              {{ notification.updatedOn | date: "MMM d,h:mm a" }}
+              <date-format [date]="notification?.updatedOn"></date-format>
               </div>
             </div>
 
@@ -649,6 +652,7 @@ export class HeaderComponent implements OnInit {
   address: string;
   private geoCoder;
   todayNotifications=[];
+  earlierNotifications=[];
   newNotifications:any;
   @ViewChild('search', { static: false }) searchElementRef: ElementRef;  gitBoxImage='assets/gift-box.svg';
   constructor(
@@ -729,7 +733,12 @@ export class HeaderComponent implements OnInit {
       let notifications=[]
       notifications = this.user.notices.notifications.filter(notification=>notification.isRead==false)
       this.newNotifications = notifications.length
-      this.store.setObject('userData', this.user);
+      
+       this.todayNotifications = this.user.notices.notifications.filter(obj => moment().isSame(obj.createdOn, 'day'));
+      console.log('todayNotificaations',this.todayNotifications)
+      this.earlierNotifications =  this.user.notices.notifications.filter(obj => !moment().isSame(obj.createdOn, 'day'));
+      console.log('earlierNotifications',this.earlierNotifications)
+            this.store.setObject('userData', this.user);
       console.log('user',this.user)
       // this.user.notices.notifications = this.user.notices.notifications.filter(notification=>notification.createdOn.getTime() < new Date().getTime())
       // this.todayNotifications = this.user.notices.notifications.filter(notification=>notification.createdOn.getTime() == new Date().getTime())
