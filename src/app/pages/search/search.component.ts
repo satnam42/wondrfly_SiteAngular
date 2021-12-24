@@ -820,6 +820,7 @@ this.programs[i].category = category          }
         window.document.getElementById("exploreModal").click();
       });
     }
+    this.cookies.set('exploreModal', '1', 30);
   }
   removeRecentSearches(type, indx) {
     switch (type) {

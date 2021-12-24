@@ -266,7 +266,7 @@ declare const $: any;
                     <span class="icon rel"
                       ><img src="assets/Notification-icon.svg" alt="Logo" />
                       <span class="Button-badge" *ngIf="newNotifications">
-                        <span *ngIf="user.notices?.count <= 10">{{
+                        <span *ngIf="newNotifications <= 10">{{
                           newNotifications
                         }}</span>
                         <span *ngIf="newNotifications > 10">{{ 10 }}+</span>
@@ -727,7 +727,7 @@ export class HeaderComponent implements OnInit {
       this.user = res.data;
       this.user.notices.notifications.reverse();
       let notifications=[]
-      notifications = this.user.notices.notifications.filter(notification=>notification.isRead===false)
+      notifications = this.user.notices.notifications.filter(notification=>notification.isRead==false)
       this.newNotifications = notifications.length
       this.store.setObject('userData', this.user);
       console.log('user',this.user)
