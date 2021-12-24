@@ -3,74 +3,69 @@
 <!-- <mat-progress-bar class="progress-bar" mode="determinate" [value]="progressBarVaue"></mat-progress-bar> -->
 
 <div class="main_container">
-  <div class="sub-main">
-    <div class="menu-box">
-      <span class="wnderfly-btn">© 2021 WONDRFLY Inc.</span>
-      <div [hidden]="!step1" class="box text-center p-3 bg-white">
-        <p></p>
-        <h2 class="my_heading1">Where are you?</h2>
-        <p class="pt-1">
-          Your location will help us to find the best activities near you
-        </p>
-        <form [formGroup]="locationForm">
-          <div class="N_inputs_container">
-            <div class="business_name">
-              <input class="my_inputs" placeholder="Type" value="" formControlName="location"
-                (keydown.enter)="$event.preventDefault()" autocorrect="off" autocapitalize="off" spellcheck="off"
-                #search />
-            </div>
-          </div>
-          <div class="img_container">
-            <div class="map">
-              <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom" [zoomControl]="false"
-                [streetViewControl]="false">
-                <div>
-                  <agm-marker [iconUrl]="markerUrl" [latitude]="latitude" [longitude]="longitude">
-                    <strong>{{ parent.firstName }}</strong>
-                  </agm-marker>
-                </div>
-              </agm-map>
-            </div>
-          </div>
-        </form>
-        <div class="N_btns">
-          <div class="row">
-            <div class="col-6">
-              <div onclick="history.back()" class="back_btn cursor">
-                <a> back </a>
-              </div>
-            </div>
-            <div class="col-6">
-              <div [ngClass]="{
+    <div class="sub-main">
+        <div class="menu-box">
+            <span class="wnderfly-btn">© 2021 WONDRFLY Inc.</span>
+            <div [hidden]="!step1" class="box text-center p-3 bg-white">
+                <p></p>
+                <h2 class="my_heading1">Where are you?</h2>
+                <p class="pt-1">
+                    Your location will help us to find the best activities near you
+                </p>
+                <form [formGroup]="locationForm">
+                    <div class="N_inputs_container">
+                        <div class="business_name">
+                            <input class="my_inputs" placeholder="Type" value="" formControlName="location" (keydown.enter)="$event.preventDefault()" autocorrect="off" autocapitalize="off" spellcheck="off" #search />
+                        </div>
+                    </div>
+                    <div class="img_container">
+                        <div class="map">
+                            <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom" [zoomControl]="false" [streetViewControl]="false">
+                                <div>
+                                    <agm-marker [iconUrl]="markerUrl" [latitude]="latitude" [longitude]="longitude">
+                                        <strong>{{ parent.firstName }}</strong>
+                                    </agm-marker>
+                                </div>
+                            </agm-map>
+                        </div>
+                    </div>
+                </form>
+                <div class="N_btns">
+                    <div class="row">
+                        <div class="col-6">
+                            <div onclick="history.back()" class="back_btn cursor">
+                                <a> back </a>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div [ngClass]="{
                   disable_next:
                     !locationForm.value.location ||
                     !locationForm.value.addressLine1
                 }" (click)="nextStep()" class="next_btn cursor">
-                <a> Next </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div *ngIf="step2" class="box text-center p-3 bg-white">
-        <p></p>
-        <h2 class="my_heading1">Tell us about your child</h2>
-        <p class="pt-1">
-          These details will help us find personalized activity recommendations <br> based on your child's age,
-          interests and availability
-        </p>
-
-        <div class="N_inputs_container">
-          <form [formGroup]="addChildForm">
-            <div class="business_name">
-              <div class="N_container_box_input_heading">NAME</div>
-              <input type="text" placeholder="Type" form [formControl]="addChildForm.controls['name']" class="my_inputs"
-                [(ngModel)]="kid.name" />
+                                <a> Next </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
+            <div *ngIf="step2" class="box text-center p-3 bg-white">
+                <p></p>
+                <h2 class="my_heading1">Tell us about your child</h2>
+                <p class="pt-1">
+                    These details will help us find personalized activity recommendations <br> based on your child's age, interests and availability
+                </p>
 
-            <!-- <div class="form-group">
+                <div class="N_inputs_container">
+                    <form [formGroup]="addChildForm">
+                        <div class="business_name">
+                            <div class="N_container_box_input_heading">NAME</div>
+                            <input type="text" placeholder="Type" form [formControl]="addChildForm.controls['name']" class="my_inputs" [(ngModel)]="kid.name" />
+                        </div>
+
+
+                        <!-- <div class="form-group">
               <div class="N_container_box_input_heading">Gender</div>
               <div class="custom_select">
                 <select [(ngModel)]="kid.sex" name="sex">
@@ -82,174 +77,167 @@
             </div> -->
 
 
-            <div class="business_name datef">
-              <div class="N_container_box_input_heading">DATE OF BIRTH</div>
-              <input type="date" placeholder="mm/dd/yy" [formControl]="addChildForm.controls['dob']" class="my_inputs"
-                [(ngModel)]="kid.dob" />
-            </div>
-            <div class="business_name">
-              <div class="N_container_box_input_heading">how did you hear about us?</div>
-              <input type="text" placeholder="Type" class="my_inputs"/>
-            </div>
-          </form>
-        </div>
-
-        <div class="N_btns">
-          <div class="row">
-            <div class="col-6">
-              <div (click)="backStep()" class="back_btn cursor">
-                <a> back </a>
-              </div>
-            </div>
-            <div class="col-6">
-              <div [ngClass]="{ disable_next: !kid.name || !kid.dob }" (click)="validAge()" class="next_btn cursor">
-                <a> Next </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div *ngIf="step3" class="box text-center p-3 bg-white">
-        <p></p>
-        <h2 class="my_heading1">What’s your child interested in?</h2>
-        <br />
-        <form>
-          <div class="N_inputs_container">
-            <div class="form-group">
-              <div class="input_outer">
-                <div class="ng-autocomplete">
-                  <ng-autocomplete [data]="searchTags?.tags" placeholder="Type" [searchKeyword]="keyword"
-                    (selected)="selectEvent($event)" (inputChanged)="onChangeSearch($event)"
-                    [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate">
-                  </ng-autocomplete>
-
-                  <ng-template #itemTemplate let-item>
-                    <a [innerHTML]="item.name"></a>
-                  </ng-template>
-
-                  <ng-template #notFoundTemplate let-notFound>
-                    <div *ngIf="searchTags?.tags?.length" [innerHTML]="notFound"></div>
-                  </ng-template>
+                        <div class="business_name datef">
+                            <div class="N_container_box_input_heading">DATE OF BIRTH</div>
+                            <input type="date" placeholder="mm/dd/yy" [formControl]="addChildForm.controls['dob']" class="my_inputs" [(ngModel)]="kid.dob" />
+                        </div>
+                        <div class="business_name">
+                            <div class="N_container_box_input_heading">how did you hear about us?</div>
+                            <input type="text" placeholder="Type" class="my_inputs" />
+                        </div>
+                    </form>
                 </div>
-              </div>
-              <br />
-              <mat-form-field class="demo-chip-list">
-                <mat-chip-list>
-                  <mat-chip *ngFor="let t of selectedTags" [selectable]="selectable" [removable]="removable"
-                    (removed)="remove(t)">
-                    {{ t.name }}
-                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                  </mat-chip>
-                </mat-chip-list>
-              </mat-form-field>
+
+                <div class="N_btns">
+                    <div class="row">
+                        <div class="col-6">
+                            <div (click)="backStep()" class="back_btn cursor">
+                                <a> back </a>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div [ngClass]="{ disable_next: !kid.name }" (click)="validAge()" class="next_btn cursor">
+                                <a> Next </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="small_boxes">
-            <div class="row">
-              <div class="col-3" *ngFor="let tag of tags | slice: 0:8">
-                <div class="category_list" (click)="selectSkills(tag)">
-                  <div class="box-border" [ngClass]="{ active: tag.active }">
-                    <img class="cat_img my_box" src="https://wondrfly.com/{{
+
+            <div *ngIf="step3" class="box text-center p-3 bg-white">
+                <p></p>
+                <h2 class="my_heading1">What’s your child interested in?</h2>
+                <br />
+                <form>
+                    <div class="N_inputs_container">
+                        <div class="form-group">
+                            <div class="input_outer">
+                                <div class="ng-autocomplete">
+                                    <ng-autocomplete [data]="searchTags?.tags" placeholder="Type" [searchKeyword]="keyword" (selected)="selectEvent($event)" (inputChanged)="onChangeSearch($event)" [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate">
+                                    </ng-autocomplete>
+
+                                    <ng-template #itemTemplate let-item>
+                                        <a [innerHTML]="item.name"></a>
+                                    </ng-template>
+
+                                    <ng-template #notFoundTemplate let-notFound>
+                                        <div *ngIf="searchTags?.tags?.length" [innerHTML]="notFound"></div>
+                                    </ng-template>
+                                </div>
+                            </div>
+                            <br />
+                            <mat-form-field class="demo-chip-list">
+                                <mat-chip-list>
+                                    <mat-chip *ngFor="let t of selectedTags" [selectable]="selectable" [removable]="removable" (removed)="remove(t)">
+                                        {{ t.name }}
+                                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                    </mat-chip>
+                                </mat-chip-list>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="small_boxes">
+                        <div class="row">
+                            <div class="col-3" *ngFor="let tag of tags | slice: 0:8">
+                                <div class="category_list" (click)="selectSkills(tag)">
+                                    <div class="box-border" [ngClass]="{ active: tag.active }">
+                                        <img class="cat_img my_box" src="https://wondrfly.com/{{
                         tag.categoryIds[0].iconUrl
                       }}" alt="location" />
-                  </div>
+                                    </div>
 
-                  <span [ngClass]="{ active: tag.active }">
+                                    <span [ngClass]="{ active: tag.active }">
                     {{ tag.name }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="N_btns">
+                    <div class="row">
+                        <div class="col-6">
+                            <div (click)="backStep()" class="back_btn cursor">
+                                <a> back </a>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div [ngClass]="{ disable_next: selectedTags?.length <= 0 }" (click)="nextStep()" class="next_btn cursor">
+                                <a> Next </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
-        </form>
-        <div class="N_btns">
-          <div class="row">
-            <div class="col-6">
-              <div (click)="backStep()" class="back_btn cursor">
-                <a> back </a>
-              </div>
-            </div>
-            <div class="col-6">
-              <div [ngClass]="{ disable_next: selectedTags?.length <= 0 }" (click)="nextStep()" class="next_btn cursor">
-                <a> Next </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <div *ngIf="step4" class="box text-center p-3 bg-white">
-        <p></p>
-        <h2 class="my_heading1">Tell us more about your child’s interests</h2>
-        <br />
-        <form>
-          <div class="N_inputs_container">
-            <div class="form-group">
-              <div class="input_outer">
-                <div class="ng-autocomplete">
-                  <ng-autocomplete [data]="searchTags" placeholder="Type" [searchKeyword]="keyword"
-                    (selected)="selectEvent($event)" (inputChanged)="onChangeSearch($event)"
-                    [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate">
-                  </ng-autocomplete>
-                  <ng-template #itemTemplate let-item>
-                    <a [innerHTML]="item.name"></a>
-                  </ng-template>
+            <div *ngIf="step4" class="box text-center p-3 bg-white">
+                <p></p>
+                <h2 class="my_heading1">Tell us more about your child’s interests</h2>
+                <br />
+                <form>
+                    <div class="N_inputs_container">
+                        <div class="form-group">
+                            <div class="input_outer">
+                                <div class="ng-autocomplete">
+                                    <ng-autocomplete [data]="searchTags" placeholder="Type" [searchKeyword]="keyword" (selected)="selectEvent($event)" (inputChanged)="onChangeSearch($event)" [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate">
+                                    </ng-autocomplete>
+                                    <ng-template #itemTemplate let-item>
+                                        <a [innerHTML]="item.name"></a>
+                                    </ng-template>
 
-                  <ng-template #notFoundTemplate let-notFound>
-                    <div *ngIf="searchesCatg.length" [innerHTML]="notFound"></div>
-                  </ng-template>
-                </div>
-              </div>
+                                    <ng-template #notFoundTemplate let-notFound>
+                                        <div *ngIf="searchesCatg.length" [innerHTML]="notFound"></div>
+                                    </ng-template>
+                                </div>
+                            </div>
 
-              <br />
-              <mat-form-field class="demo-chip-list">
-                <mat-chip-list>
-                  <mat-chip *ngFor="let t of selectedTags" [selectable]="selectable" [removable]="removable"
-                    (removed)="remove(t)">
-                    {{ t.name }}
-                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                  </mat-chip>
-                </mat-chip-list>
-              </mat-form-field>
-            </div>
-          </div>
-          <div class="small_boxes">
-            <div class="row">
-              <div class="col-3" *ngFor="let tag of tags | slice: 9:17">
-                <div class="category_list" (click)="selectSkills(tag)">
-                  <div class="box-border" [ngClass]="{ active: tag.active }">
-                    <img class="cat_img my_box" src="https://wondrfly.com/{{
+                            <br />
+                            <mat-form-field class="demo-chip-list">
+                                <mat-chip-list>
+                                    <mat-chip *ngFor="let t of selectedTags" [selectable]="selectable" [removable]="removable" (removed)="remove(t)">
+                                        {{ t.name }}
+                                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                    </mat-chip>
+                                </mat-chip-list>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="small_boxes">
+                        <div class="row">
+                            <div class="col-3" *ngFor="let tag of tags | slice: 9:17">
+                                <div class="category_list" (click)="selectSkills(tag)">
+                                    <div class="box-border" [ngClass]="{ active: tag.active }">
+                                        <img class="cat_img my_box" src="https://wondrfly.com/{{
                         tag.categoryIds[0].iconUrl
                       }}" alt="location" />
-                  </div>
+                                    </div>
 
-                  <span [ngClass]="{ active: tag.active }">
+                                    <span [ngClass]="{ active: tag.active }">
                     {{ tag.name }}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </form>
-        <div class="N_btns">
-          <div class="row">
-            <div class="col-6">
-              <div (click)="backStep()" class="back_btn cursor">
-                <a> back </a>
-              </div>
-            </div>
-            <div class="col-6">
-              <div (click)="nextStep()" class="next_btn cursor">
-                <a> Next </a>
-              </div>
-           
-            </div>
-          </div>
-        </div>
-      </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="N_btns">
+                    <div class="row">
+                        <div class="col-6">
+                            <div (click)="backStep()" class="back_btn cursor">
+                                <a> back </a>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div (click)="nextStep()" class="next_btn cursor">
+                                <a> Next </a>
+                            </div>
 
-      <div *ngIf="step5" class="box text-center p-3 bg-white">
-        <h2 class="my_heading1">Welcome to Wondrfly!</h2>
-        <!-- <div class="N_inputs_container">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="step5" class="box text-center p-3 bg-white">
+                <h2 class="my_heading1">Welcome to Wondrfly!</h2>
+                <!-- <div class="N_inputs_container">
           <form [formGroup]="addChildForm">
             <div class="business_name why-wonderflyinput">
               <input
@@ -309,34 +297,32 @@
             </div>
           </form>
         </div> -->
-        <!-- <div class="welcomeImg">
+                <!-- <div class="welcomeImg">
           <img src="assets/welcomeScreen.png" class="welcomeImg" alt="" />
         </div> -->
-        <div class="laststep-onboarding">
-          <h6>
-            You can now explore over 500 activities for kids!
-            <br>
-            <br>
-            We’re growing fast, so be sure to check back for more.
-          </h6>
-        </div>
-        <div class="N_btns">
-          <div class="row">
-            <div class="col-6">
-              <div (click)="backStep()" class="back_btn cursor">
-                <a> back </a>
-              </div>
+                <div class="laststep-onboarding">
+                    <h6>
+                        You can now explore over 500 activities for kids!
+                        <br>
+                        <br> We’re growing fast, so be sure to check back for more.
+                    </h6>
+                </div>
+                <div class="N_btns">
+                    <div class="row">
+                        <div class="col-6">
+                            <div (click)="backStep()" class="back_btn cursor">
+                                <a> back </a>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div (click)="addChild(); updateParent()" class="next_btn cursor">
+                                <a> Finish </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-6">
-              <div (click)="addChild(); updateParent()"
-                class="next_btn cursor">
-                <a> Finish </a>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>
 <ngx-ui-loader></ngx-ui-loader>
