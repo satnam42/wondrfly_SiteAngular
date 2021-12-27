@@ -361,11 +361,54 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked,OnDestro
     this.apiservice.getChildByParentId(id).subscribe((res: any) => {
       this.kids = res
       this.kids = this.kids.filter((item) => item.isActivated === true);
+      let kids = []
+      this.kids.forEach(kid => {
+        let kidMonth = String(this.getAgeMonth(kid.dob))
+        let age = Number(this.getAge(kid.dob))
+        if(age<1){
+          if(kidMonth){
+            kid.age = kidMonth+' Months Old'
+          }
+        }
+      
+        if(age>=1){
+          kid.age = age+' Years Old'
+        }
+
+        
+  kids.push(kid)
+});
+this.kids = kids
       console.log('children List', res)
       this.ngxLoader.stop();
     });
     this.ngxLoader.stop();
   }
+
+  getAgeMonth(dateString) 
+  {    var today = new Date();
+      var birthDate = new Date(dateString);
+      var age = today.getFullYear() - birthDate.getFullYear();
+      var m = today.getMonth() - birthDate.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) 
+      {
+          age--;
+      }
+       
+      return m;
+  }
+ getAge(dateString) 
+{    var today = new Date();
+    var birthDate = new Date(dateString);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) 
+    {
+        age--;
+    }
+     
+    return age+'.'+m;
+}
   onAddChild() {
     window.scroll(0, 0);
     this.isAddChildBtn = true;
@@ -739,14 +782,14 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked,OnDestro
       var birth = new Date(this.kid.dob);
       let birthYear = moment(birth).format("YYYY");
       let currentYear = moment(Date.now()).format("YYYY");
-      if (birthYear >= currentYear) {
+      if (birthYear > currentYear) {
         this.ngxLoader.stop();
         this.toastr.warning("please fill valid birth year");
       } else {
         var ageDifMs = Date.now() - birth.getTime();
         var ageDate = new Date(ageDifMs); // miliseconds from epoch
         var age = Math.abs(ageDate.getUTCFullYear() - 1970);
-        if (age > 20) {
+        if (age > 18) {
           this.toastr.warning("please fill valid birth year")
           this.ngxLoader.stop();
         } else {
