@@ -8,6 +8,7 @@ import { Title, Meta } from '@angular/platform-browser';
 import axios from 'axios';
 import { environment } from 'src/environments/environment';
 import { MapsAPILoader } from '@agm/core';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-landing',
@@ -42,6 +43,7 @@ export class LandingComponent implements OnInit {
   providersBySearch: any = new User;
   altBanner:any  = ''
   private geoCoder;
+  cookiesData: string;
   @ViewChild('search') searchElementRef: ElementRef;
   constructor(private router: Router,
     private mapsAPILoader: MapsAPILoader,
@@ -51,7 +53,12 @@ export class LandingComponent implements OnInit {
     public auth: AuthsService,
     private titleService: Title,
     private metaTagService: Meta,
+    private cookies :CookieService
    ) {
+    this.cookiesData = this.cookies.get('isTour');
+    if(Number(this.cookiesData)!=3 || Number(this.cookiesData)!=6 ||  Number(this.cookiesData)!=9 || Number(this.cookiesData)!=12){
+      let num = Number(this.cookiesData)+1
+      this.cookies.set('isTour', String(num), 30);    }
   }
   searchBySubCategory(id) {
     this.filterData.activityName=''

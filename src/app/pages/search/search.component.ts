@@ -139,7 +139,6 @@ export class SearchComponent implements OnInit, OnDestroy {
   fakeLoaderData = [1, 2, 3, 4, 5]
   currentUser: any;
   cookiesData: string;
-  explore_modal_cookies_data:string;
   constructor(
     private router: Router,
     private apiservice: ApiService,
@@ -166,8 +165,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.currentUser = auth.currentUser();
     this.filterData = dataservice.getOption()
     this.cookiesData = this.cookies.get('isTour');
-    this.explore_modal_cookies_data = this.cookies.get('exploreModal');
-    this.exploreModal()
+    // this.exploreModal()
     var retrievedObject = localStorage.getItem('userData');
     this.userData = JSON.parse(retrievedObject);
       if (this.filterData.subcatId || this.filterData.categoryId || this.filterData.kidAge) {
@@ -207,13 +205,23 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   startTour() {
     window.scroll(0, 0);
-    if(this.cookiesData!=='1' && this.contentLoaded && this.programs.length && this.currentUser){
-      this.joyride.startTour({ steps: ['firstStep', 'secondStep0', 'thirdStep0'] }); 
-
-      // if(this.cookiesData && this.cookiesData!=='!'){
-      this.cookies.set('isTour', '1', 30);
-      // }
+    console.log('cookiesData',this.cookiesData)
+    if(this.cookiesData=='2' && this.contentLoaded && this.programs.length){
+      this.joyride.startTour({ steps: ['firstStep1'] }); 
+      this.cookies.set('isTour', '3', 30);
       }
+      if(this.cookiesData=='5' && this.contentLoaded && this.programs.length){
+        this.joyride.startTour({ steps: ['secondStep1'] }); 
+          this.cookies.set('isTour', '6', 30);
+        }
+        if(this.cookiesData=='8' && this.contentLoaded && this.programs.length){
+          this.joyride.startTour({ steps: ['thirdStep1'] }); 
+          this.cookies.set('isTour', '9', 30);
+          }
+          if(this.cookiesData=='11' && this.contentLoaded){
+            window.document.getElementById("exploreModal").click();      
+            this.cookies.set('isTour', '12', 30);
+            }
 
   }
 
@@ -737,7 +745,6 @@ this.programs[i].category = category          }
   }
 
   ngOnDestroy() {
-    this.cookies.set('exploreModal', '1');
     window.document.getElementById("close_modal").click();
     // window.document.getElementById("close_morefilter").click();
     window.document.getElementById("close_sharemodal").click();
@@ -820,14 +827,14 @@ this.programs[i].category = category          }
   }
 
   // ----------------------------------exploreModal functionality--------------------------------------
-  exploreModal() {
-    if (this.explore_modal_cookies_data!=='1') {
-      setTimeout(() => {
-        window.document.getElementById("exploreModal").click();
-      });
-    }
-    this.cookies.set('exploreModal', '1', 30);
-  }
+  // exploreModal() {
+  //   if (this.explore_modal_cookies_data!=='1') {
+  //     setTimeout(() => {
+  //       window.document.getElementById("exploreModal").click();
+  //     });
+  //   }
+  //   this.cookies.set('exploreModal', '1', 30);
+  // }
   removeRecentSearches(type, indx) {
     switch (type) {
       case 'days': {

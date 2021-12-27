@@ -19,7 +19,7 @@
                     <div class="category_list" id="accordionExample">
                         <ul>
                             <li class="cursor">
-                                <a aria-expanded="true" data-target="#category" [ngClass]="{ active: isCategoryFilter }" data-toggle="collapse" joyrideStep="firstStep" title="💡 Search with filters" text="Narrow down your search by clicking on any of the filters above. ">Categories</a>
+                                <a aria-expanded="true" data-target="#category" [ngClass]="{ active: isCategoryFilter }" data-toggle="collapse" joyrideStep="firstStep1" title="💡 Search with filters" text="Narrow down your search by clicking on any of the filters above. ">Categories</a>
                                 <div class="
                     collapse
                     main_collpase
@@ -342,10 +342,10 @@
                             <div class="media-body">
                                 <div class="share_icon">
                                     <a data-toggle="modal" (click)="selectedProgram = program" data-target="#ShareModal" class="cursor">
-                                        <img src="assets/share_gray.svg " class="section1" joyrideStep="secondStep{{i}}" title="💡 Share with friends and family" text="Click here to share your favorite activities!" alt="Share Icon " />
+                                        <img src="assets/share_gray.svg " class="section1" joyrideStep="secondStep1" title="💡 Share with friends and family" text="Click here to share your favorite activities!" alt="Share Icon " />
                                     </a>
                                     <div class="bookmark_outer">
-                                        <a *ngIf="!program.isFav && parentRole && isLogin" (click)="addFavProgram(userData.id, program._id, i)" class="bookmark_icon cursor"><img src="assets/bookmark_gray.svg " alt="Menu Image " class="section2" joyrideStep="thirdStep{{i}}" title="💡 Save activities for later" text="Click here to save your favorite activities all in one place for when you need them!"
+                                        <a *ngIf="!program.isFav && parentRole && isLogin" (click)="addFavProgram(userData.id, program._id, i)" class="bookmark_icon cursor"><img src="assets/bookmark_gray.svg " alt="Menu Image " class="section2" joyrideStep="thirdStep1" title="💡 Save activities for later" text="Click here to save your favorite activities all in one place for when you need them!"
                                             /></a>
 
                                         <a *ngIf="!isLogin" routerLink="/login" class="bookmark_icon cursor"><img src="assets/bookmark_gray.svg " alt="Menu Image " /></a>

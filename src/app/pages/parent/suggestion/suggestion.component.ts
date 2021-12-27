@@ -12,6 +12,7 @@ import { environment } from 'src/environments/environment.prod';
 import * as FileSaver from 'file-saver';
 import { MapsAPILoader } from '@agm/core';
 import { Console } from 'console';
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'parent-suggestion',
   templateUrl: './suggestion.component.html',
@@ -57,6 +58,7 @@ export class SuggestionComponent implements OnInit {
   lat: string
  lng : string
  resourcesType='do-together'
+ cookiesData:string;
   constructor(private router: Router,
     private apiservice: ApiService,
     private dataservice: DataService,
@@ -67,6 +69,7 @@ export class SuggestionComponent implements OnInit {
     private typeFormService: TypeFormService,
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
+    private cookies :CookieService
    ) {
     this.currentUser = this.auth.currentUser();
 if(!this.currentUser){
@@ -277,8 +280,15 @@ setBlog(data){
   window.open(url, '_blank');
 }
 
-
+setVisit(){
+  this.cookiesData = this.cookies.get('isTour');
+console.log('get isTour count ',this.cookiesData)
+if(Number(this.cookiesData)!=3 || Number(this.cookiesData)!=6 ||  Number(this.cookiesData)!=9 || Number(this.cookiesData)!=12){
+  let num = Number(this.cookiesData)+1
+      this.cookies.set('isTour', String(num), 30);    }
+}
   ngOnInit() {
+    this.setVisit();
     this.getTweet();
     this.getPrintables();
     this.getBlogByCat();
