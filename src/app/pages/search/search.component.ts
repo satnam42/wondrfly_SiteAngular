@@ -207,7 +207,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     window.scroll(0, 0);
     console.log('cookiesData',this.cookiesData)
     if(this.cookiesData=='2' && this.contentLoaded && this.programs.length){
-      this.joyride.startTour({ steps: ['firstStep1'] }); 
+      this.joyride.startTour({ steps: ['firstStep'] }); 
       this.cookies.set('isTour', '3', 30);
       }
       if(this.cookiesData=='5' && this.contentLoaded && this.programs.length){
