@@ -55,10 +55,7 @@ export class LandingComponent implements OnInit {
     private metaTagService: Meta,
     private cookies :CookieService
    ) {
-    this.cookiesData = this.cookies.get('isTour');
-    if(Number(this.cookiesData)!=3 || Number(this.cookiesData)!=6 ||  Number(this.cookiesData)!=9 || Number(this.cookiesData)!=12){
-      let num = Number(this.cookiesData)+1
-      this.cookies.set('isTour', String(num), 30);    }
+
   }
   searchBySubCategory(id) {
     this.filterData.activityName=''
@@ -154,7 +151,16 @@ export class LandingComponent implements OnInit {
     providerName = providerName.replace(/\?/g,"-");
       this.router.navigate(['provider/program-provider', providerName, provider._id]);
   }
+  
+setVisit(){
+  this.cookiesData = this.cookies.get('isTour');
+console.log('get isTour count ',this.cookiesData)
+if(Number(this.cookiesData)!=2 || Number(this.cookiesData)!=3 || Number(this.cookiesData)!=5 ||Number(this.cookiesData)!=6 || Number(this.cookiesData)!=8 || Number(this.cookiesData)!=9 || Number(this.cookiesData)!=12){
+  let num = Number(this.cookiesData)+1
+      this.cookies.set('isTour', String(num), 30);    }
+}
   ngOnInit() {
+    this.setVisit();
     window.scroll(0,0);
     this.landingImageIndex = Math.floor(Math.random() * this.landingImages.length);
     if(this.landingImageIndex){
