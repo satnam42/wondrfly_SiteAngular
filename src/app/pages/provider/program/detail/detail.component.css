@@ -389,7 +389,7 @@ button.camp-btn {
 }
 
 .description_text p {
-  font-size: 12px;
+  font-size: 14px;
   line-height: 18px;
   color: #494949;
   margin-top: 22px;
@@ -413,6 +413,12 @@ button.camp-btn {
   color: #53b2e8;
   float: right;
   cursor: pointer;
+}
+.description_text .company_info{
+  margin-top: 20px;
+}
+.description_text .company_info .media-body{
+  margin-left: 9px;
 }
 
 .reviews_outer {
@@ -1067,8 +1073,9 @@ agm-map {
   margin: 45px 0px 1px -17px;
 }
 .programInfo {
-  width: 87%;
-  float: left;
+  width: 100%;
+    line-height: 25px;
+    margin-top: 0px;
 }
 
 @media (min-width: 768px) {
@@ -1188,17 +1195,24 @@ agm-map {
 
 /* -------------------------------------------------------people card-------------------------------------------------------- */
 
-.description_text.people_sectionn .media {
-  margin-top: 30px;
-}
-
 .description_text.people_sectionn .media .people_profile {
   width: 130px;
   height: 130px;
   border-radius: 50%;
   overflow: hidden;
 }
-
+.btn-style{
+  background-color: #53B2E8;
+  border-color: #53B2E8;
+  box-shadow: none;
+  border-radius: 26px;
+  font-weight: 600;
+  font-size: 13px;
+  color: #fff;
+  width: 100px !important;
+  margin-left: 20px;
+  border:0px;
+}
 .description_text.people_sectionn .media .people_profile img {
   max-width: 100%;
   min-height: 100%;
@@ -1267,9 +1281,7 @@ agm-map {
 }
 
 .description_text.people_sectionn .media .media-body {
-  padding-left: 23px;
-  border-left: 1px solid #e0e0e0;
-  margin-left: 24px;
+  margin-left: 10px;
 }
 
 .description_text.people_sectionn .media .media-body h3 {
@@ -1286,7 +1298,7 @@ agm-map {
   background: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
-  padding: 50px 35px;
+  padding:30px;
   margin-bottom: 50px;
   position: relative;
 }
@@ -1700,13 +1712,14 @@ button.map-buttonas {
 div#cat-subcat {
   display: flex;
   flex-wrap: wrap;
-  width: 358px;
+  width: 100%;
+  padding: 20px;
 }
 button.camp-btn{
   background: #e2f5ff;
   border-radius: 20px;
   border: none;
-  font-family: Poppins;
+  font-family: "Poppins";
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -1779,4 +1792,36 @@ span#closeBtn {
   margin-top: -20px;
   margin-right: 9px;
   cursor: pointer;
+}
+.company_info .icon {
+  color: #53b2e8;
+  font-size: 25px;
+}
+.company_info h4 {
+  font-family: "Poppins";
+  font-weight: 600;
+  font-size: 10px;
+  line-height: 14px;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: #494949;
+}
+.company_info p {
+  font-size: 13px !important;
+  line-height: 16px;
+  letter-spacing: 0.001em;
+  color: #494949;
+  margin: 5px 0 0 0 !important;
+  text-align: left;
+  text-align: left !important;
+}
+.social-icons.media.company_info img {
+  width: 20px;
+  border-radius: 0px;
+}
+.social-icons.media.company_info a {
+  margin-right: 20px;
+}
+.social-icons.media.company_info{
+  text-align: center;
 }

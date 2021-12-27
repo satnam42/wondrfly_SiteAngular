@@ -219,10 +219,6 @@
   margin-top: 21px;
 }
 
-.description_text.people_section .media {
-  margin-top: 42px;
-}
-
 .description_text.people_section .media .people_profile {
   width: 117px;
   height: 117px;
@@ -291,9 +287,7 @@
 }
 
 .description_text.people_section .media .media-body {
-  padding-left: 23px;
-  border-left: 1px solid #e0e0e0;
-  margin-left: 24px;
+  margin-top:-20px;
 }
 
 .description_text.people_section .media .media-body h3 {
@@ -689,10 +683,6 @@ p.health_name {
   text-align: justify;
   letter-spacing: 0.001em;
   color: #494949;
-}
-.description_text.people_section.overview .media-body {
-  padding-left: 29px !important;
-  margin-left: 40px !important;
 }
 .description_text.people_section.overview .media .media-left h5 {
   font-weight: 500 !important;

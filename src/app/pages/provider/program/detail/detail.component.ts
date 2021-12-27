@@ -80,7 +80,7 @@ export class DetailComponent implements OnInit {
   programImgURL: any;
   userLogo: any;
   getUrl: any;
-  user: User;
+  user: any;
   userId = ''
   fromTime = new Date;
   toTime = new Date;
