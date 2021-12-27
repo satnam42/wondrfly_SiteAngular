@@ -249,7 +249,7 @@
                     Top Rated
                     <span>
                       <label class="switch1">
-                        <input [(ngModel)]="isTopFilterCheckBox" (change)="getTopRated()" type="checkbox" />
+                        <input [(ngModel)]="isTopFilterCheckBox" (change)="programFilter()" type="checkbox" />
                         <span class="slider1"></span>
                       </label>
                     </span>
@@ -308,7 +308,7 @@
           </button>
                     <button class="btn_style save_btn cursor" *ngIf="isTopFilterCheckBox">
             Top Rated
-            <span  class="ml-2" (click)="programFilter()"><img src="assets/white-close.png" /></span>
+            <span  (click)="isTopFilterCheckBox=false;isTopFilter=false;programFilter()" class="ml-2"><img src="assets/white-close.png" /></span>
           </button>
                     <button class="btn_style save_btn cursor" *ngFor="let day of this.selectedDays;index as i">
             {{day}}

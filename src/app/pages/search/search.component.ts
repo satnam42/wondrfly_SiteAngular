@@ -598,7 +598,7 @@ for(let i in this.programs){
     this.isTypeFilter = false;
     this.isCategoryFilter = false;
     this.suggested=[]
-    if (this.categoryId || this.selectedDays.length || this.selectedProgramTypes.length || this.selectedSubCategories.length || this.selectedProgramTime.length || this.isOnline || this.isInPerson || this.isDateFilter || this.isPriceFilter || this.isAgeFilter) {
+    if (this.isTopFilterCheckBox || this.categoryId || this.selectedDays.length || this.selectedProgramTypes.length || this.selectedSubCategories.length || this.selectedProgramTime.length || this.isOnline || this.isInPerson || this.isDateFilter || this.isPriceFilter || this.isAgeFilter) {
       let filter = ``
       let inpersonOrVirtual = ''
       let days = ''
@@ -610,6 +610,8 @@ for(let i in this.programs){
       let typesCount = 1
       let tagsCount = 1
       let timesCount = 1
+      let ratingFrom = 0
+      let ratingTo = 5
       if (this.categoryId) {
         this.isCategoryFilter = true;
         categoryId = this.categoryId
@@ -672,6 +674,10 @@ for(let i in this.programs){
       this.contentLoaded = false;
 
       filter = `time=${times}&categoryId=${categoryId}&tagsIds=${tags}&type=${types}&inpersonOrVirtual=${inpersonOrVirtual}&day=${days}`
+      if(this.isTopFilterCheckBox){
+        this.isTopFilter=true;
+        filter += `&ratingFrom=${ratingFrom}&ratingTo=${ratingTo}`
+      }
       if (this.isDateFilter) {
         filter += `&fromDate=${this.fromDate}&toDate=${this.toDate}`
       }
@@ -687,7 +693,7 @@ for(let i in this.programs){
         console.log('filter response', res);
         this.contentLoaded = true;
         if (res.isSuccess) {
-          this.isTopFilterCheckBox = false
+          // this.isTopFilterCheckBox = false
           this.programs = res.data;
           for(let i in this.programs){
             let category = this.programs[i].category.filter((v,num,a)=>a.findIndex(t=>(t.name==v.name))===num)
