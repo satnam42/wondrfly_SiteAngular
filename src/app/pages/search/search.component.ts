@@ -610,7 +610,7 @@ for(let i in this.programs){
       let typesCount = 1
       let tagsCount = 1
       let timesCount = 1
-      let ratingFrom = 0
+      let ratingFrom = 4
       let ratingTo = 5
       if (this.categoryId) {
         this.isCategoryFilter = true;
