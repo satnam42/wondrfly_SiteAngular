@@ -223,15 +223,16 @@
                     <span *ngIf="isLogin" (click)="clearAll()"> clear all </span>
                     </span>
                 </div>
-                <hr class="grey_line" />
-                <h6 class="today-heading" *ngIf="todayNotifications?.length">Today</h6>
-                <div class="notification cursor" *ngFor="
+                <div class="scroll-bar">
+                    <hr class="grey_line" />
+                    <h6 class="today-heading" *ngIf="todayNotifications?.length">Today</h6>
+                    <div class="notification cursor" *ngFor="
               let notification of todayNotifications ;
               let i = index
             " (mouseover)="readNotification(notification)">
-                    <div class="img-notif">
-                        <img src="assets/notic1.png">
-                        <span *ngIf="!notification.isRead" class="red_dot dots-span"><svg
+                        <div class="img-notif">
+                            <img src="assets/notic1.png">
+                            <span *ngIf="!notification.isRead" class="red_dot dots-span"><svg
                   width="7"
                   height="7"
                   viewBox="0 0 4 4"
@@ -241,30 +242,30 @@
                   <circle cx="2" cy="2" r="2" fill="#FA627D" />
                 </svg>
               </span>
-                    </div>
-                    <div>
-                        <div class="noti_description">
-                            {{ notification?.description }}
                         </div>
-                        <div class="noti_heading">
-                            <date-format [date]="notification?.updatedOn"></date-format>
+                        <div>
+                            <div class="noti_description">
+                                {{ notification?.description }}
+                            </div>
+                            <div class="noti_heading">
+                                <date-format [date]="notification?.updatedOn"></date-format>
+                            </div>
                         </div>
+
+
+
                     </div>
 
-
-
-                </div>
-
-                <hr class="grey_line" />
-                <h6 class="today-heading" *ngIf="earlierNotifications?.length">Earlier</h6>
-                <div class="notification" *ngFor="
+                    <hr class="grey_line" />
+                    <h6 class="today-heading" *ngIf="earlierNotifications?.length">Earlier</h6>
+                    <div class="notification" *ngFor="
               let notification of earlierNotifications;
               let i = index
             " (mouseover)="readNotification(notification)">
-                    <div class="img-notif">
-                        <!-- <img src="assets/notic3.png"> -->
-                        <img src="assets/notic1.png">
-                        <span *ngIf="!notification.isRead" class="red_dot dots-span"><svg
+                        <div class="img-notif">
+                            <!-- <img src="assets/notic3.png"> -->
+                            <img src="assets/notic1.png">
+                            <span *ngIf="!notification.isRead" class="red_dot dots-span"><svg
                   width="7"
                   height="7"
                   viewBox="0 0 4 4"
@@ -274,17 +275,18 @@
                   <circle cx="2" cy="2" r="2" fill="#FA627D" />
                 </svg>
               </span>
-                    </div>
-                    <div>
-                        <div class="noti_description">
-                            {{ notification.description }}
                         </div>
-                        <div class="noti_heading">
-                            <date-format [date]="notification?.updatedOn"></date-format>
+                        <div>
+                            <div class="noti_description">
+                                {{ notification.description }}
+                            </div>
+                            <div class="noti_heading">
+                                <date-format [date]="notification?.updatedOn"></date-format>
+                            </div>
                         </div>
-                    </div>
 
 
+                    </div>
                 </div>
             </div>
         </div>
