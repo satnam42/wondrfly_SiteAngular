@@ -54,6 +54,8 @@ export class Program {
     subCategoryIds:any=[]
     category:any = {}
     realTime:any = {}
+    inpersonOrvirtual: string;
+    joiningLink: string;
 
     constructor(obj?: any) {
 

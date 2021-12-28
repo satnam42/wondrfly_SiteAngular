@@ -500,13 +500,14 @@
                                     </div>
                                 </div>
                                 <div class="price-box">
-                                    <p *ngIf="!program.isFree">
-                                        <span><img src="assets/price.svg" />${{
+                                    <p *ngIf="!program.isFree && program?.pricePerParticipant">
+                                        <span><img src="assets/price.svg" />{{
                         program.pricePerParticipant
                         }}<span *ngIf="program.pricePeriod.periodAmount">/{{ program.pricePeriod.periodAmount
                           }}</span></span>
                                     </p>
-                                    <p *ngIf="program.isFree"><span>Free</span></p>
+                                    <p *ngIf="program.isFree && !program?.pricePerParticipant"><img src="assets/price.svg" /><span> Free</span></p>
+                                    <p *ngIf="!program.isFree && !program?.pricePerParticipant"><img src="assets/price.svg" /><span> Price Not Mentioned</span></p>
                                 </div>
                                 <div class="rating_box">
 
