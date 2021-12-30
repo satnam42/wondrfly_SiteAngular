@@ -151,7 +151,7 @@ export class HeaderComponent implements OnInit {
       console.log('todayNotificaations',this.todayNotifications)
       this.earlierNotifications =  this.user.notices.notifications.filter(obj => !moment().isSame(obj.createdOn, 'day'));
       console.log('earlierNotifications',this.earlierNotifications)
-            this.store.setObject('userData', this.user);
+            this.store.setObject('CurrentUserWondrfly', this.user);
       console.log('user',this.user)
       // this.user.notices.notifications = this.user.notices.notifications.filter(notification=>notification.createdOn.getTime() < new Date().getTime())
       // this.todayNotifications = this.user.notices.notifications.filter(notification=>notification.createdOn.getTime() == new Date().getTime())

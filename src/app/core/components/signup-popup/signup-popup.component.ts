@@ -198,7 +198,7 @@ export class SignupPopupComponent implements OnInit {
         if (res.isSuccess === true) {
 
           window.document.getElementById("close_modal").click();
-          this.store.setObject('userData', res.data);
+          this.store.setObject('CurrentUserWondrfly', res.data);
           this.store.setItem('token', res.data.token);
           // this.toastr.info('Success', this.message );
           this.router.navigate(['parent/login-parent']);

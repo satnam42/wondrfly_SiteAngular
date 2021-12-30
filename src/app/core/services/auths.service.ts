@@ -24,7 +24,7 @@ export class AuthsService {
 
  setUser(user: User) {
     if (user) {
-      this.store.setObject('userData', user);
+      this.store.setObject('CurrentUserWondrfly', user);
       this.store.setItem('token', user.token);
     } else {
       this.store.clear();
@@ -35,7 +35,7 @@ export class AuthsService {
 
   currentUser(): User {
     // if (this._user) {
-      this._user = this.store.getObject('userData') as User;
+      this._user = this.store.getObject('CurrentUserWondrfly') as User;
       return this._user
     // }
 // else{

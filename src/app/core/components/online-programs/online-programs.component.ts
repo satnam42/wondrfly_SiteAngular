@@ -90,7 +90,7 @@ export class OnlineProgramsComponent implements OnInit {
     private apiservice: ApiService,
     private router : Router,
     private dataService: DataService) {
-      var retrievedObject = localStorage.getItem('userData');
+      var retrievedObject = localStorage.getItem('CurrentUserWondrfly');
       this.userData = JSON.parse(retrievedObject);
       if (this.userData) {
         this.isLogin = true;

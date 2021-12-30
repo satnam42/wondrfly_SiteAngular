@@ -21,7 +21,7 @@ export class WhyWondrflyComponent implements OnInit {
     private titleService: Title,
     private router: Router,
     private metaTagService: Meta,) {
-    this.userData = JSON.parse(localStorage.getItem('userData'));
+    this.userData = JSON.parse(localStorage.getItem('CurrentUserWondrfly'));
 
     if (this.userData) {
       this.isLogin = true;

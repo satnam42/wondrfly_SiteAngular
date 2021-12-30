@@ -166,7 +166,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.filterData = dataservice.getOption()
     this.cookiesData = this.cookies.get('isTour');
     // this.exploreModal()
-    var retrievedObject = localStorage.getItem('userData');
+    var retrievedObject = localStorage.getItem('CurrentUserWondrfly');
     this.userData = JSON.parse(retrievedObject);
       if (this.filterData.subcatId || this.filterData.categoryId || this.filterData.kidAge) {
         console.log('this.filterData.categoryId', this.filterData.categoryId)

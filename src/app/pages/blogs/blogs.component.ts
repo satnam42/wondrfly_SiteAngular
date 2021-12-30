@@ -11,7 +11,7 @@ export class BlogsComponent implements OnInit {
 
 
   constructor() {
-    this.userData = JSON.parse(localStorage.getItem('userData'));
+    this.userData = JSON.parse(localStorage.getItem('CurrentUserWondrfly'));
     if (this.userData) {
       this.isLogin = true;
     }
