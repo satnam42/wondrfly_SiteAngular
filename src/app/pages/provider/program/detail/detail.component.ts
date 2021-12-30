@@ -335,6 +335,13 @@ getRating(){
     await this.apiservice.getProgramByProvider(this.program.user, this.pageNo, this.pageSize).subscribe((res) => {
       this.isScrol = true;
       this.programs = res
+      let programs = []
+      this.programs.forEach(program => {
+        program.time.from =this.convertNumToTime(program.time.from.toFixed(2))
+        program.time.to =this.convertNumToTime(program.time.to.toFixed(2))
+        programs.push(program)
+      });
+      this.programs = programs
       console.log('provider program', this.programs);
     });
   }
