@@ -90,7 +90,7 @@ export class SitemapComponent implements OnInit {
     categoryId: '',
   }
   constructor(private apiservice: ApiService, private dataservice: DataService, private router :Router) {
-    this.userData = JSON.parse(localStorage.getItem('userData'));
+    this.userData = JSON.parse(localStorage.getItem('CurrentUserWondrfly'));
     if (this.userData) {
       this.isLogin = true;
     }

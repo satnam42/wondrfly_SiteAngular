@@ -112,7 +112,7 @@ export class SignUpComponent implements OnInit {
       this.ngxLoader.start();
       this.apiservice.addUser(this.userData).subscribe((res: any) => {
         if (res.isSuccess === true) {
-          this.store.setObject('userData', res.data);
+          this.store.setObject('CurrentUserWondrfly', res.data);
           this.store.setItem('token', res.data.token);
           // this.toastr.info( 'Success',  this.message);
           this.router.navigate(['login-parent']);
@@ -146,7 +146,7 @@ export class SignUpComponent implements OnInit {
       this.apiservice.addUser(this.providerData).subscribe((res: any) => {
         this.ngxLoader.stop();
         if (res.isSuccess === true) {
-          this.store.setObject('userData', res.data);
+          this.store.setObject('CurrentUserWondrfly', res.data);
           this.store.setItem('token', res.data.token);
           // this.toastr.info('Success', this.message );
           this.router.navigate(['loginProvider']);

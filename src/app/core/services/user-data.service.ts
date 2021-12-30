@@ -7,7 +7,7 @@ export class UserDataService {
   // private data = {};
   logout() {
     localStorage.removeItem('token');
-    localStorage.removeItem('userData');
+    localStorage.removeItem('CurrentUserWondrfly');
     localStorage.removeItem('program');
     // this.data = null;
   }

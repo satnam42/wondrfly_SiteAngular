@@ -20,7 +20,7 @@ export class TermConditionComponent implements OnInit {
   constructor(private ngxLoader: NgxUiLoaderService,
     private titleService: Title,
     private metaTagService: Meta,) {
-    this.userData = JSON.parse(localStorage.getItem('userData'));
+    this.userData = JSON.parse(localStorage.getItem('CurrentUserWondrfly'));
 
     if (this.userData) {
       this.isLogin = true;

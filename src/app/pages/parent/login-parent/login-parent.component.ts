@@ -59,7 +59,7 @@ export class LoginParentComponent implements OnInit {
     private metaTagService: Meta,
     private toastr: ToastrService,
   ) {
-    var retrievedObject = localStorage.getItem('userData');
+    var retrievedObject = localStorage.getItem('CurrentUserWondrfly');
     this.parent = JSON.parse(retrievedObject);
   }
   logo() {

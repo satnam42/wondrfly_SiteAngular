@@ -131,7 +131,7 @@ export class DetailComponent implements OnInit {
       this.program.id = params['id'];
       return this.getProgramById()
     });
-    this.user = JSON.parse(localStorage.getItem('userData'));
+    this.user = JSON.parse(localStorage.getItem('CurrentUserWondrfly'));
     if (this.user) {
       this.userId = this.user.id
       this.isLogin = true;
