@@ -29,9 +29,9 @@ export class DetailComponent implements OnInit {
   pageNo = 1;
   pageSize = 20;
   isScrol: boolean = true;
-  programs:any = new Program;
+  programs:any = Program;
   categories: any = new Category;
-  program = new Program;
+  program :any= new Program;
   lat = 51.678418;
   lng = 7.809007;
   title: string = ''

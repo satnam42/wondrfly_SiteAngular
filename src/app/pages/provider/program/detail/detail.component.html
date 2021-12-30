@@ -165,18 +165,21 @@
                                                 <p *ngIf="program?.inpersonOrvirtual=='Virtual'">
                                                     <img src="assets/bi_link.svg" alt="Location Pin" /><a routerLink="{{program?.joiningLink}}" target="_blank">Join via Link</a>
                                                 </p>
-                                                <p *ngIf="program.date.from && program.date.from">
+                                                <p *ngIf="program.date.from && program.date.from && !program.isDateNotMention">
                                                     <img src="assets/calendar_orange.svg" alt="Calendar" />{{ program?.date.from | date: "mediumDate" }} - {{ program.date.to | date: "mediumDate" }}
                                                 </p>
-                                                <p *ngIf="!program.date.from || !program.date.from">
+                                                <p *ngIf="(!program.date.from || !program.date.from ) && program.isDateNotMention">
                                                     <img src="assets/calendar_orange.svg" alt="Calendar" />Date Not Mentioned
                                                 </p>
                                                 <p>
                                                     <img src="assets/user_group_orange.svg" alt="Calendar" /> {{ program?.ageGroup.from }} - {{ program?.ageGroup.to }} Yrs.
                                                 </p>
 
-                                                <p>
+                                                <p *ngIf="!program.isTimeNotMention">
                                                     <img src="assets/watch.svg" alt="Loction Pin" /> {{ program?.time.from}} - {{ program?.time.to}}
+                                                </p>
+                                                <p *ngIf="program.isTimeNotMention">
+                                                    <img src="assets/watch.svg" alt="Loction Pin" /> Time Not Mention
                                                 </p>
                                                 <p *ngIf="
                             program.duration?.hours || program.duration?.minutes
@@ -664,7 +667,10 @@
                                                                     <p>
                                                                         <img alt="Loction Pin" src="assets/user_group.svg" /> {{ program?.ageGroup.from }} - {{ program?.ageGroup.to }} Yrs.
                                                                     </p>
-                                                                    <p>
+                                                                    <p *ngIf="program.isTimeNotMention">
+                                                                        <img alt="Loction Pin" src="assets/user_group.svg" /> Time Not Mentioned
+                                                                    </p>
+                                                                    <p *ngIf="!program.isTimeNotMention">
                                                                         <img alt="Loction Pin" src="assets/user_group.svg" /> {{ program?.time.from}} - {{ program.time.to}}
                                                                     </p>
                                                                 </div>
@@ -696,7 +702,10 @@
                                                                     <p>
                                                                         <img alt="Loction Pin" src="assets/user_group.svg" /> {{ program?.ageGroup.from }} - {{ program?.ageGroup.to }} Yrs.
                                                                     </p>
-                                                                    <p>
+                                                                    <p *ngIf="program.isTimeNotMention">
+                                                                        <img alt="Loction Pin" src="assets/user_group.svg" /> Time Not Mentioned
+                                                                    </p>
+                                                                    <p *ngIf="!program.isTimeNotMention">
                                                                         <img alt="Loction Pin" src="assets/user_group.svg" /> {{ program?.time.from }} - {{ program.time.to }}
                                                                     </p>
                                                                 </div>
