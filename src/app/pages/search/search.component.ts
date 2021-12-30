@@ -487,7 +487,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     // this.ngxLoader.start()
     this.contentLoaded = false;
     this.suggested=[]
-    this.apiservice.getProgram(this.pageNo, this.pageSize).subscribe((res: any) => {
+    this.apiservice.getPublishedProgram(this.pageNo, this.pageSize,'published').subscribe((res: any) => {
       // this.ngxLoader.stop()
       this.contentLoaded = true;
       this.programs = res.items;
