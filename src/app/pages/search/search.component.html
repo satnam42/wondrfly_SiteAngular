@@ -494,8 +494,11 @@
                                         </p>
                                     </div>
                                     <div class="list col-md-6">
-                                        <p>
+                                        <p *ngIf="program.date.from && program.date.from">
                                             <img src="assets/calendar.svg " alt="School image " />{{ program.date.from | date: "MMM d " }} – {{ program.date.to | date: "MMM d " }}
+                                        </p>
+                                        <p *ngIf="!program.date.from || !program.date.from">
+                                            Date Not Mentioned
                                         </p>
                                     </div>
                                 </div>

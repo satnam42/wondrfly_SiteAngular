@@ -228,8 +228,10 @@ getRating(){
     this.apiservice.getProgramById(this.program.id).subscribe(res => {
       this.ngxLoader.stop();
       this.program = res
-      this.program.time.from =`${moment.utc(this.program.time.from).format("h:mm a")}`;
-      this.program.time.to = `${moment.utc(this.program.time.to).format("h:mm a")}`;
+      // this.program.time.from =moment(this.program.time.from).format("h:mm");
+      // this.program.time.to = moment(this.program.time.to).format("h:mm");
+      this.program.time.from =this.convertNumToTime(this.program.time.from.toFixed(2))
+      this.program.time.to =this.convertNumToTime(this.program.time.to.toFixed(2))
       console.log('res program by id',this.program)
       this.title = this.program.name
       this.categoryArr=this.program.category;
@@ -252,22 +254,35 @@ getRating(){
     this.ngxLoader.stop();
   }
 
-  timeConversion(decimalTime){
-    decimalTime = decimalTime * 60 * 60;
-let hours = Math.floor((decimalTime / (60 * 60)));
-decimalTime = decimalTime - (hours * 60 * 60);
-var minutes = Math.floor((decimalTime / 60));
-decimalTime = decimalTime - (minutes * 60);
-if(hours < 10)
-{
-	hours = hours;
+   convertNumToTime(number) {
+    // Check sign of given number
+    var sign:any = (number >= 0) ? 1 : -1;
+
+    // Set positive value of number of sign negative
+    number = number * sign;
+
+    // Separate the int from the decimal part
+    var hour = Math.floor(number);
+    var decpart = number - hour;
+
+    var min = 1 / 60;
+    // Round to nearest minute
+    decpart = min * Math.round(decpart / min);
+
+    var minute = Math.floor(decpart * 60) + '';
+
+    // Add padding if need
+    if (minute.length < 2) {
+    minute = '0' + minute; 
+    }
+
+    // // Add Sign in final result
+    // sign = sign == 1 ? '' : '-';
+
+    // Concate hours and minutes
+    return sign + hour + ':' + minute;
 }
-if(minutes < 10)
-{
-	minutes =minutes;
-}
-return hours + ":" + minutes
-  }
+
 // --------------------------------map view popup -----------------------------------------
   clickedMarker(infowindow) {
     if (this.previous) {

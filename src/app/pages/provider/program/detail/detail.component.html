@@ -165,11 +165,14 @@
                                                 <p *ngIf="program?.inpersonOrvirtual=='Virtual'">
                                                     <img src="assets/bi_link.svg" alt="Location Pin" /><a routerLink="{{program?.joiningLink}}" target="_blank">Join via Link</a>
                                                 </p>
-                                                <p>
-                                                    <img src="assets/calendar_orange.svg" alt="Loction Pin" />{{ program?.date.from | date: "mediumDate" }} - {{ program.date.to | date: "mediumDate" }}
+                                                <p *ngIf="program.date.from && program.date.from">
+                                                    <img src="assets/calendar_orange.svg" alt="Calendar" />{{ program?.date.from | date: "mediumDate" }} - {{ program.date.to | date: "mediumDate" }}
+                                                </p>
+                                                <p *ngIf="!program.date.from || !program.date.from">
+                                                    <img src="assets/calendar_orange.svg" alt="Calendar" />Date Not Mentioned
                                                 </p>
                                                 <p>
-                                                    <img src="assets/user_group_orange.svg" alt="Loction Pin" /> {{ program?.ageGroup.from }} - {{ program?.ageGroup.to }} Yrs.
+                                                    <img src="assets/user_group_orange.svg" alt="Calendar" /> {{ program?.ageGroup.from }} - {{ program?.ageGroup.to }} Yrs.
                                                 </p>
 
                                                 <p>
@@ -335,14 +338,14 @@
                                 <div class="description_text">
                                     <h2>Company Information</h2>
                                     <div class="row align-items-center">
-                                        <div class="col-md-12" *ngIf="user.email">
+                                        <div class="col-md-12" *ngIf="user?.email">
                                             <div class="media company_info align-items-center">
                                                 <div class="media-left">
                                                     <span class="icon icon-envelope"></span>
                                                 </div>
                                                 <div class="media-body">
                                                     <h4>Email</h4>
-                                                    <p>{{user.email}}</p>
+                                                    <p>{{user?.email}}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -353,11 +356,11 @@
                                                 </div>
                                                 <div class="media-body">
                                                     <h4>Phone</h4>
-                                                    <p>{{user.phoneNumber}}</p>
+                                                    <p>{{user?.phoneNumber}}</p>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-12" *ngIf="user.website">
+                                        <div class="col-md-12" *ngIf="user?.website">
                                             <div class="media company_info align-items-center">
                                                 <div class="media-left">
                                                     <span class="icon icon-global"></span>
@@ -662,7 +665,7 @@
                                                                         <img alt="Loction Pin" src="assets/user_group.svg" /> {{ program?.ageGroup.from }} - {{ program?.ageGroup.to }} Yrs.
                                                                     </p>
                                                                     <p>
-                                                                        <img alt="Loction Pin" src="assets/user_group.svg" /> {{ program?.time.from | date: "shortTime" }} - {{ program.time.to | date: "shortTime" }}
+                                                                        <img alt="Loction Pin" src="assets/user_group.svg" /> {{ program?.time.from}} - {{ program.time.to}}
                                                                     </p>
                                                                 </div>
                                                             </div>
