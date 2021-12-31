@@ -165,10 +165,10 @@
                                                 <p *ngIf="program?.inpersonOrVirtual=='Virtual'">
                                                     <img src="assets/bi_link.svg" alt="Location Pin" /><a routerLink="{{program?.joiningLink}}" target="_blank">Join via Link</a>
                                                 </p>
-                                                <p *ngIf="program.date.from && program.date.from && !program.isDateNotMention">
+                                                <p *ngIf="!program.isDateNotMention">
                                                     <img src="assets/calendar_orange.svg" alt="Calendar" />{{ program?.date.from | date: "mediumDate" }} - {{ program.date.to | date: "mediumDate" }}
                                                 </p>
-                                                <p *ngIf="(!program.date.from || !program.date.from ) && program.isDateNotMention">
+                                                <p *ngIf="program.isDateNotMention">
                                                     <img src="assets/calendar_orange.svg" alt="Calendar" />Date Not Mentioned
                                                 </p>
                                                 <p>
@@ -179,11 +179,9 @@
                                                     <img src="assets/watch.svg" alt="Loction Pin" /> {{ program?.time.from.toFixed(2)}} - {{ program?.time.to.toFixed(2)}}
                                                 </p>
                                                 <p *ngIf="program.isTimeNotMention">
-                                                    <img src="assets/watch.svg" alt="Loction Pin" /> Time Not Mention
+                                                    <img src="assets/watch.svg" alt="Loction Pin" /> Time Not Mentioned
                                                 </p>
-                                                <p *ngIf="
-                            program.duration?.hours || program.duration?.minutes
-                          ">
+                                                <p *ngIf="program.duration?.hours || program.duration?.minutes">
                                                     <img src="assets/timer.svg" alt="Loction Pin" />{{ program.duration?.hours }} : {{ program.duration?.minutes }} Hours
                                                 </p>
 
