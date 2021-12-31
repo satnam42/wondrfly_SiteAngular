@@ -207,19 +207,19 @@ export class SearchComponent implements OnInit, OnDestroy {
     window.scroll(0, 0);
     console.log('cookiesData',this.cookiesData)
     if(this.cookiesData=='2' && this.contentLoaded && this.programs.length){
-      this.joyride.startTour({ steps: ['firstStep'] }); 
+      this.joyride.startTour({ steps: ['firstStep'] });
       this.cookies.set('isTour', '3', 30);
       }
       if(this.cookiesData=='5' && this.contentLoaded && this.programs.length){
-        this.joyride.startTour({ steps: ['secondStep1'] }); 
+        this.joyride.startTour({ steps: ['secondStep1'] });
           this.cookies.set('isTour', '6', 30);
         }
         if(this.cookiesData=='8' && this.contentLoaded && this.programs.length){
-          this.joyride.startTour({ steps: ['thirdStep1'] }); 
+          this.joyride.startTour({ steps: ['thirdStep1'] });
           this.cookies.set('isTour', '9', 30);
           }
           if(this.cookiesData=='11' && this.contentLoaded){
-            window.document.getElementById("exploreModal").click();      
+            window.document.getElementById("exploreModal").click();
             this.cookies.set('isTour', '12', 30);
             }
 

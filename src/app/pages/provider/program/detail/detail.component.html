@@ -44,7 +44,7 @@
                                                     <img src="assets/edit_skyblue.svg" alt="Edit Image" />
                                                 </a>
 
-                                                <button *ngIf="program?.inpersonOrvirtual=='Virtual'" class="btn-style">Online</button>
+                                                <button *ngIf="program?.inpersonOrVirtual=='Virtual'" class="btn-style">Online</button>
                                             </h3>
 
                                             <div class="share_icon">
@@ -159,10 +159,10 @@
                                                 </span>
                                             </h3>
                                             <div class="programInfo">
-                                                <p *ngIf="program?.inpersonOrvirtual!='Virtual'">
+                                                <p *ngIf="program?.inpersonOrVirtual!='Virtual'">
                                                     <img src="assets/loction_pin.svg" alt="Location Pin" />{{ program.location }}
                                                 </p>
-                                                <p *ngIf="program?.inpersonOrvirtual=='Virtual'">
+                                                <p *ngIf="program?.inpersonOrVirtual=='Virtual'">
                                                     <img src="assets/bi_link.svg" alt="Location Pin" /><a routerLink="{{program?.joiningLink}}" target="_blank">Join via Link</a>
                                                 </p>
                                                 <p *ngIf="program.date.from && program.date.from && !program.isDateNotMention">
