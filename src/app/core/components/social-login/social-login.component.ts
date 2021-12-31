@@ -65,7 +65,7 @@ export class SocialLoginComponent implements OnInit {
 
   signInWithFB() {
 
-    if(localStorage.getItem("token") === null){
+    if(localStorage.getItem('currentUserWondrflyToken') === null){
     this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
     this.socialAuthService.authState.subscribe((user) => {
       // this.user = user;
@@ -95,7 +95,7 @@ export class SocialLoginComponent implements OnInit {
   }
 
   signInWithGoogle() {
-    if(localStorage.getItem("token") === null){
+    if(localStorage.getItem('currentUserWondrflyToken') === null){
       this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
     this.socialAuthService.authState.subscribe((user) => {
       // this.userGoogle = user;

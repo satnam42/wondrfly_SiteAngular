@@ -25,7 +25,7 @@ export class AuthsService {
  setUser(user: User) {
     if (user) {
       this.store.setObject('CurrentUserWondrfly', user);
-      this.store.setItem('token', user.token);
+      this.store.setItem('currentUserWondrflyToken', user.token);
     } else {
       this.store.clear();
     }

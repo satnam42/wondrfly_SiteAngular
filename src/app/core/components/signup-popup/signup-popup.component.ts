@@ -199,7 +199,7 @@ export class SignupPopupComponent implements OnInit {
 
           window.document.getElementById("close_modal").click();
           this.store.setObject('CurrentUserWondrfly', res.data);
-          this.store.setItem('token', res.data.token);
+          this.store.setItem('currentUserWondrflyToken', res.data.token);
           // this.toastr.info('Success', this.message );
           this.router.navigate(['parent/login-parent']);
         }

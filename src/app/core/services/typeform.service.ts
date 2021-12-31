@@ -13,7 +13,7 @@ export class TypeFormService {
     ) {
     }
     getHeader() {
-      this.token = this.store.getItem('token')
+      this.token = this.store.getItem('currentUserWondrflyToken')
       if (this.token) {
           let header = {
               headers: new HttpHeaders({
