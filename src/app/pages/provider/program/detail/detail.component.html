@@ -165,10 +165,10 @@
                                                 <p *ngIf="program?.inpersonOrvirtual=='Virtual'">
                                                     <img src="assets/bi_link.svg" alt="Location Pin" /><a routerLink="{{program?.joiningLink}}" target="_blank">Join via Link</a>
                                                 </p>
-                                                <p *ngIf="program?.date?.from && program.date?.from && !program?.isDateNotMention">
+                                                <p *ngIf="!program?.isDateNotMention">
                                                     <img src="assets/calendar_orange.svg" alt="Calendar" />{{ program?.date?.from | date: "mediumDate" }} - {{ program?.date?.to | date: "mediumDate" }}
                                                 </p>
-                                                <p *ngIf="(!program?.date?.from || !program?.date?.from ) && program?.isDateNotMention">
+                                                <p *ngIf="program?.isDateNotMention">
                                                     <img src="assets/calendar_orange.svg" alt="Calendar" />Date Not Mentioned
                                                 </p>
                                                 <p>
@@ -661,8 +661,11 @@
                                                                     <span>{{ cat?.name }}</span>
                                                                 </div>
                                                                 <div class="date_age">
-                                                                    <p>
+                                                                    <p *ngIf="!program.isDateNotMention">
                                                                         <img alt="Loction Pin" src="assets/calendar.svg" /> {{ program?.date?.from | date: "mediumDate" }} - {{ program?.date?.to | date: "mediumDate" }}
+                                                                    </p>
+                                                                    <p *ngIf="program.isDateNotMention">
+                                                                        <img alt="Loction Pin" src="assets/calendar.svg" /> Date Not Mentioned
                                                                     </p>
                                                                     <p>
                                                                         <img alt="Loction Pin" src="assets/user_group.svg" /> {{ program?.ageGroup?.from }} - {{ program?.ageGroup?.to }} Yrs.

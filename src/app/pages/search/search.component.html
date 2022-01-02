@@ -51,8 +51,8 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-5 categories-filtercontent">
-                                                    <h3 *ngFor="let cat of categories" [ngClass]="{ active: selectedCat == cat.id }" (click)="getSubCateById(cat)">
-                                                        {{ cat.name }}
+                                                    <h3 *ngFor="let cat of categories" [ngClass]="{ active: selectedCat == cat?.id }" (click)="getSubCateById(cat)">
+                                                        {{ cat?.name }}
                                                     </h3>
                                                 </div>
                                                 <div class="col-7 sub-categoriesfiltercontent">
@@ -64,7 +64,7 @@
                                 onProgramsSubCategoryChange(i, $event)
                                 " /></span>
                             <h3 [class.checkbox-checked-name]="s.checked">
-                              {{ s.name }}<span>({{ s.programCount }})</span>
+                              {{ s?.name }}<span>({{ s?.programCount }})</span>
                             </h3>
                           <!-- </h2> -->
                         </label>
@@ -345,34 +345,34 @@
                                         <img src="assets/share_gray.svg " class="section1" joyrideStep="secondStep{{i}}" title="💡 Share with friends and family" text="Click here to share your favorite activities!" alt="Share Icon " />
                                     </a>
                                     <div class="bookmark_outer">
-                                        <a *ngIf="!program.isFav && parentRole && isLogin" (click)="addFavProgram(userData.id, program._id, i)" class="bookmark_icon cursor"><img src="assets/bookmark_gray.svg " alt="Menu Image " class="section2" joyrideStep="thirdStep{{i}}" title="💡 Save activities for later" text="Click here to save your favorite activities all in one place for when you need them!"
+                                        <a *ngIf="!program?.isFav && parentRole && isLogin" (click)="addFavProgram(userData.id, program?._id, i)" class="bookmark_icon cursor"><img src="assets/bookmark_gray.svg " alt="Menu Image " class="section2" joyrideStep="thirdStep{{i}}" title="💡 Save activities for later" text="Click here to save your favorite activities all in one place for when you need them!"
                                             /></a>
 
                                         <a *ngIf="!isLogin" routerLink="/login" class="bookmark_icon cursor"><img src="assets/bookmark_gray.svg " alt="Menu Image " /></a>
 
-                                        <a *ngIf="program.isFav && parentRole && isLogin" (click)="deleteFavProgram(program._id, i)" class="bookmark_icon cursor"><img src="assets/bookmarkOrange.svg " alt="Menu Image " /></a>
+                                        <a *ngIf="program?.isFav && parentRole && isLogin" (click)="deleteFavProgram(program?._id, i)" class="bookmark_icon cursor"><img src="assets/bookmarkOrange.svg " alt="Menu Image " /></a>
                                     </div>
                                 </div>
                                 <h2 class="cursor" (click)="goToProgramDetail(program)">
-                                    {{ program.name }}
+                                    {{ program?.name }}
                                 </h2>
                                 <div class="list_outer row row-0">
                                     <div class="list col-12 mt-2 mb-1">
-                                        <p>by {{ program.programOwner }}</p>
+                                        <p>by {{ program?.programOwner }}</p>
                                     </div>
                                     <div class="rating-starsearch">
                                         <p (click)="
                           getRating(program);
-                          programOwnerData.firstName = program.programOwner
+                          programOwnerData.firstName = program?.programOwner
                         " class="cursor" data-toggle="collapse" [attr.data-target]="'#collapseExamplestar' + i" role="button" aria-expanded="false" aria-controls="collapseExamplestar">
-                                            <span *ngIf="program.averageFinalRating == 0">
+                                            <span *ngIf="program?.averageFinalRating == 0">
                           <span class="fa fa-star-o"></span>
                                             <span class="fa fa-star-o"></span>
                                             <span class="fa fa-star-o"></span>
                                             <span class="fa fa-star-o"></span>
                                             <span class="fa fa-star-o"></span>
                                             </span>
-                                            <span *ngIf="program.averageFinalRating == 1">
+                                            <span *ngIf="program?.averageFinalRating == 1">
                           <span class="fa fa-star checked"></span>
                                             <span class="fa fa-star-o"></span>
                                             <span class="fa fa-star-o"></span>
@@ -380,8 +380,8 @@
                                             <span class="fa fa-star-o"></span>
                                             </span>
                                             <span *ngIf="
-                            program.averageFinalRating > 1 &&
-                            program.averageFinalRating < 2
+                            program?.averageFinalRating > 1 &&
+                            program?.averageFinalRating < 2
                           ">
                           <span class="fa fa-star checked"></span>
                                             <span class="fa fa-star-half-o checked"></span>
@@ -389,7 +389,7 @@
                                             <span class="fa fa-star-o"></span>
                                             <span class="fa fa-star-o"></span>
                                             </span>
-                                            <span *ngIf="program.averageFinalRating == 2">
+                                            <span *ngIf="program?.averageFinalRating == 2">
                           <span class="fa fa-star checked"></span>
                                             <span class="fa fa-star checked"></span>
                                             <span class="fa fa-star-o"></span>
@@ -397,8 +397,8 @@
                                             <span class="fa fa-star-o"></span>
                                             </span>
                                             <span *ngIf="
-                            program.averageFinalRating > 2 &&
-                            program.averageFinalRating < 3
+                            program?.averageFinalRating > 2 &&
+                            program?.averageFinalRating < 3
                           ">
                           <span class="fa fa-star checked"></span>
                                             <span class="fa fa-star checked"></span>
@@ -406,7 +406,7 @@
                                             <span class="fa fa-star-o"></span>
                                             <span class="fa fa-star-o"></span>
                                             </span>
-                                            <span *ngIf="program.averageFinalRating == 3">
+                                            <span *ngIf="program?.averageFinalRating == 3">
                           <span class="fa fa-star checked"></span>
                                             <span class="fa fa-star checked"></span>
                                             <span class="fa fa-star checked"></span>
@@ -414,8 +414,8 @@
                                             <span class="fa fa-star-o"></span>
                                             </span>
                                             <span *ngIf="
-                            program.averageFinalRating > 3 &&
-                            program.averageFinalRating < 4
+                            program?.averageFinalRating > 3 &&
+                            program?.averageFinalRating < 4
                           ">
                           <span class="fa fa-star checked"></span>
                                             <span class="fa fa-star checked"></span>
@@ -423,7 +423,7 @@
                                             <span class="fa fa-star-half-o checked"></span>
                                             <span class="fa fa-star-o"></span>
                                             </span>
-                                            <span *ngIf="program.averageFinalRating == 4">
+                                            <span *ngIf="program?.averageFinalRating == 4">
                           <span class="fa fa-star checked"></span>
                                             <span class="fa fa-star checked"></span>
                                             <span class="fa fa-star checked"></span>
@@ -431,8 +431,8 @@
                                             <span class="fa fa-star-o"></span>
                                             </span>
                                             <span *ngIf="
-                            program.averageFinalRating > 4 &&
-                            program.averageFinalRating < 5
+                            program?.averageFinalRating > 4 &&
+                            program?.averageFinalRating < 5
                           ">
                           <span class="fa fa-star checked"></span>
                                             <span class="fa fa-star checked"></span>
@@ -440,16 +440,16 @@
                                             <span class="fa fa-star checked"></span>
                                             <span class="fa fa-star-half-o checked"></span>
                                             </span>
-                                            <span *ngIf="program.averageFinalRating == 5">
+                                            <span *ngIf="program?.averageFinalRating == 5">
                           <span class="fa fa-star checked"></span>
                                             <span class="fa fa-star checked"></span>
                                             <span class="fa fa-star checked"></span>
                                             <span class="fa fa-star checked"></span>
                                             <span class="fa fa-star checked"></span>
                                             </span>
-                                            <a *ngIf="program.totalReviews">
-                          ({{ program.totalReviews }} reviews)</a>
-                                            <a *ngIf="!program.totalReviews"> (0 reviews)</a>
+                                            <a *ngIf="program?.totalReviews">
+                          ({{ program?.totalReviews }} reviews)</a>
+                                            <a *ngIf="!program?.totalReviews"> (0 reviews)</a>
                                         </p>
                                         <div *ngIf="rating" class="collapse star-daialogbox" id="collapseExamplestar{{ i }}">
                                             <button type="button" data-toggle="collapse" [attr.data-target]="'#collapseExamplestar' + i" class="close star-daialogicon" aria-label="Close">
@@ -466,7 +466,7 @@
                                             </h3>
                                             <h3 class="cursor" *ngFor="
                             let subCat of program?.subCategoryIds | slice: 0:2
-                          " (click)="selectedCat='';categoryId='';subCats=[];searchedSubCategory=subCat?.name; selectedSubCategories[0] = subCat._id;programFilter() ">
+                          " (click)="selectedCat='';categoryId='';subCats=[];searchedSubCategory=subCat?.name; selectedSubCategories[0] = subCat?._id;programFilter() ">
                                                 {{ subCat?.name }}
                                             </h3>
                                             <h6 *ngIf="program?.subCategoryIds?.length > 2" class="" data-toggle="collapse" href="#morecategories" [attr.data-target]="'#morecategories' + i">
@@ -477,7 +477,7 @@
                                                             <span><img src="assets/grey-close.png" /> </span>
                                                             <h5 *ngFor="
                                     let subCat of program?.subCategoryIds
-                                      | slice: 2:program.subCategoryIds?.length
+                                      | slice: 2:program?.subCategoryIds?.length
                                   " class="collapse-btn cursor" (click)="selectedCat='';categoryId='';subCats=[];searchedSubCategory=subCat?.name; selectedSubCategories[0] = subCat._id;programFilter() ">
                                                                 {{ subCat?.name }}
                                                             </h5>
@@ -494,23 +494,23 @@
                                         </p>
                                     </div>
                                     <div class="list col-md-6">
-                                        <p *ngIf="!program.isDateNotMention">
-                                            <img src="assets/calendar.svg " alt="School image " />{{ program.date.from | date: "MMM d " }} – {{ program.date.to | date: "MMM d " }}
+                                        <p *ngIf="!program?.isDateNotMention">
+                                            <img src="assets/calendar.svg " alt="School image " />{{ program?.date?.from | date: "MMM d " }} – {{ program?.date?.to | date: "MMM d " }}
                                         </p>
-                                        <p *ngIf="program.isDateNotMention">
+                                        <p *ngIf="program?.isDateNotMention">
                                             Date Not Mentioned
                                         </p>
                                     </div>
                                 </div>
                                 <div class="price-box">
-                                    <p *ngIf="!program.isFree && program?.pricePerParticipant">
+                                    <p *ngIf="!program?.isFree && program?.pricePerParticipant">
                                         <span><img src="assets/price.svg" />{{
                         program.pricePerParticipant
-                        }}<span *ngIf="program.pricePeriod.periodAmount">/{{ program.pricePeriod.periodAmount
+                        }}<span *ngIf="program?.pricePeriod?.periodAmount">/{{ program?.pricePeriod?.periodAmount
                           }}</span></span>
                                     </p>
-                                    <p *ngIf="program.isFree && !program?.pricePerParticipant"><img src="assets/price.svg" /><span> Free</span></p>
-                                    <p *ngIf="!program.isFree && !program?.pricePerParticipant"><img src="assets/price.svg" /><span> Price Not Mentioned</span></p>
+                                    <p *ngIf="program?.isFree && !program?.pricePerParticipant"><img src="assets/price.svg" /><span> Free</span></p>
+                                    <p *ngIf="!program?.isFree && !program?.pricePerParticipant"><img src="assets/price.svg" /><span> Price Not Mentioned</span></p>
                                 </div>
                                 <div class="rating_box">
 
@@ -530,7 +530,7 @@
                                     <div class="similar-cate">
                                         <!-- <img src="assets/similarcategories1.png"> -->
                                         <img [defaultImage]="defaultImage" [lazyLoad]="subCategory?.iconUrl" />
-                                        <h1>{{ subCategory.name }}</h1>
+                                        <h1>{{ subCategory?.name }}</h1>
                                     </div>
                                 </div>
                             </div>
@@ -578,11 +578,11 @@
                         </h3>
                         <div class="similar-categories container">
                             <div class="row">
-                                <div class="col-md-4 cursor" *ngFor="let subCategory of suggested" (click)="selectedCat='';categoryId='';subCats=[];searchedSubCategory=subCategory.name; selectedSubCategories[0] = subCategory.id;
+                                <div class="col-md-4 cursor" *ngFor="let subCategory of suggested" (click)="selectedCat='';categoryId='';subCats=[];searchedSubCategory=subCategory?.name; selectedSubCategories[0] = subCategory?.id;
                                 programFilter()">
                                     <div class="similar-cate">
-                                        <img [defaultImage]="defaultImage" [lazyLoad]="subCategory.iconUrl" />
-                                        <h1>{{ subCategory.name }}</h1>
+                                        <img [defaultImage]="defaultImage" [lazyLoad]="subCategory?.iconUrl" />
+                                        <h1>{{ subCategory?.name }}</h1>
                                     </div>
                                 </div>
                             </div>
@@ -594,23 +594,23 @@
                 <div class="map_section">
                     <agm-map *ngIf="programs?.length; else nolocationfound" style="width: 100%; height: 100%" (centerChange)="centerChange($event)" [zoom]="zoom" [usePanning]="true" [fitBounds]="true" [latitude]="lat" [longitude]="lng" (mapClick)="mapClicked(previous)">
                         <div *ngFor="let program of programs">
-                            <agm-marker *ngIf="program.lat && program.lng" [iconUrl]="markerUrl" (markerClick)="clickedMarker(previous)" [latitude]="program.lat" [longitude]="program.lng" [agmFitBounds]="true">
+                            <agm-marker *ngIf="program.lat && program?.lng" [iconUrl]="markerUrl" (markerClick)="clickedMarker(previous)" [latitude]="program?.lat" [longitude]="program?.lng" [agmFitBounds]="true">
                                 <agm-info-window #previous>
                                     <div class="map-popup">
                                         <h1>
-                                            {{ program.name }}
+                                            {{ program?.name }}
                                         </h1>
-                                        <h2>by {{ program.programOwner }}</h2>
+                                        <h2>by {{ program?.programOwner }}</h2>
                                         <div class="rating-starsearch">
                                             <p>
-                                                <span *ngIf="program.averageFinalRating == 0">
+                                                <span *ngIf="program?.averageFinalRating == 0">
                           <span class="fa fa-star-o"></span>
                                                 <span class="fa fa-star-o"></span>
                                                 <span class="fa fa-star-o"></span>
                                                 <span class="fa fa-star-o"></span>
                                                 <span class="fa fa-star-o"></span>
                                                 </span>
-                                                <span *ngIf="program.averageFinalRating == 1">
+                                                <span *ngIf="program?.averageFinalRating == 1">
                           <span class="fa fa-star checked"></span>
                                                 <span class="fa fa-star-o"></span>
                                                 <span class="fa fa-star-o"></span>
@@ -618,8 +618,8 @@
                                                 <span class="fa fa-star-o"></span>
                                                 </span>
                                                 <span *ngIf="
-                            program.averageFinalRating > 1 &&
-                            program.averageFinalRating < 2
+                            program?.averageFinalRating > 1 &&
+                            program?.averageFinalRating < 2
                           ">
                           <span class="fa fa-star checked"></span>
                                                 <span class="fa fa-star-half-o checked"></span>
@@ -627,7 +627,7 @@
                                                 <span class="fa fa-star-o"></span>
                                                 <span class="fa fa-star-o"></span>
                                                 </span>
-                                                <span *ngIf="program.averageFinalRating == 2">
+                                                <span *ngIf="program?.averageFinalRating == 2">
                           <span class="fa fa-star checked"></span>
                                                 <span class="fa fa-star checked"></span>
                                                 <span class="fa fa-star-o"></span>
@@ -635,8 +635,8 @@
                                                 <span class="fa fa-star-o"></span>
                                                 </span>
                                                 <span *ngIf="
-                            program.averageFinalRating > 2 &&
-                            program.averageFinalRating < 3
+                            program?.averageFinalRating > 2 &&
+                            program?.averageFinalRating < 3
                           ">
                           <span class="fa fa-star checked"></span>
                                                 <span class="fa fa-star checked"></span>
@@ -644,7 +644,7 @@
                                                 <span class="fa fa-star-o"></span>
                                                 <span class="fa fa-star-o"></span>
                                                 </span>
-                                                <span *ngIf="program.averageFinalRating == 3">
+                                                <span *ngIf="program?.averageFinalRating == 3">
                           <span class="fa fa-star checked"></span>
                                                 <span class="fa fa-star checked"></span>
                                                 <span class="fa fa-star checked"></span>
@@ -652,8 +652,8 @@
                                                 <span class="fa fa-star-o"></span>
                                                 </span>
                                                 <span *ngIf="
-                            program.averageFinalRating > 3 &&
-                            program.averageFinalRating < 4
+                            program?.averageFinalRating > 3 &&
+                            program?.averageFinalRating < 4
                           ">
                           <span class="fa fa-star checked"></span>
                                                 <span class="fa fa-star checked"></span>
@@ -661,7 +661,7 @@
                                                 <span class="fa fa-star-half-o checked"></span>
                                                 <span class="fa fa-star-o"></span>
                                                 </span>
-                                                <span *ngIf="program.averageFinalRating == 4">
+                                                <span *ngIf="program?.averageFinalRating == 4">
                           <span class="fa fa-star checked"></span>
                                                 <span class="fa fa-star checked"></span>
                                                 <span class="fa fa-star checked"></span>
@@ -669,8 +669,8 @@
                                                 <span class="fa fa-star-o"></span>
                                                 </span>
                                                 <span *ngIf="
-                            program.averageFinalRating > 4 &&
-                            program.averageFinalRating < 5
+                            program?.averageFinalRating > 4 &&
+                            program?.averageFinalRating < 5
                           ">
                           <span class="fa fa-star checked"></span>
                                                 <span class="fa fa-star checked"></span>
@@ -678,22 +678,22 @@
                                                 <span class="fa fa-star checked"></span>
                                                 <span class="fa fa-star-half-o checked"></span>
                                                 </span>
-                                                <span *ngIf="program.averageFinalRating == 5">
+                                                <span *ngIf="program?.averageFinalRating == 5">
                           <span class="fa fa-star checked"></span>
                                                 <span class="fa fa-star checked"></span>
                                                 <span class="fa fa-star checked"></span>
                                                 <span class="fa fa-star checked"></span>
                                                 <span class="fa fa-star checked"></span>
                                                 </span>
-                                                <a *ngIf="program.totalReviews">
-                          ({{ program.totalReviews }} reviews)</a>
-                                                <a *ngIf="!program.totalReviews"> (0 reviews)</a>
+                                                <a *ngIf="program?.totalReviews">
+                          ({{ program?.totalReviews }} reviews)</a>
+                                                <a *ngIf="!program?.totalReviews"> (0 reviews)</a>
                                             </p>
                                         </div>
                                         <div class="map-locationtext">
                                             <span><img src="assets/location-pintag.svg" /> </span>
                                             <h3>
-                                                {{ program.location }}
+                                                {{ program?.location }}
                                             </h3>
                                         </div>
                                         <button (click)="goToProgramDetail(program)" class="map-buttonas">
