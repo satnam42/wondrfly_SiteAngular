@@ -77,45 +77,45 @@
                                     <h4>{{user.firstName}}</h4>
                                 </div> -->
                                 <div class="media-body">
-                                    <p *ngIf="user.about && user.about?.length>=230">{{user.about | slice:360:1000}}}}</p>
-                                    <p *ngIf="user.note && user.note?.length>=230">{{user.note | slice:360:1000}}</p>
+                                    <p *ngIf="user?.about && user.about?.length>=230">{{user?.about | slice:360:1000}}}}</p>
+                                    <p *ngIf="user?.note && user.note?.length>=230">{{user?.note | slice:360:1000}}</p>
                                     <div class="skills_sec" *ngIf='user?.categories?.length'>
                                         <h3>Skills</h3>
-                                        <div class="skill_outer" *ngFor='let skill of user.subCategoryIds'>
+                                        <div class="skill_outer" *ngFor='let skill of user?.subCategoryIds'>
                                             <span>{{skill?.name}}</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div *ngIf="isGenOverview && user.about" class="description_text">
-                            <h2 *ngIf='user.about'>About</h2>
-                            <p>{{user.about}}</p>
+                        <div *ngIf="isGenOverview && user?.about" class="description_text">
+                            <h2 *ngIf='user?.about'>About</h2>
+                            <p>{{user?.about}}</p>
                         </div>
 
 
                         <div *ngIf="isGenOverview" class="description_text">
                             <h2>Company Information</h2>
                             <div class="row align-items-center margin_top">
-                                <div class="col-md-4" *ngIf="user.addressLine1">
+                                <div class="col-md-4" *ngIf="user?.addressLine1">
                                     <div class="media company_info align-items-center">
                                         <div class="media-left">
                                             <span class="icon icon-pin"></span>
                                         </div>
                                         <div class="media-body">
                                             <h4>Address</h4>
-                                            <p>{{user.addressLine1}}</p>
+                                            <p>{{user?.addressLine1}}</p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4" *ngIf="user.email">
+                                <div class="col-md-4" *ngIf="user?.email">
                                     <div class="media company_info align-items-center">
                                         <div class="media-left">
                                             <span class="icon icon-envelope"></span>
                                         </div>
                                         <div class="media-body">
                                             <h4>Email</h4>
-                                            <p>{{user.email}}</p>
+                                            <p>{{user?.email}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -126,7 +126,7 @@
                                         </div>
                                         <div class="media-body">
                                             <h4>Phone</h4>
-                                            <p>{{user.phoneNumber}}</p>
+                                            <p>{{user?.phoneNumber}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -143,20 +143,20 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4" *ngIf="user.website">
+                                <div class="col-md-4" *ngIf="user?.website">
                                     <div class="media company_info align-items-center">
                                         <div class="media-left">
                                             <span class="icon icon-global"></span>
                                         </div>
                                         <div class="media-body">
                                             <h4>WWW</h4>
-                                            <p>{{user.website}}</p>
+                                            <p>{{user?.website}}</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="social-icons media company_info align-items-center">
-                                    <a><span  class="icon"><img  src="assets/fb-123.png"></span></a>
+                                        <a><span  class="icon"><img  src="assets/fb-123.png"></span></a>
                                         <a><span  class="icon"><img  src="assets/insta.png"></span></a>
                                         <a><span class="icon"><img  src="assets/linked_in.png"></span></a>
                                         <a><span class="icon"><img  src="assets/tweet.png"></span></a>
@@ -167,7 +167,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div *ngIf="isGenOverview && user.healthAndSafety?.length" class="description_text">
+                        <div *ngIf="isGenOverview && user?.healthAndSafety?.length" class="description_text">
                             <h2>Health & Safety measures
                                 <span><img src="assets/healthsafetyi.svg"></span>
                             </h2>
@@ -175,7 +175,7 @@
                                 <div class="col-md-3" *ngFor="let health of health_safety; let i =index">
                                     <div class="media company_infos">
                                         <div class="media-body">
-                                            <img [ngClass]="{'health_icon_disable':!health.status}" src="{{health.img}}">
+                                            <img [ngClass]="{'health_icon_disable':!health?.status}" src="{{health.img}}">
                                         </div>
                                         <div class="media-footer">
                                             <p class="health_name">{{health?.name}}</p>
@@ -192,8 +192,8 @@
                                     <div class="col-md-6" *ngFor="let program of programs">
                                         <div class="activities_slide">
                                             <div class="slide_image cursor" (click)='goToProgramDetail(program)'>
-                                                <img *ngIf='!program.category[0]?.iconUrl' src="assets/category2.jpg" alt="Activity">
-                                                <img *ngIf='program.category[0]?.iconUrl' src="https://wondrfly.com/{{program.category[0]?.iconUrl}}" alt="Activity">
+                                                <img *ngIf='!program?.category[0]?.iconUrl' src="assets/category2.jpg" alt="Activity">
+                                                <img *ngIf='program?.category[0]?.iconUrl' src="https://wondrfly.com/{{program?.category[0]?.iconUrl}}" alt="Activity">
                                             </div>
                                             <div class="slide_text">
 
@@ -207,10 +207,10 @@
 
                                                 <div class="date_age">
                                                     <p>
-                                                        <img alt="Loction Pin" src="assets/calendar.svg">{{program?.date.from | date}} - {{program.date.to | date}}
+                                                        <img alt="Loction Pin" src="assets/calendar.svg">{{program?.date?.from | date}} - {{program?.date?.to | date}}
                                                     </p>
                                                     <p>
-                                                        <img alt="Loction Pin" src="assets/user_group.svg"> {{program?.ageGroup.from}} - {{program?.ageGroup.to}} Yrs.
+                                                        <img alt="Loction Pin" src="assets/user_group.svg"> {{program?.ageGroup?.from}} - {{program?.ageGroup?.to}} Yrs.
                                                     </p>
                                                 </div>
                                             </div>
@@ -225,7 +225,7 @@
                     <div *ngIf="isGenOverview" class="provider_map">
                         <agm-map id="map" [latitude]="40.5682945" [longitude]="-74.0409239" [zoom]="7" [styles]="" [zoomControl]="false" [streetViewControl]="false">
                             <div *ngFor='let p of programs' (mapClick)="mapClicked(previous)">
-                                <agm-marker *ngIf="p.lat && p.lng" [iconUrl]="markerUrl" [latitude]="p.lat" [longitude]="p.lng" (markerClick)="clickedMarker(previous)">
+                                <agm-marker *ngIf="p?.lat && p?.lng" [iconUrl]="markerUrl" [latitude]="p?.lat" [longitude]="p?.lng" (markerClick)="clickedMarker(previous)">
                                     <strong>{{p?.name}}</strong>
                                     <agm-info-window #previous>
 
@@ -238,70 +238,70 @@
                                             </h2>
                                             <div class="rating-starsearch">
                                                 <p>
-                                                    <span *ngIf="p.averageFinalRating==0">
+                                                    <span *ngIf="p?.averageFinalRating==0">
                                             <span class="fa fa-star-o"></span>
                                                     <span class="fa fa-star-o"></span>
                                                     <span class="fa fa-star-o"></span>
                                                     <span class="fa fa-star-o"></span>
                                                     <span class="fa fa-star-o"></span>
                                                     </span>
-                                                    <span *ngIf="p.averageFinalRating==1">
+                                                    <span *ngIf="p?.averageFinalRating==1">
                                             <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star-o"></span>
                                                     <span class="fa fa-star-o"></span>
                                                     <span class="fa fa-star-o"></span>
                                                     <span class="fa fa-star-o"></span>
                                                     </span>
-                                                    <span *ngIf="p.averageFinalRating>1 && p.averageFinalRating<2">
+                                                    <span *ngIf="p?.averageFinalRating>1 && p?.averageFinalRating<2">
                                             <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star-half-o checked"></span>
                                                     <span class="fa fa-star-o"></span>
                                                     <span class="fa fa-star-o"></span>
                                                     <span class="fa fa-star-o"></span>
                                                     </span>
-                                                    <span *ngIf="p.averageFinalRating==2">
+                                                    <span *ngIf="p?.averageFinalRating==2">
                                             <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star-o"></span>
                                                     <span class="fa fa-star-o"></span>
                                                     <span class="fa fa-star-o"></span>
                                                     </span>
-                                                    <span *ngIf="p.averageFinalRating>2 && p.averageFinalRating<3">
+                                                    <span *ngIf="p?.averageFinalRating>2 && p?.averageFinalRating<3">
                                             <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star-half-o checked"></span>
                                                     <span class="fa fa-star-o"></span>
                                                     <span class="fa fa-star-o"></span>
                                                     </span>
-                                                    <span *ngIf="p.averageFinalRating==3">
+                                                    <span *ngIf="p?.averageFinalRating==3">
                                             <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star-o"></span>
                                                     <span class="fa fa-star-o"></span>
                                                     </span>
-                                                    <span *ngIf="p.averageFinalRating>3 && p.averageFinalRating<4">
+                                                    <span *ngIf="p?.averageFinalRating>3 && p?.averageFinalRating<4">
                                             <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star-half-o checked"></span>
                                                     <span class="fa fa-star-o"></span>
                                                     </span>
-                                                    <span *ngIf="p.averageFinalRating==4">
+                                                    <span *ngIf="p?.averageFinalRating==4">
                                             <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star-o"></span>
                                                     </span>
-                                                    <span *ngIf="p.averageFinalRating>4 && p.averageFinalRating<5">
+                                                    <span *ngIf="p?.averageFinalRating>4 && p?.averageFinalRating<5">
                                             <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star-half-o checked"></span>
                                                     </span>
-                                                    <span *ngIf="p.averageFinalRating==5">
+                                                    <span *ngIf="p?.averageFinalRating==5">
                                             <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star checked"></span>
@@ -314,7 +314,7 @@
                                             <div class="map-locationtext">
                                                 <span><img src="assets/location-pintag.svg"> </span>
                                                 <h3>
-                                                    {{p.location}}
+                                                    {{p?.location}}
                                                 </h3>
                                             </div>
                                             <!-- <button class="map-buttonas">
@@ -359,13 +359,13 @@
                                                             </div>
                                                             <div class="date_age">
                                                                 <p>
-                                                                    <img alt="Loction Pin" src="assets/calendar.svg"> {{program?.date.from | date:'mediumDate'}} - {{program.date.to | date:'mediumDate'}}
+                                                                    <img alt="Loction Pin" src="assets/calendar.svg"> {{program?.date.from | date:'mediumDate'}} - {{program?.date?.to | date:'mediumDate'}}
                                                                 </p>
                                                                 <p>
                                                                     <img alt="Loction Pin" src="assets/user_group.svg"> {{program?.ageGroup.from}} - {{program?.ageGroup.to}} Yrs.
                                                                 </p>
                                                                 <p>
-                                                                    <img alt="Loction Pin" src="assets/user_group.svg"> {{program?.time.from | date:"shortTime"}} - {{program.time.to | date:"shortTime"}}
+                                                                    <img alt="Loction Pin" src="assets/user_group.svg"> {{program?.time.from | date:"shortTime"}} - {{program?.tim?.to | date:"shortTime"}}
                                                                 </p>
                                                             </div>
                                                         </div>
