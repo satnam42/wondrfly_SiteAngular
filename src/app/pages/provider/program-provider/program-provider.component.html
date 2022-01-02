@@ -330,7 +330,7 @@
 
 
                     <div class="provider_full carousel-cat" *ngIf="isGenOverview && programs?.length">
-                        <h4 class="might-try">You might also like these <span class="subCat" (click)="setSubCategoryId(user.subCategoryIds[0]._id)">{{user.subCategoryIds[0]?.name}} </span> <span *ngIf="user.subCategoryIds?.length>1">and <span class="subCat" (click)="setSubCategoryId(user.subCategoryIds[1]._id)">{{user.subCategoryIds[1]?.name}}</span></span>
+                        <h4 class="might-try">You might also like these <span class="subCat" (click)="setSubCategoryId(user.subCategoryIds[0])">{{user.subCategoryIds[0]?.name}} </span> <span *ngIf="user.subCategoryIds?.length>1">and <span class="subCat" (click)="setSubCategoryId(user.subCategoryIds[1])">{{user.subCategoryIds[1]?.name}}</span></span>
                             activities: <a class="view_all cursor" (click)="onActivities()">View all</a> </h4>
                         <div class="row">
                             <div class="col-12" *ngIf="programs?.length">
@@ -365,7 +365,7 @@
                                                                     <img alt="Loction Pin" src="assets/user_group.svg"> {{program?.ageGroup.from}} - {{program?.ageGroup.to}} Yrs.
                                                                 </p>
                                                                 <p>
-                                                                    <img alt="Loction Pin" src="assets/user_group.svg"> {{program?.time.from | date:"shortTime"}} - {{program?.tim?.to | date:"shortTime"}}
+                                                                    <img alt="Loction Pin" src="assets/user_group.svg"> {{program?.time?.from.toFixed(2)}} - {{program?.time?.to.toFixed(2)}}
                                                                 </p>
                                                             </div>
                                                         </div>
@@ -400,7 +400,7 @@
                                                                     <img alt="Loction Pin" src="assets/user_group.svg"> {{program?.ageGroup.from}} - {{program?.ageGroup.to}} Yrs.
                                                                 </p>
                                                                 <p>
-                                                                    <img alt="Loction Pin" src="assets/user_group.svg"> {{program?.time.from | date:"shortTime"}} - {{program.time.to | date:"shortTime"}}
+                                                                    <img alt="Loction Pin" src="assets/user_group.svg"> {{program?.time?.from.toFixed(2)}} - {{program?.time?.to.toFixed(2)}}
                                                                 </p>
                                                             </div>
                                                         </div>

@@ -176,7 +176,7 @@
                                                 </p>
 
                                                 <p *ngIf="!program?.isTimeNotMention">
-                                                    <img src="assets/watch.svg" alt="Loction Pin" /> {{ program?.time?.from}} - {{ program?.time?.to}}
+                                                    <img src="assets/watch.svg" alt="Loction Pin" /> {{ program?.time?.from.toFixed(2)}} - {{ program?.time?.to.toFixed(2)}}
                                                 </p>
                                                 <p *ngIf="program?.isTimeNotMention">
                                                     <img src="assets/watch.svg" alt="Loction Pin" /> Time Not Mention
@@ -674,7 +674,7 @@
                                                                         <img alt="Loction Pin" src="assets/user_group.svg" /> Time Not Mentioned
                                                                     </p>
                                                                     <p *ngIf="!program?.isTimeNotMention">
-                                                                        <img alt="Loction Pin" src="assets/user_group.svg" /> {{ program?.time?.from}} - {{ program?.time?.to}}
+                                                                        <img alt="Loction Pin" src="assets/user_group.svg" /> {{ program?.time?.from.toFixed(2)}} - {{ program?.time?.to.toFixed(2)}}
                                                                     </p>
                                                                 </div>
                                                             </div>
@@ -709,7 +709,7 @@
                                                                         <img alt="Loction Pin" src="assets/user_group.svg" /> Time Not Mentioned
                                                                     </p>
                                                                     <p *ngIf="!program?.isTimeNotMention">
-                                                                        <img alt="Loction Pin" src="assets/user_group.svg" /> {{ program?.time?.from }} - {{ program?.time?.to }}
+                                                                        <img alt="Loction Pin" src="assets/user_group.svg" /> {{ program?.time?.from.toFixed(2) }} - {{ program?.time?.to.toFixed(2) }}
                                                                     </p>
                                                                 </div>
                                                             </div>

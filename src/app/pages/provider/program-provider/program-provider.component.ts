@@ -245,9 +245,16 @@ this.clickedMarker(e)
     this.router.navigate(['program', data.name, data._id]);
   }
 
-  setSubCategoryId(e) {
-    let   filterData: any = {
-      subcatId: e,
+  setSubCategoryId(data) {
+  
+   let filterData: any = {
+      subcatId: data._id,
+      categoryId:'',
+      activityName: '',
+      searchedCategoryKey:data.name,
+        lat:'',
+        lng:'',
+    
     }
     this.dataService.setOption(filterData)
     this.router.navigate(['/search'])
