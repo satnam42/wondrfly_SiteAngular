@@ -11,8 +11,8 @@
                         </div>
                         <label class="banner-icon cursor">
               <input style="display: none" type="file" id="file" accept="image/*" name="img_logo" class="dropzone"
-                *ngIf="program.user === this.userId" />
-              <button class="uploadbanner" type="button" *ngIf="program.user === this.userId"
+                *ngIf="program?.user === this.userId" />
+              <button class="uploadbanner" type="button" *ngIf="program?.user === this.userId"
                 onclick="document.getElementById('file').click();">
                 ADD PHOTOS
               </button>
@@ -44,7 +44,7 @@
                                                     <img src="assets/edit_skyblue.svg" alt="Edit Image" />
                                                 </a>
 
-                                                <button *ngIf="program?.inpersonOrVirtual=='Virtual'" class="btn-style">Online</button>
+                                                <button *ngIf="program?.inpersonOrvirtual=='Virtual'" class="btn-style">Online</button>
                                             </h3>
 
                                             <div class="share_icon">
@@ -55,7 +55,7 @@
                                                     <a class="bookmark_icon cursor" *ngIf="!program.isFav" (click)="addFav()">
                                                         <img src="assets/bookmark_gray.svg  " alt="Menu Image " /></a>
 
-                                                    <a class="bookmark_icon cursor" *ngIf="program.isFav" (click)="deleteFav()"><img src="assets/bookmarkOrange.svg " alt="Menu Image " /></a>
+                                                    <a class="bookmark_icon cursor" *ngIf="program?.isFav" (click)="deleteFav()"><img src="assets/bookmarkOrange.svg " alt="Menu Image " /></a>
                                                 </div>
                                             </div>
 
@@ -159,37 +159,39 @@
                                                 </span>
                                             </h3>
                                             <div class="programInfo">
-                                                <p *ngIf="program?.inpersonOrVirtual!='Virtual'">
-                                                    <img src="assets/loction_pin.svg" alt="Location Pin" />{{ program.location }}
+                                                <p *ngIf="program?.inpersonOrvirtual!='Virtual'">
+                                                    <img src="assets/loction_pin.svg" alt="Location Pin" />{{ program?.location }}
                                                 </p>
-                                                <p *ngIf="program?.inpersonOrVirtual=='Virtual'">
+                                                <p *ngIf="program?.inpersonOrvirtual=='Virtual'">
                                                     <img src="assets/bi_link.svg" alt="Location Pin" /><a routerLink="{{program?.joiningLink}}" target="_blank">Join via Link</a>
                                                 </p>
-                                                <p *ngIf="!program.isDateNotMention">
-                                                    <img src="assets/calendar_orange.svg" alt="Calendar" />{{ program?.date.from | date: "mediumDate" }} - {{ program.date.to | date: "mediumDate" }}
+                                                <p *ngIf="program?.date?.from && program.date?.from && !program?.isDateNotMention">
+                                                    <img src="assets/calendar_orange.svg" alt="Calendar" />{{ program?.date?.from | date: "mediumDate" }} - {{ program?.date?.to | date: "mediumDate" }}
                                                 </p>
-                                                <p *ngIf="program.isDateNotMention">
+                                                <p *ngIf="(!program?.date?.from || !program?.date?.from ) && program?.isDateNotMention">
                                                     <img src="assets/calendar_orange.svg" alt="Calendar" />Date Not Mentioned
                                                 </p>
                                                 <p>
-                                                    <img src="assets/user_group_orange.svg" alt="Calendar" /> {{ program?.ageGroup.from }} - {{ program?.ageGroup.to }} Yrs.
+                                                    <img src="assets/user_group_orange.svg" alt="Calendar" /> {{ program?.ageGroup?.from }} - {{ program?.ageGroup?.to }} Yrs.
                                                 </p>
 
-                                                <p *ngIf="!program.isTimeNotMention">
-                                                    <img src="assets/watch.svg" alt="Loction Pin" /> {{ program?.time.from.toFixed(2)}} - {{ program?.time.to.toFixed(2)}}
+                                                <p *ngIf="!program?.isTimeNotMention">
+                                                    <img src="assets/watch.svg" alt="Loction Pin" /> {{ program?.time?.from}} - {{ program?.time?.to}}
                                                 </p>
-                                                <p *ngIf="program.isTimeNotMention">
-                                                    <img src="assets/watch.svg" alt="Loction Pin" /> Time Not Mentioned
+                                                <p *ngIf="program?.isTimeNotMention">
+                                                    <img src="assets/watch.svg" alt="Loction Pin" /> Time Not Mention
                                                 </p>
-                                                <p *ngIf="program.duration?.hours || program.duration?.minutes">
-                                                    <img src="assets/timer.svg" alt="Loction Pin" />{{ program.duration?.hours }} : {{ program.duration?.minutes }} Hours
+                                                <p *ngIf="
+                            program?.duration?.hours || program?.duration?.minutes
+                          ">
+                                                    <img src="assets/timer.svg" alt="Loction Pin" />{{ program?.duration?.hours }} : {{ program?.duration?.minutes }} Hours
                                                 </p>
 
-                                                <p *ngIf="!program.isFree && program?.pricePerParticipant">
-                                                    <img src="assets/pricet.svg" alt="price tag" /> ${{ program.pricePerParticipant }}
-                                                    <span *ngIf="program.pricePeriod.periodAmount">/{{ program.pricePeriod.periodAmount }}</span>
+                                                <p *ngIf="!program?.isFree && program?.pricePerParticipant">
+                                                    <img src="assets/pricet.svg" alt="price tag" /> ${{ program?.pricePerParticipant }}
+                                                    <span *ngIf="program?.pricePeriod?.periodAmount">/{{ program?.pricePeriod?.periodAmount }}</span>
                                                 </p>
-                                                <p *ngIf="program.isFree && !program?.pricePerParticipant">
+                                                <p *ngIf="program?.isFree && !program?.pricePerParticipant">
                                                     <img src="assets/pricet.svg" alt="price tag" /> Free
                                                 </p>
                                                 <p *ngIf="!program?.isFree && !program?.pricePerParticipant">
@@ -198,11 +200,11 @@
                                             </div>
                                             <div id="cat-subcat">
                                                 <button class="camp-btn" *ngFor="let cat of categoryArr; let i=index">
-                          {{cat.name}}
+                          {{cat?.name}}
                         </button>
                                                 <div *ngFor="let subcat of subcatArr | slice: 0:2">
                                                     <button class="camp-btn">
-                            {{ subcat.name}}
+                            {{ subcat?.name}}
                           </button>
                                                 </div>
                                                 <p>
@@ -216,7 +218,7 @@
                                                         <span id="closeBtn"><img src="assets/grey-close.png" /> </span>
                                                         <div class="d-flex flex-wrap">
                                                             <h6 *ngFor="let subcat of subcatArr; let i=index">
-                                                                <p id="moreBtn-collapse-cursor" *ngIf="i>1">{{subcat.name}}</p>
+                                                                <p id="moreBtn-collapse-cursor" *ngIf="i>1">{{subcat?.name}}</p>
                                                             </h6>
                                                         </div>
                                                     </div>
@@ -276,34 +278,34 @@
                 </div>
               </div> -->
 
-                            <div class="description_text" *ngIf="program.description">
+                            <div class="description_text" *ngIf="program?.description">
                                 <h2>Activity Description</h2>
-                                <p>{{ program.description }}</p>
+                                <p>{{ program?.description }}</p>
                             </div>
 
                             <div class="description_text" *ngIf="
-                  program.bookingCancelledIn?.days &&
-                  program.bookingCancelledIn?.hours
+                  program?.bookingCancelledIn?.days &&
+                  program?.bookingCancelledIn?.hours
                 ">
                                 <h2>Cancellation Policy</h2>
                                 <p>
-                                    <label>Booking can’t be cancelled before</label> {{ program.bookingCancelledIn?.days }} days {{ program.bookingCancelledIn?.hours }} Hours
+                                    <label>Booking can’t be cancelled before</label> {{ program?.bookingCancelledIn?.days }} days {{ program?.bookingCancelledIn?.hours }} Hours
                                 </p>
                             </div>
 
-                            <div class="description_text" *ngIf="program.specialInstructions">
+                            <div class="description_text" *ngIf="program?.specialInstructions">
                                 <h2>Special Instructions</h2>
                                 <!-- <div class="special-groups">
                   <span><img src="assets/group-detail.svg" />Parent Assistance
                     required</span>
                   <span><img src="assets/mountain-detail.svg" />Outdoor</span>
                 </div> -->
-                                <p>{{ program.specialInstructions }}</p>
+                                <p>{{ program?.specialInstructions }}</p>
                             </div>
 
-                            <div class="people-block" *ngIf="program.user !== this.userId">
+                            <div class="people-block" *ngIf="program?.user !== this.userId">
                                 <div class="description_text people_sectionn people_outer">
-                                    <div align="right" class="cursor" *ngIf="program.user === this.userId">
+                                    <div align="right" class="cursor" *ngIf="program?.user === this.userId">
                                         <a data-toggle="modal" data-target="#providerUpdateModal">
                                             <img src="assets/edit_skyblue.svg" alt="Edit Image" />
                                         </a>
@@ -335,7 +337,7 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="batch_right map_provider" *ngIf="program.user !== this.userId">
+                            <div class="batch_right map_provider" *ngIf="program?.user !== this.userId">
                                 <div class="description_text">
                                     <h2>Company Information</h2>
                                     <div class="row align-items-center">
@@ -368,7 +370,7 @@
                                                 </div>
                                                 <div class="media-body">
                                                     <h4>WWW</h4>
-                                                    <p>{{user.website}}</p>
+                                                    <p>{{user?.website}}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -430,7 +432,7 @@
                             <div class="batch_right map_provider">
                                 <agm-map [latitude]="40.5682945" [longitude]="-74.0409239" [zoom]="7" [styles]="" [zoomControl]="false" [streetViewControl]="false" (mapClick)="mapClicked(previous)">
                                     <div>
-                                        <agm-marker *ngIf="program.lat && program.lng" [iconUrl]="markerUrl" [latitude]="program.lat" [longitude]="program.lng" (markerClick)="clickedMarker(previous)">
+                                        <agm-marker *ngIf="program?.lat && program?.lng" [iconUrl]="markerUrl" [latitude]="program?.lat" [longitude]="program?.lng" (markerClick)="clickedMarker(previous)">
                                             <strong>{{ program?.name }}</strong>
                                             <agm-info-window #previous>
                                                 <div class="map-popup">
@@ -440,14 +442,14 @@
                                                     <h2>by {{ program?.programOwner }}</h2>
                                                     <div class="rating-starsearch">
                                                         <p>
-                                                            <span *ngIf="program.averageFinalRating == 0">
+                                                            <span *ngIf="program?.averageFinalRating == 0">
                                 <span class="fa fa-star-o"></span>
                                                             <span class="fa fa-star-o"></span>
                                                             <span class="fa fa-star-o"></span>
                                                             <span class="fa fa-star-o"></span>
                                                             <span class="fa fa-star-o"></span>
                                                             </span>
-                                                            <span *ngIf="program.averageFinalRating == 1">
+                                                            <span *ngIf="program?.averageFinalRating == 1">
                                 <span class="fa fa-star checked"></span>
                                                             <span class="fa fa-star-o"></span>
                                                             <span class="fa fa-star-o"></span>
@@ -455,8 +457,8 @@
                                                             <span class="fa fa-star-o"></span>
                                                             </span>
                                                             <span *ngIf="
-                                  program.averageFinalRating > 1 &&
-                                  program.averageFinalRating < 2
+                                  program?.averageFinalRating > 1 &&
+                                  program?.averageFinalRating < 2
                                 ">
                                 <span class="fa fa-star checked"></span>
                                                             <span class="fa fa-star-half-o checked"></span>
@@ -464,7 +466,7 @@
                                                             <span class="fa fa-star-o"></span>
                                                             <span class="fa fa-star-o"></span>
                                                             </span>
-                                                            <span *ngIf="program.averageFinalRating == 2">
+                                                            <span *ngIf="program?.averageFinalRating == 2">
                                 <span class="fa fa-star checked"></span>
                                                             <span class="fa fa-star checked"></span>
                                                             <span class="fa fa-star-o"></span>
@@ -472,8 +474,8 @@
                                                             <span class="fa fa-star-o"></span>
                                                             </span>
                                                             <span *ngIf="
-                                  program.averageFinalRating > 2 &&
-                                  program.averageFinalRating < 3
+                                  program?.averageFinalRating > 2 &&
+                                  program?.averageFinalRating < 3
                                 ">
                                 <span class="fa fa-star checked"></span>
                                                             <span class="fa fa-star checked"></span>
@@ -481,7 +483,7 @@
                                                             <span class="fa fa-star-o"></span>
                                                             <span class="fa fa-star-o"></span>
                                                             </span>
-                                                            <span *ngIf="program.averageFinalRating == 3">
+                                                            <span *ngIf="program?.averageFinalRating == 3">
                                 <span class="fa fa-star checked"></span>
                                                             <span class="fa fa-star checked"></span>
                                                             <span class="fa fa-star checked"></span>
@@ -489,8 +491,8 @@
                                                             <span class="fa fa-star-o"></span>
                                                             </span>
                                                             <span *ngIf="
-                                  program.averageFinalRating > 3 &&
-                                  program.averageFinalRating < 4
+                                  program?.averageFinalRating > 3 &&
+                                  program?.averageFinalRating < 4
                                 ">
                                 <span class="fa fa-star checked"></span>
                                                             <span class="fa fa-star checked"></span>
@@ -498,7 +500,7 @@
                                                             <span class="fa fa-star-half-o checked"></span>
                                                             <span class="fa fa-star-o"></span>
                                                             </span>
-                                                            <span *ngIf="program.averageFinalRating == 4">
+                                                            <span *ngIf="program?.averageFinalRating == 4">
                                 <span class="fa fa-star checked"></span>
                                                             <span class="fa fa-star checked"></span>
                                                             <span class="fa fa-star checked"></span>
@@ -506,8 +508,8 @@
                                                             <span class="fa fa-star-o"></span>
                                                             </span>
                                                             <span *ngIf="
-                                  program.averageFinalRating > 4 &&
-                                  program.averageFinalRating < 5
+                                  program?.averageFinalRating > 4 &&
+                                  program?.averageFinalRating < 5
                                 ">
                                 <span class="fa fa-star checked"></span>
                                                             <span class="fa fa-star checked"></span>
@@ -515,7 +517,7 @@
                                                             <span class="fa fa-star checked"></span>
                                                             <span class="fa fa-star-half-o checked"></span>
                                                             </span>
-                                                            <span *ngIf="program.averageFinalRating == 5">
+                                                            <span *ngIf="program?.averageFinalRating == 5">
                                 <span class="fa fa-star checked"></span>
                                                             <span class="fa fa-star checked"></span>
                                                             <span class="fa fa-star checked"></span>
@@ -529,7 +531,7 @@
                                                         <span><img src="assets/location-pintag.svg" />
                             </span>
                                                         <h3>
-                                                            {{ program.location }}
+                                                            {{ program?.location }}
                                                         </h3>
                                                     </div>
                                                 </div>
@@ -539,7 +541,7 @@
                                 </agm-map>
                             </div>
                         </div>
-                        <div class="col-12" *ngIf="program.user === this.userId">
+                        <div class="col-12" *ngIf="program?.user === this.userId">
                             <div class="description_text people_section people_outer">
                                 <h2>People <a href="javascript:;">View all</a></h2>
                                 <div class="people_list">
@@ -660,16 +662,16 @@
                                                                 </div>
                                                                 <div class="date_age">
                                                                     <p>
-                                                                        <img alt="Loction Pin" src="assets/calendar.svg" /> {{ program?.date.from | date: "mediumDate" }} - {{ program.date.to | date: "mediumDate" }}
+                                                                        <img alt="Loction Pin" src="assets/calendar.svg" /> {{ program?.date?.from | date: "mediumDate" }} - {{ program?.date?.to | date: "mediumDate" }}
                                                                     </p>
                                                                     <p>
-                                                                        <img alt="Loction Pin" src="assets/user_group.svg" /> {{ program?.ageGroup.from }} - {{ program?.ageGroup.to }} Yrs.
+                                                                        <img alt="Loction Pin" src="assets/user_group.svg" /> {{ program?.ageGroup?.from }} - {{ program?.ageGroup?.to }} Yrs.
                                                                     </p>
-                                                                    <p *ngIf="program.isTimeNotMention">
+                                                                    <p *ngIf="program?.isTimeNotMention">
                                                                         <img alt="Loction Pin" src="assets/user_group.svg" /> Time Not Mentioned
                                                                     </p>
-                                                                    <p *ngIf="!program.isTimeNotMention">
-                                                                        <img alt="Loction Pin" src="assets/user_group.svg" /> {{ program?.time.from.toFixed(2)}} - {{ program.time.to.toFixed(2)}}
+                                                                    <p *ngIf="!program?.isTimeNotMention">
+                                                                        <img alt="Loction Pin" src="assets/user_group.svg" /> {{ program?.time?.from}} - {{ program?.time?.to}}
                                                                     </p>
                                                                 </div>
                                                             </div>
@@ -688,23 +690,23 @@
                                                             </div>
                                                             <div class="slide_text">
                                                                 <h3>
-                                                                    <span class="title cursor" (click)="clickedProgram(program)">{{ program.name }}</span>
+                                                                    <span class="title cursor" (click)="clickedProgram(program)">{{ program?.name }}</span>
                                                                 </h3>
                                                                 <div class="sports_btn" *ngFor="let cat of program?.category">
                                                                     <span>{{ cat?.name }}</span>
                                                                 </div>
                                                                 <div class="date_age">
                                                                     <p>
-                                                                        <img alt="Loction Pin" src="assets/calendar.svg" /> {{ program?.date.from | date: "mediumDate" }} - {{ program.date.to | date: "mediumDate" }}
+                                                                        <img alt="Loction Pin" src="assets/calendar.svg" /> {{ program?.date?.from | date: "mediumDate" }} - {{ program?.date?.to | date: "mediumDate" }}
                                                                     </p>
                                                                     <p>
-                                                                        <img alt="Loction Pin" src="assets/user_group.svg" /> {{ program?.ageGroup.from }} - {{ program?.ageGroup.to }} Yrs.
+                                                                        <img alt="Loction Pin" src="assets/user_group.svg" /> {{ program?.ageGroup?.from }} - {{ program?.ageGroup?.to }} Yrs.
                                                                     </p>
-                                                                    <p *ngIf="program.isTimeNotMention">
+                                                                    <p *ngIf="program?.isTimeNotMention">
                                                                         <img alt="Loction Pin" src="assets/user_group.svg" /> Time Not Mentioned
                                                                     </p>
-                                                                    <p *ngIf="!program.isTimeNotMention">
-                                                                        <img alt="Loction Pin" src="assets/user_group.svg" /> {{ program?.time.from.toFixed(2) }} - {{ program.time.to.toFixed(2) }}
+                                                                    <p *ngIf="!program?.isTimeNotMention">
+                                                                        <img alt="Loction Pin" src="assets/user_group.svg" /> {{ program?.time?.from }} - {{ program?.time?.to }}
                                                                     </p>
                                                                 </div>
                                                             </div>
