@@ -491,6 +491,7 @@ export class SearchComponent implements OnInit, OnDestroy {
       // this.ngxLoader.stop()
       this.contentLoaded = true;
       this.programs = res.items;
+      this.fakeLoaderData = this.programs
 for(let i in this.programs){
   let category = this.programs[i].category.filter((v,num,a)=>a.findIndex(t=>(t.name===v.name))===num)
   this.programs[i].category = category
@@ -587,6 +588,7 @@ for(let i in this.programs){
       console.log('filterbyNameDate', res)
       this.contentLoaded = true;
       this.programs = res.data
+      this.fakeLoaderData = this.programs
       for(let i in this.programs){
         let category = this.programs[i].category.filter((v,num,a)=>a.findIndex(t=>(t.name===v.name))===num)
         this.programs[i].category = category
@@ -703,6 +705,7 @@ for(let i in this.programs){
         if (res.isSuccess) {
           // this.isTopFilterCheckBox = false
           this.programs = res.data;
+          this.fakeLoaderData = this.programs
           for(let i in this.programs){
             let category = this.programs[i].category.filter((v,num,a)=>a.findIndex(t=>(t.name==v.name))===num)
 this.programs[i].category = category          }
