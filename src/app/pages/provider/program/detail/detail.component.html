@@ -120,8 +120,7 @@
                                                 </span>
                                                 <span *ngIf="
                                 rating?.finalAverageRating > 3 &&
-                                rating?.finalAverageRating < 4
-                              ">
+                                rating?.finalAverageRating < 4">
                               <span class="fa fa-star checked"></span>
                                                 <span class="fa fa-star checked"></span>
                                                 <span class="fa fa-star checked"></span>
@@ -137,8 +136,8 @@
                                                 </span>
                                                 <span *ngIf="
                                 rating?.finalAverageRating > 4 &&
-                                rating?.finalAverageRating < 5
-                              ">
+                                rating?.finalAverageRating < 5">
+                              
                               <span class="fa fa-star checked"></span>
                                                 <span class="fa fa-star checked"></span>
                                                 <span class="fa fa-star checked"></span>
@@ -163,7 +162,7 @@
                                                     <img src="assets/loction_pin.svg" alt="Location Pin" />{{ program?.location }}
                                                 </p>
                                                 <p *ngIf="program.inpersonOrVirtual=='Virtual'">
-                                                    <img src="assets/bi_link.svg" alt="Location Pin" /><a routerLink="{{program?.joiningLink}}" target="_blank">Join via Link</a>
+                                                    <img src="assets/bi_link.svg" alt="Location Pin" /><a href="{{program?.joiningLink}}" target="_blank" rel="noopener">Join via Link</a>
                                                 </p>
                                                 <p *ngIf="!program?.isDateNotMention">
                                                     <img src="assets/calendar_orange.svg" alt="Calendar" />{{ program?.date?.from | date: "mediumDate" }} - {{ program?.date?.to | date: "mediumDate" }}
