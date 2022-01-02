@@ -105,7 +105,7 @@ export class OnlineProgramsComponent implements OnInit {
       }
   }
   ngOnInit() {
-    console.log(this.programs,'programs')
+    console.log(this.programs,'online programs')
 }
    addAction(programId) {
     let body = {
