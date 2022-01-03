@@ -87,9 +87,10 @@ cancel(){
     if(this.isGuardianInvitation){
       this.apiservice.guardianAsktojoin(this.userData).subscribe((res: any) => {
         console.log(res)
+
         if(res.isSuccess){
-    // this.toastr.info(this.message)
-        }
+    window.document.getElementById("openSuccessModal").click();
+  }
         else{this.toastr.error(res.error) }
     })
     }
@@ -97,7 +98,7 @@ cancel(){
       this.apiservice.askToJoin(this.userData).subscribe((res: any) => {
         console.log(res)
         if(res.isSuccess){
-    // this.toastr.info(this.message)
+          window.document.getElementById("openSuccessModal").click();
         }
         else{this.toastr.error(res.error) }
     })
@@ -151,5 +152,9 @@ cancel(){
         });
       });
     });
+  }
+  
+  ngOnDestroy() {
+    window.document.getElementById("close_modal").click();
   }
 }
