@@ -102,7 +102,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   // latitude: number = 40.5682945; longitude: number = -74.0409239;
   lat = 40.712776;
   lng = -74.005974;
-  zoom = 14;
+  zoom = 12;
   address: string;
   private geoCoder;
   user = new User
@@ -380,7 +380,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.mapsAPILoader.load().then(() => {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position: any) => {
-          this.zoom = 14;
+          this.zoom = 12;
           this.lat = position.coords.latitude;
           this.lng = position.coords.longitude;
           console.log(this.lat, this.lng)
