@@ -8,7 +8,7 @@
                         <div class="online-bar">
                             ONLINE
                         </div>
-                        <div class="media-left activity-imgs">
+                        <div class="media-left activity-imgs" (click)="goToProgramDetail(program) ">
                             <img *ngIf="imageLoader.isLoad" [src]="imageLoader.img" alt="Activity">
                             <img *ngIf="program?.category[0]?.iconUrl" [hidden]="imageLoader.isLoad" [src]="baseUrl+program?.category[0]?.iconUrl" (load)="imageLoader.isLoad=false" alt="Activity">
                             <img *ngIf="!program?.category[0]?.iconUrl" [hidden]="imageLoader.isLoad" [src]="'assets/guitar.png'" (load)="imageLoader.isLoad=false" alt="Activity">

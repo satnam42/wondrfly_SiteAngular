@@ -468,6 +468,14 @@ export class SearchComponent implements OnInit, OnDestroy {
     programName = programName.replace(/\?/g, "-");
     this.router.navigate(['program', programName, data._id]);
   }
+  addAction(programId) {
+    let body = {
+      action: 'click',
+      programId: programId
+    };
+    this.apiservice.addAction(body).subscribe((res: any) => {
+    });
+  }
 
   onScroll() {
     if (this.isScrol) {
@@ -549,14 +557,7 @@ for(let i in this.programs){
     });
   }
 
-  addAction(programId) {
-    let body = {
-      action: 'click',
-      programId: programId
-    };
-    this.apiservice.addAction(body).subscribe((res: any) => {
-    });
-  }
+
 
   loadMore() {
     this.pageSize += 20;

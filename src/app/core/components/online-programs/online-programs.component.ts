@@ -107,14 +107,7 @@ export class OnlineProgramsComponent implements OnInit {
   ngOnInit() {
     console.log(this.programs,'online programs')
 }
-   addAction(programId) {
-    let body = {
-      action: 'click',
-      programId: programId
-    };
-    this.apiservice.addAction(body).subscribe((res: any) => {
-    });
-  }
+
 
   addFavProgram(userId, programId, index) {
     this.programs[index].isFav = true;
@@ -132,15 +125,26 @@ export class OnlineProgramsComponent implements OnInit {
     });
   }
 
-   goToProgramDetail(data) {
+
+
+  goToProgramDetail(data) {
     if (this.parentRole) {
       this.addAction(data._id);
     }
-    let name=data.name.toLowerCase();
-     name = name.replace(/ /g,"-");
-    this.router.navigate(['program', name,data._id]);
+    var programName = data.name;
+    programName = programName.toLowerCase();
+    programName = programName.replace(/ /g, "-");
+    programName = programName.replace(/\?/g, "-");
+    this.router.navigate(['program', programName, data._id]);
   }
-
+  addAction(programId) {
+    let body = {
+      action: 'click',
+      programId: programId
+    };
+    this.apiservice.addAction(body).subscribe((res: any) => {
+    });
+  }
    // ---------------------------------navigate to program detail page -------------------------------------------
 getRating(program){
   if(program.userId==''|| program.userId==undefined || !program.userId){ program.userId=program.user }
