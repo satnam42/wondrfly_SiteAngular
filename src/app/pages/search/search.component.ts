@@ -668,6 +668,9 @@ for(let i in this.programs){
           times += ',' + time
         }
       }
+      if(!categoryId && !this.selectedSubCategories.length){
+        this.searchedSubCategory = '';
+      }
       if (this.isOnline) {
         inpersonOrVirtual = 'online'
       }

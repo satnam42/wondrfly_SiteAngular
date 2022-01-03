@@ -263,7 +263,7 @@
 
             <div class="col-md-4 toggle-border">
                 <div class="toggle-filtersearch">
-                    <button [class.active]="isOnline" (click)="programFilter();(isOnline?isOnline=false:isOnline=true);(isInPerson?isInPerson=false:false)" class="btn1-filtersearch">
+                    <button [class.active]="isOnline" (click)="(isOnline?isOnline=false:isOnline=true);(isInPerson?isInPerson=false:false);programFilter()" class="btn1-filtersearch">
             Online
           </button>
                     <button [class.active]="isInPerson" (click)="(isInPerson?isInPerson=false:isInPerson=true);(isOnline?isOnline=false:false);programFilter()" class="btn2-filtersearch">
@@ -715,7 +715,7 @@
                 </div>
             </div>
         </div>
-        <div *ngIf="isOnline">
+        <div *ngIf="isOnline && showReset">
             <online-programs [programs]="programs" [categories]="categories" [contentLoaded]="contentLoaded"></online-programs>
         </div>
     </div>
