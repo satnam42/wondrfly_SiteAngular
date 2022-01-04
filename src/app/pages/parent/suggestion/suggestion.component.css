@@ -1099,6 +1099,7 @@ button.cmn-resbtn.active{
   display: block;
   margin-top: 13px;
   filter: invert(68%) sepia(8%) saturate(3771%) hue-rotate(170deg) brightness(96%) contrast(88%);
+  -webkit-filter: invert(68%) sepia(8%) saturate(3771%) hue-rotate(170deg) brightness(96%) contrast(88%);
 }
 .right-resourcebtn .carousel-nav-icon{
   height: 48px;
@@ -1108,9 +1109,9 @@ button.cmn-resbtn.active{
   box-sizing: border-box;
   color: #494949;
   border-radius: 50%;
-  top: 50%;
+  top: 44%;
   position: absolute;
-  right: -2%;
+  right: 3%;
   z-index: 1;
 }
 .left-resourcebtn .carousel-nav-icon svg {
@@ -1135,9 +1136,9 @@ button.cmn-resbtn.active{
   box-sizing: border-box;
   color: #494949;
   border-radius: 50%;
-  top: 50%;
+  top: 44%;
   position: absolute;
-  left: -2%;
+  left: 3%;
   z-index: 1;
 }
 
@@ -1153,10 +1154,13 @@ button.cmn-resbtn.active{
   display: none !important;
 
 }
+.custom-slider-main .card-body {
+  padding-top: 5px;
+}
 .cardss .card img.card-img-top {
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-  height: 150px;
+  height: 200px;
   object-fit: cover;
   width: 100%;
 }
