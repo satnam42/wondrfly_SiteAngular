@@ -8,7 +8,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="beta-suggestionheading">
-                            <h1>Hi {{currentUser?.firstName}}. Welcome to Wondrfly!</h1>
+                            <h1>Hi {{currentUser?.firstName.substr(0,currentUser?.firstName.indexOf(' '))}}. Welcome to Wondrfly!</h1>
                             <h2>We’ve prepared these activity recommendations just for you!</h2>
                         </div>
                     </div>
@@ -476,7 +476,7 @@
                                                 <div class="do-together cardss">
                                                     <div #widgetsContent class="custom-slider-main">
                                                         <div class="card" *ngFor='let tweetData of tweetData'>
-                                                            <div class="resourcenew-upper">
+                                                            <!-- <div class="resourcenew-upper">
                                                                 <a routerLink="{{tweetDataBlogPath}}" target="_blank">
                                                                     <div class="content-upper cursor">
 
@@ -485,14 +485,15 @@
                                                                         <h1>Funny Tweets</h1>
                                                                     </div>
                                                                 </a>
-                                                            </div>
+                                                            </div> -->
+                                                            <ngx-tweet></ngx-tweet>
                                                             <div class="card-body">
-                                                                <div class="resourcenew-lower">
-                                                                    <div class="dummy-twitter">
+                                                                <!-- <div class="resourcenew-lower">
+                                                                    <div class="dummy-twitter"> -->
 
-                                                                        <div [innerHTML]="tweetData?.embededTweet | markdown"></div>
-                                                                    </div>
-                                                                </div>
+                                                                <div [innerHTML]="tweetData?.embededTweet | markdown"></div>
+                                                                <!-- </div>
+                                                                </div> -->
                                                             </div>
                                                             <a routerLink="{{tweetDataBlogPath}}" target="_blank" class="btn-sec">CHECK FOR MORE!</a>
                                                         </div>

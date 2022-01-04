@@ -536,7 +536,7 @@ for(let i in this.programs){
     this.searchedSubCategory = cat.name
     this.apiservice.getTagByCategoryId(cat.id).subscribe((res: any) => {
       this.subCats = res.data
-      this.subCats = this.subCats.filter((item) => item.isActivated === true);
+      this.subCats = this.subCats.filter((item) => item.isActivated === true && item.programCount);
       console.log(this.subCats)
     })
   }

@@ -6,6 +6,7 @@ import { CustomFormsModule } from 'ng2-validation';
 import { LoginParentComponent } from './login-parent/login-parent.component'
 import { ParentProfileComponent } from './parent-profile/parent-profile.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxTweetModule } from "ngx-tweet";
 import { AgmCoreModule } from '@agm/core';
 import { NgxMaskModule } from 'ngx-mask';
 import { ParentComponent } from './parent.component';
@@ -30,6 +31,7 @@ import { CounterModule } from './../../core/components/counter/counter.module';
         ParentRoutingModule,
         FormsModule,
         CustomFormsModule,
+        NgxTweetModule,
         MatInputModule,
         ReactiveFormsModule,
         NgxMaskModule.forRoot(),
