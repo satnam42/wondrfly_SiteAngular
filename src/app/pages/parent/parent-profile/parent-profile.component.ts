@@ -364,7 +364,9 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked,OnDestro
       let kids = []
       this.kids.forEach(kid => {
         let kidMonth = String(this.getAgeMonth(kid.dob))
+        console.log('kidMonth>>>>>',kidMonth)
         let age = Number(this.getAge(kid.dob))
+        console.log('age>>>>>',age)
         if(age<1){
           if(kidMonth){
             kid.age = kidMonth+' Months Old'

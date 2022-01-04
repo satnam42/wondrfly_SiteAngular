@@ -19,9 +19,9 @@
                         <div class="page_heading">
                             <div class="profile_outer">
                                 <div class="profile_image" [class.initial-alpha]="!user?.avatarImages">
-                                    <img *ngIf="user?.avatarImages" src="{{ user?.avatarImages }}" alt="Profile Image" />
-                                    <h1 *ngIf="!user?.avatarImages" [class.initial-alpha]="!user?.avatarImages">
-                                        {{user?.firstName?.charAt(0)+user?.firstName?.charAt(1)}}</h1>
+                                    <img *ngIf="user.avatarImages" src="{{ user.avatarImages }}" alt="Profile Image" />
+                                    <h1 *ngIf="!user.avatarImages" [class.initial-alpha]="!user?.avatarImages">
+                                        {{user.firstName.charAt(0)+user?.firstName?.charAt(1)}}</h1>
 
                                 </div>
 
@@ -50,7 +50,7 @@
                   <a [class.active]="chat" (click)="onChat()">Chat</a>
                 </li> -->
                                 <li>
-                                    <a [class.active]="children" (click)="onChildren(currentUser?.id)">Kids</a>
+                                    <a [class.active]="children" (click)="onChildren(currentUser.id)">Kids</a>
                                 </li>
                                 <!-- <li>
                   <a [class.active]="guardian" (click)="onGuardian(currentUser?.id)">Grown Ups</a>
@@ -68,7 +68,7 @@
                                     </li>
                                 </div>
                                 <!-- <li>
-                  <a [class.active]="isInvite" (click)="onInvite(currentUser?.id)">Invites</a>
+                  <a [class.active]="isInvite" (click)="onInvite(currentUser.id)">Invites</a>
                 </li> -->
                             </ul>
                         </div>
@@ -79,7 +79,8 @@
                         </div>
                         <div class="complete_score">
                             <p>
-                                Profile completion score<span class="icon-information"></span>
+                                Profile completion score
+                                <!-- <span class="icon-information"></span> -->
                             </p>
                         </div>
                     </div>
@@ -119,7 +120,7 @@
 
                             <div class="row bottom_arrow">
                                 <div class="col-12">
-                                    <button [disabled]="!user?.firstName" (click)="updateParent(user)" class="btn_style save_btn cursor">
+                                    <button [disabled]="!user.firstName" (click)="updateParent(user)" class="btn_style save_btn cursor">
                     Save
                   </button>
                                 </div>
@@ -148,7 +149,7 @@
                       </span>
                                         </div>
                                         <div class="contact_list" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="500" (scrolled)="onScroll()" [scrollWindow]="false">
-                                            <div *ngIf="users?.length != undefined">
+                                            <div *ngIf="users.length != undefined">
                                                 <div class="row contact1 cursor" *ngFor="let user of users; trackBy: trackByFn" (click)="slectedUser(user)">
                                                     <div class="col-2">
                                                         <div class="contact_image">
@@ -166,7 +167,7 @@
                                                     </div>
                                                     <div class="col-6">
                                                         <div class="contact_name">
-                                                            {{ user?.firstName }}
+                                                            {{ user.firstName }}
                                                         </div>
                                                     </div>
                                                     <div class="col-4">
@@ -202,7 +203,7 @@
                                             <div *ngIf="chatCollection?.length > 0; else noConversation">
                                                 <ul class="chat" *ngFor="let chat of chatCollection">
                                                     <li class="agent clearfix" *ngIf="
-                              chat?.msgFrom !== currentUser?.firstName &&
+                              chat?.msgFrom !== currentUser.firstName &&
                               chat?.msg
                             ">
                                                         <span class="chat-img left clearfix mx-2">
@@ -218,7 +219,7 @@
                                   }}</small>
                                                             </div>
                                                             <p *ngIf="
-                                  chat?.msgFrom !== currentUser?.firstName &&
+                                  chat?.msgFrom !== currentUser.firstName &&
                                   chat?.msg
                                 ">
                                                                 {{ chat.msg }}
@@ -226,7 +227,7 @@
                                                         </div>
                                                     </li>
                                                     <li class="agent clearfix" *ngIf="
-                              chat?.msgFrom !== currentUser?.firstName &&
+                              chat?.msgFrom !== currentUser.firstName &&
                               chat?.image
                             ">
                                                         <span class="chat-img left clearfix mx-2">
@@ -373,10 +374,10 @@
 
                                         <div class="form-group delete_account">
                                             <label>
-                        <a *ngIf="user?.isActivated" class="cursor" data-toggle="modal" data-target="#confirmModal">
+                        <a *ngIf="user.isActivated" class="cursor" data-toggle="modal" data-target="#confirmModal">
                           Deactivate my account
                         </a>
-                        <a *ngIf="!user?.isActivated" class="cursor" data-toggle="modal" data-target="#confirmModal">
+                        <a *ngIf="!user.isActivated" class="cursor" data-toggle="modal" data-target="#confirmModal">
                           Activate my account
                         </a>
                       </label>
@@ -387,7 +388,7 @@
 
                             <div class="row bottom_arrow">
                                 <div class="col-12">
-                                    <button (click)="resetPassword(currentUser?.id)" [disabled]="resetPasswordForm.invalid" class="btn_style save_btn cursor">
+                                    <button (click)="resetPassword(currentUser.id)" [disabled]="resetPasswordForm.invalid" class="btn_style save_btn cursor">
                     Save
                   </button>
                                 </div>
@@ -514,12 +515,12 @@
                           <span class="icon-more"></span>
                         </button>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                    <a class="dropdown-item cursor" data-toggle="modal" data-target="#editModal" (click)="getKidData(kid)"><span class="icon icon-edit"></span>Edit</a>
+                                                    <a class="dropdown-item cursor" data-toggle="modal" data-target="#editModal" (click)="getKidData(kid)"><span class="icon icon-edit"></span>SAVE</a>
                                                     <a *ngIf="kid?.isActivated" class="dropdown-item cursor" (click)="
-                              activeDactiveChild(kid.id, false, currentUser?.id)
+                              activeDactiveChild(kid.id, false, currentUser.id)
                             "><span class="icon icon-trash"></span>Remove</a>
                                                     <a *ngIf="!kid?.isActivated" class="dropdown-item cursor" (click)="
-                              activeDactiveChild(kid?.id, true, currentUser?.id)
+                              activeDactiveChild(kid?.id, true, currentUser.id)
                             "><span class="icon icon-trash"></span>Activate</a>
                                                 </div>
                                             </div>
@@ -595,7 +596,7 @@
                                                 <label class="switch notification">
                           <input type="checkbox" #toggle data-toggle="toggle" [ngModelOptions]="{ standalone: true }"
                             [(ngModel)]="isToggle" (ngModelChange)="
-                              onOffNotification(currentUser?.id, $event)
+                              onOffNotification(currentUser.id, $event)
                             " />
                           <span class="slider round"></span>
                         </label>

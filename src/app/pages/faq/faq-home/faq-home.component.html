@@ -87,7 +87,7 @@
                     {{ category.category }}
                   </h1>
                   <div class="ques_cat">
-                    <nav *ngFor="let ques of category.questions">
+                    <nav *ngFor="let ques of category.questions | slice:0:5">
                       <ul>
                         <li class="cursor">
                           <a (click)="selectQues(ques)">{{ ques.question }}</a>
