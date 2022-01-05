@@ -515,7 +515,7 @@
                           <span class="icon-more"></span>
                         </button>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                    <a class="dropdown-item cursor" data-toggle="modal" data-target="#editModal" (click)="getKidData(kid)"><span class="icon icon-edit"></span>SAVE</a>
+                                                    <a class="dropdown-item cursor" data-toggle="modal" data-target="#editModal" (click)="getKidData(kid)"><span class="icon icon-edit"></span>Edit</a>
                                                     <a *ngIf="kid?.isActivated" class="dropdown-item cursor" (click)="
                               activeDactiveChild(kid.id, false, currentUser.id)
                             "><span class="icon icon-trash"></span>Remove</a>
@@ -546,7 +546,7 @@
 
                                         <div class="bookmark_outer">
                                             <a (click)="removeFav(favourite.program._id)" class="bookmark_icon cursor">
-                                                <img class="imgsvg" src="assets/bookmarkOrange.svg " alt="Menu Image " />
+                                                <img class="imgsvg" src="assets/bookmarkOrange.png " alt="Menu Image " />
                                             </a>
                                         </div>
                                     </div>
@@ -951,7 +951,7 @@
 
                             <div class="form-group update_btn">
                                 <button *ngIf="kid?.id" class="btn_style save_btn cursor" data-dismiss="modal" (click)="updateChild(kid, currentUser?.id)">
-                  Edit
+                  Save
                 </button>
                                 <button *ngIf="!kid?.id" class="btn_style save_btn cursor" data-dismiss="modal" (click)="addChild(currentUser?.id)">
                   Add

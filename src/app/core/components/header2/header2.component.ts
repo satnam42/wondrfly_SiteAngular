@@ -95,7 +95,7 @@ template: `
                   autocapitalize="off" spellcheck="off" #search readonly />
               </div>
               <div class="form-group cursor">
-                <button class="banner_button cursor">
+                <button class="banner_button cursor" routerLink="/search">
                   <img src="assets/search_icon.svg" alt="Search image" />
                 </button>
               </div>

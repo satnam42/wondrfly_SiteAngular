@@ -96,7 +96,7 @@
                                                         <input placeholder="Search Jersey City" (keydown.enter)="$event.preventDefault()" autocorrect="off" autocapitalize="off" spellcheck="off" #search readonly />
                                                     </div>
                                                     <div class="form-group">
-                                                        <button (click)="searchActivityByNameDate()" class="banner_button" type="submit">
+                                                        <button class="banner_button" routerLink="/search">
                               <img src="assets/search_icon.svg" alt="Search image" />
                             </button>
                                                     </div>
@@ -114,8 +114,8 @@
                               " (click)="searchByCategory(category?._id)">
                                                                     {{ category.name }}
                                                                     <span class="search-programlist">
-                                <img src="assets/program-search.svg" />
-                              </span>
+                                    <img src="assets/program-search.svg" />
+                                  </span>
                                                                 </h6>
                                                                 <h6 (click)="filterData.searchedCategoryKey=category.name;searchBySubCategory(category._id)" *ngFor="
                                     let category of categoriesBySearch?.tags
@@ -394,10 +394,9 @@
                                             <a (click)="scrollLeft()">
                                                 <div class="carousel-nav-icon">
                                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" xmlns:xlink="http://www.w3.org/1999/xlink">
-                          <path
-                            d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z"
-                          />
-                        </svg>
+                            <path
+                              d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z" />
+                          </svg>
                                                 </div>
                                             </a>
                                         </div>
@@ -486,7 +485,7 @@
                                                                     </div>
                                                                 </a>
                                                             </div> -->
-                                                            <ngx-tweet></ngx-tweet>
+                                                            <!-- <ngx-tweet></ngx-tweet> -->
                                                             <div class="card-body">
                                                                 <!-- <div class="resourcenew-lower">
                                                                     <div class="dummy-twitter"> -->
@@ -510,10 +509,9 @@
                                             <a (click)="scrollRight()">
                                                 <div class="carousel-nav-icon">
                                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" xmlns:xlink="http://www.w3.org/1999/xlink">
-                          <path
-                            d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z"
-                          />
-                        </svg>
+                            <path
+                              d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z" />
+                          </svg>
                                                 </div>
                                             </a>
                                         </div>
