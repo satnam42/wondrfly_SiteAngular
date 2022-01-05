@@ -122,6 +122,7 @@ export class ProgramProviderComponent implements OnInit {
     this.ngxLoader.start();
     this.apiservice.getUserById(this.user.id).subscribe((res: any) => {
       this.user = res.data;
+      console.log('user detail',this.user)
       for (let health of this.user.healthAndSafety) {
         if (health.socialDistancing) {
           this.health_safety[1].status = 'active';

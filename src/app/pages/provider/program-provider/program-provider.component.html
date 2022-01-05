@@ -18,7 +18,10 @@
                                 <i *ngIf="rating?.finalAverageRating>1 && rating?.finalAverageRating<5" class="fa fa-star-half-o checked" aria-hidden="true"></i>
                                 <i *ngIf="rating?.finalAverageRating==5" class="fa fa-star checked" aria-hidden="true"></i>
                                 <i *ngIf="rating?.finalAverageRating==0 || rating?.finalAverageRating=='NaN' || rating?.finalAverageRating==undefined" class="fa fa-star-o" aria-hidden="true"></i>
-                                <a><span *ngIf="rating?.finalAverageRating && rating?.finalAverageRating!=='NaN'">{{rating?.finalAverageRating}}</span><span *ngIf="!rating?.finalAverageRating || rating?.finalAverageRating=='NaN' || rating?.finalAverageRating==undefined">0</span> out of 5 </a>
+                                <a><span
+                    *ngIf="rating?.finalAverageRating && rating?.finalAverageRating!=='NaN'">{{rating?.finalAverageRating}}</span><span
+                    *ngIf="!rating?.finalAverageRating || rating?.finalAverageRating=='NaN' || rating?.finalAverageRating==undefined">0</span>
+                  out of 5 </a>
                             </p>
                             <div class=" star-daialogbox" *ngIf="isRating">
                                 <!-- <button  (click)="isRating=false"type="button" class="close star-daialogicon" aria-label="Close">
@@ -154,14 +157,14 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <!-- <div class="col-md-3">
                                     <div class="social-icons media company_info align-items-center">
                                         <a><span  class="icon"><img  src="assets/fb-123.png"></span></a>
                                         <a><span  class="icon"><img  src="assets/insta.png"></span></a>
                                         <a><span class="icon"><img  src="assets/linked_in.png"></span></a>
                                         <a><span class="icon"><img  src="assets/tweet.png"></span></a>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="col-md-1">
 
                                 </div>
@@ -239,70 +242,70 @@
                                             <div class="rating-starsearch">
                                                 <p>
                                                     <span *ngIf="p?.averageFinalRating==0">
-                                            <span class="fa fa-star-o"></span>
+                            <span class="fa fa-star-o"></span>
                                                     <span class="fa fa-star-o"></span>
                                                     <span class="fa fa-star-o"></span>
                                                     <span class="fa fa-star-o"></span>
                                                     <span class="fa fa-star-o"></span>
                                                     </span>
                                                     <span *ngIf="p?.averageFinalRating==1">
-                                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star-o"></span>
                                                     <span class="fa fa-star-o"></span>
                                                     <span class="fa fa-star-o"></span>
                                                     <span class="fa fa-star-o"></span>
                                                     </span>
                                                     <span *ngIf="p?.averageFinalRating>1 && p?.averageFinalRating<2">
-                                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star-half-o checked"></span>
                                                     <span class="fa fa-star-o"></span>
                                                     <span class="fa fa-star-o"></span>
                                                     <span class="fa fa-star-o"></span>
                                                     </span>
                                                     <span *ngIf="p?.averageFinalRating==2">
-                                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star-o"></span>
                                                     <span class="fa fa-star-o"></span>
                                                     <span class="fa fa-star-o"></span>
                                                     </span>
                                                     <span *ngIf="p?.averageFinalRating>2 && p?.averageFinalRating<3">
-                                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star-half-o checked"></span>
                                                     <span class="fa fa-star-o"></span>
                                                     <span class="fa fa-star-o"></span>
                                                     </span>
                                                     <span *ngIf="p?.averageFinalRating==3">
-                                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star-o"></span>
                                                     <span class="fa fa-star-o"></span>
                                                     </span>
                                                     <span *ngIf="p?.averageFinalRating>3 && p?.averageFinalRating<4">
-                                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star-half-o checked"></span>
                                                     <span class="fa fa-star-o"></span>
                                                     </span>
                                                     <span *ngIf="p?.averageFinalRating==4">
-                                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star-o"></span>
                                                     </span>
                                                     <span *ngIf="p?.averageFinalRating>4 && p?.averageFinalRating<5">
-                                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star-half-o checked"></span>
                                                     </span>
                                                     <span *ngIf="p?.averageFinalRating==5">
-                                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star checked"></span>
@@ -330,7 +333,8 @@
 
 
                     <div class="provider_full carousel-cat" *ngIf="isGenOverview && programs?.length">
-                        <h4 class="might-try">You might also like these <span class="subCat" (click)="setSubCategoryId(user.subCategoryIds[0])">{{user.subCategoryIds[0]?.name}} </span> <span *ngIf="user.subCategoryIds?.length>1">and <span class="subCat" (click)="setSubCategoryId(user.subCategoryIds[1])">{{user.subCategoryIds[1]?.name}}</span></span>
+                        <h4 class="might-try">You might also like these <span class="subCat" (click)="setSubCategoryId(user.subCategoryIds[0])">{{user.subCategoryIds[0]?.name}} </span> <span *ngIf="user.subCategoryIds?.length>1">and <span class="subCat"
+                  (click)="setSubCategoryId(user.subCategoryIds[1])">{{user.subCategoryIds[1]?.name}}</span></span>
                             activities: <a class="view_all cursor" (click)="onActivities()">View all</a> </h4>
                         <div class="row">
                             <div class="col-12" *ngIf="programs?.length">
@@ -418,8 +422,9 @@
                             <a href="#carouselExampleIndicators" data-slide="next">
                                 <div class="carousel-nav-icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" xmlns:xlink="http://www.w3.org/1999/xlink">
-                           <path d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z"/>
-                         </svg>
+                    <path
+                      d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z" />
+                  </svg>
                                 </div>
                             </a>
                         </div>
