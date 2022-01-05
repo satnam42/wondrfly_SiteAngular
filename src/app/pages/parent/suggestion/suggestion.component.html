@@ -22,7 +22,7 @@
                     <div class="row">
                         <div class="col-12 activities-flex">
                             <h2 class="title">Activities for {{ kid?.name }}</h2>
-                            <span routerLink="/search" class="d-flex justify-content-end">view all</span>
+                            <span (click)="filterData.searchedCategoryKey=kids[i].interestInfo[0]?.name;filterData.kidAge=kids[i].age;clickOnViewAllChildIntrests(i)" class="d-flex justify-content-end">view all</span>
                         </div>
                     </div>
                     <div class="activity_category_list">

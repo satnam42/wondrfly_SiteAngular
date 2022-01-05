@@ -138,6 +138,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked,OnDestro
   };
   // ------------------------------------
   tags: any = [];
+  suggestedTags:any =[];
   savedList = '';
   sendInvite = '';
   isSMSnotification:boolean;
@@ -1135,4 +1136,13 @@ betaProgramInvitedUsers(userId){
     console.log('invited users',this.invitedUsers)
   });
 }
+
+   // ------------------------------------------get tags-----------------------------------------------------------------
+   getTagList() {
+    this.apiservice.getTag().subscribe((res: any) => {
+      this.tags = res.data;
+      this.tags = this.tags.filter((item) => item.isActivated === true);
+      console.log('catg list', this.tags)
+    });
+  }
 }

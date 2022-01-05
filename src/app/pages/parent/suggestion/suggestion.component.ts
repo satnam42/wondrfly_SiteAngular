@@ -42,7 +42,8 @@ export class SuggestionComponent implements OnInit {
     searchedCategoryKey:'',
     lat:'',
     lng:'',
-    kidAge:''
+    kidAge:'',
+    childIntrests:[]
   }
   categoryResponse: any;
   hide: boolean = true;
@@ -120,8 +121,10 @@ if(!this.currentUser){
     this.filterData.categoryId = ''
     this.filterData.lat = ''
     this.filterData.lng = ''
+    this.filterData.childIntrests = []
     this.dataservice.setOption(this.filterData)
     this.router.navigate(['/search']);
+    
   }
   searchBySubCategory(id) {
     this.filterData.activityName=''
@@ -129,14 +132,31 @@ if(!this.currentUser){
     this.filterData.lat = ''
     this.filterData.lng = ''
     this.filterData.subcatId = id
+    this.filterData.childIntrests = []
     this.dataservice.setOption(this.filterData)
     this.router.navigate(['/search']);
   }
+clickOnViewAllChildIntrests(indx){
+  this.filterData.activityName=''
+  this.filterData.categoryId = ''
+  this.filterData.lat = ''
+  this.filterData.lng = ''
+  this.filterData.subcatId = ''
+  this.filterData.childIntrests=[]
+  this.kids[indx].interestInfo.forEach(intrest => {
+    {
+      this.filterData.childIntrests.push(intrest._id)
+    }
+  });
+  this.dataservice.setOption(this.filterData)
+  this.router.navigate(['/search']);
+}
   searchByCategory(id) {
     this.filterData.kidAge=''
     this.filterData.subcatId= ''
     this.filterData.activityName=''
     this.filterData.categoryId = id
+    this.filterData.childIntrests = []
     this.dataservice.setOption(this.filterData)
     this.router.navigate(['/search']);
   }
