@@ -1,153 +1,151 @@
 <body>
-    <app-header2 *ngIf="!auth.currentUser()"></app-header2>
-    <app-header *ngIf="auth.currentUser()"></app-header>
-    <!-- <app-alert *ngIf="auth.currentUser()"></app-alert> -->
+  <app-header2 *ngIf="!auth.currentUser()"></app-header2>
+  <app-header *ngIf="auth.currentUser()"></app-header>
+  <!-- <app-alert *ngIf="auth.currentUser()"></app-alert> -->
 
-    <div class="common-headermargin">
-        <section class="landing_banner" [ngStyle]="{
+  <div class="common-headermargin">
+    <section class="landing_banner" [ngStyle]="{
         background: 'url(' + landingImages[landingImageIndex] + ')'
       }" title="{{ altBanner }}">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="best_activities">
-                            <h1>Discover the Best kids' activities in Jersey City</h1>
-                            <form class="banner_form" data-toggle="collapse" href="#dropdownprogram-provider" role="button" aria-expanded="false" aria-controls="dropdownprogram-provider">
-                                <div class="left-searchpd">
-                                    <div class="left_search">
-                                        <div>
-                                            <form class="banner_form" data-toggle="collapse" href="#dropdownprogram-provider" role="button" aria-expanded="false" aria-controls="dropdownprogram-provider">
-                                                <div class="form-group ">
-                                                    <input type="text" autocomplete="off" (keyup)="
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="best_activities">
+              <h1>Discover the Best kids' activities in Jersey City</h1>
+              <form class="banner_form" data-toggle="collapse" href="#dropdownprogram-provider" role="button"
+                aria-expanded="false" aria-controls="dropdownprogram-provider">
+                <div class="left-searchpd">
+                  <div class="left_search">
+                    <div>
+                      <form class="banner_form" data-toggle="collapse" href="#dropdownprogram-provider" role="button"
+                        aria-expanded="false" aria-controls="dropdownprogram-provider">
+                        <div class="form-group ">
+                          <input type="text" autocomplete="off" (keyup)="
                             searchSubCategory(filterData.activityName);
                             providerSearch(filterData.activityName)
-                          " [(ngModel)]="filterData.activityName" placeholder="Search Activity..." class="form-control camp_input " name="activityName" />
-                                                </div>
-                                                <div class="search-location">
-                                                    <span data-toggle="modal" data-target="#locationMod">
-                          <img src="assets/search-location.png"
-                        /></span>
-                                                    <input placeholder="Search Jersey City" (keydown.enter)="$event.preventDefault()" autocorrect="off" autocapitalize="off" spellcheck="off" #search readonly />
-                                                </div>
-                                                <div class="form-group cursor">
-                                                    <button class="banner_button cursor" type="submit" routerLink="search" (click)="searchActivityByNameDate()">
-                          <img
-                            src="assets/search_icon.svg"
-                            alt="Search image"
-                          />
-                        </button>
-                                                </div>
+                          " [(ngModel)]="filterData.activityName" placeholder="Search Activity..."
+                            class="form-control camp_input " name="activityName" />
+                        </div>
+                        <div class="search-location">
+                          <span data-toggle="modal" data-target="#locationMod">
+                            <img src="assets/search-location.png" /></span>
+                          <input placeholder="Search Jersey City" (keydown.enter)="$event.preventDefault()"
+                            autocorrect="off" autocapitalize="off" spellcheck="off" #search readonly />
+                        </div>
+                        <div class="form-group cursor">
+                          <button class="banner_button cursor">
+                            <img src="assets/search_icon.svg" alt="Search image" />
+                          </button>
+                        </div>
 
-                                                <div class="dropdownprogram" *ngIf="
+                        <div class="dropdownprogram" *ngIf="
                           (categoriesBySearch?.length ||
                             providersBySearch?.length) &&
                           filterData.activityName
                         ">
-                                                    <div class="card card-body">
-                                                        <div class="program-list" *ngIf="categoriesBySearch.category?.length || categoriesBySearch.tags?.length">
-                                                            <h6 (click)="filterData.searchedCategoryKey=category.name;searchByCategory(category._id)" *ngFor="
+                          <div class="card card-body">
+                            <div class="program-list"
+                              *ngIf="categoriesBySearch.category?.length || categoriesBySearch.tags?.length">
+                              <h6 (click)="filterData.searchedCategoryKey=category.name;searchByCategory(category._id)"
+                                *ngFor="
                             let category of categoriesBySearch?.category | slice: 0:1
                           ">
-                                                                {{ category.name }}
-                                                                <span class="search-programlist">
-                            <img src="assets/program-search.svg" />
-                          </span>
-                                                            </h6>
-                                                            <h6 (click)="filterData.searchedCategoryKey=category.name;searchBySubCategory(category._id)" *ngFor="
+                                {{ category.name }}
+                                <span class="search-programlist">
+                                  <img src="assets/program-search.svg" />
+                                </span>
+                              </h6>
+                              <h6
+                                (click)="filterData.searchedCategoryKey=category.name;searchBySubCategory(category._id)"
+                                *ngFor="
                                 let category of categoriesBySearch?.tags | slice: 0:3
                               ">
-                                                                {{ category.name }}
-                                                                <span class="search-programlist">
-                                <img src="assets/program-search.svg" />
-                              </span>
-                                                            </h6>
-                                                        </div>
-                                                        <hr />
-                                                        <div class="provider-list" *ngIf="providersBySearch?.length">
-                                                            <h5>Providers</h5>
-                                                            <h6 (click)="goToProviderProfile(provider)" *ngFor="
+                                {{ category.name }}
+                                <span class="search-programlist">
+                                  <img src="assets/program-search.svg" />
+                                </span>
+                              </h6>
+                            </div>
+                            <hr />
+                            <div class="provider-list" *ngIf="providersBySearch?.length">
+                              <h5>Providers</h5>
+                              <h6 (click)="goToProviderProfile(provider)" *ngFor="
                                 let provider of providersBySearch | slice: 0:4
                               ">
-                                                                {{ provider.firstName }}
-                                                            </h6>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
+                                {{ provider.firstName }}
+                              </h6>
+                            </div>
+                          </div>
                         </div>
+                      </form>
                     </div>
+                  </div>
                 </div>
+              </form>
             </div>
-            <div class="banner_overlay"></div>
-        </section>
-        <section class="activity_category" *ngIf="categories?.length > 0">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <h2 class="title">
-                            Trending Activities
-                        </h2>
-                    </div>
-                </div>
-                <div class="activity_category_list">
-                    <div class="row">
-                        <div class="col-md-4" *ngFor="let category of categories | slice: 0:6; let i = index">
-                            <div class="category_list_box cursor" (click)="searchByCategory(category.id);filterData.searchedCategoryKey=category.name">
-                                <a href="javascritpt:;">
-                                    <div class="category_image">
-                                        <img [defaultImage]="defaultImage" [lazyLoad]="category?.imageUrl" alt="{{ category?.alternativeText }}" />
-                                    </div>
-                                    <div class="category_title">
-                                        <p>{{ category?.name}}<span class="title_arrow">
+          </div>
+        </div>
+      </div>
+      <div class="banner_overlay"></div>
+    </section>
+    <section class="activity_category" *ngIf="categories?.length > 0">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <h2 class="title">
+              Trending Activities
+            </h2>
+          </div>
+        </div>
+        <div class="activity_category_list">
+          <div class="row">
+            <div class="col-md-4" *ngFor="let category of categories | slice: 0:6; let i = index">
+              <div class="category_list_box cursor"
+                (click)="searchByCategory(category.id);filterData.searchedCategoryKey=category.name">
+                <a href="javascritpt:;">
+                  <div class="category_image">
+                    <img [defaultImage]="defaultImage" [lazyLoad]="category?.imageUrl"
+                      alt="{{ category?.alternativeText }}" />
+                  </div>
+                  <div class="category_title">
+                    <p>{{ category?.name}}<span class="title_arrow">
                         <img src="assets/category_arrow.svg" alt="Category_arrow" />
                       </span>
-                                        </p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    </p>
+                  </div>
+                </a>
+              </div>
             </div>
-        </section>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <section class="blog-explore">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <h2 class="blog-heading">Explore the Blog</h2>
-                        <div class="box">
-                            <div class="upper-blog">
-                                <h2 class="upper-blog-heading">
-                                    POPULAR POSTS
-                                    <span class="upper-blog-view cursor" routerLink="/blogs">view all</span
-                  >
+    <section class="blog-explore">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <h2 class="blog-heading">Explore the Blog</h2>
+            <div class="box">
+              <div class="upper-blog">
+                <h2 class="upper-blog-heading">
+                  POPULAR POSTS
+                  <span class="upper-blog-view cursor" routerLink="/blogs">view all</span>
                 </h2>
               </div>
               <div class="lower-blog-sec">
                 <div class="lower-blog" *ngFor="let b of blog | slice: 0:3">
                   <div class="lower-img">
                     <!-- <img class="blog_img cursor" src="{{blogUrl}}{{b?.image[0]?.url}}" (click)='setBlog(b)'> -->
-                    <img
-                      class="blog_img cursor"
-                      src="{{ blogUrl }}{{ b?.image[0]?.url }}"
-                      alt="{{ b?.image[0]?.alternativeText }}"
-                      (click)="setBlog(b)"
-                    />
+                    <img class="blog_img cursor" src="{{ blogUrl }}{{ b?.image[0]?.url }}"
+                      alt="{{ b?.image[0]?.alternativeText }}" (click)="setBlog(b)" />
                   </div>
                   <div class="lower-content">
                     <h2 class="lower-blog-heading cursor" (click)="setBlog(b)">
                       {{ b.title }}
                     </h2>
-                    <h2
-                      class="lower-blog-content cursor"
-                      (click)="setBlog(b)"
-                      [innerHTML]="b.content | markdown | slice: 0:145"
-                    ></h2>
+                    <h2 class="lower-blog-content cursor" (click)="setBlog(b)"
+                      [innerHTML]="b.content | markdown | slice: 0:145"></h2>
                   </div>
                 </div>
               </div>
@@ -165,68 +163,54 @@
                 <div class="imgage-corners">
                   <img src="assets/resouces-circle.png">
                 </div>
-              <div class="got-newsletter">
-                <h2 class="title">Get our Newsletter</h2>
-                <p>
-                  Stay up to date on the best promotions, parenting tips, and news about kids’ activities.
-                </p>
-                <mailchimp-subscribe-form></mailchimp-subscribe-form>
-              </div>
+                <div class="got-newsletter">
+                  <h2 class="title">Get our Newsletter</h2>
+                  <p>
+                    Stay up to date on the best promotions, parenting tips, and news about kids’ activities.
+                  </p>
+                  <mailchimp-subscribe-form></mailchimp-subscribe-form>
+                </div>
                 <div class="image-corners">
                   <img src="assets/beta-image.png">
                 </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
       </div>
     </section>
   </div>
 
   <!----------------------------------------- location Modal ------------------------------------------------------->
 
-<div
-class="modal fade verification_modal Location-Modal"
-id="locationModal"
-data-backdrop="static"
-data-keyboard="false"
-tabindex="-1"
-role="dialog"
-aria-labelledby="staticBackdropLabel"
-aria-hidden="true"
->
-<div class="modal-dialog modal-dialog-centered">
-  <div class="modal-content">
-    <button
-      type="button"
-      class="close"
-      id="close_modal"
-      data-dismiss="modal"
-      aria-label="Close"
-    >
-      <span aria-hidden="true" class="icon-close"></span>
-                                    </button>
-                                    <div class="modal-body">
-                                        <div class="location-popup">
-                                            <span><img class="logo-img" src="assets/logo.png" /></span>
-
-                                            <h1>May we access your location? </h1>
-
-                                            <h2>
-                                                <span><img src="assets/location-search1.png" /></span> Help us find the best activities near you.
-                                            </h2>
-                                        </div>
-
-                                        <div class="sign_in_btn">
-                                            <button class="SignBtn cancel" data-dismiss="modal">Not Now</button>
-                                            <button data-dismiss="modal" type="submit" class="SignBtn">
-          Allow
+  <div class="modal fade verification_modal Location-Modal" id="locationModal" data-backdrop="static"
+    data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <button type="button" class="close" id="close_modal" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" class="icon-close"></span>
         </button>
-                                        </div>
-                                    </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!----------------------------------------------------------------- footer ------------------------------------------------------------------>
-                    <app-footer></app-footer>
+        <div class="modal-body">
+          <div class="location-popup">
+            <span><img class="logo-img" src="assets/logo.png" /></span>
+
+            <h1>May we access your location? </h1>
+
+            <h2>
+              <span><img src="assets/location-search1.png" /></span> Help us find the best activities near you.
+            </h2>
+          </div>
+
+          <div class="sign_in_btn">
+            <button class="SignBtn cancel" data-dismiss="modal">Not Now</button>
+            <button data-dismiss="modal" type="submit" class="SignBtn">
+              Allow
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!----------------------------------------------------------------- footer ------------------------------------------------------------------>
+  <app-footer></app-footer>
 </body>
