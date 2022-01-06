@@ -15,9 +15,91 @@
                         </div>
                         <h2 class="provider_name star-daialog">{{user.firstName}}
                             <p class="cursor" (mouseover)="isRating=true" (mouseout)="isRating=false">
-                                <i *ngIf="rating?.finalAverageRating>1 && rating?.finalAverageRating<5" class="fa fa-star-half-o checked" aria-hidden="true"></i>
-                                <i *ngIf="rating?.finalAverageRating==5" class="fa fa-star checked" aria-hidden="true"></i>
-                                <i *ngIf="rating?.finalAverageRating==0 || rating?.finalAverageRating=='NaN' || rating?.finalAverageRating==undefined" class="fa fa-star-o" aria-hidden="true"></i>
+                                <span *ngIf="
+                                rating?.finalAverageRating == 0 ||
+                                rating?.finalAverageRating == 'NaN' ||
+                                rating?.finalAverageRating == undefined
+                              ">
+                              <span class="fa fa-star-o"></span>
+                                                <span class="fa fa-star-o"></span>
+                                                <span class="fa fa-star-o"></span>
+                                                <span class="fa fa-star-o"></span>
+                                                <span class="fa fa-star-o"></span>
+                                                </span>
+                                                <span *ngIf="rating?.finalAverageRating == 1">
+                              <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star-o"></span>
+                                                <span class="fa fa-star-o"></span>
+                                                <span class="fa fa-star-o"></span>
+                                                <span class="fa fa-star-o"></span>
+                                                </span>
+                                                <span *ngIf="
+                                rating?.finalAverageRating > 1 &&
+                                rating?.finalAverageRating < 2
+                              ">
+                              <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star-half-o checked"></span>
+                                                <span class="fa fa-star-o"></span>
+                                                <span class="fa fa-star-o"></span>
+                                                <span class="fa fa-star-o"></span>
+                                                </span>
+                                                <span *ngIf="rating?.finalAverageRating == 2">
+                              <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star-o"></span>
+                                                <span class="fa fa-star-o"></span>
+                                                <span class="fa fa-star-o"></span>
+                                                </span>
+                                                <span *ngIf="
+                                rating?.finalAverageRating > 2 &&
+                                rating?.finalAverageRating < 3
+                              ">
+                              <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star-half-o checked"></span>
+                                                <span class="fa fa-star-o"></span>
+                                                <span class="fa fa-star-o"></span>
+                                                </span>
+                                                <span *ngIf="rating?.finalAverageRating == 3">
+                              <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star-o"></span>
+                                                <span class="fa fa-star-o"></span>
+                                                </span>
+                                                <span *ngIf="
+                                rating?.finalAverageRating > 3 &&
+                                rating?.finalAverageRating < 4">
+                              <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star-half-o checked"></span>
+                                                <span class="fa fa-star-o"></span>
+                                                </span>
+                                                <span *ngIf="rating?.finalAverageRating == 4">
+                              <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star-o"></span>
+                                                </span>
+                                                <span *ngIf="
+                                rating?.finalAverageRating > 4 &&
+                                rating?.finalAverageRating < 5">
+
+                              <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star-half-o checked"></span>
+                                                </span>
+                                                <span *ngIf="rating?.finalAverageRating == 5">
+                              <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                </span>
                                 <a><span
                     *ngIf="rating?.finalAverageRating && rating?.finalAverageRating!=='NaN'">{{rating?.finalAverageRating}}</span><span
                     *ngIf="!rating?.finalAverageRating || rating?.finalAverageRating=='NaN' || rating?.finalAverageRating==undefined">0</span>
