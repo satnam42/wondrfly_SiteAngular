@@ -261,5 +261,7 @@ this.clickedMarker(e)
     this.router.navigate(['/search'])
 
   }
-
+  centerChange(e) {
+    console.log(e)
+  }
 }

@@ -98,7 +98,7 @@ a.business_btn.cursor.contact {
   height: 154px;
   border-radius: 50%;
   display: inline-block;
-  border: 5px solid #9b51e0;
+  /* border: 5px solid #9b51e0; */
   overflow: hidden;
 }
 

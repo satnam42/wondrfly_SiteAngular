@@ -27,11 +27,10 @@
                                 <div class="session_details">
                                     <div class="row row-0">
                                         <div class="col-md-2">
-                                            <div class="learn_code cursor" (click)="goToProfile()" [class.initial-alpha-profile]="
-                          !program.category?.logoUrl
+                                            <div class="learn_code cursor" (click)="goToProfile()" [class.initial-alpha-profile]="!user.categories[0]?.logoUrl
                         ">
-                                                <img *ngIf="program?.category?.logoUrl" src="{{ baseUrl + program?.category?.logoUrl }}" alt="logo" />
-                                                <h1 *ngIf="!program.category?.logoUrl">
+                                                <img *ngIf="user.categories[0]?.logoUrl" src="{{baseUrl+user.categories[0]?.logoUrl }}" alt="logo" />
+                                                <h1 *ngIf="!user.categories[0]?.logoUrl">
                                                     {{ program?.name?.charAt(0) + program?.name?.charAt(1) }}
                                                 </h1>
                                             </div>
@@ -347,7 +346,7 @@
                                                 </div>
                                                 <div class="media-body">
                                                     <h4>Email</h4>
-                                                    <p>{{user?.email}}</p>
+                                                    <p><a href="mailto:{{user.email}}">{{user?.email}}</a></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -369,7 +368,7 @@
                                                 </div>
                                                 <div class="media-body">
                                                     <h4>WWW</h4>
-                                                    <p>{{user?.website}}</p>
+                                                    <p><a href="{{user.website}}" target="_blank">{{user?.website}}</a></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -429,7 +428,7 @@
                 </div>
               </div> -->
                             <div class="batch_right map_provider">
-                                <agm-map [latitude]="40.5682945" [longitude]="-74.0409239" [zoom]="7" [styles]="" [zoomControl]="false" [streetViewControl]="false" (mapClick)="mapClicked(previous)">
+                                <agm-map [latitude]="40.72675204684951" [longitude]="-74.0523821869886" [zoom]="16" [styles]=""  (centerChange)="centerChange($event)" [zoomControl]="false" [streetViewControl]="false" (mapClick)="mapClicked(previous)">
                                     <div>
                                         <agm-marker *ngIf="program?.lat && program?.lng" [iconUrl]="markerUrl" [latitude]="program?.lat" [longitude]="program?.lng" (markerClick)="clickedMarker(previous)">
                                             <strong>{{ program?.name }}</strong>

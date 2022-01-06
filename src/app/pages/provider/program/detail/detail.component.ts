@@ -379,17 +379,17 @@ getRating(){
   }
 
   // Get Current Location Coordinates
-  private setCurrentLocation() {
-    if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        this.latitude = position.coords.latitude;
-        this.longitude = position.coords.longitude;
-        this.zoom = 4;
+  // private setCurrentLocation() {
+  //   if ('geolocation' in navigator) {
+  //     navigator.geolocation.getCurrentPosition((position) => {
+  //       this.latitude = position.coords.latitude;
+  //       this.longitude = position.coords.longitude;
+  //       this.zoom = 4;
 
-        this.getAddress(this.latitude, this.longitude);
-      });
-    }
-  }
+  //       this.getAddress(this.latitude, this.longitude);
+  //     });
+  //   }
+  // }
 
   getAddress(latitude, longitude) {
     this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {
@@ -453,5 +453,8 @@ setSubCategoryId(tag) {
   this.dataService.setOption(filterData)
   this.router.navigate(['/search'])
 
+}
+centerChange(e) {
+  console.log(e)
 }
 }

@@ -174,9 +174,12 @@ export class SearchComponent implements OnInit, OnDestroy {
         console.log('this.filterData.kidAge', this.filterData.kidAge)
 
         this.categoryId = this.filterData.categoryId
-        this.selectedSubCategories[0] = this.filterData.subcatId;
         this.searchedSubCategory = this.filterData.searchedCategoryKey
-        if(this.filterData.childIntrests){
+        if(this.filterData.subcatId){
+          this.selectedSubCategories[0] = this.filterData.subcatId;
+        }
+         if(this.filterData.childIntrests){
+          console.log('this.filterData.childIntrests',this.filterData.childIntrests)
           for(let intrest of this.filterData.childIntrests){
             this.selectedSubCategories.push(intrest)
           }
@@ -236,6 +239,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   centerChange(e) {
+    console.log(e)
     this.locations.push(e);
     if (this.locations.length > 15) {
       this.locations = [];

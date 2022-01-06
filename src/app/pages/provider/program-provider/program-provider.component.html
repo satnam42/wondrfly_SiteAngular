@@ -118,7 +118,7 @@
                                         </div>
                                         <div class="media-body">
                                             <h4>Email</h4>
-                                            <p>{{user?.email}}</p>
+                                            <p><a href="mailto:{{user.email}}">{{user?.email}}</a></p>
                                         </div>
                                     </div>
                                 </div>
@@ -133,19 +133,19 @@
                                         </div>
                                     </div>
                                 </div>
-
+<!-- 
                                 <div class="col-md-4">
                                     <div class="media company_info align-items-center">
                                         <div class="media-left">
                                             <img class="imgsvg" src="assets/questionnaire-1.png" alt="Questionnaire">
                                         </div>
-                                        <!-- <div class="media-body">
+                                        <div class="media-body">
                                             <h4>Class types</h4>
                                             <p>Online classes</p>
                                             <p>Offline classes</p>
-                                        </div> -->
+                                        </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="col-md-4" *ngIf="user?.website">
                                     <div class="media company_info align-items-center">
                                         <div class="media-left">
@@ -153,7 +153,7 @@
                                         </div>
                                         <div class="media-body">
                                             <h4>WWW</h4>
-                                            <p>{{user?.website}}</p>
+                                            <p><a href="{{user.website}}" target="_blank">{{user?.website}}</a></p>
                                         </div>
                                     </div>
                                 </div>
@@ -226,7 +226,7 @@
                     </div>
 
                     <div *ngIf="isGenOverview" class="provider_map">
-                        <agm-map id="map" [latitude]="40.5682945" [longitude]="-74.0409239" [zoom]="7" [styles]="" [zoomControl]="false" [streetViewControl]="false">
+                        <agm-map id="map" [latitude]="40.726625316721496" [longitude]="-74.05223450979102" (centerChange)="centerChange($event)" [zoom]="16" [styles]="" [zoomControl]="false" [streetViewControl]="false">
                             <div *ngFor='let p of programs' (mapClick)="mapClicked(previous)">
                                 <agm-marker *ngIf="p?.lat && p?.lng" [iconUrl]="markerUrl" [latitude]="p?.lat" [longitude]="p?.lng" (markerClick)="clickedMarker(previous)">
                                     <strong>{{p?.name}}</strong>

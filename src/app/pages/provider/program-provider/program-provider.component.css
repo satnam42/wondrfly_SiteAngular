@@ -33,7 +33,7 @@
   border-radius: 50%;
   margin: 0 auto;
   overflow: hidden;
-  border: 6px solid #ff4242;
+  /* border: 6px solid #ff4242; */
 }
 
 .provider_profile .provider_left .profile img {
