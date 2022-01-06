@@ -947,6 +947,22 @@
                                         </mat-chip>
                                     </mat-chip-list>
                                 </mat-form-field>
+
+                                <div class="small_boxes">
+                                    <div class="row">
+                                        <div class="col-3" *ngFor="let tag of allTags | slice: 0:8">
+                                            <div class="category_lists cursor" (click)="selectEvent(tag)">
+                                                <div class="box-border" [ngClass]="{ active: tag.active }">
+                                                    <img class="cat_img my_box" src="https://wondrfly.com/{{tag.categoryIds[0].iconUrl}}" alt="location" />
+                                                </div>
+            
+                                                <span [ngClass]="{ active: tag.active }">
+                                {{ tag.name }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                               
                             </div>
 
                             <div class="form-group update_btn">
@@ -1079,21 +1095,25 @@
 <div class="modal fade" id="ImageModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" id="closeId" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
         <div class="modal-body">
             <div class="upload-image">
                 <div class="profile_image" [class.initial-alpha]="!user?.avatarImages">
-                    <img *ngIf="user.avatarImages" src="{{ user.avatarImages }}" alt="Profile Image" />
-                    <h1 *ngIf="!user.avatarImages" [class.initial-alpha]="!user?.avatarImages">
+                    <img *ngIf="parentImgURL" src="{{ parentImgURL }}" alt="Profile Image" />
+                    <img *ngIf="user.avatarImages && !parentImgURL" src="{{ user.avatarImages }}" alt="Profile Image" />
+                    <h1 *ngIf="!user.avatarImages && !parentImgURL" [class.initial-alpha]="!user?.avatarImages">
                         {{user.firstName.charAt(0)+user?.firstName?.charAt(1)}}</h1>
 
                 </div>
             </div>
             <div class="upload-btns">
-                <button>REMOVE</button>
-                <button>UPLOAD NEW </button>
+                <button class="save-new" (click)="user.avatarImages='';parentImgURL='';updateParent(user)">REMOVE</button>               
+                <input style="display: none" #uploadP accept="image/*" (change)="previewImage($event)" type="file"
+                    name="image"/> 
+            <button class="save-new" *ngIf="!parentImgURL" (click)="uploadP.click()">UPLOAD NEW</button>
+            <button class="save-new" *ngIf="parentImgURL" (click)="uploadParentImg()">SAVE </button>
             </div>
 
         </div>

@@ -45,6 +45,8 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked,OnDestro
   invitedUsers:User[] = []
   profileProgress: 0;
   fileData: File = null;
+  formData = new FormData();
+  imagePath;
   parentImgURL: any;
   childImgURL: any;
   updateChildImgURL: any;
@@ -138,6 +140,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked,OnDestro
   };
   // ------------------------------------
   tags: any = [];
+  allTags: any = [];
   suggestedTags:any =[];
   savedList = '';
   sendInvite = '';
@@ -641,25 +644,49 @@ this.kids = kids
   // remove(indx): void {
   //   this.kid.interestInfo.splice(indx, 1);
   // }
-  parentImageSelect(event, id) {
-    let formData = new FormData();
-    this.fileData = event.target.files[0];
-    formData.append("image", this.fileData);
-    this.ngxLoader.start();
-    this.apiservice.uploadUserImage(id, formData).subscribe((res: any) => {
-      this.ngxLoader.stop();
-      console.log('res from server ',res);
-      if (res) {
-        this.getParentById();
-        this.getProfileProgress();
-        this.headerComponent.getProfileProgress();
-        this.headerComponent.getUserById();
-      } else {
-        this.toastr.error("something went wrong, please try again Later!");
-      }
-    });
-    this.ngxLoader.stop();
+  previewImage(event) {
+  // --------------------preview image before upload ------------------------
+  this.fileData = event.target.files[0];
+    this.formData.append("image", this.fileData);
+  if (event.target.files.length === 0)
+  return;
+var reader = new FileReader();
+this.imagePath = event.target.files;
+reader.readAsDataURL(event.target.files[0]);
+reader.onload = (_event) => {
+  this.parentImgURL = reader.result;
+}
+var mimeType = event.target.files[0].type;
+if (mimeType.match(/image\/*/) == null) {
+  this.msg = " only images are supported";
+  return;
+}
   }
+
+uploadParentImg(){
+  this.ngxLoader.start();
+  this.apiservice.uploadUserImage(this.currentUser.id, this.formData).subscribe((res: any) => {
+    this.ngxLoader.stop();
+    console.log('res from server ',res);
+    if (res) {
+      this.getParentById();
+      this.getProfileProgress();
+      this.headerComponent.getProfileProgress();
+      this.headerComponent.getUserById();
+      window.document.getElementById("closeId").click();
+      this.parentImgURL='';
+    } else {
+      this.toastr.error("something went wrong, please try again Later!");
+    }
+    this.ngxLoader.stop();
+  });
+}
+
+
+
+
+
+
   childImageSelect(event) {
     let formData = new FormData();
     this.fileData = event.target.files[0];
@@ -948,6 +975,7 @@ this.kids = kids
     this.getRoomId();
   }
   ngOnInit() {
+    this.getTagList()
     if(this.savedList){
       this.store.removeItem('sendInvite');
       this.getFav(this.currentUser.id);
@@ -1140,9 +1168,9 @@ betaProgramInvitedUsers(userId){
    // ------------------------------------------get tags-----------------------------------------------------------------
    getTagList() {
     this.apiservice.getTag().subscribe((res: any) => {
-      this.tags = res.data;
-      this.tags = this.tags.filter((item) => item.isActivated === true);
-      console.log('catg list', this.tags)
+      this.allTags = res.data;
+      this.allTags = this.allTags.filter((item) => item.isActivated === true);
+      console.log('allTags list', this.allTags)
     });
   }
 }

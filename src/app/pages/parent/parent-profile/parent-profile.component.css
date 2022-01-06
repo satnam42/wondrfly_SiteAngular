@@ -2183,14 +2183,15 @@ span.parent-edit {
   top: 14px;
   right: 13px;
 }
-.modal-content.child-modal .form-group.update_btn {
-  padding-top: 80px;
-}
+
 .modal-content.child-modal .form-group.interest label {
-  color: #53b2e8 !important;
-  font-style: normal;
-  font-weight: 400 !important;
-  font-size: 11px !important;
+  font-family: "Poppins";
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 14px;
+    text-transform: uppercase;
+    color: #494949;
+    padding-left: 0px;
 }
 .beta-heading {
   display: flex;
@@ -2406,7 +2407,7 @@ input#flexCheckDefault {
   padding-left: 30px;
   padding-right: 30px;
 }
-#ImageModal .upload-btns button:last-child {
+#ImageModal .upload-btns .save-new {
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
@@ -2432,4 +2433,49 @@ input#flexCheckDefault {
 #ImageModal .modal-content {
   background: #FFFFFF;
   border-radius: 20px;
+}
+
+
+/**   new intrest child  **/
+
+.small_boxes .my_box {
+  box-sizing: border-box;
+  border-radius: 20px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.small_boxes .col-3 {
+  padding: 6px 4px;
+  text-align: center;
+  /* display: flex;
+    align-items: center;
+    justify-content: center; */
+  }
+  .small_boxes .row {
+    display: flex;
+    align-items: flex-start;
+    padding: 15px;
+    text-align: center;
+    padding-bottom: 0px;
+    padding-top: 0px;
+  }
+  .small_boxes {
+    margin-top: 30px;
+  }
+  .box-border{
+    border: 1px solid #c4c4c4;
+    height: 90px;
+    width: 90px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 20px;
+}
+.category_lists span {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  letter-spacing: 0.001em;
+  color: #858585;
+  cursor: pointer;
 }
