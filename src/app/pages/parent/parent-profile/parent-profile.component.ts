@@ -646,6 +646,9 @@ this.kids = kids
   // }
   previewImage(event) {
   // --------------------preview image before upload ------------------------
+  this.fileData= File = null;
+  this.formData = new FormData();
+
   this.fileData = event.target.files[0];
     this.formData.append("image", this.fileData);
   if (event.target.files.length === 0)
