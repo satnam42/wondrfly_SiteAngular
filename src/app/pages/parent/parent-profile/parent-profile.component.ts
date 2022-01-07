@@ -685,10 +685,23 @@ uploadParentImg(){
   });
 }
 
-
-
-
-
+removeParentImage(){
+  this.ngxLoader.start();
+  this.apiservice.removeImage(this.currentUser.id).subscribe((res: any) => {
+    this.ngxLoader.stop();
+    console.log('res from server ',res);
+    if (res.isSuccess) {
+      this.getParentById();
+      this.getProfileProgress();
+      this.headerComponent.getProfileProgress();
+      this.headerComponent.getUserById();
+      window.document.getElementById("closeId").click();
+    } else {
+      this.toastr.error("something went wrong, please try again Later!");
+    }
+    this.ngxLoader.stop();
+  });
+}
 
   childImageSelect(event) {
     let formData = new FormData();

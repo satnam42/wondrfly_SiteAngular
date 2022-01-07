@@ -1109,7 +1109,7 @@
                 </div>
             </div>
             <div class="upload-btns">
-                <button class="save-new" (click)="user.avatarImages='';parentImgURL='';updateParent(user)">REMOVE</button>               
+                <button class="save-new" (click)="removeParentImage()">REMOVE</button>               
                 <input style="display: none" #uploadP accept="image/*" (change)="previewImage($event)" type="file"
                     name="image"/> 
             <button class="save-new" *ngIf="!parentImgURL" (click)="uploadP.click()">UPLOAD NEW</button>
