@@ -44,6 +44,7 @@ export class LandingComponent implements OnInit {
   altBanner:any  = ''
   private geoCoder;
   cookiesData: string;
+  regWallCookies=0
   @ViewChild('search') searchElementRef: ElementRef;
   constructor(private router: Router,
     private mapsAPILoader: MapsAPILoader,
@@ -55,9 +56,11 @@ export class LandingComponent implements OnInit {
     private metaTagService: Meta,
     private cookies :CookieService
    ) {
-
+    this.regWallCookies = Number(this.cookies.get('regWall'))
   }
   searchBySubCategory(id) {
+    let regCount = this.regWallCookies+1
+    this.cookies.set('regWall', String(regCount), 30);
     this.filterData.activityName=''
     this.filterData.lat = ''
     this.filterData.lng = ''
@@ -68,6 +71,8 @@ export class LandingComponent implements OnInit {
   }
 
   searchByCategory(id) {
+    let regCount = this.regWallCookies+1
+    this.cookies.set('regWall', String(regCount), 30);
     this.filterData.activityName=''
     this.filterData.lat = ''
     this.filterData.lng = ''

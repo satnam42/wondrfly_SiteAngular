@@ -2455,6 +2455,10 @@ span.icon.rel:hover .box {
 .search-location input::placeholder {
     color: rgb(190, 187, 187);
 }
+.scroll-bar {
+    height: 500px;
+    overflow-y: auto;
+}
 
 @media screen and (min-width:850px) and (max-width:1023px) {
     img.header-image-search {

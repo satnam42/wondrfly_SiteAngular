@@ -1,6 +1,7 @@
 import { MapsAPILoader } from "@agm/core";
 import { Component, ElementRef, NgZone, OnInit, ViewChild } from "@angular/core";
 import { Router } from "@angular/router";
+import { CookieService } from "ngx-cookie-service";
 import { ApiService } from "../../services/api.service.service";
 import { DataService } from "../../services/dataservice.service ";
 
@@ -232,6 +233,7 @@ private geoCoder;
 providersBySearch: any;
 lat: string
 lng: string
+regWallCookies=0
 @ViewChild('search', { static: false }) searchElementRef: ElementRef;
 constructor(
 private router: Router,
@@ -239,7 +241,9 @@ private apiservice: ApiService,
 private mapsAPILoader: MapsAPILoader,
 private dataservice: DataService,
 private ngZone: NgZone,
+private cookies: CookieService,
 ) {
+  this.regWallCookies = Number(this.cookies.get('regWall'))
 this.routeName = this.router.url;
 if (this.routeName === "/search") {
 this.logoPosition = true;
@@ -260,6 +264,8 @@ this.router
 }
 }
 searchBySubCategory(id) {
+  let regCount = this.regWallCookies+1
+this.cookies.set('regWall', String(regCount), 30);
 this.filterData.activityName = ''
 this.filterData.lat = ''
 this.filterData.lng = ''
@@ -307,6 +313,8 @@ this.categoriesBySearch.tags = this.categoriesBySearch.tags.filter((item) => ite
 
 }
 searchByCategory(id) {
+ let regCount = this.regWallCookies+1
+this.cookies.set('regWall', String(regCount), 30);
 this.filterData.activityName = ''
 this.filterData.categoryId = id
 this.filterData.subcatId = ''

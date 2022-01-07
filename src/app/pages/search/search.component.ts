@@ -139,6 +139,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   fakeLoaderData = [1, 2, 3, 4, 5]
   currentUser: any;
   cookiesData: string;
+  regWallCookies=0
   constructor(
     private router: Router,
     private apiservice: ApiService,
@@ -161,6 +162,9 @@ export class SearchComponent implements OnInit, OnDestroy {
     //     this.lngg= this.locationData.lng
     //   }
     // }
+    this.regWallCookies = Number(this.cookies.get('regWall'))
+    console.log('regWallCookiesCount',this.regWallCookies)
+  
     this.contentLoaded = false
     this.currentUser = auth.currentUser();
     this.filterData = dataservice.getOption()
@@ -491,11 +495,6 @@ export class SearchComponent implements OnInit, OnDestroy {
       this.isScrol = false;
       this.loadMore();
     }
-    if (!this.isLogin) {
-      setTimeout(() => {
-        this.isBetaPopUp = true;
-      }, 1000);
-    }
   }
 
   getPublishedProgram() {
@@ -611,6 +610,9 @@ for(let i in this.programs){
   }
 
   programFilter() {
+    if(this.regWallCookies>11){
+      this.isBetaPopUp=true
+    }
     window.scroll(0, 0);
     this.isTimeFilter = false;
     this.isDaysFilter = false;
