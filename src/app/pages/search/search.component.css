@@ -2039,7 +2039,7 @@ button.btn1-filtersearch.active {
 .categories-filtercontent {
     padding-top: 10px;
     padding-bottom: 10px;
-    overflow-x: scroll;
+    /* overflow-x: scroll; */
     max-height: 310px;
     height: 310px;
     padding-left: 15px;
@@ -2052,7 +2052,7 @@ button.btn1-filtersearch.active {
 .sub-categoriesfiltercontent {
     padding-top: 10px;
     padding-bottom: 10px;
-    overflow-x: scroll;
+    /* overflow-x: scroll; */
     max-height: 350px;
     height: 350px;
     padding-left: 15px;
@@ -2092,7 +2092,8 @@ button.btn1-filtersearch.active {
 .sub-categoriesfiltercontent label {
     display: flex;
     align-items: baseline;
-    width: 35%;
+    width: 60%;
+    word-break: break-word;
 }
 
 .sub-categoriesfiltercontent .col-6 {
