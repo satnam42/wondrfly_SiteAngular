@@ -1710,7 +1710,7 @@ span.close-filter {
 .suggested-searchresult .suggested-result {
     background: #f9f6ed;
     padding: 20px;
-    overflow: scroll;
+    /* overflow: scroll; */
 }
 
 .left-searchpd {
