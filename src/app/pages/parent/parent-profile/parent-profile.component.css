@@ -141,8 +141,8 @@ header .logo img {
 .initial-alpha-profile {
   position: relative;
   background: #dcf3ff;
-  width: 154px;
-    height: 154px;
+  width: 130px;
+    height: 130px;
     border-radius: 50%;
     display: inline-block;
     overflow: hidden;
@@ -252,7 +252,7 @@ header .logo img {
 .content_right {
   width: 100%;
   float: right;
-  max-width: 855px;
+  /* max-width: 855px; */
 }
 
 .content_right .personal_details {
@@ -1201,6 +1201,10 @@ select.ng-invalid.ng-touched {
   bottom: 18px;
   height: 4px;
   width: 100%;
+}
+
+::ng-deep.autocomplete-container .input-container .x i{
+  display: none !important;
 }
 
 .my_class {

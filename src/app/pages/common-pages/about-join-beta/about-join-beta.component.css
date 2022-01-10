@@ -9,11 +9,11 @@
 section.webelieve-wonderfly img {
   width: 100%;
 }
-section.webelieve-wonderfly {
+/* section.webelieve-wonderfly {
   padding: 50px;
   padding-top: 70px;
 
-}
+} */
 section.webelieve-wonderfly .image-sec-1-1 {
   height:286px;
   object-fit: cover;
