@@ -367,7 +367,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked,OnDestro
       this.kids = this.kids.filter((item) => item.isActivated === true);
       let kids = []
       this.kids.forEach(kid => {
-        let kidMonth = String(this.getAgeMonth(kid.dob))
+        let kidMonth = Math.abs((this.getAgeMonth(kid.dob)))
         console.log('kidMonth>>>>>',kidMonth)
         let age = Number(this.getAge(kid.dob))
         console.log('age>>>>>',age)
@@ -378,7 +378,12 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked,OnDestro
         }
       
         if(age>=1){
-          kid.age = age+' Years Old'
+          if(kidMonth){
+          kid.age = age+'.'+kidMonth+' Years Old'
+          }
+          else{
+            kid.age = age+' Years Old'
+          }
         }
 
         
@@ -412,8 +417,7 @@ this.kids = kids
     {
         age--;
     }
-     
-    return age+'.'+m;
+    return age;
 }
   onAddChild() {
     window.scroll(0, 0);
