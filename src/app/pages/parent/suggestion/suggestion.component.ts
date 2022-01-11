@@ -73,6 +73,9 @@ export class SuggestionComponent implements OnInit {
     private cookies :CookieService
    ) {
     this.currentUser = this.auth.currentUser();
+    if (!/\s/.test(this.currentUser.firstName)) {
+      this.currentUser.firstName=this.currentUser.firstName+' '
+  }
 if(!this.currentUser){
   this.router.navigate(['']);
 }
@@ -191,12 +194,12 @@ tweetCategory(){
     });
   }
 
-  feedbackSurveyList() {
-    this.apiservice.feedbackSurveyList().subscribe((res: any) => {
-      this.feedback = res;
-      console.log('feedback',this.feedback)
-    });
-  }
+  // feedbackSurveyList() {
+  //   this.apiservice.feedbackSurveyList().subscribe((res: any) => {
+  //     this.feedback = res;
+  //     console.log('feedback',this.feedback)
+  //   });
+  // }
  
 
   downloadFile(file){
@@ -282,11 +285,11 @@ sendInvite(){
   this.store.setItem('sendInvite','1')
   this.router.navigate(['/parent/profile',this.currentUser.id]);
 }
-getForms(){
-  this.typeFormService.getForms().subscribe((res: any) => {
-    console.log('typeFormService', res)
-  });
-}
+// getForms(){
+//   this.typeFormService.getForms().subscribe((res: any) => {
+//     console.log('typeFormService', res)
+//   });
+// }
 
 setBlog(data){
   console.log('clicked blog', data)
@@ -316,8 +319,8 @@ if(Number(this.cookiesData)!=2 || Number(this.cookiesData)!=3 || Number(this.coo
     this.getBlog();
     this.getChildByParentId();
     this.getCategoryList();
-    this.feedbackSurveyList();
-    this.getForms();
+    // this.feedbackSurveyList();
+    // this.getForms();
     this.titleService.setTitle(this.title);
     this.metaTagService.updateTag(
       { name: 'description', content: 'Looking for the best programs and activities for your kids? Wondrfly is the leading platform for parents to discover indoor and outdoor activities for kids ages 3-14 years.' },
