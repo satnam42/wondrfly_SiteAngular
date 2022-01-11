@@ -372,18 +372,21 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked,OnDestro
         let age = Number(this.getAge(kid.dob))
         console.log('age>>>>>',age)
         if(age<1){
-          if(kidMonth){
+          if(kidMonth>1){
             kid.age = kidMonth+' Months Old'
+          }
+          else{
+            kid.age = kidMonth+' Month Old'
           }
         }
       
-        if(age>=1){
-          if(kidMonth){
-          kid.age = age+'.'+kidMonth+' Years Old'
-          }
-          else{
-            kid.age = age+' Years Old'
-          }
+        if(age==1){
+          kid.age = age+' Year Old'
+          
+        }
+        if(age>1){
+          kid.age = age+' Years Old'
+          
         }
 
         
@@ -397,16 +400,24 @@ this.kids = kids
   }
 
   getAgeMonth(dateString) 
-  {    var today = new Date();
+  {   
+     var today = new Date();
       var birthDate = new Date(dateString);
-      var age = today.getFullYear() - birthDate.getFullYear();
-      var m = today.getMonth() - birthDate.getMonth();
-      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) 
-      {
-          age--;
-      }
+      // var age = today.getFullYear() - birthDate.getFullYear();
+      // var m = today.getMonth() - birthDate.getMonth();
+      // if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) 
+      // {
+      //     age--;
+      // }
        
-      return m;
+      // return m;
+
+        var months;
+        months = (today.getFullYear() - birthDate.getFullYear()) * 12;
+        months -= birthDate.getMonth();
+        months += today.getMonth();
+        return months;
+    
   }
  getAge(dateString) 
 {    var today = new Date();
@@ -895,7 +906,7 @@ removeParentImage(){
         this.headerComponent.getProfileProgress();
         this.headerComponent.getUserById();
         if (res) {
-          // this.onChildren(parentId);
+          this.onChildren(this.currentUser.id);
           let msg = "Child Updated Successfully!";
           // this.toastr.info(msg );
         } else {
