@@ -74,7 +74,7 @@ export class SuggestionComponent implements OnInit {
    ) {
     this.currentUser = this.auth.currentUser();
     if (!/\s/.test(this.currentUser.firstName)) {
-      this.currentUser.firstName=this.currentUser.firstName+' '
+      this.currentUser.firstName=this.currentUser.firstName+' ' //added space for showing 1st name
   }
 if(!this.currentUser){
   this.router.navigate(['']);
