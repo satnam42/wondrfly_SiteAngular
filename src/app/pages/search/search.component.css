@@ -3121,12 +3121,6 @@ div#Exploring-Wonderfly .carousel-item h1 {
     }
 }
 
-
-
-.click-disabled{
-    pointer-events:none
-}
-
 /* width */
 
 .search-results::-webkit-scrollbar {

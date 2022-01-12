@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { th } from 'date-fns/locale';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthsService } from '../../services/auths.service';
 
@@ -10,6 +11,9 @@ import { AuthsService } from '../../services/auths.service';
 export class CookiesPopupComponent implements OnInit {
   cookiesData: any
   currentUser: any;
+  @Output() cookiesDataIdentify:EventEmitter<string>= new EventEmitter();  
+  // @Output() myOutput:EventEmitter<string>= new EventEmitter();  
+
   constructor(private cookies: CookieService,
     private auth: AuthsService) {
     this.currentUser = this.auth.currentUser();
@@ -26,6 +30,7 @@ export class CookiesPopupComponent implements OnInit {
       }
       this.cookiesData = this.cookies.get('_ui');
       // this.cookiesData = this.cookies.get('isTour');
+      this.cookiesDataIdentify.emit(this.cookiesData)
      }
 
      decline(){
@@ -40,6 +45,7 @@ export class CookiesPopupComponent implements OnInit {
       }
       this.cookiesData = this.cookies.get('_ui');
       // this.cookiesData = this.cookies.get('isTour');
+      this.cookiesDataIdentify.emit(this.cookiesData)
      }
 
   ngOnInit(){
