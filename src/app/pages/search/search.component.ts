@@ -92,7 +92,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     floor: 0,
     ceil: 800,
     translate: (value: number): string => {
-      return value + ' $';
+      return  '$ '+value;
     }
   };
   // ng5slider end
