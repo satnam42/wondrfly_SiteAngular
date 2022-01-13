@@ -614,6 +614,7 @@ for(let i in this.programs){
       this.isBetaPopUp=true
     }
     window.scroll(0, 0);
+    this.contentLoaded = false;
     this.isTimeFilter = false;
     this.isDaysFilter = false;
     this.isTopFilter = false;
@@ -696,8 +697,6 @@ for(let i in this.programs){
       this.fromDate = moment(this.fromDate).format(dateFormat);
       this.toDate = moment(this.toDate).format(dateFormat);
       console.log('filter>>>>>>>>>>>>', filter)
-      this.contentLoaded = false;
-
       filter = `time=${times}&categoryId=${categoryId}&tagsIds=${tags}&type=${types}&inpersonOrVirtual=${inpersonOrVirtual}&day=${days}`
       if(this.isTopFilterCheckBox){
         this.isTopFilter=true;
