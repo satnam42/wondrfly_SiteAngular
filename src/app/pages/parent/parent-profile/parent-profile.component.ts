@@ -748,6 +748,7 @@ removeChildImage(){
     this.apiservice.removeChildImage(this.kids[this.selectedChildIndx].id).subscribe((res: any) => {
       console.log('res from server ',res);
       if (res.isSuccess) {
+        this.onChildren(this.currentUser.id)
         window.document.getElementById("closeId").click();
       } else {
         this.toastr.error("something went wrong, please try again Later!");
