@@ -33,7 +33,7 @@
                                         <label class="cursor">
                       <!-- <input style="display: none" #file accept="image/*"
                         (change)="parentImageSelect($event, currentUser?.id)" type="file" name="image" /> -->
-                      <img (click)="imageRole='parent'" data-toggle="modal" data-target="#ImageModal"  src="assets/edit_white.svg" alt="Profile Image" />
+                      <img (click)="imageRole='parent';parentImgURL=''" data-toggle="modal" data-target="#ImageModal"  src="assets/edit_white.svg" alt="Profile Image" />
                     </label>
                                     </a>
                                 </div>
@@ -474,7 +474,7 @@
                                                 </div>
                                                 <div class="edit_profile edit-12354">
                                                     <a><label class="cursor">
-                              <input (click)="imageRole='kid';selectedChildIndx=i" data-toggle="modal" data-target="#ImageModal" name="image"
+                              <input (click)="imageRole='kid';childImgURL='';selectedChildIndx=i" data-toggle="modal" data-target="#ImageModal" name="image"
                                 style="display: none"  />
                               <img alt="Profile Image" src="assets/edit_white.svg" /></label></a>
                                                 </div>
