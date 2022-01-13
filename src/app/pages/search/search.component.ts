@@ -100,9 +100,9 @@ export class SearchComponent implements OnInit, OnDestroy {
   deleteProgramRes: any;
   title = 'Search for Online Classes and Programs - Wondrfly';
   // latitude: number = 40.5682945; longitude: number = -74.0409239;
-  lat = 40.712776;
-  lng = -74.005974;
-  zoom = 12;
+  lat = 40.72652470735903;
+  lng = -74.05900394007715;
+  zoom = 14;
   address: string;
   private geoCoder;
   user = new User
