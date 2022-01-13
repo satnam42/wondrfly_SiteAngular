@@ -33,7 +33,7 @@
                                         <label class="cursor">
                       <!-- <input style="display: none" #file accept="image/*"
                         (change)="parentImageSelect($event, currentUser?.id)" type="file" name="image" /> -->
-                      <img data-toggle="modal" data-target="#ImageModal" src="assets/edit_white.svg" alt="Profile Image" />
+                      <img (click)="imageRole='parent'" data-toggle="modal" data-target="#ImageModal"  src="assets/edit_white.svg" alt="Profile Image" />
                     </label>
                                     </a>
                                 </div>
@@ -474,8 +474,8 @@
                                                 </div>
                                                 <div class="edit_profile edit-12354">
                                                     <a><label class="cursor">
-                              <input accept="image/*" (change)="childImageUpdate($event, i)" name="image"
-                                style="display: none" type="file" />
+                              <input (click)="imageRole='kid';selectedChildIndx=i" data-toggle="modal" data-target="#ImageModal" name="image"
+                                style="display: none"  />
                               <img alt="Profile Image" src="assets/edit_white.svg" /></label></a>
                                                 </div>
                                             </div>
@@ -1100,20 +1100,36 @@
         </button>
         <div class="modal-body">
             <div class="upload-image">
-                <div class="profile_image" [class.initial-alpha]="!user?.avatarImages">
+                <div *ngIf="imageRole==='parent'" class="profile_image" [class.initial-alpha]="!user?.avatarImages">
                     <img *ngIf="parentImgURL" src="{{ parentImgURL }}" alt="Profile Image" />
                     <img *ngIf="user.avatarImages && !parentImgURL" src="{{ user.avatarImages }}" alt="Profile Image" />
                     <h1 *ngIf="!user.avatarImages && !parentImgURL" [class.initial-alpha]="!user?.avatarImages">
                         {{user.firstName.charAt(0)+user?.firstName?.charAt(1)}}</h1>
 
                 </div>
+
+                <div *ngIf="imageRole==='kid'" class="profile_image" [class.initial-alpha]="!kids[selectedChildIndx]?.avtar">
+                    <img *ngIf="childImgURL" src="{{ childImgURL }}" alt="Profile Image" />
+                    <img *ngIf="kids[selectedChildIndx]?.avtar && !childImgURL" src="{{ kids[selectedChildIndx]?.avtar }}" alt="Profile Image" />
+                    <h1 *ngIf="!kids[selectedChildIndx]?.avtar && !childImgURL" [class.initial-alpha]="!kids[selectedChildIndx]?.avtar">
+                        {{kids[selectedChildIndx]?.name?.charAt(0)+kids[selectedChildIndx]?.name?.charAt(1)}}</h1>
+
+                </div>
             </div>
-            <div class="upload-btns">
+            <div *ngIf="imageRole==='parent'" class="upload-btns">
                 <button class="save-new" (click)="removeParentImage()">REMOVE</button>               
                 <input style="display: none" #uploadP accept="image/*" (change)="previewImage($event)" type="file"
                     name="image"/> 
             <button class="save-new" *ngIf="!parentImgURL" (click)="uploadP.click()">UPLOAD NEW</button>
             <button class="save-new" *ngIf="parentImgURL" (click)="uploadParentImg()">SAVE </button>
+            </div>
+
+            <div *ngIf="imageRole==='kid'" class="upload-btns">
+                <button class="save-new" (click)="removeChildImage()">REMOVE</button>               
+                <input style="display: none" #uploadC accept="image/*" (change)="previewChildImage($event)" type="file"
+                    name="image"/> 
+            <button class="save-new" *ngIf="!childImgURL" (click)="uploadC.click()">UPLOAD NEW</button>
+            <button class="save-new" *ngIf="childImgURL" (click)="uploadChildImg()">SAVE </button>
             </div>
 
         </div>

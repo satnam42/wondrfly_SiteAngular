@@ -149,7 +149,8 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked,OnDestro
   isEmailnotification:boolean;
   selectedProgram: any;
   isParent: boolean;
-
+  imageRole='';
+  selectedChildIndx:number
   constructor(
     private apiservice: ApiService,
     private router: Router,
@@ -680,6 +681,27 @@ if (mimeType.match(/image\/*/) == null) {
   return;
 }
   }
+  previewChildImage(event) {
+    // --------------------preview image before upload ------------------------
+    let fileData= File = null;
+    let formData = new FormData();
+  
+    fileData = event.target.files[0];
+    formData.append("image", this.fileData);
+    if (event.target.files.length === 0)
+    return;
+  var reader = new FileReader();
+  this.imagePath = event.target.files;
+  reader.readAsDataURL(event.target.files[0]);
+  reader.onload = (_event) => {
+    this.childImgURL = reader.result;
+  }
+  var mimeType = event.target.files[0].type;
+  if (mimeType.match(/image\/*/) == null) {
+    this.msg = " only images are supported";
+    return;
+  }
+    }
 
 uploadParentImg(){
   this.ngxLoader.start();
@@ -700,10 +722,15 @@ uploadParentImg(){
   });
 }
 
+uploadChildImg(){
+  this.apiservice.getPicUrl(this.formData).subscribe((res) => {
+    this.kids[this.selectedChildIndx].avtar = res;
+    this.updateChild(this.kids[this.selectedChildIndx], this.currentUser.id)
+    window.document.getElementById("closeId").click();
+  });
+}
 removeParentImage(){
-  this.ngxLoader.start();
-  this.apiservice.removeImage(this.currentUser.id).subscribe((res: any) => {
-    this.ngxLoader.stop();
+  this.apiservice.removeUserImage(this.currentUser.id).subscribe((res: any) => {
     console.log('res from server ',res);
     if (res.isSuccess) {
       this.getParentById();
@@ -714,14 +741,25 @@ removeParentImage(){
     } else {
       this.toastr.error("something went wrong, please try again Later!");
     }
-    this.ngxLoader.stop();
   });
+}
+removeChildImage(){
+  {
+    this.apiservice.removeChildImage(this.kids[this.selectedChildIndx].id).subscribe((res: any) => {
+      console.log('res from server ',res);
+      if (res.isSuccess) {
+        window.document.getElementById("closeId").click();
+      } else {
+        this.toastr.error("something went wrong, please try again Later!");
+      }
+    });
+  }
 }
 
   childImageSelect(event) {
     let formData = new FormData();
-    this.fileData = event.target.files[0];
-    formData.append("image", this.fileData);
+    let fileData = event.target.files[0];
+    formData.append("image", fileData);
     // --------------------preview image before upload ------------------------
     var reader = new FileReader();
     reader.readAsDataURL(event.target.files[0]);
@@ -738,13 +776,11 @@ removeParentImage(){
     let formData = new FormData();
     this.fileData = event.target.files[0];
     formData.append("image", this.fileData);
-    // --------------------preview image before upload ------------------------
     var reader = new FileReader();
     reader.readAsDataURL(event.target.files[0]);
     reader.onload = (_event) => {
       this.childImgURL = reader.result;
     };
-    // -------------------------------------------------------------------------------
     this.apiservice.getPicUrl(formData).subscribe((res) => {
       this.kids[indx].avtar = res;
       this.updateChild(this.kids[indx], this.currentUser.id)
@@ -907,12 +943,10 @@ removeParentImage(){
         this.headerComponent.getUserById();
         if (res) {
           this.onChildren(this.currentUser.id);
-          let msg = "Child Updated Successfully!";
           // this.toastr.info(msg );
         } else {
           if (this.currentUser === null || this.currentUser === undefined) {
             this.router.navigate(["/login"]);
-            let msg = "Please Login First!";
             // this.toastr.info(msg);
           } else {
             let msg = "Something Went Wrong!";

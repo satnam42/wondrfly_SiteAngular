@@ -211,7 +211,7 @@ export class ApiService {
     }
 
     //---------------------------------------------- remove user Image ---------------------------------------------->
-    removeImage(id): Observable<User[]> {
+    removeUserImage(id): Observable<User[]> {
         const subject = new Subject<User[]>();
         this.http.put(`${this.root}/users/removeProfilePic?id=${id}`,'', this.getHeader()).subscribe((responseData: any) => {
             if (responseData.statusCode !== 200) {
@@ -235,7 +235,30 @@ export class ApiService {
         return subject.asObservable();
     }
 
+   //---------------------------------------------- remove child Image ---------------------------------------------->
+   removeChildImage(id): Observable<Child[]> {
+    const subject = new Subject<Child[]>();
+    this.http.put(`${this.root}/child/removeProfilePic?id=${id}`,'', this.getHeader()).subscribe((responseData: any) => {
+        if (responseData.statusCode !== 200) {
+            throw new Error('This request has failed ' + responseData.status);
+        }
+        const dataModel = responseData;
+        if (!dataModel.isSuccess) {
+            if (responseData.status === 200) {
+                // this.toasty.error(dataModel.error);
+                throw new Error(dataModel.code || dataModel.message || 'failed');
+            } else {
+                throw new Error(responseData.status + '');
+            }
+        }
+        subject.next(responseData);
+    }, (error) => {
+        const dataModel = error;
+        subject.next(dataModel.error);
 
+    });
+    return subject.asObservable();
+}
     //----------------------------- get pic url ------------------------------->
 
     getPicUrl(pic) {
