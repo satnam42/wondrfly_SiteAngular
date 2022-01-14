@@ -491,7 +491,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   onScroll() {
-    if (this.isScrol) {
+    if (this.isScrol && !this.isCategoryFilter && !this.isAgeFilter && !this.isDateFilter && !this.isPriceFilter && !this.isTypeFilter && !this.isTimeFilter && !this.isTopFilter) {
       this.isScrol = false;
       this.loadMore();
     }
@@ -550,6 +550,7 @@ for(let i in this.programs){
   }
 
   addFavProgram(userId, programId, index) {
+    console.log(index)
     this.programs[index].isFav = true;
     this.fav.userId = userId;
     this.fav.programId = programId;
@@ -559,6 +560,7 @@ for(let i in this.programs){
   }
 
   deleteFavProgram(favId, index) {
+    console.log(index)
     this.programs[index].isFav = false;
     this.apiservice.deleteFavProgram(favId).subscribe(res => {
       this.deleteProgramRes = res;

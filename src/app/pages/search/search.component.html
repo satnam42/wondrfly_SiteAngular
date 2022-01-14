@@ -335,7 +335,7 @@
                     *ngIf="programs?.length && contentLoaded">
 
                     <div class="media-scroable">
-                        <div *ngFor="let program of programs; let i = index" class="media activity">
+                        <div *ngFor="let program of programs | slice:0:5; let i = index" class="media activity">
                             <div class="media-left activity-imgs" (click)="goToProgramDetail(program)">
                                 <img [defaultImage]="defaultImage" [errorImage]="errorImage" [lazyLoad]="baseUrl + program?.category[0]?.iconUrl" />
                             </div>
@@ -517,9 +517,209 @@
                                 </div>
                             </div>
                         </div>
+                        <div *ngIf="suggested?.length && contentLoaded && programs?.length" class="suggested-searchresult">
+                            <div class="suggested-result suggested-text in-built">
+                                <h3>You might want to explore similar Categories</h3>
+                                <div class="similar-categories container">
+                                    <div class="row">
+                                        <div class="col-md-4 cursor" *ngFor="let subCategory of suggested" (click)="selectedCat='';categoryId='';subCats=[];searchedSubCategory=subCategory.name; selectedSubCategories[0] = subCategory.id;
+                            programFilter()
+                          ">
+                                            <div class="similar-cate">
+                                                <!-- <img src="assets/similarcategories1.png"> -->
+                                                <img [defaultImage]="defaultImage" [lazyLoad]="subCategory?.iconUrl" />
+                                                <h1>{{ subCategory?.name }}</h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngFor="let program of programs | slice:6; let i = index" class="media activity">
+                            <div class="media-left activity-imgs" (click)="goToProgramDetail(program)">
+                                <img [defaultImage]="defaultImage" [errorImage]="errorImage" [lazyLoad]="baseUrl + program?.category[0]?.iconUrl" />
+                            </div>
+                            <div class="media-body">
+                                <div class="share_icon">
+                                    <a data-toggle="modal" (click)="selectedProgram = program" data-target="#ShareModal" class="cursor">
+                                        <img src="assets/share_gray.svg " class="section1" joyrideStep="secondStep{{i}}" title="💡 Share with friends and family" text="Click here to share your favorite activities!" alt="Share Icon " />
+                                    </a>
+                                    <div class="bookmark_outer">
+                                        <a *ngIf="!program?.isFav && parentRole && isLogin" (click)="addFavProgram(userData.id, program?._id, i+6)" class="bookmark_icon cursor"><img src="assets/bookmark_gray.svg " alt="Menu Image " class="section2" joyrideStep="thirdStep{{i}}" title="💡 Save activities for later" text="Click here to save your favorite activities all in one place for when you need them!"
+                                            /></a>
+
+                                        <a *ngIf="!isLogin" routerLink="/login" class="bookmark_icon cursor"><img src="assets/bookmark_gray.svg " alt="Menu Image " /></a>
+
+                                        <a *ngIf="program?.isFav && parentRole && isLogin" (click)="deleteFavProgram(program?._id, i+6)" class="bookmark_icon cursor"><img src="assets/bookmarkOrange.png " alt="Menu Image " /></a>
+                                    </div>
+                                </div>
+                                <h2 class="cursor" (click)="goToProgramDetail(program)">
+                                    {{ program?.name }}
+                                </h2>
+                                <div class="list_outer row row-0">
+                                    <div class="list col-12 mt-2 mb-1">
+                                        <p>by {{ program?.programOwner }}</p>
+                                    </div>
+                                    <div class="rating-starsearch">
+                                        <p (click)="
+                          getRating(program);
+                          programOwnerData.firstName = program?.programOwner
+                        " class="cursor" data-toggle="collapse" [attr.data-target]="'#collapseExamplestar' + i" role="button" aria-expanded="false" aria-controls="collapseExamplestar">
+                                            <span *ngIf="program?.averageFinalRating == 0">
+                          <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            </span>
+                                            <span *ngIf="program?.averageFinalRating == 1">
+                          <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            </span>
+                                            <span *ngIf="
+                            program?.averageFinalRating > 1 &&
+                            program?.averageFinalRating < 2
+                          ">
+                          <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star-half-o checked"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            </span>
+                                            <span *ngIf="program?.averageFinalRating == 2">
+                          <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            </span>
+                                            <span *ngIf="
+                            program?.averageFinalRating > 2 &&
+                            program?.averageFinalRating < 3
+                          ">
+                          <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star-half-o checked"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            </span>
+                                            <span *ngIf="program?.averageFinalRating == 3">
+                          <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            </span>
+                                            <span *ngIf="
+                            program?.averageFinalRating > 3 &&
+                            program?.averageFinalRating < 4
+                          ">
+                          <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star-half-o checked"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            </span>
+                                            <span *ngIf="program?.averageFinalRating == 4">
+                          <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            </span>
+                                            <span *ngIf="
+                            program?.averageFinalRating > 4 &&
+                            program?.averageFinalRating < 5
+                          ">
+                          <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star-half-o checked"></span>
+                                            </span>
+                                            <span *ngIf="program?.averageFinalRating == 5">
+                          <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            </span>
+                                            <a *ngIf="program?.totalReviews">
+                          ({{ program?.totalReviews }} reviews)</a>
+                                            <a *ngIf="!program?.totalReviews"> (0 reviews)</a>
+                                        </p>
+                                        <div *ngIf="rating" class="collapse star-daialogbox" id="collapseExamplestar{{ i }}">
+                                            <button type="button" data-toggle="collapse" [attr.data-target]="'#collapseExamplestar' + i" class="close star-daialogicon" aria-label="Close">
+                          <span aria-hidden="true"><img src="assets/grey-close.png" /></span>
+                        </button>
+                                            <app-rating [rating]="rating" [user]="programOwnerData"></app-rating>
+                                        </div>
+                                    </div>
+                                    <div class="coding_text">
+                                        <div *ngIf="program?.subCategoryIds?.length || program?.category?.length" class="coding-text-1">
+                                            <h3 class="cursor" *ngFor="
+                            let cat of program?.category" (click)="selectedCat='';categoryId='';selectedSubCategories=[];subCats=[];searchedSubCategory=cat?.name; categoryId = cat._id;programFilter() ">
+                                                {{ cat?.name }}
+                                            </h3>
+                                            <h3 class="cursor" *ngFor="
+                            let subCat of program?.subCategoryIds | slice: 0:2
+                          " (click)="selectedCat='';categoryId='';subCats=[];searchedSubCategory=subCat?.name; selectedSubCategories[0] = subCat?._id;programFilter() ">
+                                                {{ subCat?.name }}
+                                            </h3>
+                                            <h6 *ngIf="program?.subCategoryIds?.length > 2" class="" data-toggle="collapse" href="#morecategories" [attr.data-target]="'#morecategories' + i">
+                                                +{{ program?.subCategoryIds?.length - 2 }} more
+                                                <div class="collapse main_collpases verification_modal" id="morecategories{{ i }}" data-parent="#accordionExample">
+                                                    <div class="collpase_content">
+                                                        <div class="categories-content">
+                                                            <span><img src="assets/grey-close.png" /> </span>
+                                                            <h5 *ngFor="
+                                    let subCat of program?.subCategoryIds
+                                      | slice: 2:program?.subCategoryIds?.length
+                                  " class="collapse-btn cursor" (click)="selectedCat='';categoryId='';subCats=[];searchedSubCategory=subCat?.name; selectedSubCategories[0] = subCat._id;programFilter() ">
+                                                                {{ subCat?.name }}
+                                                            </h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </h6>
+                                        </div>
+                                    </div>
+
+                                    <div class="list col-md-4">
+                                        <p>
+                                            <img src="assets/user_group.svg " alt="School image " />{{ program?.ageGroup?.from + "-" + program?.ageGroup?.to }} Yrs
+                                        </p>
+                                    </div>
+                                    <div class="list col-md-6">
+                                        <p *ngIf="!program?.isDateNotMention">
+                                            <img src="assets/calendar.svg " alt="School image " />{{ program?.date?.from | date: "MMM d " }} – {{ program?.date?.to | date: "MMM d " }}
+                                        </p>
+                                        <p *ngIf="program?.isDateNotMention">
+                                            Date Not Mentioned
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="price-box">
+                                    <p *ngIf="!program?.isFree && program?.pricePerParticipant">
+                                        <span><img src="assets/price.svg" />{{
+                        program.pricePerParticipant
+                        }}<span *ngIf="program?.pricePeriod?.periodAmount">/{{ program?.pricePeriod?.periodAmount
+                          }}</span></span>
+                                    </p>
+                                    <p *ngIf="program?.isFree && !program?.pricePerParticipant"><img src="assets/price.svg" /><span> Free</span></p>
+                                    <p *ngIf="!program?.isFree && !program?.pricePerParticipant"><img src="assets/price.svg" /><span> Price Not Mentioned</span></p>
+                                </div>
+                                <div class="rating_box">
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div *ngIf="suggested?.length && contentLoaded && programs?.length" class="suggested-searchresult">
+                <!-- <div *ngIf="suggested?.length && contentLoaded && programs?.length" class="suggested-searchresult">
                     <div class="suggested-result suggested-text in-built">
                         <h3>You might want to explore similar Categories</h3>
                         <div class="similar-categories container">
@@ -528,7 +728,7 @@
                     programFilter()
                   ">
                                     <div class="similar-cate">
-                                        <!-- <img src="assets/similarcategories1.png"> -->
+                                        <img src="assets/similarcategories1.png">
                                         <img [defaultImage]="defaultImage" [lazyLoad]="subCategory?.iconUrl" />
                                         <h1>{{ subCategory?.name }}</h1>
                                     </div>
@@ -536,7 +736,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
 
 
