@@ -747,7 +747,10 @@ p.health_name {
 .provider_profile .provider_left h2.provider_name p a {
   text-decoration: underline;
   color: #494949;
-  margin-left: 7px;
+  /* margin-left: 7px; */
+}
+.no-underline {
+  color: #494949;
 }
 .social-icons img {
   width: 18px;

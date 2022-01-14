@@ -447,8 +447,8 @@
                                             <span class="fa fa-star checked"></span>
                                             <span class="fa fa-star checked"></span>
                                             </span>
-                                            <a *ngIf="program?.totalReviews">({{program?.totalReviews }} reviews)</a>
-                                            <a *ngIf="!program?.totalReviews"> (0 reviews)</a>
+                                            <span class="no-underline">(</span><a *ngIf="program?.totalReviews">{{program?.totalReviews }} reviews</a>
+                                            <a *ngIf="!program?.totalReviews">0 reviews</a><span class="no-underline">)</span>
                                         </p>
                                         <div *ngIf="rating" class="collapse star-daialogbox" id="collapseExamplestar{{ i }}">
                                             <button type="button" data-toggle="collapse" [attr.data-target]="'#collapseExamplestar' + i" class="close star-daialogicon" aria-label="Close">
@@ -646,8 +646,8 @@
                                             <span class="fa fa-star checked"></span>
                                             <span class="fa fa-star checked"></span>
                                             </span>
-                                            <a *ngIf="program?.totalReviews">({{program?.totalReviews }} reviews)</a>
-                                            <a *ngIf="!program?.totalReviews"> (0 reviews)</a>
+                                            <span class="no-underline">(</span><a *ngIf="program?.totalReviews">{{program?.totalReviews }} reviews</a>
+                                            <a *ngIf="!program?.totalReviews">0 reviews</a><span class="no-underline">)</span>
                                         </p>
                                         <div *ngIf="rating" class="collapse star-daialogbox" id="collapseExamplestar{{ i }}">
                                             <button type="button" data-toggle="collapse" [attr.data-target]="'#collapseExamplestar' + i" class="close star-daialogicon" aria-label="Close">

@@ -104,8 +104,8 @@
                     *ngIf="rating?.finalAverageRating && rating?.finalAverageRating!=='NaN'">{{rating?.finalAverageRating}}</span><span
                     *ngIf="!rating?.finalAverageRating || rating?.finalAverageRating=='NaN' || rating?.finalAverageRating==undefined">0</span>
                   out of 5 </a> -->
-                  <a *ngIf="rating?.totalReviews">({{rating?.totalReviews }} reviews)</a>
-                  <a *ngIf="!rating?.totalReviews"> (0 reviews)</a>
+                  <span class="no-underline">(</span><a *ngIf="rating?.totalReviews">{{rating?.totalReviews }} reviews</a>
+                  <a *ngIf="!rating?.totalReviews">0 reviews</a> <span class="no-underline">)</span>
                             </p>
                             <div class=" star-daialogbox" *ngIf="isRating">
                                 <!-- <button  (click)="isRating=false"type="button" class="close star-daialogicon" aria-label="Close">
