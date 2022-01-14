@@ -331,7 +331,7 @@
 
         <div class="row row-0 borderserach" *ngIf="!isOnline">
             <div class="col-md-6 list_left">
-                <div class="search-results" [class.search-results-height]="searchedSubCategory && contentLoaded && suggested?.length" #scrollToTop infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="500" (scrolled)="onScroll()" [scrollWindow]="false"
+                <div class="search-results" #scrollToTop infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="500" (scrolled)="onScroll()" [scrollWindow]="false"
                     *ngIf="programs?.length && contentLoaded">
 
                     <div class="media-scroable">
