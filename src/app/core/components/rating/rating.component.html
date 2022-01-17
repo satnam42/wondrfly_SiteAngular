@@ -75,18 +75,18 @@
             <span class="fa fa-star checked"></span>
         </h4>
         <span class="ratingstar-kids" *ngIf="rating?.isSuccess==false;else finalAverageRatingg">0 reviews
- <!-- <span *ngIf="rating?.finalAverageRating=='NaN' || 
-            rating?.finalAverageRating==undefined || 
+ <!-- <span *ngIf="rating?.finalAverageRating=='NaN' ||
+            rating?.finalAverageRating==undefined ||
             rating?.finalAverageRating==0 ;else finalAverageRating">0</span>
             <ng-template #finalAverageRating>{{rating?.finalAverageRating}}</ng-template> out of 5 -->
 
         </span>
 
-        <ng-template  #finalAverageRatingg> <span class="ratingstar-kids" >
-              ({{rating?.numberOfFacebook+rating?.numberOfGoogle+rating?.numberOfYelp}} reviews)
-           
-        </span> </ng-template>
-      </h2>   
+        <ng-template  #finalAverageRatingg>
+          <span class="no-underline">(</span><a class="review-underline" *ngIf="rating?.totalReviews">{{rating?.totalReviews }} reviews</a>
+          <a class="review-underline" *ngIf="!rating?.totalReviews">0 reviews</a><span class="no-underline">)</span>
+        </ng-template>
+      </h2>
   </div>
   <h3>
     Rating based on:
@@ -356,10 +356,10 @@
                   <ng-template #numberOfYelpp><span class="social-star">
                     {{rating?.numberOfYelp}} reviews
                   </span></ng-template>
-                 
+
               </h4>
 
-              
+
           </div>
       </div>
 
@@ -372,7 +372,7 @@
                   <span  *ngIf="rating?.instagramFollowers">{{rating?.instagramFollowers}}</span><span *ngIf="!rating?.instagramFollowers">0</span> Followers
               </h4>
           </div>
-          
+
       </div>
   </div>
 
