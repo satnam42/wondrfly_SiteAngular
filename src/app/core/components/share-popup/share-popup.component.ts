@@ -86,7 +86,7 @@ name = name.replace(/\?/g,"-");
        }
        case 'email': {
         navigator.clipboard.writeText(this.shareUrl).then().catch(e => console.error(e));
-         this.url = `mailto:?subject=wondrfly&amp;body=${this.shareUrl}`;
+         this.url = `mailto:?subject=wondrfly&body=${this.shareUrl}`;
          window.open( this.url, 'sharer', 'toolbar=0,status=0,width=648,height=395');
          return true;
        }
