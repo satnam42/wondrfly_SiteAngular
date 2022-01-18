@@ -46,6 +46,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked,OnDestro
   profileProgress: 0;
   fileData: File = null;
   formData = new FormData();
+  childformData = new FormData();
   imagePath;
   parentImgURL: any;
   childImgURL: any;
@@ -683,25 +684,17 @@ if (mimeType.match(/image\/*/) == null) {
   }
   previewChildImage(event) {
     // --------------------preview image before upload ------------------------
-    let fileData= File = null;
-    let formData = new FormData();
-  
+    let fileData= File = null
     fileData = event.target.files[0];
-    formData.append("image", this.fileData);
-    if (event.target.files.length === 0)
-    return;
-  var reader = new FileReader();
-  this.imagePath = event.target.files;
-  reader.readAsDataURL(event.target.files[0]);
-  reader.onload = (_event) => {
-    this.childImgURL = reader.result;
+    this.childformData.append("image", fileData);
+    // --------------------preview image before upload ------------------------
+    var reader = new FileReader();
+    reader.readAsDataURL(event.target.files[0]);
+    reader.onload = (_event) => {
+      this.childImgURL = reader.result;
+      console.log('res from  this.childImgURL ', this.childImgURL);
+    };
   }
-  var mimeType = event.target.files[0].type;
-  if (mimeType.match(/image\/*/) == null) {
-    this.msg = " only images are supported";
-    return;
-  }
-    }
 
 uploadParentImg(){
   this.ngxLoader.start();
@@ -723,8 +716,10 @@ uploadParentImg(){
 }
 
 uploadChildImg(){
-  this.apiservice.getPicUrl(this.formData).subscribe((res) => {
+  this.apiservice.getPicUrl(this.childformData).subscribe((res) => {
     this.kids[this.selectedChildIndx].avtar = res;
+    console.log('img string res',res)
+
     this.updateChild(this.kids[this.selectedChildIndx], this.currentUser.id)
     window.document.getElementById("closeId").click();
   });
@@ -766,6 +761,7 @@ removeChildImage(){
     reader.readAsDataURL(event.target.files[0]);
     reader.onload = (_event) => {
       this.childImgURL = reader.result;
+      console.log('res from  this.childImgURL ', this.childImgURL);
     };
     // -------------------------------------------------------------------------------
     this.apiservice.getPicUrl(formData).subscribe((res) => {
@@ -781,6 +777,7 @@ removeChildImage(){
     reader.readAsDataURL(event.target.files[0]);
     reader.onload = (_event) => {
       this.childImgURL = reader.result;
+      console.log('this.childImgURL', this.childImgURL);
     };
     this.apiservice.getPicUrl(formData).subscribe((res) => {
       this.kids[indx].avtar = res;
@@ -924,6 +921,7 @@ removeChildImage(){
     var birth = new Date(child.dob);
     let birthYear = moment(birth).format("YYYY");
     let currentYear = moment(Date.now()).format("YYYY");
+    console.log('child image before', child);
     if (birthYear > currentYear) {
       this.toastr.warning("please fill valid birth year",);
     } else {
@@ -936,7 +934,7 @@ removeChildImage(){
       child.age = String(age);
       child.avtar = child.avtar.split('https://wondrfly.com/').pop();
       // child.avtar =  child.avtar.slice(21);
-      console.log('data image', child);
+      console.log('data image before', child);
       this.apiservice.updateChild(child.id, child).subscribe((res: any) => {
         console.log('data image', res);
         this.getProfileProgress();

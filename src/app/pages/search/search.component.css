@@ -771,7 +771,7 @@ a.top-rateds {
 }
 
 .search-results {
-    max-height: calc(100vh - -736px);
+    max-height: 100vh;
     /* overflow: hidden; */
     /* scrollbar-color: #ddd #ccc;
     scrollbar-width: thin; */
@@ -809,7 +809,7 @@ a.top-rateds {
 }
 
 .search_activity .map_section {
-    max-height: calc(100vh - -756px);
+    max-height: 100vh;
     overflow: hidden;
     height: 100%;
 }

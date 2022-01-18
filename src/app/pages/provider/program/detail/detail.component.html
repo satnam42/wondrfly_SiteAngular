@@ -166,9 +166,9 @@
                                                 <p *ngIf="!program?.isDateNotMention">
                                                     <img src="assets/calendar_orange.svg" alt="Calendar" />{{ program?.date?.from | date: "mediumDate" }} - {{ program?.date?.to | date: "mediumDate" }}
                                                 </p>
-                                                <p *ngIf="program?.isDateNotMention">
+                                                <!-- <p *ngIf="program?.isDateNotMention">
                                                     <img src="assets/calendar_orange.svg" alt="Calendar" />Date Not Mentioned
-                                                </p>
+                                                </p> -->
                                                 <p>
                                                     <img src="assets/user_group_orange.svg" alt="Calendar" /> {{ program?.ageGroup?.from }} - {{ program?.ageGroup?.to }} Yrs.
                                                 </p>
@@ -176,9 +176,9 @@
                                                 <p *ngIf="!program?.isTimeNotMention">
                                                     <img src="assets/watch.svg" alt="Loction Pin" /> {{ program?.time?.from.toFixed(2)}} - {{ program?.time?.to.toFixed(2)}}
                                                 </p>
-                                                <p *ngIf="program?.isTimeNotMention">
+                                                <!-- <p *ngIf="program?.isTimeNotMention">
                                                     <img src="assets/watch.svg" alt="Loction Pin" /> Time Not Mention
-                                                </p>
+                                                </p> -->
                                                 <p *ngIf="
                             program?.duration?.hours || program?.duration?.minutes
                           ">
@@ -192,9 +192,9 @@
                                                 <p *ngIf="program?.isFree && !program?.pricePerParticipant">
                                                     <img src="assets/pricet.svg" alt="price tag" /> Free
                                                 </p>
-                                                <p *ngIf="!program?.isFree && !program?.pricePerParticipant">
+                                                <!-- <p *ngIf="!program?.isFree && !program?.pricePerParticipant">
                                                     <img src="assets/pricet.svg" alt="price tag" /> Price Not Mentioned
-                                                </p>
+                                                </p> -->
                                             </div>
                                             <div id="cat-subcat">
                                                 <button class="camp-btn" *ngFor="let cat of categoryArr; let i=index">
@@ -662,15 +662,15 @@
                                                                     <p *ngIf="!program.isDateNotMention">
                                                                         <img alt="Loction Pin" src="assets/calendar.svg" /> {{ program?.date?.from | date: "mediumDate" }} - {{ program?.date?.to | date: "mediumDate" }}
                                                                     </p>
-                                                                    <p *ngIf="program.isDateNotMention">
+                                                                    <!-- <p *ngIf="program.isDateNotMention">
                                                                         <img alt="Loction Pin" src="assets/calendar.svg" /> Date Not Mentioned
-                                                                    </p>
+                                                                    </p> -->
                                                                     <p>
                                                                         <img alt="Loction Pin" src="assets/user_group.svg" /> {{ program?.ageGroup?.from }} - {{ program?.ageGroup?.to }} Yrs.
                                                                     </p>
-                                                                    <p *ngIf="program?.isTimeNotMention">
+                                                                    <!-- <p *ngIf="program?.isTimeNotMention">
                                                                         <img alt="Loction Pin" src="assets/user_group.svg" /> Time Not Mentioned
-                                                                    </p>
+                                                                    </p> -->
                                                                     <p *ngIf="!program?.isTimeNotMention">
                                                                         <img alt="Loction Pin" src="assets/user_group.svg" /> {{ program?.time?.from.toFixed(2)}} - {{ program?.time?.to.toFixed(2)}}
                                                                     </p>
@@ -703,9 +703,9 @@
                                                                     <p>
                                                                         <img alt="Loction Pin" src="assets/user_group.svg" /> {{ program?.ageGroup?.from }} - {{ program?.ageGroup?.to }} Yrs.
                                                                     </p>
-                                                                    <p *ngIf="program?.isTimeNotMention">
+                                                                    <!-- <p *ngIf="program?.isTimeNotMention">
                                                                         <img alt="Loction Pin" src="assets/user_group.svg" /> Time Not Mentioned
-                                                                    </p>
+                                                                    </p> -->
                                                                     <p *ngIf="!program?.isTimeNotMention">
                                                                         <img alt="Loction Pin" src="assets/user_group.svg" /> {{ program?.time?.from.toFixed(2) }} - {{ program?.time?.to.toFixed(2) }}
                                                                     </p>
