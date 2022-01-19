@@ -716,7 +716,60 @@
                             </div>
                         </div>
                     </div>
+               
+               
+               
+               <!-- footer start -->
+        <footer style="background-color:#fff;">
+            <div class="container">
+              <div class="footer_inner">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="footer_logo">
+                      <a>
+                        <img src="assets/newlogo.png" alt="Logo" />
+                      </a>
+                    </div>
+                    <div class="footer_menu">
+                      <ul>
+                        <li class="cursor">
+                          <a [routerLink]="['/about-wondrfly']"> About Us</a>
+                        </li>
+                        <li class="cursor">
+                          <a [routerLink]="['/blogs']">Blog</a>
+                        </li>
+                        <li class="cursor">
+                          <a [routerLink]="['/faq']">FAQ</a>
+                        </li>
+                        <!-- <li class="cursor">
+                                  <a [routerLink]="['/ambassador-policy']">Ambassador</a>
+                                </li> -->
+                        <li class="cursor">
+                          <a [routerLink]="['/term-condition']">Terms & Conditions</a>
+                        </li>
+                        <li class="cursor">
+                          <a [routerLink]="['/privacy-policy']">Privacy Policy</a>
+                        </li>
+                        <li class="cursor">
+                          <a [routerLink]="['/contactUs']">Contact Us</a>
+                        </li>
+                      </ul>
+                    </div>
+                 
+                    <div class="copyright_text">
+                      <p>© 2021 Wondrfly Inc. All Rights Reserved.</p>
+                    </div>
+                  </div>
                 </div>
+              </div>
+            </div>
+          </footer>
+
+          <!-- footer end  -->
+         </div>
+                
+
+
                 <!-- <div *ngIf="suggested?.length && contentLoaded && programs?.length" class="suggested-searchresult">
                     <div class="suggested-result suggested-text in-built">
                         <h3>You might want to explore similar Categories</h3>
@@ -786,6 +839,58 @@
                             </div>
                         </div>
                     </div>
+
+
+
+                            <!-- footer start -->
+        <footer style="background-color:#fff;">
+            <div class="container">
+              <div class="footer_inner">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="footer_logo">
+                      <a>
+                        <img src="assets/newlogo.png" alt="Logo" />
+                      </a>
+                    </div>
+                    <div class="footer_menu">
+                      <ul>
+                        <li class="cursor">
+                          <a [routerLink]="['/about-wondrfly']"> About Us</a>
+                        </li>
+                        <li class="cursor">
+                          <a [routerLink]="['/blogs']">Blog</a>
+                        </li>
+                        <li class="cursor">
+                          <a [routerLink]="['/faq']">FAQ</a>
+                        </li>
+                        <!-- <li class="cursor">
+                                  <a [routerLink]="['/ambassador-policy']">Ambassador</a>
+                                </li> -->
+                        <li class="cursor">
+                          <a [routerLink]="['/term-condition']">Terms & Conditions</a>
+                        </li>
+                        <li class="cursor">
+                          <a [routerLink]="['/privacy-policy']">Privacy Policy</a>
+                        </li>
+                        <li class="cursor">
+                          <a [routerLink]="['/contactUs']">Contact Us</a>
+                        </li>
+                      </ul>
+                    </div>
+                 
+                    <div class="copyright_text">
+                      <p>© 2021 Wondrfly Inc. All Rights Reserved.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </footer>
+
+          <!-- footer end  -->
+
+          
                 </div>
             </div>
             <div class="col-md-6">
@@ -916,6 +1021,8 @@
         <div *ngIf="isOnline && showReset">
             <online-programs [programs]="programs" [categories]="categories" [contentLoaded]="contentLoaded"></online-programs>
         </div>
+
+
     </div>
 </section>
 
@@ -923,7 +1030,7 @@
 
 <ngx-ui-loader fgsSize="40" bgsSize="40" overlayColor="rgba(40,40,40,0.12)">
 </ngx-ui-loader>
-<app-footer2></app-footer2>
+<app-footer2 *ngIf="isOnline"></app-footer2>
 
 
 
