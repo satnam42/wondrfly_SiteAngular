@@ -249,7 +249,7 @@
                     Top Rated
                     <span>
                       <label class="switch1">
-                        <input [(ngModel)]="isTopFilterCheckBox" (change)="programFilter()" type="checkbox" />
+                        <input [(ngModel)]="isTopFilterCheckBox" (change)="contentLoaded=false;programFilter()" type="checkbox" />
                         <span class="slider1"></span>
                       </label>
                     </span>
@@ -282,33 +282,33 @@
                 <div class="chip-set-bar">
                     <button class="btn_style save_btn cursor" *ngIf="searchedSubCategory">
             {{searchedSubCategory}}<span *ngIf="selectedSubCategories?.length && selectedSubCategories?.length>1"> + {{selectedSubCategories?.length-1}} More</span>
-            <span class="ml-2"  (click)="selectedCat='';categoryId='';subCats=[];selectedSubCategories=[];searchedSubCategory='';programFilter()"><img src="assets/white-close.png"/></span>
+            <span class="ml-2"  (click)="contentLoaded=false;selectedCat='';categoryId='';subCats=[];selectedSubCategories=[];searchedSubCategory='';programFilter()"><img src="assets/white-close.png"/></span>
           </button>
                     <button class="btn_style save_btn cursor" *ngIf="!isInPerson && isOnline">
             online
-            <span class="ml-2" (click)="isOnline=!isOnline;programFilter()"><img src="assets/white-close.png"/></span>
+            <span class="ml-2" (click)="contentLoaded=false;isOnline=!isOnline;programFilter()"><img src="assets/white-close.png"/></span>
           </button>
                     <button class="btn_style save_btn cursor" *ngIf="isInPerson && !isOnline">
             in-persion
-            <span class="ml-2"  (click)="isInPerson=!isInPerson;programFilter()"><img src="assets/white-close.png"/></span>
+            <span class="ml-2"  (click)="contentLoaded=false;isInPerson=!isInPerson;programFilter()"><img src="assets/white-close.png"/></span>
           </button>
 
 
                     <button class="btn_style save_btn cursor" *ngIf="isAgeFilter">
             Age {{minAge}}-{{maxAge}} years
-            <span  class="ml-2"  (click)="isAgeFilter=!isAgeFilter;programFilter()"><img src="assets/white-close.png" /></span>
+            <span  class="ml-2"  (click)="contentLoaded=false;isAgeFilter=!isAgeFilter;programFilter()"><img src="assets/white-close.png" /></span>
           </button>
                     <button class="btn_style save_btn cursor" *ngIf="isPriceFilter">
             Price ${{minPrice}}-${{maxPrice}}
-            <span  class="ml-2"  (click)="isPriceFilter=!isPriceFilter;programFilter()"><img src="assets/white-close.png" /></span>
+            <span  class="ml-2"  (click)="contentLoaded=false;isPriceFilter=!isPriceFilter;programFilter()"><img src="assets/white-close.png" /></span>
           </button>
                     <button class="btn_style save_btn cursor" *ngIf="isDateFilter">
             {{fromDate | date: "MMM d " }}-{{toDate | date: "MMM d " }}
-            <span  class="ml-2"  (click)="isDateFilter=!isDateFilter;programFilter()"><img src="assets/white-close.png" /></span>
+            <span  class="ml-2"  (click)="contentLoaded=false;isDateFilter=!isDateFilter;programFilter()"><img src="assets/white-close.png" /></span>
           </button>
                     <button class="btn_style save_btn cursor" *ngIf="isTopFilterCheckBox">
             Top Rated
-            <span  (click)="isTopFilterCheckBox=false;isTopFilter=false;programFilter()" class="ml-2"><img src="assets/white-close.png" /></span>
+            <span  (click)="contentLoaded=false;isTopFilterCheckBox=false;isTopFilter=false;programFilter()" class="ml-2"><img src="assets/white-close.png" /></span>
           </button>
                     <button class="btn_style save_btn cursor" *ngFor="let day of this.selectedDays;index as i">
             {{day}}

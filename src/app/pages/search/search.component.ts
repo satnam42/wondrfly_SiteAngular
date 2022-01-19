@@ -432,6 +432,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   resetFilter() {
+    this.contentLoaded =false
     this.searchedSubCategory = '';
     this.activityName = '';
     this.isInPerson = false;
@@ -498,7 +499,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   getPublishedProgram() {
-    this.contentLoaded = false;
+    // this.contentLoaded = false;
     this.activityName = ''
     this.showReset = false
     // this.ngxLoader.start()
@@ -506,7 +507,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.apiservice.getPublishedProgram(this.pageNo, this.pageSize,'published').subscribe((res: any) => {
       // this.ngxLoader.stop()
       this.programs = res.items;
-      this.fakeLoaderData = [1,2]
+      // this.fakeLoaderData = [1,2]
       this.contentLoaded = true;
 for(let i in this.programs){
   let category = this.programs[i].category.filter((v,num,a)=>a.findIndex(t=>(t.name===v.name))===num)
@@ -609,8 +610,6 @@ for(let i in this.programs){
   }
 
   programFilter() {
-    this.fakeLoaderData = [1,2]
-    this.contentLoaded = false;
     if(this.regWallCookies>11){
       this.isBetaPopUp=true
     }
@@ -622,6 +621,8 @@ for(let i in this.programs){
     this.isCategoryFilter = false;
     this.suggested=[]
     if (this.isTopFilterCheckBox || this.categoryId || this.selectedDays.length || this.selectedProgramTypes.length || this.selectedSubCategories.length || this.selectedProgramTime.length || this.isOnline || this.isInPerson || this.isDateFilter || this.isPriceFilter || this.isAgeFilter) {
+      this.fakeLoaderData = [1,2]
+      this.contentLoaded = false;
       let filter = ``
       let inpersonOrVirtual = ''
       let days = ''
@@ -851,6 +852,7 @@ this.programs[i].category = category          }
   //   this.cookies.set('exploreModal', '1', 30);
   // }
   removeRecentSearches(type, indx) {
+    this.contentLoaded=false;
     switch (type) {
       case 'days': {
         console.log(this.days, 'days event')
