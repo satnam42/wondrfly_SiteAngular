@@ -719,6 +719,7 @@ uploadChildImg(){
   this.apiservice.getPicUrl(this.childformData).subscribe((res) => {
     this.kids[this.selectedChildIndx].avtar = res;
     console.log('img string res',res)
+    this.childformData= new FormData();
 
     this.updateChild(this.kids[this.selectedChildIndx], this.currentUser.id)
     window.document.getElementById("closeId").click();
