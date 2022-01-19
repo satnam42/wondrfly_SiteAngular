@@ -93,15 +93,16 @@
                           <span>{{ program?.subCategoryIds[0]?.name }}</span>
                                             </div>
                                             <div class="date_age">
-                                                <p>
-                                                    <img oncontextmenu="return false;" alt="Loction Pin" src="assets/calendar.svg" />date
-                                                </p>
-                                                <p>
-                                                    <img oncontextmenu="return false;" alt="Loction Pin" src="assets/user_group.svg" /> age Yrs.
-                                                </p>
-                                                <p>
-                                                    <img oncontextmenu="return false;" alt="Loction Pin" src="assets/user_group.svg" /> {{ program?.date?.to | date: "MMM d, " }}
-                                                </p>
+                                              <p *ngIf="!program?.isDateNotMention">
+                                                <img oncontextmenu="return false;" alt="Loction Pin" src="assets/calendar.svg" />{{ program?.date?.from | date: "MMM d" }} - {{ program?.date?.to | date: "MMM d" }}
+                                            </p>
+                                            <p *ngIf="program?.isDateNotMention">
+                                              <img oncontextmenu="return false;" alt="Loction Pin" src="assets/calendar.svg" />Ongoing
+                                          </p>
+                   
+                                          <p>
+                                            <img oncontextmenu="return false;" alt="Loction Pin" src="assets/user_group.svg" /> {{ program?.ageGroup?.from }} - {{ program?.ageGroup?.to }} Yrs.
+                                        </p>
                                             </div>
                                         </div>
                                     </div>
@@ -124,24 +125,28 @@
                                             <h3>
                                                 <span (click)="goToProgramDetail(program)" class="title">{{ program?.name }}</span
                           >
-                          <div class="rating_box">
+                          <!-- <div class="rating_box">
                             <img oncontextmenu="return false;"  src="assets/star.svg" alt="Star Image" />
                             <span>5.0 (15)</span>
-                                        </div>
+                                        </div> -->
                                         </h3>
                                         <div class="sports_btn">
                                             <span>{{ program?.subCategoryIds[0]?.name }}</span>
                                         </div>
                                         <div class="date_age">
-                                            <p>
-                                                <img oncontextmenu="return false;" alt="Loction Pin" src="assets/calendar.svg" />date
+                                            <p *ngIf="!program?.isDateNotMention">
+                                                <img oncontextmenu="return false;" alt="Loction Pin" src="assets/calendar.svg" />{{ program?.date?.from | date: "MMM d" }} - {{ program?.date?.to | date: "MMM d" }}
                                             </p>
+                                            <p *ngIf="program?.isDateNotMention">
+                                              <img oncontextmenu="return false;" alt="Loction Pin" src="assets/calendar.svg" />Ongoing
+                                          </p>
+                                        
                                             <p>
-                                                <img oncontextmenu="return false;" alt="Loction Pin" src="assets/user_group.svg" /> age Yrs.
-                                            </p>
-                                            <p>
+                                              <img oncontextmenu="return false;" alt="Loction Pin" src="assets/user_group.svg" /> {{ program?.ageGroup?.from }} - {{ program?.ageGroup?.to }} Yrs.
+                                          </p>
+                                            <!-- <p>
                                                 <img oncontextmenu="return false;" alt="Loction Pin" src="assets/user_group.svg" /> {{ program?.date?.to | date: "MMM d, " }}
-                                            </p>
+                                            </p> -->
                                         </div>
                                     </div>
                                 </div>

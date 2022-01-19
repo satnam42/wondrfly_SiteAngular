@@ -136,7 +136,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   selectedProgramTypes: any = []
   selectedProgramTime: any = []
   contentLoaded = false;
-  fakeLoaderData = [1, 2, 3, 4, 5]
+  fakeLoaderData = [1, 2]
   currentUser: any;
   cookiesData: string;
   regWallCookies=0
@@ -498,16 +498,16 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   getPublishedProgram() {
+    this.contentLoaded = false;
     this.activityName = ''
     this.showReset = false
     // this.ngxLoader.start()
-    this.contentLoaded = false;
     this.suggested=[]
     this.apiservice.getPublishedProgram(this.pageNo, this.pageSize,'published').subscribe((res: any) => {
       // this.ngxLoader.stop()
-      this.contentLoaded = true;
       this.programs = res.items;
-      this.fakeLoaderData = this.programs
+      this.fakeLoaderData = [1,2]
+      this.contentLoaded = true;
 for(let i in this.programs){
   let category = this.programs[i].category.filter((v,num,a)=>a.findIndex(t=>(t.name===v.name))===num)
   this.programs[i].category = category
@@ -518,7 +518,6 @@ for(let i in this.programs){
         this.isScrol = true;
       }
     });
-    this.contentLoaded = true;
   }
 
 
@@ -583,6 +582,7 @@ for(let i in this.programs){
 
 
   filterByNameDate() {
+    this.contentLoaded = false;
     this.isCategoryFilter = false
     this.isDateFilter = false
     this.isAgeFilter = false
@@ -593,13 +593,11 @@ for(let i in this.programs){
     this.isTypeFilter = false;
     this.isOnline = false;
     this.isInPerson = false;
-
-    this.contentLoaded = false;
     this.apiservice.activityByNameDate(this.activityName).subscribe((res: any) => {
       console.log('filterbyNameDate', res)
-      this.contentLoaded = true;
       this.programs = res.data
-      this.fakeLoaderData = this.programs
+          this.fakeLoaderData = [1,2]
+            this.contentLoaded = true;
       for(let i in this.programs){
         let category = this.programs[i].category.filter((v,num,a)=>a.findIndex(t=>(t.name===v.name))===num)
         this.programs[i].category = category
@@ -608,15 +606,15 @@ for(let i in this.programs){
       this.showReset = true
       this.searchedSubCategory = this.activityName;
     });
-    this.contentLoaded = true;
   }
 
   programFilter() {
+    this.fakeLoaderData = [1,2]
+    this.contentLoaded = false;
     if(this.regWallCookies>11){
       this.isBetaPopUp=true
     }
     window.scroll(0, 0);
-    this.contentLoaded = false;
     this.isTimeFilter = false;
     this.isDaysFilter = false;
     this.isTopFilter = false;
@@ -717,17 +715,15 @@ for(let i in this.programs){
       this.apiservice.programFilter(filter, this.pageNo, 200).subscribe((res: any) => {
         this.showReset = true
         console.log('filter response', res);
-        this.contentLoaded = true;
         if (res.isSuccess) {
           // this.isTopFilterCheckBox = false
-          this.programs = res.data;
-          this.fakeLoaderData = this.programs
+          this.programs = res.data;          
+              this.contentLoaded = true
           for(let i in this.programs){
             let category = this.programs[i].category.filter((v,num,a)=>a.findIndex(t=>(t.name==v.name))===num)
 this.programs[i].category = category          }
                    this.startTour()
           this.isScrol = true;
-          this.contentLoaded = true;
         }
       });
     }

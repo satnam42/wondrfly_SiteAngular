@@ -164,11 +164,11 @@
                                                     <img src="assets/bi_link.svg" alt="Location Pin" /><a href="{{program?.joiningLink}}" target="_blank" rel="noopener">Join via Link</a>
                                                 </p>
                                                 <p *ngIf="!program?.isDateNotMention">
-                                                    <img src="assets/calendar_orange.svg" alt="Calendar" />{{ program?.date?.from | date: "mediumDate" }} - {{ program?.date?.to | date: "mediumDate" }}
+                                                    <img src="assets/calendar_orange.svg" alt="Calendar" />{{ program?.date?.from | date: "MMM d" }} - {{ program?.date?.to | date: "MMM d" }}
                                                 </p>
-                                                <!-- <p *ngIf="program?.isDateNotMention">
-                                                    <img src="assets/calendar_orange.svg" alt="Calendar" />Date Not Mentioned
-                                                </p> -->
+                                                <p *ngIf="program?.isDateNotMention">
+                                                    <img src="assets/calendar_orange.svg" alt="Calendar" />Ongoing
+                                                </p>
                                                 <p>
                                                     <img src="assets/user_group_orange.svg" alt="Calendar" /> {{ program?.ageGroup?.from }} - {{ program?.ageGroup?.to }} Yrs.
                                                 </p>
@@ -182,7 +182,7 @@
                                                 <p *ngIf="
                             program?.duration?.hours || program?.duration?.minutes
                           ">
-                                                    <img src="assets/timer.svg" alt="Loction Pin" />{{ program?.duration?.hours }} : {{ program?.duration?.minutes }} Hours
+                                                    <img src="assets/timer.svg" alt="Loction Pin" />{{ program?.duration?.hours }} : {{ program?.duration?.minutes }} <span *ngIf="program?.duration?.hours">Hours</span><span *ngIf="!program?.duration?.hours">Minutes</span>
                                                 </p>
 
                                                 <p *ngIf="!program?.isFree && program?.pricePerParticipant">
@@ -662,9 +662,9 @@
                                                                     <p *ngIf="!program.isDateNotMention">
                                                                         <img alt="Loction Pin" src="assets/calendar.svg" /> {{ program?.date?.from | date: "mediumDate" }} - {{ program?.date?.to | date: "mediumDate" }}
                                                                     </p>
-                                                                    <!-- <p *ngIf="program.isDateNotMention">
-                                                                        <img alt="Loction Pin" src="assets/calendar.svg" /> Date Not Mentioned
-                                                                    </p> -->
+                                                                    <p *ngIf="program.isDateNotMention">
+                                                                        <img alt="Loction Pin" src="assets/calendar.svg" /> Ongoing
+                                                                    </p>
                                                                     <p>
                                                                         <img alt="Loction Pin" src="assets/user_group.svg" /> {{ program?.ageGroup?.from }} - {{ program?.ageGroup?.to }} Yrs.
                                                                     </p>
