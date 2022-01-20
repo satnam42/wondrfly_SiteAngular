@@ -152,6 +152,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked,OnDestro
   isParent: boolean;
   imageRole='';
   selectedChildIndx:number
+  maxDate:string;
   constructor(
     private apiservice: ApiService,
     private router: Router,
@@ -162,12 +163,18 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked,OnDestro
     private snack: MatSnackBar,
     private toastr: ToastrService,
   ) {
+    this.dateV()
     this.currentUser = this.authService.currentUser();
     this.sendInvite = JSON.parse(this.store.getItem('sendInvite'));
     this.savedList = JSON.parse(this.store.getItem('savedList'));
-
   }
 
+  dateV(){
+    let date = new Date();
+    this.maxDate = moment(date).format("YYYY-MM-DD");
+    console.log('maxdate', this.maxDate)
+    $('txtDate').attr('max', this.maxDate);
+  }
 
   parentChecked(value:boolean) {
     this.isParent=value
