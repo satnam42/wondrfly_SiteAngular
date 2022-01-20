@@ -27,9 +27,9 @@
                                 <div class="session_details">
                                     <div class="row row-0">
                                         <div class="col-md-2">
-                                            <div class="learn_code cursor" (click)="goToProfile()" [class.initial-alpha-profile]="!user.categories[0]?.logoUrl
+                                            <div class="learn_code cursor" (click)="goToProfile()" [class.initial-alpha-profile]="!user?.categories[0]?.logoUrl
                         ">
-                                                <img *ngIf="user.categories[0]?.logoUrl" src="{{baseUrl+user.categories[0]?.logoUrl }}" alt="logo" />
+                                                <img *ngIf="user.categories[0]?.logoUrl" src="{{baseUrl+user?.categories[0]?.logoUrl }}" alt="logo" />
                                                 <h1 *ngIf="!user.categories[0]?.logoUrl">
                                                     {{ program?.name?.charAt(0) + program?.name?.charAt(1) }}
                                                 </h1>

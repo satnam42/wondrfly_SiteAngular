@@ -350,8 +350,12 @@ export class HeaderComponent implements OnInit {
     provider.firstName = provider.firstName.toLowerCase();
     provider.firstName = provider.firstName.replace(/ /g, "-");
     provider.firstName = provider.firstName.replace(/\?/g, "-");
-    this.router.navigate(["/provider/program-provider", provider.firstName, provider._id,
-    ]);
+    this.router.navigate(["/provider/program-provider", provider.firstName, provider._id,]);
+    if (this.routeName === "/provider/program-provider", provider.firstName, provider._id) {
+      this.router
+        .navigateByUrl("/", { skipLocationChange: true })
+        .then(() => this.router.navigate(["/provider/program-provider", provider.firstName, provider._id]));
+    }
   }
 
 

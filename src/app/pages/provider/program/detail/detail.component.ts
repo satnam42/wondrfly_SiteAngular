@@ -233,6 +233,8 @@ getRating(){
       // this.program.time.from =this.convertNumToTime(this.program.time.from.toFixed(2))
       // this.program.time.to =this.convertNumToTime(this.program.time.to.toFixed(2))
       console.log('res program by id',this.program)
+      var lastIndex = this.program.location.lastIndexOf(", ");
+      this.program.location = this.program.location.substring(0, lastIndex);
       this.title = this.program.name
       this.categoryArr=this.program.category;
       this.subcatArr=this.program.subCategoryIds
