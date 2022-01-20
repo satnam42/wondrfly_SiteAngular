@@ -2146,7 +2146,13 @@ button.btn1-filtersearch.active {
     padding-top: 0px !important;
 }
 
+::ng-deep .md-drppicker td.disabled {
+    text-decoration: none !important;
+}
 
+::ng-deep .md-drppicker option.disabled {
+    text-decoration: none !important;
+}
 /* ::ng-deep .md-drppicker .buttons {
   display: none;
 } */

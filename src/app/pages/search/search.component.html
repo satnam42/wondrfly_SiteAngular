@@ -133,7 +133,9 @@
                     verification_modal
                     date-rangecal
                   " id="date" data-parent="#accordionExample">
-                                    <ngx-daterangepicker-material (choosedDate)="choosedDate($event)" [autoApply]="true">
+                                    <ngx-daterangepicker-material (choosedDate)="choosedDate($event)" 
+                                    [minDate]="minDate"
+                                    [autoApply]="true">
                                     </ngx-daterangepicker-material>
 
                                     <div class="calender-botoombox">

@@ -12,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 import { JoyrideService } from 'ngx-joyride';
 import { AuthsService } from 'src/app/core/services/auths.service';
 import { CookieService } from 'ngx-cookie-service';
+import { LocaleConfig } from 'ngx-daterangepicker-material';
 @Component({
   selector: 'search',
   templateUrl: './search.component.html',
@@ -140,6 +141,8 @@ export class SearchComponent implements OnInit, OnDestroy {
   currentUser: any;
   cookiesData: string;
   regWallCookies=0
+  moment = moment;
+  minDate: moment.Moment;
   constructor(
     private router: Router,
     private apiservice: ApiService,
@@ -153,6 +156,8 @@ export class SearchComponent implements OnInit, OnDestroy {
     private cookies: CookieService,
     private joyride: JoyrideService
   ) {
+    this.minDate = moment();
+
     // this.locationData = dataservice.getLocation()
     // console.log('this.locationData', this.locationData)
     // if(this.locationData){
