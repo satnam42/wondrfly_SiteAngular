@@ -279,7 +279,15 @@ getChildByParentId(){
   this.apiservice.getChildByParentId(this.currentUser.id).subscribe((res: any) => {
     this.kids = res
     this.kids = this.kids.filter((item) => item.isActivated === true && item.interestInfo.length );
-console.log('kids',this.kids)  })
+    let kids =[];
+this.kids.forEach(kid => {
+  kid.interestInfo = kid.interestInfo.filter((intrest) => intrest.programCount );
+  if(kid.interestInfo.length){
+    kids.push(kid)
+  }
+});
+this.kids = kids;
+console.log('filtred kids',this.kids)  })
 }
 sendInvite(){
   this.store.setItem('sendInvite','1')

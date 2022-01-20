@@ -188,9 +188,14 @@ export class SearchComponent implements OnInit, OnDestroy {
             this.selectedSubCategories.push(intrest)
           }
         }     
-        if(this.filterData.kidAge){
+        if(this.filterData.kidAge>=1){
           this.isAgeFilter=true
          this.maxAge = Number(this.filterData.kidAge)
+         this.minAge = 0
+        }
+        if(this.filterData.kidAge<1){
+          this.isAgeFilter=true
+         this.maxAge = 1
          this.minAge = 0
         }
         this.programFilter()

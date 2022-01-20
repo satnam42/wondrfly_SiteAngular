@@ -1235,6 +1235,7 @@ betaProgramInvitedUsers(userId){
     this.apiservice.getTag().subscribe((res: any) => {
       this.allTags = res.data;
       this.allTags = this.allTags.filter((item) => item.isActivated === true);
+      this.allTags = this.allTags.sort((a, b) => b.programCount-a.programCount);
       console.log('allTags list', this.allTags)
     });
   }
