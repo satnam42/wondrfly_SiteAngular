@@ -186,7 +186,7 @@
                                                 </p>
 
                                                 <p *ngIf="!program?.isFree && program?.pricePerParticipant">
-                                                    <img src="assets/pricet.svg" alt="price tag" /> ${{ program?.pricePerParticipant }}
+                                                    <img src="assets/pricet.svg" alt="price tag" />{{program?.pricePerParticipant}}
                                                     <span *ngIf="program?.pricePeriod?.periodAmount">/{{ program?.pricePeriod?.periodAmount }}</span>
                                                 </p>
                                                 <p *ngIf="program?.isFree && !program?.pricePerParticipant">

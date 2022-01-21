@@ -1,19 +1,24 @@
 <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g filter="url(#filter0_d)">
+<g filter="url(#filter0_d_771_184)">
 <rect x="12" y="8" width="32" height="32" fill="white"/>
 <rect x="12.5" y="8.5" width="31" height="31" stroke="#E5E9EC"/>
 </g>
-<path d="M34.875 21.5C34.875 27.125 28 33.375 28 33.375C28 33.375 21.125 27.125 21.125 21.5C21.125 19.6766 21.8493 17.928 23.1386 16.6386C24.428 15.3493 26.1766 14.625 28 14.625C29.8234 14.625 31.572 15.3493 32.8614 16.6386C34.1507 17.928 34.875 19.6766 34.875 21.5V21.5Z" stroke="#F15C20" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M28 24.625C29.7259 24.625 31.125 23.2259 31.125 21.5C31.125 19.7741 29.7259 18.375 28 18.375C26.2741 18.375 24.875 19.7741 24.875 21.5C24.875 23.2259 26.2741 24.625 28 24.625Z" fill="#F15C20" stroke="#F15C20" stroke-linecap="round" stroke-linejoin="round"/>
+<g clip-path="url(#clip0_771_184)">
+<path d="M35 21.9667C35 27.6667 28 34 28 34C28 34 21 27.6667 21 21.9667C21 20.119 21.7375 18.347 23.0503 17.0405C24.363 15.734 26.1435 15 28 15C29.8565 15 31.637 15.734 32.9497 17.0405C34.2625 18.347 35 20.119 35 21.9667V21.9667Z" stroke="#FA627D" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M28 25C29.6569 25 31 23.6569 31 22C31 20.3431 29.6569 19 28 19C26.3431 19 25 20.3431 25 22C25 23.6569 26.3431 25 28 25Z" fill="#FA627D" stroke="#FA627D" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
 <defs>
-<filter id="filter0_d" x="0" y="0" width="56" height="56" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<filter id="filter0_d_771_184" x="0" y="0" width="56" height="56" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
 <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
 <feOffset dy="4"/>
 <feGaussianBlur stdDeviation="6"/>
 <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/>
-<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
-<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_771_184"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_771_184" result="shape"/>
 </filter>
+<clipPath id="clip0_771_184">
+<rect width="20" height="20" fill="white" transform="translate(18 14)"/>
+</clipPath>
 </defs>
 </svg>
