@@ -50,6 +50,7 @@ export class LoginParentComponent implements OnInit {
   searchesCatg: any=[];
   selectedTags: any=[];
   removedTag: any;
+  maxDate: string;
   constructor(private router: Router,
     private apiservice: ApiService,
     private ngxLoader: NgxUiLoaderService,
@@ -88,6 +89,12 @@ export class LoginParentComponent implements OnInit {
 
   openSearch() {
     this.router.navigate(['/search']);
+  }
+
+  dateV(){
+    let today = new Date()
+    this.maxDate= moment(today).format("YYYY-MM-DD");
+    document.getElementById("listingDate").setAttribute("max",  this.maxDate);
   }
 
   validAge(){
@@ -201,6 +208,7 @@ export class LoginParentComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.dateV();
     this.titleService.setTitle(this.title);
     this.metaTagService.updateTag(
       { name: 'description', content: "Structured and well-planned onboarding process for parents to explore kids program, fun activities, and online classes. Visit Wondrfly's website for more info." }
@@ -244,8 +252,6 @@ export class LoginParentComponent implements OnInit {
         });
       });
     });
-
-
   }
 
   nextStep() {

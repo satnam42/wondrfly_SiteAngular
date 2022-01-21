@@ -50,7 +50,7 @@
                 </div>
             </div>
 
-            <div *ngIf="step2" class="box text-center p-3 bg-white">
+            <div [hidden]="!step2" class="box text-center p-3 bg-white">
                 <p></p>
                 <h2 class="my_heading1">Tell us about your child</h2>
                 <p class="pt-1">
@@ -79,7 +79,7 @@
 
                         <div class="business_name datef">
                             <div class="N_container_box_input_heading">DATE OF BIRTH</div>
-                            <input type="date" placeholder="mm/dd/yy" [formControl]="addChildForm.controls['dob']" class="my_inputs" [(ngModel)]="kid.dob" />
+                            <input type="date" id="listingDate" min='2007-01-01' placeholder="mm/dd/yy" [formControl]="addChildForm.controls['dob']" class="my_inputs" [(ngModel)]="kid.dob" />
                         </div>
                         <div class="business_name">
                             <div class="N_container_box_input_heading">how did you hear about us?</div>
