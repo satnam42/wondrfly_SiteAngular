@@ -163,17 +163,15 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked,OnDestro
     private snack: MatSnackBar,
     private toastr: ToastrService,
   ) {
-    this.dateV()
     this.currentUser = this.authService.currentUser();
     this.sendInvite = JSON.parse(this.store.getItem('sendInvite'));
     this.savedList = JSON.parse(this.store.getItem('savedList'));
   }
 
   dateV(){
-    let date = new Date();
-    this.maxDate = moment(date).format("YYYY-MM-DD");
-    console.log('maxdate', this.maxDate)
-    $('txtDate').attr('max', this.maxDate);
+    let today = new Date()
+    this.maxDate= moment(today).format("YYYY-MM-DD");
+    document.getElementById("listingDateOpen").setAttribute("max",  this.maxDate);
   }
 
   parentChecked(value:boolean) {
@@ -1047,6 +1045,7 @@ removeChildImage(){
     this.getRoomId();
   }
   ngOnInit() {
+    this.dateV()
     this.getTagList()
     if(this.savedList){
       this.store.removeItem('sendInvite');
