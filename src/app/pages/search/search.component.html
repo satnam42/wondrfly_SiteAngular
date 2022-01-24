@@ -140,16 +140,16 @@
 
                                     <div class="calender-botoombox">
                                         <div class="calender-daterange">
-                                            <div class="calender-daterange1" *ngIf="!fromDate">
-                                                18 / 02 / 2021
-                                            </div>
+                                            <!-- <div class="calender-daterange1" *ngIf="!fromDate">
+                                                24 / 01 / 2022
+                                            </div> -->
                                             <div class="calender-daterange1" *ngIf="fromDate">
                                                 {{ fromDate | date: "shortDate" }}
                                             </div>
-                                            <img src="assets/calenderarrows.svg" />
-                                            <div class="calender-daterange2" *ngIf="!toDate">
-                                                11 / 03 / 2021
-                                            </div>
+                                            <img *ngIf="toDate" src="assets/calenderarrows.svg" />
+                                            <!-- <div class="calender-daterange2" *ngIf="!toDate">
+                                                24 / 01 / 2022
+                                            </div> -->
                                             <div class="calender-daterange2" *ngIf="toDate">
                                                 {{ toDate | date: "shortDate" }}
                                             </div>
