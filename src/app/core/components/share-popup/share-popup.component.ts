@@ -1,6 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { NgxFileDropEntry, FileSystemFileEntry, FileSystemDirectoryEntry } from 'ngx-file-drop';
 import { environment } from 'src/environments/environment.prod';
 
 
@@ -17,7 +16,7 @@ aria-labelledby="staticBackdropLabel" aria-hidden="true">
         </button>
         <h2>Share</h2>
         <div class="sharethisall-icons">
-            <hr class="N_line">
+            <!-- <hr class="N_line">
         <div class="sharethis-social"  (click)="genericSocialShare('facebook')">
             <img src="assets/shareface.svg">
             <span class="sharethis-text">Facebook</span>
@@ -26,7 +25,7 @@ aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="sharethis-social" (click)="genericSocialShare('messenger')">
           <img src="assets/sharemesseng.svg">
           <span  class="sharethis-text">Messenger</span>
-        </div>
+        </div> -->
         <hr class="N_line">
         <div class="sharethis-social" (click)="genericSocialShare('email')">
           <img src="assets/sharemail.svg">
@@ -72,6 +71,7 @@ export class SharePopupComponent implements OnInit {
 
 genericSocialShare(provider) {
 let name = this.shareData.name;
+let subject = "Check out this kids' activity on Wondrfly:"
 name = name.toLowerCase();
 name = name.replace(/ /g,"-");
 name = name.replace(/\?/g,"-");
@@ -80,18 +80,18 @@ name = name.replace(/\?/g,"-");
 
      switch (provider) {
        case 'facebook': {
-         this.url = `https://www.${provider}.com/sharer/sharer.php?u=${this.shareUrl}`;
+         this.url = `https://www.${provider}.com/sharer/sharer.php?u=${subject} ${this.shareUrl}`;
          window.open(this.url, 'sharer', 'toolbar=0,status=0,width=648,height=395');
          return true;
        }
        case 'email': {
         navigator.clipboard.writeText(this.shareUrl).then().catch(e => console.error(e));
-         this.url = `mailto:?subject=wondrfly&body=${this.shareUrl}`;
+         this.url = `mailto:?subject=wondrfly&body=${subject} ${this.shareUrl}`;
          window.open( this.url, 'sharer', 'toolbar=0,status=0,width=648,height=395');
          return true;
        }
        case 'whatsapp': {
-         this.url = `https://api.${provider}.com/send?text=${this.shareUrl}`;
+         this.url = `https://api.${provider}.com/send?text=<a>${subject} ${this.shareUrl}`;
          window.open( this.url, 'sharer', 'toolbar=0,status=0,width=648,height=395');
          return true;
        }
