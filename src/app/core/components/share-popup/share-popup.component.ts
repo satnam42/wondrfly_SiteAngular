@@ -91,7 +91,7 @@ name = name.replace(/\?/g,"-");
          return true;
        }
        case 'whatsapp': {
-         this.url = `https://api.${provider}.com/send?text=<a>${subject} ${this.shareUrl}`;
+         this.url = `https://api.${provider}.com/send?text=${subject} ${this.shareUrl}`;
          window.open( this.url, 'sharer', 'toolbar=0,status=0,width=648,height=395');
          return true;
        }
