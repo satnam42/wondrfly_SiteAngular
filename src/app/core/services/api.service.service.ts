@@ -1604,4 +1604,8 @@ getInvitedUsersByParent(id): Observable<any[]> {
   });
   return subject.asObservable();
 }
+getIPAddress()  
+{  
+  return this.http.get("https://api.ipify.org/?format=json");  
+} 
 }

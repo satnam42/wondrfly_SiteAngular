@@ -11,6 +11,8 @@ import { environment } from "src/environments/environment";
 import { Meta, Title } from "@angular/platform-browser";
 import { ToastrService } from "ngx-toastr";
 import { AuthsService } from "src/app/core/services/auths.service";
+import { DeviceDetectorService } from "ngx-device-detector";
+import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
 // import { User } from '../../core/models/index'
 @Component({
   selector: "app-login",
@@ -25,7 +27,13 @@ export class LoginComponent implements OnInit {
   credentials = {
     email: "",
     password: "",
+    // systemDetail: {}
   };
+  systemDetail:{
+    browserName:any,
+    ipAddress:any,
+    osName:any
+  }
   isLoading = false;
   hide: boolean = true;
   response: any;
@@ -49,7 +57,6 @@ export class LoginComponent implements OnInit {
   ];
   user: any = new User();
   title = "Parent Log in | Find Online Kids Classes - Wondrfly";
-
   constructor(
     private router: Router,
     private auth: AuthsService,
@@ -59,7 +66,9 @@ export class LoginComponent implements OnInit {
     private ngxLoader: NgxUiLoaderService,
     public imageLoader: Globals,
     private toastr: ToastrService,
-    public store: LocalStorageService
+    public store: LocalStorageService,
+    private deviceService: DeviceDetectorService,
+
   ) {}
   onPassword() {
     this.hide = !this.hide;
@@ -77,6 +86,7 @@ export class LoginComponent implements OnInit {
     if (this.credentials.email) {
       let email = this.credentials.email.toLowerCase();
       this.credentials.email = email;
+      // this.credentials.systemDetail = this.systemDetail
     }
     localStorage.removeItem("userId");
     this.auth.login(this.credentials).subscribe((res: any) => {
@@ -110,6 +120,10 @@ export class LoginComponent implements OnInit {
     this.router.navigate(["/forgot-password"]);
   }
   ngOnInit() {
+    this.systemDetail.browserName = this.detectBrowserName();
+this.getIPAddress()
+this.deviceDetector();
+    console.log('browserName',this.systemDetail.browserName)
     if (this.auth.currentUser()) {
       this.router.navigate([""]);
     }
@@ -200,4 +214,36 @@ export class LoginComponent implements OnInit {
         this.toastr.error(error.response.data.data[0].messages[0].message);
       });
   }
+// ---------detectBrowserName-------
+  detectBrowserName() { 
+    const agent = navigator.userAgent.toLowerCase()
+    switch (true) {
+      case agent.indexOf('edge') > -1:
+        return 'edge';
+      case agent.indexOf('opr') > -1 && !!(<any>window).opr:
+        return 'opera';
+      case agent.indexOf('chrome') > -1 && !!(<any>window).chrome:
+        return 'chrome';
+      case agent.indexOf('trident') > -1:
+        return 'ie';
+      case agent.indexOf('firefox') > -1:
+        return 'firefox';
+      case agent.indexOf('safari') > -1:
+        return 'safari';
+      default:
+        return 'other';
+    }
+  }
+  // ---------detectIP Address-------
+   getIPAddress(){  
+this.apiservice.getIPAddress().subscribe((res:any)=>{  
+      this.systemDetail.ipAddress=res.ip;  
+      console.log('ipAddress',this.systemDetail.ipAddress)
+
+    });    } 
+    // ------OS detecting----
+    deviceDetector() {
+      this.systemDetail.osName = this.deviceService.getDeviceInfo().os;
+      console.log('currentOS',this.systemDetail.osName);
+    }
 }
