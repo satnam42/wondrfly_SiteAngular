@@ -1,7 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Globals } from 'src/app/core/common/imageLoader';
+import { Component, OnInit } from '@angular/core';
 import axios from 'axios'
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { AuthsService } from 'src/app/core/services/auths.service';
 
 import { Program, User } from 'src/app/core/models';
@@ -86,6 +85,9 @@ getBlogById(){
     var desc = this.blogbyid.metaDesc.substr(0,165)
     this.metaTagService.updateTag(
       { name: 'description', content: desc+'...'}
+    );
+    this.metaTagService.addTag(
+      { name: 'keywords', content: this.blogbyid?.metaTags}
     );
   });
   }
