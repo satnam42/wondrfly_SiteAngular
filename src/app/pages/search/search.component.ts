@@ -168,7 +168,6 @@ export class SearchComponent implements OnInit, OnDestroy {
     //   }
     // }
     this.regWallCookies = Number(this.cookies.get('regWall'))
-    console.log('regWallCookiesCount',this.regWallCookies)
   
     this.contentLoaded = false
     this.currentUser = auth.currentUser();
@@ -177,17 +176,12 @@ export class SearchComponent implements OnInit, OnDestroy {
     var retrievedObject = localStorage.getItem('CurrentUserWondrfly');
     this.userData = JSON.parse(retrievedObject);
       if (this.filterData.subcatId || this.filterData.categoryId || this.filterData.kidAge)  {
-        console.log('this.filterData.categoryId', this.filterData.categoryId)
-        console.log('this.filterData.subcatId', this.filterData.subcatId)
-        console.log('this.filterData.kidAge', this.filterData.kidAge)
-
         this.categoryId = this.filterData.categoryId
         this.searchedSubCategory = this.filterData.searchedCategoryKey
         if(this.filterData.subcatId){
           this.selectedSubCategories[0] = this.filterData.subcatId;
         }
          if(this.filterData.childIntrests){
-          console.log('this.filterData.childIntrests',this.filterData.childIntrests)
           for(let intrest of this.filterData.childIntrests){
             this.selectedSubCategories.push(intrest)
           }
@@ -225,7 +219,6 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   startTour() {
-    console.log('cookiesData',this.cookiesData)
     if(this.cookiesData=='1' && this.contentLoaded && this.programs.length){
       this.joyride.startTour({ steps: ['firstStep'] });
       this.cookies.set('isTour', '2', 30);
@@ -254,7 +247,6 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   centerChange(e) {
-    console.log(e)
     this.locations.push(e);
     if (this.locations.length > 15) {
       this.locations = [];
@@ -278,34 +270,28 @@ export class SearchComponent implements OnInit, OnDestroy {
   onDayChange(indx: number, day: string, isChecked: boolean) {
     if (isChecked) {
       this.selectedDays.push(day)
-      console.log(this.selectedDays)
     } else {
       this.selectedDays.splice(day, -1)
       let el = this.selectedDays.find(itm => itm === day);
       if (el) this.selectedDays.splice(this.selectedDays.indexOf(el), 1);
-      console.log(this.selectedDays)
     }
   }
   onProgramTypeChange(indx: number, type: string, isChecked: boolean) {
     if (isChecked) {
       this.selectedProgramTypes.push(type)
-      console.log(this.selectedProgramTypes)
     } else {
       this.selectedProgramTypes.splice(type, -1)
       let el = this.selectedProgramTypes.find(itm => itm === type);
       if (el) this.selectedProgramTypes.splice(this.selectedProgramTypes.indexOf(el), 1);
-      console.log(this.selectedProgramTypes)
     }
   }
   onProgramTimeChange(indx: number, time: string, isChecked: boolean) {
     if (isChecked) {
       this.selectedProgramTime.push(time)
-      console.log(this.selectedProgramTime)
     } else {
       this.selectedProgramTime.splice(time, -1)
       let el = this.selectedProgramTime.find(itm => itm === time);
       if (el) this.selectedProgramTime.splice(this.selectedProgramTime.indexOf(el), 1);
-      console.log(this.selectedProgramTime)
     }
   }
   onProgramsSubCategoryChange(i, event) {
@@ -314,14 +300,12 @@ export class SearchComponent implements OnInit, OnDestroy {
     if (this.subCats[i].checked) {
       this.searchedSubCategory = this.subCats[i].name;
       this.selectedSubCategories.push(this.subCats[i]._id);
-      console.log(this.selectedSubCategories)
     }
     else {
       const index = this.selectedSubCategories.indexOf(this.subCats[i]._id);
 
       if (index >= 0) {
         this.selectedSubCategories.splice(index, 1);
-        console.log(this.selectedSubCategories)
       }
     }
   }
@@ -366,7 +350,6 @@ export class SearchComponent implements OnInit, OnDestroy {
   ngOnInit() {
     window.scroll(0, 0);
     this.contentLoaded = false
-    console.log('latt', this.latt);
     this.titleService.setTitle(this.title);
     this.metaTagService.updateTag(
       { name: 'description', content: `Looking for some easy and fun summer activities for your kids? By visiting Wondrfly's search page you can find best programs or classes. ` }
@@ -384,12 +367,11 @@ export class SearchComponent implements OnInit, OnDestroy {
     //        }
     this.getCategory();
     this.mapsAPILoader.load().then(() => {
-      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);
+      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef?.nativeElement);
       autocomplete.addListener('place_changed', () => {
         this.ngZone.run(() => {
           let place: google.maps.places.PlaceResult = autocomplete.getPlace();
           place.formatted_address;
-          console.log(place.formatted_address)
           if (place.geometry === undefined || place.geometry === null) {
             return;
           }
@@ -413,7 +395,6 @@ export class SearchComponent implements OnInit, OnDestroy {
           this.zoom = 12;
           this.lat = position.coords.latitude;
           this.lng = position.coords.longitude;
-          console.log(this.lat, this.lng)
           // this.getAddress(this.lat, this.lng);
           this.programByLatLng();
         });
@@ -424,7 +405,6 @@ export class SearchComponent implements OnInit, OnDestroy {
   programByLatLng() {
     this.apiservice.programByLatLng(this.lat, this.lng).subscribe((res: any) => {
       this.showReset = true;
-      console.log('latlong', res);
       this.programs = res;
     });
     this.locationData = ''
@@ -432,12 +412,9 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
   getAddress(latitude, longitude) {
     this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {
-      console.log(results);
-      console.log(status);
       if (status === 'OK') {
         if (results[0]) {
           this.address = results[0].formatted_address;
-          console.log(this.address)
         } else {
           window.alert('No results found');
         }
@@ -531,7 +508,6 @@ for(let i in this.programs){
   this.programs[i].category = category
 }
       this.startTour()
-      console.log(this.programs, 'response program list')
       if (!this.selectedSubCategories.length && !this.categoryId) {
         this.isScrol = true;
       }
@@ -562,12 +538,10 @@ for(let i in this.programs){
     this.apiservice.getTagByCategoryId(cat.id).subscribe((res: any) => {
       this.subCats = res.data
       this.subCats = this.subCats.filter((item) => item.isActivated === true && item.programCount);
-      console.log(this.subCats)
     })
   }
 
   addFavProgram(userId, programId, index) {
-    console.log(index)
     this.programs[index].isFav = true;
     this.fav.userId = userId;
     this.fav.programId = programId;
@@ -577,7 +551,6 @@ for(let i in this.programs){
   }
 
   deleteFavProgram(favId, index) {
-    console.log(index)
     this.programs[index].isFav = false;
     this.apiservice.deleteFavProgram(favId).subscribe(res => {
       this.deleteProgramRes = res;
@@ -612,7 +585,6 @@ for(let i in this.programs){
     this.isOnline = false;
     this.isInPerson = false;
     this.apiservice.activityByNameDate(this.activityName).subscribe((res: any) => {
-      console.log('filterbyNameDate', res)
       this.programs = res.data
           this.fakeLoaderData = [1,2]
             this.contentLoaded = true;
@@ -710,11 +682,9 @@ for(let i in this.programs){
       else {
         inpersonOrVirtual = ''
       }
-      console.log('selected cat id', this.selectedSubCategories)
       const dateFormat = "YYYY-MM-DD";
       this.fromDate = moment(this.fromDate).format(dateFormat);
       this.toDate = moment(this.toDate).format(dateFormat);
-      console.log('filter>>>>>>>>>>>>', filter)
       filter = `time=${times}&categoryId=${categoryId}&tagsIds=${tags}&type=${types}&inpersonOrVirtual=${inpersonOrVirtual}&day=${days}`
       if(this.isTopFilterCheckBox){
         this.isTopFilter=true;
@@ -732,7 +702,6 @@ for(let i in this.programs){
       console.log('filters query ', filter)
       this.apiservice.programFilter(filter, this.pageNo, 200).subscribe((res: any) => {
         this.showReset = true
-        console.log('filter response', res);
         if (res.isSuccess) {
           // this.isTopFilterCheckBox = false
           this.programs = res.data;          
@@ -764,7 +733,6 @@ this.programs[i].category = category          }
     })
   }
   getProviderById(id) {
-    console.log('id', id)
     this.apiservice.getUserById(id).subscribe((res: any) => {
       this.user = res.data;
     });
@@ -845,7 +813,6 @@ this.programs[i].category = category          }
   suggestedSubCategories(id) {
     window.scroll(0, 0)
     this.apiservice.getSuggestedCategory(id).subscribe((res: any) => {
-      console.log('ressssss suggested',res)
       if(typeof(res)!=='string'){
         if(!res.error){
           this.suggested = res
@@ -872,10 +839,7 @@ this.programs[i].category = category          }
     this.contentLoaded=false;
     switch (type) {
       case 'days': {
-        console.log(this.days, 'days event')
-
         this.days.forEach((element) => {
-          console.log(element, 'element')
           if (element.nativeElement.defaultValue === this.selectedDays[indx]) {
             this.selectedDays.splice(indx, 1);
             element.nativeElement.checked = false;
@@ -884,7 +848,6 @@ this.programs[i].category = category          }
       }
       case 'times': {
         this.times.forEach((element) => {
-          console.log(element)
           if (element.nativeElement.value === this.selectedProgramTime[indx]) {
             this.selectedProgramTime.splice(indx, 1);
             element.nativeElement.checked = false;
@@ -893,7 +856,6 @@ this.programs[i].category = category          }
       }
       case 'types': {
         this.types.forEach((element) => {
-          console.log(element)
           if (element.nativeElement.value === this.selectedProgramTypes[indx]) {
             this.selectedProgramTypes.splice(indx, 1);
             element.nativeElement.checked = false;

@@ -1516,7 +1516,7 @@ span.add_file {
   align-items: center;
 }
 ::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px rgb(0 0 0 / 0%);
+  box-shadow: inset 0 0 6px rgb(0 0 0 / 0%);
   background-color: #ffffff;
 }
 ::-webkit-scrollbar-thumb {
@@ -2444,10 +2444,11 @@ input#flexCheckDefault {
 
 .small_boxes .my_box {
   box-sizing: border-box;
-  border-radius: 20px;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  /* border-radius: 20px; */
+  width: 70px;
+  height: 70px;
+  -o-object-fit: cover;
+  object-fit: contain;
 }
 .small_boxes .col-3 {
   padding: 6px 4px;
@@ -2471,9 +2472,10 @@ input#flexCheckDefault {
     border: 1px solid #c4c4c4;
     height: 90px;
     width: 90px;
-    margin-left: auto;
-    margin-right: auto;
     border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .category_lists span {
   font-style: normal;
@@ -2482,4 +2484,12 @@ input#flexCheckDefault {
   letter-spacing: 0.001em;
   color: #858585;
   cursor: pointer;
+}
+
+.category_list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  margin-bottom: 10px;
 }

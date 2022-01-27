@@ -952,12 +952,13 @@
                                     <div class="row">
                                         <div class="col-3" *ngFor="let tag of allTags | slice: 0:8">
                                             <div class="category_lists cursor" (click)="selectEvent(tag)">
-                                                <div class="box-border" [ngClass]="{ active: tag.active }">
-                                                    <img class="cat_img my_box" src="https://wondrfly.com/{{tag.categoryIds[0].iconUrl}}" alt="location" />
+                                                <div class="box-border" [ngClass]="{ active: tag?.active }">
+                                                    <img class="cat_img my_box" *ngIf="tag?.icon" src="https://wondrfly.com/{{tag?.icon}}" alt="icon" />
+                                                    <img class="cat_img my_box" *ngIf="!tag?.icon" src="assets/favicon.svg" alt="icon" />
                                                 </div>
             
                                                 <span [ngClass]="{ active: tag.active }">
-                                {{ tag.name }}</span>
+                                {{ tag?.name }}</span>
                                             </div>
                                         </div>
                                     </div>

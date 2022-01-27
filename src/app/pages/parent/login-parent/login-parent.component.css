@@ -157,10 +157,11 @@ h2.my_heading1 {
 }
 .small_boxes .my_box {
   box-sizing: border-box;
-  border-radius: 20px;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  /* border-radius: 20px; */
+  width: 80px;
+  height: 80px;
+  -o-object-fit: cover;
+  object-fit: contain;
 }
 .small_boxes .col-3 {
   padding: 6px 4px;
@@ -296,10 +297,26 @@ textarea {
   border: 1px solid #c4c4c4;
   height: 113px;
   width: 131px;
-  margin-left: auto;
-  margin-right: auto;
+  /* margin-left: auto; */
+  /* margin-right: auto; */
   border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+.category_list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  margin-bottom: 10px;
+}
+
+::ng-deep.autocomplete-container .input-container .x i{
+  display: none !important;
+}
+
 ::ng-deep.agm-map-container-inner {
   width: inherit;
   height: inherit;

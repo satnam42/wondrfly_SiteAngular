@@ -187,7 +187,7 @@ export class LoginParentComponent implements OnInit {
     this.apiservice.getTag().subscribe((res: any) => {
       this.tags = res.data;
       this.tags = this.tags.filter((item) => item.isActivated === true);
-      console.log('catg list', this.tags)
+      console.log('tags list', this.tags)
     });
   }
 
