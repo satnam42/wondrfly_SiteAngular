@@ -12,7 +12,6 @@ import { ToastrService } from 'ngx-toastr';
 import { JoyrideService } from 'ngx-joyride';
 import { AuthsService } from 'src/app/core/services/auths.service';
 import { CookieService } from 'ngx-cookie-service';
-import { LocaleConfig } from 'ngx-daterangepicker-material';
 @Component({
   selector: 'search',
   templateUrl: './search.component.html',
@@ -20,7 +19,7 @@ import { LocaleConfig } from 'ngx-daterangepicker-material';
 })
 export class SearchComponent implements OnInit, OnDestroy {
   defaultImage = 'https://miro.medium.com/max/441/1*9EBHIOzhE1XfMYoKz1JcsQ.gif';
-  errorImage = 'assets/guitar.png';
+  errorImage = 'assets/favicon.svg';
   isDateFilter: boolean = false;
   isTimeFilter: boolean = false;
   isDaysFilter: boolean = false;

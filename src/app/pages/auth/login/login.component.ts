@@ -27,13 +27,12 @@ export class LoginComponent implements OnInit {
   credentials = {
     email: "",
     password: "",
-    // systemDetail: {}
   };
-  systemDetail:{
-    browserName:any,
-    ipAddress:any,
-    osName:any
-  }
+  // systemDetail:{
+  //   browserName:any,
+  //   ipAddress:any,
+  //   osName:any
+  // }
   isLoading = false;
   hide: boolean = true;
   response: any;
@@ -120,10 +119,10 @@ export class LoginComponent implements OnInit {
     this.router.navigate(["/forgot-password"]);
   }
   ngOnInit() {
-    this.systemDetail.browserName = this.detectBrowserName();
-this.getIPAddress()
-this.deviceDetector();
-    console.log('browserName',this.systemDetail.browserName)
+    // this.systemDetail.browserName = this.detectBrowserName();
+// this.getIPAddress()
+// this.deviceDetector();
+    // console.log('browserName',this.systemDetail.browserName)
     if (this.auth.currentUser()) {
       this.router.navigate([""]);
     }
@@ -235,15 +234,15 @@ this.deviceDetector();
     }
   }
   // ---------detectIP Address-------
-   getIPAddress(){  
-this.apiservice.getIPAddress().subscribe((res:any)=>{  
-      this.systemDetail.ipAddress=res.ip;  
-      console.log('ipAddress',this.systemDetail.ipAddress)
+//    getIPAddress(){  
+// this.apiservice.getIPAddress().subscribe((res:any)=>{  
+//       this.systemDetail.ipAddress=res.ip;  
+//       console.log('ipAddress',this.systemDetail.ipAddress)
 
-    });    } 
+//     });    } 
     // ------OS detecting----
-    deviceDetector() {
-      this.systemDetail.osName = this.deviceService.getDeviceInfo().os;
-      console.log('currentOS',this.systemDetail.osName);
-    }
+    // deviceDetector() {
+    //   this.systemDetail.osName = this.deviceService.getDeviceInfo().os;
+    //   console.log('currentOS',this.systemDetail.osName);
+    // }
 }

@@ -331,15 +331,16 @@
             </div>
         </div>
 
+     
         <div class="row row-0 borderserach" *ngIf="!isOnline">
             <div class="col-md-6 list_left">
                 <div class="search-results" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="500" (scrolled)="onScroll()" [scrollWindow]="false"
                     *ngIf="programs?.length && contentLoaded">
-
+   <!-- --------------------------------------------------Programs list first--------------------------------------------------- -->
                     <div class="media-scroable">
                         <div *ngFor="let program of programs | slice:0:5; let i = index" class="media activity">
                             <div class="media-left activity-imgs" (click)="goToProgramDetail(program)">
-                                <img [defaultImage]="defaultImage" [errorImage]="errorImage" [lazyLoad]="baseUrl + program?.category[0]?.iconUrl" />
+                                <img [defaultImage]="defaultImage" [errorImage]="errorImage" [lazyLoad]="baseUrl + program?.subCategoryIds[0]?.pattern" />
                             </div>
                             <div class="media-body">
                                 <div class="share_icon">
@@ -518,6 +519,8 @@
                                 </div>
                             </div>
                         </div>
+
+                           <!-- --------------------------------------------------Suggested Div Between programs--------------------------------------------------- -->
                         <div *ngIf="suggested?.length && contentLoaded && programs?.length" class="suggested-searchresult">
                             <div class="suggested-result suggested-text in-built">
                                 <h3>You might want to explore similar Categories</h3>
@@ -536,9 +539,10 @@
                                 </div>
                             </div>
                         </div>
+                           <!-- --------------------------------------------------Programs list second--------------------------------------------------- -->
                         <div *ngFor="let program of programs | slice:6; let i = index" class="media activity">
                             <div class="media-left activity-imgs" (click)="goToProgramDetail(program)">
-                                <img [defaultImage]="defaultImage" [errorImage]="errorImage" [lazyLoad]="baseUrl + program?.category[0]?.iconUrl" />
+                                <img [defaultImage]="defaultImage" [errorImage]="errorImage" [lazyLoad]="baseUrl + program?.subCategoryIds[0]?.pattern" />
                             </div>
                             <div class="media-body">
                                 <div class="share_icon">
