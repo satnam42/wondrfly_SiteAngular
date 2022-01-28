@@ -4,7 +4,7 @@ import { ApiService } from 'src/app/core/services/api.service.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { FormGroup } from '@angular/forms';
 import { HeaderComponent } from 'src/app/core/components/header/header.component';
-import { Program } from 'src/app/core/models';
+import { Program, User } from 'src/app/core/models';
 import { AuthsService } from 'src/app/core/services/auths.service';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { Meta, Title } from '@angular/platform-browser';
@@ -43,7 +43,7 @@ export class ProgramProviderComponent implements OnInit {
   isLogin = false;
   userData: any = {};
   program = new Program;
-  user: any =[];
+  user= new User;
   rating: any;
   updateResponse: any = {};
   formData = new FormData();

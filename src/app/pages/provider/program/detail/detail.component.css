@@ -141,10 +141,17 @@ button.camp-btn {
   letter-spacing: 0.001em;
   color: #53b2e8;
   padding: 7px;
+  cursor:auto;
   padding-left: 25px;
   padding-right: 25px;
   float: right;
 }
+
+/* button:not(:disabled) {
+  cursor:auto;
+} */
+
+
 .special-groups span {
   margin: 0px 35px 0px 0px;
 }
@@ -1209,6 +1216,7 @@ agm-map {
   font-weight: 600;
   font-size: 13px;
   color: #fff;
+  cursor: auto;
   width: 100px !important;
   margin-left: 20px;
   border:0px;
@@ -1752,7 +1760,6 @@ button.camp-btn{
   font-weight: normal;
   letter-spacing: 0.001em;
   color: #53b2e8;
-  cursor: pointer;
   margin-left: 14px;
   margin-top: 5px;
   position: relative;
@@ -1781,7 +1788,6 @@ p#moreBtn-collapse-cursor {
   font-size: 11px;
   letter-spacing: 0.01em;
   text-align: center;
-  cursor: pointer;
   margin-left: 10px;
   margin-top: 5px;
   margin-right: 0;

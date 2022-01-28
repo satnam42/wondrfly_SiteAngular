@@ -17,6 +17,7 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class LandingComponent implements OnInit {
   defaultImage = 'https://miro.medium.com/max/441/1*9EBHIOzhE1XfMYoKz1JcsQ.gif';
+  baseUrl= environment.baseUrl
   blogUrl = environment.blogsUrl;
   loggedIn: boolean;
   title = 'Best Activities and Programs for Kids in Jersey City - Wondrfly';

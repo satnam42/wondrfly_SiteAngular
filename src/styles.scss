@@ -2140,6 +2140,7 @@ body {
 
 .common-headermargin {
   padding-top: 114px !important;
+  min-height: 100vh;
 }
 
 #toast-container>.toast-success {
@@ -2483,4 +2484,7 @@ body.mac-class .container {
 
 .no-underline{
   text-decoration: none;
+}
+body.windows-class {
+  min-height: 100vh;
 }

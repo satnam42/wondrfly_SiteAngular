@@ -1,4 +1,5 @@
 
+import { BooleanLiteral } from 'typescript';
 import { User } from './user.model';
 
 export class Program {
@@ -55,6 +56,8 @@ export class Program {
     realTime:any = {}
     inpersonOrVirtual: string;
     joiningLink: string;
+    isDateNotMention:boolean;
+    isTimeNotMention:Boolean;
 
     // constructor(obj?: any) {
 

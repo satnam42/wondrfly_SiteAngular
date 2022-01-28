@@ -72,6 +72,7 @@ export class SharePopupComponent implements OnInit {
 genericSocialShare(provider) {
 let name = this.shareData.name;
 let subject = "Check out this kids' activity on Wondrfly:"
+let emailSub = "Check out this kids' activity on Wondrfly!"
 name = name.toLowerCase();
 name = name.replace(/ /g,"-");
 name = name.replace(/\?/g,"-");
@@ -86,7 +87,7 @@ name = name.replace(/\?/g,"-");
        }
        case 'email': {
         navigator.clipboard.writeText(this.shareUrl).then().catch(e => console.error(e));
-         this.url = `mailto:?subject=wondrfly&body=${subject} ${this.shareUrl}`;
+         this.url = `mailto:?subject=${emailSub}&body=${subject} ${this.shareUrl}`;
          window.open( this.url, 'sharer', 'toolbar=0,status=0,width=648,height=395');
          return true;
        }

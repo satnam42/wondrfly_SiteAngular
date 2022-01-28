@@ -23,7 +23,7 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class DetailComponent implements OnInit {
   defaultImage = 'https://miro.medium.com/max/441/1*9EBHIOzhE1XfMYoKz1JcsQ.gif';
-  errorImage = 'assets/guitar.png';
+  errorImage = 'assets/favicon.svg';
   baseUrl= environment.baseUrl;
   programUpdateForm: FormGroup;
   pageNo = 1;
@@ -31,7 +31,7 @@ export class DetailComponent implements OnInit {
   isScrol: boolean = true;
   programs:any = Program;
   categories: any = new Category;
-  program :any= new Program;
+  program = new Program;
   lat = 51.678418;
   lng = 7.809007;
   title: string = ''
@@ -360,7 +360,7 @@ getRating(){
       // this.setCurrentLocation();
       this.geoCoder = new google.maps.Geocoder;
 
-      let autocomplete:any = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);
+      let autocomplete:any = new google.maps.places.Autocomplete(this.searchElementRef?.nativeElement);
       autocomplete.addListener('place_changed', () => {
         this.ngZone.run(() => {
 

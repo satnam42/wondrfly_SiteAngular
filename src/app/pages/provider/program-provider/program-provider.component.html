@@ -8,12 +8,12 @@
             <div class="container">
                 <div class="provider_profile">
                     <div class="provider_left">
-                        <div class="profile" [class.initial-alpha-profile]="!user.categories[0]?.logoUrl">
-                            <img *ngIf="user.categories[0]?.logoUrl" src="{{baseUrl+user.categories[0]?.logoUrl}}" alt="Profile image">
+                        <div class="profile" [class.initial-alpha-profile]="!user?.subCategoryIds[0]?.logo">
+                            <img *ngIf="user?.subCategoryIds[0]?.logo" src="{{baseUrl+user?.subCategoryIds[0]?.logo}}" alt="Profile image">
                             <!-- <img *ngIf="!user.categories[0]?.logoUrl" src="assets/gray_background.jpeg" alt="Profile image"> -->
-                            <h1 *ngIf="!user.categories[0]?.logoUrl">{{user?.firstName.charAt(0)+user?.firstName.charAt(1)}}</h1>
+                            <h1 *ngIf="!user?.subCategoryIds[0]?.logo">{{user?.firstName?.charAt(0)+user?.firstName?.charAt(1)}}</h1>
                         </div>
-                        <h2 class="provider_name star-daialog">{{user.firstName}}
+                        <h2 class="provider_name star-daialog">{{user?.firstName}}
                             <p class="cursor" (mouseover)="isRating=true" (mouseout)="isRating=false">
                                 <span *ngIf="
                                 rating?.finalAverageRating == 0 ||
@@ -279,8 +279,7 @@
                                     <div class="col-md-6" *ngFor="let program of programs">
                                         <div class="activities_slide">
                                             <div class="slide_image cursor" (click)='goToProgramDetail(program)'>
-                                                <img *ngIf='!program?.category[0]?.iconUrl' src="assets/category2.jpg" alt="Activity">
-                                                <img *ngIf='program?.category[0]?.iconUrl' src="https://wondrfly.com/{{program?.category[0]?.iconUrl}}" alt="Activity">
+                                                <img [defaultImage]="defaultImage" [errorImage]="errorImage" [lazyLoad]="baseUrl + program?.category[0]?.pattern" />
                                             </div>
                                             <div class="slide_text">
 
@@ -432,7 +431,7 @@
                                                     <div class="activities_slide">
                                                         <div class="slide_image cursor" (click)='goToProgramDetail(program)'>
 
-                                                            <img [defaultImage]="defaultImage" [errorImage]="errorImage" [lazyLoad]="baseUrl+program?.category[0]?.iconUrl" />
+                                                            <img [defaultImage]="defaultImage" [errorImage]="errorImage" [lazyLoad]="baseUrl + program?.category[0]?.pattern" />
                                                         </div>
                                                         <div class="slide_text">
                                                             <h3>
@@ -467,7 +466,7 @@
                                                     <div class="activities_slide">
                                                         <div class="slide_image cursor" (click)='goToProgramDetail(program)'>
 
-                                                            <img [defaultImage]="defaultImage" [errorImage]="errorImage" [lazyLoad]="baseUrl+program?.category[0]?.iconUrl" />
+                                                            <img [defaultImage]="defaultImage" [errorImage]="errorImage" [lazyLoad]="baseUrl + program?.category[0]?.pattern" />
                                                         </div>
                                                         <div class="slide_text">
                                                             <h3>

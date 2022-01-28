@@ -27,10 +27,10 @@
                                 <div class="session_details">
                                     <div class="row row-0">
                                         <div class="col-md-2">
-                                            <div class="learn_code cursor" (click)="goToProfile()" [class.initial-alpha-profile]="!user?.categories[0]?.logoUrl
-                        ">
-                                                <img *ngIf="user.categories[0]?.logoUrl" src="{{baseUrl+user?.categories[0]?.logoUrl }}" alt="logo" />
-                                                <h1 *ngIf="!user.categories[0]?.logoUrl">
+                                            <div class="learn_code cursor" (click)="goToProfile()" [class.initial-alpha-profile]="!program?.subCategoryIds[0]?.logo && !program?.category[0]?.logoUrl">
+                                                <img *ngIf="program?.subCategoryIds[0]?.logo" src="{{baseUrl+program?.subCategoryIds[0]?.logo }}" alt="logo" />
+                                                <img *ngIf="program?.category[0]?.logoUrl && !program?.subCategoryIds[0]?.logo" src="{{baseUrl+program?.category[0]?.logoUrl }}" alt="logo" />
+                                                <h1 *ngIf="!program?.subCategoryIds[0]?.logo && !program?.category[0]?.logoUrl">
                                                     {{ program?.name?.charAt(0) + program?.name?.charAt(1) }}
                                                 </h1>
                                             </div>
@@ -160,7 +160,7 @@
                                                 <p *ngIf="program.inpersonOrVirtual!='Virtual'">
                                                     <img src="assets/loction_pin.svg" alt="Location Pin" />{{ program?.location }}
                                                 </p>
-                                                <p *ngIf="program.inpersonOrVirtual=='Virtual'">
+                                                <p *ngIf="program.inpersonOrVirtual=='Virtual' && program?.joiningLink">
                                                     <img src="assets/bi_link.svg" alt="Location Pin" /><a href="{{program?.joiningLink}}" target="_blank" rel="noopener">Join via Link</a>
                                                 </p>
                                                 <p *ngIf="!program?.isDateNotMention">
@@ -174,7 +174,7 @@
                                                 </p>
 
                                                 <p *ngIf="!program?.isTimeNotMention">
-                                                    <img src="assets/watch.svg" alt="Loction Pin" /> {{ program?.time?.from.toFixed(2)}} - {{ program?.time?.to.toFixed(2)}}
+                                                    <img src="assets/watch.svg" alt="Loction Pin" /> {{ program?.time?.from?.toFixed(2)}} - {{ program?.time?.to?.toFixed(2)}}
                                                 </p>
                                                 <!-- <p *ngIf="program?.isTimeNotMention">
                                                     <img src="assets/watch.svg" alt="Loction Pin" /> Time Not Mention
@@ -213,7 +213,7 @@
                                                 <div class="collapse" id="collapseExample">
                                                     <div class="card card-body" id="moreBtn-collapse">
 
-                                                        <span id="closeBtn"><img src="assets/grey-close.png" /> </span>
+                                                        <span id="closeBtn"><img src="assets/grey-close.png" data-toggle="collapse" data-target="#collapseExample" /> </span>
                                                         <div class="d-flex flex-wrap">
                                                             <h6 *ngFor="let subcat of subcatArr; let i=index">
                                                                 <p id="moreBtn-collapse-cursor" *ngIf="i>1">{{subcat?.name}}</p>
@@ -647,7 +647,7 @@
                                                         <div class="activities_slide">
                                                             <div class="slide_image cursor" (click)="clickedProgram(program)">
                                                                 <img [defaultImage]="defaultImage" [errorImage]="errorImage" [lazyLoad]="
-                                    baseUrl + program?.category[0]?.iconUrl
+                                    baseUrl + program?.category[0]?.pattern
                                   " />
                                                             </div>
                                                             <div class="slide_text">
@@ -686,7 +686,7 @@
                                                         <div class="activities_slide">
                                                             <div class="slide_image cursor" (click)="clickedProgram(program)">
                                                                 <img [defaultImage]="defaultImage" [errorImage]="errorImage" [lazyLoad]="
-                                    baseUrl + program?.category[0]?.iconUrl
+                                    baseUrl + program?.category[0]?.pattern
                                   " />
                                                             </div>
                                                             <div class="slide_text">
