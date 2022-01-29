@@ -118,6 +118,11 @@
   justify-content: flex-end;
   align-items: center;
 }
+::ng-deep.inner-temp img {
+  max-width: 800px !important;
+  width: 800px !important;
+}
+
 
 @media only screen and (min-width: 1024px) and (max-width: 1366px) and (orientation: portrait) {
   .tab1-data nav {
