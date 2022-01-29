@@ -32,9 +32,9 @@ a {
 .forth_section_title.cursor:hover {
   color:#53b2e8;
 }
-.main_img img:hover {
+/* .main_img img:hover {
   transform: scale(1.2);
-}
+} */
 .main_img img {
   height: 454px;
   width: 100%;

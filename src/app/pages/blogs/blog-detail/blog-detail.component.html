@@ -81,7 +81,8 @@
                     " *ngFor="let program of programs | slice: 0:3">
                                         <div class="activities_slide">
                                             <div class="slide_image">
-                                                <img oncontextmenu="return false;" (click)="goToProgramDetail(program)" [defaultImage]="defaultImage" [lazyLoad]="baseUrl + program?.category[0]?.iconUrl" alt="{{ program?.category[0]?.alternativeText }}" />
+                                                <!-- <img oncontextmenu="return false;" (click)="goToProgramDetail(program)" [defaultImage]="defaultImage" [lazyLoad]="baseUrl + program?.category[0]?.iconUrl" alt="{{ program?.category[0]?.alternativeText }}" /> -->
+                                                <img [defaultImage]="defaultImage" (click)="goToProgramDetail(program)" [errorImage]="baseUrl + program?.category[0]?.pattern" [lazyLoad]="baseUrl + program?.subCategoryIds[0]?.pattern" />
                                             </div>
                                             <div class="slide_text">
                                                 <h3>
@@ -119,7 +120,8 @@
                     " *ngFor="let program of programs | slice: 3:6">
                                     <div class="activities_slide">
                                         <div class="slide_image">
-                                            <img oncontextmenu="return false;" (click)="goToProgramDetail(program)" [defaultImage]="defaultImage" [lazyLoad]="baseUrl + program?.category[0]?.iconUrl" alt="{{ program?.category[0]?.alternativeText }}" />
+                                            <!-- <img oncontextmenu="return false;" (click)="goToProgramDetail(program)" [defaultImage]="defaultImage" [lazyLoad]="baseUrl + program?.category[0]?.iconUrl" alt="{{ program?.category[0]?.alternativeText }}" /> -->
+                                            <img [defaultImage]="defaultImage" (click)="goToProgramDetail(program)" [errorImage]="baseUrl + program?.category[0]?.pattern" [lazyLoad]="baseUrl + program?.subCategoryIds[0]?.pattern" />
                                         </div>
                                         <div class="slide_text">
                                             <h3>

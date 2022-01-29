@@ -9,7 +9,8 @@
                             ONLINE
                         </div>
                         <div class="media-left activity-imgs" (click)="goToProgramDetail(program) ">
-                            <img [defaultImage]="defaultImage" [errorImage]="errorImage" [lazyLoad]="baseUrl + program?.subCategoryIds[0]?.pattern" />
+                            <!-- <img [defaultImage]="defaultImage" [errorImage]="errorImage" [lazyLoad]="baseUrl + program?.subCategoryIds[0]?.pattern" /> -->
+                            <img [defaultImage]="defaultImage" [errorImage]="baseUrl + program?.category[0]?.pattern" [lazyLoad]="baseUrl + program?.subCategoryIds[0]?.pattern" />
                         </div>
                         <div class="media-body ">
                             <div class="share_icon ">

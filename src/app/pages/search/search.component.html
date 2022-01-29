@@ -340,7 +340,8 @@
                     <div class="media-scroable">
                         <div *ngFor="let program of programs | slice:0:5; let i = index" class="media activity">
                             <div class="media-left activity-imgs" (click)="goToProgramDetail(program)">
-                                <img [defaultImage]="defaultImage" [errorImage]="errorImage" [lazyLoad]="baseUrl + program?.subCategoryIds[0]?.pattern" />
+                                <img [defaultImage]="defaultImage" [errorImage]="baseUrl + program?.category[0]?.pattern" [lazyLoad]="baseUrl + program?.subCategoryIds[0]?.pattern" />
+                                <!-- <img *ngIf="program?.category[0]?.pattern && !program?.subCategoryIds[0]?.pattern" [defaultImage]="defaultImage" [lazyLoad]="baseUrl + program?.category[0]?.pattern" /> -->
                             </div>
                             <div class="media-body">
                                 <div class="share_icon">
@@ -542,7 +543,7 @@
                            <!-- --------------------------------------------------Programs list second--------------------------------------------------- -->
                         <div *ngFor="let program of programs | slice:6; let i = index" class="media activity">
                             <div class="media-left activity-imgs" (click)="goToProgramDetail(program)">
-                                <img [defaultImage]="defaultImage" [errorImage]="errorImage" [lazyLoad]="baseUrl + program?.subCategoryIds[0]?.pattern" />
+                                <img [defaultImage]="defaultImage" [errorImage]="baseUrl + program?.category[0]?.pattern" [lazyLoad]="baseUrl + program?.subCategoryIds[0]?.pattern" />
                             </div>
                             <div class="media-body">
                                 <div class="share_icon">
