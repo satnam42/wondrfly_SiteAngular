@@ -37,10 +37,10 @@
                 <img _ngcontent-rxp-c9="" src="assets/minus.png" />
               </span>
             </h6>
-            <nav id="collapseExample{{ i }}" class="collapse">
+            <nav id="collapseExample{{i}}" class="collapse">
               <ul *ngFor="let ques of category?.questions">
                 <li class="cursor">
-                  <a (click)="clickQuestion(ques)"> {{ ques.question }}</a>
+                  <a (click)="clickQuestion(ques)"> {{ ques?.question }}</a>
                 </li>
               </ul>
             </nav>
@@ -49,9 +49,9 @@
       </div>
       <div class="col-8 search-width">
         <div class="search-result">
-          <h1>{{ this.ans[0].question }}</h1>
-          <h2 class="inner-temp" [innerHtml]='this.ans[0].answer | markdown'></h2>
-          <img *ngIf="this.ans[0].screen_shot.length" src="{{blogUrl}}{{this.ans[0].screen_shot[0].url}}" alt="">
+          <h1>{{ this.ans[0]?.question }}</h1>
+          <h2 class="inner-temp" [innerHtml]='this.ans[0]?.answer | markdown'></h2>
+          <img *ngIf="this.ans[0]?.screen_shot.length" src="{{blogUrl}}{{this.ans[0]?.screen_shot[0].url}}" alt="">
           <hr />
           <div class="submit-search">
             <h1>Still Have A Question?</h1>

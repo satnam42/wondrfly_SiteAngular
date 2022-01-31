@@ -27,6 +27,7 @@ export class FaqHelpDeskComponent implements OnInit {
 
     this.activatedroute.params.subscribe(data => {
       this.quesData=data;
+      console.log('quesData',this.quesData)
       if(this.quesData.role === 'parent'){
         this.getParentCategory()
         this.getParentQues()
@@ -43,6 +44,14 @@ export class FaqHelpDeskComponent implements OnInit {
   getParentCategory(){
     const responcee = axios.get(`${this.blogUrl}/parent-faq-categories`).then(response => {
       this.categories = response.data
+      console.log('categories',this.categories)
+      for (let categoryIndx in this.categories) {
+        for(let ques of this.categories[categoryIndx].questions){
+         if(this.quesData.id==ques.id) {
+          //  this.categories[categoryIndx].collapsed=true
+        }     
+        }
+      }
     });
     }
 
@@ -51,6 +60,13 @@ export class FaqHelpDeskComponent implements OnInit {
   getProviderCategory(){
     const responcee = axios.get(`${this.blogUrl}/provider-faq-categories`).then(response => {
       this.categories = response.data
+     for (let categoryIndx in this.categories) {
+       for(let ques of this.categories[categoryIndx].questions){
+        if(this.quesData.id==ques.id) {
+          this.categories[categoryIndx].collapsed=true
+        }     
+       }
+     }
     });
     }
 
