@@ -53,7 +53,7 @@
           <h2 class="inner-temp" [innerHtml]='this.ans[0]?.answer | markdown'></h2>
           <img *ngIf="this.ans[0]?.screen_shot.length" src="{{blogUrl}}{{this.ans[0]?.screen_shot[0].url}}" alt="">
           <hr />
-          <div class="submit-search">
+          <!-- <div class="submit-search">
             <h1>Still Have A Question?</h1>
             <a class="cursor" href="javascript:void(Tawk_API.toggle())">
               <button>
@@ -62,7 +62,7 @@
                 >Live help
               </button></a
             >
-          </div>
+          </div> -->
           <div id="status"></div>
         </div>
       </div>
@@ -72,7 +72,7 @@
 
 <!--Start of tawk.to Status Code-->
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
   Tawk_API = Tawk_API || {};
 
   Tawk_API.onStatusChange = function (status) {
@@ -85,6 +85,6 @@
       document.getElementById("status").innerHTML = "Live chat is Offline";
     }
   };
-</script>
+</script> -->
 
 <!--End of tawk.to Status Code -->
