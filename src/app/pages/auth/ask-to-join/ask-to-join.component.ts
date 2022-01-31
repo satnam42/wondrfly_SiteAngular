@@ -14,6 +14,7 @@ import { MapsAPILoader } from '@agm/core';
   styleUrls: ['./ask-to-join.component.css']
 })
 export class AskToJoinComponent implements OnInit {
+  currentYear =new Date().getFullYear()
   defaultImage = 'https://miro.medium.com/max/441/1*9EBHIOzhE1XfMYoKz1JcsQ.gif';
   errorImage = 'assets/about-beta1.png';
   blogUrl = environment.blogsUrl;

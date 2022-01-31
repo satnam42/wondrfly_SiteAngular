@@ -68,7 +68,7 @@ import { Component, OnInit } from "@angular/core";
                          </a> -->
               </div>
               <div class="copyright_text">
-                <p>© 2021 Wondrfly Inc. All Rights Reserved.</p>
+                <p>© {{currentYear}} Wondrfly Inc. All Rights Reserved.</p>
               </div>
             </div>
           </div>
@@ -79,6 +79,7 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./footer2.component.css"],
 })
 export class Footer2Component implements OnInit {
+  currentYear =new Date().getFullYear()
   constructor() {}
 
   ngOnInit() {}

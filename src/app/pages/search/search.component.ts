@@ -18,6 +18,7 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit, OnDestroy {
+  currentYear =new Date().getFullYear()
   defaultImage = 'https://miro.medium.com/max/441/1*9EBHIOzhE1XfMYoKz1JcsQ.gif';
   errorImage = 'assets/favicon.svg';
   isDateFilter: boolean = false;

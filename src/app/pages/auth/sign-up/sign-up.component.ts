@@ -17,6 +17,7 @@ import { AuthsService } from 'src/app/core/services/auths.service';
   styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent implements OnInit {
+  currentYear =new Date().getFullYear()
   defaultImage = 'https://miro.medium.com/max/441/1*9EBHIOzhE1XfMYoKz1JcsQ.gif';
   errorImage = 'assets/about-beta1.png';
   blogUrl = environment.blogsUrl;

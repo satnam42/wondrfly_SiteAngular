@@ -20,6 +20,7 @@ import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
   styleUrls: ["./login.component.css"],
 })
 export class LoginComponent implements OnInit {
+  currentYear =new Date().getFullYear()
   defaultImage = "https://miro.medium.com/max/441/1*9EBHIOzhE1XfMYoKz1JcsQ.gif";
   errorImage = "assets/about-beta1.png";
   blogUrl = environment.blogsUrl;
