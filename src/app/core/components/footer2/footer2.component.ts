@@ -47,7 +47,7 @@ import { Component, OnInit } from "@angular/core";
                   <img src="assets/fb-black.svg" />
                 </a>
                 <a
-                  href="https://www.instagram.com/wondrfly/"
+                  href="https://www.instagram.com/teamwondrfly"
                   target="_blank"
                   class="insta"
                 >

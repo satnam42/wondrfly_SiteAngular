@@ -52,7 +52,7 @@ import { Component, OnInit } from "@angular/core";
                   </li>
                   <li>
                     <a
-                      href="https://www.instagram.com/wondrfly/"
+                      href="https://www.instagram.com/teamwondrfly"
                       target="_blank"
                     >
                       <span class="icon icon-instagram"></span>
