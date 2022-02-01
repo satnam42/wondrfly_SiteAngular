@@ -335,6 +335,7 @@
   object-fit: cover;
   border-radius: 20px 20px 0px 0px;
   width: 100%;
+  transform: scale(1.05);
 }
 
 .activities_slide .slide_text {

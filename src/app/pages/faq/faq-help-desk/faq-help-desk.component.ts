@@ -48,7 +48,7 @@ export class FaqHelpDeskComponent implements OnInit {
       for (let categoryIndx in this.categories) {
         for(let ques of this.categories[categoryIndx].questions){
          if(this.quesData.id==ques.id) {
-          //  this.categories[categoryIndx].collapsed=true
+           this.categories[categoryIndx].collapsed=true
         }     
         }
       }

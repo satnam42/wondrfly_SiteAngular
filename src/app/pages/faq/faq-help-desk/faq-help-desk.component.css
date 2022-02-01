@@ -14,6 +14,10 @@
 .tab1-data ul li a:hover {
   color: #53b2e8 !important;
 }
+.activatedQues {
+  color: #53b2e8 !important;
+}
+
 .tab1-data span.plus-src.cursor {
   float: right;
 }

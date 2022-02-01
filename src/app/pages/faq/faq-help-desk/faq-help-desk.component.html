@@ -12,7 +12,6 @@
               *ngIf="!category?.collapsed"
               data-toggle="collapse"
               (click)="category.collapsed = true"
-              [attr.data-target]="'#collapseExample' + i"
               role="button"
               aria-expanded="false"
               aria-controls="collapseExample1"
@@ -27,7 +26,6 @@
               *ngIf="category?.collapsed"
               data-toggle="collapse"
               (click)="category.collapsed = false"
-              [attr.data-target]="'#collapseExample' + i"
               role="button"
               aria-expanded="false"
               aria-controls="collapseExample1"
@@ -37,10 +35,10 @@
                 <img _ngcontent-rxp-c9="" src="assets/minus.png" />
               </span>
             </h6>
-            <nav id="collapseExample{{i}}" class="collapse">
+            <nav id="collapseExample{{i}}" [ngClass]="{'collapse': !category.collapsed, 'collapsed': category.collapsed}">
               <ul *ngFor="let ques of category?.questions">
                 <li class="cursor">
-                  <a (click)="clickQuestion(ques)"> {{ ques?.question }}</a>
+                  <a (click)="clickQuestion(ques)" [ngClass]="{'activatedQues': ques?.id==quesData?.id}"> {{ ques?.question }}</a>
                 </li>
               </ul>
             </nav>

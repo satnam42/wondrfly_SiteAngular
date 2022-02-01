@@ -106,6 +106,7 @@ a.business_btn.cursor.contact {
   max-width: 100%;
   min-height: 100%;
   object-fit: cover;
+  transition: 0.7s;
 }
 
 .program_text .CategoryText h3 {
@@ -925,6 +926,7 @@ button.camp-btn {
   display: inline-block;
   width: 100%;
   cursor: pointer;
+  
 }
 
 .activities_slide {
@@ -946,6 +948,7 @@ button.camp-btn {
   max-width: 100%;
   min-height: 100%;
   object-fit: cover;
+  transform: scale(1.05);
 }
 
 .activities_slide .slide_text {
@@ -1830,4 +1833,7 @@ span#closeBtn {
 }
 .social-icons.media.company_info{
   text-align: center;
+}
+.program_text .CategoryText .learn_code img:hover {
+  transform: scale(0.8);
 }
