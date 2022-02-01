@@ -115,14 +115,14 @@
                         <div class="form-group">
                             <div class="input_outer">
                                 <div class="ng-autocomplete">
-                                    <ng-autocomplete [data]="searchTags?.tags" placeholder="Type" [searchKeyword]="keyword" (selected)="selectEvent($event)" (inputChanged)="onChangeSearch($event)" [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate">
+                                    <ng-autocomplete [data]="searchTags?.tags" placeholder="Type" [searchKeyword]="keyword" (selected)="selectEvent($event)" (inputChanged)="onChangeSearch($event)" [itemTemplate]="itemTemplates" [notFoundTemplate]="notFoundTemplates">
                                     </ng-autocomplete>
 
-                                    <ng-template #itemTemplate let-item>
+                                    <ng-template #itemTemplates let-item>
                                         <a [innerHTML]="item.name"></a>
                                     </ng-template>
 
-                                    <ng-template #notFoundTemplate let-notFound>
+                                    <ng-template #notFoundTemplates let-notFound>
                                         <div *ngIf="searchTags?.tags?.length" [innerHTML]="notFound"></div>
                                     </ng-template>
                                 </div>
@@ -179,14 +179,15 @@
                         <div class="form-group">
                             <div class="input_outer">
                                 <div class="ng-autocomplete">
-                                    <ng-autocomplete [data]="searchTags" placeholder="Type" [searchKeyword]="keyword" (selected)="selectEvent($event)" (inputChanged)="onChangeSearch($event)" [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate">
+                                    <ng-autocomplete [data]="searchTags?.tags" placeholder="Type" [searchKeyword]="keyword" (selected)="selectEvent($event)" (inputChanged)="onChangeSearch($event)" [itemTemplate]="itemTemplates" [notFoundTemplate]="notFoundTemplates">
                                     </ng-autocomplete>
-                                    <ng-template #itemTemplate let-item>
+
+                                    <ng-template #itemTemplates let-item>
                                         <a [innerHTML]="item.name"></a>
                                     </ng-template>
 
-                                    <ng-template #notFoundTemplate let-notFound>
-                                        <div *ngIf="searchesCatg.length" [innerHTML]="notFound"></div>
+                                    <ng-template #notFoundTemplates let-notFound>
+                                        <div *ngIf="searchTags?.tags?.length" [innerHTML]="notFound"></div>
                                     </ng-template>
                                 </div>
                             </div>

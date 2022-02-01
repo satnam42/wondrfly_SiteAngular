@@ -158,18 +158,12 @@ export class LoginParentComponent implements OnInit {
   }
 
   onChangeSearch(key: string) {
-    if(this.step4===true || this.step3===true){
-    if(key.length>2){
-      this.ngxLoader.start();
+    console.log('this.step3',this.step3)
+    console.log('this.step4',this.step4)
       this.apiservice.searchTag(key).subscribe((res: any) => {
         this.searchTags = res;
         this.searchTags.tags = this.searchTags.tags.filter((item) => item.isActivated === true);
-        this.ngxLoader.stop()
       });
-    }
-
-
-  }
   }
 
 
