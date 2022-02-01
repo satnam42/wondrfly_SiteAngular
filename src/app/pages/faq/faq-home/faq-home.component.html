@@ -83,7 +83,7 @@
                   class="col-4 tab1-data"
                   *ngFor="let category of parentCategories"
                 >
-                  <h1>
+                  <h1 class="cursor" (click)="selectQues(category?.questions[0])">
                     {{ category.category }}
                   </h1>
                   <div class="ques_cat">
@@ -124,7 +124,7 @@
                     {{ category.category }}
                   </h1>
                   <div class="ques_cat">
-                    <nav *ngFor="let ques of category.questions">
+                    <nav *ngFor="let ques of category?.questions">
                       <ul>
                         <li class="cursor">
                           <a (click)="selectQues(ques)">{{ ques.question }}</a>
