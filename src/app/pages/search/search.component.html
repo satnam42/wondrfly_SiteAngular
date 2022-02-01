@@ -522,7 +522,7 @@
                         </div>
 
                            <!-- --------------------------------------------------Suggested Div Between programs--------------------------------------------------- -->
-                        <div *ngIf="suggested?.length && contentLoaded && programs?.length" class="suggested-searchresult">
+                        <div *ngIf="suggested?.length && contentLoaded && programs?.length  && (!isTypeFilter && !isDaysFilter && !isTimeFilter && !isTopFilter && !isAgeFilter && !isDateFilter)" class="suggested-searchresult">
                             <div class="suggested-result suggested-text in-built">
                                 <h3>You might want to explore similar Categories</h3>
                                 <div class="similar-categories container">
@@ -830,7 +830,7 @@
                         </h2> -->
                     </div>
 
-                    <div class="suggested-result" *ngIf="suggested?.length">
+                    <div class="suggested-result" *ngIf="suggested?.length && (!isTypeFilter && !isDaysFilter && !isTimeFilter && !isTopFilter && !isAgeFilter && !isDateFilter)">
                         <h3 class="suggested-searcxhtext">
                             You might want to explore similar Categories
                         </h3>
