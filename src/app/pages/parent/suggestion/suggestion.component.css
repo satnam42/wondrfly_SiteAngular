@@ -1355,7 +1355,9 @@ button.cmn-resbtn.active {
     text-transform: capitalize;
     color: #53B2E8;
 }
-
+.nochildfound{
+margin-bottom: 20px;
+}
 @media only screen and (min-width: 1024px) and (max-width: 1366px) and (orientation: portrait) {
     .container,
     .container-lg,

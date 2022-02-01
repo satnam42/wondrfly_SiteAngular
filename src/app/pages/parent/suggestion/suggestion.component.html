@@ -8,8 +8,8 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="beta-suggestionheading">
-                            <h1>Hi {{currentUser?.firstName.substr(0,currentUser?.firstName.indexOf(' '))}}. Welcome to Wondrfly!</h1>
-                            <h2>We’ve prepared these activity recommendations just for you!</h2>
+                            <h1 [class.nochildfound]="!kids?.length">Hi {{currentUser?.firstName.substr(0,currentUser?.firstName.indexOf(' '))}}. Welcome to Wondrfly!</h1>
+                            <h2 *ngIf="kids?.length">We’ve prepared these activity recommendations just for you!</h2>
                         </div>
                     </div>
                 </div>
