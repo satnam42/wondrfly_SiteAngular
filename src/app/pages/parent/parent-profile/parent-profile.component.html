@@ -462,6 +462,10 @@
                                 Kids
                                 <a data-toggle="modal" data-target="#editModal" (click)="kid = resetKid; childImgURL = ''" class="btn_style save_btn cursor">Add</a>
                             </h2>
+                            <div class="grown-uptext" *ngIf="!kids?.length">
+                                <h1>You haven’t added any kid yet!</h1>
+                            </div>
+                            <div *ngIf="kids?.length">
                             <div class="row margin_top" *ngFor="let kid of kids; let i = index">
                                 <div class="col-12">
                                     <div class="Children_table">
@@ -528,6 +532,7 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
                         </div>
 
                         <!-- -----------------------saved listing----------------------------------- -->
