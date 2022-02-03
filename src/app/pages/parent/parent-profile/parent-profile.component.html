@@ -540,50 +540,59 @@
                             <h2 class="description-activities">Activities</h2>
 
                             <div *ngFor="let favourite of favourites" class="media activity spacing-media">
-                                <div class="media-left size-increase activity-imgs cursor" (click)="goToProgramDetail(favourite.program)">
-                                    <img src="assets/guitar.png" alt="Activity" />
+                                <div class="media-left size-increase activity-imgs cursor" (click)="goToProgramDetail(favourite.programs[0])">
+                                    <img src="http://wondrfly.com/{{favourite?.tags[0].pattern}}" alt="Activity" />
                                 </div>
                                 <div class="media-body size-increase-123">
                                     <div class="share_icon sk-1234">
-                                        <a data-toggle="modal" data-target="#ShareModal" (click)="selectedProgram = favourite.program">
+                                        <a  class="cursor" data-toggle="modal" data-target="#ShareModal" (click)="selectedProgram = favourite.programs[0]">
                                             <img src="assets/share_gray.svg " alt="Share Icon" />
                                         </a>
 
                                         <div class="bookmark_outer">
-                                            <a (click)="removeFav(favourite.program._id)" class="bookmark_icon cursor">
+                                            <a (click)="removeFav(favourite.programs[0]._id)" class="bookmark_icon cursor">
                                                 <img class="imgsvg" src="assets/bookmarkOrange.png " alt="Menu Image " />
                                             </a>
                                         </div>
                                     </div>
-                                    <h2 class="cursor" (click)="goToProgramDetail(favourite.program)">
-                                        {{ favourite.program.name }}
+                                    <h2 class="cursor" (click)="goToProgramDetail(favourite.programs[0])">
+                                        {{ favourite.programs[0].name }}
                                     </h2>
                                     <div class="list_outer row row-0">
                                         <div class="coding_text">
                                             <div class="coding-text-1">
                                                 <h3 *ngFor="
-                            let subCat of favourite?.program?.subCategoryIds
+                            let subCat of favourite?.tags
                           ">
-                                                    {{ subCat.names }}
+                                                    {{ subCat.name }}
                                                 </h3>
                                             </div>
                                         </div>
                                         <div class="list col-12">
-                                            <p>
-                                                <img src="assets/local.svg " alt="School image " /> {{ favourite?.program?.programOwner }}
-                                            </p>
+                                            <!-- <p>
+                                                <img src="assets/local.svg " alt="School image " /> {{ favourite?.programs[0]?.programOwner }}
+                                            </p> -->
                                         </div>
                                         <div class="list col-12 icon-grpcalender">
                                             <p>
-                                                <img src="assets/user_group.svg " alt="School image " /> 7-11 Yrs
+                                                <img src="assets/user_group.svg " alt="School image " /> {{favourite?.programs[0]?.ageGroup?.from}}-{{favourite?.programs[0]?.ageGroup?.to}} Yrs
                                             </p>
                                             <p class="pl-5">
-                                                <img src="assets/calendar.svg " alt="School image " />{{ favourite.program.date?.from | date: "dd:MM:yyyy" }} – {{ favourite.program.date?.to | date: "dd:MM:yyyy" }}
+                                                <img src="assets/calendar.svg " alt="School image " />{{ favourite.programs[0].date?.from | date: "dd:MM:yyyy" }} – {{ favourite.programs[0].date?.to | date: "dd:MM:yyyy" }}
                                             </p>
                                         </div>
                                     </div>
                                     <div class="price-box">
-                                        <p><span>$20/</span>Hour</p>
+                                            <p *ngIf="!favourite?.program[0]?.isFree && favourite?.program[0]?.pricePerParticipant">
+                                                <span><img src="assets/price.svg" />{{
+                                                    favourite?.program[0].pricePerParticipant
+                                }}<span *ngIf="favourite?.program[0]?.pricePeriod?.periodAmount">/{{ favourite?.program[0]?.pricePeriod?.periodAmount
+                                  }}</span></span>
+                                            </p>
+                                            <p *ngIf="favourite?.program[0]?.isFree && !favourite?.program[0]?.pricePerParticipant"><img src="assets/price.svg" /><span> Free</span></p>
+                                            <!-- <p *ngIf="!program?.isFree && !program?.pricePerParticipant"><img src="assets/price.svg" /><span> Price Not Mentioned</span></p> -->
+
+                                        
                                     </div>
                                 </div>
                             </div>
