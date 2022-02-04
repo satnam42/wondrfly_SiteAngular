@@ -11,8 +11,7 @@ import { environment } from "src/environments/environment";
 import { Meta, Title } from "@angular/platform-browser";
 import { ToastrService } from "ngx-toastr";
 import { AuthsService } from "src/app/core/services/auths.service";
-import { DeviceDetectorService } from "ngx-device-detector";
-import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
+import { DeviceDetectorService } from 'ngx-device-detector';
 // import { User } from '../../core/models/index'
 @Component({
   selector: "app-login",
@@ -28,12 +27,10 @@ export class LoginComponent implements OnInit {
   credentials = {
     email: "",
     password: "",
+    browserName:"",
+    ipAddress:"",
+    osName: ""
   };
-  // systemDetail:{
-  //   browserName:any,
-  //   ipAddress:any,
-  //   osName:any
-  // }
   isLoading = false;
   hide: boolean = true;
   response: any;
@@ -67,8 +64,7 @@ export class LoginComponent implements OnInit {
     public imageLoader: Globals,
     private toastr: ToastrService,
     public store: LocalStorageService,
-    private deviceService: DeviceDetectorService,
-
+    private deviceService: DeviceDetectorService
   ) {}
   onPassword() {
     this.hide = !this.hide;
@@ -120,10 +116,8 @@ export class LoginComponent implements OnInit {
     this.router.navigate(["/forgot-password"]);
   }
   ngOnInit() {
-    // this.systemDetail.browserName = this.detectBrowserName();
-// this.getIPAddress()
-// this.deviceDetector();
-    // console.log('browserName',this.systemDetail.browserName)
+    this.detectDeviceDetail();
+    this.getIPAddress();
     if (this.auth.currentUser()) {
       this.router.navigate([""]);
     }
@@ -214,36 +208,19 @@ export class LoginComponent implements OnInit {
         this.toastr.error(error.response.data.data[0].messages[0].message);
       });
   }
-// ---------detectBrowserName-------
-  detectBrowserName() { 
-    const agent = navigator.userAgent.toLowerCase()
-    switch (true) {
-      case agent.indexOf('edge') > -1:
-        return 'edge';
-      case agent.indexOf('opr') > -1 && !!(<any>window).opr:
-        return 'opera';
-      case agent.indexOf('chrome') > -1 && !!(<any>window).chrome:
-        return 'chrome';
-      case agent.indexOf('trident') > -1:
-        return 'ie';
-      case agent.indexOf('firefox') > -1:
-        return 'firefox';
-      case agent.indexOf('safari') > -1:
-        return 'safari';
-      default:
-        return 'other';
-    }
-  }
-  // ---------detectIP Address-------
-//    getIPAddress(){  
-// this.apiservice.getIPAddress().subscribe((res:any)=>{  
-//       this.systemDetail.ipAddress=res.ip;  
-//       console.log('ipAddress',this.systemDetail.ipAddress)
+  // ---------getIPAddress-------
 
-//     });    } 
-    // ------OS detecting----
-    // deviceDetector() {
-    //   this.systemDetail.osName = this.deviceService.getDeviceInfo().os;
-    //   console.log('currentOS',this.systemDetail.osName);
-    // }
+     getIPAddress(){  
+this.apiservice.getIPAddress().subscribe((res:any)=>{  
+      this.credentials.ipAddress=res.ip;  
+    });    } 
+// ---------detectBrowserName-------
+  detectDeviceDetail() { 
+    let deviceInfo = this.deviceService.getDeviceInfo();
+    this.credentials.browserName = deviceInfo.browser;
+    this.credentials.osName = deviceInfo.os;
+// const isMobile = this.deviceService.isMobile();
+//       const isTablet = this.deviceService.isTablet();
+//       const isDesktopDevice = this.deviceService.isDesktop();
+  }
 }
