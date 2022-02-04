@@ -272,7 +272,7 @@ tweetCategory(){
     providerName = providerName.toLowerCase();
     providerName = providerName.replace(/ /g,"-");
     providerName = providerName.replace(/\?/g,"-");
-      this.router.navigate(['/program-provider', providerName, provider._id]);
+      this.router.navigate(['provider/program-provider', providerName, provider._id]);
   };
   
 getChildByParentId(){
