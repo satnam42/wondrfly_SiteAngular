@@ -47,7 +47,7 @@
             </app-read-more>
           </div>
           <div class="third_section">
-            <span class="by_john"> by {{ blog[0]?.published_by }} </span>
+            <span class="by_john" *ngIf="blog[0]?.published_by"> by {{ blog[0]?.published_by }} </span>
             <span class="comments">
               {{ blog[0]?.comments?.length }} COMMENTS
             </span>

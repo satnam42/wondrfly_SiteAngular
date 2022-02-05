@@ -27,9 +27,9 @@
                                 <div class="session_details">
                                     <div class="row row-0">
                                         <div class="col-md-2">
-                                            <div class="learn_code cursor" (click)="goToProfile()" [class.initial-alpha-profile]="!program?.subCategoryIds[0]?.logo && !program?.category[0]?.logoUrl">
-                                                <img *ngIf="program?.subCategoryIds[0]?.logo" src="{{baseUrl+program?.subCategoryIds[0]?.logo }}" alt="logo" />
-                                                <img *ngIf="program?.category[0]?.logoUrl && !program?.subCategoryIds[0]?.logo" src="{{baseUrl+program?.category[0]?.logoUrl }}" alt="logo" />
+                                            <div *ngIf="program?.name" class="learn_code cursor" (click)="goToProfile()" [class.initial-alpha-profile]="!program?.subCategoryIds[0]?.logo && !program?.category[0]?.logoUrl">
+                                                <img *ngIf="program?.subCategoryIds[0]?.logo"[defaultImage]="defaultImage" lazyLoad="{{baseUrl+program?.subCategoryIds[0]?.logo }}" alt="logo" />
+                                                <img *ngIf="program?.category[0]?.logoUrl && !program?.subCategoryIds[0]?.logo" [defaultImage]="defaultImage" lazyLoad="{{baseUrl+program?.category[0]?.logoUrl }}" alt="logo" />
                                                 <h1 *ngIf="!program?.subCategoryIds[0]?.logo && !program?.category[0]?.logoUrl">
                                                     {{ program?.name?.charAt(0) + program?.name?.charAt(1) }}
                                                 </h1>

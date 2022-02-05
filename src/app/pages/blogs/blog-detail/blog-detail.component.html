@@ -13,7 +13,7 @@
 
         </h1>
         <div class="by_section">
-            by <span class="text-uppercase"> {{ blogbyid?.published_by }} </span>
+           <div *ngIf="blogbyid?.published_by"> by <span class="text-uppercase"> {{ blogbyid?.published_by }} </span>
             <span class="circle-dotss"><svg
           width="6"
           height="6"
@@ -23,7 +23,7 @@
         >
           <circle cx="3" cy="3" r="3" fill="#B6B6B6" />
         </svg>
-      </span>
+      </span></div>
             <span class="date-blogdeatil">{{ blogbyid?.published_at | date: "mediumDate" }}
       </span>
         </div>

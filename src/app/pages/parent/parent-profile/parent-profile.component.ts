@@ -23,6 +23,7 @@ import { environment } from "src/environments/environment";
   styleUrls: ["./parent-profile.component.css"],
 })
 export class ParentProfileComponent implements OnInit, AfterViewChecked,OnDestroy {
+   defaultImage = 'https://miro.medium.com/max/441/1*9EBHIOzhE1XfMYoKz1JcsQ.gif';
   baseUrl= environment.baseUrl;
   @ViewChild('messageBox', { static: false }) myScrollContainer: ElementRef;
   updateForm: FormGroup;
