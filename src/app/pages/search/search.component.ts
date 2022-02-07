@@ -187,7 +187,7 @@ export class SearchComponent implements OnInit, OnDestroy {
             this.selectedSubCategories.push(intrest)
           }
         }  
-        if(this.filterData.kidAge.length){
+        if(this.filterData.kidAge?.length){
 
          
         if(this.filterData.kidAge>=1){
@@ -513,7 +513,7 @@ for(let i in this.programs){
   let category = this.programs[i].category.filter((v,num,a)=>a.findIndex(t=>(t.name===v.name))===num)
   this.programs[i].category = category
 }
-      // this.startTour()
+  this.startTour()
       if (!this.selectedSubCategories.length && !this.categoryId) {
         this.isScrol = true;
       }
