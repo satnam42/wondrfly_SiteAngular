@@ -186,7 +186,10 @@ export class SearchComponent implements OnInit, OnDestroy {
           for(let intrest of this.filterData.childIntrests){
             this.selectedSubCategories.push(intrest)
           }
-        }     
+        }  
+        if(this.filterData.kidAge.length){
+
+         
         if(this.filterData.kidAge>=1){
           this.isAgeFilter=true
          this.maxAge = Number(this.filterData.kidAge)
@@ -197,6 +200,7 @@ export class SearchComponent implements OnInit, OnDestroy {
          this.maxAge = 1
          this.minAge = 0
         }
+      }
         this.programFilter()
       }
       else if (this.filterData.activityName) {
@@ -225,17 +229,17 @@ export class SearchComponent implements OnInit, OnDestroy {
       this.cookies.set('isTour', '2', 30);
       window.scroll(0, 0);
       }
-      else if(this.cookiesData=='2' && this.contentLoaded && this.programs.length){
+      else if(this.cookiesData=='2' && this.contentLoaded && this.programs.length && !this.isOnline){
         this.joyride.startTour({ steps: ['secondStep1'] });
           this.cookies.set('isTour', '3', 30);
           window.scroll(0, 0);
         }
-        else if(this.cookiesData=='3' && this.contentLoaded && this.programs.length){
+        else if(this.cookiesData=='3' && this.contentLoaded && this.programs.length && !this.isOnline){
           this.joyride.startTour({ steps: ['thirdStep1'] });
           this.cookies.set('isTour', '4', 30);
           window.scroll(0, 0);
           }
-          else if(this.cookiesData=='4' && this.contentLoaded){
+          else if(this.cookiesData=='4' && this.contentLoaded && !this.isOnline){
             window.document.getElementById("exploreModal").click();
             this.cookies.set('isTour', '5', 30);
             window.scroll(0, 0);
@@ -509,7 +513,7 @@ for(let i in this.programs){
   let category = this.programs[i].category.filter((v,num,a)=>a.findIndex(t=>(t.name===v.name))===num)
   this.programs[i].category = category
 }
-      this.startTour()
+      // this.startTour()
       if (!this.selectedSubCategories.length && !this.categoryId) {
         this.isScrol = true;
       }

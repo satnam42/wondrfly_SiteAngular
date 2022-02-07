@@ -643,6 +643,9 @@ p.health_name {
     text-align: left;
   }
 }
+a{
+  word-break: break-all !important;
+}
 ::ng-deep.agm-map-container-inner {
   width: inherit;
   height: inherit;

@@ -468,7 +468,9 @@ button.camp-btn {
   color: #748494;
   margin: 0;
 }
-
+a{
+  word-break: break-all !important;
+}
 .menu_control {
   position: absolute;
   top: 0;
