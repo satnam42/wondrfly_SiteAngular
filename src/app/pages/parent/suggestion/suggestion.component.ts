@@ -279,15 +279,25 @@ getChildByParentId(){
   this.apiservice.getChildByParentId(this.currentUser.id).subscribe((res: any) => {
     this.kids = res
     this.kids = this.kids.filter((item) => item.isActivated === true && item.interestInfo.length );
-//     let kids =[];
-// this.kids.forEach(kid => {
-//   kid.interestInfo = kid.interestInfo.filter((intrest) => intrest.programCount );
-//   if(kid.interestInfo.length){
-//     kids.push(kid)
-//   }
-// });
-// this.kids = kids;
+ 
+    let kids =[];
+this.kids.forEach(kid => {
+  console.log('kid',kid)
+  kid.interestInfo = kid.interestInfo.filter((intrest) =>  this.childTagProgramCount(intrest,Number(kid.age)) );
+  if(kid.interestInfo.length){
+    kids.push(kid)
+  }
+});
+this.kids = kids;
 console.log('filtred kids',this.kids)  })
+}
+async childTagProgramCount(intrest,kidAge){
+await this.apiservice.childTagProgramCount(intrest,kidAge).subscribe((res:any)=>{
+  console.log('count res',res)
+  if(res.isSuccess){
+    return res.data
+  }
+})
 }
 sendInvite(){
   this.store.setItem('sendInvite','1')

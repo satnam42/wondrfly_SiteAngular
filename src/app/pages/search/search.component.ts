@@ -156,7 +156,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     private cookies: CookieService,
     private joyride: JoyrideService
   ) {
-    this.countVisit()
+     this.countVisit()
     this.minDate = moment();
 
     // this.locationData = dataservice.getLocation()
@@ -225,25 +225,26 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   startTour() {
     if(this.cookiesData=='1' && this.contentLoaded && this.programs.length){
+      window.scroll(0, 0);
       this.joyride.startTour({ steps: ['firstStep'] });
       this.cookies.set('isTour', '2', 30);
-      window.scroll(0, 0);
       }
       else if(this.cookiesData=='2' && this.contentLoaded && this.programs.length && !this.isOnline){
+        window.scroll(0, 0);
         this.joyride.startTour({ steps: ['secondStep1'] });
           this.cookies.set('isTour', '3', 30);
-          window.scroll(0, 0);
         }
         else if(this.cookiesData=='3' && this.contentLoaded && this.programs.length && !this.isOnline){
+          window.scroll(0, 0);
           this.joyride.startTour({ steps: ['thirdStep1'] });
           this.cookies.set('isTour', '4', 30);
-          window.scroll(0, 0);
           }
           else if(this.cookiesData=='4' && this.contentLoaded && !this.isOnline){
+            window.scroll(0, 0);
             window.document.getElementById("exploreModal").click();
             this.cookies.set('isTour', '5', 30);
-            window.scroll(0, 0);
             }
+            this.cookiesData = this.cookies.get('isTour');
   }
 
   choosedDate(e) {
@@ -346,7 +347,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     window.scroll(0, 0);
     this.cookies.set('exploreModal', '1',30);
   }
-  countVisit(){
+   countVisit(){
     this.cookiesData = this.cookies.get('isTour');
     let num = Number(this.cookiesData)+1
       this.cookies.set('isTour', String(num), 30); 
@@ -598,7 +599,7 @@ for(let i in this.programs){
         let category = this.programs[i].category.filter((v,num,a)=>a.findIndex(t=>(t.name===v.name))===num)
         this.programs[i].category = category
       }
-      this.startTour()
+      // this.startTour()
       this.showReset = true
       this.searchedSubCategory = this.activityName;
     });
