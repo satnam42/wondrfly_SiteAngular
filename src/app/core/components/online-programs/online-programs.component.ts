@@ -53,6 +53,7 @@ export class OnlineProgramsComponent implements OnInit {
   pageSize: number = 8;
   @Input() programs: any=[];
   @Input() categories: any=[];
+  @Input() suggested: any=[];
   randomNumber:any = 0;
   isLogin: Boolean = false;
   key: string = '';
@@ -92,6 +93,7 @@ export class OnlineProgramsComponent implements OnInit {
     private router : Router,
     private dataService: DataService) {
       var retrievedObject = localStorage.getItem('CurrentUserWondrfly');
+      console.log(this.suggested,'suggested')
       this.userData = JSON.parse(retrievedObject);
       if (this.userData) {
         this.isLogin = true;
@@ -156,7 +158,9 @@ getRating(program){
    }
 
    setCategoryId(e) {
-      this.filterData.categoryId = e
+      this.filterData.subcatId = e.id
+      this.filterData.searchedCategoryKey = e.name
+      // this.filterData.online = true
       this.dataService.setOption(this.filterData)
       this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
       this.router.navigate(['/search']))

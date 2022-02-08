@@ -1628,9 +1628,9 @@ subscribeToMailchimpNewsletter(model): Observable<any> {
 
       // -------------------get users-----------------------
 
-      childTagProgramCount(intrest,childAge): Observable<any> {
+      childTagProgramCount(tagId,childAge): Observable<any> {
         const subject = new Subject<any>();
-        this.http.get(`${this.root}/programs/childTagProgramCount?tagId=${intrest._id}&maxAge=${childAge}`, this.getHeader()).subscribe((responseData) => {
+        this.http.get(`${this.root}/programs/childTagProgramCount?tagId=${tagId}&maxAge=${childAge}`, this.getHeader()).subscribe((responseData) => {
             this.userResponse = responseData;
             subject.next(this.userResponse);
         }, (error) => {

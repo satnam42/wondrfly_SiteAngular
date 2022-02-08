@@ -201,6 +201,9 @@ export class SearchComponent implements OnInit, OnDestroy {
          this.minAge = 0
         }
       }
+      if(this.filterData?.online){
+        this.isOnline = true;
+      }
         this.programFilter()
       }
       else if (this.filterData.activityName) {
@@ -823,6 +826,7 @@ this.programs[i].category = category          }
       if(typeof(res)!=='string'){
         if(!res.error){
           this.suggested = res
+          console.log('suggested',this.suggested)
         }
       }
       // this.searchedSubCategory = this.suggested[0].name

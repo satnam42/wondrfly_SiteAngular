@@ -13,7 +13,9 @@ button:focus {
     box-shadow: none;
     outline: none;
 }
-
+.row{
+    margin-bottom: 15px !important;
+}
 .custom_select {
     height: auto;
     display: inline-block;

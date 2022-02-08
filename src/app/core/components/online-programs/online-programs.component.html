@@ -169,18 +169,18 @@
         </div>
 
 
-        <div *ngIf="programs?.length" class="suggested-searchresult">
+        <div *ngIf="suggested?.length" class="suggested-searchresult">
             <div class="suggested-result">
                 <h3 class="suggested-searcxhtext">
                     You might want to explore similar Categories
                 </h3>
                 <div class="similar-categories">
                     <div class="row">
-                        <div class="col-md-3 cursor" *ngFor='let subcat of categories | slice:0:4' (click)="setCategoryId(subcat.id)">
+                        <div class="col-md-3 cursor" *ngFor='let suggestedTag of suggested | slice:0:4' (click)="setCategoryId(suggestedTag)">
                             <div class="similarcate-flex">
                                 <div class="similar-cate">
-                                    <img [defaultImage]="defaultImage" [lazyLoad]="subcat?.imageUrl" />
-                                    <h1>{{subcat?.name}}</h1>
+                                    <img [defaultImage]="defaultImage" [lazyLoad]="suggestedTag?.imageUrl" />
+                                    <h1>{{suggestedTag?.name}}</h1>
                                 </div>
                             </div>
 

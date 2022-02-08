@@ -7,8 +7,9 @@
       <div class="terms_top">
         <h1>{{ data[0].Title }}</h1>
         <h3>
-          Last modified: {{ data[0].updated_at | date: "medium" }} (view
-          archived versions)
+          Last modified: {{ data[0].updated_at | date: "medium" }}
+           <!-- (view
+          archived versions) -->
         </h3>
         <p [innerHTML]="data[0].Content | markdown"></p>
       </div>
