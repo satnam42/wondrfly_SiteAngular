@@ -72,6 +72,7 @@ export class SuggestionComponent implements OnInit {
     private cookies :CookieService
    ) {
     this.currentUser = this.auth.currentUser();
+    this.getChildByParentId(this.currentUser.id);
     if (!/\s/.test(this.currentUser.firstName)) {
       this.currentUser.firstName=this.currentUser.firstName+' ' //added space for showing 1st name
   }
@@ -275,28 +276,32 @@ tweetCategory(){
   };
   
 getChildByParentId(id){
+  let kids:any=[]
   this.apiservice.getChildByParentId(id).subscribe((res: any) => {
-    this.kids = res
-    this.kids = this.kids.filter((item) => item.isActivated === true);    
-    for(let kidIndx in this.kids){
-      for(let intrest in this.kids[kidIndx].interestInfo){
-        this.apiservice.childTagProgramCount(this.kids[kidIndx].interestInfo[intrest]._id,Number(this.kids[kidIndx].age)).subscribe((response:any)=>{
+    kids = res
+    kids = kids.filter((item) => item.isActivated === true);    
+    for(let kidIndx in kids){
+      for(let intrest in kids[kidIndx].interestInfo){
+        this.apiservice.childTagProgramCount(kids[kidIndx].interestInfo[intrest]._id,Number(kids[kidIndx].age)).subscribe((response:any)=>{
 if(response.isSuccess){
   if(response.data){
-    this.kids[kidIndx].interestInfo[intrest].programCount = res.data
+    kids[kidIndx].interestInfo[intrest].programCount = response.data
   }
   else{
-    this.kids[kidIndx].interestInfo.splice(Number(intrest),1)
+   kids[kidIndx].interestInfo.splice(intrest,1)
+   if(!kids[kidIndx].interestInfo.length){
+    kids.splice(kidIndx,1)
+   }
   }
 }
 
         })
       }
-      if(!this.kids[kidIndx].interestInfo.length){
-        this.kids = this.kids.splice(Number(kidIndx),1)
-      }
+   
     }
-    
+    kids = kids.filter((el) => el.interestInfo.length);
+    this.kids = kids    
+console.log('filtredKids',this.kids)
  })
 }
 sendInvite(){
@@ -336,7 +341,6 @@ console.log('get isTour count ',this.cookiesData)
     this.getBlogByCat();
     this.getfeaturedBlog();
     this.getBlog();
-    this.getChildByParentId(this.currentUser.id);
     this.getCategoryList();
     // this.feedbackSurveyList();
     // this.getForms();
