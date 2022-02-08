@@ -60,6 +60,7 @@ export class SuggestionComponent implements OnInit {
  lng : string
  resourcesType='do-together'
  cookiesData:string;
+ selectedIntrests:any = []
   constructor(private router: Router,
     private apiservice: ApiService,
     private dataservice: DataService,
@@ -275,29 +276,76 @@ tweetCategory(){
       this.router.navigate(['provider/program-provider', providerName, provider._id]);
   };
   
-getChildByParentId(){
-  this.apiservice.getChildByParentId(this.currentUser.id).subscribe((res: any) => {
+getChildByParentId(id){
+  this.apiservice.getChildByParentId(id).subscribe((res: any) => {
     this.kids = res
-    this.kids = this.kids.filter((item) => item.isActivated === true && item.interestInfo.length );
- 
-    let kids =[];
-this.kids.forEach(kid => {
-  console.log('kid',kid)
-  kid.interestInfo = kid.interestInfo.filter((intrest) =>  this.childTagProgramCount(intrest,Number(kid.age)) );
-  if(kid.interestInfo.length){
-    kids.push(kid)
-  }
-});
-this.kids = kids;
-console.log('filtred kids',this.kids)  })
+    console.log('child res ',this.kids)
+    this.kids = this.kids.filter((item) => item.isActivated === true);
+    this.kids = this.kids.filter((item) =>  item.interestInfo.length);
+    console.log('got kids ',this.kids)
+    let selectedIntrest:any = {
+      id:'',
+      age:0,
+      count:0
+    }
+ for(let k of this.kids) {
+for(let intrest of  k.interestInfo){
+  console.log('intrest',intrest)
+
+   this.selectedIntrests.id = intrest._id
+   this.selectedIntrests.age = Number(k.age)
+   this.selectedIntrests.push(selectedIntrest)
+ }
+
 }
-async childTagProgramCount(intrest,kidAge){
-await this.apiservice.childTagProgramCount(intrest,kidAge).subscribe((res:any)=>{
-  console.log('count res',res)
-  if(res.isSuccess){
-    return res.data
+if(this.selectedIntrests.length){
+  console.log('selectedIntrests length',this.selectedIntrests)
+ this.childTagProgramCount();
+}
+ })
+
+}
+ childTagProgramCount(){
+   console.log('entred in program count')
+   let selectedIntrests = []
+   for(let intr of this.selectedIntrests){
+     console.log('intr gotttt',intr)
+    this.apiservice.childTagProgramCount(intr.id,intr.age).subscribe((res:any)=>{
+ 
+      if(res.isSuccess){
+        var selectedInt={
+          id:'',
+          age:0,
+          count:0
+        }
+        selectedInt.id = intr.id
+        selectedInt.age = Number(intr.age)
+        selectedInt.count = res.data
+
+        selectedIntrests.push(selectedInt)
+
+      }
+        
+    })
+   }
+   this.selectedIntrests = selectedIntrests
+   let kids = []
+   console.log('selectedIntrests',this.selectedIntrests)
+   for(let kid of this.kids){
+    kid.interestInfo = kid.interestInfo.filter((intt) => console.log('return',this.matchKidsIntrests(intt.id)));
+      kids.push(kid)
   }
-})
+  this.kids = kids
+  console.log('filtred kids',this.kids)
+}
+matchKidsIntrests(id){
+for(let intresIN of this.selectedIntrests) {
+  if(intresIN.id==id && intresIN.count){
+    return true
+  }
+  else{
+    return false}
+}
 }
 sendInvite(){
   this.store.setItem('sendInvite','1')
@@ -336,7 +384,7 @@ console.log('get isTour count ',this.cookiesData)
     this.getBlogByCat();
     this.getfeaturedBlog();
     this.getBlog();
-    this.getChildByParentId();
+    this.getChildByParentId(this.currentUser.id);
     this.getCategoryList();
     // this.feedbackSurveyList();
     // this.getForms();
