@@ -11,7 +11,6 @@ import { TypeFormService } from 'src/app/core/services/typeform.service';
 import { environment } from 'src/environments/environment.prod';
 import * as FileSaver from 'file-saver';
 import { MapsAPILoader } from '@agm/core';
-import { Console } from 'console';
 import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'parent-suggestion',
@@ -60,7 +59,6 @@ export class SuggestionComponent implements OnInit {
  lng : string
  resourcesType='do-together'
  cookiesData:string;
- selectedIntrests:any = []
   constructor(private router: Router,
     private apiservice: ApiService,
     private dataservice: DataService,
@@ -279,73 +277,27 @@ tweetCategory(){
 getChildByParentId(id){
   this.apiservice.getChildByParentId(id).subscribe((res: any) => {
     this.kids = res
-    console.log('child res ',this.kids)
-    this.kids = this.kids.filter((item) => item.isActivated === true);
-    this.kids = this.kids.filter((item) =>  item.interestInfo.length);
-    console.log('got kids ',this.kids)
-    let selectedIntrest:any = {
-      id:'',
-      age:0,
-      count:0
-    }
- for(let k of this.kids) {
-for(let intrest of  k.interestInfo){
-  console.log('intrest',intrest)
-
-   this.selectedIntrests.id = intrest._id
-   this.selectedIntrests.age = Number(k.age)
-   this.selectedIntrests.push(selectedIntrest)
- }
-
-}
-if(this.selectedIntrests.length){
-  console.log('selectedIntrests length',this.selectedIntrests)
- this.childTagProgramCount();
-}
- })
-
-}
- childTagProgramCount(){
-   console.log('entred in program count')
-   let selectedIntrests = []
-   for(let intr of this.selectedIntrests){
-     console.log('intr gotttt',intr)
-    this.apiservice.childTagProgramCount(intr.id,intr.age).subscribe((res:any)=>{
- 
-      if(res.isSuccess){
-        var selectedInt={
-          id:'',
-          age:0,
-          count:0
-        }
-        selectedInt.id = intr.id
-        selectedInt.age = Number(intr.age)
-        selectedInt.count = res.data
-
-        selectedIntrests.push(selectedInt)
-
-      }
-        
-    })
-   }
-   this.selectedIntrests = selectedIntrests
-   let kids = []
-   console.log('selectedIntrests',this.selectedIntrests)
-   for(let kid of this.kids){
-    kid.interestInfo = kid.interestInfo.filter((intt) => console.log('return',this.matchKidsIntrests(intt.id)));
-      kids.push(kid)
-  }
-  this.kids = kids
-  console.log('filtred kids',this.kids)
-}
-matchKidsIntrests(id){
-for(let intresIN of this.selectedIntrests) {
-  if(intresIN.id==id && intresIN.count){
-    return true
+    this.kids = this.kids.filter((item) => item.isActivated === true);    
+    for(let kidIndx in this.kids){
+      for(let intrest in this.kids[kidIndx].interestInfo){
+        this.apiservice.childTagProgramCount(this.kids[kidIndx].interestInfo[intrest]._id,Number(this.kids[kidIndx].age)).subscribe((response:any)=>{
+if(response.isSuccess){
+  if(response.data){
+    this.kids[kidIndx].interestInfo[intrest].programCount = res.data
   }
   else{
-    return false}
+    this.kids[kidIndx].interestInfo.splice(Number(intrest),1)
+  }
 }
+
+        })
+      }
+      if(!this.kids[kidIndx].interestInfo.length){
+        this.kids = this.kids.splice(Number(kidIndx),1)
+      }
+    }
+    
+ })
 }
 sendInvite(){
   this.store.setItem('sendInvite','1')
