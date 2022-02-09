@@ -189,6 +189,7 @@
 
                                             <button (click)="programFilter()" search-results.scrollTop="0" data-target="#timess" data-toggle="collapse" class="submitBtn">
                         Apply
+                        
                       </button>
                                         </div>
 
@@ -346,7 +347,7 @@
                             <div class="media-body">
                                 <div class="share_icon">
                                     <a data-toggle="modal" (click)="selectedProgram = program" data-target="#ShareModal" class="cursor">
-                                        <img src="assets/share_gray.svg " class="section1" joyrideStep="secondStep{{i}}" title="💡 Share with friends and family" text="Click here to share your favorite activities!" alt="Share Icon " />
+                                        <img src="assets/share_gray.svg " class="section1" joyrideStep="secondStep{{i}}"  title="💡 Share with friends and family" text="Click here to share your favorite activities!" alt="Share Icon " />
                                     </a>
                                     <div class="bookmark_outer">
                                         <a *ngIf="!program?.isFav && parentRole && isLogin" (click)="addFavProgram(userData.id, program?._id, i)" class="bookmark_icon cursor"><img src="assets/bookmark_gray.svg " alt="Menu Image " class="section2" joyrideStep="thirdStep1" title="💡 Save activities for later" text="Click here to save your favorite activities all in one place for when you need them!"
@@ -548,7 +549,7 @@
                             <div class="media-body">
                                 <div class="share_icon">
                                     <a data-toggle="modal" (click)="selectedProgram = program" data-target="#ShareModal" class="cursor">
-                                        <img src="assets/share_gray.svg " class="section1" joyrideStep="secondStep{{i}}" title="💡 Share with friends and family" text="Click here to share your favorite activities!" alt="Share Icon " />
+                                        <img src="assets/share_gray.svg " class="section1" joyrideStep="secondStep1" title="💡 Share with friends and family" text="Click here to share your favorite activities!" alt="Share Icon " />
                                     </a>
                                     <div class="bookmark_outer">
                                         <a *ngIf="!program?.isFav && parentRole && isLogin" (click)="addFavProgram(userData.id, program?._id, i+6)" class="bookmark_icon cursor"><img src="assets/bookmark_gray.svg " alt="Menu Image " class="section2" joyrideStep="thirdStep{{i}}" title="💡 Save activities for later" text="Click here to save your favorite activities all in one place for when you need them!"

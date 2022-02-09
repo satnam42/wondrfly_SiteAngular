@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone, OnDestroy, QueryList, ViewChildren } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { ApiService } from 'src/app/core/services/api.service.service';
 import { MapsAPILoader } from '@agm/core';
 import * as moment from 'moment';
@@ -227,25 +227,25 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   startTour() {
-    if(this.cookiesData=='1' && this.contentLoaded && this.programs.length){
-      window.scroll(0, 0);
+    if(this.contentLoaded && this.programs.length && Number(this.cookiesData)<=1){
       this.joyride.startTour({ steps: ['firstStep'] });
       this.cookies.set('isTour', '2', 30);
+      window.scroll(0, 0);
       }
-      else if(this.cookiesData=='2' && this.contentLoaded && this.programs.length && !this.isOnline){
-        window.scroll(0, 0);
+      else if(this.contentLoaded && this.programs.length && this.cookiesData=='2' && !this.isOnline){
         this.joyride.startTour({ steps: ['secondStep1'] });
           this.cookies.set('isTour', '3', 30);
+          window.scroll(0, 0);
         }
         else if(this.cookiesData=='3' && this.contentLoaded && this.programs.length && !this.isOnline){
-          window.scroll(0, 0);
           this.joyride.startTour({ steps: ['thirdStep1'] });
           this.cookies.set('isTour', '4', 30);
+          window.scroll(0, 0);
           }
           else if(this.cookiesData=='4' && this.contentLoaded && !this.isOnline){
-            window.scroll(0, 0);
             window.document.getElementById("exploreModal").click();
             this.cookies.set('isTour', '5', 30);
+            window.scroll(0, 0);
             }
             this.cookiesData = this.cookies.get('isTour');
   }
@@ -347,17 +347,17 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.programFilter()
   }
   mailChimpCompleted(){
-    window.scroll(0, 0);
-    this.cookies.set('exploreModal', '1',30);
+    window.scrollTo(0, 0)
+    this.cookies.set('exploreModal', '5',30);
   }
    countVisit(){
+    window.scrollTo(0, 0)
     this.cookiesData = this.cookies.get('isTour');
     let num = Number(this.cookiesData)+1
       this.cookies.set('isTour', String(num), 30); 
-      window.scroll(0, 0);
   }
   ngOnInit() {
-    window.scroll(0, 0);
+    window.scrollTo(0, 0)
     this.contentLoaded = false
     this.titleService.setTitle(this.title);
     this.metaTagService.updateTag(
@@ -457,6 +457,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.pageNo = 1;
     this.pageSize = 20;
     this.selectedProgramTime = []
+    this.programs = []
     this.times.forEach((element) => {
       element.nativeElement.checked = false;
     });
@@ -509,7 +510,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.suggested=[]
     this.apiservice.getPublishedProgram(this.pageNo, this.pageSize,'published').subscribe((res: any) => {
       // this.ngxLoader.stop()
-      this.programs = res.items;
+      this.programs = this.programs.concat(res.items);
       console.log('programs',this.programs)
       // this.fakeLoaderData = [1,2]
       this.contentLoaded = true;
@@ -570,15 +571,16 @@ for(let i in this.programs){
 
 
   loadMore() {
-    this.pageSize += 20;
-    if (this.categoryId || this.selectedSubCategories.length) {
-      this.programFilter()
-    } else if (this.activityName) {
-      this.filterByNameDate()
-    }
-    else {
-      this.programFilter()
-    }
+    this.pageNo += 1;
+    this.getPublishedProgram()
+    // if (this.categoryId || this.selectedSubCategories.length) {
+    //   this.programFilter()
+    // } else if (this.activityName) {
+    //   this.filterByNameDate()
+    // }
+    // else {
+    //   this.programFilter()
+    // }
   }
 
 
@@ -710,7 +712,7 @@ for(let i in this.programs){
         filter += `&ageFrom=${this.minAge}&ageTo=${this.maxAge}`
       }
       console.log('filters query ', filter)
-      this.apiservice.programFilter(filter, this.pageNo, 200).subscribe((res: any) => {
+      this.apiservice.programFilter(filter,1, 200).subscribe((res: any) => {
         this.showReset = true
         if (res.isSuccess) {
           // this.isTopFilterCheckBox = false
@@ -725,6 +727,8 @@ this.programs[i].category = category          }
       });
     }
     else {
+      this.pageNo = 1
+      this.programs = []
       this.isTopFilterCheckBox = false
       this.getPublishedProgram();
     }
