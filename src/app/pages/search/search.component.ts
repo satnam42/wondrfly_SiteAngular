@@ -233,14 +233,12 @@ export class SearchComponent implements OnInit, OnDestroy {
       window.scroll(0, 0);
       }
       else if(this.contentLoaded && this.programs.length && this.cookiesData=='2' && !this.isOnline){
-        this.joyride.startTour({ steps: ['secondStep1'] });
+        this.joyride.startTour({ steps: ['secondStep0'] });
           this.cookies.set('isTour', '3', 30);
-          window.scroll(0, 0);
         }
         else if(this.cookiesData=='3' && this.contentLoaded && this.programs.length && !this.isOnline){
-          this.joyride.startTour({ steps: ['thirdStep1'] });
+          this.joyride.startTour({ steps: ['thirdStep0'] });
           this.cookies.set('isTour', '4', 30);
-          window.scroll(0, 0);
           }
           else if(this.cookiesData=='4' && this.contentLoaded && !this.isOnline){
             window.document.getElementById("exploreModal").click();
