@@ -40,7 +40,7 @@
         </div>
 
         <div class="main_img">
-            <img oncontextmenu="return false;" [defaultImage]="defaultImage" [errorImage]="errorImage" lazyLoad="{{ blogUrl }}{{ blogbyid.image[0].url }}" alt="{{ blogbyid.image[0]?.alternativeText }}" />
+            <img oncontextmenu="return false;" [defaultImage]="defaultImage" [errorImage]="errorImage" lazyLoad="{{ blogUrl }}{{ blogbyid?.image[0].url }}" alt="{{ blogbyid?.image[0]?.alternativeText }}" />
         </div>
 
         <div class="text_section socialblog-rel">
@@ -49,7 +49,7 @@
                 <div class="text_section_heading">
                     {{ blogbyid?.title }}
                 </div>
-                <div [innerHTML]="blogbyid.content | markdown" class="text_section_text"></div>
+                <div [innerHTML]="blogbyid?.content | markdown" class="text_section_text"></div>
             </div>
 
             <div class="text_section_blue">
@@ -57,7 +57,7 @@
             </div>
             <div class="text_section_text"> {{blogbyid?.bottomText}}</div>
         </div>
-
+<!-- 
         <div class="container description_text slider">
             <div class="forth_section_heading">
                 <h1>
@@ -68,7 +68,7 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <!--Start carousel-->
+                    Start carousel
                     <div id="carouselExampleIndicators" class="carousel slide activities-carousel" data-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
@@ -81,7 +81,7 @@
                     " *ngFor="let program of programs | slice: 0:3">
                                         <div class="activities_slide">
                                             <div class="slide_image">
-                                                <!-- <img oncontextmenu="return false;" (click)="goToProgramDetail(program)" [defaultImage]="defaultImage" [lazyLoad]="baseUrl + program?.category[0]?.iconUrl" alt="{{ program?.category[0]?.alternativeText }}" /> -->
+                                                <img oncontextmenu="return false;" (click)="goToProgramDetail(program)" [defaultImage]="defaultImage" [lazyLoad]="baseUrl + program?.category[0]?.iconUrl" alt="{{ program?.category[0]?.alternativeText }}" />
                                                 <img [defaultImage]="defaultImage" (click)="goToProgramDetail(program)" [errorImage]="baseUrl + program?.category[0]?.pattern" [lazyLoad]="baseUrl + program?.subCategoryIds[0]?.pattern" />
                                             </div>
                                             <div class="slide_text">
@@ -120,17 +120,17 @@
                     " *ngFor="let program of programs | slice: 3:6">
                                     <div class="activities_slide">
                                         <div class="slide_image">
-                                            <!-- <img oncontextmenu="return false;" (click)="goToProgramDetail(program)" [defaultImage]="defaultImage" [lazyLoad]="baseUrl + program?.category[0]?.iconUrl" alt="{{ program?.category[0]?.alternativeText }}" /> -->
+                                            <img oncontextmenu="return false;" (click)="goToProgramDetail(program)" [defaultImage]="defaultImage" [lazyLoad]="baseUrl + program?.category[0]?.iconUrl" alt="{{ program?.category[0]?.alternativeText }}" />
                                             <img [defaultImage]="defaultImage" (click)="goToProgramDetail(program)" [errorImage]="baseUrl + program?.category[0]?.pattern" [lazyLoad]="baseUrl + program?.subCategoryIds[0]?.pattern" />
                                         </div>
                                         <div class="slide_text">
                                             <h3>
                                                 <span (click)="goToProgramDetail(program)" class="title">{{ program?.name }}</span
                           >
-                          <!-- <div class="rating_box">
+                          <div class="rating_box">
                             <img oncontextmenu="return false;"  src="assets/star.svg" alt="Star Image" />
                             <span>5.0 (15)</span>
-                                        </div> -->
+                                        </div>
                                         </h3>
                                         <div class="sports_btn">
                                             <span>{{ program?.subCategoryIds[0]?.name }}</span>
@@ -146,9 +146,9 @@
                                             <p>
                                               <img oncontextmenu="return false;" alt="Loction Pin" src="assets/user_group.svg" /> {{ program?.ageGroup?.from }} - {{ program?.ageGroup?.to }} Yrs.
                                           </p>
-                                            <!-- <p>
+                                            <p>
                                                 <img oncontextmenu="return false;" alt="Loction Pin" src="assets/user_group.svg" /> {{ program?.date?.to | date: "MMM d, " }}
-                                            </p> -->
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -157,7 +157,7 @@
                     </div>
                 </div>
             </div>
-            <!--End carousel-->
+            End carousel
         </div>
         <div class="col-1 d-flex align-items-center justify-content-center">
             <a href="#carouselExampleIndicators" data-slide="next">
@@ -171,7 +171,7 @@
             </a>
         </div>
     </div>
-</div>
+</div> -->
 
 <hr class="grey_hr" />
 

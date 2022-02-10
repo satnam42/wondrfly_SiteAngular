@@ -758,6 +758,7 @@ this.programs[i].category = category          }
   }
 
   ngOnDestroy() {
+    this.joyride.closeTour()
     window.document.getElementById("close_modal").click();
     // window.document.getElementById("close_morefilter").click();
     window.document.getElementById("close_sharemodal").click();

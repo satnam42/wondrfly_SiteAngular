@@ -207,7 +207,7 @@ tweetCategory(){
   }
 
   getTweet() {
-    const responcee = axios.get(`${this.blogUrl}/funny-tweets?_sort=published_at:DESC&_limit=3`).then((response) => {
+    const responcee = axios.get(`${this.blogUrl}/funny-tweets?_sort=published_at:DESC&_limit=4`).then((response) => {
       this.tweetData = response.data;
       this.tweetDataBlogPath = new URL (this.tweetData[0].blogLink).pathname;
       console.log('tweetData',this.tweetData)
@@ -217,7 +217,7 @@ tweetCategory(){
     // ------------------------------------------------get printables data  -------------------------------------------
 
     getPrintables() {
-      const responcee = axios.get(`${this.blogUrl}/printables?_sort=published_at:DESC&_limit=3`).then((response) => {
+      const responcee = axios.get(`${this.blogUrl}/printables?_sort=published_at:DESC&_limit=4`).then((response) => {
         this.printables = response.data;
         console.log('printables',this.printables)
       });
@@ -226,7 +226,7 @@ tweetCategory(){
   // ------------------------------------------------get blogs  -------------------------------------------
 
   getBlog() {
-    const responcee = axios.get(`${this.blogUrl}/blogs?_sort=published_at:DESC&_limit=3`).then((response) => {
+    const responcee = axios.get(`${this.blogUrl}/blogs?_sort=published_at:DESC&_limit=4`).then((response) => {
       this.blogs = response.data;
     });
   }
@@ -234,7 +234,7 @@ tweetCategory(){
     // ------------------------------------------------get featured blogs  -------------------------------------------
 
     getfeaturedBlog() {
-      const responcee = axios.get(`${this.blogUrl}/blogs?_sort=published_at:DESC&isFeatured=true&_limit=3`).then((response) => {
+      const responcee = axios.get(`${this.blogUrl}/blogs?_sort=published_at:DESC&isFeatured=true&_limit=4`).then((response) => {
         this.featuredBlogs = response.data;
         console.log('featuredblogs',this.featuredBlogs)
       });
