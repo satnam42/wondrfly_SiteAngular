@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import axios from 'axios';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { AuthsService } from 'src/app/core/services/auths.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -19,8 +20,9 @@ export class TermConditionComponent implements OnInit {
   loaderType = 'ball-spin-clockwise';
   constructor(private ngxLoader: NgxUiLoaderService,
     private titleService: Title,
-    private metaTagService: Meta,) {
-    this.userData = JSON.parse(localStorage.getItem('CurrentUserWondrfly'));
+    private metaTagService: Meta,
+    private auths: AuthsService) {
+    this.userData = auths.currentUser()
 
     if (this.userData) {
       this.isLogin = true;

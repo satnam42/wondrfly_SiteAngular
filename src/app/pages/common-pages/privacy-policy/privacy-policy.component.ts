@@ -3,6 +3,7 @@ import { Meta, Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import axios from 'axios';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { AuthsService } from 'src/app/core/services/auths.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -17,12 +18,12 @@ export class PrivacyPolicyComponent implements OnInit {
   data: any;
   title = 'Read our Privacy Policy Agreement - Wondrfly'
 
-  constructor(private router: Router,
+  constructor(
     private ngxLoader: NgxUiLoaderService,
     private titleService: Title,
     private metaTagService: Meta,
-    ) {
-    this.userData = JSON.parse(localStorage.getItem('CurrentUserWondrfly'));
+    private auths: AuthsService) {
+      this.userData = auths.currentUser()
     if (this.userData) {
       this.isLogin = true;
     }
@@ -33,19 +34,16 @@ export class PrivacyPolicyComponent implements OnInit {
     privacyP(){
   this.ngxLoader.start()
   axios.get(`${this.blogUrl}/privacy-policies`).then(response => {
-    this.ngxLoader.stop()
     this.data = response.data
-
-    console.log( 'data on  terms and condition', this.data);
-    console.log( 'data on terms and condition axios', this.data[0].title);
   });
+  this.ngxLoader.stop()
   }
 
 
 
-  search() {
-    this.router.navigate(['/search']);
-  }
+  // search() {
+  //   this.router.navigate(['/search']);
+  // }
 
   ngOnInit() {
     this.titleService.setTitle(this.title);
