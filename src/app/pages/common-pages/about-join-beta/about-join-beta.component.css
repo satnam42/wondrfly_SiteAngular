@@ -260,7 +260,11 @@ section.beta-questions h1 {
   color: #545454;
   margin-bottom: 15px;
 }
-
+::ng-deep.inner-temp img {
+  max-width: 100% !important;
+  width: 100% !important;
+  object-fit: cover;
+}
 
 
 
