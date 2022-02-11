@@ -353,9 +353,9 @@
                                         <a *ngIf="!program?.isFav && parentRole && isLogin" (click)="addFavProgram(userData.id, program?._id, i)" class="bookmark_icon cursor"><img src="assets/bookmark_gray.svg " alt="Menu Image "  joyrideStep="thirdStep{{i}}" title="💡 Save activities for later" text="Click here to save your favorite activities all in one place for when you need them!"
                                             /></a>
 
-                                        <a *ngIf="!isLogin" routerLink="/login" class="bookmark_icon cursor"><img joyrideStep="thirdStep{{i}}" src="assets/bookmark_gray.svg " alt="Menu Image " /></a>
+                                        <a *ngIf="!isLogin" routerLink="/login" class="bookmark_icon cursor"><img  src="assets/bookmark_gray.svg " alt="Menu Image " /></a>
 
-                                        <a *ngIf="program?.isFav && parentRole && isLogin" (click)="deleteFavProgram(program?._id, i)" class="bookmark_icon cursor"><img joyrideStep="thirdStep{{i}}" src="assets/bookmarkOrange.png " alt="Menu Image " /></a>
+                                        <a *ngIf="program?.isFav && parentRole && isLogin" (click)="deleteFavProgram(program?._id, i)" class="bookmark_icon cursor"><img src="assets/bookmarkOrange.png " alt="Menu Image " /></a>
                                     </div>
                                 </div>
                                 <h2 class="cursor" (click)="goToProgramDetail(program)">
