@@ -1974,7 +1974,10 @@ input.ng-invalid.ng-touched {
 select.ng-invalid.ng-touched {
     border: 1px solid red;
 }
-
+button[disabled] {
+    background-color: #fa627d  !important;
+    border: 1px solid #fa627d  !important;
+}
 @media(max-width:767px) {
     .tab_outer .nav-tabs .nav-link {
         padding: 15px 0 !important;

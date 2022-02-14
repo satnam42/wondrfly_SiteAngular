@@ -1638,7 +1638,16 @@ subscribeToMailchimpNewsletter(model): Observable<any> {
         });
         return subject.asObservable();
     }
-
+    childrenWithFiltredActivity(childIds): Observable<any> {
+        const subject = new Subject<any>();
+        this.http.get(`${this.root}/child/interestPrograms?childIds=${childIds}`, this.getHeader()).subscribe((responseData) => {
+            this.userResponse = responseData;
+            subject.next(this.userResponse);
+        }, (error) => {
+            subject.next(error.error);
+        });
+        return subject.asObservable();
+    }
 getIPAddress()  
 {  
   return this.http.get("https://api.ipify.org/?format=json");  

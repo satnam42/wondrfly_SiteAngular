@@ -276,32 +276,29 @@ tweetCategory(){
   };
   
 getChildByParentId(id){
-  let kids:any=[]
   this.apiservice.getChildByParentId(id).subscribe((res: any) => {
-    kids = res
-    kids = kids.filter((item) => item.isActivated === true);    
-    for(let kidIndx in kids){
-      for(let intrest in kids[kidIndx].interestInfo){
-        this.apiservice.childTagProgramCount(kids[kidIndx].interestInfo[intrest]._id,Number(kids[kidIndx].age)).subscribe((response:any)=>{
-if(response.isSuccess){
-  if(response.data){
-    kids[kidIndx].interestInfo[intrest].programCount = response.data
-  }
-  else{
-   kids[kidIndx].interestInfo.splice(intrest,1)
-   if(!kids[kidIndx].interestInfo.length){
-    kids.splice(kidIndx,1)
-   }
-  }
-}
-
-        })
+    let kids = res
+    kids = kids.filter((item) => item.isActivated === true);  
+   let childIds=''
+     let count = 1
+    for(let kid of kids){
+      console.log('kid',kid)
+      if(count<=1){
+        childIds+= kid.id
+        count++
       }
-   
+      else{
+        childIds+= ','+kid.id
+      }
     }
-    kids = kids.filter((el) => el.interestInfo.length);
-    this.kids = kids    
-console.log('filtredKids',this.kids)
+    console.log('before api childIds ',childIds)
+    if(childIds){
+      this.apiservice.childrenWithFiltredActivity(childIds).subscribe((filtredKidsResponse:any)=>{
+        this.kids = filtredKidsResponse.data
+        console.log('filtred kids',this.kids)
+      })
+    }
+
  })
 }
 sendInvite(){

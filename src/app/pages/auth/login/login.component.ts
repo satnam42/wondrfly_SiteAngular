@@ -205,7 +205,24 @@ export class LoginComponent implements OnInit {
         }
       })
       .catch((error) => {
-        this.toastr.error(error.response.data.data[0].messages[0].message);
+        // this.toastr.error(error.response.data.data[0].messages[0].message);
+        this.auth.setUser(this.user);
+        if (this.user.isOnBoardingDone && this.user.role === "provider") {
+          // this.toastr.success(this.message);
+          this.router.navigate(["profile", this.user.id]);
+        }  else if (this.user.isOnBoardingDone &&this.user.role === "parent") {
+          // this.toastr.success(this.message);
+          this.router.navigate(["parent/my-wondrfly"]);
+        }
+          else if (this.user.role === "parent" && !this.user.isOnBoardingDone) {
+          // this.toastr.success(this.message);
+          this.router.navigate(["parent/login-parent"]);
+        } else if (this.user.role === "superAdmin") {
+          // this.toastr.success(
+          //   "You Are An Admin!",
+          //   "Please Login As Provider Or Parent Only!"
+          // );
+        }
       });
   }
   // ---------getIPAddress-------
