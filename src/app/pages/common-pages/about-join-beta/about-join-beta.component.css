@@ -61,7 +61,7 @@ section.family-wonderfly ul li::before {
   border-radius: 50%;
 }
 .webelieve-wonderfly .terms_box {
-  padding: 80px;
+  padding: 50px;
   padding-top: 0px;
 }
 .webelieve-wonderfly .terms_box p {
@@ -263,10 +263,10 @@ section.beta-questions h1 {
   width: 100% !important;
   object-fit: cover;
 }
-.col-6.terms_box ul {
+.terms_box ul {
   padding-left: 35px;
 }
-.col-6.terms_box ul li {
+.terms_box ul li {
   list-style: disc;
   line-height: 30px;
 }
