@@ -24,9 +24,11 @@ header .logo {
 }
 
 a.cursor.header-logo {
-    width: 10%;
+    width: 12%;
 }
-
+.container-fluid a.cursor.header-logo {
+    width: 10%;
+  }
 header .header_right {
     position: relative;
     margin-left: auto;

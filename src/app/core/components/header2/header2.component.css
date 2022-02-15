@@ -17,6 +17,9 @@ header .logo img {
     max-width: 100%;
 }
 a.cursor.header-logo {
+  width: 12%;
+}
+.container-fluid a.cursor.header-logo {
   width: 10%;
 }
 .content_outer {
