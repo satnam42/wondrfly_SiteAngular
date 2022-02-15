@@ -1395,12 +1395,12 @@ button[disabled] {
 }
 
 @media screen and (min-width: 850px) and (max-width: 1023px) {
-    img.header-image-search {
+    /* img.header-image-search {
         margin-left: 0px;
-    }
-    .after-nav {
+    } */
+    /* .after-nav {
         margin-right: 0px;
-    }
+    } */
     .activity .media-left {
         max-width: 300px;
     }

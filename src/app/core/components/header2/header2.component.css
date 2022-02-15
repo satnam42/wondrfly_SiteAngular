@@ -17,7 +17,7 @@ header .logo img {
     max-width: 100%;
 }
 a.cursor.header-logo {
-  width: 12%;
+  width: 10%;
 }
 .content_outer {
     padding-top: 99px;
@@ -47,9 +47,9 @@ header .navbar-nav .btn_style {
     width: 100px !important;
 }
 
-img.header-image-search {
+/* img.header-image-search {
     margin-left: -80px;
-}
+} */
 /* dropdown program/provider */
 
 .dropdownprogram {
@@ -283,14 +283,14 @@ button[disabled] {
     .dropdownprogram .card{
         width: 237px;
     }
-    img.header-image-search {
+    /* img.header-image-search {
       margin-left: 10px;
-  }
+  } */
 
 }
-.before-nav {
+/* .before-nav {
   margin-right: -83px;
-}
+} */
 
 @media screen and (min-width:850px) and (max-width:1023px) {
 
@@ -324,9 +324,9 @@ button[disabled] {
       border-radius: 20px;
       overflow: hidden;
   }
-  .before-nav {
+  /* .before-nav {
     margin-right: -15px;
-  }
+  } */
   .banner_form .form-group input.date_input {
       background: #EFEFEF;
       border-radius: 30px;

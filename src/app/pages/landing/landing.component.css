@@ -441,9 +441,9 @@ button.banner_button.cursor img {
 .header_main .left-searchpd {
     margin-right: auto;
 }
-.after-nav {
+/* .after-nav {
   margin-right: -84px;
-}
+} */
 .Button-badge {
   position: absolute;
   bottom: 44%;
@@ -516,12 +516,12 @@ button[disabled] {
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1024px) and (orientation: portrait) {
-  img.header-image-search {
+  /* img.header-image-search {
     margin-left: 0px;
-  }
-  .after-nav {
+  } */
+  /* .after-nav {
     margin-right: 0px;
-  }
+  } */
   .activity .media-left {
     max-width: 300px;
   }

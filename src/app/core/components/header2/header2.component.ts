@@ -9,7 +9,7 @@ import { DataService } from "../../services/dataservice.service ";
 selector: "app-header2",
 template: `
 <header [ngClass]="{ 'search-header': logoPosition }">
-  <div class="container">
+  <div [ngClass]="logoPosition? 'container-fluid':'container' ">
     <nav class="navbar navbar-expand-lg navbar-light">
       <a class="cursor header-logo" (click)="logo()">
         <img *ngIf="!logoPosition" src="assets/logo.png" alt="Logo" />
