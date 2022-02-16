@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import axios from 'axios';
+import { environment } from 'src/environments/environment';
 import { Category } from '../../models';
 import { ApiService } from '../../services/api.service.service';
 import { DataService } from '../../services/dataservice.service ';
@@ -38,13 +40,9 @@ import { DataService } from '../../services/dataservice.service ';
               </ul>
           </div>
           <div class="col-4 mx-auto mb-4">
-            <h3 class="text-uppercase">Blogs</h3>
+            <h3 class="text-uppercase">Blogs Category</h3>
               <ul>
-                <li><a href="blogs/category/exploring-their-interests/9">Exploring Their Interests</a></li>
-                <li><a href="blogs/category/health-&-happiness/10"> Health & Happiness </a></li>
-                <li><a href="blogs/category/ages-&-stages/11"> Ages & Stages </a></li>
-                <li><a href="blogs/category/do-togethers-%28diys-&-more%29/12">Do-Togethers (DIYs & More)</a></li>
-                <li><a href="blogs/category/parents-plus/13">Parents Plus</a></li>
+                <li             *ngFor="let category of categories"><a (click)="searchCatg(category)">{{category?.categoryName}}</a></li>
               </ul>
           </div>
           <div class="col-4 mx-auto mb-4">
@@ -59,7 +57,7 @@ import { DataService } from '../../services/dataservice.service ';
           <div class="col-4 mx-auto mb-4">
             <h3 class="text-uppercase">Programs</h3>
               <ul>
-                <li *ngFor="let category of categories"><a class="cursor"(click)="searchByCategory(category.id)">{{category?.name}}</a></li>
+                <li *ngFor="let category of activityCategories"><a class="cursor"(click)="searchByCategory(category.id)">{{category?.name}}</a></li>
               </ul>
           </div>
           <div class="col-4 mx-auto mb-4">
@@ -85,7 +83,9 @@ import { DataService } from '../../services/dataservice.service ';
 export class SitemapComponent implements OnInit {
   isLogin = false;
   userData: any = {};
-  categories:Category[]
+  blogUrl = environment.blogsUrl;
+  activityCategories:Category[]
+  categories:any = []
   filterData: any = {
     categoryId: '',
   }
@@ -98,16 +98,31 @@ export class SitemapComponent implements OnInit {
 
   ngOnInit(){
     this.getCategoryList()
+    this.getCategory()
   }
   getCategoryList() {
     this.apiservice.getCategory().subscribe((res: any) => {
-      this.categories = res;
+      this.activityCategories = res;
     });
   }
+  // ------------------------------------------------get blogs category  -------------------------------------------
+
+  getCategory(){
+    const responcee = axios.get(`${this.blogUrl}/categories`).then(response => {
+      this.categories = response.data
+    });
+    }
   searchByCategory(id) {
     this.filterData.categoryId = id
     this.dataservice.setOption(this.filterData)
     this.router.navigate(['/search']);
+  }
+  searchCatg(data) {
+    var name = data.categoryName;
+    name = name.toLowerCase();
+        name = name.replace(/ /g,"-");
+        name = name.replace(/\?/g,"-");
+        this.router.navigate(['blogs/category/',name, data.id])
   }
   profile() {
     if (this.userData.role === "parent") {
