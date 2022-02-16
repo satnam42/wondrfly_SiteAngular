@@ -42,7 +42,7 @@ import { DataService } from '../../services/dataservice.service ';
           <div class="col-4 mx-auto mb-4">
             <h3 class="text-uppercase">Blogs Category</h3>
               <ul>
-                <li             *ngFor="let category of categories"><a (click)="searchCatg(category)">{{category?.categoryName}}</a></li>
+                <li *ngFor="let category of categories"><a class="cursor" (click)="searchCatg(category)">{{category?.categoryName}}</a></li>
               </ul>
           </div>
           <div class="col-4 mx-auto mb-4">
