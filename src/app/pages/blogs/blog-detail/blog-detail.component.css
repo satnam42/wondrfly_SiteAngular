@@ -532,3 +532,9 @@ span.date-blogdeatil {
     left: 884px;
   }
 }
+
+::ng-deep.text_section_text p img{
+  width: auto;
+  max-width: 100%;
+}
+
