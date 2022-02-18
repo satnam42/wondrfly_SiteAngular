@@ -5,8 +5,8 @@ header {
     display: inline-block;
     width: 100%;
     z-index: 998;
-    padding-bottom: 0px;
-    height: 80px;
+    padding: 10px 35px 13px;
+
     position: fixed;
     top: 34px;
 }
