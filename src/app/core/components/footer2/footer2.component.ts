@@ -28,7 +28,7 @@ import { Component, OnInit } from "@angular/core";
                             <a [routerLink]="['/ambassador-policy']">Ambassador</a>
                           </li> -->
                   <li class="cursor">
-                    <a [routerLink]="['/term-condition']">Terms & Conditions</a>
+                    <a [routerLink]="['/term-condition']">TERMS OF USE</a>
                   </li>
                   <li class="cursor">
                     <a [routerLink]="['/privacy-policy']">Privacy Policy</a>

@@ -25,7 +25,7 @@ import { Component, OnInit } from "@angular/core";
                             </li> -->
                     <li>
                       <a [routerLink]="['/term-condition']"
-                        >Terms & Conditions</a
+                        >TERMS OF USE</a
                       >
                     </li>
                     <li>
