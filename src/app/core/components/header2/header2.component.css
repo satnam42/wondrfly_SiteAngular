@@ -16,10 +16,10 @@ header .logo img {
     max-width: 100%;
 }
 a.cursor.header-logo {
-  width: 12%;
+  width: auto;
 }
 .container-fluid a.cursor.header-logo {
-  width: 10%;
+  width:auto;
 }
 .content_outer {
     padding-top: 99px;
@@ -266,9 +266,8 @@ button.banner_button.cursor img {
   margin-top: 10px;
 }
 a.cursor.header-logo img {
-  width: 100%;
-  -o-object-fit: cover;
-  object-fit: cover;
+  width: 130px;
+  object-fit: contain;
 }
 .search-location input::placeholder{
   color:rgb(190, 187, 187);
