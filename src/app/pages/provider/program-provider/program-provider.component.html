@@ -129,7 +129,7 @@
                                 </li>
                                 <li>
                                     <a [class.active]="activityClass" (click)="onActivities()">
-                                        <span class="icon icon-list"></span> Programs
+                                        <span class="icon icon-list"></span> Activities
                                     </a>
                                 </li>
                             </ul>
@@ -273,9 +273,9 @@
                         </div> -->
 
                         <div *ngIf="isActivities" class="provider_right">
-                            <div class="description_text slider">
+                            <div  class="description_text slider">
                                 <h2>Activities</h2>
-                                <div class="row scrollisActivity">
+                                <div *ngIf="programs?.length" class="row scrollisActivity">
                                     <div class="col-md-6" *ngFor="let program of programs">
                                         <div class="activities_slide">
                                             <div class="slide_image cursor" (click)='goToProgramDetail(program)'>
@@ -302,6 +302,9 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                                <div *ngIf="!programs?.length" style="color: #494949;"> 
+                                    Currently there are no activities available for this provider. Please check back in a few days.
                                 </div>
                             </div>
                         </div>
