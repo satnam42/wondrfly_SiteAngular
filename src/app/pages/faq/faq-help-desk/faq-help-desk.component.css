@@ -124,6 +124,9 @@
 }
 ::ng-deep.inner-temp img {
   width: auto;
+  margin-left: auto;
+  display: block;
+  margin-right: auto;
   max-width: 100%;
 }
 
