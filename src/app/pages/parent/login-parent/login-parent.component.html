@@ -143,7 +143,7 @@
                             <div class="col-3" *ngFor="let tag of tags | slice: 0:8">
                                 <div class="category_list" (click)="selectSkills(tag)">
                                     <div class="box-border" [ngClass]="{ active: tag.active }">
-                                        <img class="cat_img my_box" *ngIf="tag?.icon" src="https://wondrfly.com/{{tag?.icon}}" alt="icon" />
+                                        <img class="cat_img my_box" *ngIf="tag?.icon" src="{{baseUrl+tag?.icon}}" alt="icon" />
                                         <img class="cat_img my_box" *ngIf="!tag?.icon" src="assets/favicon.svg" alt="icon" />
                                     </div>
 
@@ -208,7 +208,7 @@
                             <div class="col-3" *ngFor="let tag of tags | slice: 9:17">
                                 <div class="category_list" (click)="selectSkills(tag)">
                                     <div class="box-border" [ngClass]="{ active: tag.active }">
-                                        <img class="cat_img my_box" *ngIf="tag?.icon" src="https://wondrfly.com/{{tag?.icon}}" alt="icon" />
+                                        <img class="cat_img my_box" *ngIf="tag?.icon" src="{{baseUrl+tag?.icon}}" alt="icon" />
                                         <img class="cat_img my_box" *ngIf="!tag?.icon" src="assets/favicon.svg" alt="icon" />
                                     </div>
 

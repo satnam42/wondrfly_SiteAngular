@@ -939,7 +939,7 @@ removeChildImage(){
       var ageDate = new Date(ageDifMs); // miliseconds from epoch
       var age = Math.abs(ageDate.getUTCFullYear() - 1970);
       child.age = String(age);
-      child.avtar = child.avtar.split('https://wondrfly.com/').pop();
+      child.avtar = child.avtar.split(this.baseUrl).pop();
       // child.avtar =  child.avtar.slice(21);
       console.log('data image before', child);
       this.apiservice.updateChild(child.id, child).subscribe((res: any) => {
@@ -1211,7 +1211,7 @@ removeChildImage(){
   }
 
 copyInvite(){
-  navigator.clipboard.writeText(`https://www.wondrfly.com/ask-to-join?id=${this.user.id}`).then().catch(e => console.error(e));
+  navigator.clipboard.writeText(`${this.baseUrl}ask-to-join?id=${this.user.id}`).then().catch(e => console.error(e));
          this.snack.open('Link copied','', { duration: 500 });
 }
 

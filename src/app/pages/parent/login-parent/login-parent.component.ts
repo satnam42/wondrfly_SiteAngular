@@ -10,6 +10,7 @@ import * as moment from 'moment';
 import { MapsAPILoader } from '@agm/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-login-parent',
   templateUrl: './login-parent.component.html',
@@ -22,6 +23,7 @@ export class LoginParentComponent implements OnInit {
   addChildData: any = new Child
   categoryIds = [];
   parent=new User;
+  baseUrl= environment.baseUrl
   // ---------------autucomplete-------------
   visible: boolean = true;
   selectable: boolean = true;

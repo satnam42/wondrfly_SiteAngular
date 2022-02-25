@@ -541,7 +541,7 @@
 
                             <div *ngFor="let favourite of favourites" class="media activity spacing-media">
                                 <div class="media-left size-increase activity-imgs cursor" (click)="goToProgramDetail(favourite.programs[0])">
-                                    <img src="http://wondrfly.com/{{favourite?.tags[0].pattern}}" alt="Activity" />
+                                    <img src="{{baseUrl+favourite?.tags[0].pattern}}" alt="Activity" />
                                 </div>
                                 <div class="media-body size-increase-123">
                                     <div class="share_icon sk-1234">
@@ -967,7 +967,7 @@
                                         <div class="col-3" *ngFor="let tag of allTags | slice: 0:8">
                                             <div class="category_lists cursor" (click)="selectEvent(tag)">
                                                 <div class="box-border" [ngClass]="{ active: tag?.active }">
-                                                    <img class="cat_img my_box" *ngIf="tag?.icon" src="https://wondrfly.com/{{tag?.icon}}" alt="icon" />
+                                                    <img class="cat_img my_box" *ngIf="tag?.icon" src="{{baseUrl+tag?.icon}}" alt="icon" />
                                                     <img class="cat_img my_box" *ngIf="!tag?.icon" src="assets/favicon.svg" alt="icon" />
                                                 </div>
             

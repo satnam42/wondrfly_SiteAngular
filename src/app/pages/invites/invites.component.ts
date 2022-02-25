@@ -5,6 +5,7 @@ import { User } from 'src/app/core/models';
 import { LocalStorageService } from 'src/app/core/services';
 import { ApiService } from 'src/app/core/services/api.service.service';
 import { AuthsService } from 'src/app/core/services/auths.service';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-invites',
   templateUrl: './invites.component.html',
@@ -21,7 +22,7 @@ export class InvitesComponent implements OnInit {
     email: "",
   };
   isParent: boolean;
-
+  baseUrl = environment.baseUrl
 
   constructor( private apiservice: ApiService,
     private authService: AuthsService,
@@ -59,7 +60,7 @@ export class InvitesComponent implements OnInit {
   }
 
    copyInvite(){
-    navigator.clipboard.writeText(`https://www.wondrfly.com/ask-to-join/${this.user.id}`).then().catch(e => console.error(e));
+    navigator.clipboard.writeText(`${this.baseUrl}ask-to-join/${this.user.id}`).then().catch(e => console.error(e));
           //  this.snack.open('Link copied','', { duration: 500 });
   }
 
