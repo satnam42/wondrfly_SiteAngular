@@ -115,6 +115,11 @@ export class DetailComponent implements OnInit {
   totalRating:any = '';
   isRating = false;
   selectedProgram:any;
+  bannerIndx: number = 0;
+  bannerImages = ['assets/pattern_bg1.png',
+  'assets/pattern_bg2.png',
+  'assets/pattern_bg3.png',
+  ]
   constructor(private apiservice: ApiService,
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
@@ -353,6 +358,7 @@ getRating(){
     });
   }
   ngOnInit() {
+    this.bannerIndx = Math.floor(Math.random() * this.bannerImages.length);
     // this.getBadges();
     this.getCategoryList();
 

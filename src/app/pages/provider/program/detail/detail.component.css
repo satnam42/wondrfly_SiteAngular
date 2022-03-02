@@ -1,6 +1,8 @@
 .program_outer #bannerimage {
-  background: url(/assets/pattern_bg.jpg) no-repeat;
-  background-size: cover;
+  /* background: url(/assets/pattern_bg1.png) no-repeat; */
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-position: top !important;
   border-radius: 0px 0px 20px 20px;
 }
 
