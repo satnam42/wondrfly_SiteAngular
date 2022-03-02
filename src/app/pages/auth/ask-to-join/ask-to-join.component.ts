@@ -35,7 +35,8 @@ export class AskToJoinComponent implements OnInit {
     occupation:  '',
     willActive: false,
     role: 'parent',
-    userId:''
+    userId:'',
+    ipAddress:''
   }
   isGuardianInvitation = false;
   isTerms: boolean;
@@ -107,9 +108,15 @@ cancel(){
 
   }
 
+  // ---------getIPAddress-------
 
+  getIPAddress(){  
+    this.apiservice.getIPAddress().subscribe((res:any)=>{  
+          this.userData.ipAddress=res.ip;  
+        });    } 
 
   ngOnInit() {
+    this.getIPAddress()
     this.randomImage();
     window.scroll(0, 0);
 
