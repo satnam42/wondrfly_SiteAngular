@@ -97,6 +97,8 @@ header .logo img {
   margin-top: 15px;
   padding-left: 38px;
   text-transform: capitalize;
+  word-break: break-word;
+
 }
 
 .side_bar .progress-title {

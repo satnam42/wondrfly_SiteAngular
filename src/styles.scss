@@ -125,11 +125,13 @@ input:-webkit-autofill:active {
 button[disabled] {
   background-color: $disabled_btn !important;
   border: 1px solid $disabled_btn !important;
+  cursor:default !important;
 }
 
 button[disabled]:hover {
   background-color: $disabled_btn !important;
   border: 1px solid $disabled_btn !important;
+  cursor:default !important;
 }
 
 .form-error-msg {

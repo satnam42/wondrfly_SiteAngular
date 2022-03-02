@@ -52,6 +52,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked,OnDestro
   parentImgURL: any;
   childImgURL: any;
   updateChildImgURL: any;
+  userValueChanged = false;
   isProfile = false;
   profile = "";
   isChat = false;
@@ -799,6 +800,7 @@ removeChildImage(){
       this.headerComponent.getProfileProgress();
       this.headerComponent.getUserById();
       this.ngxLoader.stop();
+      this.userValueChanged=false
       if (res) {
         // this.toastr.info(this.message);
       } else {
@@ -812,6 +814,7 @@ removeChildImage(){
         }
       }
     });
+    this.userValueChanged=false
   }
   resetPassword(id) {
     this.ngxLoader.start();

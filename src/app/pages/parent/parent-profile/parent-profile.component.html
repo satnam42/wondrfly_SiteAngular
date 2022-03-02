@@ -95,7 +95,7 @@
                                     <form [formGroup]="updateForm" class="details_form">
                                         <div class="form-group">
                                             <label>Full Name</label>
-                                            <input type="text" placeholder="Enter fullName" class="form-control" [formControl]="updateForm.controls['firstName']" [(ngModel)]="user.firstName" name="firstName" />
+                                            <input type="text" (input)="userValueChanged=true" placeholder="Enter fullName" maxlength="200" class="form-control" [formControl]="updateForm.controls['firstName']" [(ngModel)]="user.firstName" name="firstName" />
                                             <span class="parent-close"><img (click)="user.firstName = ''" src="assets/close.png" /></span>
                                         </div>
 
@@ -107,12 +107,12 @@
 
                                         <div class="form-group">
                                             <label>Address</label>
-                                            <input type="text" placeholder="Enter address" class="form-control" [formControl]="updateForm.controls['addressLine1']" [(ngModel)]="user.addressLine1" name="addressLine1" />
+                                            <input (input)="userValueChanged=true"  type="text" placeholder="Enter address" class="form-control" [formControl]="updateForm.controls['addressLine1']" [(ngModel)]="user.addressLine1" name="addressLine1" />
                                         </div>
 
                                         <div class="form-group">
                                             <label>Mobile Number</label>
-                                            <input type="text" placeholder="e.g. (555) 555 5555" mask="(000) 000-0000" minlength="10" class="form-control" [formControl]="updateForm.controls['phoneNumber']" [(ngModel)]="user.phoneNumber" name="phoneNumber" />
+                                            <input (input)="userValueChanged=true"  type="text" placeholder="e.g. (555) 555 5555" mask="(000) 000-0000" minlength="10" class="form-control" [formControl]="updateForm.controls['phoneNumber']" [(ngModel)]="user.phoneNumber" name="phoneNumber" />
                                         </div>
                                     </form>
                                 </div>
@@ -120,7 +120,7 @@
 
                             <div class="row bottom_arrow">
                                 <div class="col-12">
-                                    <button [disabled]="!user.firstName" (click)="updateParent(user)" class="btn_style save_btn cursor">
+                                    <button [disabled]="!userValueChanged" (click)="updateParent(user)" class="btn_style save_btn cursor">
                     Save
                   </button>
                                 </div>
