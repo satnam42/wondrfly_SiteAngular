@@ -21,7 +21,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-12 activities-flex">
-                            <h2 class="title">Activities for {{ kid?.name }}</h2>
+                            <h2 class="title">Activities for <span style="color:#53b2e8 ;">{{ kid?.name }}</span></h2>
                             <span (click)="filterData.searchedCategoryKey=kids[i].interestInfo[0]?.name;filterData.kidAge=kids[i].age;clickOnViewAllChildIntrests(i)" class="d-flex justify-content-end">view all</span>
                         </div>
                     </div>

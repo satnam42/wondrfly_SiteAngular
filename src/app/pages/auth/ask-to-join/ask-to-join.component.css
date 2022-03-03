@@ -269,6 +269,7 @@ span.beta-span {
 .tab_outer .form-group input {
     min-height: 47px;
     padding: 10px 14px;
+    padding-right: 24px;
     position: relative;
     background-color: #fff;
 }
