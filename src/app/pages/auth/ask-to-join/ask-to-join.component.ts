@@ -92,8 +92,7 @@ cancel(){
         if(res.isSuccess){
           this.disableApproveBtn=false;
     window.document.getElementById("openSuccessModal").click();
-  }
-        else{
+  }   else{
           this.disableApproveBtn=false;
           this.toastr.error(res.error) }
     })
@@ -166,7 +165,6 @@ cancel(){
       });
     });
   }
-  
   ngOnDestroy() {
     window.document.getElementById("close_modal").click();
   }
