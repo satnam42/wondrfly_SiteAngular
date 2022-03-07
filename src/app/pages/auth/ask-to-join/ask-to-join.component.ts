@@ -55,6 +55,7 @@ export class AskToJoinComponent implements OnInit {
   ]
   step1= true
   step2 = false
+  disableApproveBtn=false;
   constructor(private auth:AuthsService,
     private apiservice: ApiService,
     private mapsAPILoader: MapsAPILoader,
@@ -83,26 +84,30 @@ cancel(){
 }
 
   askToJoin() {
-    console.log(this.userData)
-    let email = this.userData.email.toLowerCase();
+    this.disableApproveBtn=true;
+        let email = this.userData.email.toLowerCase();
     this.userData.email = email;
     if(this.isGuardianInvitation){
       this.apiservice.guardianAsktojoin(this.userData).subscribe((res: any) => {
-        console.log(res)
-
         if(res.isSuccess){
+          this.disableApproveBtn=false;
     window.document.getElementById("openSuccessModal").click();
   }
-        else{this.toastr.error(res.error) }
+        else{
+          this.disableApproveBtn=false;
+          this.toastr.error(res.error) }
     })
     }
     else{
       this.apiservice.askToJoin(this.userData).subscribe((res: any) => {
         console.log(res)
         if(res.isSuccess){
+          this.disableApproveBtn=false;
           window.document.getElementById("openSuccessModal").click();
         }
-        else{this.toastr.error(res.error) }
+        else{
+          this.disableApproveBtn=false;
+          this.toastr.error(res.error) }
     })
     }
 
