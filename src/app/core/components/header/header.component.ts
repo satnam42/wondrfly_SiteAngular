@@ -186,7 +186,15 @@ export class HeaderComponent implements OnInit {
         }
       });
     }
-  
+  }
+  notificationView(data){
+    console.log('data',data)
+    switch (data.title){
+case'Your profile has been updated': {}
+case'Kid added': {}
+case 'Program saved'||'Program removed from saved': {}
+case'Complete your profile to get the most out of Wondrfly!': {}
+    }
   }
   onOffNotification(id, e) {
     this.apiservice.onOffNotification(id, e).subscribe((res: any) => {

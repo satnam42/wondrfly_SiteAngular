@@ -288,7 +288,7 @@
                     <div class="notification cursor" *ngFor="
               let notification of todayNotifications ;
               let i = index
-            " (mouseover)="readNotification(notification)">
+            " (mouseover)="readNotification(notification)" (click)="notificationView(notification)">
                         <div class="img-notif">
                             <img src="assets/notic1.png">
                             <span *ngIf="!notification.isRead" class="red_dot dots-span"><svg width="7" height="7" viewBox="0 0 4 4"
@@ -312,10 +312,10 @@
 
                     <hr class="grey_line" />
                     <h6 class="today-heading" *ngIf="earlierNotifications?.length">Earlier</h6>
-                    <div class="notification" *ngFor="
+                    <div class="notification cursor" *ngFor="
               let notification of earlierNotifications;
               let i = index
-            " (mouseover)="readNotification(notification)">
+            " (mouseover)="readNotification(notification)" (click)="notificationView(notification)">
                         <div class="img-notif">
                             <!-- <img src="assets/notic3.png"> -->
                             <img src="assets/notic1.png">
