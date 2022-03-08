@@ -188,12 +188,15 @@ export class HeaderComponent implements OnInit {
     }
   }
   notificationView(data){
-    console.log('data',data)
     switch (data.title){
-case'Your profile has been updated': {}
-case'Kid added': {}
-case 'Program saved'||'Program removed from saved': {}
-case'Complete your profile to get the most out of Wondrfly!': {}
+case'Your profile has been updated': {  console.log(data.title)
+}
+case'Kid added': {  console.log(data.title)
+}
+case 'Program saved'||'Program removed from saved': {  console.log(data.title)
+}
+case'Complete your profile to get the most out of Wondrfly!': {  console.log(data.title)
+}
     }
   }
   onOffNotification(id, e) {
