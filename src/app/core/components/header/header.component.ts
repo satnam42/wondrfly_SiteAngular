@@ -114,9 +114,7 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(["/provider/program/add"]);
   }
   profile() {
-    if (this.store.getItem('activeList') == '1') {
       this.store.removeItem('activeList')
-    }
     if (this.user.role === "parent") {
       this.router.navigate(["parent/profile", this.user.id]);
          if (this.routeName === "parent/profile", this.user.id) {
