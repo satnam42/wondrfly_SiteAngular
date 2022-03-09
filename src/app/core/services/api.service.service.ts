@@ -387,6 +387,8 @@ export class ApiService {
                 this.userResponse = responseData;
                 subject.next(this.userResponse);
             }
+        }, (error) => {
+            subject.next(error.error);
         });
         return subject.asObservable();
     }
