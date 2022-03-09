@@ -145,7 +145,6 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked,OnDestro
   tags: any = [];
   allTags: any = [];
   suggestedTags:any =[];
-  savedList = '';
   sendInvite = '';
   isSMSnotification:boolean;
   isPushnotification:boolean;
@@ -155,6 +154,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked,OnDestro
   imageRole='';
   selectedChildIndx:number
   maxDate:string;
+  activeList:any
   constructor(
     private apiservice: ApiService,
     private router: Router,
@@ -165,9 +165,9 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked,OnDestro
     private snack: MatSnackBar,
     private toastr: ToastrService,
   ) {
+    this.activeList = this.store.getItem('activeList');
     this.currentUser = this.authService.currentUser();
     this.sendInvite = JSON.parse(this.store.getItem('sendInvite'));
-    this.savedList = JSON.parse(this.store.getItem('savedList'));
   }
 
   dateV(){
@@ -244,8 +244,8 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked,OnDestro
   }
 
   onProfile() {
-    this.store.removeItem('savedList');
     this.store.removeItem('sendInvite');
+    this.store.removeItem('activeList');
     window.scroll(0, 0);
     this.isChat = false;
     this.chat = "";
@@ -271,8 +271,8 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked,OnDestro
     this.profile = "active";
   }
   onChat() {
-    this.store.removeItem('savedList');
     this.store.removeItem('sendInvite');
+    this.store.removeItem('activeList');
     window.scroll(0, 0);
     this.isChat = true;
     this.chat = "active";
@@ -300,7 +300,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked,OnDestro
   }
 
   onGuardian(id) {
-    this.store.removeItem('savedList');
+    this.store.removeItem('activeList');
     this.store.removeItem('sendInvite');
     window.scroll(0, 0);
     this.ngxLoader.start();
@@ -345,7 +345,8 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked,OnDestro
   // --------------------------------------------------
 
   onChildren(id) {
-    this.store.removeItem('savedList');
+    this.activeList = 'kidList'
+    this.store.removeItem('activeList');
     this.store.removeItem('sendInvite');
     window.scroll(0, 0);
     this.isProfile = false;
@@ -477,7 +478,7 @@ this.kids = kids
     this.isEditChildBtn = true;
   }
   onInvite(userId) {
-    this.store.removeItem('savedList');
+    this.store.removeItem('activeList');
     window.scroll(0, 0);
     this.isChat = false;
     this.chat = "";
@@ -505,9 +506,11 @@ this.kids = kids
 
   }
   getFav(id) {
+    this.activeList = 'savedList'
+    this.store.removeItem('activeList');
+    this.store.removeItem('sendInvite');
       this.apiservice.getFavouriteByParentId(id).subscribe((res) => {
         this.favourites = res;
-        console.log('saved list ',this.favourites)
       });
       this.isFavourite = true;
       this.favourite = "active";
@@ -534,7 +537,7 @@ this.kids = kids
   }
 
   onNotification() {
-    this.store.removeItem('savedList');
+    this.store.removeItem('activeList');
     window.scroll(0, 0);
     this.isProfile = false;
     this.profile = "";
@@ -640,8 +643,8 @@ this.kids = kids
   this.isEmailnotification= e;
   }
   onSetting() {
-    this.store.removeItem('savedList');
     this.store.removeItem('sendInvite');
+    this.store.removeItem('activeList');
     window.scroll(0, 0);
     this.isProfile = false;
     this.profile = "";
@@ -1051,8 +1054,10 @@ removeChildImage(){
   ngOnInit() {
     this.dateV()
     this.getTagList()
-    if(this.savedList){
-      this.store.removeItem('sendInvite');
+    if(this.activeList=="kidList"){
+      this.onChildren(this.currentUser.id);
+    }
+    else if(this.activeList=="savedList"){
       this.getFav(this.currentUser.id);
     }
     else if(this.sendInvite){
@@ -1133,7 +1138,6 @@ removeChildImage(){
     this.scrollToBottom();
   }
   ngOnDestroy(): void{
-    // this.store.removeItem('savedList');
     this.store.removeItem('sendInvite');
   }
 

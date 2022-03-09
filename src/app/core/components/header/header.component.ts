@@ -1,4 +1,4 @@
-import { Component, ElementRef, NgZone, OnInit, ViewChild } from "@angular/core";
+import { Component, ElementRef, EventEmitter, NgZone, OnInit, Output, ViewChild } from "@angular/core";
 import { Router } from "@angular/router";
 import { User } from "../../models";
 import { AuthsService } from "../../services/auths.service";
@@ -10,6 +10,7 @@ import { DataService } from "../../services/dataservice.service ";
 import { ToastrService } from "ngx-toastr";
 import { MapsAPILoader } from "@agm/core";
 import * as moment from "moment";
+import { ParentProfileComponent } from "src/app/pages/parent/parent-profile/parent-profile.component";
 
 declare const $: any;
 @Component({
@@ -29,19 +30,19 @@ export class HeaderComponent implements OnInit {
   helpClass: string = "";
   forumClass: string = "";
   chatClass: string = "";
-  lat:string;
-  lng:string
+  lat: string;
+  lng: string
   filterData: any = {
     subcatId: '',
-    categoryId : '',
+    categoryId: '',
     activityName: '',
-    searchedCategoryKey:'',
-    lat:'',
-    lng:'',
+    searchedCategoryKey: '',
+    lat: '',
+    lng: '',
   };
   locationData: any = {
     lat: '',
-    lng:'',
+    lng: '',
   }
 
   initialUrl: any;
@@ -64,10 +65,10 @@ export class HeaderComponent implements OnInit {
   zoom = 14;
   address: string;
   private geoCoder;
-  todayNotifications=[];
-  earlierNotifications=[];
-  newNotifications:any;
-  @ViewChild('search', { static: false }) searchElementRef: ElementRef;  gitBoxImage='assets/gift-box.svg';
+  todayNotifications = [];
+  earlierNotifications = [];
+  newNotifications: any;
+  @ViewChild('search', { static: false }) searchElementRef: ElementRef; gitBoxImage = 'assets/gift-box.svg';
   constructor(
     private router: Router,
     private auth: AuthsService,
@@ -90,7 +91,7 @@ export class HeaderComponent implements OnInit {
       this.gitBoxImage = 'assets/invite-open.svg';
     }
     // if(this.routeName === '/search'|| this.routeName === '/'){ this.searchBar=true}
-    if( this.routeName === '/' || this.routeName === '/parent/my-wondrfly' || this.routeName==='/invite'){ this.searchBar=true}
+    if (this.routeName === '/' || this.routeName === '/parent/my-wondrfly' || this.routeName === '/invite') { this.searchBar = true }
 
     if (this.user.role === "provider" || this.user.role === "parent") {
       if (this.user.role === "provider") {
@@ -105,19 +106,24 @@ export class HeaderComponent implements OnInit {
   }
   logo() {
     this.router
-    .navigateByUrl("/", { skipLocationChange: true })
-    .then(() => this.router.navigate(["parent/my-wondrfly"]));
-      // this.router.navigate([""]);
+      .navigateByUrl("/", { skipLocationChange: true })
+      .then(() => this.router.navigate(["parent/my-wondrfly"]));
+    // this.router.navigate([""]);
   }
   addProgram() {
     this.router.navigate(["/provider/program/add"]);
   }
   profile() {
-    if(this.store.getItem('savedList')=='1'){
-      this.store.removeItem('savedList')
+    if (this.store.getItem('activeList') == '1') {
+      this.store.removeItem('activeList')
     }
     if (this.user.role === "parent") {
       this.router.navigate(["parent/profile", this.user.id]);
+         if (this.routeName === "parent/profile", this.user.id) {
+            this.router
+              .navigateByUrl("/", { skipLocationChange: true })
+              .then(() => this.router.navigate(["parent/profile", this.user.id]));
+          }
     } else if (this.user.role === "provider") {
       this.router.navigate(["provider/profile", this.user.id]);
     } else {
@@ -126,9 +132,13 @@ export class HeaderComponent implements OnInit {
   }
   savedList() {
     if (this.user.role === "parent") {
-      this.store.setItem("savedList", "1");
-      this.router.navigateByUrl("/", { skipLocationChange: true }).then(() =>
-       this.router.navigate(["parent/profile", this.user.id]));
+      this.store.setItem("activeList", "savedList");
+      this.router.navigate(["parent/profile", this.user.id]);
+      if (this.routeName === "parent/profile", this.user.id) {
+        this.router
+          .navigateByUrl("/", { skipLocationChange: true })
+          .then(() => this.router.navigate(["parent/profile", this.user.id]));
+      }
     }
   }
   getProfileProgress() {
@@ -143,16 +153,16 @@ export class HeaderComponent implements OnInit {
     this.apiservice.getUserById(this.user.id).subscribe((res: any) => {
       this.user = res.data;
       this.user.notices.notifications.reverse();
-      let notifications=[]
-      notifications = this.user.notices.notifications.filter(notification=>notification.isRead==false)
+      let notifications = []
+      notifications = this.user.notices.notifications.filter(notification => notification.isRead == false)
       this.newNotifications = notifications.length
-      
-       this.todayNotifications = this.user.notices.notifications.filter(obj => moment().isSame(obj.createdOn, 'day'));
-      console.log('todayNotificaations',this.todayNotifications)
-      this.earlierNotifications =  this.user.notices.notifications.filter(obj => !moment().isSame(obj.createdOn, 'day'));
-      console.log('earlierNotifications',this.earlierNotifications)
-            this.store.setObject('CurrentUserWondrfly', this.user);
-      console.log('user',this.user)
+
+      this.todayNotifications = this.user.notices.notifications.filter(obj => moment().isSame(obj.createdOn, 'day'));
+      console.log('todayNotificaations', this.todayNotifications)
+      this.earlierNotifications = this.user.notices.notifications.filter(obj => !moment().isSame(obj.createdOn, 'day'));
+      console.log('earlierNotifications', this.earlierNotifications)
+      this.store.setObject('CurrentUserWondrfly', this.user);
+      console.log('user', this.user)
       // this.user.notices.notifications = this.user.notices.notifications.filter(notification=>notification.createdOn.getTime() < new Date().getTime())
       // this.todayNotifications = this.user.notices.notifications.filter(notification=>notification.createdOn.getTime() == new Date().getTime())
       // console.log('todayNotifications',this.todayNotifications)
@@ -179,7 +189,7 @@ export class HeaderComponent implements OnInit {
     });
   }
   readNotification(notification) {
-    if(!notification.isRead){
+    if (!notification.isRead) {
       this.apiservice.readNotification(notification._id).subscribe((res: any) => {
         if (res.isSuccess) {
           this.getUserById();
@@ -187,16 +197,51 @@ export class HeaderComponent implements OnInit {
       });
     }
   }
-  notificationView(data){
-    switch (data.title){
-case'Your profile has been updated': {  console.log(data.title)
-}
-case'Kid added': {  console.log(data.title)
-}
-case 'Program saved'||'Program removed from saved': {  console.log(data.title)
-}
-case'Complete your profile to get the most out of Wondrfly!': {  console.log(data.title)
-}
+  notificationView(data) {
+    switch (data.title) {
+      case 'update Profile': case 'About Profile': {
+        window.document.getElementById("close_notification_modal").click();
+          this.store.removeItem('activeList')
+        if (this.user.role === "parent") {
+          this.router.navigate(["parent/profile", this.user.id]);
+          if (this.routeName === "parent/profile", this.user.id) {
+            this.router
+              .navigateByUrl("/", { skipLocationChange: true })
+              .then(() => this.router.navigate(["parent/profile", this.user.id]));
+          }
+        } else if (this.user.role === "provider") {
+          this.router.navigate(["provider/profile", this.user.id]);
+        } else {
+          this.router.navigate(["login"]);
+        }
+        break;
+      }
+      case 'Add child': {
+        window.document.getElementById("close_notification_modal").click();
+        if (this.user.role === "parent") {
+          this.store.setItem("activeList", "kidList");      
+          this.router.navigate(["parent/profile", this.user.id])
+          if (this.routeName === "parent/profile", this.user.id) {
+            this.router
+              .navigateByUrl("/", { skipLocationChange: true })
+              .then(() => this.router.navigate(["parent/profile", this.user.id]));
+          }
+        }
+        break;
+      }
+      case 'Save Program': case 'unSave Program':{
+        window.document.getElementById("close_notification_modal").click();
+        if (this.user.role === "parent") {
+          this.store.setItem("activeList", "savedList");      
+          this.router.navigate(["parent/profile", this.user.id])
+          if (this.routeName === "parent/profile", this.user.id) {
+            this.router
+              .navigateByUrl("/", { skipLocationChange: true })
+              .then(() => this.router.navigate(["parent/profile", this.user.id]));
+          }
+        }
+        break;
+      }
     }
   }
   onOffNotification(id, e) {
@@ -264,6 +309,8 @@ case'Complete your profile to get the most out of Wondrfly!': {  console.log(dat
 
   ngOnDestroy() {
     window.document.getElementById("close_feedback_modal").click();
+    window.document.getElementById("close_notification_modal").click();
+
   }
   logout() {
     this.auth.logout();
@@ -272,9 +319,9 @@ case'Complete your profile to get the most out of Wondrfly!': {  console.log(dat
     this.router.navigate([""]);
     // window.document.getElementById("open_feedback_modal").click();
   }
-  goToInviteList(){
-    this.store.setItem('sendInvite','1')
-    this.router.navigate(['/parent/profile',this.user.id]);
+  goToInviteList() {
+    this.store.setItem('sendInvite', '1')
+    this.router.navigate(['/parent/profile', this.user.id]);
   }
   submitFeedback() {
     this.feedbackData.id = this.user.id;
@@ -306,18 +353,19 @@ case'Complete your profile to get the most out of Wondrfly!': {  console.log(dat
 
   providerSearch(key) {
     this.apiservice.searchUsers(key, "provider").subscribe((res: any) => {
-      if(res.data){
+      if (res.data) {
         this.providersBySearch = res.data;
       }
-      else{
-        this.providersBySearch=[]
-      }    });
+      else {
+        this.providersBySearch = []
+      }
+    });
   }
   searchByLocation() {
-    this.filterData.searchedCategoryKey=this.filterData.activityName
-    this.filterData.activityName=''
+    this.filterData.searchedCategoryKey = this.filterData.activityName
+    this.filterData.activityName = ''
     this.filterData.categoryId = ''
-    this.filterData.subcatId= ''
+    this.filterData.subcatId = ''
     this.filterData.lat = this.lat
     this.filterData.lng = this.lng
     this.dataservice.setLocation(this.filterData)
@@ -330,8 +378,8 @@ case'Complete your profile to get the most out of Wondrfly!': {  console.log(dat
   }
   searchBySubCategory(id) {
     this.filterData.activityName = '';
-    this.filterData.lat=''
-    this.filterData.lng=''
+    this.filterData.lat = ''
+    this.filterData.lng = ''
     this.filterData.subcatId = id;
     this.dataservice.setOption(this.filterData);
     this.router.navigate(["/search"]);
@@ -343,18 +391,19 @@ case'Complete your profile to get the most out of Wondrfly!': {  console.log(dat
   }
 
   searchByCategory(id) {
-    this.filterData.activityName=''
-    this.filterData.subcatId =''
+    this.filterData.activityName = ''
+    this.filterData.subcatId = ''
     this.filterData.categoryId = id
-    this.filterData.lat=''
-    this.filterData.lng=''
+    this.filterData.lat = ''
+    this.filterData.lng = ''
     this.dataservice.setOption(this.filterData)
     this.router.navigate(["/search"]);
     if (this.routeName === "/search") {
       this.router
         .navigateByUrl("/", { skipLocationChange: true })
         .then(() => this.router.navigate(["search"]));
-    }  }
+    }
+  }
 
   goToProviderProfile(provider) {
     console.log(provider)
@@ -383,25 +432,25 @@ case'Complete your profile to get the most out of Wondrfly!': {  console.log(dat
     }
   }
 
-    // Get Current Location Coordinates
-    setCurrentLocation() {
-      this.mapsAPILoader.load().then(() => {
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition((position:any) => {
-            this.zoom = 14;
-            this.locationData.lat = position.coords.latitude;
-            this.locationData.lng = position.coords.longitude;
-            this.dataservice.setLocation(this.locationData)
-            this.router.navigate(['/search']);
-            if (this.routeName === "/search") {
-              this.router
-                .navigateByUrl("/", { skipLocationChange: true })
-                .then(() => this.router.navigate(["search"]));
-            }
-            console.log(this.lat,this.lng)
-            // this.getAddress(this.lat, this.lng);
-          });
-        }      this.geoCoder = new google.maps.Geocoder;
-      });
-    }
+  // Get Current Location Coordinates
+  setCurrentLocation() {
+    this.mapsAPILoader.load().then(() => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position: any) => {
+          this.zoom = 14;
+          this.locationData.lat = position.coords.latitude;
+          this.locationData.lng = position.coords.longitude;
+          this.dataservice.setLocation(this.locationData)
+          this.router.navigate(['/search']);
+          if (this.routeName === "/search") {
+            this.router
+              .navigateByUrl("/", { skipLocationChange: true })
+              .then(() => this.router.navigate(["search"]));
+          }
+          console.log(this.lat, this.lng)
+          // this.getAddress(this.lat, this.lng);
+        });
+      } this.geoCoder = new google.maps.Geocoder;
+    });
+  }
 }
