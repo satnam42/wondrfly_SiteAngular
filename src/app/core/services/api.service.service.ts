@@ -466,6 +466,32 @@ export class ApiService {
         return subject.asObservable();
     }
 
+        //------------------------------- analytics parent -------------------------->
+
+        parentAnalytics(key,userId,value): Observable<any[]> {
+            const subject = new Subject<any[]>();
+            this.http.put(`${this.root}/parents/createSearchHistory?userId=${userId}&${key}=${value}`, '', this.getHeader()).subscribe((responseData: any) => {
+                if (responseData.statusCode !== 200) {
+                    throw new Error('This request has failed ' + responseData.status);
+                }
+                const dataModel = responseData;
+                if (!dataModel.isSuccess) {
+                    if (responseData.status === 200) {
+                        // this.toasty.error(dataModel.error);
+                        throw new Error(dataModel.code || dataModel.message || 'failed');
+                    } else {
+                        throw new Error(responseData.status + '');
+                    }
+                }
+                subject.next(responseData);
+            }, (error) => {
+                const dataModel = error;
+                subject.next(dataModel.error);
+    
+            });
+            return subject.asObservable();
+        }
+    
 
 
     //---------------------------- active/deactive user ------------------------>

@@ -81,6 +81,7 @@ export class ProgramProviderComponent implements OnInit {
   title = 'Top Classes for Kids by Best Online Provider - Wondrfly '
   @ViewChild(HeaderComponent, { static: true }) headerComponent: HeaderComponent;
   previous;
+  userId=''
   constructor(private router: Router,
     private apiservice: ApiService,
     private auth: AuthsService,
@@ -97,6 +98,7 @@ export class ProgramProviderComponent implements OnInit {
 
     this.userData = auth.currentUser()
     if (this.userData) {
+      this.userId = this.userData.id
       this.isLogin = true;
     }
 
@@ -145,8 +147,14 @@ export class ProgramProviderComponent implements OnInit {
 
     });
     this.ngxLoader.stop();
+    this.parentAnalyticAction()
+    
   }
-
+  parentAnalyticAction(){
+    this.apiservice.parentAnalytics('provider',this.userId,this.user.id).subscribe((res: any) => {
+      console.log('action call' , res)
+    });
+  }
   // ---------------------------------navigate to program detail page -------------------------------------------
   getRating() {
     console.log('ratingggggggggggggUserddddddddd', this.user.id)

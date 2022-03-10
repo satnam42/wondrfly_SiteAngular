@@ -138,12 +138,12 @@ export class DetailComponent implements OnInit {
     });
     this.user = JSON.parse(localStorage.getItem('CurrentUserWondrfly'));
     if (this.user) {
-      this.userId = this.user.id
       this.isLogin = true;
       if (this.user.role === "provider") {
         this.providerRole = true;
       }
       else if (this.user.role === "parent") {
+        this.userId = this.user.id
         this.providerRole = false;
       }
     }
@@ -256,8 +256,8 @@ export class DetailComponent implements OnInit {
       this.getProviderProgram();
       this.getProviderById()
       this.program_mins = moment.utc(moment(this.program.time.to, "HH:mm:ss").diff(moment(this.program.time.from, "HH:mm:ss"))).format("mm")
+      this.parentAnalyticAction()
     });
-
     this.ngxLoader.stop();
   }
 
@@ -355,6 +355,11 @@ export class DetailComponent implements OnInit {
   getCategoryList() {
     this.apiservice.getCategory().subscribe((res: any) => {
       this.categories = res;
+    });
+  }
+  parentAnalyticAction(){
+    this.apiservice.parentAnalytics('program',this.userId,this.program._id).subscribe((res: any) => {
+      console.log('action call' , res)
     });
   }
   ngOnInit() {

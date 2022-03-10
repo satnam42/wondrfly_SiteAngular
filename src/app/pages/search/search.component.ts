@@ -143,6 +143,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   regWallCookies = 0
   moment = moment;
   minDate: moment.Moment;
+  userId=''
   constructor(
     private router: Router,
     private apiservice: ApiService,
@@ -220,6 +221,7 @@ export class SearchComponent implements OnInit, OnDestroy {
         this.parentRole = false;
       }
       if (this.userData.role === 'parent') {
+        this.userId = this.userData.id
         this.parentRole = true;
         this.providerRole = false;
       }
@@ -607,7 +609,12 @@ export class SearchComponent implements OnInit, OnDestroy {
       this.searchedSubCategory = this.activityName;
     });
   }
+  parentAnalyticAction(key,value){
+    this.apiservice.parentAnalytics(key,this.userId,value).subscribe((res: any) => {
+      console.log(key, res)
 
+    });
+  }
   programFilter() {
     if (this.regWallCookies > 11) {
       this.isBetaPopUp = true
@@ -638,6 +645,7 @@ export class SearchComponent implements OnInit, OnDestroy {
       if (this.categoryId) {
         this.isCategoryFilter = true;
         categoryId = this.categoryId
+        this.parentAnalyticAction('category',categoryId)
       }
       for (let day of this.selectedDays) {
         this.isDaysFilter = true;
@@ -669,6 +677,7 @@ export class SearchComponent implements OnInit, OnDestroy {
         else {
           tags += ',' + tag
         }
+        this.parentAnalyticAction('subCategory',tag)
       }
       for (let time of this.selectedProgramTime) {
         this.isTimeFilter = true
