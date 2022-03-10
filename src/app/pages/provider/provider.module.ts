@@ -7,7 +7,8 @@ import { ProviderComponent } from './provider.component';
 import { AgmCoreModule } from '@agm/core';
 import { RatingModule } from 'src/app/core/components/rating/rating.module';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
-@NgModule({  declarations: [ProviderComponent ,ProgramProviderComponent],
+@NgModule({
+  declarations: [ProviderComponent, ProgramProviderComponent],
   imports: [
     CommonModule,
     ProviderRoutingModule,

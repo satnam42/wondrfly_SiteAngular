@@ -24,12 +24,12 @@ import { environment } from 'src/environments/environment.prod';
 export class DetailComponent implements OnInit {
   defaultImage = 'https://miro.medium.com/max/441/1*9EBHIOzhE1XfMYoKz1JcsQ.gif';
   errorImage = 'assets/favicon.svg';
-  baseUrl= environment.baseUrl;
+  baseUrl = environment.baseUrl;
   programUpdateForm: FormGroup;
   pageNo = 1;
   pageSize = 20;
   isScrol: boolean = true;
-  programs:any = Program;
+  programs: any = Program;
   categories: any = new Category;
   program = new Program;
   lat = 51.678418;
@@ -67,8 +67,8 @@ export class DetailComponent implements OnInit {
   filteredFruits: Observable<any[]>;
   filteredValues: Observable<any[]>;
   getTagResponse: any;
-  categoryArr:any=[];
-  subcatArr:any=[];
+  categoryArr: any = [];
+  subcatArr: any = [];
 
   tags: any = [];
   @ViewChild('fruitInput', { static: true }) fruitInput: ElementRef;
@@ -85,7 +85,7 @@ export class DetailComponent implements OnInit {
   fromTime = new Date;
   toTime = new Date;
   toDate = new Date;
- fromDate = new Date;
+  fromDate = new Date;
   markerUrl = 'assets/location.svg'
   latitude: number;
   longitude: number;
@@ -100,7 +100,7 @@ export class DetailComponent implements OnInit {
   program_mins: any;
   //  ng5slider start age group
 
-  minAge: number ;
+  minAge: number;
   maxAge: number;
 
   ageOption: Options = {
@@ -112,13 +112,13 @@ export class DetailComponent implements OnInit {
 
   };
   previous;
-  totalRating:any = '';
+  totalRating: any = '';
   isRating = false;
-  selectedProgram:any;
+  selectedProgram: any;
   bannerIndx: number = 0;
   bannerImages = ['assets/pattern_bg1.png',
-  'assets/pattern_bg2.png',
-  'assets/pattern_bg3.png',
+    'assets/pattern_bg2.png',
+    'assets/pattern_bg3.png',
   ]
   constructor(private apiservice: ApiService,
     private mapsAPILoader: MapsAPILoader,
@@ -157,7 +157,7 @@ export class DetailComponent implements OnInit {
 
   onChange(data) {
     this.program.duration = moment.utc(moment(this.toTime, "HH:mm:ss").diff(moment(this.fromTime, "HH:mm:ss"))).format("mm");
-   }
+  }
 
 
   openModal(data, batch: any) {
@@ -181,14 +181,14 @@ export class DetailComponent implements OnInit {
   }
 
   selectEvent(item) {
-    this.program.categoryId=item;
+    this.program.categoryId = item;
     // do something with selected item
   }
   goToProfile() {
     this.program.programOwner = this.program.programOwner.toLowerCase();
-    this.program.programOwner = this.program.programOwner.replace(/ /g,"-");
-    this.program.programOwner = this.program.programOwner.replace(/\?/g,"-");
-      this.router.navigate(['/provider/program-provider', this.program.programOwner, this.program.user]);
+    this.program.programOwner = this.program.programOwner.replace(/ /g, "-");
+    this.program.programOwner = this.program.programOwner.replace(/\?/g, "-");
+    this.router.navigate(['/provider/program-provider', this.program.programOwner, this.program.user]);
   }
   onChangeSearch(val: string) {
     this.searchTag(val)
@@ -208,7 +208,7 @@ export class DetailComponent implements OnInit {
 
 
 
-// ----------------------------------------------------------------------------------------------------------
+  // ----------------------------------------------------------------------------------------------------------
 
 
   getProviderById() {
@@ -219,14 +219,14 @@ export class DetailComponent implements OnInit {
     this.getRating()
   }
 
-    // ---------------------------------navigate to program detail page -------------------------------------------
-getRating(){
-  this.apiservice.getUserRating(this.program.user).subscribe((res:any) => {
-     this.rating = res
-     this.rating.finalAverageRating = parseFloat(String(this.rating.finalAverageRating)).toFixed(1)
-     console.log('ratinggggggggggggg', res)
-   });
- }
+  // ---------------------------------navigate to program detail page -------------------------------------------
+  getRating() {
+    this.apiservice.getUserRating(this.program.user).subscribe((res: any) => {
+      this.rating = res
+      this.rating.finalAverageRating = parseFloat(String(this.rating.finalAverageRating)).toFixed(1)
+      console.log('ratinggggggggggggg', res)
+    });
+  }
 
   getProgramById() {
     this.ngxLoader.start();
@@ -237,20 +237,20 @@ getRating(){
       // this.program.time.to = moment(this.program.time.to).format("h:mm");
       // this.program.time.from =this.convertNumToTime(this.program.time.from.toFixed(2))
       // this.program.time.to =this.convertNumToTime(this.program.time.to.toFixed(2))
-      console.log('res program by id',this.program)
+      console.log('res program by id', this.program)
       var lastIndex = this.program.location.lastIndexOf(", ");
       this.program.location = this.program.location.substring(0, lastIndex);
       this.title = this.program.name
-      this.categoryArr=this.program.category;
-      this.subcatArr=this.program.subCategoryIds
+      this.categoryArr = this.program.category;
+      this.subcatArr = this.program.subCategoryIds
       // console.log('subcatArr==>',this.subcatArr)
       // console.log('categoryArr==>',this.categoryArr)
 
-    console.log('catogsdsadasa', this.program)
-    this.titleService.setTitle(this.title+ ' - wondrfly');
-    this.metaTagService.updateTag(
-      { name: 'description', content: this.program.description }
-    );
+      console.log('catogsdsadasa', this.program)
+      this.titleService.setTitle(this.title + ' - wondrfly');
+      this.metaTagService.updateTag(
+        { name: 'description', content: this.program.description }
+      );
       this.programImgURL = this.program.programCoverPic;
       // this.userLogo = this.program.provider.logo
       this.getProviderProgram();
@@ -261,9 +261,9 @@ getRating(){
     this.ngxLoader.stop();
   }
 
-   convertNumToTime(number) {
+  convertNumToTime(number) {
     // Check sign of given number
-    var sign:any = (number >= 0) ? 1 : -1;
+    var sign: any = (number >= 0) ? 1 : -1;
 
     // Set positive value of number of sign negative
     number = number * sign;
@@ -280,7 +280,7 @@ getRating(){
 
     // Add padding if need
     if (minute.length < 2) {
-    minute = '0' + minute; 
+      minute = '0' + minute;
     }
 
     // // Add Sign in final result
@@ -288,19 +288,19 @@ getRating(){
 
     // Concate hours and minutes
     return sign + hour + ':' + minute;
-}
+  }
 
-// --------------------------------map view popup -----------------------------------------
+  // --------------------------------map view popup -----------------------------------------
   clickedMarker(infowindow) {
     if (this.previous) {
-        this.previous.close();
+      this.previous.close();
     }
     this.previous = infowindow;
- }
+  }
 
- mapClicked(e){
-  this.clickedMarker(e)
- }
+  mapClicked(e) {
+    this.clickedMarker(e)
+  }
   // claimBusiness() {
   //   if (this.user && this.user.role === 'provider') {
   //     this.claim.requestBy = this.user.id;
@@ -366,7 +366,7 @@ getRating(){
       // this.setCurrentLocation();
       this.geoCoder = new google.maps.Geocoder;
 
-      let autocomplete:any = new google.maps.places.Autocomplete(this.searchElementRef?.nativeElement);
+      let autocomplete: any = new google.maps.places.Autocomplete(this.searchElementRef?.nativeElement);
       autocomplete.addListener('place_changed', () => {
         this.ngZone.run(() => {
 
@@ -418,51 +418,51 @@ getRating(){
   }
 
 
-  disableScrolling(){
-    var x=window.scrollX;
-    var y=window.scrollY;
-    window.onscroll=function(){window.scrollTo(x, y);};
-}
-
- enableScrolling(){
-    window.onscroll=function(){};
-}
-
-clickedProgram(data){
-  window.scroll(0,0);
-  console.log('clickedProgram', data)
-  this.program.id= data._id
-  this.getProgramById()
-  this.program_mins = moment.utc(moment(this.program.time.to, "HH:mm:ss").diff(moment(this.program.time.from, "HH:mm:ss"))).format("mm")
-}
-
-addFav() {
-  this.program.isFav = true;
-  var fav: any = {
-    userId: '',
-    programId: '',
-  };
-  fav.userId = this.userId;
-  fav.programId = this.program._id;
-  this.apiservice.addFavProgram(fav).subscribe(res => {
-  });
-}
-
-deleteFav() {
-  this.program.isFav = false;
-  this.apiservice.deleteFavProgram(this.program._id).subscribe(res => {
-  });
-}
-setSubCategoryId(tag) {
-  let   filterData: any = {
-    subcatId: tag._id,
-    searchedCategoryKey: tag.name
+  disableScrolling() {
+    var x = window.scrollX;
+    var y = window.scrollY;
+    window.onscroll = function () { window.scrollTo(x, y); };
   }
-  this.dataService.setOption(filterData)
-  this.router.navigate(['/search'])
 
-}
-centerChange(e) {
-  console.log(e)
-}
+  enableScrolling() {
+    window.onscroll = function () { };
+  }
+
+  clickedProgram(data) {
+    window.scroll(0, 0);
+    console.log('clickedProgram', data)
+    this.program.id = data._id
+    this.getProgramById()
+    this.program_mins = moment.utc(moment(this.program.time.to, "HH:mm:ss").diff(moment(this.program.time.from, "HH:mm:ss"))).format("mm")
+  }
+
+  addFav() {
+    this.program.isFav = true;
+    var fav: any = {
+      userId: '',
+      programId: '',
+    };
+    fav.userId = this.userId;
+    fav.programId = this.program._id;
+    this.apiservice.addFavProgram(fav).subscribe(res => {
+    });
+  }
+
+  deleteFav() {
+    this.program.isFav = false;
+    this.apiservice.deleteFavProgram(this.program._id).subscribe(res => {
+    });
+  }
+  setSubCategoryId(tag) {
+    let filterData: any = {
+      subcatId: tag._id,
+      searchedCategoryKey: tag.name
+    }
+    this.dataService.setOption(filterData)
+    this.router.navigate(['/search'])
+
+  }
+  centerChange(e) {
+    console.log(e)
+  }
 }

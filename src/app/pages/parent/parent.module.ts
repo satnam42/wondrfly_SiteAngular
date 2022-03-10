@@ -23,7 +23,7 @@ import { CounterModule } from './../../core/components/counter/counter.module';
 @NgModule({
     entryComponents: [],
     declarations: [
-        ParentComponent,LoginParentComponent, ParentProfileComponent,SuggestionComponent
+        ParentComponent, LoginParentComponent, ParentProfileComponent, SuggestionComponent
 
     ],
     imports: [
@@ -46,7 +46,7 @@ import { CounterModule } from './../../core/components/counter/counter.module';
         CounterModule,
     ],
     exports: [
-        ParentComponent, LoginParentComponent, ParentProfileComponent,SuggestionComponent
+        ParentComponent, LoginParentComponent, ParentProfileComponent, SuggestionComponent
     ]
 })
 export class ParentModule { }

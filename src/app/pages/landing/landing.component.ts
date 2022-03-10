@@ -17,21 +17,21 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class LandingComponent implements OnInit {
   defaultImage = 'https://miro.medium.com/max/441/1*9EBHIOzhE1XfMYoKz1JcsQ.gif';
-  baseUrl= environment.baseUrl
+  baseUrl = environment.baseUrl
   blogUrl = environment.blogsUrl;
   loggedIn: boolean;
   title = 'Best Activities and Programs for Kids in Jersey City - Wondrfly';
   categories: any = new Category;
-  lat:string
-  lng:string
+  lat: string
+  lng: string
   filterData: any = {
     subcatId: '',
-    categoryId:'',
+    categoryId: '',
     activityName: '',
-    searchedCategoryKey:'',
-      lat:'',
-      lng:'',
-  
+    searchedCategoryKey: '',
+    lat: '',
+    lng: '',
+
   }
   categoryResponse: any;
   hide: boolean = true;
@@ -42,10 +42,10 @@ export class LandingComponent implements OnInit {
   blog: any;
   categoriesBySearch: any = new Category;
   providersBySearch: any = new User;
-  altBanner:any  = ''
+  altBanner: any = ''
   private geoCoder;
   cookiesData: string;
-  regWallCookies=0
+  regWallCookies = 0
   @ViewChild('search') searchElementRef: ElementRef;
   constructor(private router: Router,
     private mapsAPILoader: MapsAPILoader,
@@ -55,36 +55,36 @@ export class LandingComponent implements OnInit {
     public auth: AuthsService,
     private titleService: Title,
     private metaTagService: Meta,
-    private cookies :CookieService
-   ) {
+    private cookies: CookieService
+  ) {
     this.regWallCookies = Number(this.cookies.get('regWall'))
   }
   searchBySubCategory(id) {
-    let regCount = this.regWallCookies+1
+    let regCount = this.regWallCookies + 1
     this.cookies.set('regWall', String(regCount), 30);
-    this.filterData.activityName=''
+    this.filterData.activityName = ''
     this.filterData.lat = ''
     this.filterData.lng = ''
-    this.filterData.categoryId =''
+    this.filterData.categoryId = ''
     this.filterData.subcatId = id
     this.dataservice.setOption(this.filterData)
     this.router.navigate(['/search']);
   }
 
   searchByCategory(id) {
-    let regCount = this.regWallCookies+1
+    let regCount = this.regWallCookies + 1
     this.cookies.set('regWall', String(regCount), 30);
-    this.filterData.activityName=''
+    this.filterData.activityName = ''
     this.filterData.lat = ''
     this.filterData.lng = ''
     this.filterData.subcatId = ''
-      this.filterData.categoryId = id
+    this.filterData.categoryId = id
     this.dataservice.setOption(this.filterData)
     this.router.navigate(['/search']);
   }
   searchByLocation() {
-    this.filterData.searchedCategoryKey=this.filterData.activityName
-    this.filterData.activityName=''
+    this.filterData.searchedCategoryKey = this.filterData.activityName
+    this.filterData.activityName = ''
     this.filterData.categoryId = ''
     this.filterData.lat = this.lat
     this.filterData.lng = this.lng
@@ -100,16 +100,16 @@ export class LandingComponent implements OnInit {
       this.categories = this.categories.filter((item) => item.id !== idToRemove);
       this.categories.push(removedCategory[0])
       this.categories = this.categories.filter((item) => item.isActivated === true);
-      console.log('category list ',this.categories);
+      console.log('category list ', this.categories);
     });
   }
- searchActivityByNameDate() {
-  this.filterData.categoryId = ''
-  this.filterData.lat = ''
-  this.filterData.lng = ''
-  this.dataservice.setOption(this.filterData)
-  this.router.navigate(['/search']);
-}
+  searchActivityByNameDate() {
+    this.filterData.categoryId = ''
+    this.filterData.lat = ''
+    this.filterData.lng = ''
+    this.dataservice.setOption(this.filterData)
+    this.router.navigate(['/search']);
+  }
 
   // ------------------------------------------------get blogs  -------------------------------------------
 
@@ -123,57 +123,57 @@ export class LandingComponent implements OnInit {
   setBlog(data) {
     var title = data.title
     title = title.toLowerCase();
-    title = title.replace(/ /g,"-");
-    title = title.replace(/\?/g,"-");
-    this.router.navigate(['blogs/',title, data.id])
+    title = title.replace(/ /g, "-");
+    title = title.replace(/\?/g, "-");
+    this.router.navigate(['blogs/', title, data.id])
   }
 
-  searchSubCategory(key){
-    this.apiservice.searchTag(key).subscribe((res:any)=>{
-      console.log(res,'res')
-  this.categoriesBySearch = res;
-  this.categoriesBySearch.category = this.categoriesBySearch.category.filter((item) => item.isActivated !== false);
-  this.categoriesBySearch.tags = this.categoriesBySearch.tags.filter((item) => item.isActivated !== false);
+  searchSubCategory(key) {
+    this.apiservice.searchTag(key).subscribe((res: any) => {
+      console.log(res, 'res')
+      this.categoriesBySearch = res;
+      this.categoriesBySearch.category = this.categoriesBySearch.category.filter((item) => item.isActivated !== false);
+      this.categoriesBySearch.tags = this.categoriesBySearch.tags.filter((item) => item.isActivated !== false);
 
 
 
     })
   }
-  providerSearch(key){
-    this.apiservice.searchUsers(key,'provider').subscribe((res:any)=>{
-      if(res.data){
+  providerSearch(key) {
+    this.apiservice.searchUsers(key, 'provider').subscribe((res: any) => {
+      if (res.data) {
         this.providersBySearch = res.data;
       }
-      else{
-        this.providersBySearch=[]
+      else {
+        this.providersBySearch = []
       }
     })
   }
   goToProviderProfile(provider) {
-    this.filterData.activityName=''
-    var providerName =provider.firstName;
+    this.filterData.activityName = ''
+    var providerName = provider.firstName;
     providerName = providerName.toLowerCase();
-    providerName = providerName.replace(/ /g,"-");
-    providerName = providerName.replace(/\?/g,"-");
-      this.router.navigate(['provider/program-provider', providerName, provider._id]);
+    providerName = providerName.replace(/ /g, "-");
+    providerName = providerName.replace(/\?/g, "-");
+    this.router.navigate(['provider/program-provider', providerName, provider._id]);
   }
-  
-setVisit(){
-  this.cookiesData = this.cookies.get('isTour');
-console.log('get isTour count ',this.cookiesData)
-// if(Number(this.cookiesData)!=2 || Number(this.cookiesData)!=3 || Number(this.cookiesData)!=5 || Number(this.cookiesData)!=6 || Number(this.cookiesData)!=8 || Number(this.cookiesData)!=9 || Number(this.cookiesData)!=12){
-  // let num = Number(this.cookiesData)+1
-  //     this.cookies.set('isTour', String(num), 30);
-        }
-// }
+
+  setVisit() {
+    this.cookiesData = this.cookies.get('isTour');
+    console.log('get isTour count ', this.cookiesData)
+    // if(Number(this.cookiesData)!=2 || Number(this.cookiesData)!=3 || Number(this.cookiesData)!=5 || Number(this.cookiesData)!=6 || Number(this.cookiesData)!=8 || Number(this.cookiesData)!=9 || Number(this.cookiesData)!=12){
+    // let num = Number(this.cookiesData)+1
+    //     this.cookies.set('isTour', String(num), 30);
+  }
+  // }
   ngOnInit() {
     this.setVisit();
-    window.scroll(0,0);
+    window.scroll(0, 0);
     this.landingImageIndex = Math.floor(Math.random() * this.landingImages.length);
-    if(this.landingImageIndex){
+    if (this.landingImageIndex) {
       this.altBanner = 'Fun Activities for Kids'
     }
-    else{
+    else {
       this.altBanner = 'Kids Activities'
     }
     this.getCategoryList();
@@ -186,7 +186,7 @@ console.log('get isTour count ',this.cookiesData)
       { name: 'keywords', content: 'Best Activities and Programs, activities near me for toddlers, fitness classes for kids, online music lessons, online art classes' }
     );
 
-    
+
     this.mapsAPILoader.load().then(() => {
       this.geoCoder = new google.maps.Geocoder;
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);

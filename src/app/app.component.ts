@@ -11,26 +11,26 @@ import { CookieService } from 'ngx-cookie-service';
 export class AppComponent implements OnInit {
   envName: string;
   currentOS = null;
-  cookiesData:string;
+  cookiesData: string;
   constructor(
     private canonicalService: CanonicalService,
     private deviceService: DeviceDetectorService,
-    private cookies: CookieService ) {
-      this.cookiesData = this.cookies.get('_ui');
+    private cookies: CookieService) {
+    this.cookiesData = this.cookies.get('_ui');
     if (environment.name && environment.name !== 'prod') {
       this.envName = environment.name;
     }
   }
-checkCookieData(data){
-this.cookiesData = data
-console.log(this.cookiesData)
-console.log(data)
+  checkCookieData(data) {
+    this.cookiesData = data
+    console.log(this.cookiesData)
+    console.log(data)
 
-}
+  }
   ngOnInit() {
     this.cookiesData = this.cookies.get('_ui');
     this.canonicalService.setCanonicalURL();
-   this.deviceDetector();
+    this.deviceDetector();
   }
   deviceDetector() {
     this.currentOS = this.deviceService.getDeviceInfo().os;

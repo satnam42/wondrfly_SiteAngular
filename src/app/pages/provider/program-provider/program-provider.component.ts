@@ -20,7 +20,7 @@ import { environment } from 'src/environments/environment.prod';
 export class ProgramProviderComponent implements OnInit {
   defaultImage = 'https://miro.medium.com/max/441/1*9EBHIOzhE1XfMYoKz1JcsQ.gif';
   errorImage = 'assets/guitar.png';
-  baseUrl= environment.baseUrl;
+  baseUrl = environment.baseUrl;
   isScrol: boolean = true;
   pageNo = 1;
   pageSize = 20;
@@ -43,7 +43,7 @@ export class ProgramProviderComponent implements OnInit {
   isLogin = false;
   userData: any = {};
   program = new Program;
-  user= new User;
+  user = new User;
   rating: any;
   updateResponse: any = {};
   formData = new FormData();
@@ -89,11 +89,11 @@ export class ProgramProviderComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private titleService: Title,
     private metaTagService: Meta,
-    private dataService : DataService) {
+    private dataService: DataService) {
 
-      this.activatedRoute.params.subscribe(params => {
-        this.user.id = params['id'];
-      });
+    this.activatedRoute.params.subscribe(params => {
+      this.user.id = params['id'];
+    });
 
     this.userData = auth.currentUser()
     if (this.userData) {
@@ -122,7 +122,7 @@ export class ProgramProviderComponent implements OnInit {
     this.ngxLoader.start();
     this.apiservice.getUserById(this.user.id).subscribe((res: any) => {
       this.user = res.data;
-      console.log('user detail',this.user)
+      console.log('user detail', this.user)
       for (let health of this.user.healthAndSafety) {
         if (health.socialDistancing) {
           this.health_safety[1].status = 'active';
@@ -147,27 +147,27 @@ export class ProgramProviderComponent implements OnInit {
     this.ngxLoader.stop();
   }
 
-// ---------------------------------navigate to program detail page -------------------------------------------
-getRating(){
-  console.log('ratingggggggggggggUserddddddddd', this.user.id)
- this.apiservice.getUserRating(this.user.id).subscribe((res:any) => {
-    this.rating = res
-    this.rating.finalAverageRating = parseFloat(String(this.rating.finalAverageRating)).toFixed(1)
-    console.log('ratinggggggggggggg', res)
-  });
-}
-
-// --------------------------------map view popup -----------------------------------------
-clickedMarker(infowindow) {
-  if (this.previous) {
-      this.previous.close();
+  // ---------------------------------navigate to program detail page -------------------------------------------
+  getRating() {
+    console.log('ratingggggggggggggUserddddddddd', this.user.id)
+    this.apiservice.getUserRating(this.user.id).subscribe((res: any) => {
+      this.rating = res
+      this.rating.finalAverageRating = parseFloat(String(this.rating.finalAverageRating)).toFixed(1)
+      console.log('ratinggggggggggggg', res)
+    });
   }
-  this.previous = infowindow;
-}
 
-mapClicked(e){
-this.clickedMarker(e)
-}
+  // --------------------------------map view popup -----------------------------------------
+  clickedMarker(infowindow) {
+    if (this.previous) {
+      this.previous.close();
+    }
+    this.previous = infowindow;
+  }
+
+  mapClicked(e) {
+    this.clickedMarker(e)
+  }
 
 
   getProviderProgram = async () => {
@@ -247,15 +247,15 @@ this.clickedMarker(e)
   }
 
   setSubCategoryId(data) {
-  
-   let filterData: any = {
+
+    let filterData: any = {
       subcatId: data._id,
-      categoryId:'',
+      categoryId: '',
       activityName: '',
-      searchedCategoryKey:data.name,
-        lat:'',
-        lng:'',
-    
+      searchedCategoryKey: data.name,
+      lat: '',
+      lng: '',
+
     }
     this.dataService.setOption(filterData)
     this.router.navigate(['/search'])

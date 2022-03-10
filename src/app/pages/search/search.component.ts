@@ -18,7 +18,7 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit, OnDestroy {
-  currentYear =new Date().getFullYear()
+  currentYear = new Date().getFullYear()
   defaultImage = 'https://miro.medium.com/max/441/1*9EBHIOzhE1XfMYoKz1JcsQ.gif';
   errorImage = 'assets/favicon.svg';
   isDateFilter: boolean = false;
@@ -35,7 +35,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   categoryId: any = ''
   activityName: any = ''
   rating: any;
-  filterData:any = {};
+  filterData: any = {};
   locationData: any = {}
   favPrograms: any;
   isMap: boolean = true;
@@ -93,7 +93,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     floor: 0,
     ceil: 800,
     translate: (value: number): string => {
-      return  '$'+value;
+      return '$' + value;
     }
   };
   // ng5slider end
@@ -140,7 +140,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   fakeLoaderData = [1, 2]
   currentUser: any;
   cookiesData: string;
-  regWallCookies=0
+  regWallCookies = 0
   moment = moment;
   minDate: moment.Moment;
   constructor(
@@ -156,7 +156,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     private cookies: CookieService,
     private joyride: JoyrideService
   ) {
-     this.countVisit()
+    this.countVisit()
     this.minDate = moment();
 
     // this.locationData = dataservice.getLocation()
@@ -169,47 +169,47 @@ export class SearchComponent implements OnInit, OnDestroy {
     //   }
     // }
     this.regWallCookies = Number(this.cookies.get('regWall'))
-  
+
     this.contentLoaded = false
     this.currentUser = auth.currentUser();
     this.filterData = dataservice.getOption()
     // this.exploreModal()
     var retrievedObject = localStorage.getItem('CurrentUserWondrfly');
     this.userData = JSON.parse(retrievedObject);
-      if (this.filterData.subcatId || this.filterData.categoryId || this.filterData.kidAge)  {
-        this.categoryId = this.filterData.categoryId
-        this.searchedSubCategory = this.filterData.searchedCategoryKey
-        if(this.filterData.subcatId){
-          this.selectedSubCategories[0] = this.filterData.subcatId;
-        }
-         if(this.filterData.childIntrests){
-          for(let intrest of this.filterData.childIntrests){
-            this.selectedSubCategories.push(intrest)
-          }
-        }  
-        if(this.filterData.kidAge?.length){
-
-         
-        if(this.filterData.kidAge>=1){
-          this.isAgeFilter=true
-         this.maxAge = Number(this.filterData.kidAge)
-         this.minAge = 0
-        }
-        if(this.filterData.kidAge<1){
-          this.isAgeFilter=true
-         this.maxAge = 1
-         this.minAge = 0
+    if (this.filterData.subcatId || this.filterData.categoryId || this.filterData.kidAge) {
+      this.categoryId = this.filterData.categoryId
+      this.searchedSubCategory = this.filterData.searchedCategoryKey
+      if (this.filterData.subcatId) {
+        this.selectedSubCategories[0] = this.filterData.subcatId;
+      }
+      if (this.filterData.childIntrests) {
+        for (let intrest of this.filterData.childIntrests) {
+          this.selectedSubCategories.push(intrest)
         }
       }
-      if(this.filterData?.online){
+      if (this.filterData.kidAge?.length) {
+
+
+        if (this.filterData.kidAge >= 1) {
+          this.isAgeFilter = true
+          this.maxAge = Number(this.filterData.kidAge)
+          this.minAge = 0
+        }
+        if (this.filterData.kidAge < 1) {
+          this.isAgeFilter = true
+          this.maxAge = 1
+          this.minAge = 0
+        }
+      }
+      if (this.filterData?.online) {
         this.isOnline = true;
       }
-        this.programFilter()
-      }
-      else if (this.filterData.activityName) {
-        this.activityName = this.filterData.activityName
-        this.filterByNameDate()
-      }
+      this.programFilter()
+    }
+    else if (this.filterData.activityName) {
+      this.activityName = this.filterData.activityName
+      this.filterByNameDate()
+    }
     else {
       this.getPublishedProgram()
     }
@@ -227,25 +227,25 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   startTour() {
-    if(this.contentLoaded && this.programs.length && Number(this.cookiesData)<=1){
+    if (this.contentLoaded && this.programs.length && Number(this.cookiesData) <= 1) {
       this.joyride.startTour({ steps: ['firstStep'] });
       this.cookies.set('isTour', '2', 30);
       window.scroll(0, 0);
-      }
-      else if(this.contentLoaded && this.programs.length && this.cookiesData=='2' && !this.isOnline){
-        this.joyride.startTour({ steps: ['secondStep0'] });
-          this.cookies.set('isTour', '3', 30);
-        }
-        else if(this.cookiesData=='3' && this.contentLoaded && this.programs.length && !this.isOnline){
-          this.joyride.startTour({ steps: ['thirdStep0'] });
-          this.cookies.set('isTour', '4', 30);
-          }
-          else if(this.cookiesData=='4' && this.contentLoaded && !this.isOnline){
-            window.document.getElementById("exploreModal").click();
-            this.cookies.set('isTour', '5', 30);
-            window.scroll(0, 0);
-            }
-            this.cookiesData = this.cookies.get('isTour');
+    }
+    else if (this.contentLoaded && this.programs.length && this.cookiesData == '2' && !this.isOnline) {
+      this.joyride.startTour({ steps: ['secondStep0'] });
+      this.cookies.set('isTour', '3', 30);
+    }
+    else if (this.cookiesData == '3' && this.contentLoaded && this.programs.length && !this.isOnline) {
+      this.joyride.startTour({ steps: ['thirdStep0'] });
+      this.cookies.set('isTour', '4', 30);
+    }
+    else if (this.cookiesData == '4' && this.contentLoaded && !this.isOnline) {
+      window.document.getElementById("exploreModal").click();
+      this.cookies.set('isTour', '5', 30);
+      window.scroll(0, 0);
+    }
+    this.cookiesData = this.cookies.get('isTour');
   }
 
   choosedDate(e) {
@@ -344,15 +344,15 @@ export class SearchComponent implements OnInit, OnDestroy {
     });
     this.programFilter()
   }
-  mailChimpCompleted(){
+  mailChimpCompleted() {
     window.scrollTo(0, 0)
-    this.cookies.set('exploreModal', '5',30);
+    this.cookies.set('exploreModal', '5', 30);
   }
-   countVisit(){
+  countVisit() {
     window.scrollTo(0, 0)
     this.cookiesData = this.cookies.get('isTour');
-    let num = Number(this.cookiesData)+1
-      this.cookies.set('isTour', String(num), 30); 
+    let num = Number(this.cookiesData) + 1
+    this.cookies.set('isTour', String(num), 30);
   }
   ngOnInit() {
     window.scrollTo(0, 0)
@@ -433,7 +433,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   resetFilter() {
-    this.contentLoaded =false
+    this.contentLoaded = false
     this.searchedSubCategory = '';
     this.activityName = '';
     this.isInPerson = false;
@@ -505,18 +505,18 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.activityName = ''
     this.showReset = false
     // this.ngxLoader.start()
-    this.suggested=[]
-    this.apiservice.getPublishedProgram(this.pageNo, this.pageSize,'published').subscribe((res: any) => {
+    this.suggested = []
+    this.apiservice.getPublishedProgram(this.pageNo, this.pageSize, 'published').subscribe((res: any) => {
       // this.ngxLoader.stop()
       this.programs = this.programs.concat(res.items);
-      console.log('programs',this.programs)
+      console.log('programs', this.programs)
       // this.fakeLoaderData = [1,2]
       this.contentLoaded = true;
-for(let i in this.programs){
-  let category = this.programs[i].category.filter((v,num,a)=>a.findIndex(t=>(t.name===v.name))===num)
-  this.programs[i].category = category
-}
-  this.startTour()
+      for (let i in this.programs) {
+        let category = this.programs[i].category.filter((v, num, a) => a.findIndex(t => (t.name === v.name)) === num)
+        this.programs[i].category = category
+      }
+      this.startTour()
       if (!this.selectedSubCategories.length && !this.categoryId) {
         this.isScrol = true;
       }
@@ -596,10 +596,10 @@ for(let i in this.programs){
     this.isInPerson = false;
     this.apiservice.activityByNameDate(this.activityName).subscribe((res: any) => {
       this.programs = res.data
-          this.fakeLoaderData = [1,2]
-            this.contentLoaded = true;
-      for(let i in this.programs){
-        let category = this.programs[i].category.filter((v,num,a)=>a.findIndex(t=>(t.name===v.name))===num)
+      this.fakeLoaderData = [1, 2]
+      this.contentLoaded = true;
+      for (let i in this.programs) {
+        let category = this.programs[i].category.filter((v, num, a) => a.findIndex(t => (t.name === v.name)) === num)
         this.programs[i].category = category
       }
       // this.startTour()
@@ -609,8 +609,8 @@ for(let i in this.programs){
   }
 
   programFilter() {
-    if(this.regWallCookies>11){
-      this.isBetaPopUp=true
+    if (this.regWallCookies > 11) {
+      this.isBetaPopUp = true
     }
     window.scroll(0, 0);
     this.isTimeFilter = false;
@@ -618,9 +618,9 @@ for(let i in this.programs){
     this.isTopFilter = false;
     this.isTypeFilter = false;
     this.isCategoryFilter = false;
-    this.suggested=[]
+    this.suggested = []
     if (this.isTopFilterCheckBox || this.categoryId || this.selectedDays.length || this.selectedProgramTypes.length || this.selectedSubCategories.length || this.selectedProgramTime.length || this.isOnline || this.isInPerson || this.isDateFilter || this.isPriceFilter || this.isAgeFilter) {
-      this.fakeLoaderData = [1,2]
+      this.fakeLoaderData = [1, 2]
       this.contentLoaded = false;
       let filter = ``
       let inpersonOrVirtual = ''
@@ -680,7 +680,7 @@ for(let i in this.programs){
           times += ',' + time
         }
       }
-      if(!categoryId && !this.selectedSubCategories.length){
+      if (!categoryId && !this.selectedSubCategories.length) {
         this.searchedSubCategory = '';
       }
       if (this.isOnline) {
@@ -696,8 +696,8 @@ for(let i in this.programs){
       this.fromDate = moment(this.fromDate).format(dateFormat);
       this.toDate = moment(this.toDate).format(dateFormat);
       filter = `time=${times}&categoryId=${categoryId}&tagsIds=${tags}&type=${types}&inpersonOrVirtual=${inpersonOrVirtual}&day=${days}`
-      if(this.isTopFilterCheckBox){
-        this.isTopFilter=true;
+      if (this.isTopFilterCheckBox) {
+        this.isTopFilter = true;
         filter += `&ratingFrom=${ratingFrom}&ratingTo=${ratingTo}`
       }
       if (this.isDateFilter) {
@@ -710,16 +710,17 @@ for(let i in this.programs){
         filter += `&ageFrom=${this.minAge}&ageTo=${this.maxAge}`
       }
       console.log('filters query ', filter)
-      this.apiservice.programFilter(filter,1, 200).subscribe((res: any) => {
+      this.apiservice.programFilter(filter, 1, 200).subscribe((res: any) => {
         this.showReset = true
         if (res.isSuccess) {
           // this.isTopFilterCheckBox = false
-          this.programs = res.data;          
-              this.contentLoaded = true
-          for(let i in this.programs){
-            let category = this.programs[i].category.filter((v,num,a)=>a.findIndex(t=>(t.name==v.name))===num)
-this.programs[i].category = category          }
-                   this.startTour()
+          this.programs = res.data;
+          this.contentLoaded = true
+          for (let i in this.programs) {
+            let category = this.programs[i].category.filter((v, num, a) => a.findIndex(t => (t.name == v.name)) === num)
+            this.programs[i].category = category
+          }
+          this.startTour()
           this.isScrol = true;
         }
       });
@@ -826,14 +827,14 @@ this.programs[i].category = category          }
   suggestedSubCategories(id) {
     window.scroll(0, 0)
     this.apiservice.getSuggestedCategory(id).subscribe((res: any) => {
-      if(typeof(res)!=='string'){
-        if(!res.error){
+      if (typeof (res) !== 'string') {
+        if (!res.error) {
           this.suggested = res
-          console.log('suggested',this.suggested)
+          console.log('suggested', this.suggested)
         }
       }
       // this.searchedSubCategory = this.suggested[0].name
-      else{
+      else {
         this.suggested = []
       }
     });
@@ -850,7 +851,7 @@ this.programs[i].category = category          }
   //   this.cookies.set('exploreModal', '1', 30);
   // }
   removeRecentSearches(type, indx) {
-    this.contentLoaded=false;
+    this.contentLoaded = false;
     switch (type) {
       case 'days': {
         this.days.forEach((element) => {

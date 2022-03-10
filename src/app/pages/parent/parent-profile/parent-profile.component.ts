@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewChecked,OnDestroy, ElementRef } from "@angular/core";
+import { Component, OnInit, ViewChild, AfterViewChecked, OnDestroy, ElementRef } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ApiService } from "src/app/core/services/api.service.service";
 import { Router } from "@angular/router";
@@ -22,9 +22,9 @@ import { environment } from "src/environments/environment";
   templateUrl: "./parent-profile.component.html",
   styleUrls: ["./parent-profile.component.css"],
 })
-export class ParentProfileComponent implements OnInit, AfterViewChecked,OnDestroy {
-   defaultImage = 'https://miro.medium.com/max/441/1*9EBHIOzhE1XfMYoKz1JcsQ.gif';
-  baseUrl= environment.baseUrl;
+export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestroy {
+  defaultImage = 'https://miro.medium.com/max/441/1*9EBHIOzhE1XfMYoKz1JcsQ.gif';
+  baseUrl = environment.baseUrl;
   @ViewChild('messageBox', { static: false }) myScrollContainer: ElementRef;
   updateForm: FormGroup;
   resetPasswordForm: FormGroup;
@@ -36,14 +36,14 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked,OnDestro
   kid = new Child();
   resetKid = new Child();
   user = new User();
-  isToggle:boolean;
+  isToggle: boolean;
   guardianData = new User();
-  kids:Child[];
+  kids: Child[];
   isSideBar: Boolean = true;
   msg: string;
   guardianResponse: any = [];
   favourites: any = [];
-  invitedUsers:User[] = []
+  invitedUsers: User[] = []
   profileProgress: 0;
   fileData: File = null;
   formData = new FormData();
@@ -108,7 +108,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked,OnDestro
   };
   inviteForm: FormGroup;
   inviteAsktojoin: any = {
-    firstName:'',
+    firstName: '',
     userId: this.user.id,
     email: "",
   };
@@ -144,17 +144,17 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked,OnDestro
   // ------------------------------------
   tags: any = [];
   allTags: any = [];
-  suggestedTags:any =[];
+  suggestedTags: any = [];
   sendInvite = '';
-  isSMSnotification:boolean;
-  isPushnotification:boolean;
-  isEmailnotification:boolean;
+  isSMSnotification: boolean;
+  isPushnotification: boolean;
+  isEmailnotification: boolean;
   selectedProgram: any;
   isParent: boolean;
-  imageRole='';
-  selectedChildIndx:number
-  maxDate:string;
-  activeList:any
+  imageRole = '';
+  selectedChildIndx: number
+  maxDate: string;
+  activeList: any
   constructor(
     private apiservice: ApiService,
     private router: Router,
@@ -170,14 +170,14 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked,OnDestro
     this.sendInvite = JSON.parse(this.store.getItem('sendInvite'));
   }
 
-  dateV(){
+  dateV() {
     let today = new Date()
-    this.maxDate= moment(today).format("YYYY-MM-DD");
-    document.getElementById("listingDateOpen").setAttribute("max",  this.maxDate);
+    this.maxDate = moment(today).format("YYYY-MM-DD");
+    document.getElementById("listingDateOpen").setAttribute("max", this.maxDate);
   }
 
-  parentChecked(value:boolean) {
-    this.isParent=value
+  parentChecked(value: boolean) {
+    this.isParent = value
   }
 
 
@@ -216,13 +216,13 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked,OnDestro
   }
 
   selectEvent(item) {
-    if(this.kid.interestInfo.indexOf(item) == -1){
-      if(!this.kid.interestInfo.find(category=>category.name === item.name)){
+    if (this.kid.interestInfo.indexOf(item) == -1) {
+      if (!this.kid.interestInfo.find(category => category.name === item.name)) {
         this.kid.interestInfo.push(item)
-        console.log('===>>',this.kid.interestInfo)
+        console.log('===>>', this.kid.interestInfo)
       }
+    }
   }
-}
   onChangeSearch(key: string) {
 
     this.isLoading = true;
@@ -378,68 +378,66 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked,OnDestro
       let kids = []
       this.kids.forEach(kid => {
         let kidMonth = Math.abs((this.getAgeMonth(kid.dob)))
-        console.log('kidMonth>>>>>',kidMonth)
+        console.log('kidMonth>>>>>', kidMonth)
         let age = Number(this.getAge(kid.dob))
-        console.log('age>>>>>',age)
-        if(age<1){
-          if(kidMonth>1){
-            kid.age = kidMonth+' Months Old'
+        console.log('age>>>>>', age)
+        if (age < 1) {
+          if (kidMonth > 1) {
+            kid.age = kidMonth + ' Months Old'
           }
-          else{
-            kid.age = kidMonth+' Month Old'
+          else {
+            kid.age = kidMonth + ' Month Old'
           }
-        }
-      
-        if(age==1){
-          kid.age = age+' Year Old'
-          
-        }
-        if(age>1){
-          kid.age = age+' Years Old'
-          
         }
 
-        
-  kids.push(kid)
-});
-this.kids = kids
+        if (age == 1) {
+          kid.age = age + ' Year Old'
+
+        }
+        if (age > 1) {
+          kid.age = age + ' Years Old'
+
+        }
+
+
+        kids.push(kid)
+      });
+      this.kids = kids
       console.log('children List', res)
       this.ngxLoader.stop();
     });
     this.ngxLoader.stop();
   }
 
-  getAgeMonth(dateString) 
-  {   
-     var today = new Date();
-      var birthDate = new Date(dateString);
-      // var age = today.getFullYear() - birthDate.getFullYear();
-      // var m = today.getMonth() - birthDate.getMonth();
-      // if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) 
-      // {
-      //     age--;
-      // }
-       
-      // return m;
+  getAgeMonth(dateString) {
+    var today = new Date();
+    var birthDate = new Date(dateString);
+    // var age = today.getFullYear() - birthDate.getFullYear();
+    // var m = today.getMonth() - birthDate.getMonth();
+    // if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) 
+    // {
+    //     age--;
+    // }
 
-        var months;
-        months = (today.getFullYear() - birthDate.getFullYear()) * 12;
-        months -= birthDate.getMonth();
-        months += today.getMonth();
-        return months;
-    
+    // return m;
+
+    var months;
+    months = (today.getFullYear() - birthDate.getFullYear()) * 12;
+    months -= birthDate.getMonth();
+    months += today.getMonth();
+    return months;
+
   }
- getAge(dateString) 
-{    var today = new Date();
+  getAge(dateString) {
+    var today = new Date();
     var birthDate = new Date(dateString);
     var age = today.getFullYear() - birthDate.getFullYear();
     var m = today.getMonth() - birthDate.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) 
-    {
-        age--;
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
     }
     return age;
-}
+  }
   onAddChild() {
     window.scroll(0, 0);
     this.isAddChildBtn = true;
@@ -509,13 +507,13 @@ this.kids = kids
     this.activeList = 'savedList'
     this.store.removeItem('activeList');
     this.store.removeItem('sendInvite');
-      this.apiservice.getFavouriteByParentId(id).subscribe((res) => {
-        this.favourites = res;
-      });
-      this.isFavourite = true;
-      this.favourite = "active";
-      this.isProfile = false;
-      this.profile = "";
+    this.apiservice.getFavouriteByParentId(id).subscribe((res) => {
+      this.favourites = res;
+    });
+    this.isFavourite = true;
+    this.favourite = "active";
+    this.isProfile = false;
+    this.profile = "";
 
     this.isSetting = false;
     this.setting = "";
@@ -598,7 +596,7 @@ this.kids = kids
     this.apiservice.activedeactiveGuardian(id, value).subscribe((res: any) => {
       console.log('res', res)
       this.ngxLoader.stop();
-      let msg='';
+      let msg = '';
       if (res.isSuccess) {
         if (res.data.isActivated) {
           msg = 'Guardian Activated'
@@ -620,11 +618,11 @@ this.kids = kids
       this.ngxLoader.stop();
       if (res && res.isActivated === false) {
         this.toastr.info("Acount Deactivated!");
-      this.getParentById();
+        this.getParentById();
       } else {
         if (res && res.isActivated === true) {
           this.toastr.info("Acount Activated!");
-        this.getParentById();
+          this.getParentById();
         } else {
           this.toastr.error("Somthing went wrong!");
         }
@@ -639,8 +637,8 @@ this.kids = kids
       this.headerComponent.getUserById()
     });
     this.isSMSnotification = e;
-  this.isPushnotification = e;
-  this.isEmailnotification= e;
+    this.isPushnotification = e;
+    this.isEmailnotification = e;
   }
   onSetting() {
     this.store.removeItem('sendInvite');
@@ -672,29 +670,29 @@ this.kids = kids
   //   this.kid.interestInfo.splice(indx, 1);
   // }
   previewImage(event) {
-  // --------------------preview image before upload ------------------------
-  this.fileData= File = null;
-  this.formData = new FormData();
+    // --------------------preview image before upload ------------------------
+    this.fileData = File = null;
+    this.formData = new FormData();
 
-  this.fileData = event.target.files[0];
+    this.fileData = event.target.files[0];
     this.formData.append("image", this.fileData);
-  if (event.target.files.length === 0)
-  return;
-var reader = new FileReader();
-this.imagePath = event.target.files;
-reader.readAsDataURL(event.target.files[0]);
-reader.onload = (_event) => {
-  this.parentImgURL = reader.result;
-}
-var mimeType = event.target.files[0].type;
-if (mimeType.match(/image\/*/) == null) {
-  this.msg = " only images are supported";
-  return;
-}
+    if (event.target.files.length === 0)
+      return;
+    var reader = new FileReader();
+    this.imagePath = event.target.files;
+    reader.readAsDataURL(event.target.files[0]);
+    reader.onload = (_event) => {
+      this.parentImgURL = reader.result;
+    }
+    var mimeType = event.target.files[0].type;
+    if (mimeType.match(/image\/*/) == null) {
+      this.msg = " only images are supported";
+      return;
+    }
   }
   previewChildImage(event) {
     // --------------------preview image before upload ------------------------
-    let fileData= File = null
+    let fileData = File = null
     fileData = event.target.files[0];
     this.childformData.append("image", fileData);
     // --------------------preview image before upload ------------------------
@@ -706,62 +704,62 @@ if (mimeType.match(/image\/*/) == null) {
     };
   }
 
-uploadParentImg(){
-  this.ngxLoader.start();
-  this.apiservice.uploadUserImage(this.currentUser.id, this.formData).subscribe((res: any) => {
-    this.ngxLoader.stop();
-    console.log('res from server ',res);
-    if (res) {
-      this.getParentById();
-      this.getProfileProgress();
-      this.headerComponent.getProfileProgress();
-      this.headerComponent.getUserById();
-      window.document.getElementById("closeId").click();
-      this.parentImgURL='';
-    } else {
-      this.toastr.error("something went wrong, please try again Later!");
-    }
-    this.ngxLoader.stop();
-  });
-}
+  uploadParentImg() {
+    this.ngxLoader.start();
+    this.apiservice.uploadUserImage(this.currentUser.id, this.formData).subscribe((res: any) => {
+      this.ngxLoader.stop();
+      console.log('res from server ', res);
+      if (res) {
+        this.getParentById();
+        this.getProfileProgress();
+        this.headerComponent.getProfileProgress();
+        this.headerComponent.getUserById();
+        window.document.getElementById("closeId").click();
+        this.parentImgURL = '';
+      } else {
+        this.toastr.error("something went wrong, please try again Later!");
+      }
+      this.ngxLoader.stop();
+    });
+  }
 
-uploadChildImg(){
-  this.apiservice.getPicUrl(this.childformData).subscribe((res) => {
-    this.kids[this.selectedChildIndx].avtar = res;
-    console.log('img string res',res)
-    this.childformData= new FormData();
+  uploadChildImg() {
+    this.apiservice.getPicUrl(this.childformData).subscribe((res) => {
+      this.kids[this.selectedChildIndx].avtar = res;
+      console.log('img string res', res)
+      this.childformData = new FormData();
 
-    this.updateChild(this.kids[this.selectedChildIndx], this.currentUser.id)
-    window.document.getElementById("closeId").click();
-  });
-}
-removeParentImage(){
-  this.apiservice.removeUserImage(this.currentUser.id).subscribe((res: any) => {
-    console.log('res from server ',res);
-    if (res.isSuccess) {
-      this.getParentById();
-      this.getProfileProgress();
-      this.headerComponent.getProfileProgress();
-      this.headerComponent.getUserById();
+      this.updateChild(this.kids[this.selectedChildIndx], this.currentUser.id)
       window.document.getElementById("closeId").click();
-    } else {
-      this.toastr.error("something went wrong, please try again Later!");
-    }
-  });
-}
-removeChildImage(){
-  {
-    this.apiservice.removeChildImage(this.kids[this.selectedChildIndx].id).subscribe((res: any) => {
-      console.log('res from server ',res);
+    });
+  }
+  removeParentImage() {
+    this.apiservice.removeUserImage(this.currentUser.id).subscribe((res: any) => {
+      console.log('res from server ', res);
       if (res.isSuccess) {
-        this.onChildren(this.currentUser.id)
+        this.getParentById();
+        this.getProfileProgress();
+        this.headerComponent.getProfileProgress();
+        this.headerComponent.getUserById();
         window.document.getElementById("closeId").click();
       } else {
         this.toastr.error("something went wrong, please try again Later!");
       }
     });
   }
-}
+  removeChildImage() {
+    {
+      this.apiservice.removeChildImage(this.kids[this.selectedChildIndx].id).subscribe((res: any) => {
+        console.log('res from server ', res);
+        if (res.isSuccess) {
+          this.onChildren(this.currentUser.id)
+          window.document.getElementById("closeId").click();
+        } else {
+          this.toastr.error("something went wrong, please try again Later!");
+        }
+      });
+    }
+  }
 
   childImageSelect(event) {
     let formData = new FormData();
@@ -777,7 +775,7 @@ removeChildImage(){
     // -------------------------------------------------------------------------------
     this.apiservice.getPicUrl(formData).subscribe((res) => {
       this.kid.avtar = res;
-      console.log('img string res',this.kid.avtar)
+      console.log('img string res', this.kid.avtar)
     });
   }
   childImageUpdate(event, indx) {
@@ -803,7 +801,7 @@ removeChildImage(){
       this.headerComponent.getProfileProgress();
       this.headerComponent.getUserById();
       this.ngxLoader.stop();
-      this.userValueChanged=false
+      this.userValueChanged = false
       if (res) {
         // this.toastr.info(this.message);
       } else {
@@ -817,7 +815,7 @@ removeChildImage(){
         }
       }
     });
-    this.userValueChanged=false
+    this.userValueChanged = false
   }
   resetPassword(id) {
     this.ngxLoader.start();
@@ -836,7 +834,7 @@ removeChildImage(){
             // this.toastr.info(msg);
           } else {
             if (res.error === "Old Password Not Match") {
-              this.toastr.error(res.error );
+              this.toastr.error(res.error);
             } else {
               let msg = "Something Went Wrong!";
               // this.toastr.info(msg);
@@ -982,7 +980,7 @@ removeChildImage(){
         this.isToggle = true;
         this.isSMSnotification = true;
         this.isPushnotification = true;
-        this.isEmailnotification= true;
+        this.isEmailnotification = true;
       }
     });
   }
@@ -1054,21 +1052,21 @@ removeChildImage(){
   ngOnInit() {
     this.dateV()
     this.getTagList()
-    if(this.activeList=="kidList"){
+    if (this.activeList == "kidList") {
       this.onChildren(this.currentUser.id);
     }
-    else if(this.activeList=="savedList"){
+    else if (this.activeList == "savedList") {
       this.getFav(this.currentUser.id);
     }
-    else if(this.sendInvite){
+    else if (this.sendInvite) {
       this.onInvite(this.currentUser.id)
     }
-    else{
-        this.getParentById();
-        this.isFavourite = false;
-        this.favourite = "";
-        this.isProfile = true;
-        this.profile = "active";
+    else {
+      this.getParentById();
+      this.isFavourite = false;
+      this.favourite = "";
+      this.isProfile = true;
+      this.profile = "active";
     }
     this.betaProgramInvitedUsers(this.currentUser.id);
     window.scroll(0, 0);
@@ -1137,7 +1135,7 @@ removeChildImage(){
   ngAfterViewChecked() {
     this.scrollToBottom();
   }
-  ngOnDestroy(): void{
+  ngOnDestroy(): void {
     this.store.removeItem('sendInvite');
   }
 
@@ -1212,44 +1210,44 @@ removeChildImage(){
     if (this.parentRole) {
       this.addAction(data._id);
     }
-    data.name = data.name.replace(/ /g,"-");
-    data.name = data.name.replace(/\?/g,"-");
+    data.name = data.name.replace(/ /g, "-");
+    data.name = data.name.replace(/\?/g, "-");
     this.router.navigate(['program', data.name, data._id]);
   }
 
-copyInvite(){
-  navigator.clipboard.writeText(`${this.baseUrl}ask-to-join?id=${this.user.id}`).then().catch(e => console.error(e));
-         this.snack.open('Link copied','', { duration: 500 });
-}
+  copyInvite() {
+    navigator.clipboard.writeText(`${this.baseUrl}ask-to-join?id=${this.user.id}`).then().catch(e => console.error(e));
+    this.snack.open('Link copied', '', { duration: 500 });
+  }
 
-inviteAsktojoina(){
-  this.inviteAsktojoin.userId = this.user.id
-  console.log(this.inviteAsktojoin)
-  this.apiservice.InviteAsktojoin(this.inviteAsktojoin).subscribe((res:any) => {
-    console.log(res)
-    if(res.isSuccess===true){
-      this.betaProgramInvitedUsers(this.currentUser.id)
-    }
-    else{
-      this.toastr.error(res.error);
-    }
-  })
-}
-betaProgramInvitedUsers(userId){
-  this.apiservice
-  .getInvitedUsersByParent(userId)
-  .subscribe((res: any) => {
-    this.invitedUsers = res;
-    console.log('invited users',this.invitedUsers)
-  });
-}
+  inviteAsktojoina() {
+    this.inviteAsktojoin.userId = this.user.id
+    console.log(this.inviteAsktojoin)
+    this.apiservice.InviteAsktojoin(this.inviteAsktojoin).subscribe((res: any) => {
+      console.log(res)
+      if (res.isSuccess === true) {
+        this.betaProgramInvitedUsers(this.currentUser.id)
+      }
+      else {
+        this.toastr.error(res.error);
+      }
+    })
+  }
+  betaProgramInvitedUsers(userId) {
+    this.apiservice
+      .getInvitedUsersByParent(userId)
+      .subscribe((res: any) => {
+        this.invitedUsers = res;
+        console.log('invited users', this.invitedUsers)
+      });
+  }
 
-   // ------------------------------------------get tags-----------------------------------------------------------------
-   getTagList() {
+  // ------------------------------------------get tags-----------------------------------------------------------------
+  getTagList() {
     this.apiservice.getTag().subscribe((res: any) => {
       this.allTags = res.data;
       this.allTags = this.allTags.filter((item) => item.isActivated === true);
-      this.allTags = this.allTags.sort((a, b) => b.programCount-a.programCount);
+      this.allTags = this.allTags.sort((a, b) => b.programCount - a.programCount);
       console.log('allTags list', this.allTags)
     });
   }

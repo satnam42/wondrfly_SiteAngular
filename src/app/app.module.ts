@@ -27,7 +27,7 @@ const config: SocketIoConfig = { url: environment.socketUrl, options: {} };
 @NgModule({
   declarations: [
     AppComponent,
-    LandingComponent  ],
+    LandingComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

@@ -15,7 +15,7 @@ import { MailchimpSubscribeFormModule } from 'src/app/core/components/mailchimp-
 
 
 @NgModule({
-  declarations: [BlogPageComponent, BlogDetailComponent, BlogSearchComponent, BlogsComponent ],
+  declarations: [BlogPageComponent, BlogDetailComponent, BlogSearchComponent, BlogsComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

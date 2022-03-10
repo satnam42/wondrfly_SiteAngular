@@ -15,7 +15,7 @@ import { ReadMoreModule } from 'src/app/core/components/read-more/read-more.modu
 
 
 @NgModule({
-  declarations: [TermConditionComponent,PrivacyPolicyComponent,WhyWondrflyComponent, AboutJoinBetaComponent, MoreResourcesComponent],
+  declarations: [TermConditionComponent, PrivacyPolicyComponent, WhyWondrflyComponent, AboutJoinBetaComponent, MoreResourcesComponent],
   imports: [
     CommonModule,
     CoreModule,

@@ -23,20 +23,20 @@ export class PrivacyPolicyComponent implements OnInit {
     private titleService: Title,
     private metaTagService: Meta,
     private auths: AuthsService) {
-      this.userData = auths.currentUser()
+    this.userData = auths.currentUser()
     if (this.userData) {
       this.isLogin = true;
     }
   }
 
 
-    // ------------------------------------------------get termsAndConditions  -------------------------------------------
-    privacyP(){
-  this.ngxLoader.start()
-  axios.get(`${this.blogUrl}/privacy-policies`).then(response => {
-    this.data = response.data
-  });
-  this.ngxLoader.stop()
+  // ------------------------------------------------get termsAndConditions  -------------------------------------------
+  privacyP() {
+    this.ngxLoader.start()
+    axios.get(`${this.blogUrl}/privacy-policies`).then(response => {
+      this.data = response.data
+    });
+    this.ngxLoader.stop()
   }
 
 
@@ -48,11 +48,11 @@ export class PrivacyPolicyComponent implements OnInit {
   ngOnInit() {
     this.titleService.setTitle(this.title);
     this.metaTagService.updateTag(
-      { name: 'description', content: "At Wondrfly, one of our main priorities is the privacy of our visitors. If you have any questions or require info about our privacy policy, visit our website."}
+      { name: 'description', content: "At Wondrfly, one of our main priorities is the privacy of our visitors. If you have any questions or require info about our privacy policy, visit our website." }
     );
     this.metaTagService.addTag(
-      { name: 'keywords', content: 'Wondrfly Privacy Policy, Privacy Policy For kids activities, Privacy Policy Wondrfly, Privacy Policy For kids programs'}
-    ); 
+      { name: 'keywords', content: 'Wondrfly Privacy Policy, Privacy Policy For kids activities, Privacy Policy Wondrfly, Privacy Policy For kids programs' }
+    );
 
     this.privacyP()
     window.scroll(0, 0);

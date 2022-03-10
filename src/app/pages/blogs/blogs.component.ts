@@ -15,7 +15,7 @@ export class BlogsComponent implements OnInit {
     if (this.userData) {
       this.isLogin = true;
     }
-   }
+  }
 
   ngOnInit(): void {
   }

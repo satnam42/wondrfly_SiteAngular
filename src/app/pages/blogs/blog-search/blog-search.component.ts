@@ -21,13 +21,13 @@ export class BlogSearchComponent implements OnInit {
   selectedLocation = "";
   searchesCatg: any = [];
   searchCatgData: any;
-  isMostViewed:boolean=false;
+  isMostViewed: boolean = false;
   blog: any;
   location: any;
   blogsByLocation: any;
   catg: any;
   blogsBycatg: any;
-  blogArray: any =[];
+  blogArray: any = [];
 
   constructor(
     private apiservice: ApiService,
@@ -46,7 +46,7 @@ export class BlogSearchComponent implements OnInit {
 
   ngOnInit() {
     this.metaTagService.addTag(
-      { name: 'keywords', content: 'blog category filter, blog category page, search blogs,blog topics for kids'}
+      { name: 'keywords', content: 'blog category filter, blog category page, search blogs,blog topics for kids' }
     );
     window.scroll(0, 0);
 
@@ -75,8 +75,8 @@ export class BlogSearchComponent implements OnInit {
   getBlogByCat() {
     const responcee = axios.get(`${this.blogUrl}/categories/?id=${this.catg.id}`).then(response => {
       this.searchCatgData = response.data[0]
-      this.blogArray= this.searchCatgData.blogs
-      this.blogArray = this.blogArray.sort((val1, val2)=> new Date(val2.created_at).getTime() - new Date(val1.created_at).getTime());
+      this.blogArray = this.searchCatgData.blogs
+      this.blogArray = this.blogArray.sort((val1, val2) => new Date(val2.created_at).getTime() - new Date(val1.created_at).getTime());
       this.isMostViewed = false
     });
   }
@@ -84,16 +84,17 @@ export class BlogSearchComponent implements OnInit {
     let empty: any;
     this.ngxLoader.start();
     // const responcee = axios.get(`${this.blogUrl}/blogs`).then((response: any) => {
-      // this.ngxLoader.stop();
-      let i = 0;
-      let blogs: any = [];
-      this.searchCatgData.blogs.forEach(blog => {
-        i++;
-          blogs.push(blog);
-        blogs.sort((a, b) => (a.views < b.views) ? 1 : (a.views < b.views) ? ((a.views < b.views) ? 1 : -1) : -1);
-        this.blogArray = blogs.filter(this.onlyUnique);
-      });
-      this.isMostViewed=true  }
+    // this.ngxLoader.stop();
+    let i = 0;
+    let blogs: any = [];
+    this.searchCatgData.blogs.forEach(blog => {
+      i++;
+      blogs.push(blog);
+      blogs.sort((a, b) => (a.views < b.views) ? 1 : (a.views < b.views) ? ((a.views < b.views) ? 1 : -1) : -1);
+      this.blogArray = blogs.filter(this.onlyUnique);
+    });
+    this.isMostViewed = true
+  }
 
   onlyUnique(value, index, self) {
     return self.indexOf(value) === index;

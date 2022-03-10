@@ -12,27 +12,27 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./contact-us.component.css']
 })
 export class ContactUsComponent implements OnInit {
-  contactUsForm:FormGroup;
+  contactUsForm: FormGroup;
   title = 'Contact us for Best Kids Activities and Programs - Wondrfly';
-  constructor(public auth:AuthsService,
+  constructor(public auth: AuthsService,
     private titleService: Title,
     private metaTagService: Meta,
     private apiservice: ApiService,
     private toastr: ToastrService,
-    private ngxLoader:NgxUiLoaderService) {
+    private ngxLoader: NgxUiLoaderService) {
   }
   ngOnInit() {
-    window.scroll(0,0);
+    window.scroll(0, 0);
     this.titleService.setTitle(this.title);
     this.metaTagService.updateTag(
       { name: 'description', content: `If you have any questions or concerns about Wondrfly's online classes, activites or programs for kids? Contact us over phone or mail or fill the form below. ` }
     );
     this.metaTagService.addTag(
-      { name: 'keywords', content: 'Contact Wondrfly, Wondrfly Contact Details, Mail to Wondrfly, Contact Us for My Account, Wondrfly Email Address, Wondrfly Contact, Wondrfly Contact Form'}
+      { name: 'keywords', content: 'Contact Wondrfly, Wondrfly Contact Details, Mail to Wondrfly, Contact Us for My Account, Wondrfly Email Address, Wondrfly Contact, Wondrfly Contact Form' }
     );
     this.contactUsForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
-      phoneNumber: new FormControl('', ),
+      phoneNumber: new FormControl('',),
       subject: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
 
@@ -42,14 +42,14 @@ export class ContactUsComponent implements OnInit {
     this.ngxLoader.start();
     this.apiservice.contactUs(this.contactUsForm.value).subscribe((res: any) => {
       this.ngxLoader.stop();
-      if(res.isSuccess){
+      if (res.isSuccess) {
         this.contactUsForm.reset();
-        this.toastr.info( '', res.data)
+        this.toastr.info('', res.data)
       }
       else {
-        this.toastr.error(res.error )
+        this.toastr.error(res.error)
       }
-});
-this.ngxLoader.stop();
+    });
+    this.ngxLoader.stop();
   }
 }

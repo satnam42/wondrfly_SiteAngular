@@ -14,8 +14,8 @@ export class FaqHomeComponent implements OnInit {
   blogUrl = environment.blogsUrl;
   userData = new User;
   isLogin = false;
-  parentCategories:any;
-  providerCategories:any;
+  parentCategories: any;
+  providerCategories: any;
   questions: any;
   parentQuestions: any;
   providerQuestions: any;
@@ -35,78 +35,80 @@ export class FaqHomeComponent implements OnInit {
 
   // ------------------------------------------------get category  -------------------------------------------
 
-  getParentCategory(){
+  getParentCategory() {
     const responcee = axios.get(`${this.blogUrl}/parent-faq-categories`).then(response => {
       this.parentCategories = response.data
-      console.log( 'data on parentCategories axios', this.parentCategories);
+      console.log('data on parentCategories axios', this.parentCategories);
     });
-    }
+  }
 
-     // ------------------------------------------------get provider category  -------------------------------------------
+  // ------------------------------------------------get provider category  -------------------------------------------
 
-  getProviderCategory(){
+  getProviderCategory() {
     const responcee = axios.get(`${this.blogUrl}/provider-faq-categories`).then(response => {
       this.providerCategories = response.data
-      console.log( 'data on providerCategories axios', this.providerCategories);
+      console.log('data on providerCategories axios', this.providerCategories);
     });
+  }
+
+  // ------------------------------------------------get questions parent  -------------------------------------------
+
+  getParentQuestionsByName(name) {
+    if (name) {
+      const responcee = axios.get(`${this.blogUrl}/parent-faq-questions?question_contains=${name}&_limit=5`).then((response: any) => {
+        console.log('response', response)
+        if (response.data.length) {
+          this.allQuestions = response.data
+        } else {
+          this.allQuestions = []
+        }
+      });
+    }
+    else {
+      this.allQuestions = []
+
     }
 
-    // ------------------------------------------------get questions parent  -------------------------------------------
+  }
 
-    getParentQuestionsByName(name){
-      if(name){   const responcee = axios.get(`${this.blogUrl}/parent-faq-questions?question_contains=${name}&_limit=5`).then((response:any) => {
-        console.log('response',response)
-        if(response.data.length){
-          this.allQuestions = response.data
-        }else{
-          this.allQuestions=[]
-        }
-      });}
-      else{
-        this.allQuestions=[]
+  // ------------------------------------------------get questions provider  -------------------------------------------
 
-      }
-   
-      }
-
-     // ------------------------------------------------get questions provider  -------------------------------------------
-
-  getProviderQuestions(){
+  getProviderQuestions() {
     const responcee = axios.get(`${this.blogUrl}/provider-faq-questions`).then(response => {
       this.providerQuestions = response.data
-      console.log( 'data on providerQuestions axios', this.providerQuestions);
-     
+      console.log('data on providerQuestions axios', this.providerQuestions);
+
     });
-    }
+  }
 
-    // searchData(data){
-    //   this.router.navigate(['/faq', data])
-    // }
+  // searchData(data){
+  //   this.router.navigate(['/faq', data])
+  // }
 
-    selectQues(ques){
-      var question = ques.question;
-      question = question.toLowerCase();
-      question = question.replace(/ /g,"-");
-      question = question.replace(/\?/g,"-");
-      this.router.navigate(['/faq',ques.role, question, ques.id])
-    }
+  selectQues(ques) {
+    var question = ques.question;
+    question = question.toLowerCase();
+    question = question.replace(/ /g, "-");
+    question = question.replace(/\?/g, "-");
+    this.router.navigate(['/faq', ques.role, question, ques.id])
+  }
 
 
   ngOnInit() {
-    window.scroll(0,0)
+    window.scroll(0, 0)
     this.titleService.setTitle(this.title);
     this.metaTagService.updateTag(
       { name: 'description', content: "Check out our FAQ section to find out some of the most frequently asked questions about the online classes for kids. Visit our website for more info." }
     );
     this.metaTagService.addTag(
-      { name: 'keywords', content: 'frequently asked questions about kids activities, fun questions for kids'}
+      { name: 'keywords', content: 'frequently asked questions about kids activities, fun questions for kids' }
     );
 
 
     console.log('all questions', this.allQuestions)
-   }
-   goToResultPage(data){
+  }
+  goToResultPage(data) {
     this.dataservice.setOption(data)
     this.router.navigate(['/faq/search']);
-   }
+  }
 }

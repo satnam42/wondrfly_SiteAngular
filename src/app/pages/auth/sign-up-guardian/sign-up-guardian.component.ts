@@ -14,7 +14,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./sign-up-guardian.component.css']
 })
 export class SignUpGuardianComponent implements OnInit {
-  currentYear =new Date().getFullYear()
+  currentYear = new Date().getFullYear()
   defaultImage = 'https://miro.medium.com/max/441/1*9EBHIOzhE1XfMYoKz1JcsQ.gif';
   errorImage = 'assets/about-beta1.png';
   blogUrl = environment.blogsUrl;
@@ -31,16 +31,16 @@ export class SignUpGuardianComponent implements OnInit {
   hide: boolean = true;
   signUpImage = '';
   signUpImages = ['assets/preOnboarding/1.jpg',
-  'assets/preOnboarding/2.jpg',
-  'assets/preOnboarding/3.jpg',
-  'assets/preOnboarding/4.jpg',
-  'assets/preOnboarding/5.jpg',
-  'assets/preOnboarding/6.jpg',
-  'assets/preOnboarding/7.jpg',
-  'assets/preOnboarding/8.jpg',
-  'assets/preOnboarding/9.jpg',
-  'assets/preOnboarding/10.jpg',
-  'assets/preOnboarding/11.jpg',
+    'assets/preOnboarding/2.jpg',
+    'assets/preOnboarding/3.jpg',
+    'assets/preOnboarding/4.jpg',
+    'assets/preOnboarding/5.jpg',
+    'assets/preOnboarding/6.jpg',
+    'assets/preOnboarding/7.jpg',
+    'assets/preOnboarding/8.jpg',
+    'assets/preOnboarding/9.jpg',
+    'assets/preOnboarding/10.jpg',
+    'assets/preOnboarding/11.jpg',
   ]
   constructor(private router: Router,
     private apiservice: ApiService,
@@ -62,29 +62,29 @@ export class SignUpGuardianComponent implements OnInit {
     let email = this.userData.email.toLowerCase();
     this.userData.email = email;
     axios
-    .post(`${this.blogUrl}/auth/local/register`, {
-      username: this.userData.firstName,
-      email: this.userData.email,
-      password: 'strapipassword',
-    })
-    .then(response => {
-      if (response.status === 200) {
-        this.store.setObject('strapiData', response.data);
-        this.store.setItem('jwt', response.data.jwt);
+      .post(`${this.blogUrl}/auth/local/register`, {
+        username: this.userData.firstName,
+        email: this.userData.email,
+        password: 'strapipassword',
+      })
+      .then(response => {
+        if (response.status === 200) {
+          this.store.setObject('strapiData', response.data);
+          this.store.setItem('jwt', response.data.jwt);
 
-    this.ngxLoader.start();
-    this.apiservice.signupGuardian(this.userData).subscribe((res: any) => {
-      this.ngxLoader.stop();
-      if (res.isSuccess) {
-        this.router.navigate(['/login']);
-        // this.toastr.info('Success',this.message);
-      }else {
-        this.toastr.error(res.error);
-      }
-    });
+          this.ngxLoader.start();
+          this.apiservice.signupGuardian(this.userData).subscribe((res: any) => {
+            this.ngxLoader.stop();
+            if (res.isSuccess) {
+              this.router.navigate(['/login']);
+              // this.toastr.info('Success',this.message);
+            } else {
+              this.toastr.error(res.error);
+            }
+          });
         }
       }).catch(error => {
-        this.toastr.error( error.response.data.data[0].messages[0].message)
+        this.toastr.error(error.response.data.data[0].messages[0].message)
       });
   }
 

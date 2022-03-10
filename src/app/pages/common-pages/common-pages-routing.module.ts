@@ -9,17 +9,19 @@ import { TermConditionComponent } from './term-condition/term-condition.componen
 import { WhyWondrflyComponent } from './why-wondrfly/why-wondrfly.component';
 
 const routes: Routes = [
-  {path: 'term-condition' , component:TermConditionComponent},
-  {path: 'about-wondrfly', component:WhyWondrflyComponent},
-  {path: 'privacy-policy', component: PrivacyPolicyComponent },
-  {path: 'about-beta', component: AboutJoinBetaComponent },
-  {path: 'resources', component: MoreResourcesComponent ,canActivate:
-  [UserGuard],
-  data: {
+  { path: 'term-condition', component: TermConditionComponent },
+  { path: 'about-wondrfly', component: WhyWondrflyComponent },
+  { path: 'privacy-policy', component: PrivacyPolicyComponent },
+  { path: 'about-beta', component: AboutJoinBetaComponent },
+  {
+    path: 'resources', component: MoreResourcesComponent, canActivate:
+      [UserGuard],
+    data: {
       roles: [
         Role.Parent,
       ]
-    }},
+    }
+  },
 
 ];
 

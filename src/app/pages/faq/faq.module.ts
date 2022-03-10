@@ -12,7 +12,7 @@ import { MarkdownModule } from 'src/app/core/shared/markdown/markdown.module';
 
 
 @NgModule({
-  declarations: [FaqHomeComponent,FaqHelpDeskComponent,SearchResultComponent, FaqComponent],
+  declarations: [FaqHomeComponent, FaqHelpDeskComponent, SearchResultComponent, FaqComponent],
   imports: [
     CommonModule,
     FaqRoutingModule,

@@ -28,21 +28,21 @@ export class WhyWondrflyComponent implements OnInit {
     }
   }
 
-  gotoProfile(){
+  gotoProfile() {
     this.router.navigate(["parent/profile", this.userData.id]);
   }
 
 
-   // ------------------------------------------------get termsAndConditions  -------------------------------------------
-   whyWonderflyData(){
+  // ------------------------------------------------get termsAndConditions  -------------------------------------------
+  whyWonderflyData() {
     this.ngxLoader.start()
     axios.get(`${this.blogUrl}/why-wondrflies`).then(response => {
       this.ngxLoader.stop()
       this.data = response.data
-   
-      console.log( 'data on  whywonderfly', this.data);
+
+      console.log('data on  whywonderfly', this.data);
     });
-    }
+  }
 
   ngOnInit() {
     this.titleService.setTitle(this.title);
@@ -51,11 +51,11 @@ export class WhyWondrflyComponent implements OnInit {
     );
     this.metaTagService.addTag(
       { name: 'keywords', content: 'about wondrfly, wondrfly inc,' }
-    );   
+    );
 
     window.scroll(0, 0);
     this.whyWonderflyData()
   }
- 
+
 }
 

@@ -11,19 +11,19 @@ import { DataService } from 'src/app/core/services/dataservice.service ';
 })
 export class SearchResultComponent implements OnInit {
   searchData: any;
-  filterData:string;
+  filterData: string;
   constructor(private router: Router,
-    private activatedroute : ActivatedRoute,
+    private activatedroute: ActivatedRoute,
     private dataservice: DataService,
   ) {
-    console.log('data from service',dataservice.getOption());
+    console.log('data from service', dataservice.getOption());
     this.filterData = dataservice.getOption();
-    console.log('filter data',this.filterData);
+    console.log('filter data', this.filterData);
 
     this.activatedroute.params.subscribe(data => {
-      this.searchData=data;
-      console.log( 'data on url', this.searchData);
-  })
+      this.searchData = data;
+      console.log('data on url', this.searchData);
+    })
 
   }
 

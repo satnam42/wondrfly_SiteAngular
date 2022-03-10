@@ -8,17 +8,18 @@ import { BlogsComponent } from './blogs.component';
 
 
 export const BlogsRoutes: Routes = [
-  {path: '', component: BlogsComponent, children:[
-  {path: '', component: BlogPageComponent},
-  {path : ':title/:id', component: BlogDetailComponent,},
-  { path : 'category/:name/:id', component: BlogSearchComponent}
-  ]
-},
+  {
+    path: '', component: BlogsComponent, children: [
+      { path: '', component: BlogPageComponent },
+      { path: ':title/:id', component: BlogDetailComponent, },
+      { path: 'category/:name/:id', component: BlogSearchComponent }
+    ]
+  },
 
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(BlogsRoutes)],
-    exports: [RouterModule]
+  imports: [RouterModule.forChild(BlogsRoutes)],
+  exports: [RouterModule]
 })
 export class BlogsRoutingModule { }

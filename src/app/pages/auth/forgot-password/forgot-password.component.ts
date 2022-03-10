@@ -33,16 +33,16 @@ export class ForgotPasswordComponent implements OnInit {
 
   forgotImage = '';
   forgotImages = ['assets/preOnboarding/1.jpg',
-  'assets/preOnboarding/2.jpg',
-  'assets/preOnboarding/3.jpg',
-  'assets/preOnboarding/4.jpg',
-  'assets/preOnboarding/5.jpg',
-  'assets/preOnboarding/6.jpg',
-  'assets/preOnboarding/7.jpg',
-  'assets/preOnboarding/8.jpg',
-  'assets/preOnboarding/9.jpg',
-  'assets/preOnboarding/10.jpg',
-  'assets/preOnboarding/11.jpg',
+    'assets/preOnboarding/2.jpg',
+    'assets/preOnboarding/3.jpg',
+    'assets/preOnboarding/4.jpg',
+    'assets/preOnboarding/5.jpg',
+    'assets/preOnboarding/6.jpg',
+    'assets/preOnboarding/7.jpg',
+    'assets/preOnboarding/8.jpg',
+    'assets/preOnboarding/9.jpg',
+    'assets/preOnboarding/10.jpg',
+    'assets/preOnboarding/11.jpg',
   ]
 
   constructor(private router: Router,
@@ -55,7 +55,7 @@ export class ForgotPasswordComponent implements OnInit {
   }
   otpRequest() {
     window.scroll(0, 0);
-     var email: any = this.credentials.email.toLowerCase();
+    var email: any = this.credentials.email.toLowerCase();
     this.credentials.email = email;
     this.ngxLoader.start();
     this.apiservice.otpRequest(this.credentials.email).subscribe((res: any) => {
@@ -66,12 +66,12 @@ export class ForgotPasswordComponent implements OnInit {
         window.document.getElementById("sendotp").click();
         this.isForgot = false;
         this.credentials.otpToken = res.message.otpToken
-    }
+      }
       else {
         // this.isForgot = true;
         // this.isOTP = false;
         // this.isNewPassword = false;
-        this.toastr.error( res.error )
+        this.toastr.error(res.error)
       }
     });
   }
@@ -92,7 +92,7 @@ export class ForgotPasswordComponent implements OnInit {
         this.isNewPassword = false;
         this.isForgot = false;
         let msg = 'Something went Wrong!';
-        this.toastr.error( res.error )
+        this.toastr.error(res.error)
       }
     });
   }
@@ -125,13 +125,13 @@ export class ForgotPasswordComponent implements OnInit {
     this.forgotImage = this.forgotImages[num];
   }
   ngOnInit() {
-    let  title = 'Forgot your Password - Wondrfly'
+    let title = 'Forgot your Password - Wondrfly'
     this.titleService.setTitle(title);
     this.metaTagService.updateTag(
       { name: 'description', content: "Did you forget your password? Please enter the email that you used to register and we'll send you a link to get back into your account." }
     );
     this.metaTagService.addTag(
-      { name: 'keywords', content: 'forgot parent password, forgot my parent password'}
+      { name: 'keywords', content: 'forgot parent password, forgot my parent password' }
     );
     this.randomImage();
     window.scroll(0, 0);

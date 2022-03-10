@@ -14,7 +14,7 @@ export class TermConditionComponent implements OnInit {
   blogUrl = environment.blogsUrl;
   userData: any = {};
   isLogin = false;
-  terms: any=[];
+  terms: any = [];
   title = 'Terms and Conditions - Wondrfly'
   loaderPostion = 'center-center';
   loaderType = 'ball-spin-clockwise';
@@ -30,12 +30,12 @@ export class TermConditionComponent implements OnInit {
   }
 
   // ------------------------------------------------get termsAndConditions  -------------------------------------------
-getTermsAndConditions(){
-  this.ngxLoader.start()
-  axios.get(`${this.blogUrl}/terms-and-conditions`).then(response => {
-    this.terms = response.data
-  });
-  this.ngxLoader.stop()
+  getTermsAndConditions() {
+    this.ngxLoader.start()
+    axios.get(`${this.blogUrl}/terms-and-conditions`).then(response => {
+      this.terms = response.data
+    });
+    this.ngxLoader.stop()
   }
 
   ngOnInit() {
@@ -44,8 +44,8 @@ getTermsAndConditions(){
       { name: 'description', content: "Please read our terms and conditions carefully before using or accessing our website. Visit Wondrfly’s website for more information." }
     );
     this.metaTagService.addTag(
-      { name: 'keywords', content: 'Terms of Agreement, Terms of Service Agreement, Contracts and Agreements, Wondrfly terms and conditions, Terms Of Service'}
-    ); 
+      { name: 'keywords', content: 'Terms of Agreement, Terms of Service Agreement, Contracts and Agreements, Wondrfly terms and conditions, Terms Of Service' }
+    );
 
     window.scroll(0, 0);
     this.getTermsAndConditions()

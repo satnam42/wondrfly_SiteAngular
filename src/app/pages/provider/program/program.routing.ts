@@ -5,14 +5,15 @@ import { ProgramComponent } from './program.component';
 
 export const routes: Routes = [
   // { path: '', redirectTo: 'home', pathMatch: 'full' },
-  {path: '', component: ProgramComponent, children:[
-
   {
-    path: ':title/:id',
-    component: DetailComponent,
-  },
-  ]
-}
+    path: '', component: ProgramComponent, children: [
+
+      {
+        path: ':title/:id',
+        component: DetailComponent,
+      },
+    ]
+  }
 ];
 
 @NgModule({

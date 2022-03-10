@@ -14,7 +14,7 @@ export class FaqComponent implements OnInit {
     if (this.userData) {
       this.isLogin = true;
     }
-   }
+  }
 
   ngOnInit(): void {
   }

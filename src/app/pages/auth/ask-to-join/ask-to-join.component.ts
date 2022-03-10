@@ -14,7 +14,7 @@ import { MapsAPILoader } from '@agm/core';
   styleUrls: ['./ask-to-join.component.css']
 })
 export class AskToJoinComponent implements OnInit {
-  currentYear =new Date().getFullYear()
+  currentYear = new Date().getFullYear()
   defaultImage = 'https://miro.medium.com/max/441/1*9EBHIOzhE1XfMYoKz1JcsQ.gif';
   errorImage = 'assets/about-beta1.png';
   blogUrl = environment.blogsUrl;
@@ -29,34 +29,34 @@ export class AskToJoinComponent implements OnInit {
     bookedActivityFor: '',
     lookingkidsActivityIn: '',
     lat: '',
-    lng:  '',
-    bookedActivityInLastMonths:  '',
-    wantWondrflyBetaUserBecause:  '',
-    occupation:  '',
+    lng: '',
+    bookedActivityInLastMonths: '',
+    wantWondrflyBetaUserBecause: '',
+    occupation: '',
     willActive: false,
     role: 'parent',
-    userId:'',
-    ipAddress:''
+    userId: '',
+    ipAddress: ''
   }
   isGuardianInvitation = false;
   isTerms: boolean;
   isParent: boolean;
-  isbetaActivity:boolean;
+  isbetaActivity: boolean;
   message: string = 'Your request submitted!';
   categoryResponse: any;
   response: any;
   hide: boolean = true;
   signUpImage = '';
   signUpImages = ['assets/preOnboarding/1.jpg',
-  'assets/preOnboarding/2.jpg',
-  'assets/preOnboarding/3.jpg',
-  'assets/preOnboarding/6.jpg',
-  'assets/preOnboarding/11.jpg',
+    'assets/preOnboarding/2.jpg',
+    'assets/preOnboarding/3.jpg',
+    'assets/preOnboarding/6.jpg',
+    'assets/preOnboarding/11.jpg',
   ]
-  step1= true
+  step1 = true
   step2 = false
-  disableApproveBtn=false;
-  constructor(private auth:AuthsService,
+  disableApproveBtn = false;
+  constructor(private auth: AuthsService,
     private apiservice: ApiService,
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
@@ -65,11 +65,12 @@ export class AskToJoinComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router) {
 
-      this.activatedRoute.queryParams.subscribe(params => {
-        let name = params['name'];
-if(name==='grown-ups'){
-  this.isGuardianInvitation=true
-}    });
+    this.activatedRoute.queryParams.subscribe(params => {
+      let name = params['name'];
+      if (name === 'grown-ups') {
+        this.isGuardianInvitation = true
+      }
+    });
 
   }
   onPassword() {
@@ -79,45 +80,48 @@ if(name==='grown-ups'){
     const num = Math.floor(Math.random() * this.signUpImages.length);
     this.signUpImage = this.signUpImages[num];
   }
-cancel(){
- this.router.navigate(["/"]);
-}
+  cancel() {
+    this.router.navigate(["/"]);
+  }
 
   askToJoin() {
-    this.disableApproveBtn=true;
-        let email = this.userData.email.toLowerCase();
+    this.disableApproveBtn = true;
+    let email = this.userData.email.toLowerCase();
     this.userData.email = email;
-    if(this.isGuardianInvitation){
+    if (this.isGuardianInvitation) {
       this.apiservice.guardianAsktojoin(this.userData).subscribe((res: any) => {
-        if(res.isSuccess){
-          this.disableApproveBtn=false;
-    window.document.getElementById("openSuccessModal").click();
-  }   else{
-          this.disableApproveBtn=false;
-          this.toastr.error(res.error) }
-    })
+        if (res.isSuccess) {
+          this.disableApproveBtn = false;
+          window.document.getElementById("openSuccessModal").click();
+        } else {
+          this.disableApproveBtn = false;
+          this.toastr.error(res.error)
+        }
+      })
     }
-    else{
+    else {
       this.apiservice.askToJoin(this.userData).subscribe((res: any) => {
         console.log(res)
-        if(res.isSuccess){
-          this.disableApproveBtn=false;
+        if (res.isSuccess) {
+          this.disableApproveBtn = false;
           window.document.getElementById("openSuccessModal").click();
         }
-        else{
-          this.disableApproveBtn=false;
-          this.toastr.error(res.error) }
-    })
+        else {
+          this.disableApproveBtn = false;
+          this.toastr.error(res.error)
+        }
+      })
     }
 
   }
 
   // ---------getIPAddress-------
 
-  getIPAddress(){  
-    this.apiservice.getIPAddress().subscribe((res:any)=>{  
-          this.userData.ipAddress=res.ip;  
-        });    } 
+  getIPAddress() {
+    this.apiservice.getIPAddress().subscribe((res: any) => {
+      this.userData.ipAddress = res.ip;
+    });
+  }
 
   ngOnInit() {
     this.getIPAddress()
@@ -132,13 +136,13 @@ cancel(){
     this.parentForm = new FormGroup({
       name: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
-      password:  new FormControl('', [Validators.required]),
-      bookedActivityFor:  new FormControl('', [Validators.required]),
-      lookingkidsActivityIn:  new FormControl('', [Validators.required]),
-      bookedActivityInLastMonths:  new FormControl('',),
-      wantWondrflyBetaUserBecause:  new FormControl('', [Validators.required]),
-      occupation:  new FormControl('',),
-      willActive:  new FormControl('',),
+      password: new FormControl('', [Validators.required]),
+      bookedActivityFor: new FormControl('', [Validators.required]),
+      lookingkidsActivityIn: new FormControl('', [Validators.required]),
+      bookedActivityInLastMonths: new FormControl('',),
+      wantWondrflyBetaUserBecause: new FormControl('', [Validators.required]),
+      occupation: new FormControl('',),
+      willActive: new FormControl('',),
 
 
       // password: password2,

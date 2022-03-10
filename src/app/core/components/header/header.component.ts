@@ -114,14 +114,14 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(["/provider/program/add"]);
   }
   profile() {
-      this.store.removeItem('activeList')
+    this.store.removeItem('activeList')
     if (this.user.role === "parent") {
       this.router.navigate(["parent/profile", this.user.id]);
-         if (this.routeName === "parent/profile", this.user.id) {
-            this.router
-              .navigateByUrl("/", { skipLocationChange: true })
-              .then(() => this.router.navigate(["parent/profile", this.user.id]));
-          }
+      if (this.routeName === "parent/profile", this.user.id) {
+        this.router
+          .navigateByUrl("/", { skipLocationChange: true })
+          .then(() => this.router.navigate(["parent/profile", this.user.id]));
+      }
     } else if (this.user.role === "provider") {
       this.router.navigate(["provider/profile", this.user.id]);
     } else {
@@ -199,7 +199,7 @@ export class HeaderComponent implements OnInit {
     switch (data.title) {
       case 'update Profile': case 'About Profile': {
         window.document.getElementById("close_notification_modal").click();
-          this.store.removeItem('activeList')
+        this.store.removeItem('activeList')
         if (this.user.role === "parent") {
           this.router.navigate(["parent/profile", this.user.id]);
           if (this.routeName === "parent/profile", this.user.id) {
@@ -217,7 +217,7 @@ export class HeaderComponent implements OnInit {
       case 'Add child': {
         window.document.getElementById("close_notification_modal").click();
         if (this.user.role === "parent") {
-          this.store.setItem("activeList", "kidList");      
+          this.store.setItem("activeList", "kidList");
           this.router.navigate(["parent/profile", this.user.id])
           if (this.routeName === "parent/profile", this.user.id) {
             this.router
@@ -227,10 +227,10 @@ export class HeaderComponent implements OnInit {
         }
         break;
       }
-      case 'Save Program': case 'unSave Program':{
+      case 'Save Program': case 'unSave Program': {
         window.document.getElementById("close_notification_modal").click();
         if (this.user.role === "parent") {
-          this.store.setItem("activeList", "savedList");      
+          this.store.setItem("activeList", "savedList");
           this.router.navigate(["parent/profile", this.user.id])
           if (this.routeName === "parent/profile", this.user.id) {
             this.router
