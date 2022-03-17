@@ -1,5 +1,6 @@
 import { MapsAPILoader } from "@agm/core";
 import { Component, ElementRef, NgZone, OnInit, ViewChild } from "@angular/core";
+import { FormControl } from "@angular/forms";
 import { Router } from "@angular/router";
 import { CookieService } from "ngx-cookie-service";
 import { ApiService } from "../../services/api.service.service";
@@ -19,6 +20,38 @@ template: `
       <div class="left-searchpd" *ngIf="!searchBar">
         <div class="left_search">
           <div>
+
+          <form class="banner_form">
+          <div class="form-group ">
+    <input type="text"
+    placeholder="Search Activity..."
+           aria-label="Activity"
+           [formControl]="searchTerm"
+           class="form-control camp_input "
+           matInput
+           [matAutocomplete]="auto">
+          </div>
+          <div class="search-location">
+          <span data-toggle="modal" data-target="#locationMod">
+         <img src="assets/search-location.png" /></span>
+        <input placeholder="Search Jersey City" (keydown.enter)="$event.preventDefault()" autocorrect="off" autocapitalize="off" spellcheck="off" #search readonly />
+        </div>
+        <div class="form-group cursor">
+      <button [disabled]="filterData.activityName" class="banner_button cursor" routerLink="/search">
+                    <img src="assets/search_icon.svg" alt="Search image" />
+                  </button>
+                                    </div>
+
+
+    <mat-autocomplete  autoActiveFirstOption #auto="matAutocomplete">
+    <mat-optgroup [label]="group.label" *ngFor="let group of allData">
+    <mat-option *ngFor="let option of group.data"  [value]="option.name" (click)="selectSearchedOption(option)" >
+        {{option.name}}
+      </mat-option>  
+    </mat-optgroup>
+    </mat-autocomplete>
+</form>
+
             <!-- <form class="banner_form" data-toggle="collapse" href="#dropdownprogram-provider" role="button"
               aria-expanded="false" aria-controls="dropdownprogram-provider">
               <div class="form-group ">
@@ -80,7 +113,7 @@ template: `
             </form> -->
 
 
-            <form class="banner_form" data-toggle="collapse" href="#dropdownprogram-provider" role="button"
+            <!-- <form class="banner_form" data-toggle="collapse" href="#dropdownprogram-provider" role="button"
               aria-expanded="false" aria-controls="dropdownprogram-provider">
               <div class="form-group ">
                 <input type="text" autocomplete="off" (keyup)="
@@ -137,7 +170,7 @@ template: `
                   </div>
                 </div>
               </div>
-            </form>
+            </form> -->
 
 
           </div>
@@ -226,15 +259,19 @@ locationData: any = {
 lat: '',
 lng: '',
 }
-
+searchTerm= new FormControl();
 zoom = 14;
+allData: any=[];
 address: string;
+private count = 0;
+private n     = 3;
 private geoCoder;
 providersBySearch: any;
 lat: string
 lng: string
-regWallCookies=0
+regWallCookies=0;
 @ViewChild('search', { static: false }) searchElementRef: ElementRef;
+  categoryData: any;
 constructor(
 private router: Router,
 private apiservice: ApiService,
@@ -283,6 +320,11 @@ logo() {
 this.router.navigate([""]);
 }
 ngOnInit() {
+  this.searchTerm.valueChanges.subscribe((value) =>{
+    if(value){this.searchSubCategory(value)}else{
+      this.allData=[];
+    }   
+    })
 
 this.mapsAPILoader.load().then(() => {
 this.geoCoder = new google.maps.Geocoder;
@@ -303,15 +345,6 @@ this.lng = String(place.geometry.location.lng());
 
 }
 
-searchSubCategory(key) {
-this.apiservice.searchTag(key).subscribe((res: any) => {
-this.categoriesBySearch = res;
-console.log(this.categoriesBySearch, 'categoriesBySearch')
-this.categoriesBySearch.category = this.categoriesBySearch.category.filter((item) => item.isActivated !== false);
-this.categoriesBySearch.tags = this.categoriesBySearch.tags.filter((item) => item.isActivated !== false);
-});
-
-}
 searchByCategory(id) {
  let regCount = this.regWallCookies+1
 this.cookies.set('regWall', String(regCount), 30);
@@ -342,16 +375,52 @@ this.router
 // .then(() => this.router.navigate(["search"]));
 // }
 // }
-providerSearch(key) {
-this.apiservice.searchUsers(key, "provider").subscribe((res: any) => {
-if (res.data) {
-this.providersBySearch = res.data;
-}
-else {
-this.providersBySearch = []
-}
-});
-}
+
+searchSubCategory(key) {
+ let groupDataAll:any =[
+    {label:'Category',data:[]},
+    {label:'Provider',data:[]},
+  ]
+  if(!key){
+    this.allData=[];
+  }else{
+  this.apiservice.searchTag(key).subscribe((res: any) => {
+  this.categoriesBySearch = res;
+  this.categoriesBySearch.category = this.categoriesBySearch.category.filter((item) => item.isActivated !== false);
+  this.categoriesBySearch.tags = this.categoriesBySearch.tags.filter((item) => item.isActivated !== false);
+  this.categoryData= this.categoriesBySearch.category.concat(this.categoriesBySearch.tags)
+  groupDataAll[0].data=this.categoryData;
+  }); 
+  this.apiservice.searchUsers(key, "provider").subscribe((res: any) => {
+    if (res.data) {
+    this.providersBySearch = res.data;
+    var i;
+    for(i = 0; i < this.providersBySearch.length; i++){
+      this.providersBySearch[i].name = this.providersBySearch[i]['firstName'];
+    groupDataAll[1].data=this.providersBySearch;
+    this.allData=groupDataAll
+    console.log(groupDataAll,'groupppdata with provider')
+    }}
+    else {
+    this.allData = []
+    }
+    });
+  }
+  }
+
+
+
+// providerSearch(key) {
+// this.apiservice.searchUsers(key, "provider").subscribe((res: any) => {
+// if (res.data) {
+// this.providersBySearch = res.data;
+// console.log(this.providersBySearch,'providerssss')
+// }
+// else {
+// this.providersBySearch = []
+// }
+// });
+// }
 
 searchActivityByCategory(id) {
 this.filterData.activityName = "";
@@ -363,6 +432,52 @@ this.router
 .navigateByUrl("/", { skipLocationChange: true })
 .then(() => this.router.navigate(["search"]));
 }
+}
+
+selectSearchedOption(data){
+  if(data.role=='provider'){
+    this.filterData.activityName = "";
+data.name = data.name.toLowerCase();
+data.name = data.name.replace(/ /g, "-");
+data.name = data.name.replace(/\?/g, "-");
+this.router.navigate(["/provider/program-provider", data.name, data._id])
+this.router.navigate(["/provider/program-provider", data.name, data._id,]);
+if (this.routeName === "/provider/program-provider", data.name, data._id) {
+  this.router
+    .navigateByUrl("/", { skipLocationChange: true })
+    .then(() => this.router.navigate(["/provider/program-provider", data.name, data._id]));
+}
+  }else if(!data.categoryIds && !data.role){
+    this.filterData.activityName = "";
+this.filterData.subcatId ='';
+this.filterData.categoryId =  data._id;
+this.filterData.searchedCategoryKey=data.name;
+this.dataservice.setOption(this.filterData);
+this.router.navigate(["/search"]);
+if (this.routeName === "/search") {
+this.router
+.navigateByUrl("/", { skipLocationChange: true })
+.then(() => this.router.navigate(["search"]));
+}
+  }
+  else if(data.categoryIds && !data.role){
+    let regCount = this.regWallCookies+1
+    this.cookies.set('regWall', String(regCount), 30);
+    this.filterData.activityName = ''
+    this.filterData.lat = ''
+    this.filterData.lng = ''
+    this.filterData.searchedCategoryKey=data.name;
+    this.filterData.categoryId = ''
+    this.filterData.subcatId = data._id
+    this.dataservice.setOption(this.filterData)
+    this.router.navigate(['/search']);
+    if (this.routeName === "/search") {
+    this.router
+    .navigateByUrl("/", { skipLocationChange: true })
+    .then(() => this.router.navigate(["search"]));
+    }
+  }
+
 }
 
 goToProviderProfile(provider) {

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FooterComponent } from '../../app/core/components/footer/footer.component';
 import { HeaderComponent } from '../../app/core/components/header/header.component';
 import { AuthsService } from './services/auths.service';
@@ -14,6 +14,11 @@ import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { DateFormateModule } from './components/date-format/date-format.module';
 import { AlertComponent } from './components/alert/alert.component';
 import { CookiesPopupComponent } from './components/cookies-popup/cookies-popup.component';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+
+
 
 
 
@@ -29,7 +34,8 @@ const thirdPartyModules = [
   MatIconModule,
   MatChipsModule,
   NgxUiLoaderModule,
-DateFormateModule,
+  DateFormateModule,
+  MatAutocompleteModule
 
   // ImageCropModule,
 ];
@@ -45,6 +51,9 @@ const guards = [
     CommonModule,
     RouterModule,
     FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatSelectModule,
     ...thirdPartyModules,
   ],
   declarations: [...components ],
