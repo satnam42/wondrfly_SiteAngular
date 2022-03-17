@@ -45,8 +45,11 @@ template: `
 
     <mat-autocomplete  autoActiveFirstOption #auto="matAutocomplete">
     <mat-optgroup [label]="group.label" *ngFor="let group of allData">
-    <mat-option *ngFor="let option of group.data"  [value]="option.name" (click)="selectSearchedOption(option)" >
+    <mat-option *ngFor="let option of group.data | slice:0:3"  [value]="option.name" (click)="selectSearchedOption(option)" >
         {{option.name}}
+        <span class="search-programlist">
+                          <img src="assets/program-search.svg" />
+                        </span>
       </mat-option>  
     </mat-optgroup>
     </mat-autocomplete>

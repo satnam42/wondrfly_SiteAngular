@@ -415,3 +415,23 @@ button[disabled] {
  .autocomp{
    width: 100%;
  }
+ ::ng-deep.mat-option-text{
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  letter-spacing: 0.001em;
+  color: #858585;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  cursor: pointer;
+ }
+
+ ::ng-deep.mat-option-text span.search-programlist {
+  float: right;
+}
+
+::ng-deep.mat-option.mat-active {
+  background: #53B2E8 !important;
+  color: #FFFFFF !important;
+}
