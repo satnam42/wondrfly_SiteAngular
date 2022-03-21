@@ -11,6 +11,7 @@ import { ToastrService } from "ngx-toastr";
 import { MapsAPILoader } from "@agm/core";
 import * as moment from "moment";
 import { ParentProfileComponent } from "src/app/pages/parent/parent-profile/parent-profile.component";
+import { FormControl } from "@angular/forms";
 
 declare const $: any;
 @Component({
@@ -45,6 +46,10 @@ export class HeaderComponent implements OnInit {
     lng: '',
   }
 
+  searchTerm= new FormControl();
+zoom = 14;
+allData: any=[];
+
   initialUrl: any;
   feedbackData: any = {
     id: "",
@@ -62,13 +67,13 @@ export class HeaderComponent implements OnInit {
   autoHide: number = 4000;
   categoriesBySearch: any;
   providersBySearch: any;
-  zoom = 14;
   address: string;
   private geoCoder;
   todayNotifications = [];
   earlierNotifications = [];
   newNotifications: any;
   @ViewChild('search', { static: false }) searchElementRef: ElementRef; gitBoxImage = 'assets/gift-box.svg';
+  categoryData: any;
   constructor(
     private router: Router,
     private auth: AuthsService,
@@ -249,6 +254,12 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+
+      this.searchTerm.valueChanges.subscribe((value) =>{
+    if(value){this.searchSubCategory(value)}else{
+      this.allData=[];
+    }   
+    })
     this.getUserById();
 
     if ((this.routeName === "/profile", this.user.id)) {
@@ -306,8 +317,6 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    window.document.getElementById("close_feedback_modal").click();
-    window.document.getElementById("close_notification_modal").click();
 
   }
   logout() {
@@ -341,13 +350,13 @@ export class HeaderComponent implements OnInit {
     this.router.navigate([""]);
   }
 
-  searchSubCategory(key) {
-    this.apiservice.searchTag(key).subscribe((res: any) => {
-      this.categoriesBySearch = res;
-      this.categoriesBySearch.category = this.categoriesBySearch.category.filter((item) => item.isActivated !== false);
-      this.categoriesBySearch.tags = this.categoriesBySearch.tags.filter((item) => item.isActivated !== false);
-    });
-  }
+  // searchSubCategory(key) {
+  //   this.apiservice.searchTag(key).subscribe((res: any) => {
+  //     this.categoriesBySearch = res;
+  //     this.categoriesBySearch.category = this.categoriesBySearch.category.filter((item) => item.isActivated !== false);
+  //     this.categoriesBySearch.tags = this.categoriesBySearch.tags.filter((item) => item.isActivated !== false);
+  //   });
+  // }
 
   providerSearch(key) {
     this.apiservice.searchUsers(key, "provider").subscribe((res: any) => {
@@ -374,19 +383,51 @@ export class HeaderComponent implements OnInit {
         .then(() => this.router.navigate(["search"]));
     }
   }
-  searchBySubCategory(id) {
-    this.filterData.activityName = '';
-    this.filterData.lat = ''
-    this.filterData.lng = ''
-    this.filterData.subcatId = id;
-    this.dataservice.setOption(this.filterData);
-    this.router.navigate(["/search"]);
-    if (this.routeName === "/search") {
-      this.router
-        .navigateByUrl("/", { skipLocationChange: true })
-        .then(() => this.router.navigate(["search"]));
-    }
-  }
+  // searchBySubCategory(id) {
+  //   this.filterData.activityName = '';
+  //   this.filterData.lat = ''
+  //   this.filterData.lng = ''
+  //   this.filterData.subcatId = id;
+  //   this.dataservice.setOption(this.filterData);
+  //   this.router.navigate(["/search"]);
+  //   if (this.routeName === "/search") {
+  //     this.router
+  //       .navigateByUrl("/", { skipLocationChange: true })
+  //       .then(() => this.router.navigate(["search"]));
+  //   }
+  // }
+
+  searchSubCategory(key) {
+    let groupDataAll:any =[
+       {label:'Category',data:[]},
+       {label:'Provider',data:[]},
+     ]
+     if(!key){
+       this.allData=[];
+     }else{
+     this.apiservice.searchTag(key).subscribe((res: any) => {
+     this.categoriesBySearch = res;
+     this.categoriesBySearch.category = this.categoriesBySearch.category.filter((item) => item.isActivated !== false);
+     this.categoriesBySearch.tags = this.categoriesBySearch.tags.filter((item) => item.isActivated !== false);
+     this.categoryData= this.categoriesBySearch.category.concat(this.categoriesBySearch.tags)
+     groupDataAll[0].data=this.categoryData;
+     }); 
+     this.apiservice.searchUsers(key, "provider").subscribe((res: any) => {
+       if (res.data) {
+       this.providersBySearch = res.data;
+       var i;
+       for(i = 0; i < this.providersBySearch.length; i++){
+         this.providersBySearch[i].name = this.providersBySearch[i]['firstName'];
+       groupDataAll[1].data=this.providersBySearch;
+       this.allData=groupDataAll
+       console.log(groupDataAll,'groupppdata with provider')
+       }}
+       else {
+       this.allData = []
+       }
+       });
+     }
+     }
 
   searchByCategory(id) {
     this.filterData.activityName = ''
@@ -450,5 +491,49 @@ export class HeaderComponent implements OnInit {
         });
       } this.geoCoder = new google.maps.Geocoder;
     });
+  }
+
+  selectSearchedOption(data){
+    if(data.role=='provider'){
+      this.filterData.activityName = "";
+  data.name = data.name.toLowerCase();
+  data.name = data.name.replace(/ /g, "-");
+  data.name = data.name.replace(/\?/g, "-");
+  this.router.navigate(["/provider/program-provider", data.name, data._id])
+  this.router.navigate(["/provider/program-provider", data.name, data._id,]);
+  if (this.routeName === "/provider/program-provider", data.name, data._id) {
+    this.router
+      .navigateByUrl("/", { skipLocationChange: true })
+      .then(() => this.router.navigate(["/provider/program-provider", data.name, data._id]));
+  }
+    }else if(!data.categoryIds && !data.role){
+      this.filterData.activityName = "";
+  this.filterData.subcatId ='';
+  this.filterData.categoryId =  data._id;
+  this.filterData.searchedCategoryKey=data.name;
+  this.dataservice.setOption(this.filterData);
+  this.router.navigate(["/search"]);
+  if (this.routeName === "/search") {
+  this.router
+  .navigateByUrl("/", { skipLocationChange: true })
+  .then(() => this.router.navigate(["search"]));
+  }
+    }
+    else if(data.categoryIds && !data.role){
+      this.filterData.activityName = ''
+      this.filterData.lat = ''
+      this.filterData.lng = ''
+      this.filterData.searchedCategoryKey=data.name;
+      this.filterData.categoryId = ''
+      this.filterData.subcatId = data._id
+      this.dataservice.setOption(this.filterData)
+      this.router.navigate(['/search']);
+      if (this.routeName === "/search") {
+      this.router
+      .navigateByUrl("/", { skipLocationChange: true })
+      .then(() => this.router.navigate(["search"]));
+      }
+    }
+  
   }
 }

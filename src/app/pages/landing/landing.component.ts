@@ -9,6 +9,7 @@ import axios from 'axios';
 import { environment } from 'src/environments/environment';
 import { MapsAPILoader } from '@agm/core';
 import { CookieService } from 'ngx-cookie-service';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-landing',
@@ -47,6 +48,9 @@ export class LandingComponent implements OnInit {
   cookiesData: string;
   regWallCookies = 0
   @ViewChild('search') searchElementRef: ElementRef;
+  allData: any=[];
+  searchTermlanding= new FormControl();
+  categoryData: any;
   constructor(private router: Router,
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
@@ -128,17 +132,49 @@ export class LandingComponent implements OnInit {
     this.router.navigate(['blogs/', title, data.id])
   }
 
+  // searchSubCategory(key) {
+  //   this.apiservice.searchTag(key).subscribe((res: any) => {
+  //     console.log(res, 'res')
+  //     this.categoriesBySearch = res;
+  //     this.categoriesBySearch.category = this.categoriesBySearch.category.filter((item) => item.isActivated !== false);
+  //     this.categoriesBySearch.tags = this.categoriesBySearch.tags.filter((item) => item.isActivated !== false);
+  //   })
+  // }
+
+
   searchSubCategory(key) {
-    this.apiservice.searchTag(key).subscribe((res: any) => {
-      console.log(res, 'res')
-      this.categoriesBySearch = res;
-      this.categoriesBySearch.category = this.categoriesBySearch.category.filter((item) => item.isActivated !== false);
-      this.categoriesBySearch.tags = this.categoriesBySearch.tags.filter((item) => item.isActivated !== false);
+    let groupDataAll:any =[
+       {label:'Category',data:[]},
+       {label:'Provider',data:[]},
+     ]
+     if(!key){
+       this.allData=[];
+     }else{
+     this.apiservice.searchTag(key).subscribe((res: any) => {
+     this.categoriesBySearch = res;
+     this.categoriesBySearch.category = this.categoriesBySearch.category.filter((item) => item.isActivated !== false);
+     this.categoriesBySearch.tags = this.categoriesBySearch.tags.filter((item) => item.isActivated !== false);
+     this.categoryData= this.categoriesBySearch.category.concat(this.categoriesBySearch.tags)
+     groupDataAll[0].data=this.categoryData;
+     }); 
+     this.apiservice.searchUsers(key, "provider").subscribe((res: any) => {
+       if (res.data) {
+       this.providersBySearch = res.data;
+       var i;
+       for(i = 0; i < this.providersBySearch.length; i++){
+         this.providersBySearch[i].name = this.providersBySearch[i]['firstName'];
+       groupDataAll[1].data=this.providersBySearch;
+       this.allData=groupDataAll
+       console.log(groupDataAll,'groupppdata with provider')
+       }}
+       else {
+       this.allData = []
+       }
+       });
+     }
+     }
 
 
-
-    })
-  }
   providerSearch(key) {
     this.apiservice.searchUsers(key, 'provider').subscribe((res: any) => {
       if (res.data) {
@@ -167,6 +203,11 @@ export class LandingComponent implements OnInit {
   }
   // }
   ngOnInit() {
+    this.searchTermlanding.valueChanges.subscribe((value) =>{
+      if(value){this.searchSubCategory(value)}else{
+        this.allData=[];
+      }   
+      })
     this.setVisit();
     window.scroll(0, 0);
     this.landingImageIndex = Math.floor(Math.random() * this.landingImages.length);
@@ -203,6 +244,38 @@ export class LandingComponent implements OnInit {
         });
       });
     });
+  }
+
+  selectSearchedOption(data){
+    console.log('dattta',data)
+    if(data.role=='provider'){
+      this.filterData.activityName = "";
+  data.name = data.name.toLowerCase();
+  data.name = data.name.replace(/ /g, "-");
+  data.name = data.name.replace(/\?/g, "-");
+  this.router.navigate(["/provider/program-provider", data.name, data._id])
+    }else if(!data.categoryIds && !data.role){
+      this.filterData.activityName = "";
+  this.filterData.subcatId ='';
+  this.filterData.categoryId =  data._id;
+  this.filterData.searchedCategoryKey=data.name;
+  this.dataservice.setOption(this.filterData);
+  this.router.navigate(["/search"]);
+    }
+    else if(data.categoryIds && !data.role){
+      let regCount = this.regWallCookies+1
+      this.cookies.set('regWall', String(regCount), 30);
+      this.filterData.activityName = ''
+      this.filterData.lat = ''
+      this.filterData.lng = ''
+      this.filterData.searchedCategoryKey=data.name;
+      this.filterData.categoryId = ''
+      this.filterData.subcatId = data._id
+      this.dataservice.setOption(this.filterData)
+      this.router.navigate(['/search']);
+
+    }
+  
   }
 
 }

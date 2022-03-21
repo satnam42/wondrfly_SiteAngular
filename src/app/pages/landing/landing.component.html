@@ -12,7 +12,7 @@
                     <div class="col-12">
                         <div class="best_activities">
                             <h1>Discover the Best kids' activities in Jersey City</h1>
-                            <form class="banner_form" data-toggle="collapse" href="#dropdownprogram-provider" role="button" aria-expanded="false" aria-controls="dropdownprogram-provider">
+                            <!-- <form class="banner_form" data-toggle="collapse" href="#dropdownprogram-provider" role="button" aria-expanded="false" aria-controls="dropdownprogram-provider">
                                 <div class="left-searchpd">
                                     <div class="left_search">
                                         <div>
@@ -73,7 +73,49 @@
                                         </div>
                                     </div>
                                 </div>
-                            </form>
+                            </form> -->
+                            <form class="banner_form" data-toggle="collapse" href="#dropdownprogram-provider" role="button" aria-expanded="false" aria-controls="dropdownprogram-provider">
+                                <div class="left-searchpd">
+                                    <div class="left_search">
+                                        <div>
+                            <form class="banner_form">
+                                <div class="form-group ">
+                          <input type="text"
+                          placeholder="Search Activity..."
+                                 aria-label="Activity"
+                                 [formControl]="searchTermlanding"
+                                 class="form-control camp_input "
+                                 matInput
+                                 [matAutocomplete]="autoLanding">
+                                </div>
+                                <div class="search-location">
+                                    <span data-toggle="modal" data-target="#locationMod">
+            <img src="assets/search-location.png" /></span>
+                                    <input placeholder="Search Jersey City" (keydown.enter)="$event.preventDefault()" autocorrect="off" autocapitalize="off" spellcheck="off" #search readonly />
+                                </div>
+                                <div class="form-group cursor">
+                                    <button [disabled]="filterData.activityName" class="banner_button cursor" routerLink="/search">
+            <img src="assets/search_icon.svg" alt="Search image" />
+          </button>
+                                </div>
+                      
+                      <div class="autocomp search-form-info">
+                          <mat-autocomplete  autoActiveFirstOption #autoLanding="matAutocomplete" class="auto-landing">
+                          <mat-optgroup [label]="group.label" *ngFor="let group of allData">
+                          <mat-option *ngFor="let option of group.data | slice:0:3"  [value]="option.name" (click)="selectSearchedOption(option)" (onSelectionChange)="selectSearchedOption(option)" >
+                              {{option.name}}
+                              <span class="search-programlist">
+                                                <img src="assets/program-search.svg" />
+                                              </span>
+                            </mat-option>  
+                          </mat-optgroup>
+                          </mat-autocomplete>
+                        </div>
+                      </form>
+                    </div>
+                </div>
+            </div>
+        </form>
                         </div>
                     </div>
                 </div>

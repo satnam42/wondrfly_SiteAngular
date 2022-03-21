@@ -29,7 +29,7 @@ template: `
            [formControl]="searchTerm"
            class="form-control camp_input "
            matInput
-           [matAutocomplete]="auto">
+           [matAutocomplete]="autoHeader2">
           </div>
           <div class="search-location">
           <span data-toggle="modal" data-target="#locationMod">
@@ -43,9 +43,9 @@ template: `
                                     </div>
 
 
-    <mat-autocomplete  autoActiveFirstOption #auto="matAutocomplete">
+    <mat-autocomplete  autoActiveFirstOption #autoHeader2="matAutocomplete">
     <mat-optgroup [label]="group.label" *ngFor="let group of allData">
-    <mat-option *ngFor="let option of group.data | slice:0:3"  [value]="option.name" (click)="selectSearchedOption(option)" >
+    <mat-option *ngFor="let option of group.data | slice:0:3"  [value]="option.name" (onSelectionChange)="selectSearchedOption(option)" (click)="selectSearchedOption(option)" >
         {{option.name}}
         <span class="search-programlist">
                           <img src="assets/program-search.svg" />

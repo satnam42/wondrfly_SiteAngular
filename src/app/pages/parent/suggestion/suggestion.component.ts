@@ -12,6 +12,7 @@ import { environment } from 'src/environments/environment.prod';
 import * as FileSaver from 'file-saver';
 import { MapsAPILoader } from '@agm/core';
 import { CookieService } from 'ngx-cookie-service';
+import { FormControl } from '@angular/forms';
 @Component({
   selector: 'parent-suggestion',
   templateUrl: './suggestion.component.html',
@@ -54,11 +55,14 @@ export class SuggestionComponent implements OnInit {
   isNewFeaturePopUp:boolean;
   blogByCategory: any;
   private geoCoder;
+  allData: any=[];
+  searchMywondrfly= new FormControl();
   @ViewChild('search') searchElementRef: ElementRef;
   lat: string
  lng : string
  resourcesType='do-together'
  cookiesData:string;
+  categoryData: any;
   constructor(private router: Router,
     private apiservice: ApiService,
     private dataservice: DataService,
@@ -100,15 +104,49 @@ if(!this.currentUser){
   //   scrollWidth - (newScrollLeft+width)==0? this.rightDisabled = true :this.rightDisabled = false;
   // }
 
-  searchSubCategory(key){
-    this.apiservice.searchTag(key).subscribe((res:any)=>{
-  this.categoriesBySearch = res;
-  this.categoriesBySearch.category = this.categoriesBySearch.category.filter((item) => item.isActivated !== false);
-  this.categoriesBySearch.tags = this.categoriesBySearch.tags.filter((item) => item.isActivated !== false);
+  // searchSubCategory(key){
+  //   this.apiservice.searchTag(key).subscribe((res:any)=>{
+  // this.categoriesBySearch = res;
+  // this.categoriesBySearch.category = this.categoriesBySearch.category.filter((item) => item.isActivated !== false);
+  // this.categoriesBySearch.tags = this.categoriesBySearch.tags.filter((item) => item.isActivated !== false);
 
 
-    })
-  }
+  //   })
+  // }
+
+  searchSubCategory(key) {
+    let groupDataAll:any =[
+       {label:'Category',data:[]},
+       {label:'Provider',data:[]},
+     ]
+     if(!key){
+       this.allData=[];
+     }else{
+     this.apiservice.searchTag(key).subscribe((res: any) => {
+     this.categoriesBySearch = res;
+     this.categoriesBySearch.category = this.categoriesBySearch.category.filter((item) => item.isActivated !== false);
+     this.categoriesBySearch.tags = this.categoriesBySearch.tags.filter((item) => item.isActivated !== false);
+     this.categoryData= this.categoriesBySearch.category.concat(this.categoriesBySearch.tags)
+     groupDataAll[0].data=this.categoryData;
+     }); 
+     this.apiservice.searchUsers(key, "provider").subscribe((res: any) => {
+       if (res.data) {
+       this.providersBySearch = res.data;
+       var i;
+       for(i = 0; i < this.providersBySearch.length; i++){
+         this.providersBySearch[i].name = this.providersBySearch[i]['firstName'];
+       groupDataAll[1].data=this.providersBySearch;
+       this.allData=groupDataAll
+       console.log(groupDataAll,'groupppdata with provider')
+       }}
+       else {
+       this.allData = []
+       }
+       });
+     }
+     }
+
+
   // searchByLocation() {
   //   this.filterData.activityName=''
   //   this.filterData.categoryId = ''
@@ -332,6 +370,12 @@ console.log('get isTour count ',this.cookiesData)
        }
 // }
   ngOnInit() {
+
+    this.searchMywondrfly.valueChanges.subscribe((value) =>{
+      if(value){this.searchSubCategory(value)}else{
+        this.allData=[];
+      }   
+      })
     this.setVisit();
     this.getTweet();
     this.getPrintables();
@@ -368,4 +412,34 @@ console.log('get isTour count ',this.cookiesData)
     });
     window.scroll(0,0);
   }
+
+  selectSearchedOption(data){
+    console.log('dattta',data)
+    if(data.role=='provider'){
+      this.filterData.activityName = "";
+  data.name = data.name.toLowerCase();
+  data.name = data.name.replace(/ /g, "-");
+  data.name = data.name.replace(/\?/g, "-");
+  this.router.navigate(["/provider/program-provider", data.name, data._id])
+    }else if(!data.categoryIds && !data.role){
+      this.filterData.activityName = "";
+  this.filterData.subcatId ='';
+  this.filterData.categoryId =  data._id;
+  this.filterData.searchedCategoryKey=data.name;
+  this.dataservice.setOption(this.filterData);
+  this.router.navigate(["/search"]);
+    }
+    else if(data.categoryIds && !data.role){
+      this.filterData.activityName = ''
+      this.filterData.lat = ''
+      this.filterData.lng = ''
+      this.filterData.searchedCategoryKey=data.name;
+      this.filterData.categoryId = ''
+      this.filterData.subcatId = data._id
+      this.dataservice.setOption(this.filterData)
+      this.router.navigate(['/search']);
+    }
+  
+  }
+
 }

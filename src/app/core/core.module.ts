@@ -35,7 +35,9 @@ const thirdPartyModules = [
   MatChipsModule,
   NgxUiLoaderModule,
   DateFormateModule,
-  MatAutocompleteModule
+  MatAutocompleteModule,
+  MatFormFieldModule,
+  MatSelectModule,
 
   // ImageCropModule,
 ];
@@ -52,8 +54,6 @@ const guards = [
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    MatFormFieldModule,
-    MatSelectModule,
     ...thirdPartyModules,
   ],
   declarations: [...components ],

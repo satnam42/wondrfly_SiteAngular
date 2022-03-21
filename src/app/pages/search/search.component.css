@@ -1494,9 +1494,9 @@ span.close-filter {
     margin-top: 15px;
 }
 
-::ng-deep #cdk-overlay-0 {
+/* ::ng-deep #cdk-overlay-0 {
     top: 279px !important;
-}
+} */
 
 .user_text.recent-search {
     padding-right: 30px !important;
