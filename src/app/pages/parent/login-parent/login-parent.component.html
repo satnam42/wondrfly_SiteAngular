@@ -85,7 +85,7 @@
                         </div>
                         <div class="business_name">
                             <div class="N_container_box_input_heading">how did you hear about us?</div>
-                            <input type="text" placeholder="Type" class="my_inputs" />
+                            <input type="text" [formControl]="locationForm.controls['source']" [(ngModel)]="parent.source" placeholder="Type" class="my_inputs" />
                         </div>
                     </form>
                 </div>

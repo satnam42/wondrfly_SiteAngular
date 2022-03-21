@@ -219,6 +219,7 @@ export class LoginParentComponent implements OnInit {
     this.locationForm = new FormGroup({
       location: new FormControl('', [Validators.required]),
       addressLine1: new FormControl('', [Validators.required]),
+      source: new FormControl(''),
 
     });
 
@@ -302,6 +303,7 @@ export class LoginParentComponent implements OnInit {
   updateParent() {
     this.parent.addressLine1 = this.locationForm.value.addressLine1;
     this.parent.location = this.locationForm.value.location;
+    this.parent.source = this.locationForm.value.source;
     this.ngxLoader.start();
     console.log('before parent update', this.parent)
     this.apiservice.updateParent(this.parent.id, this.parent).subscribe((res: any) => {
