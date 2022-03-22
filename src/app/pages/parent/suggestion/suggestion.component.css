@@ -495,7 +495,8 @@ span.d-flex.justify-content-end {
     padding: 0px;
     text-align: center;
     margin-bottom: 30px;
-    min-height: 330px;
+    min-height: 250px;
+    max-height: 250px;
     display: grid;
     opacity: 0.7;
 }
@@ -522,7 +523,7 @@ span.d-flex.justify-content-end {
     line-height: 18px;
     letter-spacing: 0.005em;
     color: #494949;
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 .lower-blog-sec .card p.card-text {
@@ -566,7 +567,7 @@ span.d-flex.justify-content-end {
     color: #ffffff;
     padding-left: 30px;
     padding-right: 30px;
-    margin-top: 20px;
+    margin-top: 3px;
     margin-bottom: 20px;
     border: 0px;
 }
@@ -765,7 +766,7 @@ section.blog-explore .boxs {
     font-weight: normal;
     font-size: 28px;
     line-height: 42px;
-    color: #000000;
+    color: #494949;
 }
 
 .beta-invitedata p {
@@ -1051,8 +1052,7 @@ button.cmn-resbtn.active {
     text-align: center;
     letter-spacing: 0.001em;
     color: #494949;
-    margin-top: 25px;
-    margin-bottom: 25px;
+    margin-bottom: -37px;
     min-height: 67px;
 }
 
@@ -1301,11 +1301,10 @@ button.cmn-resbtn.active {
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
-    line-height: 140%;
+    line-height: 100%;
     color: #494949;
     margin-bottom: 10px;
 }
-
 .cardss .card .card-body h6.date {
     font-family: "Poppins";
     font-style: normal;

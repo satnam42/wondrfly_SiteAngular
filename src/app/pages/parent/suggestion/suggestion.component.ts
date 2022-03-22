@@ -29,7 +29,7 @@ export class SuggestionComponent implements OnInit {
   loggedIn: boolean;
   title = 'Best Activities and Programs for Kids in Jersey City - Wondrfly';
   categories: any = new Category;
-  feedback: any = [];
+  feedback: any = [{name:'Take a poll',description:'This will take 5 munites.'},{name:'Give us you input',description:'This will take 10 munites.'},{name:'Share your opinion',description:'This will take 15 munites.'}];
   blogs:any = []
   featuredBlogs:any = []
   printables:any=[]

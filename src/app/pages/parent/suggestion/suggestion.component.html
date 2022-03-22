@@ -197,7 +197,7 @@
                                 <div class="col-md-5">
                                     <div class="beta-invitedata">
                                         <h1>New Feature: Invites</h1>
-                                        <p>This is your chance to tell others about Wondrfly beta!</p>
+                                        <p>This is your chance to tell<br>others about Wondrfly beta!</p>
                                         <h6>
                                             You have <span>0</span> of <span>5</span> invites used
                                         </h6>
@@ -215,9 +215,9 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
 
-        <div class="blog-explore explore-fixed" [hidden]="isNewFeaturePopUp">
+        <!-- <div class="blog-explore explore-fixed" [hidden]="isNewFeaturePopUp">
             <div class="container">
                 <div class="row">
                     <div class="col-md-8">
@@ -241,9 +241,9 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
-
+<!-- 
         <section class="blog-explore">
             <div class="container">
                 <div class="row">
@@ -254,18 +254,18 @@
                             </div>
                             <div class="lower-blog-sec">
                                 <div class="row">
-                                    <div class="col-md-3" *ngFor="let survey of feedback; let i = index">
+                                    <div class="col-md-4" *ngFor="let survey of feedback; let i = index">
                                         <div class="card" [class.activated-survey]="
-                        feedback[0] === feedback[i] ? true : false
+                        0 === i ? true : false
                       ">
                                             <div class="card-body">
-                                                <h5 class="card-title">{{ survey?.feedback }}</h5>
-                                                <p class="card-text">{{ survey?.description }}</p>
+                                                <h5 class="card-title">{{survey?.name}}</h5>
+                                                <p class="card-text">{{survey?.description}}</p>
                                                 <h6 class="card-subtitle mb-2 text-muted">
-                                                    <span>Not Completed </span><br /> this week
+                                                    <span>Expires in 5 days </span>
                                                 </h6>
-                                                <a href="https://vocw882cklq.typeform.com/to/CgxzBUp9" target="_blank"><button [disabled]="
-                              feedback[0] !== feedback[i] ? true : false
+                                                <a><button [disabled]="
+                              1 == i || 2 == i ? true : false
                             ">
                             START NOW
                           </button></a>
