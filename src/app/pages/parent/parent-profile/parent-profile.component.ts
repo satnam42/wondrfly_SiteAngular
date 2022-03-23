@@ -122,7 +122,8 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
   addMessage: string = "Child Added Successfully";
   action: boolean = true;
   editChild: any;
-  keyword = "name";
+  // keyword = "name";
+  keyword=''
   SelectedCategories: any = [];
   childImageURl: "";
   resetPasswordData: any = {
@@ -224,7 +225,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
     }
   }
   onChangeSearch(key: string) {
-
+console.log('keykeykey',key)
     this.isLoading = true;
     this.ngxLoader.start();
     this.tags = [];

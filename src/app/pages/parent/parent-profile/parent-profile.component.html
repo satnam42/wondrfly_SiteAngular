@@ -937,7 +937,7 @@
               </div> -->
 
                             <div class="form-group interest">
-                                <label>Interest</label>
+                                <!-- <label>Interest</label>
                                 <div class="input_outer">
                                     <div class="ng-autocomplete">
                                         <ng-autocomplete [data]="tags?.tags" placeholder="Add Interest" [searchKeyword]="keyword" (selected)="selectEvent($event)" (inputChanged)="onChangeSearch($event)" (inputFocused)="onFocused($event)" [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate">
@@ -951,7 +951,66 @@
                                             <div *ngIf="tags?.tags?.length" [innerHTML]="notFound"></div>
                                         </ng-template>
                                     </div>
+                                </div> -->
+                                <!-- search check box html -->
+                                <div class="form-group">
+                                    <label>Interest</label>
+                                    <div class="input_outer">
+                                        <input type="text" placeholder="Search" class="form-control" (change)="onChangeSearch($event)" [(ngModel)]="keyword" name="Intrest" />
+                                    </div>
                                 </div>
+                                <div class="search-checkbox-info">
+                                    <div class="search-checkbox-div">
+                                        <ul class="ul-tag-checkbox-info">
+                                            <li>
+                                                <label class="box-checkbox-txt">
+                                                    <input type="checkbox">
+                                                    <span class="checkmark"></span>
+                                                    <span class="checkbox-txt">All Sports & Fitness</span>
+                                                </label>
+                                                <ul class="ul-tag-checkbox-child">
+                                                    <li>
+                                                        <label class="box-checkbox-txt">
+                                                            <input type="checkbox">
+                                                            <span class="checkmark"></span>
+                                                            <span class="checkbox-txt">Soccer</span>
+                                                        </label>
+                                                    </li>
+                                                    <li>
+                                                        <label class="box-checkbox-txt">
+                                                            <input type="checkbox">
+                                                            <span class="checkmark"></span>
+                                                            <span class="checkbox-txt">Subcategory</span>
+                                                        </label>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <label class="box-checkbox-txt">
+                                                    <input type="checkbox">
+                                                    <span class="checkmark"></span>
+                                                    <span class="checkbox-txt">All Martial Arts</span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="box-checkbox-txt">
+                                                    <input type="checkbox">
+                                                    <span class="checkmark"></span>
+                                                    <span class="checkbox-txt">All Dance</span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="box-checkbox-txt">
+                                                    <input type="checkbox">
+                                                    <span class="checkmark"></span>
+                                                    <span class="checkbox-txt">All Dance</span>
+                                                </label>
+                                            </li>
+                                        </ul>
+                                    </div>    
+                                </div>   
+                                <!-- End search check box html --> 
+
                                 <br />
                                 <mat-form-field class="demo-chip-list">
                                     <mat-chip-list>
@@ -962,7 +1021,7 @@
                                     </mat-chip-list>
                                 </mat-form-field>
 
-                                <div class="small_boxes">
+                                <!-- <div class="small_boxes">
                                     <div class="row">
                                         <div class="col-3" *ngFor="let tag of allTags | slice: 0:8">
                                             <div class="category_lists cursor" (click)="selectEvent(tag)">
@@ -976,7 +1035,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                
                             </div>
 
