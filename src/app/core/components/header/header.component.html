@@ -134,7 +134,7 @@
                                 <form class="banner_form">
                                   <div class="form-group ">
                             <input type="text"
-                            (keydown)="onTab($event)"
+                            (keydown)="onTab($event,this.allData[0]?.data[0]?.name)"
                             placeholder="Search Activity..."
                                    aria-label="Activity"
                                    [formControl]="searchTerm"

@@ -252,9 +252,9 @@ allData: any=[];
       this.getUserById();
     });
   }
-  onTab(e){
+  onTab(e,value){
     if(this.allData[0].data.length){
-      this.searchTerm.setValue(this.allData[0].data[0].name )
+      this.searchTerm.setValue(value)
     }
   }
   ngOnInit() {

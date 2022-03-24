@@ -369,9 +369,9 @@ console.log('get isTour count ',this.cookiesData)
   //     this.cookies.set('isTour', String(num), 30); 
        }
 // }
-onTab(e){
+onTab(e,value){
   if(this.allData[0].data.length){
-    this.searchMywondrfly.setValue(this.allData[0].data[0].name )
+    this.searchMywondrfly.setValue(value)
   }
 }
   ngOnInit() {

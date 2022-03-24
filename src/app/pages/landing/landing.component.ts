@@ -202,9 +202,9 @@ export class LandingComponent implements OnInit {
     //     this.cookies.set('isTour', String(num), 30);
   }
   // }
-  onTab(e){
+  onTab(e,value){
     if(this.allData[0].data.length){
-      this.searchTermlanding.setValue(this.allData[0].data[0].name )
+      this.searchTermlanding.setValue(value)
     }
  }
   ngOnInit() {
