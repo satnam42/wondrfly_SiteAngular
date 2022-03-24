@@ -143,6 +143,7 @@
                                                 <form class="banner_form">
                                                     <div class="form-group ">
                                               <input type="text"
+                                              (keydown.tab)="onTab($event)"
                                               placeholder="Search Activity..."
                                                      aria-label="Activity"
                                                      [formControl]="searchMywondrfly"

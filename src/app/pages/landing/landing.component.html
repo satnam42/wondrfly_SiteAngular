@@ -81,6 +81,7 @@
                             <form class="banner_form">
                                 <div class="form-group ">
                           <input type="text"
+                          (keydown.Tab)="onTab($event)"
                           placeholder="Search Activity..."
                                  aria-label="Activity"
                                  [formControl]="searchTermlanding"
