@@ -253,9 +253,7 @@ allData: any=[];
     });
   }
   onTab(e,value){
-    if(this.allData[0].data.length){
       this.searchTerm.setValue(value)
-    }
   }
   ngOnInit() {
 

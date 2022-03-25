@@ -962,30 +962,24 @@
                                 <div class="search-checkbox-info">
                                     <div class="search-checkbox-div">
                                         <ul class="ul-tag-checkbox-info">
-                                            <li>
+                                            <li *ngFor="let category of searchedTags;let i = index">
                                                 <label class="box-checkbox-txt">
-                                                    <input type="checkbox">
+                                                    <input type="checkbox" [checked]="categoryChecked[i]" (click)="checkOrUncheckAllTags($event,i)" [id]="'category'+i">
                                                     <span class="checkmark"></span>
-                                                    <span class="checkbox-txt">All Sports & Fitness</span>
+                                                    <span class="checkbox-txt">{{category.category}}</span>
                                                 </label>
                                                 <ul class="ul-tag-checkbox-child">
-                                                    <li>
+                                                    <li  *ngFor="let subCategory of category.subcategories;let j = index">
                                                         <label class="box-checkbox-txt">
-                                                            <input type="checkbox">
+                                                            <input type="checkbox"  [checked]="subCategoryCheckbox[i]" (click)="checkOrUncheckTag($event,i,j)">
                                                             <span class="checkmark"></span>
-                                                            <span class="checkbox-txt">Soccer</span>
+                                                            <span class="checkbox-txt">{{subCategory.name}}</span>
                                                         </label>
                                                     </li>
-                                                    <li>
-                                                        <label class="box-checkbox-txt">
-                                                            <input type="checkbox">
-                                                            <span class="checkmark"></span>
-                                                            <span class="checkbox-txt">Subcategory</span>
-                                                        </label>
-                                                    </li>
+
                                                 </ul>
                                             </li>
-                                            <li>
+                                            <!-- <li>
                                                 <label class="box-checkbox-txt">
                                                     <input type="checkbox">
                                                     <span class="checkmark"></span>
@@ -1005,7 +999,7 @@
                                                     <span class="checkmark"></span>
                                                     <span class="checkbox-txt">All Dance</span>
                                                 </label>
-                                            </li>
+                                            </li> -->
                                         </ul>
                                     </div>    
                                 </div>   

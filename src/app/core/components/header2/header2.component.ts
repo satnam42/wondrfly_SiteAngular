@@ -24,7 +24,6 @@ template: `
           <form class="banner_form">
           <div class="form-group ">
     <input type="text"
-    (keydown)="onTab($event,this.allData[0]?.data[0]?.name)"
     placeholder="Search Activity..."
            aria-label="Activity"
            [formControl]="searchTerm"
@@ -324,10 +323,7 @@ logo() {
 this.router.navigate([""]);
 }
 onTab(e,value){
-  // console.log(this.allData[0].data[0].name)
-  // if(this.allData[0].data.length){
     this.searchTerm.setValue(value)
-  // }
 }
 ngOnInit() {
   this.searchTerm.valueChanges.subscribe((value) =>{

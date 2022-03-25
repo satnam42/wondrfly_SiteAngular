@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, AfterViewChecked, OnDestroy, ElementRef }
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ApiService } from "src/app/core/services/api.service.service";
 import { Router } from "@angular/router";
-import { COMMA, ENTER } from "@angular/cdk/keycodes";
+import { COMMA, ENTER, I } from "@angular/cdk/keycodes";
 import { NgxUiLoaderService } from "ngx-ui-loader";
 import { CustomValidators } from "ng2-validation";
 import { Child } from "../../../core/models/child.model";
@@ -116,14 +116,30 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
   categoryIds: [] = [];
   separatorKeysCodes: number[] = [ENTER, COMMA];
 
-  @ViewChild(HeaderComponent, { static: true })
+  searchedTags:any = [
+    {
+      category: 'test1',
+      subcategories: [{ name: 'sub1' }, { name: 'sub2' }, { name: 'sub3' }]
+    },
+    {
+      category: 'test2',
+      subcategories: []
+    },
+    {
+      category: 'test3',
+      subcategories: [{ name: 'subA' }, { name: 'subB' }]
+    },
+  ]
+  subCategoryCheckbox:any=[]
+  categoryChecked:any=[]
+    @ViewChild(HeaderComponent, { static: true })
   headerComponent: HeaderComponent;
   message: string = "Updated Successfully";
   addMessage: string = "Child Added Successfully";
   action: boolean = true;
   editChild: any;
   // keyword = "name";
-  keyword=''
+  keyword = ''
   SelectedCategories: any = [];
   childImageURl: "";
   resetPasswordData: any = {
@@ -225,7 +241,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
     }
   }
   onChangeSearch(key: string) {
-console.log('keykeykey',key)
+    console.log('keykeykey', key)
     this.isLoading = true;
     this.ngxLoader.start();
     this.tags = [];
@@ -632,9 +648,7 @@ console.log('keykeykey',key)
     this.ngxLoader.stop();
   }
   onOffNotification(id, e) {
-    console.log('status before', e)
     this.apiservice.onOffNotification(id, e).subscribe((res: any) => {
-      console.log('notific onoff res', res)
       this.headerComponent.getUserById()
     });
     this.isSMSnotification = e;
@@ -1050,6 +1064,29 @@ console.log('keykeykey',key)
     this.chatService.createRomm(currentRoom, reverseRoom);
     this.getRoomId();
   }
+  checkOrUncheckAllTags(e, categoryIndx) {
+        if (e.target.checked === true) {
+          this.subCategoryCheckbox[categoryIndx] = true;
+        } else {
+          this.subCategoryCheckbox[categoryIndx] = false;
+        }
+
+  }
+  checkOrUncheckTag(e,i,j) {
+    if(e.target.checked){
+      const value = (element) => element===false;
+      console.log(this.subCategoryCheckbox.some(value))
+      if(this.subCategoryCheckbox.some(value)){
+        this.categoryChecked[i]=false
+      }
+        
+       else {
+        this.categoryChecked[i]=true
+      }}
+      else{
+        this.categoryChecked[i]=false
+      }
+}
   ngOnInit() {
     this.dateV()
     this.getTagList()
