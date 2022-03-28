@@ -138,8 +138,8 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
   addMessage: string = "Child Added Successfully";
   action: boolean = true;
   editChild: any;
-  // keyword = "name";
-  keyword = ''
+  keyword = "name";
+  // keyword = ''
   SelectedCategories: any = [];
   childImageURl: "";
   resetPasswordData: any = {
@@ -248,6 +248,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
     this.apiservice.searchTag(key).subscribe((res: any) => {
       this.tags = res;
       this.tags.tags = this.tags.tags.filter((item) => item.isActivated === true);
+      console.log(this.tags.tags)
       this.ngxLoader.stop();
       this.isLoading = false;
     });

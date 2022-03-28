@@ -2498,7 +2498,7 @@ input#flexCheckDefault {
 
 
  /* search check box CSS  */
- .search-checkbox-info {
+ /* .search-checkbox-info {
   position: relative;
   background: #FFFFFF;
   border: 1px solid #53B2E8;
@@ -2565,7 +2565,7 @@ ul.ul-tag-checkbox-info ul.ul-tag-checkbox-child .checkmark {
 }
 ul.ul-tag-checkbox-info ul.ul-tag-checkbox-child .checkbox-txt {
   color: #858585;
-}
+} */
 
 
  /* End search check box CSS  */
