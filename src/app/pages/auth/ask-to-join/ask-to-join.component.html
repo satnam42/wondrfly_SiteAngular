@@ -74,19 +74,22 @@
                                         </div>
 
                                         <div class="after-next" [hidden]="!step2">
-                                            <div class="form-check booked">
-                                                <label class="k-checkbox-label">I have booked <br> in the last 6 months</label>
+                                            <div class="form-check booked ml-11 form-p-info">
+                                                <p>
+                                            <label class="form-check-label k-checkbox-label booked-label" for="flexCheckChecked">
+                                                I have booked 
                                                 <select type="text" [formControl]="parentForm.controls['bookedActivityInLastMonths']" name="bookedActivityInLastMonths" [(ngModel)]="userData.bookedActivityInLastMonths">
-                                            <option value="" selected >0</option>
-                                            <option value="1-5">1-5</option>
-                                            <option value="6-10">6-10</option>
-                                            <option value="11-15">11-15</option>
-                                            <option value="15+">15+</option>
+                                                    <option value="" selected >0</option>
+                                                    <option value="1-5">1-5</option>
+                                                    <option value="6-10">6-10</option>
+                                                    <option value="11-15">11-15</option>
+                                                    <option value="15+">15+</option>
 
-                                          </select>
-                                                <label class="form-check-label k-checkbox-label booked-label" for="flexCheckChecked">
-                                            online or in-person activities for kids
+                                                </select>
+                                                
+                                            online or in-person activities for kids in the last 6 months
                                           </label>
+                                                </p>
                                             </div>
 
                                             <div class="form-group choose-acti">

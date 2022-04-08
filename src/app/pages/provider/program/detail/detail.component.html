@@ -310,7 +310,7 @@
                                             <img src="assets/edit_skyblue.svg" alt="Edit Image" />
                                         </a>
                                     </div>
-                                    <h2 class="p-2">About us</h2>
+                                    <h2>About us</h2>
                                     <div class="media">
                                         <!-- <div class="media-left">
                       <div class="people_profile" [class.initial-alpha]="!user?.avatarImages">
@@ -325,11 +325,13 @@
                     </div> -->
                                         <div class="media-body">
                                             <p>{{ user?.note }}</p>
-                                            <div class="skills_sec" *ngIf="user?.subCategoryIds">
+                                            <div class="skills_sec" *ngIf="user?.subCategoryIds?.length">
                                                 <h3>Skills</h3>
+                                                <div class="skill_flex">
                                                 <div class="skill_outer" *ngFor="let skill of user?.subCategoryIds">
                                                     <span>{{ skill?.name }}</span>
                                                 </div>
+                                            </div>
                                             </div>
                                         </div>
                                     </div>
@@ -364,13 +366,13 @@
                                             </div>
                                         </div>
                                         <div class="col-md-12" *ngIf="user?.website">
-                                            <div class="media company_info align-items-center">
+                                            <div class="media company_info align-items-center mb-0">
                                                 <div class="media-left">
                                                     <span class="icon icon-global"></span>
                                                 </div>
                                                 <div class="media-body">
                                                     <h4>WWW</h4>
-                                                    <p><a href="{{user.website}}" target="_blank">{{user?.website}}</a></p>
+                                                    <p><a class="clr-blue" href="{{user.website}}" target="_blank">{{user?.website}}</a></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -430,7 +432,7 @@
                 </div>
               </div> -->
                             <div class="batch_right map_provider">
-                                <agm-map [latitude]="40.72675204684951" [longitude]="-74.0523821869886" [zoom]="16" [styles]=""  (centerChange)="centerChange($event)" [zoomControl]="false" [streetViewControl]="false" (mapClick)="mapClicked(previous)">
+                                <agm-map [latitude]="40.73614987717813" [longitude]="-74.04147784299793" (centerChange)="centerChange($event)" [zoom]="12" [zoomControl]="false" [streetViewControl]="false" (mapClick)="mapClicked(previous)">
                                     <div>
                                         <agm-marker *ngIf="program?.lat && program?.lng" [iconUrl]="markerUrl" [latitude]="program?.lat" [longitude]="program?.lng" (markerClick)="clickedMarker(previous)">
                                             <strong>{{ program?.name }}</strong>
@@ -635,7 +637,7 @@
                     <span class="subCat" (click)="setSubCategoryId(program?.subCategoryIds[1]);">{{
                       program?.subCategoryIds[1]?.name }}</span></span>
                   activities: -->
-                                    Suggested Activities
+                                    More activities from <span class="clr-blue cursor" (click)="goToProfile()">{{program?.programOwner}}</span>
                                     <span class="blue_heading cursor" (click)="goToProfile()">VIEW ALL</span>
                                 </h2>
                             </div>
@@ -722,7 +724,7 @@
                                     <!--End carousel-->
                                 </div>
                             </div>
-                            <div class="">
+                            <div class="" *ngIf="programs?.length>3">
                                 <a href="#carouselExampleIndicators" data-slide="next">
                                     <div class="carousel-nav-icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -741,6 +743,16 @@
 
     <app-footer2></app-footer2>
 </body>
-<ngx-ui-loader></ngx-ui-loader>
+
+
+<share-popup [shareData]="selectedProgram" fgsSize="100"></share-popup>
+
+<!-- <ngx-ui-loader></ngx-ui-loader> -->
+<ngx-ui-loader [fgsTemplate]="foregroundSpinner">
+    
+</ngx-ui-loader>
+<ng-template #foregroundSpinner>
+	  <ng-lottie [options]="optionslotti" width="200px" height="200px"></ng-lottie>
+</ng-template>
 
 <share-popup [shareData]="selectedProgram"></share-popup>

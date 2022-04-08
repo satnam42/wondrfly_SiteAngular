@@ -17,8 +17,13 @@ import { CookiesPopupComponent } from './components/cookies-popup/cookies-popup.
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { LoaderFileComponent } from './components/loader-file/loader-file.component';
+import { LottieModule } from 'ngx-lottie';
+import player from 'lottie-web';
 
-
+export function playerFactory() {
+  return player;
+}
 
 
 
@@ -28,7 +33,8 @@ const components = [
   Header2Component,
   Footer2Component,
   AlertComponent,
-  CookiesPopupComponent
+  CookiesPopupComponent,
+  LoaderFileComponent
 ]
 const thirdPartyModules = [
   MatIconModule,
@@ -38,7 +44,6 @@ const thirdPartyModules = [
   MatAutocompleteModule,
   MatFormFieldModule,
   MatSelectModule,
-
   // ImageCropModule,
 ];
 const services = [
@@ -54,9 +59,10 @@ const guards = [
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
+    LottieModule.forRoot({ player: playerFactory }),
     ...thirdPartyModules,
   ],
-  declarations: [...components ],
+  declarations: [...components, LoaderFileComponent ],
   exports: [...thirdPartyModules, ...components],
   entryComponents: [],
   providers: [

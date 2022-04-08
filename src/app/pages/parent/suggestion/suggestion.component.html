@@ -563,4 +563,8 @@
     </div>
 
     <app-footer></app-footer>
+    <ngx-ui-loader [fgsTemplate]="foregroundSpinner"> </ngx-ui-loader>
+    <ng-template #foregroundSpinner>
+          <app-loader-file></app-loader-file>
+    </ng-template>
 </body>

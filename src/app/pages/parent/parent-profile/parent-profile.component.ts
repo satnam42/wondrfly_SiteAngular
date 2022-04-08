@@ -16,6 +16,7 @@ import { MatAutocompleteSelectedEvent } from "@angular/material/autocomplete";
 import { ToastrService } from "ngx-toastr";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { environment } from "src/environments/environment";
+import { analyzeAndValidateNgModules } from "@angular/compiler";
 
 @Component({
   selector: "parent-profile",
@@ -116,29 +117,16 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
   categoryIds: [] = [];
   separatorKeysCodes: number[] = [ENTER, COMMA];
 
-  searchedTags:any = [
-    {
-      category: 'test1',
-      subcategories: [{ name: 'sub1' }, { name: 'sub2' }, { name: 'sub3' }]
-    },
-    {
-      category: 'test2',
-      subcategories: []
-    },
-    {
-      category: 'test3',
-      subcategories: [{ name: 'subA' }, { name: 'subB' }]
-    },
-  ]
-  subCategoryCheckbox:any=[]
-  categoryChecked:any=[]
-    @ViewChild(HeaderComponent, { static: true })
+  searchedTags: any = []
+  subCategoryCheckbox: any = []
+  categoryChecked: any = []
+  @ViewChild(HeaderComponent, { static: true })
   headerComponent: HeaderComponent;
   message: string = "Updated Successfully";
   addMessage: string = "Child Added Successfully";
   action: boolean = true;
   editChild: any;
-  keyword = "name";
+  keyword = "";
   // keyword = ''
   SelectedCategories: any = [];
   childImageURl: "";
@@ -172,12 +160,15 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
   selectedChildIndx: number
   maxDate: string;
   activeList: any
+  searchTagValue = new FormControl()
+  currentYear = moment(Date.now()).format("YYYY");
+  age=0
   constructor(
     private apiservice: ApiService,
     private router: Router,
     private ngxLoader: NgxUiLoaderService,
     private authService: AuthsService,
-    private chatService: ChatService,
+    // private chatService: ChatService,
     public store: LocalStorageService,
     private snack: MatSnackBar,
     private toastr: ToastrService,
@@ -191,6 +182,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
     let today = new Date()
     this.maxDate = moment(today).format("YYYY-MM-DD");
     document.getElementById("listingDateOpen").setAttribute("max", this.maxDate);
+
   }
 
   parentChecked(value: boolean) {
@@ -199,6 +191,8 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
 
 
   getKidData(data) {
+    this.searchedTags=[]
+    this.keyword =''
     this.kid = data;
     console.log(this.kid)
     this.childImgURL = this.kid.avtar;
@@ -224,13 +218,20 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
   selected(event: MatAutocompleteSelectedEvent): void {
     this.kid.interestInfo.push(event.option.value);
   }
-  remove(t: string): void {
-    const index = this.kid.interestInfo.indexOf(t);
-
-    if (index >= 0) {
-      this.kid.interestInfo.splice(index, 1);
-    }
-  }
+  remove(t) {
+    console.log('tag to remove',t)
+    for(let i in this.searchedTags) {
+        let indx = this.searchedTags[i].tags.findIndex(x => x._id===t._id)
+        if(indx >= 0){
+          this.searchedTags[i].category.isSelected=false;
+          this.searchedTags[i].tags[indx].isSelected=false;
+        }
+      }
+      const index = this.kid.interestInfo.indexOf(t);
+      if (index >= 0) {
+        this.kid.interestInfo.splice(index, 1);
+      }
+}
 
   selectEvent(item) {
     if (this.kid.interestInfo.indexOf(item) == -1) {
@@ -241,22 +242,73 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
     }
   }
   onChangeSearch(key: string) {
-    console.log('keykeykey', key)
+    console.log('key', key)
     this.isLoading = true;
     this.ngxLoader.start();
     this.tags = [];
-    this.apiservice.searchTag(key).subscribe((res: any) => {
-      this.tags = res;
-      this.tags.tags = this.tags.tags.filter((item) => item.isActivated === true);
-      console.log(this.tags.tags)
+    this.apiservice.searchTagForChildAddUpdate(key).subscribe((res: any) => {
+      if (res.error) {
+        this.tags = []
+        this.searchedTags = []
+      }
+      else {
+        this.tags = res;
+        console.log('tags response from backend', this.tags)
+         let filtredtags = this.tags.filter((item) => item.isActivated === true);
+        console.log('tags isActivated', filtredtags)
+        let categories = []
+        this.searchedTags = []
+     
+        filtredtags.forEach(tag => {
+          categories.push(tag.categoryIds[0])
+        });
+        let filtredCats = this.removeDuplicates(categories, 'name')
+        console.log('filtred----cates',filtredCats)
+        for (let j in filtredCats) {
+          let modifiedObj:any = {
+            category: {},
+            tags: []
+          }
+          for (let i in filtredtags) {
+            if (filtredCats[j]._id === filtredtags[i].categoryIds[0]._id) {
+              modifiedObj.category = filtredCats[j]
+              let indx = this.kid .interestInfo.findIndex(x => x._id===filtredtags[i]._id)
+              if(indx>=0){
+                filtredtags[i].isSelected = true
+              }
+              else{
+                filtredtags[i].isSelected = false
+              }
+              modifiedObj.tags.push(filtredtags[i])
+            }
+          }
+          let isTagsUncheked = modifiedObj.tags.findIndex(x => x.isSelected===false)
+          if(isTagsUncheked===-1){
+            modifiedObj.category.isSelected=true
+          }
+          this.searchedTags.push(modifiedObj)
+    }
+        // this.searchedTags = this.removeDuplicates(this.searchedTags, 'category')
+        console.log('searchedTags', this.searchedTags)
+ 
+      }
       this.ngxLoader.stop();
       this.isLoading = false;
     });
-
-    // fetch remote data from here
-    // And reassign the 'data' which is binded to 'data' property.
   }
+  removeDuplicates(originalArray, prop) {
+    var newArray = [];
+    var lookupObject = {};
 
+    for (var i in originalArray) {
+      lookupObject[originalArray[i][prop]] = originalArray[i];
+    }
+    console.log('lookupObject', lookupObject)
+    for (i in lookupObject) {
+      newArray.push(lookupObject[i]);
+    }
+    return newArray;
+  }
   onFocused(e) {
     // do something when input is focused
   }
@@ -906,13 +958,13 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
       let currentYear = moment(Date.now()).format("YYYY");
       if (birthYear > currentYear) {
         this.ngxLoader.stop();
-        this.toastr.warning("please fill valid birth year");
+        this.toastr.warning("Please fill valid birth year");
       } else {
         var ageDifMs = Date.now() - birth.getTime();
         var ageDate = new Date(ageDifMs); // miliseconds from epoch
         var age = Math.abs(ageDate.getUTCFullYear() - 1970);
-        if (age > 18) {
-          this.toastr.warning("please fill valid birth year")
+        if (age > 16) {
+          this.toastr.warning("You must be 16 or less than 16 years old")
           this.ngxLoader.stop();
         } else {
           this.kid.age = String(age);
@@ -924,6 +976,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
             this.ngxLoader.stop();
 
             if (childResponse) {
+              window.document.getElementById("dissmiss-child-modal").click();
               this.ngxLoader.start();
               this.apiservice
                 .getGuardianByParentId(userId)
@@ -945,11 +998,12 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
     this.updateChild(this.kids[kidIndx], this.currentUser.id)
   }
   updateChild(child, userId) {
+    this.age = 0
     var birth = new Date(child.dob);
     let birthYear = moment(birth).format("YYYY");
-    let currentYear = moment(Date.now()).format("YYYY");
+    this.currentYear = moment(Date.now()).format("YYYY");
     console.log('child image before', child);
-    if (birthYear > currentYear) {
+    if (birthYear > this.currentYear) {
       this.toastr.warning("please fill valid birth year",);
     } else {
       if (this.childImageURl != "" && this.childImageURl != undefined) {
@@ -957,29 +1011,36 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
       }
       var ageDifMs = Date.now() - birth.getTime();
       var ageDate = new Date(ageDifMs); // miliseconds from epoch
-      var age = Math.abs(ageDate.getUTCFullYear() - 1970);
-      child.age = String(age);
-      child.avtar = child.avtar.split(this.baseUrl).pop();
-      // child.avtar =  child.avtar.slice(21);
-      console.log('data image before', child);
-      this.apiservice.updateChild(child.id, child).subscribe((res: any) => {
-        console.log('data image', res);
-        this.getProfileProgress();
-        this.headerComponent.getProfileProgress();
-        this.headerComponent.getUserById();
-        if (res) {
-          this.onChildren(this.currentUser.id);
-          // this.toastr.info(msg );
-        } else {
-          if (this.currentUser === null || this.currentUser === undefined) {
-            this.router.navigate(["/login"]);
-            // this.toastr.info(msg);
+       this.age = Math.abs(ageDate.getUTCFullYear() - 1970);
+      this.ngxLoader.stop();
+      if (this.age > 16) {
+        this.toastr.warning("You must be 16 or less than 16 years old")
+      }
+      else{
+        child.age = String(this.age);
+        child.avtar = child.avtar.split(this.baseUrl).pop();
+        // child.avtar =  child.avtar.slice(21);
+        console.log('data image before', child);
+        this.apiservice.updateChild(child.id, child).subscribe((res: any) => {
+          console.log('data image', res);
+          this.getProfileProgress();
+          this.headerComponent.getProfileProgress();
+          this.headerComponent.getUserById();
+          if (res) {
+            window.document.getElementById("dissmiss-child-modal").click();
+            this.onChildren(this.currentUser.id);
+            // this.toastr.info(msg );
           } else {
-            let msg = "Something Went Wrong!";
-            this.toastr.error(msg);
+            if (this.currentUser === null || this.currentUser === undefined) {
+              this.router.navigate(["/login"]);
+              // this.toastr.info(msg);
+            } else {
+              let msg = "Something Went Wrong!";
+              this.toastr.error(msg);
+            }
           }
-        }
-      });
+        });
+      }
     }
     this.onChildren(this.currentUser.id);
   }
@@ -1061,34 +1122,74 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
     this.activeContact = user;
     let currentRoom = this.currentUser.firstName + "-" + this.activeContact.firstName;
     let reverseRoom = this.activeContact.firstName + "-" + this.currentUser.firstName;
-    this.chatService.setUser(this.currentUser.firstName);
-    this.chatService.createRomm(currentRoom, reverseRoom);
+    // this.chatService.setUser(this.currentUser.firstName);
+    // this.chatService.createRomm(currentRoom, reverseRoom);
     this.getRoomId();
   }
   checkOrUncheckAllTags(e, categoryIndx) {
-        if (e.target.checked === true) {
-          this.subCategoryCheckbox[categoryIndx] = true;
-        } else {
-          this.subCategoryCheckbox[categoryIndx] = false;
+    if (e.target.checked === true) {
+      this.searchedTags[categoryIndx].category.isSelected = true;
+      this.searchedTags[categoryIndx].tags.forEach(tag => {
+        tag.isSelected = true
+        if (this.kid.interestInfo.indexOf(tag) == -1) {
+          if (!this.kid.interestInfo.find(category => category._id === tag._id)) {
+            this.kid.interestInfo.push(tag)
+          }
         }
+      });
+    } else {
+      this.searchedTags[categoryIndx].category.isSelected = false;
+      this.searchedTags[categoryIndx].tags.forEach(tag => {
+        let index = this.kid.interestInfo.findIndex(x => x._id===tag._id)
+        if (index!==-1) {
+          this.kid.interestInfo.splice(index, 1)
+        }
+        // if (this.kid.interestInfo.find(category => category.name === tag.name)) {
+        //   console.log('tag', tag)
+        //   const index = this.kid.interestInfo.indexOf(tag);
+        //   console.log(index)
+        //   this.kid.interestInfo.splice(index, 1)
+        // }
+        tag.isSelected = false
+      });
+      console.log('interestInfo', this.kid.interestInfo)
+    }
+  }
+  checkOrUncheckTag(e, categoryIndx, tagIndex) {
+    // const value = (element) => element === false;
+    let unchecked = this.searchedTags[categoryIndx].tags.filter(tag => !tag.isSelected)
+    console.log('unchecked', unchecked)
+    if (e.target.checked === true) {
+      if (this.kid.interestInfo.indexOf(this.searchedTags[categoryIndx].tags) == -1) {
+        if (!this.kid.interestInfo.find(category => category._id === this.searchedTags[categoryIndx].tags[tagIndex]._id)) {
+          this.kid.interestInfo.push(this.searchedTags[categoryIndx].tags[tagIndex])
+        }
+      }
+      this.searchedTags[categoryIndx].tags[tagIndex].isSelected = true
+      if (unchecked.length > 1) {
+        this.searchedTags[categoryIndx].category.isSelected = false;
+      }
+      else {
+        this.searchedTags[categoryIndx].category.isSelected = true;
+      }
+    }
+    else {
+      let index = this.kid.interestInfo.findIndex(x => x._id===this.searchedTags[categoryIndx].tags[tagIndex]._id)
+      console.log(index)
+      if (index!==-1) {
+          this.kid.interestInfo.splice(index, 1)
+        }
+      this.searchedTags[categoryIndx].tags[tagIndex].isSelected = false
+      this.searchedTags[categoryIndx].category.isSelected = false;
+    }
 
   }
-  checkOrUncheckTag(e,i,j) {
-    if(e.target.checked){
-      const value = (element) => element===false;
-      console.log(this.subCategoryCheckbox.some(value))
-      if(this.subCategoryCheckbox.some(value)){
-        this.categoryChecked[i]=false
-      }
-        
-       else {
-        this.categoryChecked[i]=true
-      }}
-      else{
-        this.categoryChecked[i]=false
-      }
-}
   ngOnInit() {
+    this.searchTagValue.valueChanges.subscribe((value) => {
+      if (value) { this.onChangeSearch(value) } else {
+        this.searchedTags = []
+      }
+    })
     this.dateV()
     this.getTagList()
     if (this.activeList == "kidList") {
@@ -1115,27 +1216,27 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
     this.getUserById();
     this.getParentById();
     this.user.avatarImages = this.currentUser.avatarImages;
-    this.chatService.getMessages().subscribe((message: Chat) => {
-      if (message.msgFrom !== this.currentUser.firstName) {
-        this.chatCollection.push(message);
-      }
-    });
-    this.chatService.getMedia().subscribe((message: Chat) => {
-      if (message.msgFrom !== this.currentUser.firstName) {
-        this.chatCollection.push(message);
-      }
-    });
-    this.chatService.getTyping().subscribe((msg: string) => {
-      console.log("typing", this.typingMsg);
-      let setTime;
-      clearTimeout(setTime);
-      //showing typing message.
-      this.typingMsg = msg;
-      //showing typing message only for few seconds.
-      setTime = setTimeout(() => {
-        this.typingMsg = "";
-      }, 3500);
-    });
+    // this.chatService.getMessages().subscribe((message: Chat) => {
+    //   if (message.msgFrom !== this.currentUser.firstName) {
+    //     this.chatCollection.push(message);
+    //   }
+    // });
+    // this.chatService.getMedia().subscribe((message: Chat) => {
+    //   if (message.msgFrom !== this.currentUser.firstName) {
+    //     this.chatCollection.push(message);
+    //   }
+    // });
+    // this.chatService.getTyping().subscribe((msg: string) => {
+    //   console.log("typing", this.typingMsg);
+    //   let setTime;
+    //   clearTimeout(setTime);
+    //   //showing typing message.
+    //   this.typingMsg = msg;
+    //   //showing typing message only for few seconds.
+    //   setTime = setTimeout(() => {
+    //     this.typingMsg = "";
+    //   }, 3500);
+    // });
     this.updateForm = new FormGroup({
       firstName: new FormControl("", [Validators.required]),
       email: new FormControl("", [Validators.email]),
@@ -1175,6 +1276,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
     this.scrollToBottom();
   }
   ngOnDestroy(): void {
+    window.document.getElementById("dissmiss-child-modal").click();
     this.store.removeItem('sendInvite');
   }
 
@@ -1186,15 +1288,15 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
   }
   getRoomId() {
     console.log('service func.. calling ')
-    this.chatService.getRoomId().subscribe((id: string) => {
-      console.log('response room id ')
-      this.roomId = id;
-      console.log('roomId', this.roomId)
-      this.getOldChat();
-    });
+    // this.chatService.getRoomId().subscribe((id: string) => {
+    //   console.log('response room id ')
+    //   this.roomId = id;
+    //   console.log('roomId', this.roomId)
+    //   this.getOldChat();
+    // });
   }
   startTyping() {
-    this.chatService.startTyping();
+    // this.chatService.startTyping();
   }
   sendMedia(event) {
     let formData = new FormData();
@@ -1214,7 +1316,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
         };
         console.log("image from server ", data);
         console.log("media data", data);
-        this.chatService.sendMedia(data);
+        // this.chatService.sendMedia(data);
         this.getOldChat();
       }
     });
@@ -1228,7 +1330,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
       date: new Date(),
     };
     this.chatCollection.push(data);
-    this.chatService.sendMessage(data);
+    // this.chatService.sendMessage(data);
 
     this.text = "";
   }

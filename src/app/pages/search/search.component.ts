@@ -12,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 import { JoyrideService } from 'ngx-joyride';
 import { AuthsService } from 'src/app/core/services/auths.service';
 import { CookieService } from 'ngx-cookie-service';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 @Component({
   selector: 'search',
   templateUrl: './search.component.html',
@@ -49,6 +50,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   pageNo: number = 1;
   pageSize: number = 20;
   programs: any = [];
+  providerProgram: any = [];
   isLogin: Boolean = false;
   key: string = '';
   providerRole: boolean = false;
@@ -103,7 +105,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   // latitude: number = 40.5682945; longitude: number = -74.0409239;
   lat = 40.72652470735903;
   lng = -74.05900394007715;
-  zoom = 14;
+  zoom = 13;
   address: string;
   private geoCoder;
   user = new User
@@ -111,6 +113,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   public searchElementRef: ElementRef;
   shareUrlSocial = environment.baseUrl;
   baseUrl = environment.baseUrl;
+  baseUrlProduction='https://wondrfly.com/'
   selectedProgram: any;
   url: string;
   suggested: any = [];
@@ -144,6 +147,10 @@ export class SearchComponent implements OnInit, OnDestroy {
   moment = moment;
   minDate: moment.Moment;
   userId=''
+  upArrow: boolean = false;
+  upArrow2: boolean = false;
+  providerr= new User;
+  activitiesCount=0
   constructor(
     private router: Router,
     private apiservice: ApiService,
@@ -155,7 +162,8 @@ export class SearchComponent implements OnInit, OnDestroy {
     private titleService: Title,
     private metaTagService: Meta,
     private cookies: CookieService,
-    private joyride: JoyrideService
+    private joyride: JoyrideService,
+    private ngxLoader: NgxUiLoaderService
   ) {
     this.countVisit()
     this.minDate = moment();
@@ -506,18 +514,18 @@ export class SearchComponent implements OnInit, OnDestroy {
     // this.contentLoaded = false;
     this.activityName = ''
     this.showReset = false
-    // this.ngxLoader.start()
+    this.ngxLoader.start()
     this.suggested = []
-    this.apiservice.getPublishedProgram(this.pageNo, this.pageSize, 'published').subscribe((res: any) => {
-      // this.ngxLoader.stop()
-      this.programs = this.programs.concat(res.items);
-      console.log('programs', this.programs)
-      // this.fakeLoaderData = [1,2]
-      this.contentLoaded = true;
-      for (let i in this.programs) {
-        let category = this.programs[i].category.filter((v, num, a) => a.findIndex(t => (t.name === v.name)) === num)
-        this.programs[i].category = category
+    this.apiservice.getPublishedProgramByProvider(this.pageNo, this.pageSize, 'published').subscribe((res: any) => {
+      this.ngxLoader.stop()
+      this.programs = this.programs.concat(res.data);
+      if(res.isSuccess){
+      this.providerProgram=this.programs;
+      this.providerProgram[0].collapsed=true
       }
+      console.log('programs', this.providerProgram)
+      // this.fakeLoaderData = [1,2]
+      // this.contentLoaded = true;
       this.startTour()
       if (!this.selectedSubCategories.length && !this.categoryId) {
         this.isScrol = true;
@@ -525,6 +533,12 @@ export class SearchComponent implements OnInit, OnDestroy {
     });
   }
 
+
+  getProviderbyId(id){
+    this.apiservice.getUserById(id).subscribe((res:any)=>{
+      return this.providerr = res
+    })
+  }
 
   // ---------------------------------------------get categories-------------------------------------
   getCategory() {
@@ -552,8 +566,8 @@ export class SearchComponent implements OnInit, OnDestroy {
     })
   }
 
-  addFavProgram(userId, programId, index) {
-    this.programs[index].isFav = true;
+  addFavProgram(userId, programId, providerIndx,programIndx) {
+    this.providerProgram[providerIndx].programs[programIndx].isFav = true;
     this.fav.userId = userId;
     this.fav.programId = programId;
     this.apiservice.addFavProgram(this.fav).subscribe(res => {
@@ -561,14 +575,12 @@ export class SearchComponent implements OnInit, OnDestroy {
     });
   }
 
-  deleteFavProgram(favId, index) {
-    this.programs[index].isFav = false;
+  deleteFavProgram(favId, providerIndx,programIndx) {
+    this.providerProgram[providerIndx].programs[programIndx].isFav = false;
     this.apiservice.deleteFavProgram(favId).subscribe(res => {
       this.deleteProgramRes = res;
     });
   }
-
-
 
   loadMore() {
     this.pageNo += 1;
@@ -719,18 +731,28 @@ export class SearchComponent implements OnInit, OnDestroy {
         filter += `&ageFrom=${this.minAge}&ageTo=${this.maxAge}`
       }
       console.log('filters query ', filter)
-      this.apiservice.programFilter(filter, 1, 200).subscribe((res: any) => {
+      this.ngxLoader.start()
+      this.apiservice.programFilter(filter, 1, 100).subscribe((res: any) => {
+        this.ngxLoader.stop()
         this.showReset = true
         if (res.isSuccess) {
           // this.isTopFilterCheckBox = false
           this.programs = res.data;
-          this.contentLoaded = true
-          for (let i in this.programs) {
-            let category = this.programs[i].category.filter((v, num, a) => a.findIndex(t => (t.name == v.name)) === num)
-            this.programs[i].category = category
+          this.providerProgram= this.programs;
+          this.providerProgram[0].collapsed=true
+          if(categoryId || this.selectedSubCategories.length){
+            const sum = this.providerProgram.reduce((accumulator, object) => {
+              return accumulator + object.programs.length;
+            }, 0);
+           this.activitiesCount= sum
           }
+
+          // for (let i in this.programs) {
+          //   let category = this.programs[i].category.filter((v, num, a) => a.findIndex(t => (t.name == v.name)) === num)
+          //   this.programs[i].category = category
+          // }
           this.startTour()
-          this.isScrol = true;
+          this.isScrol = false;
         }
       });
     }
@@ -740,8 +762,7 @@ export class SearchComponent implements OnInit, OnDestroy {
       this.isTopFilterCheckBox = false
       this.getPublishedProgram();
     }
-  };
-
+  }
   searchCategory(key?) {
     this.apiservice.searchTag(key).subscribe((res: any) => {
       this.categoriesBySearch = res;
@@ -760,11 +781,12 @@ export class SearchComponent implements OnInit, OnDestroy {
     });
   }
   goToProviderProfile(provider) {
+    console.log(provider)
     var providerName = provider.firstName;
     providerName = providerName.toLowerCase();
     providerName = providerName.replace(/ /g, "-");
     providerName = providerName.replace(/\?/g, "-");
-    this.router.navigate(['/program-provider', providerName, provider._id]);
+    this.router.navigate(['/provider/program-provider', providerName, provider._id]);
   }
 
   ngOnDestroy() {
@@ -776,10 +798,10 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   // ---------------------------------navigate to program detail page -------------------------------------------
-  getRating(program) {
-    if (program.userId == '' || program.userId == undefined || !program.userId) { program.userId = program.user }
-    this.apiservice.getUserRating(program.userId).subscribe((res: any) => {
+  getRating(id) {
+    this.apiservice.getUserRating(id).subscribe((res: any) => {
       this.rating = res
+      console.log('lalla rating',res)
       this.rating.finalAverageRating = parseFloat(String(this.rating.finalAverageRating)).toFixed(1)
     });
   }
@@ -890,4 +912,15 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.programFilter();
 
   }
+
+  scrollLeft(i){
+    document.getElementById('widgetsContent'+i).scrollLeft -= 650;
+    // this.checkScroll()
+  }
+
+  scrollRight(i){
+    document.getElementById('widgetsContent'+i).scrollLeft += 650;
+    // this.checkScroll()
+  }
+
 }

@@ -19,7 +19,7 @@ import { environment } from 'src/environments/environment';
 export class LoginParentComponent implements OnInit {
   addChildForm: FormGroup;
   locationForm: FormGroup;
-  keyword = 'name';
+  keyword = '';
   addChildData: any = new Child
   categoryIds = [];
   parent = new User;
@@ -39,7 +39,7 @@ export class LoginParentComponent implements OnInit {
   step2 = false;
   step3 = false;
   step4 = false;
-  step5 = false
+  // step5 = false
   title = 'Onboarding - Wondrfly';
   markerUrl = 'assets/location.svg';
   private geoCoder;
@@ -53,6 +53,10 @@ export class LoginParentComponent implements OnInit {
   selectedTags: any = [];
   removedTag: any;
   maxDate: string;
+  searchedTags: any = []
+  subCategoryCheckbox: any = []
+  categoryChecked: any = []
+  searchTagValue= new FormControl()
   constructor(private router: Router,
     private apiservice: ApiService,
     private ngxLoader: NgxUiLoaderService,
@@ -74,14 +78,21 @@ export class LoginParentComponent implements OnInit {
   // }
 
   remove(t) {
-    this.selectSkills(t)
-    const index: number = this.selectedTags.indexOf(t);
+    console.log('tag to remove',t)
+    for(let i in this.searchedTags) {
+        let indx = this.searchedTags[i].tags.findIndex(x => x._id===t._id)
+        if(indx >= 0){
+          this.searchedTags[i].category.isSelected=false;
+          this.searchedTags[i].tags[indx].isSelected=false;
+        }
+      }
+    const index = this.kid.interestInfo.indexOf(t);
 
     if (index >= 0) {
-      this.selectedTags.splice(index, 1);
+      this.kid.interestInfo.splice(index, 1);
     }
-
   }
+
 
 
   selected(event: MatAutocompleteSelectedEvent): void {
@@ -112,8 +123,8 @@ export class LoginParentComponent implements OnInit {
       var ageDifMs = Date.now() - birth.getTime();
       var ageDate = new Date(ageDifMs); // miliseconds from epoch
       var age = Math.abs(ageDate.getUTCFullYear() - 1970);
-      if (age >= 18 || age <= 0) {
-        this.toastr.warning("!", "please fill valid birth year");
+      if (age >16) {
+        this.toastr.warning("You must be 16 or less than 16 years old");
       } else {
         this.kid.age = String(age);
         this.kid.relationToChild = 'father'
@@ -125,7 +136,7 @@ export class LoginParentComponent implements OnInit {
   }
 
   addChild() {
-    this.kid.interestInfo = this.selectedTags
+    // this.kid.interestInfo = this.selectedTags
     this.kid.parentId = this.parent.id
     console.log('birthYear', this.parent.id)
     this.ngxLoader.start();
@@ -160,12 +171,69 @@ export class LoginParentComponent implements OnInit {
   }
 
   onChangeSearch(key: string) {
-    console.log('this.step3', this.step3)
-    console.log('this.step4', this.step4)
-    this.apiservice.searchTag(key).subscribe((res: any) => {
-      this.searchTags = res;
-      this.searchTags.tags = this.searchTags.tags.filter((item) => item.isActivated === true);
+    console.log('key', key)
+    // this.ngxLoader.start();
+    this.tags = [];
+    this.apiservice.searchTagForChildAddUpdate(key).subscribe((res: any) => {
+      if (res.error) {
+        this.tags = []
+        this.searchedTags = []
+      }
+      else {
+        this.tags = res;
+        console.log('tags response from backend', this.tags)
+         let filtredtags = this.tags.filter((item) => item.isActivated === true);
+        console.log('tags isActivated', filtredtags)
+        let categories = []
+        this.searchedTags = []
+     
+        filtredtags.forEach(tag => {
+          categories.push(tag.categoryIds[0])
+        });
+        let filtredCats = this.removeDuplicates(categories, 'name')
+        console.log('filtred----cates',filtredCats)
+        for (let j in filtredCats) {
+          let modifiedObj:any = {
+            category: {},
+            tags: []
+          }
+          for (let i in filtredtags) {
+            if (filtredCats[j]._id === filtredtags[i].categoryIds[0]._id) {
+              modifiedObj.category = filtredCats[j]
+              let indx = this.kid .interestInfo.findIndex(x => x._id===filtredtags[i]._id)
+              if(indx>=0){
+                filtredtags[i].isSelected = true
+              }
+              else{
+                filtredtags[i].isSelected = false
+              }
+              modifiedObj.tags.push(filtredtags[i])
+            }
+          }
+          let isTagsUncheked = modifiedObj.tags.findIndex(x => x.isSelected===false)
+          if(isTagsUncheked===-1){
+            modifiedObj.category.isSelected=true
+          }
+          this.searchedTags.push(modifiedObj)
+        }
+        // this.searchedTags = this.removeDuplicates(this.searchedTags, 'category')
+        console.log('searchedTags', this.searchedTags)
+      }
+      // this.ngxLoader.stop();
     });
+  }
+  removeDuplicates(originalArray, prop) {
+    var newArray = [];
+    var lookupObject = {};
+
+    for (var i in originalArray) {
+      lookupObject[originalArray[i][prop]] = originalArray[i];
+    }
+    console.log('lookupObject', lookupObject)
+    for (i in lookupObject) {
+      newArray.push(lookupObject[i]);
+    }
+    return newArray;
   }
 
 
@@ -204,6 +272,11 @@ export class LoginParentComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.searchTagValue.valueChanges.subscribe((value) => {
+      if (value) { this.onChangeSearch(value) } else {
+        this.searchedTags = []
+      }
+    })
     this.dateV();
     this.titleService.setTitle(this.title);
     this.metaTagService.updateTag(
@@ -269,11 +342,11 @@ export class LoginParentComponent implements OnInit {
       this.step3 = false;
       this.progressBarVaue += 25;
     }
-    else if (this.step4) {
-      this.step5 = true;
-      this.step4 = false;
-      this.progressBarVaue += 25;
-    }
+    // else if (this.step4) {
+    //   this.step5 = true;
+    //   this.step4 = false;
+    //   this.progressBarVaue += 25;
+    // }
   }
   backStep() {
     window.scroll(0, 0);
@@ -292,11 +365,11 @@ export class LoginParentComponent implements OnInit {
       this.step4 = false;
       this.progressBarVaue -= 25;
     }
-    else if (this.step5) {
-      this.step4 = true;
-      this.step5 = false;
-      this.progressBarVaue -= 25;
-    }
+    // else if (this.step5) {
+    //   this.step4 = true;
+    //   this.step5 = false;
+    //   this.progressBarVaue -= 25;
+    // }
   }
 
   // -----------------------------------------------update parent----------------------------------
@@ -314,4 +387,64 @@ export class LoginParentComponent implements OnInit {
       }
     });
   }
+
+  checkOrUncheckAllTags(e, categoryIndx) {
+    if (e.target.checked === true) {
+      this.searchedTags[categoryIndx].category.isSelected = true;
+      this.searchedTags[categoryIndx].tags.forEach(tag => {
+        tag.isSelected = true
+        if (this.kid.interestInfo.indexOf(tag) == -1) {
+          if (!this.kid.interestInfo.find(category => category._id === tag._id)) {
+            this.kid.interestInfo.push(tag)
+          }
+        }
+      });
+    } else {
+      this.searchedTags[categoryIndx].category.isSelected = false;
+      this.searchedTags[categoryIndx].tags.forEach(tag => {
+        let index = this.kid.interestInfo.findIndex(x => x._id===tag._id)
+        if (index!==-1) {
+          this.kid.interestInfo.splice(index, 1)
+        }
+        // if (this.kid.interestInfo.find(category => category.name === tag.name)) {
+        //   console.log('tag', tag)
+        //   const index = this.kid.interestInfo.indexOf(tag);
+        //   console.log(index)
+        //   this.kid.interestInfo.splice(index, 1)
+        // }
+        tag.isSelected = false
+      });
+      console.log('interestInfo', this.kid.interestInfo)
+    }
+  }
+  checkOrUncheckTag(e, categoryIndx, tagIndex) {
+    // const value = (element) => element === false;
+    let unchecked = this.searchedTags[categoryIndx].tags.filter(tag => !tag.isSelected)
+    console.log('unchecked', unchecked)
+    if (e.target.checked === true) {
+      if (this.kid.interestInfo.indexOf(this.searchedTags[categoryIndx].tags) == -1) {
+        if (!this.kid.interestInfo.find(category => category._id === this.searchedTags[categoryIndx].tags[tagIndex]._id)) {
+          this.kid.interestInfo.push(this.searchedTags[categoryIndx].tags[tagIndex])
+        }
+      }
+      this.searchedTags[categoryIndx].tags[tagIndex].isSelected = true
+      if (unchecked.length > 1) {
+        this.searchedTags[categoryIndx].category.isSelected = false;
+      }
+      else {
+        this.searchedTags[categoryIndx].category.isSelected = true;
+      }
+    }
+    else {
+        let index = this.kid.interestInfo.findIndex(x => x._id===this.searchedTags[categoryIndx].tags[tagIndex]._id)
+        if (index!==-1) {
+          this.kid.interestInfo.splice(index, 1)
+        }
+      this.searchedTags[categoryIndx].tags[tagIndex].isSelected = false
+      this.searchedTags[categoryIndx].category.isSelected = false;
+    }
+
+  }
+
+
 }

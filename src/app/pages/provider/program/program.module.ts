@@ -12,6 +12,12 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { MatInputModule } from '@angular/material/input';
 import { ReadMoreModule } from 'src/app/core/components/read-more/read-more.module';
+import { LottieModule } from 'ngx-lottie';
+import player from 'lottie-web';
+
+export function playerFactory() {
+  return player;
+}
 
 @NgModule({
   entryComponents: [],
@@ -31,6 +37,7 @@ import { ReadMoreModule } from 'src/app/core/components/read-more/read-more.modu
     MatInputModule,
     AgmCoreModule,
     sharePopupModule,
+    LottieModule.forRoot({ player: playerFactory })
   ],
   exports: [
     ProgramComponent,

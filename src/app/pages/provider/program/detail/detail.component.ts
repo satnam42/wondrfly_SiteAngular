@@ -16,6 +16,8 @@ import { Options } from '@angular-slider/ngx-slider';
 import { ToastrService } from 'ngx-toastr';
 import { DataService } from 'src/app/core/services/dataservice.service ';
 import { environment } from 'src/environments/environment.prod';
+import { AnimationOptions } from 'ngx-lottie';
+import { AnimationItem } from 'lottie-web';
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',
@@ -116,10 +118,14 @@ export class DetailComponent implements OnInit {
   isRating = false;
   selectedProgram: any;
   bannerIndx: number = 0;
-  bannerImages = ['assets/pattern_bg1.png',
-    'assets/pattern_bg2.png',
-    'assets/pattern_bg3.png',
+  bannerImages = ['assets/pattern_new.png',
+    'assets/pattern_new.png',
+    'assets/pattern_new.png',
   ]
+  optionslotti: AnimationOptions = {
+    path: '/assets/wLoader.json',
+  };
+
   constructor(private apiservice: ApiService,
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
@@ -153,6 +159,10 @@ export class DetailComponent implements OnInit {
         this.longitude = +pos.coords.latitude;
       });
     }
+  }
+
+  animationCreated(animationItem: AnimationItem): void {
+    console.log(animationItem);
   }
 
   onChange(data) {
@@ -258,7 +268,8 @@ export class DetailComponent implements OnInit {
       this.program_mins = moment.utc(moment(this.program.time.to, "HH:mm:ss").diff(moment(this.program.time.from, "HH:mm:ss"))).format("mm")
       this.parentAnalyticAction()
     });
-    this.ngxLoader.stop();
+
+    // this.ngxLoader.stop();
   }
 
   convertNumToTime(number) {

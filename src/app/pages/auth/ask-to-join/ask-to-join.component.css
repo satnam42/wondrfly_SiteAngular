@@ -497,7 +497,9 @@ select.ng-invalid.ng-touched {
     -ms-border-radius: 20px;
     -o-border-radius: 20px;
 }
-
+.ml-11{
+    margin-left: 11px;
+}
 .form-check.booked {
     display: flex;
     padding-left: 3px;
@@ -510,7 +512,9 @@ select.ng-invalid.ng-touched {
     margin-bottom: 40px;
     margin-top: 20px;
 }
-
+.form-p-info select {
+    margin-left: 6px;
+}
 label.label-occupation span {
     float: right;
     color: #AAAAAA;

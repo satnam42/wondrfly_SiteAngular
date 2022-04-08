@@ -7,423 +7,443 @@
         <div class="program_outer">
             <div class="container">
                 <div class="provider_profile">
-                    <div class="provider_left">
-                        <div class="profile" *ngIf="user?.firstName" [class.initial-alpha-profile]="!user?.subCategoryIds[0]?.logo">
-                            <img *ngIf="user?.subCategoryIds[0]?.logo" [defaultImage]="defaultImage" lazyLoad="{{baseUrl+user?.subCategoryIds[0]?.logo}}" alt="Profile image">
-                            <!-- <img *ngIf="!user.categories[0]?.logoUrl" src="assets/gray_background.jpeg" alt="Profile image"> -->
-                            <h1 *ngIf="!user?.subCategoryIds[0]?.logo">{{user?.firstName?.charAt(0)+user?.firstName?.charAt(1)}}</h1>
-                        </div>
-                        <h2 class="provider_name star-daialog">{{user?.firstName}}
-                            <p class="cursor" (mouseover)="isRating=true" (mouseout)="isRating=false">
-                                <span *ngIf="
-                                rating?.finalAverageRating == 0 ||
-                                rating?.finalAverageRating == 'NaN' ||
-                                rating?.finalAverageRating == undefined
-                              ">
-                              <span class="fa fa-star-o"></span>
-                                                <span class="fa fa-star-o"></span>
-                                                <span class="fa fa-star-o"></span>
-                                                <span class="fa fa-star-o"></span>
-                                                <span class="fa fa-star-o"></span>
-                                                </span>
-                                                <span *ngIf="rating?.finalAverageRating == 1">
-                              <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star-o"></span>
-                                                <span class="fa fa-star-o"></span>
-                                                <span class="fa fa-star-o"></span>
-                                                <span class="fa fa-star-o"></span>
-                                                </span>
-                                                <span *ngIf="
-                                rating?.finalAverageRating > 1 &&
-                                rating?.finalAverageRating < 2
-                              ">
-                              <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star-half-o checked"></span>
-                                                <span class="fa fa-star-o"></span>
-                                                <span class="fa fa-star-o"></span>
-                                                <span class="fa fa-star-o"></span>
-                                                </span>
-                                                <span *ngIf="rating?.finalAverageRating == 2">
-                              <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star-o"></span>
-                                                <span class="fa fa-star-o"></span>
-                                                <span class="fa fa-star-o"></span>
-                                                </span>
-                                                <span *ngIf="
-                                rating?.finalAverageRating > 2 &&
-                                rating?.finalAverageRating < 3
-                              ">
-                              <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star-half-o checked"></span>
-                                                <span class="fa fa-star-o"></span>
-                                                <span class="fa fa-star-o"></span>
-                                                </span>
-                                                <span *ngIf="rating?.finalAverageRating == 3">
-                              <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star-o"></span>
-                                                <span class="fa fa-star-o"></span>
-                                                </span>
-                                                <span *ngIf="
-                                rating?.finalAverageRating > 3 &&
-                                rating?.finalAverageRating < 4">
-                              <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star-half-o checked"></span>
-                                                <span class="fa fa-star-o"></span>
-                                                </span>
-                                                <span *ngIf="rating?.finalAverageRating == 4">
-                              <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star-o"></span>
-                                                </span>
-                                                <span *ngIf="
-                                rating?.finalAverageRating > 4 &&
-                                rating?.finalAverageRating < 5">
-
-                              <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star-half-o checked"></span>
-                                                </span>
-                                                <span *ngIf="rating?.finalAverageRating == 5">
-                              <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                </span>
-                                <!-- <a><span
-                    *ngIf="rating?.finalAverageRating && rating?.finalAverageRating!=='NaN'">{{rating?.finalAverageRating}}</span><span
-                    *ngIf="!rating?.finalAverageRating || rating?.finalAverageRating=='NaN' || rating?.finalAverageRating==undefined">0</span>
-                  out of 5 </a> -->
-                  <span class="no-underline">(</span><a *ngIf="rating?.totalReviews">{{rating?.totalReviews }} reviews</a>
-                  <a *ngIf="!rating?.totalReviews">0 reviews</a> <span class="no-underline">)</span>
-                            </p>
-                            <div class=" star-daialogbox" *ngIf="isRating">
-                                <!-- <button  (click)="isRating=false"type="button" class="close star-daialogicon" aria-label="Close">
-                                <span aria-hidden="true"><img src="assets/grey-close.png"></span>
-                            </button> -->
-                                <app-rating [rating]="rating" [user]="user"></app-rating>
-                            </div>
-
-                        </h2>
-                        <div class="provider_menu">
-                            <ul>
-                                <li>
-                                    <a [class.active]="overviewClass" (click)="onGenOverview()">
-                                        <span class="icon icon-general"></span> Provider overview
-                                    </a>
-                                </li>
-                                <li>
-                                    <a [class.active]="peopleClass" (click)="onPeople()">
-                                        <span class="icon icon-group"></span> Team
-                                    </a>
-                                </li>
-                                <li>
-                                    <a [class.active]="activityClass" (click)="onActivities()">
-                                        <span class="icon icon-list"></span> Activities
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- <div class="insured_outer">
-
-                        <p *ngFor="let badge of badgesList"><img src="{{badge.icon}}" alt="Loction Pin"> {{badge.name}}
-                        </p>
-                    </div> -->
-                        <!-- <div class="business_text">
-                        <img src="assets/business_red.svg" alt="Business image">
-                        <h2>Is this your business?</h2>
-                        <button class="btn_style business_btn">Claim this business</button>
-                    </div> -->
-                    </div>
-                    <div class="provider_right">
-                        <div *ngIf="isGenOverview || isPeople" class="description_text people_section overview">
-
-                            <h2 class="overview-heading">About us</h2>
-                            <p *ngIf="user.about" class="overview-data">{{user.about | slice:0:360}}
-                            </p>
-                            <p *ngIf="!user.about" class="overview-data">{{user.note | slice:0:360}}
-                            </p>
-                            <div class="media">
-                                <!-- <div class="media-left">
-                                    <div class="people_profile" [class.initial-alpha-profile]="!user?.avatarImages">
-                                        <a data-toggle="modal" data-target="#profileModal">
-                                            <img *ngIf="user.avatarImages" class="cursor" src="{{user.avatarImages}}" alt="Profile">
-                                            <h1 *ngIf="!user?.avatarImages">{{user?.firstName?.charAt(0)+user?.firstName?.charAt(1)}}</h1>
-                                        </a>
-                                    </div>
-                                    <h4>{{user.firstName}}</h4>
-                                </div> -->
-                                <div class="media-body">
-                                    <p *ngIf="user?.about && user.about?.length>=230">{{user?.about | slice:360:1000}}}}</p>
-                                    <p *ngIf="user?.note && user.note?.length>=230">{{user?.note | slice:360:1000}}</p>
-                                    <div class="skills_sec" *ngIf='user?.categories?.length'>
-                                        <h3>Skills</h3>
-                                        <div class="skill_outer" *ngFor='let skill of user?.subCategoryIds'>
-                                            <span>{{skill?.name}}</span>
-                                        </div>
-                                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="provider_left">
+                                <div class="profile" *ngIf="user?.firstName" [class.initial-alpha-profile]="!user?.subCategoryIds[0]?.logo">
+                                    <img *ngIf="user?.subCategoryIds[0]?.logo" [defaultImage]="defaultImage" lazyLoad="{{baseUrl+user?.subCategoryIds[0]?.logo}}" alt="Profile image">
+                                    <!-- <img *ngIf="!user.categories[0]?.logoUrl" src="assets/gray_background.jpeg" alt="Profile image"> -->
+                                    <h1 *ngIf="!user?.subCategoryIds[0]?.logo">{{user?.firstName?.charAt(0)+user?.firstName?.charAt(1)}}</h1>
                                 </div>
-                            </div>
-                        </div>
-                        <div *ngIf="isGenOverview && user?.about" class="description_text">
-                            <h2 *ngIf='user?.about'>About</h2>
-                            <p>{{user?.about}}</p>
-                        </div>
-
-
-                        <div *ngIf="isGenOverview" class="description_text">
-                            <h2>Company Information</h2>
-                            <div class="row align-items-center margin_top">
-                                <div class="col-md-4" *ngIf="user?.addressLine1">
-                                    <div class="media company_info align-items-center">
-                                        <div class="media-left">
-                                            <span class="icon icon-pin"></span>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4>Address</h4>
-                                            <p>{{user?.addressLine1}}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4" *ngIf="user?.email">
-                                    <div class="media company_info align-items-center">
-                                        <div class="media-left">
-                                            <span class="icon icon-envelope"></span>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4>Email</h4>
-                                            <p><a href="mailto:{{user.email}}">{{user?.email}}</a></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="media company_info align-items-center">
-                                        <div class="media-left">
-                                            <span class="icon icon-phone-call"></span>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4>Phone</h4>
-                                            <p>{{user?.phoneNumber}}</p>
-                                        </div>
-                                    </div>
-                                </div>
-<!-- 
-                                <div class="col-md-4">
-                                    <div class="media company_info align-items-center">
-                                        <div class="media-left">
-                                            <img class="imgsvg" src="assets/questionnaire-1.png" alt="Questionnaire">
-                                        </div>
-                                        <div class="media-body">
-                                            <h4>Class types</h4>
-                                            <p>Online classes</p>
-                                            <p>Offline classes</p>
-                                        </div>
-                                    </div>
-                                </div> -->
-                                <div class="col-md-4" *ngIf="user?.website">
-                                    <div class="media company_info align-items-center">
-                                        <div class="media-left">
-                                            <span class="icon icon-global"></span>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4>WWW</h4>
-                                            <p><a href="{{user.website}}" target="_blank">{{user?.website}}</a></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- <div class="col-md-3">
-                                    <div class="social-icons media company_info align-items-center">
-                                        <a><span  class="icon"><img  src="assets/fb-123.png"></span></a>
-                                        <a><span  class="icon"><img  src="assets/insta.png"></span></a>
-                                        <a><span class="icon"><img  src="assets/linked_in.png"></span></a>
-                                        <a><span class="icon"><img  src="assets/tweet.png"></span></a>
-                                    </div>
-                                </div> -->
-                                <div class="col-md-1">
-
-                                </div>
-                            </div>
-                        </div>
-                        <!-- <div *ngIf="isGenOverview && user?.healthAndSafety?.length" class="description_text">
-                            <h2>Health & Safety measures
-                                <span><img src="assets/healthsafetyi.svg"></span>
-                            </h2>
-                            <div class="row margin_tops">
-                                <div class="col-md-3" *ngFor="let health of health_safety; let i =index">
-                                    <div class="media company_infos">
-                                        <div class="media-body">
-                                            <img [ngClass]="{'health_icon_disable':!health?.status}" src="{{health.img}}">
-                                        </div>
-                                        <div class="media-footer">
-                                            <p class="health_name">{{health?.name}}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
-
-                        <div *ngIf="isActivities" class="provider_right">
-                            <div  class="description_text slider">
-                                <h2>Activities</h2>
-                                <div *ngIf="programs?.length" class="row scrollisActivity">
-                                    <div class="col-md-6" *ngFor="let program of programs">
-                                        <div class="activities_slide">
-                                            <div class="slide_image cursor" (click)='goToProgramDetail(program)'>
-                                                <img [defaultImage]="defaultImage" [errorImage]="errorImage" [lazyLoad]="baseUrl + program?.category[0]?.pattern" />
-                                            </div>
-                                            <div class="slide_text">
-
-                                                <h3 (click)='goToProgramDetail(program)'> <span class="title cursor">{{program?.name}} </span>
-                                                </h3>
-
-
-                                                <div class="sports_btn" *ngFor='let cat of program?.category'>
-                                                    <span>{{cat?.name}}</span>
-                                                </div>
-
-                                                <div class="date_age">
-                                                    <p>
-                                                        <img alt="Loction Pin" src="assets/calendar.svg">{{program?.date?.from | date}} - {{program?.date?.to | date}}
-                                                    </p>
-                                                    <p>
-                                                        <img alt="Loction Pin" src="assets/user_group.svg"> {{program?.ageGroup?.from}} - {{program?.ageGroup?.to}} Yrs.
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div *ngIf="!programs?.length" style="color: #494949;"> 
-                                    Currently there are no activities available for this provider. Please check back in a few days.
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div *ngIf="isGenOverview" class="provider_map">
-                        <agm-map id="map" [latitude]="40.726625316721496" [longitude]="-74.05223450979102" (centerChange)="centerChange($event)" [zoom]="16" [styles]="" [zoomControl]="false" [streetViewControl]="false">
-                            <div *ngFor='let p of programs' (mapClick)="mapClicked(previous)">
-                                <agm-marker *ngIf="p?.lat && p?.lng" [iconUrl]="markerUrl" [latitude]="p?.lat" [longitude]="p?.lng" (markerClick)="clickedMarker(previous)">
-                                    <strong>{{p?.name}}</strong>
-                                    <agm-info-window #previous>
-
-                                        <div class="map-popup">
-                                            <h1>
-                                                {{p?.name}}
-                                            </h1>
-                                            <h2>
-                                                by {{p?.programOwner}}
-                                            </h2>
-                                            <div class="rating-starsearch">
-                                                <p>
-                                                    <span *ngIf="p?.averageFinalRating==0">
+                                   
+<div class="provider_parentdiv">
+<div class="pro-name">
+    <h2 class="provider_name star-daialog"><span class="provider-heading-h2">{{user?.firstName}}</span>
+        <p class="cursor" (mouseover)="isRating=true" (mouseout)="isRating=false">
+            <span *ngIf="
+            rating?.finalAverageRating == 0 ||
+            rating?.finalAverageRating == 'NaN' ||
+            rating?.finalAverageRating == undefined
+          ">
+          <span class="fa fa-star-o"></span>
                             <span class="fa fa-star-o"></span>
-                                                    <span class="fa fa-star-o"></span>
-                                                    <span class="fa fa-star-o"></span>
-                                                    <span class="fa fa-star-o"></span>
-                                                    <span class="fa fa-star-o"></span>
-                                                    </span>
-                                                    <span *ngIf="p?.averageFinalRating==1">
+                            <span class="fa fa-star-o"></span>
+                            <span class="fa fa-star-o"></span>
+                            <span class="fa fa-star-o"></span>
+                            </span>
+                            <span *ngIf="rating?.finalAverageRating == 1">
+          <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star-o"></span>
+                            <span class="fa fa-star-o"></span>
+                            <span class="fa fa-star-o"></span>
+                            <span class="fa fa-star-o"></span>
+                            </span>
+                            <span *ngIf="
+            rating?.finalAverageRating > 1 &&
+            rating?.finalAverageRating < 2
+          ">
+          <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star-half-o checked"></span>
+                            <span class="fa fa-star-o"></span>
+                            <span class="fa fa-star-o"></span>
+                            <span class="fa fa-star-o"></span>
+                            </span>
+                            <span *ngIf="rating?.finalAverageRating == 2">
+          <span class="fa fa-star checked"></span>
                             <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star-o"></span>
-                                                    <span class="fa fa-star-o"></span>
-                                                    <span class="fa fa-star-o"></span>
-                                                    <span class="fa fa-star-o"></span>
-                                                    </span>
-                                                    <span *ngIf="p?.averageFinalRating>1 && p?.averageFinalRating<2">
+                            <span class="fa fa-star-o"></span>
+                            <span class="fa fa-star-o"></span>
+                            <span class="fa fa-star-o"></span>
+                            </span>
+                            <span *ngIf="
+            rating?.finalAverageRating > 2 &&
+            rating?.finalAverageRating < 3
+          ">
+          <span class="fa fa-star checked"></span>
                             <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star-half-o checked"></span>
-                                                    <span class="fa fa-star-o"></span>
-                                                    <span class="fa fa-star-o"></span>
-                                                    <span class="fa fa-star-o"></span>
-                                                    </span>
-                                                    <span *ngIf="p?.averageFinalRating==2">
+                            <span class="fa fa-star-half-o checked"></span>
+                            <span class="fa fa-star-o"></span>
+                            <span class="fa fa-star-o"></span>
+                            </span>
+                            <span *ngIf="rating?.finalAverageRating == 3">
+          <span class="fa fa-star checked"></span>
                             <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star-o"></span>
-                                                    <span class="fa fa-star-o"></span>
-                                                    <span class="fa fa-star-o"></span>
-                                                    </span>
-                                                    <span *ngIf="p?.averageFinalRating>2 && p?.averageFinalRating<3">
                             <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star-half-o checked"></span>
-                                                    <span class="fa fa-star-o"></span>
-                                                    <span class="fa fa-star-o"></span>
-                                                    </span>
-                                                    <span *ngIf="p?.averageFinalRating==3">
+                            <span class="fa fa-star-o"></span>
+                            <span class="fa fa-star-o"></span>
+                            </span>
+                            <span *ngIf="
+            rating?.finalAverageRating > 3 &&
+            rating?.finalAverageRating < 4">
+          <span class="fa fa-star checked"></span>
                             <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star-o"></span>
-                                                    <span class="fa fa-star-o"></span>
-                                                    </span>
-                                                    <span *ngIf="p?.averageFinalRating>3 && p?.averageFinalRating<4">
                             <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star-half-o checked"></span>
-                                                    <span class="fa fa-star-o"></span>
-                                                    </span>
-                                                    <span *ngIf="p?.averageFinalRating==4">
+                            <span class="fa fa-star-half-o checked"></span>
+                            <span class="fa fa-star-o"></span>
+                            </span>
+                            <span *ngIf="rating?.finalAverageRating == 4">
+          <span class="fa fa-star checked"></span>
                             <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star-o"></span>
-                                                    </span>
-                                                    <span *ngIf="p?.averageFinalRating>4 && p?.averageFinalRating<5">
                             <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star-half-o checked"></span>
-                                                    </span>
-                                                    <span *ngIf="p?.averageFinalRating==5">
                             <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    </span>
-                                                    <a> <span></span>(58 reviews)</a>
-                                                </p>
-                                            </div>
-                                            <div class="map-locationtext">
-                                                <span><img src="assets/location-pintag.svg"> </span>
-                                                <h3>
-                                                    {{p?.location}}
-                                                </h3>
-                                            </div>
-                                            <!-- <button class="map-buttonas">
-                                      View
-                                    </button> -->
-                                        </div>
-                                        <!-- {{program.name}} -->
-                                    </agm-info-window>
-                                </agm-marker>
+                            <span class="fa fa-star-o"></span>
+                            </span>
+                            <span *ngIf="
+            rating?.finalAverageRating > 4 &&
+            rating?.finalAverageRating < 5">
+
+          <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star-half-o checked"></span>
+                            </span>
+                            <span *ngIf="rating?.finalAverageRating == 5">
+          <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            </span>
+            <!-- <a><span
+*ngIf="rating?.finalAverageRating && rating?.finalAverageRating!=='NaN'">{{rating?.finalAverageRating}}</span><span
+*ngIf="!rating?.finalAverageRating || rating?.finalAverageRating=='NaN' || rating?.finalAverageRating==undefined">0</span>
+out of 5 </a> -->
+<span class="no-underline">(</span><a *ngIf="rating?.totalReviews">{{rating?.totalReviews }} reviews</a>
+<a *ngIf="!rating?.totalReviews">0 reviews</a> <span class="no-underline">)</span>
+        </p>
+        <div class=" star-daialogbox" *ngIf="isRating">
+            <!-- <button  (click)="isRating=false"type="button" class="close star-daialogicon" aria-label="Close">
+            <span aria-hidden="true"><img src="assets/grey-close.png"></span>
+        </button> -->
+            <app-rating [rating]="rating" [user]="user"></app-rating>
+        </div>
+
+    </h2>
+</div>
+<!-- <div class="share_icon">
+    <a data-toggle="modal" data-target="#ShareModal" class="cursor">
+        <img src="assets/share_gray.svg "  alt="Share Icon " />
+    </a>
+    <div class="bookmark_outer">
+        <a *ngIf="isLogin" class="bookmark_icon cursor"><img src="assets/bookmark_gray.svg " alt="Menu Image " 
+            /></a>
+
+        <a *ngIf="!isLogin" routerLink="/login" class="bookmark_icon cursor"><img  src="assets/bookmark_gray.svg " alt="Menu Image " /></a>
+
+        <a *ngIf="program?.isFav && parentRole && isLogin"  class="bookmark_icon cursor"><img src="assets/bookmarkOrange.png " alt="Menu Image " /></a>
+    </div>
+</div> -->
+</div>
+                                
+                               
+                                <div class="provider_menu">
+                                    <ul>
+                                        <!-- <li>
+                                            <a [class.active]="overviewClass" (click)="onGenOverview()">
+                                                <span class="icon icon-general"></span> Provider overview
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a [class.active]="peopleClass" (click)="onPeople()">
+                                                <span class="icon icon-group"></span> Team
+                                            </a>
+                                        </li> -->
+                                        <li>
+                                            <a class="clr-blue" (click)="onActivities('#ActivitiesList')" *ngIf="programs?.length">
+                                                <span> <img src="assets/Activities-icon.png" alt=""></span> View Activities
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- <div class="insured_outer">
+        
+                                <p *ngFor="let badge of badgesList"><img src="{{badge.icon}}" alt="Loction Pin"> {{badge.name}}
+                                </p>
+                            </div> -->
+                                <!-- <div class="business_text">
+                                <img src="assets/business_red.svg" alt="Business image">
+                                <h2>Is this your business?</h2>
+                                <button class="btn_style business_btn">Claim this business</button>
+                            </div> -->
                             </div>
-                        </agm-map>
+                        </div>
+                        <div class="col-8">
+                            <div class="provider_right description_text">
+                                <div *ngIf="isGenOverview || isPeople" class="people_section overview desc-overflow">
+        
+                                    <h2 class="overview-heading">About us</h2>
+                                    <p *ngIf="user.about" class="overview-data">{{user.about | slice:0:360}}
+                                    </p>
+                                    <p *ngIf="!user.about" class="overview-data">{{user.note | slice:0:360}}
+                                    </p>
+                                    <div class="media skills_sec-div">
+                                        <!-- <div class="media-left">
+                                            <div class="people_profile" [class.initial-alpha-profile]="!user?.avatarImages">
+                                                <a data-toggle="modal" data-target="#profileModal">
+                                                    <img *ngIf="user.avatarImages" class="cursor" src="{{user.avatarImages}}" alt="Profile">
+                                                    <h1 *ngIf="!user?.avatarImages">{{user?.firstName?.charAt(0)+user?.firstName?.charAt(1)}}</h1>
+                                                </a>
+                                            </div>
+                                            <h4>{{user.firstName}}</h4>
+                                        </div> -->
+                                        <div class="media-body">
+                                            <p *ngIf="user?.about && user.about?.length>=230">{{user?.about | slice:360:1000}}}}</p>
+                                            <p *ngIf="user?.note && user.note?.length>=230">{{user?.note | slice:360:1000}}</p>
+                                            <div class="skills_sec" *ngIf='user?.subCategoryIds?.length'>
+                                                <h3>Skills</h3>
+                                                <div class="skill_flex">
+                                                <div class="skill_outer" *ngFor='let skill of user?.subCategoryIds'>
+                                                    <span>{{skill?.name}}</span>
+                                                </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>     
+                                <div *ngIf="isActivities" class="provider_right">
+                                    <div  class="description_text slider">
+                                        <h2>Activities</h2>
+                                        <div *ngIf="programs?.length" class="row scrollisActivity">
+                                            <div class="col-md-6" *ngFor="let program of programs">
+                                                <div class="activities_slide">
+                                                    <div class="slide_image cursor" (click)='goToProgramDetail(program)'>
+                                                        <img [defaultImage]="defaultImage" [errorImage]="errorImage" [lazyLoad]="baseUrl + program?.category[0]?.pattern" />
+                                                    </div>
+                                                    <div class="slide_text">
+        
+                                                        <h3 (click)='goToProgramDetail(program)'> <span class="title cursor">{{program?.name}} </span>
+                                                        </h3>
+        
+        
+                                                        <div class="sports_btn" *ngFor='let cat of program?.category'>
+                                                            <span>{{cat?.name}}</span>
+                                                        </div>
+        
+                                                        <div class="date_age">
+                                                            <p>
+                                                                <img alt="Loction Pin" src="assets/calendar.svg">{{program?.date?.from | date}} - {{program?.date?.to | date}}
+                                                            </p>
+                                                            <p>
+                                                                <img alt="Loction Pin" src="assets/user_group.svg"> {{program?.ageGroup?.from}} - {{program?.ageGroup?.to}} Yrs.
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div *ngIf="!programs?.length" style="color: #494949;"> 
+                                            Currently there are no activities available for this provider. Please check back in a few days.
+                                        </div>
+                                    </div>
+                                </div>
+        
+                            </div>
+                        </div>
                     </div>
-
-
-                    <div class="provider_full carousel-cat" *ngIf="isGenOverview && programs?.length">
-                        <h4 class="might-try">You might also like these <span class="subCat" (click)="setSubCategoryId(user.subCategoryIds[0])">{{user.subCategoryIds[0]?.name}} </span> <span *ngIf="user.subCategoryIds?.length>1">and <span class="subCat"
-                  (click)="setSubCategoryId(user.subCategoryIds[1])">{{user.subCategoryIds[1]?.name}}</span></span>
-                            activities: <a class="view_all cursor" (click)="onActivities()">View all</a> </h4>
+                    <div class="row">
+                        <div class="col-4">
+                            <div *ngIf="isGenOverview" class="provider_map">
+                                <agm-map id="map" [latitude]="40.73614987717813" [longitude]="-74.04147784299793" (centerChange)="centerChange($event)" [zoom]="12" [styles]="" [zoomControl]="false" [streetViewControl]="false">
+                                    <div *ngFor='let p of programs' (mapClick)="mapClicked(previous)">
+                                        <agm-marker *ngIf="p?.lat && p?.lng" [iconUrl]="markerUrl" [latitude]="p?.lat" [longitude]="p?.lng" (markerClick)="clickedMarker(previous)">
+                                            <strong>{{p?.name}}</strong>
+                                            <agm-info-window #previous>
+        
+                                                <div class="map-popup">
+                                                    <h1>
+                                                        {{p?.name}}
+                                                    </h1>
+                                                    <h2>
+                                                        by {{p?.programOwner}}
+                                                    </h2>
+                                                    <div class="rating-starsearch">
+                                                        <p>
+                                                            <span *ngIf="p?.averageFinalRating==0">
+                                    <span class="fa fa-star-o"></span>
+                                                            <span class="fa fa-star-o"></span>
+                                                            <span class="fa fa-star-o"></span>
+                                                            <span class="fa fa-star-o"></span>
+                                                            <span class="fa fa-star-o"></span>
+                                                            </span>
+                                                            <span *ngIf="p?.averageFinalRating==1">
+                                    <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star-o"></span>
+                                                            <span class="fa fa-star-o"></span>
+                                                            <span class="fa fa-star-o"></span>
+                                                            <span class="fa fa-star-o"></span>
+                                                            </span>
+                                                            <span *ngIf="p?.averageFinalRating>1 && p?.averageFinalRating<2">
+                                    <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star-half-o checked"></span>
+                                                            <span class="fa fa-star-o"></span>
+                                                            <span class="fa fa-star-o"></span>
+                                                            <span class="fa fa-star-o"></span>
+                                                            </span>
+                                                            <span *ngIf="p?.averageFinalRating==2">
+                                    <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star-o"></span>
+                                                            <span class="fa fa-star-o"></span>
+                                                            <span class="fa fa-star-o"></span>
+                                                            </span>
+                                                            <span *ngIf="p?.averageFinalRating>2 && p?.averageFinalRating<3">
+                                    <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star-half-o checked"></span>
+                                                            <span class="fa fa-star-o"></span>
+                                                            <span class="fa fa-star-o"></span>
+                                                            </span>
+                                                            <span *ngIf="p?.averageFinalRating==3">
+                                    <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star-o"></span>
+                                                            <span class="fa fa-star-o"></span>
+                                                            </span>
+                                                            <span *ngIf="p?.averageFinalRating>3 && p?.averageFinalRating<4">
+                                    <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star-half-o checked"></span>
+                                                            <span class="fa fa-star-o"></span>
+                                                            </span>
+                                                            <span *ngIf="p?.averageFinalRating==4">
+                                    <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star-o"></span>
+                                                            </span>
+                                                            <span *ngIf="p?.averageFinalRating>4 && p?.averageFinalRating<5">
+                                    <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star-half-o checked"></span>
+                                                            </span>
+                                                            <span *ngIf="p?.averageFinalRating==5">
+                                    <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            </span>
+                                                            <a> <span></span>(58 reviews)</a>
+                                                        </p>
+                                                    </div>
+                                                    <div class="map-locationtext">
+                                                        <span><img src="assets/location-pintag.svg"> </span>
+                                                        <h3>
+                                                            {{p?.location}}
+                                                        </h3>
+                                                    </div>
+                                                </div>
+                                            </agm-info-window>
+                                        </agm-marker>
+                                    </div>
+                                </agm-map>
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <div *ngIf="isGenOverview" class="description_text">
+                                <h2>Company Information</h2>
+                                <div class="row margin_top">
+                                    <div class="col-md-4" *ngIf="user?.addressLine1">
+                                        <div class="media company_info icon-left-mt-10">
+                                            <div class="media-left">
+                                                <span class="icon icon-pin"></span>
+                                            </div>
+                                            <div class="media-body">
+                                                <h4>Address</h4>
+                                                <p>{{user?.addressLine1}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4" *ngIf="user?.email">
+                                        <div class="media company_info icon-left-mt-10">
+                                            <div class="media-left">
+                                                <span class="icon icon-envelope"></span>
+                                            </div>
+                                            <div class="media-body">
+                                                <h4>Email</h4>
+                                                <p><a href="mailto:{{user.email}}">{{user?.email}}</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="media company_info icon-left-mt-10">
+                                            <div class="media-left">
+                                                <span class="icon icon-phone-call"></span>
+                                            </div>
+                                            <div class="media-body">
+                                                <h4>Phone</h4>
+                                                <p>{{user?.phoneNumber}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-md-4">
+                                        <div class="media company_info align-items-center mb-col-0px">
+                                            <div class="media-left">
+                                                <img class="imgsvg" src="assets/questionnaire-1.png" alt="Questionnaire">
+                                            </div>
+                                            <div class="media-body">
+                                                <h4>Class types</h4>
+                                                <p>Online classes</p>
+                                                <p>Offline classes</p>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <div class="col-md-4" *ngIf="user?.website">
+                                        <div class="media company_info icon-left-mt-10 mb-col-0px">
+                                            <div class="media-left">
+                                                <span class="icon icon-global"></span>
+                                            </div>
+                                            <div class="media-body" id="ActivitiesList">
+                                                <h4>WWW</h4>
+                                                <p><a href="{{user?.website}}" target="_blank">{{user?.website}}</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-md-4">
+                                        <div class="social-icons media company_info align-items-center mb-col-0px">
+                                            <a><span  class="icon"><img  src="assets/fb-123.png"></span></a>
+                                            <a><span  class="icon"><img  src="assets/insta.png"></span></a>
+                                            <a><span class="icon"><img  src="assets/linked_in.png"></span></a>
+                                            <a><span class="icon"><img  src="assets/tweet.png"></span></a>
+                                        </div>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="provider_full carousel-cat ativities-section-info"  *ngIf="isGenOverview && programs?.length">
+                        <div class="activities-top-grid">
+                            <div >
+                                <h4 class="might-try"> Activities 
+                                    <span><img src="assets/active-icon-group-9122.svg" alt="Icon"  /></span>
+                                    <!-- <span><img src="assets/Activities-icon.svg" alt="" (click)="listView = true"></span> -->
+                                </h4>
+                            </div>
+                            <!-- <div>
+                                <ul class="act-top-right-btn">
+                                    <li><a class="act-top-btn">Age</a></li>
+                                    <li><a class="act-top-btn">Type</a></li>
+                                    <li><a class="act-top-btn">Dates</a></li>
+                                    <li><a class="act-top-btn">Time</a></li>
+                                    <li><a class="act-top-btn">Days</a></li>
+                                    <li><a class="act-top-btn">Price</a></li>
+                                    <li>
+                                        <div class="toggle-filtersearch">
+                                            <button class="btn1-filtersearch"> Online </button>
+                                            <button class="btn2-filtersearch"> In person </button>
+                                        </div>
+                                    </li>
+                                </ul>    
+                            </div> -->
+                        </div>
                         <div class="row">
-                            <div class="col-12" *ngIf="programs?.length">
+                            <div class="col-12" *ngIf="programs?.length" [hidden]="listView">
                                 <!--Start carousel-->
                                 <div id="carouselExampleIndicators" class="carousel slide activities-carousel" data-ride="carousel">
 
@@ -433,16 +453,12 @@
                                                 <div class="col-12 col-md" *ngFor='let program of programs | slice:0:3'>
                                                     <div class="activities_slide">
                                                         <div class="slide_image cursor" (click)='goToProgramDetail(program)'>
-
                                                             <img [defaultImage]="defaultImage" [errorImage]="errorImage" [lazyLoad]="baseUrl + program?.category[0]?.pattern" />
                                                         </div>
                                                         <div class="slide_text">
                                                             <h3>
                                                                 <span class="title cursor" (click)='goToProgramDetail(program)'>{{program?.name}}</span>
-                                                                <!-- <div class="rating_box">
-                                                  <img src="assets/star.svg" alt="Star Image">
-                                                  <span>5.0 (15)</span>
-                                                </div> -->
+                                                                
                                                             </h3>
                                                             <div class="sports_btn" *ngFor='let cat of program?.category'>
                                                                 <span>{{cat?.name}}</span>
@@ -468,16 +484,11 @@
                                                 <div class="col-12 col-md" *ngFor='let program of programs | slice:3:6'>
                                                     <div class="activities_slide">
                                                         <div class="slide_image cursor" (click)='goToProgramDetail(program)'>
-
                                                             <img [defaultImage]="defaultImage" [errorImage]="errorImage" [lazyLoad]="baseUrl + program?.category[0]?.pattern" />
                                                         </div>
                                                         <div class="slide_text">
                                                             <h3>
                                                                 <span class="title cursor" (click)='goToProgramDetail(program)'>{{program?.name}}</span>
-                                                                <!-- <div class="rating_box">
-                                                    <img src="assets/star.svg" alt="Star Image">
-                                                    <span>5.0 (15)</span>
-                                                  </div> -->
                                                             </h3>
                                                             <div class="sports_btn" *ngFor='let cat of program?.category'>
                                                                 <span>{{cat?.name}}</span>
@@ -503,8 +514,76 @@
                                 </div>
                                 <!--End carousel-->
                             </div>
+
+                            <div class="col-12" *ngFor="let program of programs;index as i" [hidden]="!listView">
+
+                                <div class="row ativities-boxes-info align-items-center bg_color">
+                                    <div class="col-2 name" (click)='goToProgramDetail(program)'>
+                                        <h6 class="tdata">{{program.name}}</h6>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="btn-group-info">
+                                          <ul class="ul-tag-btn-info" (click)='goToProgramDetail(program)'>
+                                              <li *ngFor='let cat of program?.category'><button class="btn-activites-info">{{cat.name}}</button></li>
+                                          </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="left-icon-box-media">
+                                            <div>
+                                                <img src="assets/calender-icon-img1.png" alt="calender-icon">
+                                            </div>
+                                            <div>
+                                                <p *ngIf="!program?.isDateNotMention">Date not mention</p>
+                                                <p *ngIf="program?.isDateNotMention">{{program?.date.from | date:'MMMM dd'}} - {{program.date.to | date:'dd'}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="left-icon-box-media">
+                                            <div>
+                                                <img src="assets/watch-icon-img.png" alt="time-icon">
+                                            </div>
+                                            <div>                        
+                                                <p *ngIf="!program?.isTimeNotMention">{{program?.time?.from.toFixed(2)}} - {{program?.time?.to.toFixed(2)}}</p>
+                                                <p *ngIf="program?.isTimeNotMention">Time not mention</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="left-icon-box-media">
+                                            <div>
+                                                <img src="assets/user-icon-img.png" alt="users-icon">
+                                            </div>
+                                            <div>
+                                                <p>{{program?.ageGroup.from}} - {{program?.ageGroup.to}} Yrs.</p>
+                                            </div>
+                                        </div>
+                                        <div class="left-icon-box-media">
+                                            <div>
+                                                <img src="assets/price-doller-icon.png" alt="price-icon">
+                                            </div>
+                                            <div>
+                                                <p>{{program?.pricePerParticipant}} <span [hidden]="!program?.pricePeriod?.priceAmount">per</span> {{program?.pricePeriod?.priceAmount}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="cstm-btn-online-info" *ngIf="program?.inpersonOrVirtual=='Virtual'">
+                                            <button class="cstm-btn-online">Online</button>
+                                        </div>
+                                        <div class="left-icon-box-media" *ngIf="program?.inpersonOrVirtual=='Inperson'">
+                                            <div>
+                                                <img src="assets/location-icon.png" alt="location-icon">
+                                            </div>
+                                            <div>
+                                                <p>{{program?.location}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
-                        <div class="">
+                        <div class="" [hidden]="listView"> 
                             <a href="#carouselExampleIndicators" data-slide="next">
                                 <div class="carousel-nav-icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -515,6 +594,7 @@
                             </a>
                         </div>
                     </div>
+                
                 </div>
 
             </div>
@@ -522,4 +602,10 @@
     </div>
     <app-footer2></app-footer2>
 </body>
-<ngx-ui-loader></ngx-ui-loader>
+<!-- <ngx-ui-loader></ngx-ui-loader> -->
+<ngx-ui-loader [fgsTemplate]="foregroundSpinner" fgsSize="100" bgsSize="64" ></ngx-ui-loader>
+<ng-template #foregroundSpinner>
+	<div class="sk-chase">
+		<img src="assets/loaderwondrfly.gif" alt="">
+	</div>
+</ng-template>

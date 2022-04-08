@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { Globals } from '../../common/imageLoader';
 import { Category, Child, User } from '../../models';
 import { ApiService } from '../../services/api.service.service';
+import { AuthsService } from '../../services/auths.service';
 import { DataService } from '../../services/dataservice.service ';
 @Component({
   selector: 'online-programs',
@@ -16,20 +17,6 @@ export class OnlineProgramsComponent implements OnInit {
   defaultImage = 'https://miro.medium.com/max/441/1*9EBHIOzhE1XfMYoKz1JcsQ.gif';
   errorImage = 'assets/favicon.svg';
   selectedProgram:any;
-  isDateFilter: boolean = false;
-  isTimeFilter: boolean = false;
-  isAgeFilter: boolean = false;
-  isChildFilter: boolean = false;
-  isPriceFilter: boolean = false;
-  isOpenFilter: boolean = false;
-  isSavedFilter: boolean = false;
-  isCategoryFilter: boolean = false
-  isDateModal: boolean = false;
-  isTimeModal: boolean = false;
-  isAgeModal: boolean = false;
-  isChildModal: boolean = false;
-  isPriceModal: boolean = false;
-  isCategoryModal: boolean = false;
   isFav: boolean = false;
   categoryId: any = ''
   activityName: any = ''
@@ -49,9 +36,10 @@ export class OnlineProgramsComponent implements OnInit {
   // totalPages: number;
   filterClass: boolean = false;
   markerUrl = 'assets/location.svg';
+  baseUrlProduction='https://wondrfly.com/'
   pageNo: number = 1;
   pageSize: number = 8;
-  @Input() programs: any=[];
+  @Input() provider_programs: any=[];
   @Input() categories: any=[];
   @Input() suggested: any=[];
   randomNumber:any = 0;
@@ -88,41 +76,53 @@ export class OnlineProgramsComponent implements OnInit {
   @Input() contentLoaded:boolean;
   fakeLoaderData = [1,2,3,4,5]
   @ViewChild(SearchComponent, { static: true }) searchComponent: SearchComponent;
+  upArrow2: boolean = false;
+  currentUser: any;
   constructor( public imageLoader: Globals,
     private apiservice: ApiService,
     private router : Router,
+    private auth: AuthsService,
     private dataService: DataService) {
-      var retrievedObject = localStorage.getItem('CurrentUserWondrfly');
-      console.log(this.suggested,'suggested')
-      this.userData = JSON.parse(retrievedObject);
-      if (this.userData) {
-        this.isLogin = true;
-        if (this.userData.role === 'provider') {
-          this.providerRole = true;
-          this.parentRole = false;
-        }
-        if (this.userData.role === 'parent') {
-          this.parentRole = true;
-          this.providerRole = false;
-        }
+     
+      if( auth.currentUser()){
+        this.isLogin=true;
+        this.userData=auth.currentUser();
       }
   }
   ngOnInit() {
-    console.log(this.programs,'online programs')
+    console.log(this.provider_programs,'online programs')
+}
+
+scrollLeft(i){
+  document.getElementById('widgetsOnline'+i).scrollLeft -= 650;
+  // this.checkScroll()
+}
+
+scrollRight(i){
+  document.getElementById('widgetsOnline'+i).scrollLeft += 650;
+  // this.checkScroll()
+}
+
+goToProviderProfile(provider) {
+  var providerName = provider.firstName;
+  providerName = providerName.toLowerCase();
+  providerName = providerName.replace(/ /g, "-");
+  providerName = providerName.replace(/\?/g, "-");
+  this.router.navigate(['/provider/program-provider', providerName, provider._id]);
 }
 
 
-  addFavProgram(userId, programId, index) {
-    this.programs[index].isFav = true;
-    this.fav.userId = userId;
+addFavProgram(userId, programId, providerIndx,programIndx) {
+  this.provider_programs[providerIndx].programs[programIndx].isFav = true;
+  this.fav.userId = userId;
     this.fav.programId = programId;
     this.apiservice.addFavProgram(this.fav).subscribe(res => {
       this.favProgramRes = res;
     });
   }
 
-  deleteFavProgram(favId, index) {
-    this.programs[index].isFav = false;
+  deleteFavProgram(favId, providerIndx,programIndx) {
+    this.provider_programs[providerIndx].programs[programIndx].isFav = false;
     this.apiservice.deleteFavProgram(favId).subscribe(res => {
       this.deleteProgramRes = res;
     });
@@ -149,9 +149,8 @@ export class OnlineProgramsComponent implements OnInit {
     });
   }
    // ---------------------------------navigate to program detail page -------------------------------------------
-getRating(program){
-  if(program.userId==''|| program.userId==undefined || !program.userId){ program.userId=program.user }
-    this.apiservice.getUserRating(program.userId).subscribe((res:any) => {
+getRating(id){
+    this.apiservice.getUserRating(id).subscribe((res:any) => {
        this.rating = res
        this.rating.finalAverageRating = parseFloat(String(this.rating.finalAverageRating)).toFixed(1)
      });

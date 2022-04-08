@@ -13,6 +13,7 @@ import * as FileSaver from 'file-saver';
 import { MapsAPILoader } from '@agm/core';
 import { CookieService } from 'ngx-cookie-service';
 import { FormControl } from '@angular/forms';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 @Component({
   selector: 'parent-suggestion',
   templateUrl: './suggestion.component.html',
@@ -69,6 +70,7 @@ export class SuggestionComponent implements OnInit {
     public auth: AuthsService,
     private titleService: Title,
     private metaTagService: Meta,
+    private ngxLoader: NgxUiLoaderService,
     private store:LocalStorageService,
     private typeFormService: TypeFormService,
     private mapsAPILoader: MapsAPILoader,
@@ -314,6 +316,7 @@ tweetCategory(){
   };
   
 getChildByParentId(id){
+  this.ngxLoader.start();
   this.apiservice.getChildByParentId(id).subscribe((res: any) => {
     let kids = res
     kids = kids.filter((item) => item.isActivated === true);  
@@ -336,7 +339,7 @@ getChildByParentId(id){
         console.log('filtred kids',this.kids)
       })
     }
-
+this.ngxLoader.stop();
  })
 }
 sendInvite(){

@@ -45,6 +45,7 @@ export class ProgramProviderComponent implements OnInit {
   program = new Program;
   user = new User;
   rating: any;
+  listView:boolean= true;
   updateResponse: any = {};
   formData = new FormData();
   fileData: File = null;
@@ -113,15 +114,16 @@ export class ProgramProviderComponent implements OnInit {
     this.peopleClass = 'active'; this.activityClass = ''; this.overviewClass = '';
     this.isGenOverview = false; this.isPeople = true; this.isActivities = false;
   }
-  onActivities() {
-    window.scroll(0, 0);
-    this.peopleClass = ''; this.activityClass = 'active'; this.overviewClass = '';
-    this.isGenOverview = false; this.isPeople = false; this.isActivities = true
-    this.getProviderProgram()
+  onActivities(id) {
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth',block: 'start'});
+    // window.scroll(0, 0);
+    // this.peopleClass = ''; this.activityClass = 'active'; this.overviewClass = '';
+    // this.isGenOverview = false; this.isPeople = false; this.isActivities = true
+    // this.getProviderProgram()
   }
 
   getProviderById() {
-    this.ngxLoader.start();
+    // this.ngxLoader.start();
     this.apiservice.getUserById(this.user.id).subscribe((res: any) => {
       this.user = res.data;
       console.log('user detail', this.user)
@@ -146,7 +148,8 @@ export class ProgramProviderComponent implements OnInit {
       this.getRating()
 
     });
-    this.ngxLoader.stop();
+    // this.ngxLoader.stop();
+    // this.ngxLoader.stop();
     this.parentAnalyticAction()
     
   }
@@ -179,11 +182,9 @@ export class ProgramProviderComponent implements OnInit {
 
 
   getProviderProgram = async () => {
-    this.ngxLoader.start();
     await this.apiservice.getProgramByProvider(this.user.id, this.pageNo, 200).subscribe((res) => {
-      this.isScrol = true;
       this.programs = res
-      this.ngxLoader.stop();
+      console.log(res)
     });
   }
 

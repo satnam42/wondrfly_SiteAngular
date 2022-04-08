@@ -299,14 +299,17 @@ header .logo img {
 }
 
 .details_form .form-group .mat-chip.mat-standard-chip {
-  background: #ff4242;
+  background:  #ffffff;
   border-radius: 40px;
-  color: #ffffff;
+  border: solid 1px #53b2e8;
+  color: #53b2e8;
 }
 
 .details_form .form-group .mat-chip.mat-standard-chip .mat-chip-remove {
-  color: #efefef;
+  color: #53b2e8;
   opacity: 1;
+  margin-bottom: 6px;
+  margin-right: 2px;
 }
 
 .details_form .form-group.delete_account a {
@@ -368,12 +371,6 @@ header .logo img {
   right: 9px;
   color: #fa627d;
   opacity: 0;
-}
-
-.details_form .form-group .mat-chip.mat-standard-chip {
-  background: #53b2e8;
-  border-radius: 40px;
-  color: #ffffff;
 }
 
 .details_form .form-group .input_outer:focus::after,
@@ -2030,9 +2027,9 @@ h2.description-activities {
   width: 25%;
   border-right: 1px solid #e0e0e0;
 }
-.Children_table .profile_outer {
+/* .Children_table .profile_outer {
   padding-left: 28px;
-}
+} */
 .edit_profile.edit-12354 {
   background: #53b2e8 !important;
 }
@@ -2498,7 +2495,7 @@ input#flexCheckDefault {
 
 
  /* search check box CSS  */
- /* .search-checkbox-info {
+ .search-checkbox-info {
   position: relative;
   background: #FFFFFF;
   border: 1px solid #53B2E8;
@@ -2565,7 +2562,7 @@ ul.ul-tag-checkbox-info ul.ul-tag-checkbox-child .checkmark {
 }
 ul.ul-tag-checkbox-info ul.ul-tag-checkbox-child .checkbox-txt {
   color: #858585;
-} */
+}
 
 
  /* End search check box CSS  */

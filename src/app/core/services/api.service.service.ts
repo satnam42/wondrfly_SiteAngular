@@ -895,6 +895,30 @@ export class ApiService {
         return subject.asObservable();
     }
 
+       // ----------------------------- search tag modified API for child add and update------------------------------>
+
+       searchTagForChildAddUpdate(key): Observable<Tag> {
+        const subject = new Subject<Tag>();
+        this.http.get(`${this.root}/tags/searchTags?name=${key}`, this.getHeader()).subscribe((responseData: any) => {
+            if (responseData.statusCode !== 200) {
+                throw new Error('This request has failed ' + responseData.status);
+            }
+            const dataModel = responseData;
+            if (!dataModel.isSuccess) {
+                if (responseData.status === 200) {
+                    // this.toasty.error(dataModel.error);
+                    throw new Error(dataModel.code || dataModel.message || 'failed');
+                } else {
+                    throw new Error(responseData.status + '');
+                }
+            }
+            subject.next(responseData.data);
+        }, (error) => {
+            const dataModel = error;
+            subject.next(dataModel.error);
+        });
+        return subject.asObservable();
+    }
     // ----------------------------- get tag -------------------------->
 
     getTag(): Observable<any> {
@@ -1135,6 +1159,31 @@ onOffNotification(id,e): Observable<User> {
         });
         return subject.asObservable();
     }
+
+// ---------------------------------------------------programs list by providers------------------------------------------------------
+getPublishedProgramByProvider(pageNo, pageSize, programType): Observable<Program> {
+        const subject = new Subject<Program>();
+        this.http.get(`${this.root}/programs/groupPublishOrUnpublish?pageNo=${pageNo}&pageSize=${pageSize}&programType=${programType}`, this.getHeader()).subscribe((responseData: any) => {
+            if (responseData.statusCode !== 200) {
+                throw new Error('This request has failed ' + responseData.status);
+            }
+            const dataModel = responseData;
+            if (!dataModel.isSuccess) {
+                if (responseData.status === 200) {
+                    throw new Error(dataModel.code || dataModel.message || 'failed');
+                } else {
+                    throw new Error(responseData.status + '');
+                }
+            }
+            subject.next(responseData);
+        }, (error) => {
+            const dataModel = error;
+            subject.next(dataModel.error);
+        });
+        return subject.asObservable();
+    }
+
+
     programPublishUnpublish(id, isPublished) {
         const subject = new Subject<Program[]>();
         this.http.put(`${this.root}/programs/publish?programId=${id}&isPublished=${isPublished}`, '', this.getHeader()).subscribe((responseData: any) => {
