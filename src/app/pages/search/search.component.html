@@ -420,7 +420,7 @@
                     (scrolled)="onScroll()" [scrollWindow]="false" >
                     <div class="search-results-section" *ngFor="let provider of providerProgram; let providerIndx = index">
                         <div class="media-top-content-info media-full-row-info">
-                                <div class="row row-0">
+                                <div class="row row-0 align-items-center mt-0">
                                 <div class="col-md-6 ">
                                 <div class="media-top-txt-div">
                                 <div class="left-icon-img">
@@ -1294,7 +1294,7 @@
 <!-- 
 <ngx-ui-loader fgsSize="40" bgsSize="40" overlayColor="rgba(40,40,40,0.12)">
 </ngx-ui-loader> -->
-<ngx-ui-loader [fgsTemplate]="foregroundSpinner"> </ngx-ui-loader>
+<ngx-ui-loader [fgsTemplate]="foregroundSpinner" fgsSize="190" bgsSize="190"> </ngx-ui-loader>
 <ng-template #foregroundSpinner>
       <app-loader-file></app-loader-file>
 </ng-template>

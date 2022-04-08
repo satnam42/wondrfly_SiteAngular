@@ -220,9 +220,9 @@ section.beta-upperpart p {
   font-style: normal;
   font-weight: 300;
   font-size: 18px;
-  line-height: 24px;
+  line-height: 150%;
   letter-spacing: 0.001em;
-  color: #545454;
+  color: #494949;
   margin-bottom: 15px;
   width: 60%;
 }
@@ -252,11 +252,16 @@ section.beta-questions h1 {
     margin-bottom: 15px;
 }
 .beta-show {
+  font-family: "Poppins";
   font-style: normal;
-  font-weight:300;
-  font-size: 16px;
-  color: #545454;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 150%;
+  color: #494949;
   margin-bottom: 15px;
+}
+.beta-show.inner-temp img {
+  padding: 0px 65px;
 }
 ::ng-deep.inner-temp img {
   max-width: 100% !important;

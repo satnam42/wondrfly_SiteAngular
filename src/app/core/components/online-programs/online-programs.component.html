@@ -4,15 +4,21 @@
         <!-- start without map   -->
         <div class="map-without-page-info">
             <div class="map-without-section-info">
-                <div class="media-top-content-info">
-                    <div class="media-top-txt-div">
-                        <div class="left-icon-img">
-                            <img src="{{baseUrlProduction+provider?.categories[0]?.logoUrl}}" />
+                <div class="media-top-content-info media-full-row-info">
+                    <div class="row row-0 align-items-center mt-0">
+                    <div class="col-md-6 ">
+                        <div class="media-top-txt-div">
+                            <div class="left-icon-img">
+                                <img src="{{baseUrlProduction+provider?.categories[0]?.logoUrl}}" />
 
+                            </div>
+                            <div class="left-icon-h2 cursor" (click)="goToProviderProfile(provider.user[0])">
+                                <h2>{{provider.user[0].firstName}}</h2>
+                            </div>
                         </div>
-                        <div class="left-icon-h2 cursor" (click)="goToProviderProfile(provider.user[0])">
-                            <h2>{{provider.user[0].firstName}}</h2>
-                        </div>
+                    </div>
+                    <div class="col-md-6 ">
+                        <div class="media-top-txt-div justify-content-right"> 
                         <div class="review-starsearch-info">
                             <!-- <div class="rating-starsearch">
                                 <p class="cursor">
@@ -123,6 +129,8 @@
                             </div>
                         </div>
                     </div>
+                    </div>
+                    </div>   
                     <!-- <div class="media-share-icon">
                         <ul class="ul-tag-share_icon">
                             <li><a ><img src="assets/share_gray.svg" /></a></li>
