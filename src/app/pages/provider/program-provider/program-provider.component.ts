@@ -123,7 +123,7 @@ export class ProgramProviderComponent implements OnInit {
   }
 
   getProviderById() {
-    // this.ngxLoader.start();
+    this.ngxLoader.start();
     this.apiservice.getUserById(this.user.id).subscribe((res: any) => {
       this.user = res.data;
       console.log('user detail', this.user)
@@ -148,10 +148,8 @@ export class ProgramProviderComponent implements OnInit {
       this.getRating()
 
     });
-    // this.ngxLoader.stop();
-    // this.ngxLoader.stop();
+    this.ngxLoader.stop();
     this.parentAnalyticAction()
-    
   }
   parentAnalyticAction(){
     this.apiservice.parentAnalytics('provider',this.userId,this.user.id).subscribe((res: any) => {

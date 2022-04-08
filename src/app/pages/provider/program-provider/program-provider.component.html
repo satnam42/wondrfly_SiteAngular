@@ -603,9 +603,7 @@ out of 5 </a> -->
     <app-footer2></app-footer2>
 </body>
 <!-- <ngx-ui-loader></ngx-ui-loader> -->
-<ngx-ui-loader [fgsTemplate]="foregroundSpinner" fgsSize="100" bgsSize="64" ></ngx-ui-loader>
+<ngx-ui-loader [fgsTemplate]="foregroundSpinner" fgsSize="190" bgsSize="190"> </ngx-ui-loader>
 <ng-template #foregroundSpinner>
-	<div class="sk-chase">
-		<img src="assets/loaderwondrfly.gif" alt="">
-	</div>
+      <app-loader-file></app-loader-file>
 </ng-template>

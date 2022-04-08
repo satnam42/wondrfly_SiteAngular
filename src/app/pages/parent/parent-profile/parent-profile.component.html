@@ -1322,5 +1322,11 @@
         </div>
     </div>
 </div>
+ <!-- loader -->
+ <ngx-ui-loader [fgsTemplate]="foregroundSpinner" fgsSize="190" bgsSize="190"> </ngx-ui-loader>
+ <ng-template #foregroundSpinner>
+       <app-loader-file></app-loader-file>
+ </ng-template>
+
 <!-- <app-confirm-dialog></app-confirm-dialog> -->
 <share-popup [shareData]="selectedProgram"></share-popup>

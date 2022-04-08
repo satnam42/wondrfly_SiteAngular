@@ -12,6 +12,7 @@ import { MapsAPILoader } from "@agm/core";
 import * as moment from "moment";
 import { ParentProfileComponent } from "src/app/pages/parent/parent-profile/parent-profile.component";
 import { FormControl } from "@angular/forms";
+import { NgxUiLoaderService } from "ngx-ui-loader";
 
 declare const $: any;
 @Component({
@@ -81,6 +82,7 @@ allData: any=[];
     private userdataservice: UserDataService,
     public imageLoader: Globals,
     private toastr: ToastrService,
+    private ngxLoader: NgxUiLoaderService,
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
     private dataservice: DataService,
@@ -153,6 +155,7 @@ allData: any=[];
       });
   }
   getUserById(id?) {
+    this.ngxLoader.start();
     this.apiservice.getUserById(this.user.id).subscribe((res: any) => {
       this.user = res.data;
       this.user.notices.notifications.reverse();
@@ -173,6 +176,7 @@ allData: any=[];
         this.isToggle = true;
       }
       // this.auth.setUser(this.user);
+      this.ngxLoader.stop();
     });
   }
   clearAll() {
