@@ -333,18 +333,18 @@
             </div> -->
             <div class="col-10">
                 <div class="chip-set-bar" [hidden]="!showReset">
-                    <div class="map-without-heading" *ngIf="searchedSubCategory">
+                    <div class="map-without-heading display-inline" *ngIf="searchedSubCategory">
                         <h2><a><span>{{searchedSubCategory}}</span><span *ngIf="selectedSubCategories?.length && selectedSubCategories?.length>1"> + {{selectedSubCategories?.length-1}} More</span></a> near New Jersey <span class="span-h3">&nbsp;|&nbsp; <b>{{activitiesCount}}</b> activities
                                 from <b>{{providerProgram?.length}}</b> providers</span></h2>
                     </div>
-                    <button class="btn_style save_btn cursor" *ngIf="searchedSubCategory">
+                    <!-- <button class="btn_style save_btn cursor" *ngIf="searchedSubCategory">
                         {{searchedSubCategory}}<span
                             *ngIf="selectedSubCategories?.length && selectedSubCategories?.length>1"> +
                             {{selectedSubCategories?.length-1}} More</span>
                         <span class="ml-2"
                             (click)="contentLoaded=false;selectedCat='';categoryId='';subCats=[];selectedSubCategories=[];searchedSubCategory='';programFilter()"><img
                                 src="assets/white-close.png" /></span>
-                    </button>
+                    </button> -->
                     <button class="btn_style save_btn cursor" *ngIf="!isInPerson && isOnline">
                         online
                         <span class="ml-2" (click)="contentLoaded=false;isOnline=!isOnline;programFilter()"><img

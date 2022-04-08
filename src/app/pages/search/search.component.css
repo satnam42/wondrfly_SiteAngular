@@ -1584,6 +1584,7 @@ span.close-filter {
     width: 400px;
     right:0;
 }
+.chip-set-bar .display-inline{display:inline-block;padding-right: 10px;}
 /* .map-without-page-info .star-daialogbox {
     left: unset;
 } */

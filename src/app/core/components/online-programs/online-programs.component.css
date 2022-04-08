@@ -1119,14 +1119,6 @@ button:focus {
     top: 5px;
 }
 
-.search-results {
-    overflow: hidden;
-    scrollbar-color: #ddd #ccc;
-    scrollbar-width: thin;
-    height: 100%;
-    overflow-y: auto;
-    padding-top:20px;
-}
 .search-onlineprog {
   padding-left: 40px;
   padding-right: 35px;
@@ -1904,8 +1896,7 @@ hr.N_line {
     position: relative;
 }
 .star-daialogbox {
-    position: absolute;
-    left: 40%;
+    right: 0;
 }
 .rating-starsearch {
     position: relative;
@@ -2199,9 +2190,7 @@ hr.N_line {
     border-radius: 0;
     padding: 0 0px 0px 25px;
 }
-.star-daialogbox {
-    left: -198px;
-}
+
 .activity .coding_text {
   min-height: 50px;
 }
