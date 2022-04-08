@@ -19,7 +19,7 @@
                     </div>
                     <div class="col-md-6 ">
                         <div class="media-top-txt-div justify-content-right"> 
-                        <div class="review-starsearch-info">
+                        <div class="review-starsearch-info cursor" (click)=" getRating(provider._id)">
                             <!-- <div class="rating-starsearch">
                                 <p class="cursor">
                                     <span>
@@ -343,7 +343,7 @@
                                         <div class="left-icon-box-media">
                                             <div><img src="assets/user-icon-img.png" alt="School image " /></div>
                                             <div>
-                                                <p>{{ program?.ageGroup?.from + "-" + program?.ageGroup?.to }}</p>
+                                                <p>{{ program?.ageGroup?.from + "-" + program?.ageGroup?.to }} Yrs</p>
                                             </div>
                                         </div>
                                     </div>

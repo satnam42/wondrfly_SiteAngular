@@ -191,7 +191,7 @@ out of 5 </a> -->
                                             <p *ngIf="user?.about && user.about?.length>=230">{{user?.about | slice:360:1000}}}}</p>
                                             <p *ngIf="user?.note && user.note?.length>=230">{{user?.note | slice:360:1000}}</p>
                                             <div class="skills_sec" *ngIf='user?.subCategoryIds?.length'>
-                                                <h3>Skills</h3>
+                                                <h3>Activities</h3>
                                                 <div class="skill_flex">
                                                 <div class="skill_outer" *ngFor='let skill of user?.subCategoryIds'>
                                                     <span>{{skill?.name}}</span>
@@ -225,7 +225,7 @@ out of 5 </a> -->
                                                                 <img alt="Loction Pin" src="assets/calendar.svg">{{program?.date?.from | date}} - {{program?.date?.to | date}}
                                                             </p>
                                                             <p>
-                                                                <img alt="Loction Pin" src="assets/user_group.svg"> {{program?.ageGroup?.from}} - {{program?.ageGroup?.to}} Yrs.
+                                                                <img alt="Loction Pin" src="assets/user_group.svg"> {{program?.ageGroup?.from}} - {{program?.ageGroup?.to}} Yrs
                                                             </p>
                                                         </div>
                                                     </div>
@@ -468,7 +468,7 @@ out of 5 </a> -->
                                                                     <img alt="Loction Pin" src="assets/calendar.svg"> {{program?.date.from | date:'mediumDate'}} - {{program?.date?.to | date:'mediumDate'}}
                                                                 </p>
                                                                 <p>
-                                                                    <img alt="Loction Pin" src="assets/user_group.svg"> {{program?.ageGroup.from}} - {{program?.ageGroup.to}} Yrs.
+                                                                    <img alt="Loction Pin" src="assets/user_group.svg"> {{program?.ageGroup.from}} - {{program?.ageGroup.to}} Yrs
                                                                 </p>
                                                                 <p>
                                                                     <img alt="Loction Pin" src="assets/user_group.svg"> {{program?.time?.from.toFixed(2)}} - {{program?.time?.to.toFixed(2)}}
@@ -498,7 +498,7 @@ out of 5 </a> -->
                                                                     <img alt="Loction Pin" src="assets/calendar.svg"> {{program?.date.from | date:'mediumDate'}} - {{program.date.to | date:'mediumDate'}}
                                                                 </p>
                                                                 <p>
-                                                                    <img alt="Loction Pin" src="assets/user_group.svg"> {{program?.ageGroup.from}} - {{program?.ageGroup.to}} Yrs.
+                                                                    <img alt="Loction Pin" src="assets/user_group.svg"> {{program?.ageGroup.from}} - {{program?.ageGroup.to}} Yrs
                                                                 </p>
                                                                 <p>
                                                                     <img alt="Loction Pin" src="assets/user_group.svg"> {{program?.time?.from.toFixed(2)}} - {{program?.time?.to.toFixed(2)}}
@@ -554,7 +554,7 @@ out of 5 </a> -->
                                                 <img src="assets/user-icon-img.png" alt="users-icon">
                                             </div>
                                             <div>
-                                                <p>{{program?.ageGroup.from}} - {{program?.ageGroup.to}} Yrs.</p>
+                                                <p>{{program?.ageGroup.from}} - {{program?.ageGroup.to}} Yrs</p>
                                             </div>
                                         </div>
                                         <div class="left-icon-box-media">
