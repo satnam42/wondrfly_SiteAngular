@@ -586,18 +586,19 @@
                                             <div class="media-right-share-icon">
                                                 <a data-toggle="modal" (click)="selectedProgram = program"
                                                     data-target="#ShareModal" class="cursor display-none">
-                                                    <img src="assets/share_gray.svg " class="section1"
+                                                    <!-- <img src="assets/share_gray.svg " class="section1"
                                                         joyrideStep="secondStep{{providerIndx}}"
                                                         title="💡 Share with friends and family"
                                                         text="Click here to share your favorite activities!"
-                                                        alt="Share Icon " />
+                                                        alt="Share Icon " /> -->
+                                                        <img src="assets/share_gray.svg " alt="Share Icon " />
                                                 </a>
                                                 <div class="bookmark_outer">
                                                     <a *ngIf="!program?.isFav && isLogin"
                                                         (click)="addFavProgram(userData.id, providerProgram[providerIndx]?.programs[programIndx]?._id, providerIndx,programIndx)"
                                                         class="bookmark_icon cursor"><img
                                                             src="assets/bookmark_gray.svg " alt="Menu Image "
-                                                            joyrideStep="thirdStep{{providerIndx}}"
+                                                            joyrideStep="thirdStep{{providerIndx}}{{programIndx}}"
                                                             title="💡 Save activities for later"
                                                             text="Click here to save your favorite activities all in one place for when you need them!" /></a>
 

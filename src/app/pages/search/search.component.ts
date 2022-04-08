@@ -237,22 +237,22 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   startTour() {
-    if (this.contentLoaded && this.programs.length && Number(this.cookiesData) <= 1) {
+    if (this.providerProgram.length && Number(this.cookiesData) <= 1) {
       this.joyride.startTour({ steps: ['firstStep'] });
       this.cookies.set('isTour', '2', 30);
       window.scroll(0, 0);
     }
-    else if (this.contentLoaded && this.programs.length && this.cookiesData == '2' && !this.isOnline) {
-      this.joyride.startTour({ steps: ['secondStep0'] });
+    // else if (this.providerProgram.length && this.cookiesData == '2' && !this.isOnline) {
+    //   this.joyride.startTour({ steps: ['secondStep0'] });
+    //   this.cookies.set('isTour', '3', 30);
+    // }
+    else if (this.cookiesData == '2' && this.providerProgram.length && !this.isOnline) {
+      this.joyride.startTour({ steps: ['thirdStep00'] });
       this.cookies.set('isTour', '3', 30);
     }
-    else if (this.cookiesData == '3' && this.contentLoaded && this.programs.length && !this.isOnline) {
-      this.joyride.startTour({ steps: ['thirdStep0'] });
-      this.cookies.set('isTour', '4', 30);
-    }
-    else if (this.cookiesData == '4' && this.contentLoaded && !this.isOnline) {
+    else if (this.cookiesData == '3' && !this.isOnline) {
       window.document.getElementById("exploreModal").click();
-      this.cookies.set('isTour', '5', 30);
+      this.cookies.set('isTour', '4', 30);
       window.scroll(0, 0);
     }
     this.cookiesData = this.cookies.get('isTour');
