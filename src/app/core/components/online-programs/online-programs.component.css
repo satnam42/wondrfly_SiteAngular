@@ -1905,9 +1905,7 @@ hr.N_line {
 }
 .star-daialogbox {
     position: absolute;
-    z-index: 5;
-    width: 300px;
-    left: -23px;
+    left: 40%;
 }
 .rating-starsearch {
     position: relative;
