@@ -419,14 +419,20 @@
                 <div class="search-results" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="500"
                     (scrolled)="onScroll()" [scrollWindow]="false" >
                     <div class="search-results-section" *ngFor="let provider of providerProgram; let providerIndx = index">
-                        <div class="media-top-content-info">
-                            <div class="media-top-txt-div">
+                        <div class="media-top-content-info media-full-row-info">
+                                <div class="row row-0">
+                                <div class="col-md-6 ">
+                                <div class="media-top-txt-div">
                                 <div class="left-icon-img">
                                     <img src="{{baseUrlProduction+provider?.categories[0]?.logoUrl}}" />
                                 </div>
                                 <div class="left-icon-h2 map-with-heading-h2" (click)="goToProviderProfile(provider.user[0])">
                                     <h2>{{provider.user[0].firstName}}</h2>
                                 </div>
+                                </div>
+                                </div>
+                                <div class="col-md-6 "> 
+                                <div class="media-top-txt-div justify-content-right">     
                                 <div class="review-starsearch-info" (click)=" getRating(provider._id); 
                                 " class="cursor" data-toggle="collapse" [attr.data-target]="'#collapseExamplestar' + providerIndx">
                                     <!-- <div class="rating-starsearch">
@@ -537,7 +543,11 @@
  
                                     </div>
                                 </div>
-                            </div>
+                                </div>
+                                </div>  
+                                </div>
+
+                          
                             <!-- <div class="media-share-icon">
                                  <ul class="ul-tag-share_icon">
                                     <li><a href="#"><img src="assets/share_gray.svg" /></a></li>

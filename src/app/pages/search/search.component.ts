@@ -522,6 +522,8 @@ export class SearchComponent implements OnInit, OnDestroy {
       if(res.isSuccess){
       this.providerProgram=this.programs;
       this.providerProgram[0].collapsed=true
+      this.providerProgram[1].collapsed=true
+      this.providerProgram[2].collapsed=true
       }
       console.log('programs', this.providerProgram)
       // this.fakeLoaderData = [1,2]
@@ -740,6 +742,8 @@ export class SearchComponent implements OnInit, OnDestroy {
           this.programs = res.data;
           this.providerProgram= this.programs;
           this.providerProgram[0].collapsed=true
+          this.providerProgram[1].collapsed=true
+          this.providerProgram[2].collapsed=true
           if(categoryId || this.selectedSubCategories.length){
             const sum = this.providerProgram.reduce((accumulator, object) => {
               return accumulator + object.programs.length;
