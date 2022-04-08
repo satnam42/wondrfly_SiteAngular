@@ -214,17 +214,17 @@ section.beta-upperpart p {
   padding: 10px;
   padding-left: 0px;
   padding-right: 0px;
+  max-width: 650px;
 }
 .tab1-data h6{
   font-family: "Poppins";
   font-style: normal;
-  font-weight: 300;
+  font-weight: 400;
   font-size: 18px;
   line-height: 150%;
   letter-spacing: 0.001em;
   color: #494949;
   margin-bottom: 15px;
-  width: 60%;
 }
 .tab1-data span.plus-src.cursor {
   margin-left: 15%;

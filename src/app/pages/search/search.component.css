@@ -1582,10 +1582,20 @@ span.close-filter {
     position: absolute;
     z-index: 5;
     width: 400px;
-    left: 130px;
+    right:0;
 }
-.map-without-page-info .star-daialogbox {
+/* .map-without-page-info .star-daialogbox {
     left: unset;
+} */
+.meta-overflow-row {
+    overflow: hidden;
+    overflow-x: auto;
+}
+.meta-overflow-row::-webkit-scrollbar-track {
+    display: none;
+}
+.meta-overflow-row::-webkit-scrollbar-thumb {
+    display: none;
 }
 
 .rating-starsearch {

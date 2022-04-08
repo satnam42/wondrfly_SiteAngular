@@ -22,7 +22,7 @@
                                 <a aria-expanded="true" data-target="#category" [ngClass]="{ active: isCategoryFilter }"
                                     data-toggle="collapse" joyrideStep="firstStep" title="💡 Search with filters"
                                     text="Narrow down your search by clicking on any of the filters above. ">Categories</a>
-                                <div class=" collapse main_collpase time_collpase verification_modal partcategory" id="category" data-parent="#accordionExample">
+                                <div class="collapse main_collpase time_collpase verification_modal partcategory" id="category" data-parent="#accordionExample">
                                     <div class="collpase_content cate-dilter">
                                         <div class="container">
                                             <div class="row categories-filt">
@@ -48,7 +48,7 @@
                                                     </h2>
                                                 </div>
                                             </div>
-                                            <div class="row">
+                                            <div class="row meta-overflow-row">
                                                 <div class="col-5 categories-filtercontent">
                                                     <h3 *ngFor="let cat of categories"
                                                         [ngClass]="{ active: selectedCat == cat?.id }"
