@@ -118,9 +118,9 @@ export class DetailComponent implements OnInit {
   isRating = false;
   selectedProgram: any;
   bannerIndx: number = 0;
-  bannerImages = ['assets/pattern_new.png',
-    'assets/pattern_new.png',
-    'assets/pattern_new.png',
+  bannerImages = ['assets/General_pattern_activities.png',
+    'assets/General_pattern_activities.png',
+    'assets/General_pattern_activities.png',
   ]
   optionslotti: AnimationOptions = {
     path: '/assets/wLoader.json',
