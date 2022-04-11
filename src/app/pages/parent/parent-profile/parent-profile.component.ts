@@ -949,9 +949,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
     if (this.childImageURl != "" && this.childImageURl != undefined) {
       this.kid.avtar = this.childImageURl;
     }
-    if (this.kid.name === "") {
-      this.toastr.error(childResponse.error);
-    } else {
+   else {
       this.ngxLoader.start();
       var birth = new Date(this.kid.dob);
       let birthYear = moment(birth).format("YYYY");
@@ -964,20 +962,25 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
         var ageDate = new Date(ageDifMs); // miliseconds from epoch
         var age = Math.abs(ageDate.getUTCFullYear() - 1970);
         if (age > 16) {
-          this.toastr.warning("You must be 16 or less than 16 years old")
+          this.toastr.warning("Child age should be 16 years or less")
           this.ngxLoader.stop();
         } else {
           this.kid.age = String(age);
           this.apiservice.addChild(this.kid).subscribe((res) => {
             childResponse = res;
+            console.log(childResponse)
             this.getProfileProgress();
             this.headerComponent.getProfileProgress();
             this.headerComponent.getUserById();
             this.ngxLoader.stop();
 
-            if (childResponse) {
+            if (childResponse.isSuccess) {
+              this.kid.name = ''
+              this.kid.age=''
+              this.kid.dob=''
+              this.kid.interestInfo=[]
+              this.kid.sex=''
               window.document.getElementById("dissmiss-child-modal").click();
-              this.ngxLoader.start();
               this.apiservice
                 .getGuardianByParentId(userId)
                 .subscribe((res: any) => {
@@ -986,7 +989,9 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
                   this.ngxLoader.stop();
                 });
               this.ngxLoader.stop();
-              // this.toastr.info(this.addMessage);
+            }
+            else{
+              this.toastr.error(childResponse.error);
             }
           });
         }
@@ -1014,7 +1019,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
        this.age = Math.abs(ageDate.getUTCFullYear() - 1970);
       this.ngxLoader.stop();
       if (this.age > 16) {
-        this.toastr.warning("You must be 16 or less than 16 years old")
+        this.toastr.warning("Child age should be 16 years or less")
       }
       else{
         child.age = String(this.age);

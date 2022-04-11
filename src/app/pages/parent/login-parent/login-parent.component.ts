@@ -40,6 +40,8 @@ export class LoginParentComponent implements OnInit {
   step3 = false;
   step4 = false;
   // step5 = false
+  total = 4;
+  finished=1
   title = 'Onboarding - Wondrfly';
   markerUrl = 'assets/location.svg';
   private geoCoder;
@@ -124,7 +126,7 @@ export class LoginParentComponent implements OnInit {
       var ageDate = new Date(ageDifMs); // miliseconds from epoch
       var age = Math.abs(ageDate.getUTCFullYear() - 1970);
       if (age >16) {
-        this.toastr.warning("You must be 16 or less than 16 years old");
+        this.toastr.warning("Child age should be 16 years or less");
       } else {
         this.kid.age = String(age);
         this.kid.relationToChild = 'father'
@@ -330,22 +332,26 @@ export class LoginParentComponent implements OnInit {
       this.step1 = false;
       this.step2 = true;
       this.progressBarVaue += 25;
+      this.finished +=1
 
     }
     else if (this.step2) {
       this.step3 = true;
       this.step2 = false;
       this.progressBarVaue += 28;
+      this.finished +=1
     }
     else if (this.step3) {
       this.step4 = true;
       this.step3 = false;
       this.progressBarVaue += 25;
+      this.finished +=1
     }
     // else if (this.step4) {
     //   this.step5 = true;
     //   this.step4 = false;
     //   this.progressBarVaue += 25;
+    // this.finished +=1
     // }
   }
   backStep() {
@@ -354,21 +360,25 @@ export class LoginParentComponent implements OnInit {
       this.step1 = true;
       this.step2 = false;
       this.progressBarVaue -= 25;
+      this.finished -=1
     }
     else if (this.step3) {
       this.step2 = true;
       this.step3 = false;
       this.progressBarVaue -= 28;
+      this.finished -=1
     }
     else if (this.step4) {
       this.step3 = true;
       this.step4 = false;
       this.progressBarVaue -= 25;
+      this.finished -=1;
     }
     // else if (this.step5) {
     //   this.step4 = true;
     //   this.step5 = false;
     //   this.progressBarVaue -= 25;
+    // this.finished -=1
     // }
   }
 
@@ -447,4 +457,7 @@ export class LoginParentComponent implements OnInit {
   }
 
 
+  formatSubtitle = (percent: number) => {
+    return `${this.finished}/${this.total}`;
+  }
 }

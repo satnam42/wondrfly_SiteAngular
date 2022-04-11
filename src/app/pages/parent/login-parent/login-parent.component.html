@@ -3,6 +3,26 @@
 <!-- <mat-progress-bar class="progress-bar" mode="determinate" [value]="progressBarVaue"></mat-progress-bar> -->
 
 <div class="main_container">
+    <div class=" upper-sectionpwa">
+        <div class="row">
+            <div class="col-12">
+                <div class="header_right">
+
+                    <circle-progress [percent]="100*finished/total" [backgroundStroke]="'#fff'"
+                        [subtitleFormat]="formatSubtitle" [space]="-5" [showTitle]="false" [showUnits]="false"
+                        [subtitleFontSize]="15" [radius]="19" [outerStrokeWidth]="5" [innerStrokeWidth]="5"
+                        [outerStrokeColor]="'#53B2E8'" [innerStrokeColor]="'#fff'" [animation]="true"
+                        [animationDuration]="300"></circle-progress>
+
+
+
+                    <span class="upper-headingsec">Get Started!</span>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
     <div class="sub-main">
         <div class="menu-box">
             <span class="wnderfly-btn">© 2021 WONDRFLY Inc.</span>

@@ -523,7 +523,7 @@ out of 5 </a> -->
                                     </div>
                                     <div class="col-3">
                                         <div class="btn-group-info">
-                                          <ul class="ul-tag-btn-info" (click)='goToProgramDetail(program)'>
+                                          <ul class="ul-tag-btn-info">
                                               <li *ngFor='let cat of program?.category'><button class="btn-activites-info">{{cat.name}}</button></li>
                                           </ul>
                                         </div>
@@ -534,7 +534,7 @@ out of 5 </a> -->
                                                 <img src="assets/calender-icon-img1.png" alt="calender-icon">
                                             </div>
                                             <div>
-                                                <p *ngIf="!program?.isDateNotMention">Date not mention</p>
+                                                <p *ngIf="!program?.isDateNotMention">Date not mentioned</p>
                                                 <p *ngIf="program?.isDateNotMention">{{program?.date.from | date:'MMMM dd'}} - {{program.date.to | date:'dd'}}</p>
                                             </div>
                                         </div>
@@ -544,7 +544,7 @@ out of 5 </a> -->
                                             </div>
                                             <div>                        
                                                 <p *ngIf="!program?.isTimeNotMention">{{program?.time?.from.toFixed(2)}} - {{program?.time?.to.toFixed(2)}}</p>
-                                                <p *ngIf="program?.isTimeNotMention">Time not mention</p>
+                                                <p *ngIf="program?.isTimeNotMention">Time not mentioned</p>
                                             </div>
                                         </div>
                                     </div>

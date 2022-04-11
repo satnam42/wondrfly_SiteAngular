@@ -19,6 +19,7 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { MailchimpSubscribeFormModule } from 'src/app/core/components/mailchimp-subscribe-form/mailchimp-subscribe-form.module';
 import { SuggestionComponent } from './suggestion/suggestion.component';
 import { CounterModule } from './../../core/components/counter/counter.module';
+import { NgCircleProgressModule } from 'ng-circle-progress';
 
 @NgModule({
     entryComponents: [],
@@ -44,6 +45,15 @@ import { CounterModule } from './../../core/components/counter/counter.module';
         MailchimpSubscribeFormModule,
         MarkdownModule,
         CounterModule,
+        NgCircleProgressModule.forRoot({
+            // set defaults here
+            radius: 100,
+            outerStrokeWidth: 16,
+            innerStrokeWidth: 8,
+            outerStrokeColor: "#78C000",
+            innerStrokeColor: "#C7E596",
+            animationDuration: 300,
+          })
     ],
     exports: [
         ParentComponent, LoginParentComponent, ParentProfileComponent, SuggestionComponent
