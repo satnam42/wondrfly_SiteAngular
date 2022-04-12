@@ -608,7 +608,7 @@
                         </div>
 
                         <!-- -----------------------saved listing----------------------------------- -->
-                        <div *ngIf="isFavourite" class="my-saved-prodivers-section">
+                        <!-- <div *ngIf="isFavourite" class="my-saved-prodivers-section">
                             <div class="row row-0">
                                 <div class="col-12">
                                     <h2 class="save-title-h2">My Saved Providers</h2>
@@ -673,16 +673,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="list_outer row row-0">
-                                                        <!-- <div class="col-md-12">
-                                                            <div class="left-icon-box-media">
-                                                                <div>
-                                                                    <img src="assets/location-dark-icon.png" alt="location-icon">
-                                                                </div>
-                                                                <div>
-                                                                    <p>125 Valley Rd, Montclair, NJ 07042</p>
-                                                                </div>
-                                                            </div>
-                                                        </div> -->
+                                                  
                                                         <div class="col-md-12">
                                                             <div class="left-icon-box-media">
                                                                 <div>
@@ -788,15 +779,15 @@
                         
                         
                         
+                         -->
                         
-<!--                         
                         <div *ngIf="isFavourite" class="description_text slider" style="display: none;">
                             <h2 class="description-activities">My Saved Providers</h2>
 
                             <div *ngFor="let favourite of favourites" class="media activity spacing-media">
                                 <div class="media-left size-increase activity-imgs cursor"
                                     (click)="goToProgramDetail(favourite.programs[0])">
-                                    <img src="{{baseUrl+favourite?.tags[0].pattern}}" alt="Activity" />
+                                    <img src="{{baseUrl+favourite?.tags[0]?.pattern}}" alt="Activity" />
                                 </div>
                                 <div class="media-body size-increase-123">
                                     <div class="share_icon sk-1234">
@@ -806,15 +797,15 @@
                                         </a>
 
                                         <div class="bookmark_outer">
-                                            <a (click)="removeFav(favourite.programs[0]._id)"
+                                            <a (click)="removeFav(favourite?.programs[0]?._id)"
                                                 class="bookmark_icon cursor">
                                                 <img class="imgsvg" src="assets/bookmarkOrange.png "
                                                     alt="Menu Image " />
                                             </a>
                                         </div>
                                     </div>
-                                    <h2 class="cursor" (click)="goToProgramDetail(favourite.programs[0])">
-                                        {{ favourite.programs[0].name }}
+                                    <h2 class="cursor" (click)="goToProgramDetail(favourite?.programs[0])">
+                                        {{ favourite?.programs[0]?.name }}
                                     </h2>
                                     <div class="list_outer row row-0">
                                         <div class="coding_text">
@@ -822,7 +813,7 @@
                                                 <h3 *ngFor="
                             let subCat of favourite?.tags
                           ">
-                                                    {{ subCat.name }}
+                                                    {{ subCat?.name }}
                                                 </h3>
                                             </div>
                                         </div>
@@ -837,8 +828,8 @@
                                             </p>
                                             <p class="pl-5">
                                                 <img src="assets/calendar.svg " alt="School image " />{{
-                                                favourite.programs[0].date?.from | date: "dd:MM:yyyy" }} – {{
-                                                favourite.programs[0].date?.to | date: "dd:MM:yyyy" }}
+                                                favourite?.programs[0]?.date?.from | date: "dd:MM:yyyy" }} – {{
+                                                favourite?.programs[0]?.date?.to | date: "dd:MM:yyyy" }}
                                             </p>
                                         </div>
                                     </div>
@@ -858,7 +849,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div> -->
+                        </div>
 
                         <!-- -------------------------------------------notification----------------------------- -->
                         <div *ngIf="isNotification" class="personal_details">

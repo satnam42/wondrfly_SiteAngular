@@ -569,6 +569,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
     this.store.removeItem('sendInvite');
     this.apiservice.getFavouriteByParentId(id).subscribe((res) => {
       this.favourites = res;
+      console.log('favourites',this.favourites)
     });
     this.isFavourite = true;
     this.favourite = "active";
