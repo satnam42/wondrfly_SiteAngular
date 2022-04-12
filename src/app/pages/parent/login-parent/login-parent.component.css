@@ -68,7 +68,7 @@ input.my_inputs {
   font-size: 12px;
   line-height: 18px;
   letter-spacing: 0.001em;
-  color: rgba(0, 0, 0, 0.3);
+  color: #494949;
   padding: 17px;
 }
 .my_inputs::placeholder {

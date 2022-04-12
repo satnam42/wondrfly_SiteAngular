@@ -290,7 +290,7 @@ button.camp-btn {
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 12px!important;
   line-height: 18px;
   letter-spacing: 0.001em;
   color: #494949;
@@ -1531,7 +1531,50 @@ button.bt-chat {
   padding-right: 20px;
   margin-top: 10px;
 }
-
+.mb-30 {margin-bottom: 30px!important;}
+.text-align-unset {text-align: unset!important;}
+.flat-right{float: right!important;}
+.body-detail-info .list_outer .left-icon-box-media {
+  display: grid;
+  grid-template-columns: 15px auto;
+  column-gap: 5px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.media-body.body-detail-info {
+  padding-bottom: 15px!important;
+}
+.body-detail-info .list_outer .left-icon-box-media p {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color: #494949;
+  padding-top: 2px;
+}
+.body-detail-info h2 {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  align-items: center;
+  text-align: unset!important;
+  letter-spacing: 0.001em;
+  color: #53B2E8;
+  max-width: 100%;
+  display: -webkit-box;
+  max-height: 45px;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 0px!important;
+}
+.media-body.body-detail-info .media-right-icon-h2 {
+  margin-bottom: 10px!important;
+}
 /* map popup */
 /* .map-popup {
   padding: 10px;

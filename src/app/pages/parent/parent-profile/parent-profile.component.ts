@@ -208,11 +208,9 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
     this.router.navigate(["/search"]);
   }
   refreshPage() {
-    this.ngxLoader.start();
     this.kid = new Child();
     this.kid.interestInfo = [];
     this.tags = [];
-    this.ngxLoader.stop();
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
@@ -244,7 +242,6 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
   onChangeSearch(key: string) {
     console.log('key', key)
     this.isLoading = true;
-    this.ngxLoader.start();
     this.tags = [];
     this.apiservice.searchTagForChildAddUpdate(key).subscribe((res: any) => {
       if (res.error) {
@@ -292,7 +289,6 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
         console.log('searchedTags', this.searchedTags)
  
       }
-      this.ngxLoader.stop();
       this.isLoading = false;
     });
   }
@@ -373,16 +369,13 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
     this.store.removeItem('activeList');
     this.store.removeItem('sendInvite');
     window.scroll(0, 0);
-    this.ngxLoader.start();
     this.apiservice.getGuardianByParentId(id).subscribe((res: any) => {
       if (res.length) {
         this.guardianResponse = res;
         console.log('guardian list ', res)
-        this.ngxLoader.stop();
       }
 
     });
-    this.ngxLoader.stop();
     this.isProfile = false;
     this.profile = "";
     this.isChat = false;
@@ -441,7 +434,6 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
     this.isAddChild = false;
     this.isEditChildBtn = false;
 
-    this.ngxLoader.start();
     this.apiservice.getChildByParentId(id).subscribe((res: any) => {
       this.kids = res
       this.kids = this.kids.filter((item) => item.isActivated === true);
@@ -474,9 +466,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
       });
       this.kids = kids
       console.log('children List', res)
-      this.ngxLoader.stop();
     });
-    this.ngxLoader.stop();
   }
 
   getAgeMonth(dateString) {
@@ -631,11 +621,9 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
   }
 
   activeDactiveChild(kidId, value, parentId) {
-    this.ngxLoader.start();
     this.apiservice.activeDactiveChild(kidId, value).subscribe((res: any) => {
       console.log('res', res)
       let msg = ''
-      this.ngxLoader.stop();
       if (res.isSuccess) {
         if (res.data.isActivated) {
           msg = 'Child Activated'
@@ -662,10 +650,8 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
   //   });
   // }
   activedeactiveGuardian(id, value) {
-    this.ngxLoader.start();
     this.apiservice.activedeactiveGuardian(id, value).subscribe((res: any) => {
       console.log('res', res)
-      this.ngxLoader.stop();
       let msg = '';
       if (res.isSuccess) {
         if (res.data.isActivated) {
@@ -683,9 +669,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
     });
   }
   activeDeactiveUser(id, isActivated) {
-    this.ngxLoader.start();
     this.apiservice.activeDeactiveUser(id, !isActivated).subscribe((res) => {
-      this.ngxLoader.stop();
       if (res && res.isActivated === false) {
         this.toastr.info("Acount Deactivated!");
         this.getParentById();
@@ -698,7 +682,6 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
         }
       }
     });
-    this.ngxLoader.stop();
   }
   onOffNotification(id, e) {
     this.apiservice.onOffNotification(id, e).subscribe((res: any) => {

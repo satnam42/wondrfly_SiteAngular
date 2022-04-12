@@ -627,20 +627,17 @@
                         </div>
 
                         <div class="container description_text slider carousel-cat" *ngIf="programs?.length">
-                            <div class="forth_section_heading">
-                                <h2 class="might-try">
-                                    <!-- You might also like these
-                  <span class="subCat" (click)="setSubCategoryId(program?.subCategoryIds[0])">{{
-                    program?.subCategoryIds[0]?.name }}
-                  </span>
-                  <span *ngIf="program?.subCategoryIds?.length > 1">and
-                    <span class="subCat" (click)="setSubCategoryId(program?.subCategoryIds[1]);">{{
-                      program?.subCategoryIds[1]?.name }}</span></span>
-                  activities: -->
-                                    More activities from <span class="clr-blue cursor" (click)="goToProfile()">{{program?.programOwner}}</span>
-                                    <span class="blue_heading cursor" (click)="goToProfile()">VIEW ALL {{programs?.length}}</span>
-                                </h2>
+                            <div class="row row-0 align-items-center mb-30">
+                                <div class="col-md-8">
+                                    <h2 class="text-align-unset mb-0">
+                                        More activities from <span class="clr-blue cursor" (click)="goToProfile()">{{program?.programOwner}}</span>
+                                    </h2>
+                                </div>
+                                <div class="col-md-4">
+                                    <span class="flat-right blue_heading cursor" (click)="goToProfile()">VIEW ALL {{programs?.length}}</span>
+                                </div>
                             </div>
+                            
                             <!-- <div class="row">
                                 <div class="col-12">
                                     <div id="carouselExampleIndicators" class="carousel slide activities-carousel" data-ride="carousel">
@@ -727,7 +724,7 @@
                                             [lazyLoad]="baseUrl + program?.subCategoryIds[0]?.pattern" /> -->
                                         <!-- <img *ngIf="program?.category[0]?.pattern && !program?.subCategoryIds[0]?.pattern" [defaultImage]="defaultImage" [lazyLoad]="baseUrl + program?.category[0]?.pattern" /> -->
                                     </div>
-                                    <div class="media-body">
+                                    <div class="media-body body-detail-info">
                                         <div class="media-right-icon-h2">
                                             <div>
                                                 <h2 class="cursor" >

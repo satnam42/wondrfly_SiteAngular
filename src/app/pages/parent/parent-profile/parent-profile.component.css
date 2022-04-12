@@ -2563,6 +2563,148 @@ ul.ul-tag-checkbox-info ul.ul-tag-checkbox-child .checkmark {
 ul.ul-tag-checkbox-info ul.ul-tag-checkbox-child .checkbox-txt {
   color: #858585;
 }
+.my-saved-prodivers-section {
+  margin-top: 35px;
+}
+.my-saved-prodivers-section h2.save-title-h2 {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 18px;
+  letter-spacing: 0.005em;
+  color: #494949;
+  margin-bottom: 40px!important;
+}
+.my-saved-prodivers-info {
+  background: #FFFFFF;
+  box-shadow: 0px 4px 4px rgb(0 0 0 / 10%);
+  border-radius: 20px;
+  position: relative;
+  display: block;
+  padding: 40px;
+}
+.media-top-txt-div .left-icon-h2 h2 {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 27px;
+  letter-spacing: 0.001em;
+  color: #494949;
+}
+.media-top-txt-div {
+  display: flex;
+  -moz-column-gap: 10px;
+  column-gap: 10px;
+  align-items: center;
+}
+.media-top-txt-div img {
+  width: 100%;
+  max-width: 60px;
+}
 
-
+.my-saved-body-content .media-scroable {
+  display: flex;
+  overflow: hidden;
+  scroll-behavior: smooth;
+}
+.my-saved-body-content .media-activity {
+  min-width: 220px;
+  max-width: 220px;
+  border: 0px;
+  margin: 0px;
+  padding-bottom: 30px;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+}
+.justify-content-right {
+  justify-content: right;
+}
+.my-saved-body-content .media-top-txt-div a.btn-show-all-program {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: 0.001em;
+  text-decoration: underline;
+  color: #53B2E8;
+  cursor: pointer;
+}
+.my-saved-carousel-slider .media-scroable .media-body{
+  background: #FFFFFF;
+  box-shadow: 0px 10px 20px rgb(0 0 0 / 10%);
+  position: relative;
+  border-radius: 18px;
+  padding: 20px;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+.my-saved-carousel-slider .media-scroable .media-body .media-right-icon-h2 {
+  display: grid;
+  grid-template-columns: auto 30px;
+  margin-bottom: 20px;
+}
+.my-saved-body-content {
+  border-bottom: 1px solid #E0E0E0;
+  margin-bottom: 20px;
+}
+.my-saved-carousel-slider .media-scroable .media-body .media-right-icon-h2 h2.cursor {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: 0.001em;
+  color: #53B2E8;
+}
+.my-saved-carousel-slider .media-body .left-icon-box-media {
+  display: grid;
+  grid-template-columns: 15px auto;
+  align-items: center;
+  column-gap: 5px;
+  margin-bottom: 10px;
+}
+.my-saved-carousel-slider .media-body .left-icon-box-media p {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color: #494949;
+  padding-top: 2px;
+}
+.no-saved-content h3 {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: #494949;
+  letter-spacing: 0.001em;
+  text-align: center;
+  display: block;
+  margin-bottom: 10px;
+}
+.no-saved-content {
+  padding: 55px 0px;
+}
+.media-top-txt-div .share_icon a {
+  margin-bottom: 5px;
+}
+.no-saved-content a.explore-link {
+  text-align: center;
+  display: block;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: 0.001em;
+  text-decoration-line: underline;
+  color: #53B2E8;
+}
+.mb-20{margin-bottom: 20px;}
  /* End search check box CSS  */
