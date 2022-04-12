@@ -756,6 +756,15 @@
                                                     </h6>
                                                 </div>
                                             </div> -->
+                                            <div class="col-md-12" *ngIf="program?.location">
+                                                <div class="left-icon-box-media">
+                                                    <div><img src="assets/location-dark-icon.png" alt="location-icon" />
+                                                    </div>
+                                                    <div>
+                                                        <p>{{program?.location?.substring(0, program?.location?.lastIndexOf(", "))}}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div class="col-md-12">
                                                 <div class="left-icon-box-media">
                                                     <div><img src="assets/calender-icon-img1.png" alt="calender-icon" />

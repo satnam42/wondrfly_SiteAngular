@@ -29,7 +29,7 @@ export class DetailComponent implements OnInit {
   baseUrl = environment.baseUrl;
   programUpdateForm: FormGroup;
   pageNo = 1;
-  pageSize = 20;
+  pageSize = 200;
   isScrol: boolean = true;
   programs: any = Program;
   categories: any = new Category;
@@ -452,21 +452,37 @@ export class DetailComponent implements OnInit {
     this.program_mins = moment.utc(moment(this.program.time.to, "HH:mm:ss").diff(moment(this.program.time.from, "HH:mm:ss"))).format("mm")
   }
 
-  addFav() {
-    this.program.isFav = true;
+  addFav(programId?,indx?) {
+    console.log('programId',programId)
     var fav: any = {
       userId: '',
       programId: '',
     };
-    fav.userId = this.userId;
-    fav.programId = this.program._id;
+    if(programId){
+      this.programs[indx].isFav = true;
+      fav.userId = this.userId;
+      fav.programId = this.programs[indx]._id;
+    }
+    else{
+      this.program.isFav = true;
+      fav.userId = this.userId;
+      fav.programId = this.program._id;
+    }
     this.apiservice.addFavProgram(fav).subscribe(res => {
     });
   }
 
-  deleteFav() {
-    this.program.isFav = false;
-    this.apiservice.deleteFavProgram(this.program._id).subscribe(res => {
+  deleteFav(programId?,indx?) {
+    console.log('programId',programId)
+    let id = ''
+    if(programId){
+      id = programId
+      this.programs[indx].isFav = false;
+    }
+else{
+  id = this.program._id
+  this.program.isFav = false;
+}    this.apiservice.deleteFavProgram(id).subscribe(res => {
     });
   }
   setSubCategoryId(tag) {
