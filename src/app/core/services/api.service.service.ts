@@ -1092,7 +1092,6 @@ export class ApiService {
  // ---------------------------on/off notification by id---------------------
 
 onOffNotification(id,e): Observable<User> {
-    console.log('before id',id);
     const subject = new Subject<User>();
     this.http.put(`${this.root}/notification/onOff?id=${id}&status=${e}`,'', this.getHeader()).subscribe((responseData: any) => {
         if (responseData.statusCode !== 200) {

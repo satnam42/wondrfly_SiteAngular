@@ -39,8 +39,6 @@ export class WhyWondrflyComponent implements OnInit {
     axios.get(`${this.blogUrl}/why-wondrflies`).then(response => {
       this.ngxLoader.stop()
       this.data = response.data
-
-      console.log('data on  whywonderfly', this.data);
     });
   }
 

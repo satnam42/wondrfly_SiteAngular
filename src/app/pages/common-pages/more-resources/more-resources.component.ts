@@ -44,7 +44,6 @@ export class MoreResourcesComponent implements OnInit {
   getPrintables() {
     axios.get(`${this.blogUrl}/printables?_sort=published_at:DESC`).then(response => {
       this.resources = response.data
-      console.log('resources', this.resources)
     });
   }
 
@@ -89,8 +88,6 @@ export class MoreResourcesComponent implements OnInit {
     this.ngxLoader.start()
     const responcee = axios.get(`${this.blogUrl}/blogs?_sort=published_at:DESC&_start=0&_limit=4`).then(response => {
       this.blog = response.data
-      console.log('response', response)
-      console.log(this.blog)
       // this.blog.reverse()
       this.ngxLoader.stop()
     });

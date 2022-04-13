@@ -126,7 +126,6 @@ export class ProgramProviderComponent implements OnInit {
     this.ngxLoader.start();
     this.apiservice.getUserById(this.user.id).subscribe((res: any) => {
       this.user = res.data;
-      console.log('user detail', this.user)
       for (let health of this.user.healthAndSafety) {
         if (health.socialDistancing) {
           this.health_safety[1].status = 'active';
@@ -153,16 +152,13 @@ export class ProgramProviderComponent implements OnInit {
   }
   parentAnalyticAction(){
     this.apiservice.parentAnalytics('provider',this.userId,this.user.id).subscribe((res: any) => {
-      console.log('action call' , res)
     });
   }
   // ---------------------------------navigate to program detail page -------------------------------------------
   getRating() {
-    console.log('ratingggggggggggggUserddddddddd', this.user.id)
     this.apiservice.getUserRating(this.user.id).subscribe((res: any) => {
       this.rating = res
       this.rating.finalAverageRating = parseFloat(String(this.rating.finalAverageRating)).toFixed(1)
-      console.log('ratinggggggggggggg', res)
     });
   }
 
@@ -182,22 +178,21 @@ export class ProgramProviderComponent implements OnInit {
   getProviderProgram = async () => {
     await this.apiservice.getProgramByProvider(this.user.id, this.pageNo, 200).subscribe((res) => {
       this.programs = res
-      console.log(res)
     });
   }
 
 
-  private setCurrentLocation() {
-    if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        this.latitude = position.coords.latitude;
-        this.longitude = position.coords.longitude;
-        this.zoom = 4;
+  // private setCurrentLocation() {
+  //   if ('geolocation' in navigator) {
+  //     navigator.geolocation.getCurrentPosition((position) => {
+  //       this.latitude = position.coords.latitude;
+  //       this.longitude = position.coords.longitude;
+  //       this.zoom = 4;
 
-        this.getAddress(this.latitude, this.longitude);
-      });
-    }
-  }
+  //       this.getAddress(this.latitude, this.longitude);
+  //     });
+  //   }
+  // }
 
   getAddress(latitude, longitude) {
     this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {
@@ -218,7 +213,6 @@ export class ProgramProviderComponent implements OnInit {
 
   ngOnInit() {
     this.getProviderById()
-    console.log('usajksdjkasdad', this.user)
     this.titleService.setTitle(this.title);
     this.metaTagService.updateTag(
       { name: 'description', content: "Looking for approved and registered online kids activities providers in the New Jersey? Contact to Wondrfly for best kids classes. Sign up now! " }
@@ -269,6 +263,5 @@ export class ProgramProviderComponent implements OnInit {
 
   }
   centerChange(e) {
-    console.log(e)
   }
 }

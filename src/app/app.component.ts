@@ -23,9 +23,6 @@ export class AppComponent implements OnInit {
   }
   checkCookieData(data) {
     this.cookiesData = data
-    console.log(this.cookiesData)
-    console.log(data)
-
   }
   ngOnInit() {
     this.cookiesData = this.cookies.get('_ui');
@@ -34,6 +31,5 @@ export class AppComponent implements OnInit {
   }
   deviceDetector() {
     this.currentOS = this.deviceService.getDeviceInfo().os;
-    console.log(this.currentOS);
   }
 }

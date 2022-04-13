@@ -50,7 +50,6 @@ export class CookiesPopupComponent implements OnInit {
 
   ngOnInit(){
     this.cookiesData = this.cookies.get('_ui');
-    console.log('cookiesdata', this.cookiesData)
   }
 
 }

@@ -113,7 +113,6 @@ export class DragDropComponent implements OnInit {
     return new Promise((resolve, reject) => {
       temporaryFileReader.onerror = () => {
         temporaryFileReader.abort();
-        console.log("Problem parsing input file.")
       };
 
       temporaryFileReader.onload = () => {

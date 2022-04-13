@@ -8,14 +8,12 @@ export class DataService {
   private location: any;
   
   setOption(option) {
-    console.log('setOption', option);
     this.data = option;
   }
   getOption() {
     return this.data;
   }
   setLocation(option) {
-    console.log('setLocation', option);
     this.location = option;
   }
   getLocation() {

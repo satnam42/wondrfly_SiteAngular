@@ -80,7 +80,6 @@ export class LoginParentComponent implements OnInit {
   // }
 
   remove(t) {
-    console.log('tag to remove',t)
     for(let i in this.searchedTags) {
         let indx = this.searchedTags[i].tags.findIndex(x => x._id===t._id)
         if(indx >= 0){
@@ -116,8 +115,6 @@ export class LoginParentComponent implements OnInit {
     var birth = new Date(this.kid.dob);
     let birthYear = moment(birth).format('YYYY');
     let currentYear = moment(Date.now()).format('YYYY');
-    console.log('birthYear', birthYear)
-    console.log('currentYear', currentYear)
     if (birthYear >= currentYear) {
       this.toastr.warning('Please Fill Valid Birth Year!')
     }
@@ -131,7 +128,6 @@ export class LoginParentComponent implements OnInit {
         this.kid.age = String(age);
         this.kid.relationToChild = 'father'
         this.kid.sex = 'male'
-        console.log('kidd data', this.kid)
         this.nextStep()
       }
     }
@@ -140,12 +136,9 @@ export class LoginParentComponent implements OnInit {
   addChild() {
     // this.kid.interestInfo = this.selectedTags
     this.kid.parentId = this.parent.id
-    console.log('birthYear', this.parent.id)
     this.ngxLoader.start();
-    console.log('childData before', this.kid)
     this.apiservice.addChild(this.kid).subscribe((res: any) => {
       this.ngxLoader.stop();
-      console.log('childData after', res)
       // if(res.isSuccess===true){
       // }
     });
@@ -168,12 +161,10 @@ export class LoginParentComponent implements OnInit {
         item.active = !item.active;
         this.selectedTags.splice(index, 1);
       }
-      console.log('selected tags', this.selectedTags)
     }
   }
 
   onChangeSearch(key: string) {
-    console.log('key', key)
     // this.ngxLoader.start();
     this.tags = [];
     this.apiservice.searchTagForChildAddUpdate(key).subscribe((res: any) => {
@@ -183,9 +174,7 @@ export class LoginParentComponent implements OnInit {
       }
       else {
         this.tags = res;
-        console.log('tags response from backend', this.tags)
          let filtredtags = this.tags.filter((item) => item.isActivated === true);
-        console.log('tags isActivated', filtredtags)
         let categories = []
         this.searchedTags = []
      
@@ -193,7 +182,6 @@ export class LoginParentComponent implements OnInit {
           categories.push(tag.categoryIds[0])
         });
         let filtredCats = this.removeDuplicates(categories, 'name')
-        console.log('filtred----cates',filtredCats)
         for (let j in filtredCats) {
           let modifiedObj:any = {
             category: {},
@@ -219,7 +207,6 @@ export class LoginParentComponent implements OnInit {
           this.searchedTags.push(modifiedObj)
         }
         // this.searchedTags = this.removeDuplicates(this.searchedTags, 'category')
-        console.log('searchedTags', this.searchedTags)
       }
       // this.ngxLoader.stop();
     });
@@ -231,7 +218,6 @@ export class LoginParentComponent implements OnInit {
     for (var i in originalArray) {
       lookupObject[originalArray[i][prop]] = originalArray[i];
     }
-    console.log('lookupObject', lookupObject)
     for (i in lookupObject) {
       newArray.push(lookupObject[i]);
     }
@@ -244,7 +230,6 @@ export class LoginParentComponent implements OnInit {
     this.apiservice.getCategory().subscribe((res: any) => {
       this.categories = res;
       this.categories = this.categories.filter((item) => item.isActivated === true);
-      console.log('catg list', this.categories)
     });
   }
 
@@ -253,7 +238,6 @@ export class LoginParentComponent implements OnInit {
     this.apiservice.getTag().subscribe((res: any) => {
       this.tags = res.data;
       this.tags = this.tags.filter((item) => item.isActivated === true);
-      console.log('tags list', this.tags)
     });
   }
 
@@ -269,7 +253,6 @@ export class LoginParentComponent implements OnInit {
         this.selectedTags.splice(index, 1);
         t.active = !t.active;
       }
-      console.log('selected tags', this.selectedTags)
     }
   }
 
@@ -388,10 +371,8 @@ export class LoginParentComponent implements OnInit {
     this.parent.location = this.locationForm.value.location;
     this.parent.source = this.locationForm.value.source;
     this.ngxLoader.start();
-    console.log('before parent update', this.parent)
     this.apiservice.updateParent(this.parent.id, this.parent).subscribe((res: any) => {
       this.ngxLoader.stop();
-      console.log('after parent update', res)
       if (res.isSuccess === true) {
         this.router.navigate(['parent/my-wondrfly'])
       }
@@ -417,20 +398,16 @@ export class LoginParentComponent implements OnInit {
           this.kid.interestInfo.splice(index, 1)
         }
         // if (this.kid.interestInfo.find(category => category.name === tag.name)) {
-        //   console.log('tag', tag)
         //   const index = this.kid.interestInfo.indexOf(tag);
-        //   console.log(index)
         //   this.kid.interestInfo.splice(index, 1)
         // }
         tag.isSelected = false
       });
-      console.log('interestInfo', this.kid.interestInfo)
     }
   }
   checkOrUncheckTag(e, categoryIndx, tagIndex) {
     // const value = (element) => element === false;
     let unchecked = this.searchedTags[categoryIndx].tags.filter(tag => !tag.isSelected)
-    console.log('unchecked', unchecked)
     if (e.target.checked === true) {
       if (this.kid.interestInfo.indexOf(this.searchedTags[categoryIndx].tags) == -1) {
         if (!this.kid.interestInfo.find(category => category._id === this.searchedTags[categoryIndx].tags[tagIndex]._id)) {

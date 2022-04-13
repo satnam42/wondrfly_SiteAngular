@@ -77,8 +77,6 @@ name = name.toLowerCase();
 name = name.replace(/ /g,"-");
 name = name.replace(/\?/g,"-");
   this.shareUrl=`${this.baseUrl}program/${name}/${this.shareData._id}`;
-  console.log('share url ',this.shareUrl)
-
      switch (provider) {
        case 'facebook': {
          this.url = `https://www.${provider}.com/sharer/sharer.php?u=${subject} ${this.shareUrl}`;

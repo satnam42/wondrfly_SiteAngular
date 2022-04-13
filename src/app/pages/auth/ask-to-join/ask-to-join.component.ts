@@ -101,7 +101,6 @@ export class AskToJoinComponent implements OnInit {
     }
     else {
       this.apiservice.askToJoin(this.userData).subscribe((res: any) => {
-        console.log(res)
         if (res.isSuccess) {
           this.disableApproveBtn = false;
           window.document.getElementById("openSuccessModal").click();

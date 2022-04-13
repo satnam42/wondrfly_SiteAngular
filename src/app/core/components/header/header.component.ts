@@ -164,14 +164,10 @@ allData: any=[];
       this.newNotifications = notifications.length
 
       this.todayNotifications = this.user.notices.notifications.filter(obj => moment().isSame(obj.createdOn, 'day'));
-      console.log('todayNotificaations', this.todayNotifications)
       this.earlierNotifications = this.user.notices.notifications.filter(obj => !moment().isSame(obj.createdOn, 'day'));
-      console.log('earlierNotifications', this.earlierNotifications)
       this.store.setObject('CurrentUserWondrfly', this.user);
-      console.log('user', this.user)
       // this.user.notices.notifications = this.user.notices.notifications.filter(notification=>notification.createdOn.getTime() < new Date().getTime())
       // this.todayNotifications = this.user.notices.notifications.filter(notification=>notification.createdOn.getTime() == new Date().getTime())
-      // console.log('todayNotifications',this.todayNotifications)
       if (this.user.notificationsOnOff === true) {
         this.isToggle = true;
       }
@@ -426,7 +422,6 @@ allData: any=[];
          this.providersBySearch[i].name = this.providersBySearch[i]['firstName'];
        groupDataAll[1].data=this.providersBySearch;
        this.allData=groupDataAll
-       console.log(groupDataAll,'groupppdata with provider')
        }}
        else {
        this.allData = []
@@ -451,7 +446,6 @@ allData: any=[];
   }
 
   goToProviderProfile(provider) {
-    console.log(provider)
     provider.firstName = provider.firstName.toLowerCase();
     provider.firstName = provider.firstName.replace(/ /g, "-");
     provider.firstName = provider.firstName.replace(/\?/g, "-");
@@ -492,7 +486,6 @@ allData: any=[];
               .navigateByUrl("/", { skipLocationChange: true })
               .then(() => this.router.navigate(["search"]));
           }
-          console.log(this.lat, this.lng)
           // this.getAddress(this.lat, this.lng);
         });
       } this.geoCoder = new google.maps.Geocoder;

@@ -405,7 +405,6 @@ searchSubCategory(key) {
       this.providersBySearch[i].name = this.providersBySearch[i]['firstName'];
     groupDataAll[1].data=this.providersBySearch;
     this.allData=groupDataAll
-    console.log(groupDataAll,'groupppdata with provider')
     }}
     else {
     this.allData = []
@@ -420,7 +419,6 @@ searchSubCategory(key) {
 // this.apiservice.searchUsers(key, "provider").subscribe((res: any) => {
 // if (res.data) {
 // this.providersBySearch = res.data;
-// console.log(this.providersBySearch,'providerssss')
 // }
 // else {
 // this.providersBySearch = []

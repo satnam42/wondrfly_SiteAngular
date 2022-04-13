@@ -38,7 +38,6 @@ export class FaqHomeComponent implements OnInit {
   getParentCategory() {
     const responcee = axios.get(`${this.blogUrl}/parent-faq-categories`).then(response => {
       this.parentCategories = response.data
-      console.log('data on parentCategories axios', this.parentCategories);
     });
   }
 
@@ -47,7 +46,6 @@ export class FaqHomeComponent implements OnInit {
   getProviderCategory() {
     const responcee = axios.get(`${this.blogUrl}/provider-faq-categories`).then(response => {
       this.providerCategories = response.data
-      console.log('data on providerCategories axios', this.providerCategories);
     });
   }
 
@@ -56,7 +54,6 @@ export class FaqHomeComponent implements OnInit {
   getParentQuestionsByName(name) {
     if (name) {
       const responcee = axios.get(`${this.blogUrl}/parent-faq-questions?question_contains=${name}&_limit=5`).then((response: any) => {
-        console.log('response', response)
         if (response.data.length) {
           this.allQuestions = response.data
         } else {
@@ -76,8 +73,6 @@ export class FaqHomeComponent implements OnInit {
   getProviderQuestions() {
     const responcee = axios.get(`${this.blogUrl}/provider-faq-questions`).then(response => {
       this.providerQuestions = response.data
-      console.log('data on providerQuestions axios', this.providerQuestions);
-
     });
   }
 
@@ -103,9 +98,6 @@ export class FaqHomeComponent implements OnInit {
     this.metaTagService.addTag(
       { name: 'keywords', content: 'frequently asked questions about kids activities, fun questions for kids' }
     );
-
-
-    console.log('all questions', this.allQuestions)
   }
   goToResultPage(data) {
     this.dataservice.setOption(data)

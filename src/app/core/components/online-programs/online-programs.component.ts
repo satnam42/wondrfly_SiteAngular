@@ -90,7 +90,6 @@ export class OnlineProgramsComponent implements OnInit {
       }
   }
   ngOnInit() {
-    console.log(this.provider_programs,'online programs')
 }
 
 scrollLeft(i){

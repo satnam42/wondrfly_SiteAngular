@@ -162,7 +162,6 @@ export class DetailComponent implements OnInit {
   }
 
   animationCreated(animationItem: AnimationItem): void {
-    console.log(animationItem);
   }
 
   onChange(data) {
@@ -224,7 +223,6 @@ export class DetailComponent implements OnInit {
   getProviderById() {
     this.apiservice.getUserById(this.program.user).subscribe((res: any) => {
       this.user = res.data;
-      console.log('userrrrrrrrrr', this.user)
     });
     this.getRating()
   }
@@ -234,7 +232,6 @@ export class DetailComponent implements OnInit {
     this.apiservice.getUserRating(this.program.user).subscribe((res: any) => {
       this.rating = res
       this.rating.finalAverageRating = parseFloat(String(this.rating.finalAverageRating)).toFixed(1)
-      console.log('ratinggggggggggggg', res)
     });
   }
 
@@ -247,16 +244,11 @@ export class DetailComponent implements OnInit {
       // this.program.time.to = moment(this.program.time.to).format("h:mm");
       // this.program.time.from =this.convertNumToTime(this.program.time.from.toFixed(2))
       // this.program.time.to =this.convertNumToTime(this.program.time.to.toFixed(2))
-      console.log('res program by id', this.program)
       var lastIndex = this.program.location.lastIndexOf(", ");
       this.program.location = this.program.location.substring(0, lastIndex);
       this.title = this.program.name
       this.categoryArr = this.program.category;
       this.subcatArr = this.program.subCategoryIds
-      // console.log('subcatArr==>',this.subcatArr)
-      // console.log('categoryArr==>',this.categoryArr)
-
-      console.log('catogsdsadasa', this.program)
       this.titleService.setTitle(this.title + ' - wondrfly');
       this.metaTagService.updateTag(
         { name: 'description', content: this.program.description }
@@ -360,7 +352,6 @@ export class DetailComponent implements OnInit {
         programs.push(program)
       });
       this.programs = programs
-      console.log('provider program', this.programs);
     });
   }
   getCategoryList() {
@@ -370,7 +361,6 @@ export class DetailComponent implements OnInit {
   }
   parentAnalyticAction(){
     this.apiservice.parentAnalytics('program',this.userId,this.program._id).subscribe((res: any) => {
-      console.log('action call' , res)
     });
   }
   ngOnInit() {
@@ -417,8 +407,6 @@ export class DetailComponent implements OnInit {
 
   getAddress(latitude, longitude) {
     this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {
-      console.log(results);
-      console.log(status);
       if (status === 'OK') {
         if (results[0]) {
           // this.zoom = 20;
@@ -446,14 +434,12 @@ export class DetailComponent implements OnInit {
 
   clickedProgram(data) {
     window.scroll(0, 0);
-    console.log('clickedProgram', data)
     this.program.id = data._id
     this.getProgramById()
     this.program_mins = moment.utc(moment(this.program.time.to, "HH:mm:ss").diff(moment(this.program.time.from, "HH:mm:ss"))).format("mm")
   }
 
   addFav(programId?,indx?) {
-    console.log('programId',programId)
     var fav: any = {
       userId: '',
       programId: '',
@@ -473,7 +459,6 @@ export class DetailComponent implements OnInit {
   }
 
   deleteFav(programId?,indx?) {
-    console.log('programId',programId)
     let id = ''
     if(programId){
       id = programId
@@ -495,6 +480,5 @@ else{
 
   }
   centerChange(e) {
-    console.log(e)
   }
 }

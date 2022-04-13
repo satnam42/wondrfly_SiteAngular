@@ -169,7 +169,6 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.minDate = moment();
 
     // this.locationData = dataservice.getLocation()
-    // console.log('this.locationData', this.locationData)
     // if(this.locationData){
     //   this.contentLoaded=true;
     //   if (this.locationData.lat && this.locationData.lng) {
@@ -525,7 +524,6 @@ export class SearchComponent implements OnInit, OnDestroy {
       this.providerProgram[1].collapsed=true
       this.providerProgram[2].collapsed=true
       }
-      console.log('programs', this.providerProgram)
       // this.fakeLoaderData = [1,2]
       // this.contentLoaded = true;
       this.startTour()
@@ -625,8 +623,6 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
   parentAnalyticAction(key,value){
     this.apiservice.parentAnalytics(key,this.userId,value).subscribe((res: any) => {
-      console.log(key, res)
-
     });
   }
   programFilter() {
@@ -732,7 +728,6 @@ export class SearchComponent implements OnInit, OnDestroy {
       if (this.isAgeFilter) {
         filter += `&ageFrom=${this.minAge}&ageTo=${this.maxAge}`
       }
-      console.log('filters query ', filter)
       this.ngxLoader.start()
       this.apiservice.programFilter(filter, 1, 100).subscribe((res: any) => {
         this.ngxLoader.stop()
@@ -785,7 +780,6 @@ export class SearchComponent implements OnInit, OnDestroy {
     });
   }
   goToProviderProfile(provider) {
-    console.log(provider)
     var providerName = provider.firstName;
     providerName = providerName.toLowerCase();
     providerName = providerName.replace(/ /g, "-");
@@ -805,7 +799,6 @@ export class SearchComponent implements OnInit, OnDestroy {
   getRating(id) {
     this.apiservice.getUserRating(id).subscribe((res: any) => {
       this.rating = res
-      console.log('lalla rating',res)
       this.rating.finalAverageRating = parseFloat(String(this.rating.finalAverageRating)).toFixed(1)
     });
   }
@@ -865,7 +858,6 @@ export class SearchComponent implements OnInit, OnDestroy {
       if (typeof (res) !== 'string') {
         if (!res.error) {
           this.suggested = res
-          console.log('suggested', this.suggested)
         }
       }
       // this.searchedSubCategory = this.suggested[0].name

@@ -104,7 +104,6 @@ export class LandingComponent implements OnInit {
       this.categories = this.categories.filter((item) => item.id !== idToRemove);
       this.categories.push(removedCategory[0])
       this.categories = this.categories.filter((item) => item.isActivated === true);
-      console.log('category list ', this.categories);
     });
   }
   searchActivityByNameDate() {
@@ -134,7 +133,6 @@ export class LandingComponent implements OnInit {
 
   // searchSubCategory(key) {
   //   this.apiservice.searchTag(key).subscribe((res: any) => {
-  //     console.log(res, 'res')
   //     this.categoriesBySearch = res;
   //     this.categoriesBySearch.category = this.categoriesBySearch.category.filter((item) => item.isActivated !== false);
   //     this.categoriesBySearch.tags = this.categoriesBySearch.tags.filter((item) => item.isActivated !== false);
@@ -165,7 +163,6 @@ export class LandingComponent implements OnInit {
          this.providersBySearch[i].name = this.providersBySearch[i]['firstName'];
        groupDataAll[1].data=this.providersBySearch;
        this.allData=groupDataAll
-       console.log(groupDataAll,'groupppdata with provider')
        }}
        else {
        this.allData = []
@@ -196,7 +193,6 @@ export class LandingComponent implements OnInit {
 
   setVisit() {
     this.cookiesData = this.cookies.get('isTour');
-    console.log('get isTour count ', this.cookiesData)
     // if(Number(this.cookiesData)!=2 || Number(this.cookiesData)!=3 || Number(this.cookiesData)!=5 || Number(this.cookiesData)!=6 || Number(this.cookiesData)!=8 || Number(this.cookiesData)!=9 || Number(this.cookiesData)!=12){
     // let num = Number(this.cookiesData)+1
     //     this.cookies.set('isTour', String(num), 30);
@@ -252,7 +248,6 @@ export class LandingComponent implements OnInit {
   }
 
   selectSearchedOption(data){
-    console.log('dattta',data)
     if(data.role=='provider'){
       this.filterData.activityName = "";
   data.name = data.name.toLowerCase();

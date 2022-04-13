@@ -117,8 +117,6 @@ export class BlogDetailComponent implements OnInit {
       }),
     })
       .then(response => response.json())
-      .then(data => console.log(data)
-      );
     this.getBlogById()
     this.commentForm.reset()
   }

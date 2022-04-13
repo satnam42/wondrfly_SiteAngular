@@ -39,7 +39,6 @@ export class BlogSearchComponent implements OnInit {
 
     this.activatedroute.params.subscribe(data => {
       this.catg = data;
-      console.log('data on url', this.catg.id);
     })
     this.getBlogByCat()
   }

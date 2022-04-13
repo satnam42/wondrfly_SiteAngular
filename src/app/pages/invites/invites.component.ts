@@ -37,15 +37,12 @@ export class InvitesComponent implements OnInit {
     .getInvitedUsersByParent(userId)
     .subscribe((res: any) => {
       this.invitedUsers = res;
-      console.log('invited users',this.invitedUsers)
     });
   }
 
    inviteAsktojoina(){
     this.inviteAsktojoin.userId = this.user.id
-    console.log(this.inviteAsktojoin)
     this.apiservice.InviteAsktojoin(this.inviteAsktojoin).subscribe((res:any) => {
-      console.log(res)
       if(res.isSuccess===true){
         this.betaProgramInvitedUsers(this.user.id)
       }

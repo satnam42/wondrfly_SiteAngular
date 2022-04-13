@@ -30,7 +30,6 @@ export class ActiveUser implements CanActivate {
   constructor(public router: Router,private auth: AuthsService,){ }
 
   canActivate(): Observable<boolean> | Promise<boolean> | boolean{
-      // console.log(localStorage.getItem('CurrentUserWondrfly'),"Admin");
       if(!this.auth.currentUser()){
          return true
       }else{ this.router.navigate(["parent/my-wondrfly"]);}   

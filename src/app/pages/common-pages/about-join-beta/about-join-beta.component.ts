@@ -23,7 +23,6 @@ export class AboutJoinBetaComponent implements OnInit {
   getParentCategory() {
     const responcee = axios.get(`${this.blogUrl}/parent-faq-categories/8`).then(response => {
       this.categories = response.data
-      console.log(this.categories)
     });
   }
 

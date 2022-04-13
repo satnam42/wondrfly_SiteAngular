@@ -29,7 +29,6 @@ export class TypeFormService {
 getForms(): Observable<any[]> {
   const subject = new Subject<any[]>();
   this.http.get(`${this.root}/forms?page=1&page_size=4&workspace_id=${this.workspace_id}`, this.getHeader()).subscribe((responseData:any) => {
-    console.log('responseData',responseData)
       subject.next(responseData);
   }, (error) => {
       subject.next(error.error);
@@ -41,7 +40,6 @@ getForms(): Observable<any[]> {
 getFormById(): Observable<any[]> {
   const subject = new Subject<any[]>();
   this.http.get(`${this.root}/forms?page=1&page_size=4&workspace_id=${this.workspace_id}`, this.getHeader()).subscribe((responseData:any) => {
-    console.log('responseData',responseData)
       subject.next(responseData);
   }, (error) => {
       subject.next(error.error);

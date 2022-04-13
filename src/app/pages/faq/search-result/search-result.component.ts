@@ -16,13 +16,9 @@ export class SearchResultComponent implements OnInit {
     private activatedroute: ActivatedRoute,
     private dataservice: DataService,
   ) {
-    console.log('data from service', dataservice.getOption());
     this.filterData = dataservice.getOption();
-    console.log('filter data', this.filterData);
-
     this.activatedroute.params.subscribe(data => {
       this.searchData = data;
-      console.log('data on url', this.searchData);
     })
 
   }

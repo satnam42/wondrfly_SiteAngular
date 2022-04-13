@@ -139,7 +139,6 @@ if(!this.currentUser){
          this.providersBySearch[i].name = this.providersBySearch[i]['firstName'];
        groupDataAll[1].data=this.providersBySearch;
        this.allData=groupDataAll
-       console.log(groupDataAll,'groupppdata with provider')
        }}
        else {
        this.allData = []
@@ -230,14 +229,12 @@ tweetCategory(){
     this.apiservice.getCategory().subscribe((res: any) => {
       this.categories = res;
       this.categories = this.categories.filter((item) => item.isActivated !== false);
-      console.log('categories',this.categories)
     });
   }
 
   // feedbackSurveyList() {
   //   this.apiservice.feedbackSurveyList().subscribe((res: any) => {
   //     this.feedback = res;
-  //     console.log('feedback',this.feedback)
   //   });
   // }
  
@@ -250,7 +247,6 @@ tweetCategory(){
     const responcee = axios.get(`${this.blogUrl}/funny-tweets?_sort=published_at:DESC&_limit=4`).then((response) => {
       this.tweetData = response.data;
       this.tweetDataBlogPath = new URL (this.tweetData[0].blogLink).pathname;
-      console.log('tweetData',this.tweetData)
     });
   }
 
@@ -259,7 +255,6 @@ tweetCategory(){
     getPrintables() {
       const responcee = axios.get(`${this.blogUrl}/printables?_sort=published_at:DESC&_limit=4`).then((response) => {
         this.printables = response.data;
-        console.log('printables',this.printables)
       });
     }
 
@@ -276,7 +271,6 @@ tweetCategory(){
     getfeaturedBlog() {
       const responcee = axios.get(`${this.blogUrl}/blogs?_sort=published_at:DESC&isFeatured=true&_limit=4`).then((response) => {
         this.featuredBlogs = response.data;
-        console.log('featuredblogs',this.featuredBlogs)
       });
     }
 
@@ -284,7 +278,6 @@ tweetCategory(){
     const responcee = axios.get(`${this.blogUrl}/categories/?id=12`).then(response => {
       this.blogByCategory = response.data[0];
       this.blogByCategory.blogs.reverse();
-      console.log(this.blogByCategory.blogs,'blogByCategory');
     });
 };
 
@@ -323,7 +316,6 @@ getChildByParentId(id){
    let childIds=''
      let count = 1
     for(let kid of kids){
-      console.log('kid',kid)
       if(count<=1){
         childIds+= kid.id
         count++
@@ -332,11 +324,9 @@ getChildByParentId(id){
         childIds+= ','+kid.id
       }
     }
-    console.log('before api childIds ',childIds)
     if(childIds){
       this.apiservice.childrenWithFiltredActivity(childIds).subscribe((filtredKidsResponse:any)=>{
         this.kids = filtredKidsResponse.data
-        console.log('filtred kids',this.kids)
       })
     }
 this.ngxLoader.stop();
@@ -348,12 +338,10 @@ sendInvite(){
 }
 // getForms(){
 //   this.typeFormService.getForms().subscribe((res: any) => {
-//     console.log('typeFormService', res)
 //   });
 // }
 
 setBlog(data){
-  console.log('clicked blog', data)
   var title = data.title;
   title = title.toLowerCase();
   title = title.replace(/ /g,"-");
@@ -366,7 +354,6 @@ setBlog(data){
 
 setVisit(){
   this.cookiesData = this.cookies.get('isTour');
-console.log('get isTour count ',this.cookiesData)
 // if(Number(this.cookiesData)!=2 || Number(this.cookiesData)!=3 || Number(this.cookiesData)!=5 || Number(this.cookiesData)!=6 || Number(this.cookiesData)!=8 || Number(this.cookiesData)!=9 || Number(this.cookiesData)!=12){
   // let num = Number(this.cookiesData)+1
   //     this.cookies.set('isTour', String(num), 30); 
@@ -422,7 +409,6 @@ onTab(e,value){
   }
 
   selectSearchedOption(data){
-    console.log('dattta',data)
     if(data.role=='provider'){
       this.filterData.activityName = "";
   data.name = data.name.toLowerCase();

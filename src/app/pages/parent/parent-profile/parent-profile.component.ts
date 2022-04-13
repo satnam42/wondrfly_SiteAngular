@@ -194,11 +194,9 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
     this.searchedTags=[]
     this.keyword =''
     this.kid = data;
-    console.log(this.kid)
     this.childImgURL = this.kid.avtar;
   }
   getGuardianData(data) {
-    console.log('guardian data', data)
     this.guardianData = data;
   }
   sideBar() {
@@ -217,7 +215,6 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
     this.kid.interestInfo.push(event.option.value);
   }
   remove(t) {
-    console.log('tag to remove',t)
     for(let i in this.searchedTags) {
         let indx = this.searchedTags[i].tags.findIndex(x => x._id===t._id)
         if(indx >= 0){
@@ -235,12 +232,10 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
     if (this.kid.interestInfo.indexOf(item) == -1) {
       if (!this.kid.interestInfo.find(category => category.name === item.name)) {
         this.kid.interestInfo.push(item)
-        console.log('===>>', this.kid.interestInfo)
       }
     }
   }
   onChangeSearch(key: string) {
-    console.log('key', key)
     this.isLoading = true;
     this.tags = [];
     this.apiservice.searchTagForChildAddUpdate(key).subscribe((res: any) => {
@@ -250,9 +245,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
       }
       else {
         this.tags = res;
-        console.log('tags response from backend', this.tags)
          let filtredtags = this.tags.filter((item) => item.isActivated === true);
-        console.log('tags isActivated', filtredtags)
         let categories = []
         this.searchedTags = []
      
@@ -260,7 +253,6 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
           categories.push(tag.categoryIds[0])
         });
         let filtredCats = this.removeDuplicates(categories, 'name')
-        console.log('filtred----cates',filtredCats)
         for (let j in filtredCats) {
           let modifiedObj:any = {
             category: {},
@@ -285,9 +277,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
           }
           this.searchedTags.push(modifiedObj)
     }
-        // this.searchedTags = this.removeDuplicates(this.searchedTags, 'category')
-        console.log('searchedTags', this.searchedTags)
- 
+        // this.searchedTags = this.removeDuplicates(this.searchedTags, 'category') 
       }
       this.isLoading = false;
     });
@@ -299,7 +289,6 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
     for (var i in originalArray) {
       lookupObject[originalArray[i][prop]] = originalArray[i];
     }
-    console.log('lookupObject', lookupObject)
     for (i in lookupObject) {
       newArray.push(lookupObject[i]);
     }
@@ -372,9 +361,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
     this.apiservice.getGuardianByParentId(id).subscribe((res: any) => {
       if (res.length) {
         this.guardianResponse = res;
-        console.log('guardian list ', res)
       }
-
     });
     this.isProfile = false;
     this.profile = "";
@@ -440,9 +427,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
       let kids = []
       this.kids.forEach(kid => {
         let kidMonth = Math.abs((this.getAgeMonth(kid.dob)))
-        console.log('kidMonth>>>>>', kidMonth)
         let age = Number(this.getAge(kid.dob))
-        console.log('age>>>>>', age)
         if (age < 1) {
           if (kidMonth > 1) {
             kid.age = kidMonth + ' Months Old'
@@ -465,7 +450,6 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
         kids.push(kid)
       });
       this.kids = kids
-      console.log('children List', res)
     });
   }
 
@@ -569,7 +553,6 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
     this.store.removeItem('sendInvite');
     this.apiservice.getFavouriteByParentId(id).subscribe((res) => {
       this.favourites = res;
-      console.log('favourites',this.favourites)
     });
     this.isFavourite = true;
     this.favourite = "active";
@@ -623,7 +606,6 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
 
   activeDactiveChild(kidId, value, parentId) {
     this.apiservice.activeDactiveChild(kidId, value).subscribe((res: any) => {
-      console.log('res', res)
       let msg = ''
       if (res.isSuccess) {
         if (res.data.isActivated) {
@@ -642,7 +624,6 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
   // deleteGuardian(guardianId) {
   //   this.ngxLoader.start();
   //   this.apiservice.deleteGuardian(guardianId).subscribe((res: any) => {
-  //     console.log('delete', res)
   //     this.ngxLoader.stop();
   //     if (res.isSuccess) {
   //       this.toastr.info( "Info","Guardian deleted!");
@@ -652,7 +633,6 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
   // }
   activedeactiveGuardian(id, value) {
     this.apiservice.activedeactiveGuardian(id, value).subscribe((res: any) => {
-      console.log('res', res)
       let msg = '';
       if (res.isSuccess) {
         if (res.data.isActivated) {
@@ -752,7 +732,6 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
     reader.readAsDataURL(event.target.files[0]);
     reader.onload = (_event) => {
       this.childImgURL = reader.result;
-      console.log('res from  this.childImgURL ', this.childImgURL);
     };
   }
 
@@ -760,7 +739,6 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
     this.ngxLoader.start();
     this.apiservice.uploadUserImage(this.currentUser.id, this.formData).subscribe((res: any) => {
       this.ngxLoader.stop();
-      console.log('res from server ', res);
       if (res) {
         this.getParentById();
         this.getProfileProgress();
@@ -778,7 +756,6 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
   uploadChildImg() {
     this.apiservice.getPicUrl(this.childformData).subscribe((res) => {
       this.kids[this.selectedChildIndx].avtar = res;
-      console.log('img string res', res)
       this.childformData = new FormData();
 
       this.updateChild(this.kids[this.selectedChildIndx], this.currentUser.id)
@@ -787,7 +764,6 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
   }
   removeParentImage() {
     this.apiservice.removeUserImage(this.currentUser.id).subscribe((res: any) => {
-      console.log('res from server ', res);
       if (res.isSuccess) {
         this.getParentById();
         this.getProfileProgress();
@@ -802,7 +778,6 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
   removeChildImage() {
     {
       this.apiservice.removeChildImage(this.kids[this.selectedChildIndx].id).subscribe((res: any) => {
-        console.log('res from server ', res);
         if (res.isSuccess) {
           this.onChildren(this.currentUser.id)
           window.document.getElementById("closeId").click();
@@ -822,12 +797,10 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
     reader.readAsDataURL(event.target.files[0]);
     reader.onload = (_event) => {
       this.childImgURL = reader.result;
-      console.log('res from  this.childImgURL ', this.childImgURL);
     };
     // -------------------------------------------------------------------------------
     this.apiservice.getPicUrl(formData).subscribe((res) => {
       this.kid.avtar = res;
-      console.log('img string res', this.kid.avtar)
     });
   }
   childImageUpdate(event, indx) {
@@ -838,7 +811,6 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
     reader.readAsDataURL(event.target.files[0]);
     reader.onload = (_event) => {
       this.childImgURL = reader.result;
-      console.log('this.childImgURL', this.childImgURL);
     };
     this.apiservice.getPicUrl(formData).subscribe((res) => {
       this.kids[indx].avtar = res;
@@ -952,7 +924,6 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
           this.kid.age = String(age);
           this.apiservice.addChild(this.kid).subscribe((res) => {
             childResponse = res;
-            console.log(childResponse)
             this.getProfileProgress();
             this.headerComponent.getProfileProgress();
             this.headerComponent.getUserById();
@@ -991,7 +962,6 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
     var birth = new Date(child.dob);
     let birthYear = moment(birth).format("YYYY");
     this.currentYear = moment(Date.now()).format("YYYY");
-    console.log('child image before', child);
     if (birthYear > this.currentYear) {
       this.toastr.warning("please fill valid birth year",);
     } else {
@@ -1009,9 +979,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
         child.age = String(this.age);
         child.avtar = child.avtar.split(this.baseUrl).pop();
         // child.avtar =  child.avtar.slice(21);
-        console.log('data image before', child);
         this.apiservice.updateChild(child.id, child).subscribe((res: any) => {
-          console.log('data image', res);
           this.getProfileProgress();
           this.headerComponent.getProfileProgress();
           this.headerComponent.getUserById();
@@ -1095,7 +1063,6 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
       .getOldChat(this.roomId, this.pageNo, this.pageSize)
       .subscribe((res: any[]) => {
         this.chatCollection = res;
-        console.log("old chat", res);
       });
     this.scrollToBottom();
   }
@@ -1134,20 +1101,16 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
           this.kid.interestInfo.splice(index, 1)
         }
         // if (this.kid.interestInfo.find(category => category.name === tag.name)) {
-        //   console.log('tag', tag)
         //   const index = this.kid.interestInfo.indexOf(tag);
-        //   console.log(index)
         //   this.kid.interestInfo.splice(index, 1)
         // }
         tag.isSelected = false
       });
-      console.log('interestInfo', this.kid.interestInfo)
     }
   }
   checkOrUncheckTag(e, categoryIndx, tagIndex) {
     // const value = (element) => element === false;
     let unchecked = this.searchedTags[categoryIndx].tags.filter(tag => !tag.isSelected)
-    console.log('unchecked', unchecked)
     if (e.target.checked === true) {
       if (this.kid.interestInfo.indexOf(this.searchedTags[categoryIndx].tags) == -1) {
         if (!this.kid.interestInfo.find(category => category._id === this.searchedTags[categoryIndx].tags[tagIndex]._id)) {
@@ -1164,7 +1127,6 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
     }
     else {
       let index = this.kid.interestInfo.findIndex(x => x._id===this.searchedTags[categoryIndx].tags[tagIndex]._id)
-      console.log(index)
       if (index!==-1) {
           this.kid.interestInfo.splice(index, 1)
         }
@@ -1216,7 +1178,6 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
     //   }
     // });
     // this.chatService.getTyping().subscribe((msg: string) => {
-    //   console.log("typing", this.typingMsg);
     //   let setTime;
     //   clearTimeout(setTime);
     //   //showing typing message.
@@ -1276,11 +1237,8 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
     }
   }
   getRoomId() {
-    console.log('service func.. calling ')
     // this.chatService.getRoomId().subscribe((id: string) => {
-    //   console.log('response room id ')
     //   this.roomId = id;
-    //   console.log('roomId', this.roomId)
     //   this.getOldChat();
     // });
   }
@@ -1291,10 +1249,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
     let formData = new FormData();
     this.fileData = event.target.files[0];
     formData.append("image", this.fileData);
-    console.log("formData", formData);
     this.apiservice.getPicUrl(formData).subscribe((imgURL: any) => {
-      console.log("image from server ", imgURL);
-
       if (imgURL) {
         let data = {
           msgFrom: this.currentUser.firstName,
@@ -1303,8 +1258,6 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
           room: this.roomId,
           date: new Date(),
         };
-        console.log("image from server ", data);
-        console.log("media data", data);
         // this.chatService.sendMedia(data);
         this.getOldChat();
       }
@@ -1336,7 +1289,6 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
 
   // ---------------------------------navigate to program detail page -------------------------------------------
   goToProgramDetail(data) {
-    console.log('clicked program', data)
     if (this.parentRole) {
       this.addAction(data._id);
     }
@@ -1352,9 +1304,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
 
   inviteAsktojoina() {
     this.inviteAsktojoin.userId = this.user.id
-    console.log(this.inviteAsktojoin)
     this.apiservice.InviteAsktojoin(this.inviteAsktojoin).subscribe((res: any) => {
-      console.log(res)
       if (res.isSuccess === true) {
         this.betaProgramInvitedUsers(this.currentUser.id)
       }
@@ -1368,7 +1318,6 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
       .getInvitedUsersByParent(userId)
       .subscribe((res: any) => {
         this.invitedUsers = res;
-        console.log('invited users', this.invitedUsers)
       });
   }
 
@@ -1378,7 +1327,6 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
       this.allTags = res.data;
       this.allTags = this.allTags.filter((item) => item.isActivated === true);
       this.allTags = this.allTags.sort((a, b) => b.programCount - a.programCount);
-      console.log('allTags list', this.allTags)
     });
   }
 }
