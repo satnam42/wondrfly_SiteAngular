@@ -2735,6 +2735,20 @@ button.map-buttonas {
     padding-right: 15px;
     margin: 0px 10px 6px 0px;
 }
+.chip-set-bar-btn .btn_style .material-icons {
+    font-size: 16px;
+}
+.chip-set-bar-btn .btn_style .mat-icon {
+    height: 16px;
+    width: 16px;
+}
+.chip-set-bar-btn .btn_style{
+    display: inline-flex;
+    align-items: center;
+    column-gap: 10px;
+    min-height: 30px;
+    max-height: 30px;
+}
 
 .chip-set {
     padding: 20px;

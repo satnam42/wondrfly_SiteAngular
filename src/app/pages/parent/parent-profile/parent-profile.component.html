@@ -1240,12 +1240,17 @@
                                 <div class="search-checkbox-div">
                                     <ul class="ul-tag-checkbox-info">
                                         <li *ngFor="let category of searchedTags;let i = index">
+                                            <div class="grid-label-checkbox">
                                             <label class="box-checkbox-txt">
                                                 <input type="checkbox" [checked]="searchedTags[i].category.isSelected"
                                                     (click)="checkOrUncheckAllTags($event,i)" [id]="'category'+i">
                                                 <span class="checkmark"></span>
                                                 <span class="checkbox-txt">{{category.category.name}}</span>
                                             </label>
+                                            <div class="ul-tag-btn-showall">
+                                                <a class="btn-showall">Show all <i class="fas fa-chevron-down"></i></a>
+                                            </div>
+                                            </div>
                                             <ul class="ul-tag-checkbox-child">
                                                 <li *ngFor="let subCategory of category.tags;let j = index">
                                                     <label class="box-checkbox-txt">
@@ -1262,17 +1267,21 @@
                                 </div>
                             </div>
                             <!-- End search check box html -->
-                            <div class="form-group">
+                            <div class="form-group" *ngIf="kid?.interestInfo?.length">
                                 <br />
+                                <div class="chips-box">
+                                 <div class="chips-scrollbar">   
                                 <mat-form-field class="demo-chip-list">
                                     <mat-chip-list>
-                                        <mat-chip *ngFor="let t of kid.interestInfo; let indx = index"
+                                        <mat-chip *ngFor="let t of kid?.interestInfo; let indx = index"
                                             [selectable]="selectable" [removable]="removable" (removed)="remove(t)">
                                             {{ t.name }}
                                             <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                                         </mat-chip>
                                     </mat-chip-list>
                                 </mat-form-field>
+                                </div>
+                            </div>
                             </div>
 
                             <!-- <div class="small_boxes">
