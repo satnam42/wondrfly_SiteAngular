@@ -40,7 +40,7 @@
         </div>
 
         <div class="main_img">
-            <img oncontextmenu="return false;" [defaultImage]="defaultImage" [errorImage]="errorImage" lazyLoad="{{ blogUrl }}{{ blogbyid?.image[0].formats?.small?.url }}" alt="{{ blogbyid?.image[0]?.alternativeText }}" />
+            <img oncontextmenu="return false;" src="{{ blogUrl }}{{ blogbyid?.image[0].formats?.small?.url }}" alt="{{ blogbyid?.image[0]?.alternativeText }}" />
         </div>
 
         <div class="text_section socialblog-rel">

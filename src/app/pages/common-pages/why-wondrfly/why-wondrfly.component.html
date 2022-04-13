@@ -12,28 +12,25 @@
           <div class="col-3 image-sec-1">
             <img
               class="mt-5 image-sec-1-1"
-              [defaultImage]="defaultImage"
-              lazyLoad="{{ blogUrl }}{{ data[0]?.images[1]?.url }}"
+       
+              src="{{ blogUrl }}{{ data[0]?.images[1]?.formats?.thumbnail?.url }}"
               alt="{{ data[0]?.images[1]?.alternativeText }}"
             />
             <img
               class="mt-4 image-sec-1-2"
-              [defaultImage]="defaultImage"
-              lazyLoad="{{ blogUrl }}{{ data[0]?.images[0]?.url }}"
+              src="{{ blogUrl }}{{ data[0]?.images[0]?.formats?.thumbnail?.url }}"
               alt="{{ data[0]?.images[0]?.alternativeText }}"
             />
           </div>
           <div class="col-3 image-sec-2">
             <img
               class="image-sec-2-1"
-              [defaultImage]="defaultImage"
-              lazyLoad="{{ blogUrl }}{{ data[0]?.images[2]?.url }}"
+              src="{{ blogUrl }}{{ data[0]?.images[2]?.formats?.thumbnail?.url }}"
               alt="{{ data[0]?.images[2]?.alternativeText }}"
             />
             <img
               class="mt-4 image-sec-2-2"
-              [defaultImage]="defaultImage"
-              lazyLoad="{{ blogUrl }}{{ data[0]?.images[3]?.url }}"
+              src="{{ blogUrl }}{{ data[0]?.images[3]?.formats?.thumbnail?.url }}"
               alt="{{ data[0]?.images[3]?.alternativeText }}"
             />
           </div>
@@ -73,8 +70,7 @@
             </div>
             <div class="image-section">
               <img
-                [defaultImage]="defaultImage"
-                lazyLoad="{{ blogUrl }}{{ data[1]?.images[0]?.url }}"
+                src="{{ blogUrl }}{{ data[1]?.images[0]?.formats?.small?.url }}"
                 alt="{{ data[1]?.images[0]?.alternativeText }}"
               />
             </div>

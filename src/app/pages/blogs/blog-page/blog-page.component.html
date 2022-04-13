@@ -22,11 +22,9 @@
       <div class="row">
         <div class="col-7">
           <div class="main_img">
-            <img oncontextmenu="return false;"
+            <img oncontextmenu="return false;" *ngIf="blog[0]?.image[0]?.url"
               class="blog_img cursor"
-              [defaultImage]="defaultImage"
-              [errorImage]="errorImage"
-              lazyLoad="{{ blogUrl }}{{ blog[0]?.image[0]?.formats?.thumbnail?.url }}"
+              src="{{ blogUrl }}{{ blog[0]?.image[0]?.formats?.thumbnail?.url }}"
               alt="{{ blog[0]?.image[0]?.alternativeText }}"
               (click)="setBlog(blog[0])"
             />
