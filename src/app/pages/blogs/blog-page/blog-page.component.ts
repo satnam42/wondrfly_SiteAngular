@@ -70,6 +70,7 @@ export class BlogPageComponent implements OnInit {
     this.ngxLoader.start()
     const responcee = axios.get(`${this.blogUrl}/blogs?_sort=published_at:DESC&_start=0&_limit=4`).then(response => {
       this.blog = response.data
+      console.log('this.blog',this.blog)
       // this.blog.reverse()
       this.ngxLoader.stop()
     });

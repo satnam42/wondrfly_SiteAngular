@@ -79,7 +79,7 @@
           <img oncontextmenu="return false;"
           (click)="setBlog(blog)"
           class="forth_section_image cursor"
-          src="{{ blogUrl }}{{ blog?.image[0]?.url }}"
+          src="{{ blogUrl }}{{ blog?.image[0]?.formats?.thumbnail?.url }}"
           alt="{{ blog?.image[0]?.alternativeText }}"
         />
         </div>

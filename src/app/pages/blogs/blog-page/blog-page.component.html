@@ -24,7 +24,7 @@
           <div class="main_img">
             <img oncontextmenu="return false;"
               class="blog_img cursor"
-              src="{{ blogUrl }}{{ blog[0]?.image[0]?.url }}"
+              src="{{ blogUrl }}{{ blog[0]?.image[0]?.formats?.thumbnail?.url }}"
               alt="{{ blog[0]?.image[0]?.alternativeText }}"
               (click)="setBlog(blog[0])"
             />
@@ -60,7 +60,9 @@
                 <!-- <img oncontextmenu="return false;"  (click)="setBlog(blogg)" style="height: 137px;width: 167px;" [defaultImage]="defaultImage" [errorImage]="errorImage" lazyLoad="{{blogUrl}}{{blogg?.image[0]?.url}}"/> -->
                 <img oncontextmenu="return false;"
                   style="height: 137px; width: 167px"
-                  src="{{ blogUrl }}{{ blogg?.image[0]?.url }}"
+                  [defaultImage]="defaultImage"
+            [errorImage]="errorImage"
+                  lazyLoad="{{ blogUrl }}{{ blogg?.image[0]?.formats?.thumbnail?.url }}"
                   alt="{{ blogg?.image[0]?.alternativeText }}"
                   (click)="setBlog(blogg)"
                 />
@@ -118,7 +120,7 @@
             class="forth_section_image cursor"
             [defaultImage]="defaultImage"
             [errorImage]="errorImage"
-            lazyLoad="{{ blogUrl }}{{ blog?.image[0]?.url }}"
+            lazyLoad="{{ blogUrl }}{{ blog?.image[0]?.formats?.thumbnail?.url }}"
             alt="{{ blog?.image[0]?.alternativeText }}"
           />
           </div>
@@ -170,7 +172,7 @@
             class="forth_section_image cursor"
             [defaultImage]="defaultImage"
             [errorImage]="errorImage"
-            lazyLoad="{{ blogUrl }}{{ blog?.image[0]?.url }}"
+            lazyLoad="{{ blogUrl }}{{ blog?.image[0]?.formats?.thumbnail?.url }}"
             alt="{{ blog?.image[0]?.alternativeText }}"
           />
           </div>
@@ -222,7 +224,7 @@
             class="forth_section_image cursor"
             [defaultImage]="defaultImage"
             [errorImage]="errorImage"
-            lazyLoad="{{ blogUrl }}{{ blog?.image[0]?.url }}"
+            lazyLoad="{{ blogUrl }}{{ blog?.image[0]?.formats?.thumbnail?.url }}"
             alt="{{ blog?.image[0]?.alternativeText }}"
           />
           </div>
@@ -267,7 +269,7 @@
                 class="small_section_img cursor"
                 [defaultImage]="defaultImage"
                 [errorImage]="errorImage"
-                lazyLoad="{{ blogUrl }}{{ blog?.image[0]?.url }}"
+                lazyLoad="{{ blogUrl }}{{ blog?.image[0]?.formats?.thumbnail?.url }}"
                 alt="{{ blog?.image[0]?.alternativeText }}"
               />
             </div>
@@ -311,7 +313,7 @@
               class="forth_section_image cursor"
               [defaultImage]="defaultImage"
               [errorImage]="errorImage"
-              lazyLoad="{{ blogUrl }}{{ blog?.image[0]?.url }}"
+              lazyLoad="{{ blogUrl }}{{ blog?.image[0]?.formats?.thumbnail?.url }}"
               alt="{{ blog?.image[0]?.alternativeText }}"
             />
             </div>

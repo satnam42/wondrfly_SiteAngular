@@ -40,7 +40,7 @@
         </div>
 
         <div class="main_img">
-            <img oncontextmenu="return false;" [defaultImage]="defaultImage" [errorImage]="errorImage" lazyLoad="{{ blogUrl }}{{ blogbyid?.image[0].url }}" alt="{{ blogbyid?.image[0]?.alternativeText }}" />
+            <img oncontextmenu="return false;" [defaultImage]="defaultImage" [errorImage]="errorImage" lazyLoad="{{ blogUrl }}{{ blogbyid?.image[0].formats?.small?.url }}" alt="{{ blogbyid?.image[0]?.alternativeText }}" />
         </div>
 
         <div class="text_section socialblog-rel">
@@ -244,7 +244,7 @@
               class="forth_section_image cursor"
               [defaultImage]="defaultImage"
               [errorImage]="errorImage"
-              lazyLoad="{{ blogUrl }}{{ b?.image[0]?.url }}"
+              lazyLoad="{{ blogUrl }}{{ b?.image[0]?.formats?.thumbnail?.url }}"
               alt="{{ b?.image[0]?.alternativeText }}"
               (click)="setBlog(b)"
             />
