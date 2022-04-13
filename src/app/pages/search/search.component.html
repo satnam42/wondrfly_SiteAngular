@@ -347,51 +347,41 @@
                     </button> -->
                     <button class="btn_style save_btn cursor" *ngIf="!isInPerson && isOnline">
                         online
-                        <span class="ml-2" (click)="contentLoaded=false;isOnline=!isOnline;programFilter()"><img
-                                src="assets/white-close.png" /></span>
+                        <mat-icon (click)="contentLoaded=false;isOnline=!isOnline;programFilter()">cancel</mat-icon>
                     </button>
                     <button class="btn_style save_btn cursor" *ngIf="isInPerson && !isOnline">
                         in-persion
-                        <span class="ml-2" (click)="contentLoaded=false;isInPerson=!isInPerson;programFilter()"><img
-                                src="assets/white-close.png" /></span>
+                                <mat-icon  (click)="contentLoaded=false;isInPerson=!isInPerson;programFilter()">cancel</mat-icon>
                     </button>
 
 
                     <button class="btn_style save_btn cursor" *ngIf="isAgeFilter">
                         Age {{minAge}}-{{maxAge}} years
-                        <span class="ml-2" (click)="contentLoaded=false;isAgeFilter=!isAgeFilter;programFilter()"><img
-                                src="assets/white-close.png" /></span>
+                                <mat-icon  (click)="contentLoaded=false;isAgeFilter=!isAgeFilter;programFilter()">cancel</mat-icon>
                     </button>
                     <button class="btn_style save_btn cursor" *ngIf="isPriceFilter">
                         Price ${{minPrice}}-${{maxPrice}}
-                        <span class="ml-2"
-                            (click)="contentLoaded=false;isPriceFilter=!isPriceFilter;programFilter()"><img
-                                src="assets/white-close.png" /></span>
+                                <mat-icon (click)="contentLoaded=false;isPriceFilter=!isPriceFilter;programFilter()">cancel</mat-icon>
                     </button>
                     <button class="btn_style save_btn cursor" *ngIf="isDateFilter">
                         {{fromDate | date: "MMM d " }}-{{toDate | date: "MMM d " }}
-                        <span class="ml-2" (click)="contentLoaded=false;isDateFilter=!isDateFilter;programFilter()"><img
-                                src="assets/white-close.png" /></span>
+                                <mat-icon (click)="contentLoaded=false;isDateFilter=!isDateFilter;programFilter()">cancel</mat-icon>
                     </button>
                     <button class="btn_style save_btn cursor" *ngIf="isTopFilterCheckBox">
                         Top Rated
-                        <span (click)="contentLoaded=false;isTopFilterCheckBox=false;isTopFilter=false;programFilter()"
-                            class="ml-2"><img src="assets/white-close.png" /></span>
+                            <mat-icon (click)="contentLoaded=false;isTopFilterCheckBox=false;isTopFilter=false;programFilter()">cancel</mat-icon>
                     </button>
                     <button class="btn_style save_btn cursor" *ngFor="let day of this.selectedDays;index as i">
                         {{day}}
-                        <span (click)="removeRecentSearches('days',i)" class="ml-2"><img
-                                src="assets/white-close.png" /></span>
+                                <mat-icon (click)="removeRecentSearches('days',i)" class="ml-2">cancel</mat-icon>
                     </button>
                     <button class="btn_style save_btn cursor" *ngFor="let type of this.selectedProgramTypes;index as i">
                         {{type}}
-                        <span (click)="removeRecentSearches('types',i)" class="ml-2"><img
-                                src="assets/white-close.png" /></span>
+                                <mat-icon (click)="removeRecentSearches('types',i)" class="ml-2">cancel</mat-icon>
                     </button>
                     <button class="btn_style save_btn cursor" *ngFor="let time of this.selectedProgramTime;index as i">
                         {{time}}
-                        <span (click)="removeRecentSearches('times',i)" class="ml-2"><img
-                                src="assets/white-close.png" /></span>
+                                <mat-icon (click)="removeRecentSearches('times',i)" class="ml-2">cancel</mat-icon>
                     </button>
                     <span>
                         <a class="ml-2 clear-text cursor" (click)="resetFilter()">Clear all</a>

@@ -2724,12 +2724,12 @@ button.map-buttonas {
     border-radius: 20px;
     text-align: center;
     font-family: "poppins";
-    font-size: 13px;
+    font-size: 12px;
     letter-spacing: 0.02em;
     text-transform: uppercase;
-    font-weight: 600;
-    color: #fff !important;
-    background-color: #53b2e8;
+    font-weight: 400;
+    color: #53b2e8 !important;
+    /* background-color: #53b2e8; */
     transition: 0.8s;
     padding-left: 15px;
     padding-right: 15px;
