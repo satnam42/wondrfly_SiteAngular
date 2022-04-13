@@ -242,9 +242,8 @@
             <div class="img-overflow">
               <img oncontextmenu="return false;"
               class="forth_section_image cursor"
-              [defaultImage]="defaultImage"
-              [errorImage]="errorImage"
-              lazyLoad="{{ blogUrl }}{{ b?.image[0]?.formats?.thumbnail?.url }}"
+
+              src="{{ blogUrl }}{{ b?.image[0]?.formats?.thumbnail?.url }}"
               alt="{{ b?.image[0]?.alternativeText }}"
               (click)="setBlog(b)"
             />
