@@ -1362,3 +1362,7 @@
         </div>
     </div>
 </div>
+<ngx-ui-loader [fgsTemplate]="foregroundSpinner" fgsSize="190" bgsSize="190"> </ngx-ui-loader>
+<ng-template #foregroundSpinner>
+      <app-loader-file></app-loader-file>
+</ng-template>

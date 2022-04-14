@@ -1029,11 +1029,12 @@
 <share-popup [shareData]="selectedProgram" fgsSize="100"></share-popup>
 
 <!-- <ngx-ui-loader></ngx-ui-loader> -->
+
+
+<share-popup [shareData]="selectedProgram"></share-popup>
 <ngx-ui-loader [fgsTemplate]="foregroundSpinner">
     
 </ngx-ui-loader>
 <ng-template #foregroundSpinner>
 	  <ng-lottie [options]="optionslotti" width="200px" height="200px"></ng-lottie>
 </ng-template>
-
-<share-popup [shareData]="selectedProgram"></share-popup>
