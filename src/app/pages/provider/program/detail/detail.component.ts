@@ -436,7 +436,7 @@ export class DetailComponent implements OnInit {
     window.scroll(0, 0);
     this.program.id = data._id
     this.getProgramById()
-    this.program_mins = moment.utc(moment(this.program.time.to, "HH:mm:ss").diff(moment(this.program.time.from, "HH:mm:ss"))).format("mm")
+    // this.program_mins = moment.utc(moment(this.program.time.to, "HH:mm:ss").diff(moment(this.program.time.from, "HH:mm:ss"))).format("mm")
   }
 
   addFav(programId?,indx?) {
