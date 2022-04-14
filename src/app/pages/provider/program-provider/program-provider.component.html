@@ -394,12 +394,12 @@ out of 5 </a> -->
                                             </div>
                                         </div>
                                     </div> -->
-                                    <div class="col-md-4" *ngIf="user?.website">
+                                    <div class="col-md-4" [hidden]="!user?.website">
                                         <div class="media company_info icon-left-mt-10 mb-col-0px">
                                             <div class="media-left">
                                                 <span class="icon icon-global"></span>
                                             </div>
-                                            <div class="media-body" id="ActivitiesList">
+                                            <div class="media-body">
                                                 <h4>WWW</h4>
                                                 <p><a href="{{user?.website}}" target="_blank">{{user?.website}}</a></p>
                                             </div>
@@ -415,6 +415,7 @@ out of 5 </a> -->
                                     </div> -->
                                 </div>
                             </div>
+                            <div  id="ActivitiesList" style="visibility: hidden;">scroll</div>
                         </div>
                     </div>
                     <div class="provider_full carousel-cat ativities-section-info"  *ngIf="isGenOverview && programs?.length">
@@ -471,7 +472,7 @@ out of 5 </a> -->
                                                                     <img alt="Loction Pin" src="assets/user_group.svg"> {{program?.ageGroup.from}} - {{program?.ageGroup.to}} Yrs
                                                                 </p>
                                                                 <p>
-                                                                    <img alt="Loction Pin" src="assets/user_group.svg"> {{program?.time?.from.toFixed(2)}} - {{program?.time?.to.toFixed(2)}}
+                                                                    <img alt="Loction Pin" src="assets/user_group.svg"> {{globalFunc.tools_replaceAll(program?.time?.from?.toFixed(2)?.toString(),".",":" )}} - {{globalFunc.tools_replaceAll(program?.time?.to?.toFixed(2)?.toString(),".",":" )}}
                                                                 </p>
                                                             </div>
                                                         </div>
@@ -501,7 +502,7 @@ out of 5 </a> -->
                                                                     <img alt="Loction Pin" src="assets/user_group.svg"> {{program?.ageGroup.from}} - {{program?.ageGroup.to}} Yrs
                                                                 </p>
                                                                 <p>
-                                                                    <img alt="Loction Pin" src="assets/user_group.svg"> {{program?.time?.from.toFixed(2)}} - {{program?.time?.to.toFixed(2)}}
+                                                                    <img alt="Loction Pin" src="assets/user_group.svg"> {{globalFunc.tools_replaceAll(program?.time?.from?.toFixed(2)?.toString(),".",":" )}} - {{globalFunc.tools_replaceAll(program?.time?.to?.toFixed(2)?.toString(),".",":" )}}
                                                                 </p>
                                                             </div>
                                                         </div>
@@ -543,7 +544,7 @@ out of 5 </a> -->
                                                 <img src="assets/watch-icon-img.png" alt="time-icon">
                                             </div>
                                             <div>                        
-                                                <p *ngIf="!program?.isTimeNotMention">{{program?.time?.from.toFixed(2)}} - {{program?.time?.to.toFixed(2)}}</p>
+                                                <p *ngIf="!program?.isTimeNotMention">{{globalFunc.tools_replaceAll(program?.time?.from?.toFixed(2)?.toString(),".",":" )}} - {{globalFunc.tools_replaceAll(program?.time?.to?.toFixed(2)?.toString(),".",":" )}}</p>
                                                 <p *ngIf="program?.isTimeNotMention">Time not mentioned</p>
                                             </div>
                                         </div>

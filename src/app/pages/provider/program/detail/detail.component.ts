@@ -136,7 +136,7 @@ export class DetailComponent implements OnInit {
     private toastr: ToastrService,
     private activatedRoute: ActivatedRoute,
     public auth: AuthsService,
-    public imageLoader: Globals,
+    public globalFunc: Globals,
     private dataService: DataService) {
     this.activatedRoute.params.subscribe(params => {
       this.program.id = params['id'];

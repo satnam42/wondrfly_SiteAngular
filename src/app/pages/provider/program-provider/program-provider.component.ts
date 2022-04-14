@@ -11,6 +11,7 @@ import { Meta, Title } from '@angular/platform-browser';
 import { ToastrService } from 'ngx-toastr';
 import { DataService } from 'src/app/core/services/dataservice.service ';
 import { environment } from 'src/environments/environment.prod';
+import { Globals } from 'src/app/core/common/imageLoader';
 
 @Component({
   selector: 'app-program-provider',
@@ -83,6 +84,7 @@ export class ProgramProviderComponent implements OnInit {
   @ViewChild(HeaderComponent, { static: true }) headerComponent: HeaderComponent;
   previous;
   userId=''
+  scrollToActivities = false;
   constructor(private router: Router,
     private apiservice: ApiService,
     private auth: AuthsService,
@@ -91,7 +93,8 @@ export class ProgramProviderComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private titleService: Title,
     private metaTagService: Meta,
-    private dataService: DataService) {
+    private dataService: DataService,
+    public globalFunc: Globals) {
 
     this.activatedRoute.params.subscribe(params => {
       this.user.id = params['id'];
@@ -102,7 +105,10 @@ export class ProgramProviderComponent implements OnInit {
       this.userId = this.userData.id
       this.isLogin = true;
     }
-
+    this.scrollToActivities = dataService.getScrollToActivities()
+//     if(this.scrollToActivities===true){
+// this.onActivities('#ActivitiesList')
+//     }
   }
   onGenOverview() {
     window.scroll(0, 0);

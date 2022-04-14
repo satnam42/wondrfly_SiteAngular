@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class DataService {
   private data: any={};
   private location: any;
+  private scrollToActivities:boolean;
   
   setOption(option) {
     this.data = option;
@@ -18,6 +19,12 @@ export class DataService {
   }
   getLocation() {
     return this.location;
+  }
+  setScrollToActivities(option) {
+    this.scrollToActivities = option;
+  }
+  getScrollToActivities(){
+    return this.scrollToActivities;
   }
 
 

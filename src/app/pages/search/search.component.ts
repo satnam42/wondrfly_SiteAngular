@@ -13,6 +13,7 @@ import { JoyrideService } from 'ngx-joyride';
 import { AuthsService } from 'src/app/core/services/auths.service';
 import { CookieService } from 'ngx-cookie-service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { Globals } from 'src/app/core/common/imageLoader';
 @Component({
   selector: 'search',
   templateUrl: './search.component.html',
@@ -163,7 +164,8 @@ export class SearchComponent implements OnInit, OnDestroy {
     private metaTagService: Meta,
     private cookies: CookieService,
     private joyride: JoyrideService,
-    private ngxLoader: NgxUiLoaderService
+    private ngxLoader: NgxUiLoaderService,
+    public globalFunc:Globals
   ) {
     this.countVisit()
     this.minDate = moment();
@@ -779,7 +781,10 @@ export class SearchComponent implements OnInit, OnDestroy {
       this.user = res.data;
     });
   }
-  goToProviderProfile(provider) {
+  goToProviderProfile(provider,scrollToActivities?) {
+    if(scrollToActivities){
+      this.dataservice.setScrollToActivities(scrollToActivities)
+    }
     var providerName = provider.firstName;
     providerName = providerName.toLowerCase();
     providerName = providerName.replace(/ /g, "-");
