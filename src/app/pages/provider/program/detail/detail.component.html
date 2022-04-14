@@ -181,10 +181,8 @@
                                                 <!-- <p *ngIf="program?.isTimeNotMention">
                                                     <img src="assets/watch.svg" alt="Loction Pin" /> Time Not Mention
                                                 </p> -->
-                                                <p *ngIf="
-                            program?.duration?.hours || program?.duration?.minutes
-                          ">
-                                                    <img src="assets/timer.svg" alt="Loction Pin" />{{ program?.duration?.hours }} : {{ program?.duration?.minutes }} <span *ngIf="program?.duration?.hours">Hours</span><span *ngIf="!program?.duration?.hours">Minutes</span>
+                                                <p *ngIf="!program?.isTimeNotMention">
+                                                    <img src="assets/timer.svg" alt="Loction Pin" />{{ globalFunc.timeDifference(globalFunc.tools_replaceAll(program?.time?.from?.toFixed(2)?.toString(),".",":" ),globalFunc.tools_replaceAll(program?.time?.to?.toFixed(2)?.toString(),".",":" )) }}
                                                 </p>
 
                                                 <p *ngIf="!program?.isFree && program?.pricePerParticipant">
