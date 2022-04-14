@@ -11,8 +11,6 @@ export class Globals {
     return str.replace(new RegExp(escapedFind, 'g'), replace);
   }
   timeDifference(from, end) {
-    console.log('from',from)
-    console.log('end',end)
     var timeStart:any = new Date("01/01/2007 " + from)
     var timeEnd:any = new Date("01/01/2007 " + end)
     var diffMs = timeEnd - timeStart;  
