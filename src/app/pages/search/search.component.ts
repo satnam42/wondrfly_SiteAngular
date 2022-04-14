@@ -114,7 +114,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   public searchElementRef: ElementRef;
   shareUrlSocial = environment.baseUrl;
   baseUrl = environment.baseUrl;
-  baseUrlProduction='https://wondrfly.com/'
+  baseUrlProduction = 'https://wondrfly.com/'
   selectedProgram: any;
   url: string;
   suggested: any = [];
@@ -147,11 +147,11 @@ export class SearchComponent implements OnInit, OnDestroy {
   regWallCookies = 0
   moment = moment;
   minDate: moment.Moment;
-  userId=''
+  userId = ''
   upArrow: boolean = false;
   upArrow2: boolean = false;
-  providerr= new User;
-  activitiesCount=0
+  providerr = new User;
+  activitiesCount = 0
   constructor(
     private router: Router,
     private apiservice: ApiService,
@@ -165,7 +165,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     private cookies: CookieService,
     private joyride: JoyrideService,
     private ngxLoader: NgxUiLoaderService,
-    public globalFunc:Globals
+    public globalFunc: Globals
   ) {
     this.countVisit()
     this.minDate = moment();
@@ -520,11 +520,11 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.apiservice.getPublishedProgramByProvider(this.pageNo, this.pageSize, 'published').subscribe((res: any) => {
       this.ngxLoader.stop()
       this.programs = this.programs.concat(res.data);
-      if(res.isSuccess){
-      this.providerProgram=this.programs;
-      this.providerProgram[0].collapsed=true
-      this.providerProgram[1].collapsed=true
-      this.providerProgram[2].collapsed=true
+      if (res.isSuccess) {
+        this.providerProgram = this.programs;
+        this.providerProgram[0].collapsed = true
+        this.providerProgram[1].collapsed = true
+        this.providerProgram[2].collapsed = true
       }
       // this.fakeLoaderData = [1,2]
       // this.contentLoaded = true;
@@ -536,8 +536,8 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
 
-  getProviderbyId(id){
-    this.apiservice.getUserById(id).subscribe((res:any)=>{
+  getProviderbyId(id) {
+    this.apiservice.getUserById(id).subscribe((res: any) => {
       return this.providerr = res
     })
   }
@@ -568,7 +568,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     })
   }
 
-  addFavProgram(userId, programId, providerIndx,programIndx) {
+  addFavProgram(userId, programId, providerIndx, programIndx) {
     this.providerProgram[providerIndx].programs[programIndx].isFav = true;
     this.fav.userId = userId;
     this.fav.programId = programId;
@@ -577,7 +577,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     });
   }
 
-  deleteFavProgram(favId, providerIndx,programIndx) {
+  deleteFavProgram(favId, providerIndx, programIndx) {
     this.providerProgram[providerIndx].programs[programIndx].isFav = false;
     this.apiservice.deleteFavProgram(favId).subscribe(res => {
       this.deleteProgramRes = res;
@@ -623,8 +623,8 @@ export class SearchComponent implements OnInit, OnDestroy {
       this.searchedSubCategory = this.activityName;
     });
   }
-  parentAnalyticAction(key,value){
-    this.apiservice.parentAnalytics(key,this.userId,value).subscribe((res: any) => {
+  parentAnalyticAction(key, value) {
+    this.apiservice.parentAnalytics(key, this.userId, value).subscribe((res: any) => {
     });
   }
   programFilter() {
@@ -657,7 +657,7 @@ export class SearchComponent implements OnInit, OnDestroy {
       if (this.categoryId) {
         this.isCategoryFilter = true;
         categoryId = this.categoryId
-        this.parentAnalyticAction('category',categoryId)
+        this.parentAnalyticAction('category', categoryId)
       }
       for (let day of this.selectedDays) {
         this.isDaysFilter = true;
@@ -689,7 +689,7 @@ export class SearchComponent implements OnInit, OnDestroy {
         else {
           tags += ',' + tag
         }
-        this.parentAnalyticAction('subCategory',tag)
+        this.parentAnalyticAction('subCategory', tag)
       }
       for (let time of this.selectedProgramTime) {
         this.isTimeFilter = true
@@ -737,17 +737,24 @@ export class SearchComponent implements OnInit, OnDestroy {
         if (res.isSuccess) {
           // this.isTopFilterCheckBox = false
           this.programs = res.data;
-          this.providerProgram= this.programs;
-          this.providerProgram[0].collapsed=true
-          this.providerProgram[1].collapsed=true
-          this.providerProgram[2].collapsed=true
-          if(categoryId || this.selectedSubCategories.length){
+          this.providerProgram = this.programs;
+          console.log('this.providerProgram',this.providerProgram)
+          if (this.providerProgram.length) {
+            this.providerProgram[0].collapsed = true
+          }
+          if (this.providerProgram.length == 2) {
+            this.providerProgram[1].collapsed = true
+          }
+          else if (this.providerProgram.length > 2) {
+            this.providerProgram[1].collapsed = true
+            this.providerProgram[2].collapsed = true
+          }
+          if (categoryId || this.selectedSubCategories.length) {
             const sum = this.providerProgram.reduce((accumulator, object) => {
               return accumulator + object.programs.length;
             }, 0);
-           this.activitiesCount= sum
+            this.activitiesCount = sum
           }
-
           // for (let i in this.programs) {
           //   let category = this.programs[i].category.filter((v, num, a) => a.findIndex(t => (t.name == v.name)) === num)
           //   this.programs[i].category = category
@@ -781,8 +788,8 @@ export class SearchComponent implements OnInit, OnDestroy {
       this.user = res.data;
     });
   }
-  goToProviderProfile(provider,scrollToActivities?) {
-    if(scrollToActivities){
+  goToProviderProfile(provider, scrollToActivities?) {
+    if (scrollToActivities) {
       this.dataservice.setScrollToActivities(scrollToActivities)
     }
     var providerName = provider.firstName;
@@ -914,13 +921,13 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   }
 
-  scrollLeft(i){
-    document.getElementById('widgetsContent'+i).scrollLeft -= 650;
+  scrollLeft(i) {
+    document.getElementById('widgetsContent' + i).scrollLeft -= 650;
     // this.checkScroll()
   }
 
-  scrollRight(i){
-    document.getElementById('widgetsContent'+i).scrollLeft += 650;
+  scrollRight(i) {
+    document.getElementById('widgetsContent' + i).scrollLeft += 650;
     // this.checkScroll()
   }
 
