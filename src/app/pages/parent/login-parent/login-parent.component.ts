@@ -382,6 +382,7 @@ export class LoginParentComponent implements OnInit {
   checkOrUncheckAllTags(e, categoryIndx) {
     if (e.target.checked === true) {
       this.searchedTags[categoryIndx].category.isSelected = true;
+      this.searchedTags[categoryIndx].collapsed = true;
       this.searchedTags[categoryIndx].tags.forEach(tag => {
         tag.isSelected = true
         if (this.kid.interestInfo.indexOf(tag) == -1) {

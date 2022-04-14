@@ -2713,35 +2713,10 @@ ul.ul-tag-checkbox-info ul.ul-tag-checkbox-child .checkbox-txt {
   column-gap: 15px;
   align-items: center;
 }
-.ul-tag-btn-showall a.btn-showall {
-  display: block;
-  font-family: 'Poppins';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 21px;
-  letter-spacing: 0.001em;
-  text-decoration-line: underline;
-  color: #53B2E8;
-  margin-bottom: 12px;
-}
-.ul-tag-btn-showall a.btn-showall i.fas {
-  padding-left: 8px;
-}
 .mb-20{margin-bottom: 20px;}
  /* End search check box CSS  */
 
 
- .chips-box {
-  padding: 10px 0px;
-  border: 1px solid #E5E9EC;
-  border-radius: 20px;
-}
-.chips-scrollbar{
-  padding: 0px 10px;
-  max-height: 127px;
-  overflow-y: auto;
-}
 ::ng-deep.chips-box span.mat-form-field-label-wrapper {
   display: none;
 }
