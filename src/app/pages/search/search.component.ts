@@ -41,6 +41,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   locationData: any = {}
   favPrograms: any;
   isMap: boolean = true;
+  isLoaded=false
   locations = [];
   categories: Category[];
   categoriesBySearch: any = new Category;
@@ -522,6 +523,9 @@ export class SearchComponent implements OnInit, OnDestroy {
       this.programs = this.programs.concat(res.data);
       if (res.isSuccess) {
         this.providerProgram = this.programs;
+        if(!this.providerProgram.length){
+          this.isLoaded=true
+        }
         this.providerProgram[0].collapsed = true
         this.providerProgram[1].collapsed = true
         this.providerProgram[2].collapsed = true
@@ -739,6 +743,9 @@ export class SearchComponent implements OnInit, OnDestroy {
           this.programs = res.data;
           this.providerProgram = this.programs;
           console.log('this.providerProgram',this.providerProgram)
+          if(!this.providerProgram.length){
+            this.isLoaded=true
+          }
           if (this.providerProgram.length) {
             this.providerProgram[0].collapsed = true
           }
