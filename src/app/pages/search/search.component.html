@@ -760,7 +760,8 @@
                                                     <div><img src="assets/calender-icon-img1.png" alt="calender-icon" />
                                                     </div>
                                                     <div>
-                                                        <p>{{program?.date?.from | date:"EEE, MMM dd"}} - {{program?.date?.to | date:"MMM dd"}}</p>
+                                                        <p *ngIf="!program?.isDateNotMention">{{program?.date?.from | date:"EEE, MMM dd"}} - {{program?.date?.to | date:"MMM dd"}}</p>
+                                                        <p *ngIf="program?.isDateNotMention">Ongoing</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -769,7 +770,9 @@
                                                     <div><img src="assets/watch-icon-img.png" alt="calender-icon" />
                                                     </div>
                                                     <div>
-                                                        <p> {{program?.time?.from}} – {{program?.time?.from}}</p>
+                                                        <p *ngIf="!program?.isTimeNotMention"> {{program?.time?.from?.toFixed(2)}} – {{program?.time?.from?.toFixed(2)}}</p>
+                                                        <p *ngIf="program?.isTimeNotMention">Time not mentioned</p>
+
                                                     </div>
                                                 </div>
                                             </div>
