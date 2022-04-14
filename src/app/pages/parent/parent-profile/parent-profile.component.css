@@ -2745,3 +2745,6 @@ ul.ul-tag-checkbox-info ul.ul-tag-checkbox-child .checkbox-txt {
 ::ng-deep.chips-box span.mat-form-field-label-wrapper {
   display: none;
 }
+::ng-deep.mat-chip-list-wrapper{
+  margin: 0px !important;
+}

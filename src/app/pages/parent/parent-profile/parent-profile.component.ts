@@ -1085,6 +1085,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
   checkOrUncheckAllTags(e, categoryIndx) {
     if (e.target.checked === true) {
       this.searchedTags[categoryIndx].category.isSelected = true;
+      this.searchedTags[categoryIndx].collapsed = true;
       this.searchedTags[categoryIndx].tags.forEach(tag => {
         tag.isSelected = true
         if (this.kid.interestInfo.indexOf(tag) == -1) {
