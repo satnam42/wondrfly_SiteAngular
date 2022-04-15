@@ -222,8 +222,15 @@ export class ProgramProviderComponent implements OnInit {
     // this.getBadges();
     this.scrollToActivities = this.dataService.getScrollToActivities()
     if(this.scrollToActivities=='activities'){
+      this.dataService.setScrollToActivities('')
      this.onActivities('#ActivitiesList')
     }
+    else{
+      window.scroll(0,0)
+    }
+  }
+  ngOnDestroy() {
+window.scroll(0,0)
   }
   // getBadges() {
   //   this.apiservice.badgeList().subscribe(res => {

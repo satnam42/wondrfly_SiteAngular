@@ -191,7 +191,10 @@ export class DetailComponent implements OnInit {
     this.program.categoryId = item;
     // do something with selected item
   }
-  goToProfile() {
+  goToProfile(scrollToActivities?) {
+    if (scrollToActivities==='activities') {
+      this.dataService.setScrollToActivities(scrollToActivities)
+    }
     this.program.programOwner = this.program.programOwner.toLowerCase();
     this.program.programOwner = this.program.programOwner.replace(/ /g, "-");
     this.program.programOwner = this.program.programOwner.replace(/\?/g, "-");
@@ -362,6 +365,7 @@ export class DetailComponent implements OnInit {
     });
   }
   ngOnInit() {
+    window.scroll(0,0)
     this.bannerIndx = Math.floor(Math.random() * this.bannerImages.length);
     // this.getBadges();
     this.getCategoryList();

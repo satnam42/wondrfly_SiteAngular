@@ -796,7 +796,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     });
   }
   goToProviderProfile(provider, scrollToActivities?) {
-    if (scrollToActivities) {
+    if (scrollToActivities==='activities') {
       this.dataservice.setScrollToActivities(scrollToActivities)
     }
     var providerName = provider.firstName;

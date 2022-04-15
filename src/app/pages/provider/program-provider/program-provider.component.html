@@ -415,12 +415,12 @@ out of 5 </a> -->
                                     </div> -->
                                 </div>
                             </div>
-                            <div  id="ActivitiesList" style="visibility: hidden;">scroll</div>
                         </div>
                     </div>
-                    <div class="provider_full carousel-cat ativities-section-info"  *ngIf="isGenOverview && programs?.length">
+                    <div  id="ActivitiesList" style="visibility: hidden;">scroll</div>
+                    <div class="provider_full carousel-cat ativities-section-info"  [hidden]="!isGenOverview && !programs?.length">
                         <div class="activities-top-grid">
-                            <div >
+                            <div>
                                 <h4 class="might-try"> Activities 
                                     <span><img src="assets/active-icon-group-9122.svg" alt="Icon"  /></span>
                                     <!-- <span><img src="assets/Activities-icon.svg" alt="" (click)="listView = true"></span> -->
