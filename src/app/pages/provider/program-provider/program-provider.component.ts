@@ -149,7 +149,7 @@ export class ProgramProviderComponent implements OnInit {
       this.getRating()
 
     });
-    // this.ngxLoader.stop();
+    this.ngxLoader.stop();
     this.parentAnalyticAction()
   }
   parentAnalyticAction(){
