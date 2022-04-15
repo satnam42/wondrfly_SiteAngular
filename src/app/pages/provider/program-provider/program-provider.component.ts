@@ -84,7 +84,7 @@ export class ProgramProviderComponent implements OnInit {
   @ViewChild(HeaderComponent, { static: true }) headerComponent: HeaderComponent;
   previous;
   userId=''
-  scrollToActivities = false;
+  scrollToActivities = '';
   constructor(private router: Router,
     private apiservice: ApiService,
     private auth: AuthsService,
@@ -105,10 +105,6 @@ export class ProgramProviderComponent implements OnInit {
       this.userId = this.userData.id
       this.isLogin = true;
     }
-    this.scrollToActivities = dataService.getScrollToActivities()
-//     if(this.scrollToActivities===true){
-// this.onActivities('#ActivitiesList')
-//     }
   }
   onGenOverview() {
     window.scroll(0, 0);
@@ -153,7 +149,7 @@ export class ProgramProviderComponent implements OnInit {
       this.getRating()
 
     });
-    this.ngxLoader.stop();
+    // this.ngxLoader.stop();
     this.parentAnalyticAction()
   }
   parentAnalyticAction(){
@@ -224,7 +220,10 @@ export class ProgramProviderComponent implements OnInit {
       { name: 'description', content: "Looking for approved and registered online kids activities providers in the New Jersey? Contact to Wondrfly for best kids classes. Sign up now! " }
     );
     // this.getBadges();
-    window.scroll(0, 0);
+    this.scrollToActivities = this.dataService.getScrollToActivities()
+    if(this.scrollToActivities=='activities'){
+     this.onActivities('#ActivitiesList')
+    }
   }
   // getBadges() {
   //   this.apiservice.badgeList().subscribe(res => {

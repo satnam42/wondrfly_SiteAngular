@@ -7,10 +7,8 @@ import { Program } from '../models/program.model';
 import { Tag } from '../models/tag.model';
 import { LocalStorageService } from '.';
 import { environment } from 'src/environments/environment';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { SocialUser } from '../models/social.model';
 import { Observable, Subject } from 'rxjs';
-import { ToastrService } from 'ngx-toastr';
 @Injectable({
     providedIn: 'root'
 })
@@ -19,9 +17,7 @@ export class ApiService {
     userResponse: any;
     token = ''
     header = {}
-    constructor(private http: HttpClient, private store: LocalStorageService,
-        private ngxLoader: NgxUiLoaderService,
-        private toastr: ToastrService,) {
+    constructor(private http: HttpClient, private store: LocalStorageService) {
     }
 
     //-------------------- get header -------------------------------->
@@ -1570,9 +1566,7 @@ getTopRated(): Observable<any> {
 
 programBySubCategoryIds(filter, pageNo, pageSize): Observable<Program> {
     const subject = new Subject<Program>();
-    this.ngxLoader.start();
     this.http.get(`${this.root}/programs/subCategoryFilter?${filter}&pageNo=${pageNo}&pageSize=${pageSize}`, this.getHeader()).subscribe((responseData: any) => {
-        this.ngxLoader.stop();
         if (responseData.statusCode !== 200) {
             throw new Error('This request has failed ' + responseData.status);
         }
@@ -1586,7 +1580,6 @@ programBySubCategoryIds(filter, pageNo, pageSize): Observable<Program> {
         }
         subject.next(responseData);
     }, (error) => {
-        this.ngxLoader.stop();
         const dataModel = error;
         // this.toasty.error(dataModel.error);
         subject.next(dataModel.error);

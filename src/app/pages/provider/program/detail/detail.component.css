@@ -1783,11 +1783,6 @@ span#closeBtn {
 }
 
 
-::ng-deep.center-center{
-  transform: translate(-210%,-50%) !important;
-  top: 40% !important;
-}
-
 .skill_flex{
   display: flex !important;
   }

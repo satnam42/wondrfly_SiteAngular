@@ -1032,9 +1032,7 @@
 
 
 <share-popup [shareData]="selectedProgram"></share-popup>
-<ngx-ui-loader [fgsTemplate]="foregroundSpinner">
-    
-</ngx-ui-loader>
+<ngx-ui-loader [fgsTemplate]="foregroundSpinner" fgsSize="190" bgsSize="190"> </ngx-ui-loader>
 <ng-template #foregroundSpinner>
-	  <ng-lottie [options]="optionslotti" width="200px" height="200px"></ng-lottie>
+      <app-loader-file></app-loader-file>
 </ng-template>

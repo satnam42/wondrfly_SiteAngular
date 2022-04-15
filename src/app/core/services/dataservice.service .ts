@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class DataService {
   private data: any={};
   private location: any;
-  private scrollToActivities:boolean;
+  private scrollToActivities:any;
   
   setOption(option) {
     this.data = option;

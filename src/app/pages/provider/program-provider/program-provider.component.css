@@ -928,23 +928,7 @@ button.map-buttonas {
   cursor: pointer;
 }
 
-
-.sk-chase {
-  width: 500px;
-  position: relative;
-  animation: sk-chase 2.5s infinite linear both;
-}
-
-.sk-chase img {
-  transform: translate(-50%, -50%);
-  width: 500px;
-}
  
-
-::ng-deep.ngx-overlay.loading-foreground{
-  background-color: rgb(255 255 255) !important;
-
-}
 .skill_flex{
 display: flex;
 }

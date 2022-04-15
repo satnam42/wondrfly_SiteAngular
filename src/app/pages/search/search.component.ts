@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone, OnDestroy, QueryList, ViewChildren } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { ApiService } from 'src/app/core/services/api.service.service';
 import { MapsAPILoader } from '@agm/core';
 import * as moment from 'moment';
@@ -519,7 +519,6 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.ngxLoader.start()
     this.suggested = []
     this.apiservice.getPublishedProgramByProvider(this.pageNo, this.pageSize, 'published').subscribe((res: any) => {
-      this.ngxLoader.stop()
       this.programs = this.programs.concat(res.data);
       if (res.isSuccess) {
         this.providerProgram = this.programs;
@@ -529,6 +528,7 @@ export class SearchComponent implements OnInit, OnDestroy {
         this.providerProgram[0].collapsed = true
         this.providerProgram[1].collapsed = true
         this.providerProgram[2].collapsed = true
+        this.ngxLoader.stop()
       }
       // this.fakeLoaderData = [1,2]
       // this.contentLoaded = true;
@@ -736,7 +736,6 @@ export class SearchComponent implements OnInit, OnDestroy {
       }
       this.ngxLoader.start()
       this.apiservice.programFilter(filter, 1, 100).subscribe((res: any) => {
-        this.ngxLoader.stop()
         this.showReset = true
         if (res.isSuccess) {
           // this.isTopFilterCheckBox = false
@@ -769,6 +768,7 @@ export class SearchComponent implements OnInit, OnDestroy {
           this.startTour()
           this.isScrol = false;
         }
+        this.ngxLoader.stop()
       });
     }
     else {

@@ -1014,7 +1014,7 @@
                                 </a>
                             </div>
                             <div class="show-all-program-btn cursor" *ngIf="provider?.programs?.length>1">
-                                <a class="btn-show-all-program" (click)="goToProviderProfile(provider.user[0],true)">Show all {{provider?.programs?.length}} Activities</a>
+                                <a class="btn-show-all-program" (click)="goToProviderProfile(provider.user[0],'activities')">Show all {{provider?.programs?.length}} Activities</a>
                             </div>
                         </div>
                         <!-- --------------------------------------------------Programs list first without map--------------------------------------------------- -->
@@ -1294,13 +1294,6 @@
 </section>
 
 <share-popup [shareData]="selectedProgram"></share-popup>
-<!-- 
-<ngx-ui-loader fgsSize="40" bgsSize="40" overlayColor="rgba(40,40,40,0.12)">
-</ngx-ui-loader> -->
-<ngx-ui-loader [fgsTemplate]="foregroundSpinner" fgsSize="190" bgsSize="190"> </ngx-ui-loader>
-<ng-template #foregroundSpinner>
-      <app-loader-file></app-loader-file>
-</ng-template>
 <app-footer2 *ngIf="isOnline"></app-footer2>
 
 

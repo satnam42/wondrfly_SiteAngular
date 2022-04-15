@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { Program, User, Category } from 'src/app/core/models';
+import { Program, Category } from 'src/app/core/models';
 import { ApiService } from 'src/app/core/services/api.service.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
@@ -34,8 +34,6 @@ export class DetailComponent implements OnInit {
   programs: any = Program;
   categories: any = new Category;
   program = new Program;
-  lat = 51.678418;
-  lng = 7.809007;
   title: string = ''
   options: Options = {
     floor: 0,
