@@ -41,7 +41,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   locationData: any = {}
   favPrograms: any;
   isMap: boolean = true;
-  isLoaded=false
+  isLoaded = false
   locations = [];
   categories: Category[];
   categoriesBySearch: any = new Category;
@@ -153,6 +153,12 @@ export class SearchComponent implements OnInit, OnDestroy {
   upArrow2: boolean = false;
   providerr = new User;
   activitiesCount = 0
+  tempCategoryId = ''
+  tempSearchedSubCategory = ''
+  tempSelectedSubCategories = []
+  tempSelectedDays: any = []
+  tempSelectedProgramTypes: any = []
+  tempSelectedProgramTime: any = []
   constructor(
     private router: Router,
     private apiservice: ApiService,
@@ -288,43 +294,42 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
   onDayChange(indx: number, day: string, isChecked: boolean) {
     if (isChecked) {
-      this.selectedDays.push(day)
+      this.tempSelectedDays.push(day)
     } else {
-      this.selectedDays.splice(day, -1)
-      let el = this.selectedDays.find(itm => itm === day);
-      if (el) this.selectedDays.splice(this.selectedDays.indexOf(el), 1);
+      this.tempSelectedDays.splice(day, -1)
+      let el = this.tempSelectedDays.find(itm => itm === day);
+      if (el) this.tempSelectedDays.splice(this.tempSelectedDays.indexOf(el), 1);
     }
   }
   onProgramTypeChange(indx: number, type: string, isChecked: boolean) {
     if (isChecked) {
-      this.selectedProgramTypes.push(type)
+      this.tempSelectedProgramTypes.push(type)
     } else {
-      this.selectedProgramTypes.splice(type, -1)
-      let el = this.selectedProgramTypes.find(itm => itm === type);
-      if (el) this.selectedProgramTypes.splice(this.selectedProgramTypes.indexOf(el), 1);
+      this.tempSelectedProgramTypes.splice(type, -1)
+      let el = this.tempSelectedProgramTypes.find(itm => itm === type);
+      if (el) this.tempSelectedProgramTypes.splice(this.tempSelectedProgramTypes.indexOf(el), 1);
     }
   }
   onProgramTimeChange(indx: number, time: string, isChecked: boolean) {
     if (isChecked) {
-      this.selectedProgramTime.push(time)
+      this.tempSelectedProgramTime.push(time)
     } else {
-      this.selectedProgramTime.splice(time, -1)
-      let el = this.selectedProgramTime.find(itm => itm === time);
-      if (el) this.selectedProgramTime.splice(this.selectedProgramTime.indexOf(el), 1);
+      this.tempSelectedProgramTime.splice(time, -1)
+      let el = this.tempSelectedProgramTime.find(itm => itm === time);
+      if (el) this.tempSelectedProgramTime.splice(this.tempSelectedProgramTime.indexOf(el), 1);
     }
   }
   onProgramsSubCategoryChange(i, event) {
-    this.categoryId = ''
+    this.tempCategoryId = ''
     this.subCats[i].checked = event.target.checked;
     if (this.subCats[i].checked) {
-      this.searchedSubCategory = this.subCats[i].name;
-      this.selectedSubCategories.push(this.subCats[i]._id);
+      this.tempSearchedSubCategory = this.subCats[i].name;
+      this.tempSelectedSubCategories.push(this.subCats[i]._id);
     }
     else {
-      const index = this.selectedSubCategories.indexOf(this.subCats[i]._id);
-
+      const index = this.tempSelectedSubCategories.indexOf(this.subCats[i]._id);
       if (index >= 0) {
-        this.selectedSubCategories.splice(index, 1);
+        this.tempSelectedSubCategories.splice(index, 1);
       }
     }
   }
@@ -334,6 +339,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   @ViewChildren("types") types: QueryList<ElementRef>;
   clearProgramTypes() {
     this.selectedProgramTypes = []
+    this.tempSelectedProgramTypes = []
     this.types.forEach((element) => {
       element.nativeElement.checked = false;
     });
@@ -343,6 +349,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   @ViewChildren("days") days: QueryList<ElementRef>;
   clearProgramDays() {
     this.selectedDays = []
+    this.tempSelectedDays = []
     this.days.forEach((element) => {
       element.nativeElement.checked = false;
     });
@@ -351,6 +358,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   @ViewChildren("times") times: QueryList<ElementRef>;
   clearProgramTime() {
     this.selectedProgramTime = []
+    this.tempSelectedProgramTime = []
     this.times.forEach((element) => {
       element.nativeElement.checked = false;
     });
@@ -522,8 +530,8 @@ export class SearchComponent implements OnInit, OnDestroy {
       this.programs = this.programs.concat(res.data);
       if (res.isSuccess) {
         this.providerProgram = this.programs;
-        if(!this.providerProgram.length){
-          this.isLoaded=true
+        if (!this.providerProgram.length) {
+          this.isLoaded = true
         }
         this.providerProgram[0].collapsed = true
         this.providerProgram[1].collapsed = true
@@ -562,10 +570,10 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   // ---------------------------------------------get subCateById-------------------------------------
   getSubCateById(cat) {
-    this.categoryId = cat.id
+    this.tempCategoryId = cat.id
     this.selectedCat = cat.id
-    this.selectedSubCategories = []
-    this.searchedSubCategory = cat.name
+    this.tempSelectedSubCategories = []
+    this.tempSearchedSubCategory = cat.name
     this.apiservice.getTagByCategoryId(cat.id).subscribe((res: any) => {
       this.subCats = res.data
       this.subCats = this.subCats.filter((item) => item.isActivated === true && item.programCount);
@@ -741,9 +749,9 @@ export class SearchComponent implements OnInit, OnDestroy {
           // this.isTopFilterCheckBox = false
           this.programs = res.data;
           this.providerProgram = this.programs;
-          console.log('this.providerProgram',this.providerProgram)
-          if(!this.providerProgram.length){
-            this.isLoaded=true
+          console.log('this.providerProgram', this.providerProgram)
+          if (!this.providerProgram.length) {
+            this.isLoaded = true
           }
           if (this.providerProgram.length) {
             this.providerProgram[0].collapsed = true
@@ -796,7 +804,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     });
   }
   goToProviderProfile(provider, scrollToActivities?) {
-    if (scrollToActivities==='activities') {
+    if (scrollToActivities === 'activities') {
       this.dataservice.setScrollToActivities(scrollToActivities)
     }
     var providerName = provider.firstName;

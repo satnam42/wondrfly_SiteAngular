@@ -22,7 +22,8 @@
                                 <a aria-expanded="true" data-target="#category" [ngClass]="{ active: isCategoryFilter }"
                                     data-toggle="collapse" joyrideStep="firstStep" title="💡 Search with filters"
                                     text="Narrow down your search by clicking on any of the filters above. ">Categories</a>
-                                <div class="collapse main_collpase time_collpase verification_modal partcategory" id="category" data-parent="#accordionExample">
+                                <div class="collapse main_collpase time_collpase verification_modal partcategory"
+                                    id="category" data-parent="#accordionExample">
                                     <div class="collpase_content cate-dilter">
                                         <div class="container">
                                             <div class="row categories-filt">
@@ -37,11 +38,11 @@
                                                             <span>
                                                                 <a class="clear cusror" data-target="#category"
                                                                     data-toggle="collapse"
-                                                                    (click)="selectedCat='';categoryId='';subCats=[];selectedSubCategories=[];programFilter()">Clear
+                                                                    (click)="selectedCat='';categoryId='';tempCategoryId='';subCats=[];selectedSubCategories=[];tempSearchedSubCategory='';tempSelectedSubCategories=[];programFilter()">Clear
                                                                     all</a>
                                                             </span>
                                                             <button data-target="#category" data-toggle="collapse"
-                                                                (click)="programFilter()">
+                                                                (click)="categoryId=tempCategoryId;searchedSubCategory=tempSearchedSubCategory;selectedSubCategories=tempSelectedSubCategories ;programFilter()">
                                                                 APPLY FILTER
                                                             </button>
                                                         </span>
@@ -133,7 +134,7 @@
                                                 Clear
                                             </button>
                                             <button class="submitBtn" data-target="#typess" data-toggle="collapse"
-                                                (click)="programFilter()">
+                                                (click)="selectedProgramTypes=tempSelectedProgramTypes;programFilter()">
                                                 Apply
                                             </button>
                                         </div>
@@ -213,8 +214,10 @@
                                                 Clear
                                             </button>
 
-                                            <button (click)="programFilter()" search-results.scrollTop="0"
-                                                data-target="#timess" data-toggle="collapse" class="submitBtn">
+                                            <button
+                                                (click)="selectedProgramTime=tempSelectedProgramTime;programFilter()"
+                                                search-results.scrollTop="0" data-target="#timess"
+                                                data-toggle="collapse" class="submitBtn">
                                                 Apply
 
                                             </button>
@@ -252,8 +255,9 @@
                                                 Clear
                                             </button>
 
-                                            <button (click)="programFilter()" search-results.scrollTop="0"
-                                                data-target="#Dayss" data-toggle="collapse" class="submitBtn">
+                                            <button (click)="selectedDays=tempSelectedDays;programFilter()"
+                                                search-results.scrollTop="0" data-target="#Dayss" data-toggle="collapse"
+                                                class="submitBtn">
                                                 Apply
                                             </button>
                                         </div>
@@ -334,7 +338,10 @@
             <div class="col-10" [ngClass]="{'col-12':isMap || isOnline}">
                 <div class="chip-set-bar chip-set-bar-btn" [hidden]="!showReset">
                     <div class="map-without-heading display-inline" *ngIf="searchedSubCategory">
-                        <h2><a><span>{{searchedSubCategory}}</span><span *ngIf="selectedSubCategories?.length && selectedSubCategories?.length>1"> + {{selectedSubCategories?.length-1}} More</span></a> in New Jersey <span class="span-h3">&nbsp;|&nbsp; <b>{{activitiesCount}}</b> activities
+                        <h2><a><span>{{searchedSubCategory}}</span><span
+                                    *ngIf="selectedSubCategories?.length && selectedSubCategories?.length>1"> +
+                                    {{selectedSubCategories?.length-1}} More</span></a> in New Jersey <span
+                                class="span-h3">&nbsp;|&nbsp; <b>{{activitiesCount}}</b> activities
                                 from <b>{{providerProgram?.length}}</b> providers</span></h2>
                     </div>
                     <!-- <button class="btn_style save_btn cursor" *ngIf="searchedSubCategory">
@@ -351,81 +358,89 @@
                     </button>
                     <button class="btn_style save_btn cursor" *ngIf="isInPerson && !isOnline">
                         in-persion
-                                <mat-icon  (click)="contentLoaded=false;isInPerson=!isInPerson;programFilter()">cancel</mat-icon>
+                        <mat-icon (click)="contentLoaded=false;isInPerson=!isInPerson;programFilter()">cancel</mat-icon>
                     </button>
 
 
                     <button class="btn_style save_btn cursor" *ngIf="isAgeFilter">
                         Age {{minAge}}-{{maxAge}} years
-                                <mat-icon  (click)="contentLoaded=false;isAgeFilter=!isAgeFilter;programFilter()">cancel</mat-icon>
+                        <mat-icon (click)="contentLoaded=false;isAgeFilter=!isAgeFilter;programFilter()">cancel
+                        </mat-icon>
                     </button>
                     <button class="btn_style save_btn cursor" *ngIf="isPriceFilter">
                         Price ${{minPrice}}-${{maxPrice}}
-                                <mat-icon (click)="contentLoaded=false;isPriceFilter=!isPriceFilter;programFilter()">cancel</mat-icon>
+                        <mat-icon (click)="contentLoaded=false;isPriceFilter=!isPriceFilter;programFilter()">cancel
+                        </mat-icon>
                     </button>
                     <button class="btn_style save_btn cursor" *ngIf="isDateFilter">
                         {{fromDate | date: "MMM d " }}-{{toDate | date: "MMM d " }}
-                                <mat-icon (click)="contentLoaded=false;isDateFilter=!isDateFilter;programFilter()">cancel</mat-icon>
+                        <mat-icon (click)="contentLoaded=false;isDateFilter=!isDateFilter;programFilter()">cancel
+                        </mat-icon>
                     </button>
                     <button class="btn_style save_btn cursor" *ngIf="isTopFilterCheckBox">
                         Top Rated
-                            <mat-icon (click)="contentLoaded=false;isTopFilterCheckBox=false;isTopFilter=false;programFilter()">cancel</mat-icon>
+                        <mat-icon
+                            (click)="contentLoaded=false;isTopFilterCheckBox=false;isTopFilter=false;programFilter()">
+                            cancel</mat-icon>
                     </button>
                     <button class="btn_style save_btn cursor" *ngFor="let day of this.selectedDays;index as i">
                         {{day}}
-                                <mat-icon (click)="removeRecentSearches('days',i)" class="ml-2">cancel</mat-icon>
+                        <mat-icon (click)="removeRecentSearches('days',i)" class="ml-2">cancel</mat-icon>
                     </button>
                     <button class="btn_style save_btn cursor" *ngFor="let type of this.selectedProgramTypes;index as i">
                         {{type}}
-                                <mat-icon (click)="removeRecentSearches('types',i)" class="ml-2">cancel</mat-icon>
+                        <mat-icon (click)="removeRecentSearches('types',i)" class="ml-2">cancel</mat-icon>
                     </button>
                     <button class="btn_style save_btn cursor" *ngFor="let time of this.selectedProgramTime;index as i">
                         {{time}}
-                                <mat-icon (click)="removeRecentSearches('times',i)" class="ml-2">cancel</mat-icon>
+                        <mat-icon (click)="removeRecentSearches('times',i)" class="ml-2">cancel</mat-icon>
                     </button>
                     <span>
                         <a class="ml-2 clear-text cursor" (click)="resetFilter()">Clear all</a>
                     </span>
                 </div>
             </div>
-                <!-- <div class="col-md-8">
+            <!-- <div class="col-md-8">
                     <div class="map-without-heading">
                         <h2><a>Violin</a> near New Jersey <span class="span-h3">&nbsp;|&nbsp; <b>20</b> activities
                                 from <b>10</b> providers</span></h2>
                     </div>
                 </div> -->
-                <div class="col-2" [hidden]="isMap || isOnline">
-                    <div class="chip-set-bar btn-show-map-right">
-                        <button (click)="isMap=!isMap;" class="btn-show-map"><img src="assets/show-map-icon.png"
-                                class="gis-map-icon"> Show map</button>
-                    </div>
+            <div class="col-2" [hidden]="isMap || isOnline">
+                <div class="chip-set-bar btn-show-map-right">
+                    <button (click)="isMap=!isMap;" class="btn-show-map"><img src="assets/show-map-icon.png"
+                            class="gis-map-icon"> Show map</button>
                 </div>
-            
+            </div>
+
         </div>
 
         <!-- start    providerprogram list  -->
         <div class="row row-0 borderserach" *ngIf="!isOnline">
             <div class="col-md-6 list_left" [ngClass]="{'col-md-12':!isMap}">
                 <div class="search-results" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="500"
-                    (scrolled)="onScroll()" [scrollWindow]="false" >
-                    <div class="search-results-section" *ngFor="let provider of providerProgram; let providerIndx = index">
+                    (scrolled)="onScroll()" [scrollWindow]="false">
+                    <div class="search-results-section"
+                        *ngFor="let provider of providerProgram; let providerIndx = index">
                         <div class="media-top-content-info media-full-row-info">
-                                <div class="row row-0 align-items-center mt-0">
+                            <div class="row row-0 align-items-center mt-0">
                                 <div class="col-md-6 ">
-                                <div class="media-top-txt-div">
-                                <div class="left-icon-img">
-                                    <img src="{{baseUrlProduction+provider?.categories[0]?.logoUrl}}" />
+                                    <div class="media-top-txt-div">
+                                        <div class="left-icon-img">
+                                            <img src="{{baseUrlProduction+provider?.categories[0]?.logoUrl}}" />
+                                        </div>
+                                        <div class="left-icon-h2 map-with-heading-h2"
+                                            (click)="goToProviderProfile(provider.user[0])">
+                                            <h2>{{provider.user[0].firstName}}</h2>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="left-icon-h2 map-with-heading-h2" (click)="goToProviderProfile(provider.user[0])">
-                                    <h2>{{provider.user[0].firstName}}</h2>
-                                </div>
-                                </div>
-                                </div>
-                                <div class="col-md-6 "> 
-                                <div class="media-top-txt-div justify-content-right">     
-                                <div class="review-starsearch-info" (click)=" getRating(provider._id); 
-                                " class="cursor" data-toggle="collapse" [attr.data-target]="'#collapseExamplestar' + providerIndx">
-                                    <!-- <div class="rating-starsearch">
+                                <div class="col-md-6 ">
+                                    <div class="media-top-txt-div justify-content-right">
+                                        <div class="review-starsearch-info" (click)=" getRating(provider._id); 
+                                " class="cursor" data-toggle="collapse"
+                                            [attr.data-target]="'#collapseExamplestar' + providerIndx">
+                                            <!-- <div class="rating-starsearch">
                                         <p class="cursor">
                                             <span>
                                                 <span class="fa fa-star checked"></span>
@@ -436,108 +451,117 @@
                                             </span>
                                         </p>
                                     </div> -->
-                                    <div class="rating-starsearch">
-                                        <p>
-                                            <span *ngIf="provider.user[0]?.averageFinalRating==0">
-                    <span class="fa fa-star-o"></span>
-                                            <span class="fa fa-star-o"></span>
-                                            <span class="fa fa-star-o"></span>
-                                            <span class="fa fa-star-o"></span>
-                                            <span class="fa fa-star-o"></span>
-                                            </span>
-                                            <span *ngIf="provider.user[0]?.averageFinalRating==1">
-                    <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star-o"></span>
-                                            <span class="fa fa-star-o"></span>
-                                            <span class="fa fa-star-o"></span>
-                                            <span class="fa fa-star-o"></span>
-                                            </span>
-                                            <span *ngIf="provider.user[0]?.averageFinalRating>1 && provider.user[0]?.averageFinalRating<2">
-                    <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star-half-o checked"></span>
-                                            <span class="fa fa-star-o"></span>
-                                            <span class="fa fa-star-o"></span>
-                                            <span class="fa fa-star-o"></span>
-                                            </span>
-                                            <span *ngIf="provider.user[0]?.averageFinalRating==2">
-                    <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star-o"></span>
-                                            <span class="fa fa-star-o"></span>
-                                            <span class="fa fa-star-o"></span>
-                                            </span>
-                                            <span *ngIf="provider.user[0]?.averageFinalRating>2 && provider.user[0]?.averageFinalRating<3">
-                    <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star-half-o checked"></span>
-                                            <span class="fa fa-star-o"></span>
-                                            <span class="fa fa-star-o"></span>
-                                            </span>
-                                            <span *ngIf="provider.user[0]?.averageFinalRating==3">
-                    <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star-o"></span>
-                                            <span class="fa fa-star-o"></span>
-                                            </span>
-                                            <span *ngIf="provider.user[0]?.averageFinalRating>3 && provider.user[0]?.averageFinalRating<4">
-                    <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star-half-o checked"></span>
-                                            <span class="fa fa-star-o"></span>
-                                            </span>
-                                            <span *ngIf="provider.user[0]?.averageFinalRating==4">
-                    <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star-o"></span>
-                                            </span>
-                                            <span *ngIf="provider.user[0]?.averageFinalRating>4 && provider.user[0]?.averageFinalRating<5">
-                    <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star-half-o checked"></span>
-                                            </span>
-                                            <span *ngIf="provider.user[0]?.averageFinalRating==5">
-                    <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            </span>
-                                            <!-- <a> <span></span>(58 reviews)</a> -->
-                                        </p>
-                                    </div>  
+                                            <div class="rating-starsearch">
+                                                <p>
+                                                    <span *ngIf="provider.user[0]?.averageFinalRating==0">
+                                                        <span class="fa fa-star-o"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                    </span>
+                                                    <span *ngIf="provider.user[0]?.averageFinalRating==1">
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                    </span>
+                                                    <span
+                                                        *ngIf="provider.user[0]?.averageFinalRating>1 && provider.user[0]?.averageFinalRating<2">
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star-half-o checked"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                    </span>
+                                                    <span *ngIf="provider.user[0]?.averageFinalRating==2">
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                    </span>
+                                                    <span
+                                                        *ngIf="provider.user[0]?.averageFinalRating>2 && provider.user[0]?.averageFinalRating<3">
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star-half-o checked"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                    </span>
+                                                    <span *ngIf="provider.user[0]?.averageFinalRating==3">
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                    </span>
+                                                    <span
+                                                        *ngIf="provider.user[0]?.averageFinalRating>3 && provider.user[0]?.averageFinalRating<4">
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star-half-o checked"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                    </span>
+                                                    <span *ngIf="provider.user[0]?.averageFinalRating==4">
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                    </span>
+                                                    <span
+                                                        *ngIf="provider.user[0]?.averageFinalRating>4 && provider.user[0]?.averageFinalRating<5">
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star-half-o checked"></span>
+                                                    </span>
+                                                    <span *ngIf="provider.user[0]?.averageFinalRating==5">
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                    </span>
+                                                    <!-- <a> <span></span>(58 reviews)</a> -->
+                                                </p>
+                                            </div>
 
-                                    <div *ngIf="rating" class="collapse star-daialogbox"
-                                    id="collapseExamplestar{{ providerIndx }}">
-                                    <button type="button" data-toggle="collapse"
-                                        [attr.data-target]="'#collapseExamplestar' + providerIndx"
-                                        class="close star-daialogicon" aria-label="Close">
-                                        <span aria-hidden="true"><img
-                                                src="assets/grey-close.png" /></span>
-                                    </button>
-                                    <app-rating [rating]="rating" [user]="provider.user[0]">
-                                    </app-rating>
-                                </div>
+                                            <div *ngIf="rating" class="collapse star-daialogbox"
+                                                id="collapseExamplestar{{ providerIndx }}">
+                                                <button type="button" data-toggle="collapse"
+                                                    [attr.data-target]="'#collapseExamplestar' + providerIndx"
+                                                    class="close star-daialogicon" aria-label="Close">
+                                                    <span aria-hidden="true"><img src="assets/grey-close.png" /></span>
+                                                </button>
+                                                <app-rating [rating]="rating" [user]="provider.user[0]">
+                                                </app-rating>
+                                            </div>
 
 
-                                </div>
-                                <div class="view-less-div">
-                                    <div class="view-less-txt-info collapsed">
-                                        <a  *ngIf="!provider.collapsed" class="btn-view-less"   (click)="provider.collapsed=true"  aria-expanded="false" aria-controls="collapseDosing">View More  <i class="fas fa-chevron-down"></i></a>
-                                        <a *ngIf="provider.collapsed" class="btn-view-less"   (click)="provider.collapsed=false" aria-expanded="false" aria-controls="collapseDosing">View Less  <i class="fas fa-chevron-up"></i></a> 
- 
+                                        </div>
+                                        <div class="view-less-div">
+                                            <div class="view-less-txt-info collapsed">
+                                                <a *ngIf="!provider.collapsed" class="btn-view-less"
+                                                    (click)="provider.collapsed=true" aria-expanded="false"
+                                                    aria-controls="collapseDosing">View More <i
+                                                        class="fas fa-chevron-down"></i></a>
+                                                <a *ngIf="provider.collapsed" class="btn-view-less"
+                                                    (click)="provider.collapsed=false" aria-expanded="false"
+                                                    aria-controls="collapseDosing">View Less <i
+                                                        class="fas fa-chevron-up"></i></a>
+
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                </div>
-                                </div>  
-                                </div>
+                            </div>
 
-                          
+
                             <!-- <div class="media-share-icon">
                                  <ul class="ul-tag-share_icon">
                                     <li><a href="#"><img src="assets/share_gray.svg" /></a></li>
@@ -546,8 +570,11 @@
                             </div>-->
                         </div>
                         <!-- --------------------------------------------------Programs list second without map--------------------------------------------------- -->
-                        <div [id]="'programDiv'+providerIndx" class="map-carousel-slider"  aria-labelledby="heading-dosing" [ngClass]="{'collapse': !providerProgram[providerIndx].collapsed, 'collapsed': providerProgram[providerIndx].collapsed}">
-                            <div class="left-resourcebtn" *ngIf="isMap?provider?.programs?.length>2:provider?.programs?.length>6">
+                        <div [id]="'programDiv'+providerIndx" class="map-carousel-slider"
+                            aria-labelledby="heading-dosing"
+                            [ngClass]="{'collapse': !providerProgram[providerIndx].collapsed, 'collapsed': providerProgram[providerIndx].collapsed}">
+                            <div class="left-resourcebtn"
+                                *ngIf="isMap?provider?.programs?.length>2:provider?.programs?.length>6">
                                 <a>
                                     <div class="carousel-nav-icon" (click)="scrollLeft(providerIndx)">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129"
@@ -559,7 +586,8 @@
                                 </a>
                             </div>
                             <div [id]="'widgetsContent'+providerIndx" class="media-scroable">
-                                <div *ngFor="let program of provider?.programs| slice:0:9; let programIndx = index" class="media activity">
+                                <div *ngFor="let program of provider?.programs| slice:0:9; let programIndx = index"
+                                    class="media activity">
                                     <div class="media-left activity-imgs" (click)="goToProgramDetail(program)">
                                         <!-- <img [defaultImage]="defaultImage"
                                             [errorImage]="baseUrl + program?.category[0]?.pattern"
@@ -581,7 +609,7 @@
                                                         title="💡 Share with friends and family"
                                                         text="Click here to share your favorite activities!"
                                                         alt="Share Icon " /> -->
-                                                        <img src="assets/share_gray.svg " alt="Share Icon " />
+                                                    <img src="assets/share_gray.svg " alt="Share Icon " />
                                                 </a>
                                                 <div class="bookmark_outer">
                                                     <a *ngIf="!program?.isFav && isLogin"
@@ -751,7 +779,8 @@
                                                     <div><img src="assets/location-dark-icon.png" alt="location-icon" />
                                                     </div>
                                                     <div>
-                                                        <p>{{program?.location?.substring(0, program?.location?.lastIndexOf(", "))}}</p>
+                                                        <p>{{program?.location?.substring(0,
+                                                            program?.location?.lastIndexOf(", "))}}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -760,7 +789,9 @@
                                                     <div><img src="assets/calender-icon-img1.png" alt="calender-icon" />
                                                     </div>
                                                     <div>
-                                                        <p *ngIf="!program?.isDateNotMention">{{program?.date?.from | date:"EEE, MMM dd"}} - {{program?.date?.to | date:"MMM dd"}}</p>
+                                                        <p *ngIf="!program?.isDateNotMention">{{program?.date?.from |
+                                                            date:"EEE, MMM dd"}} - {{program?.date?.to | date:"MMM dd"}}
+                                                        </p>
                                                         <p *ngIf="program?.isDateNotMention">Ongoing</p>
                                                     </div>
                                                 </div>
@@ -770,7 +801,11 @@
                                                     <div><img src="assets/watch-icon-img.png" alt="calender-icon" />
                                                     </div>
                                                     <div>
-                                                        <p *ngIf="!program?.isTimeNotMention"> {{globalFunc.tools_replaceAll(program?.time?.from?.toFixed(2)?.toString(),".",":" )}} – {{globalFunc.tools_replaceAll(program?.time?.to?.toFixed(2)?.toString(),".",":" )}}</p>
+                                                        <p *ngIf="!program?.isTimeNotMention">
+                                                            {{globalFunc.tools_replaceAll(program?.time?.from?.toFixed(2)?.toString(),".",":"
+                                                            )}} –
+                                                            {{globalFunc.tools_replaceAll(program?.time?.to?.toFixed(2)?.toString(),".",":"
+                                                            )}}</p>
                                                         <p *ngIf="program?.isTimeNotMention">Time not mentioned</p>
 
                                                     </div>
@@ -781,12 +816,14 @@
                                                     <div><img src="assets/user-icon-img.png" alt="School image " />
                                                     </div>
                                                     <div>
-                                                        <p>{{ program?.ageGroup?.from + "-" + program?.ageGroup?.to }} Yrs</p>
+                                                        <p>{{ program?.ageGroup?.from + "-" + program?.ageGroup?.to }}
+                                                            Yrs</p>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
-                                                <div *ngIf="(!program?.isFree && program?.pricePerParticipant)|| (program?.isFree && !program?.pricePerParticipant)" class="price-box left-icon-box-media">
+                                                <div *ngIf="(!program?.isFree && program?.pricePerParticipant)|| (program?.isFree && !program?.pricePerParticipant)"
+                                                    class="price-box left-icon-box-media">
                                                     <div><img src="assets/price-doller-icon.png" /></div>
                                                     <div>
                                                         <p *ngIf="!program?.isFree && program?.pricePerParticipant">
@@ -819,7 +856,7 @@
                                     </div>
                                 </div>
 
-                              
+
                                 <!-- --------------------------------------------------Programs list second--------------------------------------------------- -->
                                 <!-- <div *ngFor="let program of programs | slice:6; let i = index" class="media activity">
                             <div class="media-left activity-imgs" (click)="goToProgramDetail(program)">
@@ -1002,7 +1039,8 @@
                             </div>
                         </div> -->
                             </div>
-                            <div class="right-resourcebtn" *ngIf="isMap?provider?.programs?.length>2:provider?.programs?.length>6">
+                            <div class="right-resourcebtn"
+                                *ngIf="isMap?provider?.programs?.length>2:provider?.programs?.length>6">
                                 <a>
                                     <div class="carousel-nav-icon" (click)="scrollRight(providerIndx)">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129"
@@ -1014,7 +1052,9 @@
                                 </a>
                             </div>
                             <div class="show-all-program-btn cursor" *ngIf="provider?.programs?.length>1">
-                                <a class="btn-show-all-program" (click)="goToProviderProfile(provider.user[0],'activities')">Show all {{provider?.programs?.length}} Activities</a>
+                                <a class="btn-show-all-program"
+                                    (click)="goToProviderProfile(provider.user[0],'activities')">Show all
+                                    {{provider?.programs?.length}} Activities</a>
                             </div>
                         </div>
                         <!-- --------------------------------------------------Programs list first without map--------------------------------------------------- -->
@@ -1029,7 +1069,7 @@
                                 <span class="cursor" (click)="categoryId='60b47547bb70a952280bfa75';searchedSubCategory='Music';programFilter()">Music</span> instead
                             </h2> -->
                         </div>
-    
+
                         <!-- <div class="suggested-result"
                             *ngIf="suggested?.length && (!isTypeFilter && !isDaysFilter && !isTimeFilter && !isTopFilter && !isAgeFilter && !isDateFilter)">
                             <h3 class="suggested-searcxhtext">
@@ -1047,12 +1087,12 @@
                                 </div>
                             </div>
                         </div> -->
-    
-    
-    
-                      
-    
-    
+
+
+
+
+
+
                     </div>
 
                     <!-- footer start -->
@@ -1150,7 +1190,7 @@
                 </main> -->
 
 
-              
+
             </div>
             <div class="col-md-6" *ngIf="isMap">
                 <div class="map_section">
@@ -1179,82 +1219,87 @@
                                             {{ data?.user[0]?.firstName }}
                                         </h1>
                                         <h2>{{ data?.user[0]?.addressLine1 }}</h2>
-                                        <div class="rating-starsearch"  (click)=" getRating(data?.user[0]?._id); 
-                            " class="cursor" data-toggle="collapse" [attr.data-target]="'#collapseExamplestar2' + providerIndx">
-                                <p>
-                                    <span *ngIf="data?.user[0]?.averageFinalRating==0">
-            <span class="fa fa-star-o"></span>
-                                    <span class="fa fa-star-o"></span>
-                                    <span class="fa fa-star-o"></span>
-                                    <span class="fa fa-star-o"></span>
-                                    <span class="fa fa-star-o"></span>
-                                    </span>
-                                    <span *ngIf="data?.user[0]?.averageFinalRating==1">
-            <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star-o"></span>
-                                    <span class="fa fa-star-o"></span>
-                                    <span class="fa fa-star-o"></span>
-                                    <span class="fa fa-star-o"></span>
-                                    </span>
-                                    <span *ngIf="data?.user[0]?.averageFinalRating>1 && data?.user[0]?.averageFinalRating<2">
-            <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star-half-o checked"></span>
-                                    <span class="fa fa-star-o"></span>
-                                    <span class="fa fa-star-o"></span>
-                                    <span class="fa fa-star-o"></span>
-                                    </span>
-                                    <span *ngIf="data?.user[0]?.averageFinalRating==2">
-            <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star-o"></span>
-                                    <span class="fa fa-star-o"></span>
-                                    <span class="fa fa-star-o"></span>
-                                    </span>
-                                    <span *ngIf="data?.user[0]?.averageFinalRating>2 && data?.user[0]?.averageFinalRating<3">
-            <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star-half-o checked"></span>
-                                    <span class="fa fa-star-o"></span>
-                                    <span class="fa fa-star-o"></span>
-                                    </span>
-                                    <span *ngIf="data?.user[0]?.averageFinalRating==3">
-            <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star-o"></span>
-                                    <span class="fa fa-star-o"></span>
-                                    </span>
-                                    <span *ngIf="data?.user[0]?.averageFinalRating>3 && data?.user[0]?.averageFinalRating<4">
-            <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star-half-o checked"></span>
-                                    <span class="fa fa-star-o"></span>
-                                    </span>
-                                    <span *ngIf="data?.user[0]?.averageFinalRating==4">
-            <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star-o"></span>
-                                    </span>
-                                    <span *ngIf="data?.user[0]?.averageFinalRating>4 && data?.user[0]?.averageFinalRating<5">
-            <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star-half-o checked"></span>
-                                    </span>
-                                    <span *ngIf="data?.user[0]?.averageFinalRating==5">
-            <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    </span>
-                                    <!-- <a> <span></span>(58 reviews)</a> -->
-                                </p>
-                            </div>
+                                        <div class="rating-starsearch" (click)=" getRating(data?.user[0]?._id); 
+                            " class="cursor" data-toggle="collapse"
+                                            [attr.data-target]="'#collapseExamplestar2' + providerIndx">
+                                            <p>
+                                                <span *ngIf="data?.user[0]?.averageFinalRating==0">
+                                                    <span class="fa fa-star-o"></span>
+                                                    <span class="fa fa-star-o"></span>
+                                                    <span class="fa fa-star-o"></span>
+                                                    <span class="fa fa-star-o"></span>
+                                                    <span class="fa fa-star-o"></span>
+                                                </span>
+                                                <span *ngIf="data?.user[0]?.averageFinalRating==1">
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star-o"></span>
+                                                    <span class="fa fa-star-o"></span>
+                                                    <span class="fa fa-star-o"></span>
+                                                    <span class="fa fa-star-o"></span>
+                                                </span>
+                                                <span
+                                                    *ngIf="data?.user[0]?.averageFinalRating>1 && data?.user[0]?.averageFinalRating<2">
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star-half-o checked"></span>
+                                                    <span class="fa fa-star-o"></span>
+                                                    <span class="fa fa-star-o"></span>
+                                                    <span class="fa fa-star-o"></span>
+                                                </span>
+                                                <span *ngIf="data?.user[0]?.averageFinalRating==2">
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star-o"></span>
+                                                    <span class="fa fa-star-o"></span>
+                                                    <span class="fa fa-star-o"></span>
+                                                </span>
+                                                <span
+                                                    *ngIf="data?.user[0]?.averageFinalRating>2 && data?.user[0]?.averageFinalRating<3">
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star-half-o checked"></span>
+                                                    <span class="fa fa-star-o"></span>
+                                                    <span class="fa fa-star-o"></span>
+                                                </span>
+                                                <span *ngIf="data?.user[0]?.averageFinalRating==3">
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star-o"></span>
+                                                    <span class="fa fa-star-o"></span>
+                                                </span>
+                                                <span
+                                                    *ngIf="data?.user[0]?.averageFinalRating>3 && data?.user[0]?.averageFinalRating<4">
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star-half-o checked"></span>
+                                                    <span class="fa fa-star-o"></span>
+                                                </span>
+                                                <span *ngIf="data?.user[0]?.averageFinalRating==4">
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star-o"></span>
+                                                </span>
+                                                <span
+                                                    *ngIf="data?.user[0]?.averageFinalRating>4 && data?.user[0]?.averageFinalRating<5">
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star-half-o checked"></span>
+                                                </span>
+                                                <span *ngIf="data?.user[0]?.averageFinalRating==5">
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                </span>
+                                                <!-- <a> <span></span>(58 reviews)</a> -->
+                                            </p>
+                                        </div>
                                         <div class="map-locationtext" *ngIf="data?.user[0]?.location">
                                             <span><img src="assets/location-pintag.svg" /> </span>
                                             <h3>
@@ -1285,8 +1330,8 @@
 
         <!-- start online programs  -->
         <div *ngIf="isOnline && showReset">
-            <online-programs [provider_programs]="providerProgram" [categories]="categories" 
-                [suggested]="suggested"></online-programs>
+            <online-programs [provider_programs]="providerProgram" [categories]="categories" [suggested]="suggested">
+            </online-programs>
         </div>
         <!-- end online programs  -->
 
@@ -1357,5 +1402,5 @@
 </div>
 <ngx-ui-loader [fgsTemplate]="foregroundSpinner" fgsSize="190" bgsSize="190"> </ngx-ui-loader>
 <ng-template #foregroundSpinner>
-      <app-loader-file></app-loader-file>
+    <app-loader-file></app-loader-file>
 </ng-template>
