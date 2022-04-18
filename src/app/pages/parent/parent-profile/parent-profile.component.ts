@@ -1087,7 +1087,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
   checkOrUncheckAllTags(e, categoryIndx) {
     if (e.target.checked === true) {
       this.searchedTags[categoryIndx].category.isSelected = true;
-      this.searchedTags[categoryIndx].collapsed = true;
+      // this.searchedTags[categoryIndx].collapsed = true;
       this.searchedTags[categoryIndx].tags.forEach(tag => {
         tag.isSelected = true
         if (this.kid.interestInfo.indexOf(tag) == -1) {
@@ -1138,6 +1138,16 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
     }
 
   }
+    // ---------------------------------------------get subCateById-------------------------------------
+    getSubCateById(cat,indx) {
+     this.apiservice.getTagByCategoryId(cat._id).subscribe((res: any) => {
+        if(res.isSuccess){
+          this.searchedTags[indx].tags = res.data
+          this.searchedTags[indx].tags = this.searchedTags[indx].tags.filter((item) => item.isActivated === true);
+        }
+      })
+    }
+  
   ngOnInit() {
     this.searchTagValue.valueChanges.subscribe((value) => {
       if (value) { this.onChangeSearch(value) } else {

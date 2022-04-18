@@ -202,12 +202,16 @@
                                             <span class="checkmark"></span>
                                             <span class="checkbox-txt">{{category?.category?.name}}</span>
                                         </label>
-                                        <div class="ul-tag-btn-showall">
+                                        <!-- <div class="ul-tag-btn-showall">
                                             <a  *ngIf="!category.collapsed" class="btn-showall cursor" (click)="category.collapsed=true" >Show all<i class="fas fa-chevron-down"></i></a>
                                             <a *ngIf="category.collapsed" class="btn-showall cursor" (click)="category.collapsed=false" > Hide all <i class="fas fa-chevron-up"></i></a>
+                                        </div> -->
+                                        <div class="ul-tag-btn-showall">
+                                            <a class="btn-showall cursor" (click)="getSubCateById(category?.category,i)"  >Show all<i class="fas fa-chevron-down"></i></a>
                                         </div>
                                         </div>
-                                        <ul class="ul-tag-checkbox-child" [ngClass]="{'collapse': !searchedTags[i].collapsed, 'collapsed': searchedTags[i].collapsed}">
+                                        <!-- <ul class="ul-tag-checkbox-child" [ngClass]="{'collapse': !searchedTags[i].collapsed, 'collapsed': searchedTags[i].collapsed}"> -->
+                                        <ul class="ul-tag-checkbox-child">
                                             <li *ngFor="let subCategory of category.tags;let j = index">
                                                 <label class="box-checkbox-txt">
                                                     <input type="checkbox" [checked]="category.tags[j].isSelected"
