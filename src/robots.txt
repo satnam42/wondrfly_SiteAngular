@@ -1,4 +1,2 @@
-User-agent: *
-Disallow: */category/*
-Disallow: */admin/*
-Sitemap: https://www.wondrfly.com/sitemap.xml
+Disallow: /
+
