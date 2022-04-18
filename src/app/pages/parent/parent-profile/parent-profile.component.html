@@ -522,7 +522,7 @@
                                     (click)="kid = resetKid; childImgURL = '';searchedTags=[];
                                     keyword =''" class="btn_style save_btn cursor">Add</a>
                             </h2>
-                            <div class="grown-uptext" *ngIf="!kids?.length">
+                            <div class="grown-uptext" *ngIf="!kids?.length && isLoaded">
                                 <h1>You haven’t added any kid yet!</h1>
                             </div>
                             <div *ngIf="kids?.length">

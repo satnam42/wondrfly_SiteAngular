@@ -163,6 +163,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
   searchTagValue = new FormControl()
   currentYear = moment(Date.now()).format("YYYY");
   age=0
+  isLoaded = false;
   constructor(
     private apiservice: ApiService,
     private router: Router,
@@ -420,7 +421,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
     this.isInvite = false;
     this.isAddChild = false;
     this.isEditChildBtn = false;
-
+    this.isLoaded = false
     this.apiservice.getChildByParentId(id).subscribe((res: any) => {
       this.kids = res
       this.kids = this.kids.filter((item) => item.isActivated === true);
@@ -450,6 +451,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
         kids.push(kid)
       });
       this.kids = kids
+      this.isLoaded = true
     });
   }
 
