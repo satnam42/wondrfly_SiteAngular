@@ -60,7 +60,6 @@
                                                 <div class="col-7 sub-categoriesfiltercontent">
                                                     <label class="cursor" *ngFor="let s of subCats; let i = index"
                                                         for="categoriescheck{{i}}">
-                                                        <!-- <h2> -->
                                                         <span><input type="checkbox" [disabled]="!s?.programCount"
                                                                 class="k-checkbox categories-checkbox"
                                                                 id="categoriescheck{{i}}" name="categoriescheck"
@@ -70,7 +69,6 @@
                                                         <h3 [class.checkbox-checked-name]="s.checked">
                                                             {{ s?.name }}<span>({{ s?.programCount }})</span>
                                                         </h3>
-                                                        <!-- </h2> -->
                                                     </label>
                                                 </div>
                                             </div>
@@ -157,16 +155,10 @@
 
                                     <div class="calender-botoombox">
                                         <div class="calender-daterange">
-                                            <!-- <div class="calender-daterange1" *ngIf="!fromDate">
-                                                24 / 01 / 2022
-                                            </div> -->
                                             <div class="calender-daterange1" *ngIf="fromDate">
                                                 {{ fromDate | date: "shortDate" }}
                                             </div>
                                             <img *ngIf="toDate" src="assets/calenderarrows.svg" />
-                                            <!-- <div class="calender-daterange2" *ngIf="!toDate">
-                                                24 / 01 / 2022
-                                            </div> -->
                                             <div class="calender-daterange2" *ngIf="toDate">
                                                 {{ toDate | date: "shortDate" }}
                                             </div>
@@ -330,11 +322,6 @@
             </div>
         </div>
         <div class="row row-0">
-            <!-- <div class="col-4" *ngIf="searchedSubCategory">
-                <div class="chip-set">
-                    <h1>Looking for <span>{{searchedSubCategory}}</span><span *ngIf="selectedSubCategories?.length && selectedSubCategories?.length>1"> + {{selectedSubCategories?.length-1}} More</span> in <span>Jersey City</span></h1>
-                </div>
-            </div> -->
             <div class="col-10" [ngClass]="{'col-12':isMap || isOnline}">
                 <div class="chip-set-bar chip-set-bar-btn" [hidden]="!showReset">
                     <div class="map-without-heading display-inline" *ngIf="searchedSubCategory">
@@ -344,14 +331,6 @@
                                 class="span-h3">&nbsp;|&nbsp; <b>{{activitiesCount}}</b> activities
                                 from <b>{{providerProgram?.length}}</b> providers</span></h2>
                     </div>
-                    <!-- <button class="btn_style save_btn cursor" *ngIf="searchedSubCategory">
-                        {{searchedSubCategory}}<span
-                            *ngIf="selectedSubCategories?.length && selectedSubCategories?.length>1"> +
-                            {{selectedSubCategories?.length-1}} More</span>
-                        <span class="ml-2"
-                            (click)="contentLoaded=false;selectedCat='';categoryId='';subCats=[];selectedSubCategories=[];searchedSubCategory='';programFilter()"><img
-                                src="assets/white-close.png" /></span>
-                    </button> -->
                     <button class="btn_style save_btn cursor" *ngIf="!isInPerson && isOnline">
                         online
                         <mat-icon (click)="contentLoaded=false;isOnline=!isOnline;programFilter()">cancel</mat-icon>
@@ -400,12 +379,6 @@
                     </span>
                 </div>
             </div>
-            <!-- <div class="col-md-8">
-                    <div class="map-without-heading">
-                        <h2><a>Violin</a> near New Jersey <span class="span-h3">&nbsp;|&nbsp; <b>20</b> activities
-                                from <b>10</b> providers</span></h2>
-                    </div>
-                </div> -->
             <div class="col-2" [hidden]="isMap || isOnline">
                 <div class="chip-set-bar btn-show-map-right">
                     <button (click)="isMap=!isMap;" class="btn-show-map"><img src="assets/show-map-icon.png"

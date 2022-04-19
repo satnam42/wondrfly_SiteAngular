@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/core/services/api.service.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { FormGroup } from '@angular/forms';
 import { HeaderComponent } from 'src/app/core/components/header/header.component';
-import { Program, User } from 'src/app/core/models';
+import { Category, Program, User } from 'src/app/core/models';
 import { AuthsService } from 'src/app/core/services/auths.service';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { Meta, Title } from '@angular/platform-browser';
@@ -12,6 +12,8 @@ import { ToastrService } from 'ngx-toastr';
 import { DataService } from 'src/app/core/services/dataservice.service ';
 import { environment } from 'src/environments/environment.prod';
 import { Globals } from 'src/app/core/common/imageLoader';
+import * as moment from 'moment';
+import { Options } from '@angular-slider/ngx-slider';
 
 @Component({
   selector: 'app-program-provider',
@@ -85,6 +87,121 @@ export class ProgramProviderComponent implements OnInit {
   previous;
   userId=''
   scrollToActivities = '';
+
+  //  start copied from search page 
+  isDateFilter: boolean = false;
+  isTimeFilter: boolean = false;
+  isDaysFilter: boolean = false;
+  isAgeFilter: boolean = false;
+  isTopFilter: boolean = false;
+  isPriceFilter: boolean = false;
+  isTypeFilter: boolean = false;
+  isCategoryFilter: boolean = false;
+  isTopFilterCheckBox: boolean = false;
+  isAlert: boolean = true;
+  isFav: boolean = false;
+  categoryId: any = ''
+  activityName: any = ''
+  filterData: any = {};
+  locationData: any = {}
+  favPrograms: any;
+  isMap: boolean = true;
+  isLoaded = false
+  locations = [];
+  categories: Category[];
+  categoriesBySearch: any = new Category;
+  isActive: boolean = false
+  providersBySearch: any = new User;
+  providerProgram: any = [];
+  key: string = '';
+  providerRole: boolean = false;
+  favProgramRes: any;
+  searchKey = '';
+  fav: any = {
+    userId: '',
+    programId: '',
+  };
+  fromDate: any;
+  toDate: any;
+  fromTime: any;
+  timeSession = ''
+  typeChecked = ''
+  toTime: any;
+  dateRange: any = {};
+  minPrice: any = 50;
+  maxPrice: any = 300;
+  favourites: any = [];
+  facebookActive = ''
+  messengerActive = ''
+  emailActive = ''
+  whatsappActive = ''
+  copylinkActive = ''
+  //  ng5slider start age group
+  minAge: number = 0;
+  maxAge: number = 5;
+  ageOption: Options = {
+    floor: 0,
+    ceil: 15,
+    translate: (value: number): string => {
+      return value + ' YRS';
+    }
+  };
+
+  priceOption: Options = {
+    floor: 0,
+    ceil: 800,
+    translate: (value: number): string => {
+      return '$' + value;
+    }
+  };
+  // ng5slider end
+  showReset = false;
+  deleteProgramRes: any;
+  @ViewChild('search', { static: true })
+  public searchElementRef: ElementRef;
+  shareUrlSocial = environment.baseUrl;
+  selectedProgram: any;
+  url: string;
+  suggested: any = [];
+  programOwnerData: any = User
+  isOnline: boolean = false;
+  isInPerson: boolean = false;
+  type1: any
+  subCats: any = [];
+  filterName = '';
+  selectedCat: any;
+  selectedSubCategories: any = [];
+  catData: Category[];
+  isBetaPopUp: boolean = false;
+  recentFilters: any = []
+  searchedSubCategory = ''
+  latt: any;
+  lngg: any;
+  weakDays = ['sunday', 'monday', 'tuesday', 'wednesday', 'thrusday', 'friday', 'saturday']
+  programTypes = ['Camps', 'Semesters', 'Drops-in', 'Other']
+  programTimes = ['early-morning', 'morning', 'afternoon', 'late-afternoon', 'evening']
+  programTimesShow = ['6am - 9am', '9am - 12pm', '12pm - 3pm', '3pm - 6pm', '6pm - 9pm']
+  selectedDays: any = []
+  selectedProgramTypes: any = []
+  selectedProgramTime: any = []
+  contentLoaded = false;
+  fakeLoaderData = [1, 2]
+  currentUser: any;
+  cookiesData: string;
+  regWallCookies = 0
+  moment = moment;
+  minDate: moment.Moment;
+  upArrow: boolean = false;
+  upArrow2: boolean = false;
+  providerr = new User;
+  activitiesCount = 0
+  tempCategoryId = ''
+  tempSearchedSubCategory = ''
+  tempSelectedSubCategories = []
+  tempSelectedDays: any = []
+  tempSelectedProgramTypes: any = []
+  tempSelectedProgramTime: any = []
+  //  end copied from search page
   constructor(private router: Router,
     private apiservice: ApiService,
     private auth: AuthsService,
@@ -276,4 +393,232 @@ window.scroll(0,0)
   }
   centerChange(e) {
   }
+
+
+  // start copied from search page
+  programFilter() {
+    if (this.regWallCookies > 11) {
+      this.isBetaPopUp = true
+    }
+    window.scroll(0, 0);
+    this.isTimeFilter = false;
+    this.isDaysFilter = false;
+    this.isTopFilter = false;
+    this.isTypeFilter = false;
+    this.isCategoryFilter = false;
+    this.suggested = []
+    if (this.isTopFilterCheckBox || this.categoryId || this.selectedDays.length || this.selectedProgramTypes.length || this.selectedSubCategories.length || this.selectedProgramTime.length || this.isOnline || this.isInPerson || this.isDateFilter || this.isPriceFilter || this.isAgeFilter) {
+      this.fakeLoaderData = [1, 2]
+      this.contentLoaded = false;
+      let filter = ``
+      let inpersonOrVirtual = ''
+      let days = ''
+      let categoryId = ''
+      let tags = ''
+      let types = ''
+      let times = ''
+      let daysCount = 1
+      let typesCount = 1
+      let tagsCount = 1
+      let timesCount = 1
+      let ratingFrom = 4
+      let ratingTo = 5
+      if (this.categoryId) {
+        this.isCategoryFilter = true;
+        categoryId = this.categoryId
+      }
+      for (let day of this.selectedDays) {
+        this.isDaysFilter = true;
+        if (daysCount === 1) {
+          days += day
+          daysCount++
+        }
+        else {
+          days += ',' + day
+        }
+      }
+      for (let type of this.selectedProgramTypes) {
+        this.isTypeFilter = true
+        if (typesCount === 1) {
+          types += type
+          typesCount++
+        }
+        else {
+          types += ',' + type
+        }
+      }
+      for (let tag of this.selectedSubCategories) {
+        this.isCategoryFilter = true
+        if (tagsCount === 1) {
+          tags += tag
+          tagsCount++
+        }
+        else {
+          tags += ',' + tag
+        }
+      }
+      for (let time of this.selectedProgramTime) {
+        this.isTimeFilter = true
+        if (timesCount === 1) {
+          times += time
+          timesCount++
+        }
+        else {
+          times += ',' + time
+        }
+      }
+      if (!categoryId && !this.selectedSubCategories.length) {
+        this.searchedSubCategory = '';
+      }
+      if (this.isOnline) {
+        inpersonOrVirtual = 'online'
+      }
+      else if (this.isInPerson) {
+        inpersonOrVirtual = 'inperson'
+      }
+      else {
+        inpersonOrVirtual = ''
+      }
+      const dateFormat = "YYYY-MM-DD";
+      this.fromDate = moment(this.fromDate).format(dateFormat);
+      this.toDate = moment(this.toDate).format(dateFormat);
+      filter = `providerId=${this.user.id}&time=${times}&categoryId=${categoryId}&tagsIds=${tags}&type=${types}&inpersonOrVirtual=${inpersonOrVirtual}&day=${days}`
+      if (this.isTopFilterCheckBox) {
+        this.isTopFilter = true;
+        filter += `&ratingFrom=${ratingFrom}&ratingTo=${ratingTo}`
+      }
+      if (this.isDateFilter) {
+        filter += `&fromDate=${this.fromDate}&toDate=${this.toDate}`
+      }
+      if (this.isPriceFilter) {
+        filter += `&priceFrom=${this.minPrice}&priceTo=${this.maxPrice}`
+      }
+      if (this.isAgeFilter) {
+        filter += `&ageFrom=${this.minAge}&ageTo=${this.maxAge}`
+      }
+      this.ngxLoader.start()
+      this.apiservice.programFilter(filter, 1, 100).subscribe((res: any) => {
+        this.showReset = true
+        if (res.isSuccess) {
+          // this.isTopFilterCheckBox = false
+          this.programs = res.data;
+          // if (!this.providerProgram.length) {
+          //   this.isLoaded = true
+          // }
+          // if (this.providerProgram.length) {
+          //   this.providerProgram[0].collapsed = true
+          // }
+          // if (this.providerProgram.length == 2) {MN JKBB
+          //   this.providerProgram[1].collapsed = true
+          // }
+          // else if (this.providerProgram.length > 2) {
+          //   this.providerProgram[1].collapsed = true
+          //   this.providerProgram[2].collapsed = true
+          // }
+          // if (categoryId || this.selectedSubCategories.length) {
+          //   const sum = this.providerProgram.reduce((accumulator, object) => {
+          //     return accumulator + object.programs.length;
+          //   }, 0);
+          //   this.activitiesCount = sum
+          // }
+        }
+        this.ngxLoader.stop()
+      });
+    }
+    else {
+      this.pageNo = 1
+      this.programs = []
+      this.isTopFilterCheckBox = false
+      this.getProviderProgram();
+    }
+  }
+
+  onDayChange(indx: number, day: string, isChecked: boolean) {
+    if (isChecked) {
+      this.tempSelectedDays.push(day)
+    } else {
+      this.tempSelectedDays.splice(day, -1)
+      let el = this.tempSelectedDays.find(itm => itm === day);
+      if (el) this.tempSelectedDays.splice(this.tempSelectedDays.indexOf(el), 1);
+    }
+  }
+  onProgramTypeChange(indx: number, type: string, isChecked: boolean) {
+    if (isChecked) {
+      this.tempSelectedProgramTypes.push(type)
+    } else {
+      this.tempSelectedProgramTypes.splice(type, -1)
+      let el = this.tempSelectedProgramTypes.find(itm => itm === type);
+      if (el) this.tempSelectedProgramTypes.splice(this.tempSelectedProgramTypes.indexOf(el), 1);
+    }
+  }
+  onProgramTimeChange(indx: number, time: string, isChecked: boolean) {
+    if (isChecked) {
+      this.tempSelectedProgramTime.push(time)
+    } else {
+      this.tempSelectedProgramTime.splice(time, -1)
+      let el = this.tempSelectedProgramTime.find(itm => itm === time);
+      if (el) this.tempSelectedProgramTime.splice(this.tempSelectedProgramTime.indexOf(el), 1);
+    }
+  }
+  onProgramsSubCategoryChange(i, event) {
+    this.tempCategoryId = ''
+    this.subCats[i].checked = event.target.checked;
+    if (this.subCats[i].checked) {
+      this.tempSearchedSubCategory = this.subCats[i].name;
+      this.tempSelectedSubCategories.push(this.subCats[i]._id);
+    }
+    else {
+      const index = this.tempSelectedSubCategories.indexOf(this.subCats[i]._id);
+      if (index >= 0) {
+        this.tempSelectedSubCategories.splice(index, 1);
+      }
+    }
+  }
+
+
+
+  @ViewChildren("types") types: QueryList<ElementRef>;
+  clearProgramTypes() {
+    this.selectedProgramTypes = []
+    this.tempSelectedProgramTypes = []
+    this.types.forEach((element) => {
+      element.nativeElement.checked = false;
+    });
+    this.programFilter()
+  }
+
+  @ViewChildren("days") days: QueryList<ElementRef>;
+  clearProgramDays() {
+    this.selectedDays = []
+    this.tempSelectedDays = []
+    this.days.forEach((element) => {
+      element.nativeElement.checked = false;
+    });
+    this.programFilter()
+  }
+  @ViewChildren("times") times: QueryList<ElementRef>;
+  clearProgramTime() {
+    this.selectedProgramTime = []
+    this.tempSelectedProgramTime = []
+    this.times.forEach((element) => {
+      element.nativeElement.checked = false;
+    });
+    this.programFilter()
+  }
+  choosedDate(e) {
+    this.fromDate = e.startDate._d
+    this.toDate = e.endDate._d
+  }
+    // ---------------------------------------------get subCateById-------------------------------------
+    getSubCateById(cat) {
+      this.tempCategoryId = cat.id
+      this.selectedCat = cat.id
+      this.tempSelectedSubCategories = []
+      this.tempSearchedSubCategory = cat.name
+      this.apiservice.getTagByCategoryId(cat.id).subscribe((res: any) => {
+        this.subCats = res.data
+        this.subCats = this.subCats.filter((item) => item.isActivated === true && item.programCount);
+      })
+    }
+    // end copied from search page
 }

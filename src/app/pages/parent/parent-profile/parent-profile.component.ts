@@ -1144,6 +1144,17 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
         if(res.isSuccess){
           this.searchedTags[indx].tags = res.data
           this.searchedTags[indx].tags = this.searchedTags[indx].tags.filter((item) => item.isActivated === true);
+          this.searchedTags[indx].tags.forEach(tag => {
+            if (this.kid.interestInfo.indexOf(tag) == -1) {
+              if (this.kid.interestInfo.find(category => category._id === tag._id)) {
+                tag.isSelected = true
+              }
+            }
+          });
+          let index = this.searchedTags[indx].tags.findIndex(x => x.isSelected!==true)
+          if (index!==-1) {
+              this.searchedTags[indx].category.isSelected = false;
+            }
         }
       })
     }
