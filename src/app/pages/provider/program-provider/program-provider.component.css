@@ -1025,7 +1025,7 @@ ul.ul-tag-btn-info li {
 }
 .activities-top-grid {
   display: grid;
-  grid-template-columns: 30% auto;
+  grid-template-columns: 25% auto;
   column-gap: 15px;
   /* justify-content: space-between;  */
   /* align-items: center; */
@@ -1382,13 +1382,29 @@ ul.act-top-right-btn li .toggle-filtersearch button:hover{
 
 #timess .collpase_content {
   padding: 0px !important;
+  min-width: 230px;
 }
 
 #timess .typess-flex:last-child {
   border-bottom: 0px !important;
   padding-bottom: 8px;
 }
-
+.main_collpase.partcategory::-webkit-scrollbar,
+.main_collpase.date-rangecal::-webkit-scrollbar {
+  display: block!important;
+}
+.main_collpase.partcategory,
+.main_collpase.date-rangecal{
+  padding: 0px;
+  overflow: hidden;
+  overflow-x: auto;
+  width: 100%;
+  min-width: 100%!important;
+}
+.main_collpase.partcategory .collpase_content.cate-dilter,
+.main_collpase.date-rangecal .collpase_content.cate-dilter{
+  min-width: 950px;
+}
 
 
 /*Empty checkbox*/
