@@ -443,7 +443,7 @@ out of 5 </a> -->
                                 </ul>    
                             </div> -->
 
-                            <!-- <div class="row row-0">
+                            <div class="row row-0">
                                 <div class="col-md-8">
                                     <div class="search-filterss">
                                         <div class="category_list" id="accordionExample">
@@ -717,7 +717,7 @@ out of 5 </a> -->
                                                     </div>
                                                 </li>
                     
-                                                <li class="cursor">
+                                                <!-- <li class="cursor">
                                                     <a class="top-rateds" aria-expanded="true" [ngClass]="{ active: isTopFilter }"><span
                                                             class="simple-toggle">
                                                             Top Rated
@@ -730,7 +730,7 @@ out of 5 </a> -->
                                                             </span>
                                                         </span>
                                                     </a>
-                                                </li>
+                                                </li> -->
                                             </ul>
                                         </div>
                                     </div>
@@ -750,9 +750,10 @@ out of 5 </a> -->
                                         </button>
                                     </div>
                                 </div>
-                            </div> -->
-                            <!-- <div class="row row-0">
-                                <div class="col-10">
+                            </div>
+                            </div>
+                            <div class="row row-0 mb-40">
+                                <div class="col-12">
                                     <div class="chip-set-bar chip-set-bar-btn" [hidden]="!showReset">
                                         <div class="map-without-heading display-inline" *ngIf="searchedSubCategory">
                                             <h2><a><span>{{searchedSubCategory}}</span><span
@@ -794,23 +795,23 @@ out of 5 </a> -->
                                         </button>
                                         <button class="btn_style save_btn cursor" *ngFor="let day of this.selectedDays;index as i">
                                             {{day}}
-                                            <mat-icon (click)="removeRecentSearches('days',i)" class="ml-2">cancel</mat-icon>
+                                            <mat-icon  class="ml-2">cancel</mat-icon>
                                         </button>
                                         <button class="btn_style save_btn cursor" *ngFor="let type of this.selectedProgramTypes;index as i">
                                             {{type}}
-                                            <mat-icon (click)="removeRecentSearches('types',i)" class="ml-2">cancel</mat-icon>
+                                            <mat-icon  class="ml-2">cancel</mat-icon>
                                         </button>
                                         <button class="btn_style save_btn cursor" *ngFor="let time of this.selectedProgramTime;index as i">
                                             {{time}}
-                                            <mat-icon (click)="removeRecentSearches('times',i)" class="ml-2">cancel</mat-icon>
+                                            <mat-icon  class="ml-2">cancel</mat-icon>
                                         </button>
                                         <span>
-                                            <a class="ml-2 clear-text cursor" (click)="resetFilter()">Clear all</a>
+                                            <a class="ml-2 clear-text cursor">Clear all</a>
                                         </span>
                                     </div>
                                 </div>
-                                                          </div> -->
                         </div>
+                        
                         <div class="row">
                             <!-- <div class="col-12" *ngIf="programs?.length" [hidden]="listView">
                                 <div id="carouselExampleIndicators" class="carousel slide activities-carousel" data-ride="carousel">
