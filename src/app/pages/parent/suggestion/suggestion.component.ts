@@ -132,7 +132,7 @@ if(!this.currentUser){
      groupDataAll[0].data=this.categoryData;
      }); 
      this.apiservice.searchUsers(key, "provider").subscribe((res: any) => {
-       if (res.data) {
+       if (res.isSuccess===true) {
        this.providersBySearch = res.data;
        var i;
        for(i = 0; i < this.providersBySearch.length; i++){
@@ -141,8 +141,8 @@ if(!this.currentUser){
        this.allData=groupDataAll
        }}
        else {
-       this.allData = []
-       }
+        groupDataAll[1].data = []
+        this.allData=groupDataAll       }
        });
      }
      }

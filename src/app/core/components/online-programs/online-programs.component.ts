@@ -36,7 +36,6 @@ export class OnlineProgramsComponent implements OnInit {
   // totalPages: number;
   filterClass: boolean = false;
   markerUrl = 'assets/location.svg';
-  baseUrlProduction='https://wondrfly.com/'
   pageNo: number = 1;
   pageSize: number = 8;
   @Input() provider_programs: any=[];

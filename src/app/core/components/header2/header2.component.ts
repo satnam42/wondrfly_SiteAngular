@@ -44,7 +44,8 @@ template: `
 
 
     <mat-autocomplete  autoActiveFirstOption #autoHeader2="matAutocomplete">
-    <mat-optgroup [label]="group.label" *ngFor="let group of allData">
+      <div *ngFor="let group of allData">
+    <mat-optgroup *ngIf="group?.data?.length" [label]="group.label" >
     <mat-option *ngFor="let option of group.data | slice:0:3"  [value]="option.name" (onSelectionChange)="selectSearchedOption(option)" (click)="selectSearchedOption(option)" >
         {{option.name}}
         <span class="search-programlist">
@@ -52,6 +53,7 @@ template: `
                         </span>
       </mat-option>  
     </mat-optgroup>
+    </div>
     </mat-autocomplete>
 </form>
 
@@ -398,7 +400,7 @@ searchSubCategory(key) {
   groupDataAll[0].data=this.categoryData;
   }); 
   this.apiservice.searchUsers(key, "provider").subscribe((res: any) => {
-    if (res.data) {
+    if (res.isSuccess===true) {
     this.providersBySearch = res.data;
     var i;
     for(i = 0; i < this.providersBySearch.length; i++){
@@ -407,8 +409,8 @@ searchSubCategory(key) {
     this.allData=groupDataAll
     }}
     else {
-    this.allData = []
-    }
+      groupDataAll[1].data = []
+        this.allData=groupDataAll       }
     });
   }
   }

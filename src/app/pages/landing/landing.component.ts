@@ -156,7 +156,7 @@ export class LandingComponent implements OnInit {
      groupDataAll[0].data=this.categoryData;
      }); 
      this.apiservice.searchUsers(key, "provider").subscribe((res: any) => {
-       if (res.data) {
+       if (res.isSuccess===true) {
        this.providersBySearch = res.data;
        var i;
        for(i = 0; i < this.providersBySearch.length; i++){
@@ -165,7 +165,8 @@ export class LandingComponent implements OnInit {
        this.allData=groupDataAll
        }}
        else {
-       this.allData = []
+        groupDataAll[1].data = []
+        this.allData=groupDataAll
        }
        });
      }

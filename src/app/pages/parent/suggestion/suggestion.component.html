@@ -163,7 +163,8 @@
                                           
                                           <div class="autocomp">
                                               <mat-autocomplete  autoActiveFirstOption #autoLanding2="matAutocomplete" class="auto-landing">
-                                              <mat-optgroup [label]="group.label" *ngFor="let group of allData">
+                                                  <div  *ngFor="let group of allData">
+                                              <mat-optgroup *ngIf="group?.data?.length" [label]="group.label">
                                               <mat-option *ngFor="let option of group.data | slice:0:3"  [value]="option.name" (click)="selectSearchedOption(option)" (onSelectionChange)="selectSearchedOption(option)" >
                                                   {{option.name}}
                                                   <span class="search-programlist">
@@ -171,6 +172,7 @@
                                                                   </span>
                                                 </mat-option>  
                                               </mat-optgroup>
+                                            </div>
                                               </mat-autocomplete>
                                             </div>
                                           </form>

@@ -115,7 +115,6 @@ export class SearchComponent implements OnInit, OnDestroy {
   public searchElementRef: ElementRef;
   shareUrlSocial = environment.baseUrl;
   baseUrl = environment.baseUrl;
-  baseUrlProduction = 'https://wondrfly.com/'
   selectedProgram: any;
   url: string;
   suggested: any = [];
