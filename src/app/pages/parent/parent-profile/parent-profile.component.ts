@@ -10,14 +10,11 @@ import { User } from "../../../core/models/user.model";
 import { HeaderComponent } from "src/app/core/components/header/header.component";
 import * as moment from "moment";
 import { AuthsService } from "src/app/core/services/auths.service";
-import { ChatService, Chat } from "src/app/core/services/chat.service";
 import { LocalStorageService } from "src/app/core/services";
 import { MatAutocompleteSelectedEvent } from "@angular/material/autocomplete";
 import { ToastrService } from "ngx-toastr";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { environment } from "src/environments/environment";
-import { analyzeAndValidateNgModules } from "@angular/compiler";
-
 @Component({
   selector: "parent-profile",
   templateUrl: "./parent-profile.component.html",
@@ -35,6 +32,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
   tellFriendForm: FormGroup;
   giveFeedbackForm: FormGroup;
   kid = new Child();
+  tempInterestInfo = []
   resetKid = new Child();
   user = new User();
   isToggle: boolean;
@@ -195,6 +193,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
     this.searchedTags=[]
     this.keyword =''
     this.kid = data;
+    this.tempInterestInfo = [...this.kid.interestInfo]
     this.childImgURL = this.kid.avtar;
   }
   getGuardianData(data) {
@@ -213,7 +212,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    this.kid.interestInfo.push(event.option.value);
+    this.tempInterestInfo.push(event.option.value);
   }
   remove(t) {
     for(let i in this.searchedTags) {
@@ -223,16 +222,16 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
           this.searchedTags[i].tags[indx].isSelected=false;
         }
       }
-      const index = this.kid.interestInfo.indexOf(t);
+      const index = this.tempInterestInfo.indexOf(t);
       if (index >= 0) {
-        this.kid.interestInfo.splice(index, 1);
+        this.tempInterestInfo.splice(index, 1);
       }
 }
 
   selectEvent(item) {
-    if (this.kid.interestInfo.indexOf(item) == -1) {
-      if (!this.kid.interestInfo.find(category => category.name === item.name)) {
-        this.kid.interestInfo.push(item)
+    if (this.tempInterestInfo.indexOf(item) == -1) {
+      if (!this.tempInterestInfo.find(category => category.name === item.name)) {
+        this.tempInterestInfo.push(item)
       }
     }
   }
@@ -262,7 +261,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
           for (let i in filtredtags) {
             if (filtredCats[j]._id === filtredtags[i].categoryIds[0]._id) {
               modifiedObj.category = filtredCats[j]
-              let indx = this.kid .interestInfo.findIndex(x => x._id===filtredtags[i]._id)
+              let indx = this.tempInterestInfo.findIndex(x => x._id===filtredtags[i]._id)
               if(indx>=0){
                 filtredtags[i].isSelected = true
               }
@@ -903,6 +902,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
 
   addChild(userId) {
     let childResponse;
+    this.kid.interestInfo=this.tempInterestInfo
     this.kid.parentId = userId;
     if (this.childImageURl != "" && this.childImageURl != undefined) {
       this.kid.avtar = this.childImageURl;
@@ -960,6 +960,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
     this.updateChild(this.kids[kidIndx], this.currentUser.id)
   }
   updateChild(child, userId) {
+    child.interestInfo=this.tempInterestInfo
     this.age = 0
     var birth = new Date(child.dob);
     let birthYear = moment(birth).format("YYYY");
@@ -1090,18 +1091,18 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
       // this.searchedTags[categoryIndx].collapsed = true;
       this.searchedTags[categoryIndx].tags.forEach(tag => {
         tag.isSelected = true
-        if (this.kid.interestInfo.indexOf(tag) == -1) {
-          if (!this.kid.interestInfo.find(category => category._id === tag._id)) {
-            this.kid.interestInfo.push(tag)
+        if (this.tempInterestInfo.indexOf(tag) == -1) {
+          if (!this.tempInterestInfo.find(category => category._id === tag._id)) {
+            this.tempInterestInfo.push(tag)
           }
         }
       });
     } else {
       this.searchedTags[categoryIndx].category.isSelected = false;
       this.searchedTags[categoryIndx].tags.forEach(tag => {
-        let index = this.kid.interestInfo.findIndex(x => x._id===tag._id)
+        let index = this.tempInterestInfo.findIndex(x => x._id===tag._id)
         if (index!==-1) {
-          this.kid.interestInfo.splice(index, 1)
+          this.tempInterestInfo.splice(index, 1)
         }
         // if (this.kid.interestInfo.find(category => category.name === tag.name)) {
         //   const index = this.kid.interestInfo.indexOf(tag);
@@ -1115,9 +1116,9 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
     // const value = (element) => element === false;
     let unchecked = this.searchedTags[categoryIndx].tags.filter(tag => !tag.isSelected)
     if (e.target.checked === true) {
-      if (this.kid.interestInfo.indexOf(this.searchedTags[categoryIndx].tags) == -1) {
-        if (!this.kid.interestInfo.find(category => category._id === this.searchedTags[categoryIndx].tags[tagIndex]._id)) {
-          this.kid.interestInfo.push(this.searchedTags[categoryIndx].tags[tagIndex])
+      if (this.tempInterestInfo.indexOf(this.searchedTags[categoryIndx].tags) == -1) {
+        if (!this.tempInterestInfo.find(category => category._id === this.searchedTags[categoryIndx].tags[tagIndex]._id)) {
+          this.tempInterestInfo.push(this.searchedTags[categoryIndx].tags[tagIndex])
         }
       }
       this.searchedTags[categoryIndx].tags[tagIndex].isSelected = true
@@ -1129,9 +1130,9 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
       }
     }
     else {
-      let index = this.kid.interestInfo.findIndex(x => x._id===this.searchedTags[categoryIndx].tags[tagIndex]._id)
+      let index = this.tempInterestInfo.findIndex(x => x._id===this.searchedTags[categoryIndx].tags[tagIndex]._id)
       if (index!==-1) {
-          this.kid.interestInfo.splice(index, 1)
+          this.tempInterestInfo.splice(index, 1)
         }
       this.searchedTags[categoryIndx].tags[tagIndex].isSelected = false
       this.searchedTags[categoryIndx].category.isSelected = false;
@@ -1145,8 +1146,8 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
           this.searchedTags[indx].tags = res.data
           this.searchedTags[indx].tags = this.searchedTags[indx].tags.filter((item) => item.isActivated === true);
           this.searchedTags[indx].tags.forEach(tag => {
-            if (this.kid.interestInfo.indexOf(tag) == -1) {
-              if (this.kid.interestInfo.find(category => category._id === tag._id)) {
+            if (this.tempInterestInfo.indexOf(tag) == -1) {
+              if (this.tempInterestInfo.find(category => category._id === tag._id)) {
                 tag.isSelected = true
               }
             }

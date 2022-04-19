@@ -519,7 +519,7 @@
                             <h2>
                                 Kids
                                 <a data-toggle="modal" data-target="#editModal"
-                                    (click)="kid = resetKid; childImgURL = '';searchedTags=[];
+                                    (click)="kid = resetKid;tempInterestInfo=[];childImgURL = '';searchedTags=[];
                                     keyword =''" class="btn_style save_btn cursor">Add</a>
                             </h2>
                             <div class="grown-uptext" *ngIf="!kids?.length && isLoaded">
@@ -1272,13 +1272,13 @@
                                 </div>
                             </div>
                             <!-- End search check box html -->
-                            <div class="form-group" *ngIf="kid?.interestInfo?.length">
+                            <div class="form-group" *ngIf="tempInterestInfo?.length">
                                 <br />
                                 <div class="chips-box">
                                  <div class="chips-scrollbar">   
                                 <mat-form-field class="demo-chip-list">
                                     <mat-chip-list>
-                                        <mat-chip *ngFor="let t of kid?.interestInfo; let indx = index"
+                                        <mat-chip *ngFor="let t of tempInterestInfo; let indx = index"
                                             [selectable]="selectable" [removable]="removable" (removed)="remove(t)">
                                             {{ t.name }}
                                             <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
