@@ -533,14 +533,12 @@
                                     </div>
                                 </div>
                             </div>
-
-
-                            <!-- <div class="media-share-icon">
+                            <div class="media-share-icon">
                                  <ul class="ul-tag-share_icon">
-                                    <li><a href="#"><img src="assets/share_gray.svg" /></a></li>
-                                    <li><a href="#"><img src="assets/bookmark_gray.svg" /></a></li>
+                                    <li><a class="cursor" data-toggle="modal" data-target="#ShareModal"(click)="selectedShareData = provider"><img src="assets/share_gray.svg" /></a></li>
+                                    <li><a class="cursor"><img src="assets/bookmark_gray.svg" /></a></li>
                                 </ul> 
-                            </div>-->
+                            </div>
                         </div>
                         <!-- --------------------------------------------------Programs list second without map--------------------------------------------------- -->
                         <div [id]="'programDiv'+providerIndx" class="map-carousel-slider"
@@ -575,7 +573,7 @@
                                                 </h2>
                                             </div>
                                             <div class="media-right-share-icon">
-                                                <a data-toggle="modal" (click)="selectedProgram = program"
+                                                <a data-toggle="modal" (click)="selectedShareData = program"
                                                     data-target="#ShareModal" class="cursor display-none">
                                                     <!-- <img src="assets/share_gray.svg " class="section1"
                                                         joyrideStep="secondStep{{providerIndx}}"
@@ -1311,7 +1309,7 @@
     </div>
 </section>
 
-<share-popup [shareData]="selectedProgram"></share-popup>
+<share-popup [shareData]="selectedShareData" [isProvider]="checkProviderOrProgram(selectedShareData)"></share-popup>
 <app-footer2 *ngIf="isOnline"></app-footer2>
 
 

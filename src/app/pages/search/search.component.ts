@@ -115,7 +115,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   public searchElementRef: ElementRef;
   shareUrlSocial = environment.baseUrl;
   baseUrl = environment.baseUrl;
-  selectedProgram: any;
+  selectedShareData: any;
   url: string;
   suggested: any = [];
   programOwnerData: any = User
@@ -944,5 +944,8 @@ export class SearchComponent implements OnInit, OnDestroy {
     document.getElementById('widgetsContent' + i).scrollLeft += 650;
     // this.checkScroll()
   }
-
+  checkProviderOrProgram(data) {
+    console.log(data)
+    return true
+  }
 }

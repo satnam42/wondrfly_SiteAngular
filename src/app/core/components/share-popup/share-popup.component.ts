@@ -61,51 +61,67 @@ aria-labelledby="staticBackdropLabel" aria-hidden="true">
 
 export class SharePopupComponent implements OnInit {
   @Input() shareData: any;
-  baseUrl= environment.baseUrl;
-  shareUrl:string;
+  baseUrl = environment.baseUrl;
+  shareUrl: string;
+  @Input() isProvider: boolean;
   url: string;
-  constructor(private snack:MatSnackBar) { }
+  constructor(private snack: MatSnackBar) { }
   ngOnInit() {
   }
-//----------------------------------------share activity or program detail in social media  ---------------------------------------------------------
+  //----------------------------------------share activity or program detail in social media  ---------------------------------------------------------
 
-genericSocialShare(provider) {
-let name = this.shareData.name;
-let subject = "Check out this kids' activity on Wondrfly:"
-let emailSub = "Check out this kids' activity on Wondrfly!"
-name = name.toLowerCase();
-name = name.replace(/ /g,"-");
-name = name.replace(/\?/g,"-");
-  this.shareUrl=`${this.baseUrl}program/${name}/${this.shareData._id}`;
-     switch (provider) {
-       case 'facebook': {
-         this.url = `https://www.${provider}.com/sharer/sharer.php?u=${subject} ${this.shareUrl}`;
-         window.open(this.url, 'sharer', 'toolbar=0,status=0,width=648,height=395');
-         return true;
-       }
-       case 'email': {
+  genericSocialShare(provider) {
+    let name:any
+    let subject:any
+    let emailSub:any
+    if(this.isProvider){
+      name = this.shareData.user[0].firstName;
+      name = name.toLowerCase();
+      name = name.replace(/ /g, "-");
+      name = name.replace(/\?/g, "-");
+      subject = "Check out this Provider profile and services on Wondrfly:"
+      emailSub = "Check out this Provider profile and services on Wondrfly!"
+      this.shareUrl = `${this.baseUrl}program/program-provider/${name}/${this.shareData._id}`;
+    }
+    else{
+      name = this.shareData.name;
+      name = name.toLowerCase();
+      name = name.replace(/ /g, "-");
+      name = name.replace(/\?/g, "-");
+      subject = "Check out this kids' activity on Wondrfly:"
+      emailSub = "Check out this kids' activity on Wondrfly!"
+      this.shareUrl = `${this.baseUrl}program/${name}/${this.shareData._id}`;
+    }
+
+    switch (provider) {
+      case 'facebook': {
+        this.url = `https://www.${provider}.com/sharer/sharer.php?u=${subject} ${this.shareUrl}`;
+        window.open(this.url, 'sharer', 'toolbar=0,status=0,width=648,height=395');
+        return true;
+      }
+      case 'email': {
         navigator.clipboard.writeText(this.shareUrl).then().catch(e => console.error(e));
-         this.url = `mailto:?subject=${emailSub}&body=${subject} ${this.shareUrl}`;
-         window.open( this.url, 'sharer', 'toolbar=0,status=0,width=648,height=395');
-         return true;
-       }
-       case 'whatsapp': {
-         this.url = `https://api.${provider}.com/send?text=${subject} ${this.shareUrl}`;
-         window.open( this.url, 'sharer', 'toolbar=0,status=0,width=648,height=395');
-         return true;
-       }
-       case 'messenger': {
+        this.url = `mailto:?subject=${emailSub}&body=${subject} ${this.shareUrl}`;
+        window.open(this.url, 'sharer', 'toolbar=0,status=0,width=648,height=395');
+        return true;
+      }
+      case 'whatsapp': {
+        this.url = `https://api.${provider}.com/send?text=${subject} ${this.shareUrl}`;
+        window.open(this.url, 'sharer', 'toolbar=0,status=0,width=648,height=395');
+        return true;
+      }
+      case 'messenger': {
         navigator.clipboard.writeText(this.shareUrl).then().catch(e => console.error(e));
-         window.open( 'https://m.me', 'sharer', 'toolbar=0,status=0,width=1000,height=600');
-         return true;
-       }
-       case 'copylink': {
-         navigator.clipboard.writeText(this.shareUrl).then().catch(e => console.error(e));
-         this.snack.open('Link copied','', { duration: 500 });
-            // this.url = `${encodeURIComponent(this.baseUrl)}program/detail/${this.selectedProgramId}`;
-       }
+        window.open('https://m.me', 'sharer', 'toolbar=0,status=0,width=1000,height=600');
+        return true;
+      }
+      case 'copylink': {
+        navigator.clipboard.writeText(this.shareUrl).then().catch(e => console.error(e));
+        this.snack.open('Link copied', '', { duration: 500 });
+        // this.url = `${encodeURIComponent(this.baseUrl)}program/detail/${this.selectedProgramId}`;
+      }
 
-     }
+    }
 
-   }
+  }
 }
