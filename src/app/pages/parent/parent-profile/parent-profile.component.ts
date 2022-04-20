@@ -175,6 +175,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
     this.activeList = this.store.getItem('activeList');
     this.currentUser = this.authService.currentUser();
     this.sendInvite = JSON.parse(this.store.getItem('sendInvite'));
+    this.savedProviders()
   }
 
   dateV() {
@@ -1353,5 +1354,12 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
       this.allTags = this.allTags.filter((item) => item.isActivated === true);
       this.allTags = this.allTags.sort((a, b) => b.programCount - a.programCount);
     });
+  }
+  // saved providers list 
+  savedProviders(){
+    this.apiservice
+    .getSavedProvidersByParentId(this.currentUser.id)
+    .subscribe((res: any) => {
+console.log('fav providers  ',res)    });
   }
 }
