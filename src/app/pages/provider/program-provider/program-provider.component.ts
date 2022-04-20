@@ -235,10 +235,7 @@ export class ProgramProviderComponent implements OnInit {
   }
   onActivities(id) {
     document.querySelector(id).scrollIntoView({ behavior: 'smooth',block: 'start'});
-    // window.scroll(0, 0);
-    // this.peopleClass = ''; this.activityClass = 'active'; this.overviewClass = '';
-    // this.isGenOverview = false; this.isPeople = false; this.isActivities = true
-    // this.getProviderProgram()
+    this.dataService.setScrollToActivities('')
   }
 
   getProviderById() {
@@ -331,6 +328,7 @@ export class ProgramProviderComponent implements OnInit {
 
 
   ngOnInit() {
+    window.scroll(0, 0);
     this.getProviderById()
     this.titleService.setTitle(this.title);
     this.metaTagService.updateTag(
@@ -339,7 +337,6 @@ export class ProgramProviderComponent implements OnInit {
     // this.getBadges();
     this.scrollToActivities = this.dataService.getScrollToActivities()
     if(this.scrollToActivities=='activities'){
-      this.dataService.setScrollToActivities('')
      this.onActivities('#ActivitiesList')
     }
     else{
