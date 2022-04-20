@@ -747,7 +747,13 @@ export class SearchComponent implements OnInit, OnDestroy {
         if (res.isSuccess) {
           // this.isTopFilterCheckBox = false
           this.programs = res.data;
-          this.providerProgram = this.programs;
+          if(this.isTopFilter){
+      this.providerProgram=this.programs.sort((a,b) => b.user[0]?.averageFinalRating - a.user[0]?.averageFinalRating);
+          }
+          else{
+            this.providerProgram = this.programs;
+          }
+      
           console.log('this.providerProgram', this.providerProgram)
           if (!this.providerProgram.length) {
             this.isLoaded = true
@@ -943,5 +949,5 @@ export class SearchComponent implements OnInit, OnDestroy {
   scrollRight(i) {
     document.getElementById('widgetsContent' + i).scrollLeft += 650;
     // this.checkScroll()
-  }
+  }yy
 }

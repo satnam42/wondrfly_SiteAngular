@@ -413,17 +413,7 @@
                                         <div class="review-starsearch-info" (click)=" getRating(provider._id); 
                                 " class="cursor" data-toggle="collapse"
                                             [attr.data-target]="'#collapseExamplestar' + providerIndx">
-                                            <!-- <div class="rating-starsearch">
-                                        <p class="cursor">
-                                            <span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star-half-o checked"></span>
-                                            </span>
-                                        </p>
-                                    </div> -->
+        
                                             <div class="rating-starsearch">
                                                 <p>
                                                     <span *ngIf="provider.user[0]?.averageFinalRating==0">
