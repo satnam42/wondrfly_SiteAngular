@@ -526,7 +526,11 @@
                                     <div class="media-share-icon">
                                         <ul class="ul-tag-share_icon">
                                            <li><a class="cursor" data-toggle="modal" data-target="#ShareModal"(click)="selectedShareData = provider"><img src="assets/share_gray.svg" /></a></li>
-                                           <li><a class="cursor"><img src="assets/bookmark_gray.svg" /></a></li>
+                                           <li>
+                                               <a *ngIf="provider?.isFav && parentRole && isLogin"  (click)="saveUnsaveProvider(providerIndx,false)" class="cursor"><img src="assets/bookmarkOrange.png" /></a>
+                                               <a *ngIf="!provider?.isFav && parentRole && isLogin" (click)="saveUnsaveProvider(providerIndx,true)" class="cursor"><img src="assets/bookmark_gray.svg" /></a>
+                                               <a *ngIf="!isLogin" class="cursor" routerLink="/login"><img src="assets/bookmark_gray.svg" /></a>
+                                            </li>
                                        </ul> 
                                    </div>
                                 </div>

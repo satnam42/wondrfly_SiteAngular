@@ -747,13 +747,13 @@ export class SearchComponent implements OnInit, OnDestroy {
         if (res.isSuccess) {
           // this.isTopFilterCheckBox = false
           this.programs = res.data;
-          if(this.isTopFilter){
-      this.providerProgram=this.programs.sort((a,b) => b.user[0]?.averageFinalRating - a.user[0]?.averageFinalRating);
+          if (this.isTopFilter) {
+            this.providerProgram = this.programs.sort((a, b) => b.user[0]?.averageFinalRating - a.user[0]?.averageFinalRating);
           }
-          else{
+          else {
             this.providerProgram = this.programs;
           }
-      
+
           console.log('this.providerProgram', this.providerProgram)
           if (!this.providerProgram.length) {
             this.isLoaded = true
@@ -949,5 +949,21 @@ export class SearchComponent implements OnInit, OnDestroy {
   scrollRight(i) {
     document.getElementById('widgetsContent' + i).scrollLeft += 650;
     // this.checkScroll()
-  }yy
+  }
+  //  save provider
+  saveUnsaveProvider(indx, boleanType) {
+    let model = {
+      parent: this.userId,
+      provider: this.providerProgram[indx]._id
+    }
+    if (boleanType) {
+      this.providerProgram[indx].isFav = boleanType
+      this.apiservice.saveProvider(model).subscribe((res: any) => {
+        console.log(res)
+      });
+    }
+    else {
+      this.providerProgram[indx].isFav = boleanType
+    }
+  }
 }
