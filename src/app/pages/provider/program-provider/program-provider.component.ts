@@ -345,6 +345,7 @@ export class ProgramProviderComponent implements OnInit {
     else{
       window.scroll(0,0)
     }
+    this.getCategory()
   }
   ngOnDestroy() {
 window.scroll(0,0)
@@ -609,6 +610,23 @@ window.scroll(0,0)
     this.fromDate = e.startDate._d
     this.toDate = e.endDate._d
   }
+
+
+ // ---------------------------------------------get categories-------------------------------------
+ getCategory() {
+  let removedCategory;
+  this.apiservice.getCategory().subscribe((res: any) => {
+    this.categories = res;
+    const idToRemove = '60b47687bb70a952280bfa7b';
+    removedCategory = this.categories.filter((item) => item.id === idToRemove);
+    this.categories = this.categories.filter((item) => item.id !== idToRemove);
+    this.categories.push(removedCategory[0])
+    this.categories = this.categories.filter((item) => item.isActivated !== false);
+    this.catData = this.categories
+  });
+}
+
+
     // ---------------------------------------------get subCateById-------------------------------------
     getSubCateById(cat) {
       this.tempCategoryId = cat.id
