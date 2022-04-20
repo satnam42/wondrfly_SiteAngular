@@ -79,15 +79,17 @@ export class SharePopupComponent implements OnInit {
       name = name.toLowerCase();
       name = name.replace(/ /g, "-");
       name = name.replace(/\?/g, "-");
+      name = name.replace(/[{()}]/g, '');
       subject = "Check out this Provider profile and services on Wondrfly:"
       emailSub = "Check out this Provider profile and services on Wondrfly!"
-      this.shareUrl = `${this.baseUrl}program/program-provider/${name}/${this.shareData._id}`;
+      this.shareUrl = `${this.baseUrl}provider/program-provider/${name}/${this.shareData._id}`;
     }
     else{
       name = this.shareData.name;
       name = name.toLowerCase();
       name = name.replace(/ /g, "-");
       name = name.replace(/\?/g, "-");
+      name = name.replace(/[{()}]/g, '');
       subject = "Check out this kids' activity on Wondrfly:"
       emailSub = "Check out this kids' activity on Wondrfly!"
       this.shareUrl = `${this.baseUrl}program/${name}/${this.shareData._id}`;
