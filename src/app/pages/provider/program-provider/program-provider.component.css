@@ -1025,7 +1025,7 @@ ul.ul-tag-btn-info li {
 }
 .activities-top-grid {
   display: grid;
-  grid-template-columns: 25% auto;
+  grid-template-columns: 145px auto;
   column-gap: 15px;
   /* justify-content: space-between;  */
   /* align-items: center; */
@@ -1389,7 +1389,7 @@ ul.act-top-right-btn li .toggle-filtersearch button:hover{
   border-bottom: 0px !important;
   padding-bottom: 8px;
 }
-.main_collpase.partcategory::-webkit-scrollbar,
+/* .main_collpase.partcategory::-webkit-scrollbar,
 .main_collpase.date-rangecal::-webkit-scrollbar {
   display: block!important;
 }
@@ -1404,8 +1404,15 @@ ul.act-top-right-btn li .toggle-filtersearch button:hover{
 .main_collpase.partcategory .collpase_content.cate-dilter,
 .main_collpase.date-rangecal .collpase_content.cate-dilter{
   min-width: 950px;
+} */
+.main_collpase.partcategory{
+  min-width: 850px !important;
+  left: -120px;
 }
-
+.meta-overflow-row {
+  overflow: hidden;
+  overflow-x: auto;
+}
 
 /*Empty checkbox*/
 .k-checkbox {
