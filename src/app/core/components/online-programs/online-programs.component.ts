@@ -16,7 +16,7 @@ import { DataService } from '../../services/dataservice.service ';
 export class OnlineProgramsComponent implements OnInit {
   defaultImage = 'https://miro.medium.com/max/441/1*9EBHIOzhE1XfMYoKz1JcsQ.gif';
   errorImage = 'assets/favicon.svg';
-  selectedProgram:any;
+  selectedShareData:any;
   isFav: boolean = false;
   categoryId: any = ''
   activityName: any = ''

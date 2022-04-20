@@ -17,7 +17,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 ">
+                    <div class="col-md-4 ">
                         <div class="media-top-txt-div justify-content-right"> 
                         <div class="review-starsearch-info cursor" data-toggle="collapse" [attr.data-target]="'#collapseExamplestar' + providerIndx" (click)=" getRating(provider._id)">
                             <!-- <div class="rating-starsearch">
@@ -130,13 +130,15 @@
                         </div>
                     </div>
                     </div>
+                    <div class="col-md-2 ">
+                        <div class="media-share-icon">
+                            <ul class="ul-tag-share_icon">
+                                <li><a class="cursor" data-toggle="modal" data-target="#ShareModal"(click)="selectedShareData = provider"><img src="assets/share_gray.svg" /></a></li>
+                                <li><a ><img src="assets/bookmark_gray.svg" /></a></li>
+                            </ul>
+                        </div>
+                    </div>
                     </div>   
-                    <!-- <div class="media-share-icon">
-                        <ul class="ul-tag-share_icon">
-                            <li><a ><img src="assets/share_gray.svg" /></a></li>
-                            <li><a ><img src="assets/bookmark_gray.svg" /></a></li>
-                        </ul>
-                    </div> -->
                 </div>
                 <!-------------------Programs list first with map--------------------->
                 <div class="collapse"[id]="'programDiv'+providerIndx" [ngClass]="{'collapse': !provider_programs[providerIndx].collapsed, 'collapsed': provider_programs[providerIndx].collapsed}">
@@ -472,4 +474,4 @@
         </div>
     </main> -->
 </div>
-<share-popup [shareData]="selectedProgram"></share-popup>
+<share-popup [shareData]="selectedShareData" [isProvider]="true"></share-popup>

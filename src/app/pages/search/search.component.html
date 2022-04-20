@@ -408,7 +408,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 ">
+                                <div class="col-md-4 ">
                                     <div class="media-top-txt-div justify-content-right">
                                         <div class="review-starsearch-info" (click)=" getRating(provider._id); 
                                 " class="cursor" data-toggle="collapse"
@@ -532,13 +532,17 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-md-2 ">
+                                    <div class="media-share-icon">
+                                        <ul class="ul-tag-share_icon">
+                                           <li><a class="cursor" data-toggle="modal" data-target="#ShareModal"(click)="selectedShareData = provider"><img src="assets/share_gray.svg" /></a></li>
+                                           <li><a class="cursor"><img src="assets/bookmark_gray.svg" /></a></li>
+                                       </ul> 
+                                   </div>
+                                </div>
                             </div>
-                            <div class="media-share-icon">
-                                 <ul class="ul-tag-share_icon">
-                                    <li><a class="cursor" data-toggle="modal" data-target="#ShareModal"(click)="selectedShareData = provider"><img src="assets/share_gray.svg" /></a></li>
-                                    <li><a class="cursor"><img src="assets/bookmark_gray.svg" /></a></li>
-                                </ul> 
-                            </div>
+                            
+                            
                         </div>
                         <!-- --------------------------------------------------Programs list second without map--------------------------------------------------- -->
                         <div [id]="'programDiv'+providerIndx" class="map-carousel-slider"
@@ -1309,7 +1313,7 @@
     </div>
 </section>
 
-<share-popup [shareData]="selectedShareData" [isProvider]="checkProviderOrProgram(selectedShareData)"></share-popup>
+<share-popup [shareData]="selectedShareData" [isProvider]="true"></share-popup>
 <app-footer2 *ngIf="isOnline"></app-footer2>
 
 

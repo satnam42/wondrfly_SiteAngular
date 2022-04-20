@@ -944,8 +944,4 @@ export class SearchComponent implements OnInit, OnDestroy {
     document.getElementById('widgetsContent' + i).scrollLeft += 650;
     // this.checkScroll()
   }
-  checkProviderOrProgram(data) {
-    console.log(data)
-    return true
-  }
 }
