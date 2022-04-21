@@ -212,7 +212,7 @@ export class ProgramProviderComponent implements OnInit {
     private metaTagService: Meta,
     private dataService: DataService,
     public globalFunc: Globals) {
-
+      this.scrollToActivities = this.dataService.getScrollToActivities()
     this.activatedRoute.params.subscribe(params => {
       this.user.id = params['id'];
     });
@@ -224,20 +224,16 @@ export class ProgramProviderComponent implements OnInit {
     }
   }
   onGenOverview() {
-    window.scroll(0, 0);
     this.peopleClass = ''; this.activityClass = ''; this.overviewClass = 'active';
     this.isGenOverview = true; this.isPeople = false; this.isActivities = false;
   }
   onPeople() {
-    window.scroll(0, 0);
     this.peopleClass = 'active'; this.activityClass = ''; this.overviewClass = '';
     this.isGenOverview = false; this.isPeople = true; this.isActivities = false;
   }
-  onActivities(id) {
-    document.querySelector(id).scrollIntoView({ behavior: 'smooth',block: 'start'});
-    this.dataService.setScrollToActivities('')
-  }
-
+  onActivities() {
+this.scrollToActivities='activities'
+this.getProviderProgram()  }
   getProviderById() {
     this.ngxLoader.start();
     this.apiservice.getUserById(this.user.id).subscribe((res: any) => {
@@ -292,9 +288,15 @@ export class ProgramProviderComponent implements OnInit {
 
 
   getProviderProgram = async () => {
+        window.scroll(0, 0);
     await this.apiservice.getProgramByProvider(this.user.id, this.pageNo, 200).subscribe((res) => {
       this.programs = res
-    });
+      if(this.scrollToActivities=='activities'){
+        document.querySelector('#ActivitiesList').scrollIntoView({ behavior: 'smooth',block: 'start'});
+  }
+  
+  });
+  this.dataService.setScrollToActivities('')  
   }
 
 
@@ -328,24 +330,14 @@ export class ProgramProviderComponent implements OnInit {
 
 
   ngOnInit() {
-    window.scroll(0, 0);
+    // window.scroll(0, 0);
     this.getProviderById()
     this.titleService.setTitle(this.title);
     this.metaTagService.updateTag(
       { name: 'description', content: "Looking for approved and registered online kids activities providers in the New Jersey? Contact to Wondrfly for best kids classes. Sign up now! " }
     );
     // this.getBadges();
-    this.scrollToActivities = this.dataService.getScrollToActivities()
-    if(this.scrollToActivities=='activities'){
-     this.onActivities('#ActivitiesList')
-    }
-    else{
-      window.scroll(0,0)
-    }
     this.getCategory()
-  }
-  ngOnDestroy() {
-window.scroll(0,0)
   }
   // getBadges() {
   //   this.apiservice.badgeList().subscribe(res => {
@@ -398,7 +390,6 @@ window.scroll(0,0)
     if (this.regWallCookies > 11) {
       this.isBetaPopUp = true
     }
-    window.scroll(0, 0);
     this.isTimeFilter = false;
     this.isDaysFilter = false;
     this.isTopFilter = false;
