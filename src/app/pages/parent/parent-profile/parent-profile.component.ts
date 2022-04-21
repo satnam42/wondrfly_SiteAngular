@@ -116,6 +116,8 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
   separatorKeysCodes: number[] = [ENTER, COMMA];
 
   searchedTags: any = []
+  categories: any = []
+  filtredCats: any = []
   subCategoryCheckbox: any = []
   categoryChecked: any = []
   @ViewChild(HeaderComponent, { static: true })
@@ -160,7 +162,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
   activeList: any
   searchTagValue = new FormControl()
   currentYear = moment(Date.now()).format("YYYY");
-  age=0
+  age = 0
   isLoaded = false;
   constructor(
     private apiservice: ApiService,
@@ -191,8 +193,8 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
 
 
   getKidData(data) {
-    this.searchedTags=[]
-    this.keyword =''
+    this.searchedTags = []
+    this.keyword = ''
     this.kid = data;
     this.tempInterestInfo = [...this.kid.interestInfo]
     this.childImgURL = this.kid.avtar;
@@ -216,18 +218,18 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
     this.tempInterestInfo.push(event.option.value);
   }
   remove(t) {
-    for(let i in this.searchedTags) {
-        let indx = this.searchedTags[i].tags.findIndex(x => x._id===t._id)
-        if(indx >= 0){
-          this.searchedTags[i].category.isSelected=false;
-          this.searchedTags[i].tags[indx].isSelected=false;
-        }
+    for (let i in this.searchedTags) {
+      let indx = this.searchedTags[i].tags.findIndex(x => x._id === t._id)
+      if (indx >= 0) {
+        this.searchedTags[i].category.isSelected = false;
+        this.searchedTags[i].tags[indx].isSelected = false;
       }
-      const index = this.tempInterestInfo.indexOf(t);
-      if (index >= 0) {
-        this.tempInterestInfo.splice(index, 1);
-      }
-}
+    }
+    const index = this.tempInterestInfo.indexOf(t);
+    if (index >= 0) {
+      this.tempInterestInfo.splice(index, 1);
+    }
+  }
 
   selectEvent(item) {
     if (this.tempInterestInfo.indexOf(item) == -1) {
@@ -236,7 +238,14 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
       }
     }
   }
-  onChangeSearch(key: string) {
+  matchCategory(id) {
+    let index = this.filtredCats.findIndex(x => x._id == id)
+    if (index !== -1) {
+      return this.filtredCats[index].name
+    }
+  }
+   onChangeSearch(key: string) {
+    key.toLowerCase();
     this.isLoading = true;
     this.tags = [];
     this.apiservice.searchTagForChildAddUpdate(key).subscribe((res: any) => {
@@ -246,39 +255,57 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
       }
       else {
         this.tags = res;
-         let filtredtags = this.tags.filter((item) => item.isActivated === true);
+        let filtredtags = this.tags.filter((item) => item.isActivated === true);
         let categories = []
         this.searchedTags = []
-     
         filtredtags.forEach(tag => {
           categories.push(tag.categoryIds[0])
         });
-        let filtredCats = this.removeDuplicates(categories, 'name')
-        for (let j in filtredCats) {
-          let modifiedObj:any = {
+        this.filtredCats = this.removeDuplicates(categories, 'name')
+        for (let j in this.filtredCats) {
+          let modifiedObj: any = {
             category: {},
             tags: []
           }
           for (let i in filtredtags) {
-            if (filtredCats[j]._id === filtredtags[i].categoryIds[0]._id) {
-              modifiedObj.category = filtredCats[j]
-              let indx = this.tempInterestInfo.findIndex(x => x._id===filtredtags[i]._id)
-              if(indx>=0){
+            if (this.filtredCats[j]._id === filtredtags[i].categoryIds[0]._id) {
+              modifiedObj.category = this.filtredCats[j]
+              let indx = this.tempInterestInfo.findIndex(x => x._id === filtredtags[i]._id)
+              if (indx >= 0) {
                 filtredtags[i].isSelected = true
               }
-              else{
+              else {
                 filtredtags[i].isSelected = false
               }
               modifiedObj.tags.push(filtredtags[i])
             }
           }
-          let isTagsUncheked = modifiedObj.tags.findIndex(x => x.isSelected===false)
-          if(isTagsUncheked===-1){
-            modifiedObj.category.isSelected=true
+
+          let isTagsUncheked = modifiedObj.tags.findIndex(x => x.isSelected === false)
+          if (isTagsUncheked === -1) {
+            modifiedObj.category.isSelected = true
           }
           this.searchedTags.push(modifiedObj)
-    }
-        // this.searchedTags = this.removeDuplicates(this.searchedTags, 'category') 
+        }
+        let filtredCategories = this.categories.filter((item) => item.name !== this.matchCategory(item.id));
+        filtredCategories.forEach(el => {
+          let modifiedObj: any = {
+            category: {},
+            tags: []
+          }
+          let name = el.name.toLowerCase();
+          let isMatched = name.includes(key)
+          if (isMatched) {
+            el._id= el.id
+            modifiedObj.category = el
+            // let isTagsUncheked = modifiedObj.tags.findIndex(x => x.isSelected === false)
+            // if (isTagsUncheked === -1) {
+            //   modifiedObj.category.isSelected = true
+            // }
+            this.searchedTags.push(modifiedObj)
+          }
+
+        });
       }
       this.isLoading = false;
     });
@@ -903,12 +930,12 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
 
   addChild(userId) {
     let childResponse;
-    this.kid.interestInfo=this.tempInterestInfo
+    this.kid.interestInfo = this.tempInterestInfo
     this.kid.parentId = userId;
     if (this.childImageURl != "" && this.childImageURl != undefined) {
       this.kid.avtar = this.childImageURl;
     }
-   else {
+    else {
       this.ngxLoader.start();
       var birth = new Date(this.kid.dob);
       let birthYear = moment(birth).format("YYYY");
@@ -934,10 +961,10 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
 
             if (childResponse.isSuccess) {
               this.kid.name = ''
-              this.kid.age=''
-              this.kid.dob=''
-              this.kid.interestInfo=[]
-              this.kid.sex=''
+              this.kid.age = ''
+              this.kid.dob = ''
+              this.kid.interestInfo = []
+              this.kid.sex = ''
               window.document.getElementById("dissmiss-child-modal").click();
               this.apiservice
                 .getGuardianByParentId(userId)
@@ -948,7 +975,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
                 });
               this.ngxLoader.stop();
             }
-            else{
+            else {
               this.toastr.error(childResponse.error);
             }
           });
@@ -961,7 +988,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
     this.updateChild(this.kids[kidIndx], this.currentUser.id)
   }
   updateChild(child, userId) {
-    child.interestInfo=this.tempInterestInfo
+    child.interestInfo = this.tempInterestInfo
     this.age = 0
     var birth = new Date(child.dob);
     let birthYear = moment(birth).format("YYYY");
@@ -974,12 +1001,12 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
       }
       var ageDifMs = Date.now() - birth.getTime();
       var ageDate = new Date(ageDifMs); // miliseconds from epoch
-       this.age = Math.abs(ageDate.getUTCFullYear() - 1970);
+      this.age = Math.abs(ageDate.getUTCFullYear() - 1970);
       this.ngxLoader.stop();
       if (this.age > 16) {
         this.toastr.warning("Child age should be 16 years or less")
       }
-      else{
+      else {
         child.age = String(this.age);
         child.avtar = child.avtar.split(this.baseUrl).pop();
         // child.avtar =  child.avtar.slice(21);
@@ -1088,29 +1115,59 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
   }
   checkOrUncheckAllTags(e, categoryIndx) {
     if (e.target.checked === true) {
-      this.searchedTags[categoryIndx].category.isSelected = true;
-      // this.searchedTags[categoryIndx].collapsed = true;
-      this.searchedTags[categoryIndx].tags.forEach(tag => {
-        tag.isSelected = true
-        if (this.tempInterestInfo.indexOf(tag) == -1) {
-          if (!this.tempInterestInfo.find(category => category._id === tag._id)) {
-            this.tempInterestInfo.push(tag)
+      if(!this.searchedTags[categoryIndx].tags.length){
+        this.apiservice.getTagByCategoryId(this.searchedTags[categoryIndx].category._id).subscribe((res: any) => {
+          if (res.isSuccess) {
+            this.searchedTags[categoryIndx].tags= res.data
+            this.searchedTags[categoryIndx].category.isSelected = true;
+            this.searchedTags[categoryIndx].tags.forEach(tag => {
+              tag.isSelected = true
+              if (this.tempInterestInfo.indexOf(tag) == -1) {
+                if (!this.tempInterestInfo.find(category => category._id === tag._id)) {
+                  this.tempInterestInfo.push(tag)
+                }
+              }
+            });
           }
-        }
-      });
+        })
+      }
+      else{
+        this.searchedTags[categoryIndx].category.isSelected = true;
+        this.searchedTags[categoryIndx].tags.forEach(tag => {
+          tag.isSelected = true
+          if (this.tempInterestInfo.indexOf(tag) == -1) {
+            if (!this.tempInterestInfo.find(category => category._id === tag._id)) {
+              this.tempInterestInfo.push(tag)
+            }
+          }
+        });
+      }
+
     } else {
-      this.searchedTags[categoryIndx].category.isSelected = false;
-      this.searchedTags[categoryIndx].tags.forEach(tag => {
-        let index = this.tempInterestInfo.findIndex(x => x._id===tag._id)
-        if (index!==-1) {
-          this.tempInterestInfo.splice(index, 1)
-        }
-        // if (this.kid.interestInfo.find(category => category.name === tag.name)) {
-        //   const index = this.kid.interestInfo.indexOf(tag);
-        //   this.kid.interestInfo.splice(index, 1)
-        // }
-        tag.isSelected = false
-      });
+      if(!this.searchedTags[categoryIndx].tags.length){
+        this.apiservice.getTagByCategoryId(this.searchedTags[categoryIndx].category._id).subscribe((res: any) => {
+          if (res.isSuccess) {
+            this.searchedTags[categoryIndx].tags= res.data
+            this.searchedTags[categoryIndx].category.isSelected = false;
+            this.searchedTags[categoryIndx].tags.forEach(tag => {
+              let index = this.tempInterestInfo.findIndex(x => x._id === tag._id)
+              if (index !== -1) {
+                this.tempInterestInfo.splice(index, 1)
+              }
+              tag.isSelected = false
+            });
+          }
+        })
+      }else{
+        this.searchedTags[categoryIndx].category.isSelected = false;
+        this.searchedTags[categoryIndx].tags.forEach(tag => {
+          let index = this.tempInterestInfo.findIndex(x => x._id === tag._id)
+          if (index !== -1) {
+            this.tempInterestInfo.splice(index, 1)
+          }
+          tag.isSelected = false
+        });
+      }
     }
   }
   checkOrUncheckTag(e, categoryIndx, tagIndex) {
@@ -1131,37 +1188,38 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
       }
     }
     else {
-      let index = this.tempInterestInfo.findIndex(x => x._id===this.searchedTags[categoryIndx].tags[tagIndex]._id)
-      if (index!==-1) {
-          this.tempInterestInfo.splice(index, 1)
-        }
+      let index = this.tempInterestInfo.findIndex(x => x._id === this.searchedTags[categoryIndx].tags[tagIndex]._id)
+      if (index !== -1) {
+        this.tempInterestInfo.splice(index, 1)
+      }
       this.searchedTags[categoryIndx].tags[tagIndex].isSelected = false
       this.searchedTags[categoryIndx].category.isSelected = false;
     }
 
   }
-    // ---------------------------------------------get subCateById-------------------------------------
-    getSubCateById(cat,indx) {
-     this.apiservice.getTagByCategoryId(cat._id).subscribe((res: any) => {
-        if(res.isSuccess){
-          this.searchedTags[indx].tags = res.data
-          this.searchedTags[indx].tags = this.searchedTags[indx].tags.filter((item) => item.isActivated === true);
-          this.searchedTags[indx].tags.forEach(tag => {
-            if (this.tempInterestInfo.indexOf(tag) == -1) {
-              if (this.tempInterestInfo.find(category => category._id === tag._id)) {
-                tag.isSelected = true
-              }
+  // ---------------------------------------------get subCateById-------------------------------------
+  getSubCateById(cat, indx) {
+    this.apiservice.getTagByCategoryId(cat._id).subscribe((res: any) => {
+      if (res.isSuccess) {
+        this.searchedTags[indx].tags = res.data
+        this.searchedTags[indx].tags = this.searchedTags[indx].tags.filter((item) => item.isActivated === true);
+        this.searchedTags[indx].tags.forEach(tag => {
+          if (this.tempInterestInfo.indexOf(tag) == -1) {
+            if (this.tempInterestInfo.find(category => category._id === tag._id)) {
+              tag.isSelected = true
             }
-          });
-          let index = this.searchedTags[indx].tags.findIndex(x => x.isSelected!==true)
-          if (index!==-1) {
-              this.searchedTags[indx].category.isSelected = false;
-            }
+          }
+        });
+        let index = this.searchedTags[indx].tags.findIndex(x => x.isSelected !== true)
+        if (index !== -1) {
+          this.searchedTags[indx].category.isSelected = false;
         }
-      })
-    }
-  
+      }
+    })
+  }
+
   ngOnInit() {
+    this.getCategory()
     this.searchTagValue.valueChanges.subscribe((value) => {
       if (value) { this.onChangeSearch(value) } else {
         this.searchedTags = []
@@ -1356,10 +1414,19 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
     });
   }
   // saved providers list 
-  savedProviders(){
+  savedProviders() {
     this.apiservice
-    .getSavedProvidersByParentId(this.currentUser.id)
-    .subscribe((res: any) => {
-console.log('fav providers  ',res)    });
+      .getSavedProvidersByParentId(this.currentUser.id)
+      .subscribe((res: any) => {
+        console.log('fav providers  ', res)
+      });
+  }
+  // categories list 
+  getCategory() {
+    this.apiservice.getCategory().subscribe((res: any) => {
+      this.categories = res;
+      this.categories = this.categories.filter((item) => item.isActivated !== false);
+      console.log(this.categories)
+    });
   }
 }

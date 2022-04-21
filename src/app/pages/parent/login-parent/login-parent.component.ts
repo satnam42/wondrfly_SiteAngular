@@ -33,6 +33,7 @@ export class LoginParentComponent implements OnInit {
   tags: any = [];
   message: string = 'child added Successfully';
   categories: any = [];
+  filtredCats: any = []
   interests: any = [];
   kid = new Child;
   step1 = true;
@@ -164,8 +165,60 @@ export class LoginParentComponent implements OnInit {
     }
   }
 
+  // onChangeSearch(key: string) {
+  //   this.tags = [];
+  //   this.apiservice.searchTagForChildAddUpdate(key).subscribe((res: any) => {
+  //     if (res.error) {
+  //       this.tags = []
+  //       this.searchedTags = []
+  //     }
+  //     else {
+  //       this.tags = res;
+  //        let filtredtags = this.tags.filter((item) => item.isActivated === true);
+  //       let categories = []
+  //       this.searchedTags = []
+     
+  //       filtredtags.forEach(tag => {
+  //         categories.push(tag.categoryIds[0])
+  //       });
+  //       let filtredCats = this.removeDuplicates(categories, 'name')
+  //       for (let j in filtredCats) {
+  //         let modifiedObj:any = {
+  //           category: {},
+  //           tags: []
+  //         }
+  //         for (let i in filtredtags) {
+  //           if (filtredCats[j]._id === filtredtags[i].categoryIds[0]._id) {
+  //             modifiedObj.category = filtredCats[j]
+  //             let indx = this.kid .interestInfo.findIndex(x => x._id===filtredtags[i]._id)
+  //             if(indx>=0){
+  //               filtredtags[i].isSelected = true
+  //             }
+  //             else{
+  //               filtredtags[i].isSelected = false
+  //             }
+  //             modifiedObj.tags.push(filtredtags[i])
+  //           }
+  //         }
+  //         let isTagsUncheked = modifiedObj.tags.findIndex(x => x.isSelected===false)
+  //         if(isTagsUncheked===-1){
+  //           modifiedObj.category.isSelected=true
+  //         }
+  //         this.searchedTags.push(modifiedObj)
+  //       }
+  //     }
+
+  //   });
+  // }
+
+  matchCategory(id) {
+    let index = this.filtredCats.findIndex(x => x._id == id)
+    if (index !== -1) {
+      return this.filtredCats[index].name
+    }
+  }
   onChangeSearch(key: string) {
-    // this.ngxLoader.start();
+    key.toLowerCase();
     this.tags = [];
     this.apiservice.searchTagForChildAddUpdate(key).subscribe((res: any) => {
       if (res.error) {
@@ -174,41 +227,55 @@ export class LoginParentComponent implements OnInit {
       }
       else {
         this.tags = res;
-         let filtredtags = this.tags.filter((item) => item.isActivated === true);
+        let filtredtags = this.tags.filter((item) => item.isActivated === true);
         let categories = []
         this.searchedTags = []
-     
         filtredtags.forEach(tag => {
           categories.push(tag.categoryIds[0])
         });
-        let filtredCats = this.removeDuplicates(categories, 'name')
-        for (let j in filtredCats) {
-          let modifiedObj:any = {
+        this.filtredCats = this.removeDuplicates(categories, 'name')
+        for (let j in this.filtredCats) {
+          let modifiedObj: any = {
             category: {},
             tags: []
           }
           for (let i in filtredtags) {
-            if (filtredCats[j]._id === filtredtags[i].categoryIds[0]._id) {
-              modifiedObj.category = filtredCats[j]
-              let indx = this.kid .interestInfo.findIndex(x => x._id===filtredtags[i]._id)
-              if(indx>=0){
+            if (this.filtredCats[j]._id === filtredtags[i].categoryIds[0]._id) {
+              modifiedObj.category = this.filtredCats[j]
+              let indx = this.kid .interestInfo.findIndex(x => x._id === filtredtags[i]._id)
+              if (indx >= 0) {
                 filtredtags[i].isSelected = true
               }
-              else{
+              else {
                 filtredtags[i].isSelected = false
               }
               modifiedObj.tags.push(filtredtags[i])
             }
           }
-          let isTagsUncheked = modifiedObj.tags.findIndex(x => x.isSelected===false)
-          if(isTagsUncheked===-1){
-            modifiedObj.category.isSelected=true
+
+          let isTagsUncheked = modifiedObj.tags.findIndex(x => x.isSelected === false)
+          if (isTagsUncheked === -1) {
+            modifiedObj.category.isSelected = true
           }
           this.searchedTags.push(modifiedObj)
         }
-        // this.searchedTags = this.removeDuplicates(this.searchedTags, 'category')
+        let filtredCategories = this.categories.filter((item) => item.name !== this.matchCategory(item.id));
+        filtredCategories.forEach(el => {
+          let modifiedObj: any = {
+            category: {},
+            tags: []
+          }
+          let name = el.name.toLowerCase();
+          let isMatched = name.includes(key)
+          if (isMatched) {
+            el._id= el.id
+            modifiedObj.category = el
+
+            this.searchedTags.push(modifiedObj)
+          }
+
+        });
       }
-      // this.ngxLoader.stop();
     });
   }
   removeDuplicates(originalArray, prop) {
@@ -402,31 +469,85 @@ export class LoginParentComponent implements OnInit {
     });
   }
 
+  // checkOrUncheckAllTags(e, categoryIndx) {
+  //   if (e.target.checked === true) {
+  //     this.searchedTags[categoryIndx].category.isSelected = true;
+  //     this.searchedTags[categoryIndx].tags.forEach(tag => {
+  //       tag.isSelected = true
+  //       if (this.kid.interestInfo.indexOf(tag) == -1) {
+  //         if (!this.kid.interestInfo.find(category => category._id === tag._id)) {
+  //           this.kid.interestInfo.push(tag)
+  //         }
+  //       }
+  //     });
+  //   } else {
+  //     this.searchedTags[categoryIndx].category.isSelected = false;
+  //     this.searchedTags[categoryIndx].tags.forEach(tag => {
+  //       let index = this.kid.interestInfo.findIndex(x => x._id===tag._id)
+  //       if (index!==-1) {
+  //         this.kid.interestInfo.splice(index, 1)
+  //       }
+  //       tag.isSelected = false
+  //     });
+  //   }
+  // }
+
+
   checkOrUncheckAllTags(e, categoryIndx) {
     if (e.target.checked === true) {
-      this.searchedTags[categoryIndx].category.isSelected = true;
-      // this.searchedTags[categoryIndx].collapsed = true;
-      this.searchedTags[categoryIndx].tags.forEach(tag => {
-        tag.isSelected = true
-        if (this.kid.interestInfo.indexOf(tag) == -1) {
-          if (!this.kid.interestInfo.find(category => category._id === tag._id)) {
-            this.kid.interestInfo.push(tag)
+      if(!this.searchedTags[categoryIndx].tags.length){
+        this.apiservice.getTagByCategoryId(this.searchedTags[categoryIndx].category._id).subscribe((res: any) => {
+          if (res.isSuccess) {
+            this.searchedTags[categoryIndx].tags= res.data
+            this.searchedTags[categoryIndx].category.isSelected = true;
+            this.searchedTags[categoryIndx].tags.forEach(tag => {
+              tag.isSelected = true
+              if (this.kid.interestInfo.indexOf(tag) == -1) {
+                if (!this.kid.interestInfo.find(category => category._id === tag._id)) {
+                  this.kid.interestInfo.push(tag)
+                }
+              }
+            });
           }
-        }
-      });
+        })
+      }
+      else{
+        this.searchedTags[categoryIndx].category.isSelected = true;
+        this.searchedTags[categoryIndx].tags.forEach(tag => {
+          tag.isSelected = true
+          if (this.kid.interestInfo.indexOf(tag) == -1) {
+            if (!this.kid.interestInfo.find(category => category._id === tag._id)) {
+              this.kid.interestInfo.push(tag)
+            }
+          }
+        });
+      }
+
     } else {
-      this.searchedTags[categoryIndx].category.isSelected = false;
-      this.searchedTags[categoryIndx].tags.forEach(tag => {
-        let index = this.kid.interestInfo.findIndex(x => x._id===tag._id)
-        if (index!==-1) {
-          this.kid.interestInfo.splice(index, 1)
-        }
-        // if (this.kid.interestInfo.find(category => category.name === tag.name)) {
-        //   const index = this.kid.interestInfo.indexOf(tag);
-        //   this.kid.interestInfo.splice(index, 1)
-        // }
-        tag.isSelected = false
-      });
+      if(!this.searchedTags[categoryIndx].tags.length){
+        this.apiservice.getTagByCategoryId(this.searchedTags[categoryIndx].category._id).subscribe((res: any) => {
+          if (res.isSuccess) {
+            this.searchedTags[categoryIndx].tags= res.data
+            this.searchedTags[categoryIndx].category.isSelected = false;
+            this.searchedTags[categoryIndx].tags.forEach(tag => {
+              let index = this.kid.interestInfo.findIndex(x => x._id === tag._id)
+              if (index !== -1) {
+                this.kid.interestInfo.splice(index, 1)
+              }
+              tag.isSelected = false
+            });
+          }
+        })
+      }else{
+        this.searchedTags[categoryIndx].category.isSelected = false;
+        this.searchedTags[categoryIndx].tags.forEach(tag => {
+          let index = this.kid.interestInfo.findIndex(x => x._id === tag._id)
+          if (index !== -1) {
+            this.kid.interestInfo.splice(index, 1)
+          }
+          tag.isSelected = false
+        });
+      }
     }
   }
   checkOrUncheckTag(e, categoryIndx, tagIndex) {
