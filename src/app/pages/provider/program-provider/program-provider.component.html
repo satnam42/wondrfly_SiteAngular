@@ -855,17 +855,17 @@ out of 5 </a> -->
                                     <button class="btn_style save_btn cursor"
                                         *ngFor="let day of this.selectedDays;index as i">
                                         {{day}}
-                                        <mat-icon class="ml-2">cancel</mat-icon>
+                                        <mat-icon (click)="removeRecentSearches('days',i)" class="ml-2">cancel</mat-icon>
                                     </button>
                                     <button class="btn_style save_btn cursor"
                                         *ngFor="let type of this.selectedProgramTypes;index as i">
                                         {{type}}
-                                        <mat-icon class="ml-2">cancel</mat-icon>
+                                        <mat-icon (click)="removeRecentSearches('types',i)" class="ml-2">cancel</mat-icon>
                                     </button>
                                     <button class="btn_style save_btn cursor"
                                         *ngFor="let time of this.selectedProgramTime;index as i">
                                         {{time}}
-                                        <mat-icon class="ml-2">cancel</mat-icon>
+                                        <mat-icon (click)="removeRecentSearches('times',i)" class="ml-2">cancel</mat-icon>
                                     </button>
                                     <span>
                                         <a  (click)="resetFilter()" class="ml-2 clear-text cursor">Clear all</a>
@@ -944,8 +944,7 @@ out of 5 </a> -->
                                     </div>
                                 </div>
                             </div> -->
-                            <div *ngIf="programs?.length">
-                                <div class="col-12" *ngFor="let program of programs;index as i" [hidden]="!listView">
+                                <div class="col-12" *ngFor="let program of programs;index as i" [hidden]="!listView  && !programs?.length">
                                     <div class="row ativities-boxes-info align-items-center bg_color">
                                         <div class="col-2 name" (click)='goToProgramDetail(program)'>
                                             <h6 class="tdata">{{program.name}}</h6>
@@ -1020,10 +1019,7 @@ out of 5 </a> -->
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-12" *ngIf="!programs?.length" style="color: #494949;text-align: center;">
-                                <h1>Sorry no results found :(</h1> </div>
-                        </div>
+                                <h1 *ngIf="!programs?.length" style="color: #494949;text-align: center;">Sorry no results found :(</h1> </div>
                         <!-- <div class="" [hidden]="listView"> 
                             <a href="#carouselExampleIndicators" data-slide="next">
                                 <div class="carousel-nav-icon">
