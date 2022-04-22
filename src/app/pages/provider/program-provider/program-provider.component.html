@@ -10,118 +10,124 @@
                     <div class="row">
                         <div class="col-4">
                             <div class="provider_left">
-                                <div class="profile" *ngIf="user?.firstName" [class.initial-alpha-profile]="!user?.subCategoryIds[0]?.logo">
-                                    <img *ngIf="user?.subCategoryIds[0]?.logo" [defaultImage]="defaultImage" lazyLoad="{{baseUrl+user?.subCategoryIds[0]?.logo}}" alt="Profile image">
+                                <div class="profile" *ngIf="user?.firstName"
+                                    [class.initial-alpha-profile]="!user?.subCategoryIds[0]?.logo">
+                                    <img *ngIf="user?.subCategoryIds[0]?.logo" [defaultImage]="defaultImage"
+                                        lazyLoad="{{baseUrl+user?.subCategoryIds[0]?.logo}}" alt="Profile image">
                                     <!-- <img *ngIf="!user.categories[0]?.logoUrl" src="assets/gray_background.jpeg" alt="Profile image"> -->
-                                    <h1 *ngIf="!user?.subCategoryIds[0]?.logo">{{user?.firstName?.charAt(0)+user?.firstName?.charAt(1)}}</h1>
+                                    <h1 *ngIf="!user?.subCategoryIds[0]?.logo">
+                                        {{user?.firstName?.charAt(0)+user?.firstName?.charAt(1)}}</h1>
                                 </div>
-                                   
-<div class="provider_parentdiv">
-<div class="pro-name">
-    <h2 class="provider_name star-daialog"><span class="provider-heading-h2">{{user?.firstName}}</span>
-        <p class="cursor" (mouseover)="isRating=true" (mouseout)="isRating=false">
-            <span *ngIf="
+
+                                <div class="provider_parentdiv">
+                                    <div class="pro-name">
+                                        <h2 class="provider_name star-daialog"><span
+                                                class="provider-heading-h2">{{user?.firstName}}</span>
+                                            <p class="cursor" (mouseover)="isRating=true" (mouseout)="isRating=false">
+                                                <span *ngIf="
             rating?.finalAverageRating == 0 ||
             rating?.finalAverageRating == 'NaN' ||
             rating?.finalAverageRating == undefined
           ">
-          <span class="fa fa-star-o"></span>
-                            <span class="fa fa-star-o"></span>
-                            <span class="fa fa-star-o"></span>
-                            <span class="fa fa-star-o"></span>
-                            <span class="fa fa-star-o"></span>
-                            </span>
-                            <span *ngIf="rating?.finalAverageRating == 1">
-          <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star-o"></span>
-                            <span class="fa fa-star-o"></span>
-                            <span class="fa fa-star-o"></span>
-                            <span class="fa fa-star-o"></span>
-                            </span>
-                            <span *ngIf="
+                                                    <span class="fa fa-star-o"></span>
+                                                    <span class="fa fa-star-o"></span>
+                                                    <span class="fa fa-star-o"></span>
+                                                    <span class="fa fa-star-o"></span>
+                                                    <span class="fa fa-star-o"></span>
+                                                </span>
+                                                <span *ngIf="rating?.finalAverageRating == 1">
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star-o"></span>
+                                                    <span class="fa fa-star-o"></span>
+                                                    <span class="fa fa-star-o"></span>
+                                                    <span class="fa fa-star-o"></span>
+                                                </span>
+                                                <span *ngIf="
             rating?.finalAverageRating > 1 &&
             rating?.finalAverageRating < 2
           ">
-          <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star-half-o checked"></span>
-                            <span class="fa fa-star-o"></span>
-                            <span class="fa fa-star-o"></span>
-                            <span class="fa fa-star-o"></span>
-                            </span>
-                            <span *ngIf="rating?.finalAverageRating == 2">
-          <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star-o"></span>
-                            <span class="fa fa-star-o"></span>
-                            <span class="fa fa-star-o"></span>
-                            </span>
-                            <span *ngIf="
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star-half-o checked"></span>
+                                                    <span class="fa fa-star-o"></span>
+                                                    <span class="fa fa-star-o"></span>
+                                                    <span class="fa fa-star-o"></span>
+                                                </span>
+                                                <span *ngIf="rating?.finalAverageRating == 2">
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star-o"></span>
+                                                    <span class="fa fa-star-o"></span>
+                                                    <span class="fa fa-star-o"></span>
+                                                </span>
+                                                <span *ngIf="
             rating?.finalAverageRating > 2 &&
             rating?.finalAverageRating < 3
           ">
-          <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star-half-o checked"></span>
-                            <span class="fa fa-star-o"></span>
-                            <span class="fa fa-star-o"></span>
-                            </span>
-                            <span *ngIf="rating?.finalAverageRating == 3">
-          <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star-o"></span>
-                            <span class="fa fa-star-o"></span>
-                            </span>
-                            <span *ngIf="
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star-half-o checked"></span>
+                                                    <span class="fa fa-star-o"></span>
+                                                    <span class="fa fa-star-o"></span>
+                                                </span>
+                                                <span *ngIf="rating?.finalAverageRating == 3">
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star-o"></span>
+                                                    <span class="fa fa-star-o"></span>
+                                                </span>
+                                                <span *ngIf="
             rating?.finalAverageRating > 3 &&
             rating?.finalAverageRating < 4">
-          <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star-half-o checked"></span>
-                            <span class="fa fa-star-o"></span>
-                            </span>
-                            <span *ngIf="rating?.finalAverageRating == 4">
-          <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star-o"></span>
-                            </span>
-                            <span *ngIf="
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star-half-o checked"></span>
+                                                    <span class="fa fa-star-o"></span>
+                                                </span>
+                                                <span *ngIf="rating?.finalAverageRating == 4">
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star-o"></span>
+                                                </span>
+                                                <span *ngIf="
             rating?.finalAverageRating > 4 &&
             rating?.finalAverageRating < 5">
 
-          <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star-half-o checked"></span>
-                            </span>
-                            <span *ngIf="rating?.finalAverageRating == 5">
-          <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            </span>
-            <!-- <a><span
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star-half-o checked"></span>
+                                                </span>
+                                                <span *ngIf="rating?.finalAverageRating == 5">
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                </span>
+                                                <!-- <a><span
 *ngIf="rating?.finalAverageRating && rating?.finalAverageRating!=='NaN'">{{rating?.finalAverageRating}}</span><span
 *ngIf="!rating?.finalAverageRating || rating?.finalAverageRating=='NaN' || rating?.finalAverageRating==undefined">0</span>
 out of 5 </a> -->
-<span class="no-underline">(</span><a *ngIf="rating?.totalReviews">{{rating?.totalReviews }} reviews</a>
-<a *ngIf="!rating?.totalReviews">0 reviews</a> <span class="no-underline">)</span>
-        </p>
-        <div class=" star-daialogbox" *ngIf="isRating">
-            <!-- <button  (click)="isRating=false"type="button" class="close star-daialogicon" aria-label="Close">
+                                                <span class="no-underline">(</span><a
+                                                    *ngIf="rating?.totalReviews">{{rating?.totalReviews }} reviews</a>
+                                                <a *ngIf="!rating?.totalReviews">0 reviews</a> <span
+                                                    class="no-underline">)</span>
+                                            </p>
+                                            <div class=" star-daialogbox" *ngIf="isRating">
+                                                <!-- <button  (click)="isRating=false"type="button" class="close star-daialogicon" aria-label="Close">
             <span aria-hidden="true"><img src="assets/grey-close.png"></span>
         </button> -->
-            <app-rating [rating]="rating" [user]="user"></app-rating>
-        </div>
+                                                <app-rating [rating]="rating" [user]="user"></app-rating>
+                                            </div>
 
-    </h2>
-</div>
-<!-- <div class="share_icon">
+                                        </h2>
+                                    </div>
+                                    <!-- <div class="share_icon">
     <a data-toggle="modal" data-target="#ShareModal" class="cursor">
         <img src="assets/share_gray.svg "  alt="Share Icon " />
     </a>
@@ -134,9 +140,9 @@ out of 5 </a> -->
         <a *ngIf="program?.isFav && parentRole && isLogin"  class="bookmark_icon cursor"><img src="assets/bookmarkOrange.png " alt="Menu Image " /></a>
     </div>
 </div> -->
-</div>
-                                
-                               
+                                </div>
+
+
                                 <div class="provider_menu">
                                     <ul>
                                         <!-- <li>
@@ -150,8 +156,9 @@ out of 5 </a> -->
                                             </a>
                                         </li> -->
                                         <li>
-                                            <a class="clr-blue" (click)="onActivities()" *ngIf="programs?.length">
-                                                <span> <img src="assets/Activities-icon.png" alt=""></span> View Activities
+                                            <a class="clr-blue" (click)="onActivities()">
+                                                <span> <img src="assets/Activities-icon.png" alt=""></span> View
+                                                Activities
                                             </a>
                                         </li>
                                     </ul>
@@ -171,7 +178,7 @@ out of 5 </a> -->
                         <div class="col-8">
                             <div class="provider_right description_text">
                                 <div *ngIf="isGenOverview || isPeople" class="people_section overview desc-overflow">
-        
+
                                     <h2 class="overview-heading">About us</h2>
                                     <p *ngIf="user.about" class="overview-data">{{user.about | slice:0:360}}
                                     </p>
@@ -188,154 +195,169 @@ out of 5 </a> -->
                                             <h4>{{user.firstName}}</h4>
                                         </div> -->
                                         <div class="media-body">
-                                            <p *ngIf="user?.about && user.about?.length>=230">{{user?.about | slice:360:1000}}}}</p>
-                                            <p *ngIf="user?.note && user.note?.length>=230">{{user?.note | slice:360:1000}}</p>
+                                            <p *ngIf="user?.about && user.about?.length>=230">{{user?.about |
+                                                slice:360:1000}}}}</p>
+                                            <p *ngIf="user?.note && user.note?.length>=230">{{user?.note |
+                                                slice:360:1000}}</p>
                                             <div class="skills_sec" *ngIf='user?.subCategoryIds?.length'>
                                                 <h3>Activities</h3>
                                                 <div class="skill_flex">
-                                                <div class="skill_outer" *ngFor='let skill of user?.subCategoryIds'>
-                                                    <span>{{skill?.name}}</span>
-                                                </div>
+                                                    <div class="skill_outer" *ngFor='let skill of user?.subCategoryIds'>
+                                                        <span>{{skill?.name}}</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>     
+                                </div>
                                 <div *ngIf="isActivities" class="provider_right">
-                                    <div  class="description_text slider">
+                                    <div class="description_text slider">
                                         <h2>Activities</h2>
                                         <div *ngIf="programs?.length" class="row scrollisActivity">
                                             <div class="col-md-6" *ngFor="let program of programs">
                                                 <div class="activities_slide">
-                                                    <div class="slide_image cursor" (click)='goToProgramDetail(program)'>
-                                                        <img [defaultImage]="defaultImage" [errorImage]="errorImage" [lazyLoad]="baseUrl + program?.category[0]?.pattern" />
+                                                    <div class="slide_image cursor"
+                                                        (click)='goToProgramDetail(program)'>
+                                                        <img [defaultImage]="defaultImage" [errorImage]="errorImage"
+                                                            [lazyLoad]="baseUrl + program?.category[0]?.pattern" />
                                                     </div>
                                                     <div class="slide_text">
-        
-                                                        <h3 (click)='goToProgramDetail(program)'> <span class="title cursor">{{program?.name}} </span>
+
+                                                        <h3 (click)='goToProgramDetail(program)'> <span
+                                                                class="title cursor">{{program?.name}} </span>
                                                         </h3>
-        
-        
+
+
                                                         <div class="sports_btn" *ngFor='let cat of program?.category'>
                                                             <span>{{cat?.name}}</span>
                                                         </div>
-        
+
                                                         <div class="date_age">
                                                             <p>
-                                                                <img alt="Loction Pin" src="assets/calendar.svg">{{program?.date?.from | date}} - {{program?.date?.to | date}}
+                                                                <img alt="Loction Pin"
+                                                                    src="assets/calendar.svg">{{program?.date?.from |
+                                                                date}} - {{program?.date?.to | date}}
                                                             </p>
                                                             <p>
-                                                                <img alt="Loction Pin" src="assets/user_group.svg"> {{program?.ageGroup?.from}} - {{program?.ageGroup?.to}} Yrs
+                                                                <img alt="Loction Pin" src="assets/user_group.svg">
+                                                                {{program?.ageGroup?.from}} - {{program?.ageGroup?.to}}
+                                                                Yrs
                                                             </p>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div *ngIf="!programs?.length" style="color: #494949;"> 
-                                            Currently there are no activities available for this provider. Please check back in a few days.
+                                        <div *ngIf="!programs?.length" style="color: #494949;">
+                                            Currently there are no activities available for this provider. Please check
+                                            back in a few days.
                                         </div>
                                     </div>
                                 </div>
-        
+
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-4">
                             <div *ngIf="isGenOverview" class="provider_map">
-                                <agm-map id="map" [latitude]="40.73614987717813" [longitude]="-74.04147784299793" (centerChange)="centerChange($event)" [zoom]="12" [styles]="" [zoomControl]="false" [streetViewControl]="false">
-                                    <div *ngFor='let p of programs' (mapClick)="mapClicked(previous)">
-                                        <agm-marker *ngIf="p?.lat && p?.lng" [iconUrl]="markerUrl" [latitude]="p?.lat" [longitude]="p?.lng" (markerClick)="clickedMarker(previous)">
-                                            <strong>{{p?.name}}</strong>
+                                <agm-map id="map" [latitude]="40.73614987717813" [longitude]="-74.04147784299793"
+                                    (centerChange)="centerChange($event)" [zoom]="12" [styles]="" [zoomControl]="false"
+                                    [streetViewControl]="false">
+                                    <div (mapClick)="mapClicked(previous)">
+                                        <agm-marker *ngIf="user?.lat && user?.lng" [iconUrl]="markerUrl" [latitude]="user?.lat"
+                                            [longitude]="user?.lng" (markerClick)="clickedMarker(previous)">
+                                            <strong>{{user?.firstName}}</strong>
                                             <agm-info-window #previous>
-        
+
                                                 <div class="map-popup">
                                                     <h1>
-                                                        {{p?.name}}
+                                                        {{user?.firstName}}
                                                     </h1>
-                                                    <h2>
-                                                        by {{p?.programOwner}}
-                                                    </h2>
-                                                    <div class="rating-starsearch">
+                           
+                                                    <!-- <div class="rating-starsearch">
                                                         <p>
-                                                            <span *ngIf="p?.averageFinalRating==0">
-                                    <span class="fa fa-star-o"></span>
-                                                            <span class="fa fa-star-o"></span>
-                                                            <span class="fa fa-star-o"></span>
-                                                            <span class="fa fa-star-o"></span>
-                                                            <span class="fa fa-star-o"></span>
+                                                            <span *ngIf="rating?.averageFinalRating==0">
+                                                                <span class="fa fa-star-o"></span>
+                                                                <span class="fa fa-star-o"></span>
+                                                                <span class="fa fa-star-o"></span>
+                                                                <span class="fa fa-star-o"></span>
+                                                                <span class="fa fa-star-o"></span>
                                                             </span>
-                                                            <span *ngIf="p?.averageFinalRating==1">
-                                    <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star-o"></span>
-                                                            <span class="fa fa-star-o"></span>
-                                                            <span class="fa fa-star-o"></span>
-                                                            <span class="fa fa-star-o"></span>
+                                                            <span *ngIf="rating?.averageFinalRating==1">
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star-o"></span>
+                                                                <span class="fa fa-star-o"></span>
+                                                                <span class="fa fa-star-o"></span>
+                                                                <span class="fa fa-star-o"></span>
                                                             </span>
-                                                            <span *ngIf="p?.averageFinalRating>1 && p?.averageFinalRating<2">
-                                    <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star-half-o checked"></span>
-                                                            <span class="fa fa-star-o"></span>
-                                                            <span class="fa fa-star-o"></span>
-                                                            <span class="fa fa-star-o"></span>
+                                                            <span
+                                                                *ngIf="rating?.averageFinalRating>1 && rating?.averageFinalRating<2">
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star-half-o checked"></span>
+                                                                <span class="fa fa-star-o"></span>
+                                                                <span class="fa fa-star-o"></span>
+                                                                <span class="fa fa-star-o"></span>
                                                             </span>
-                                                            <span *ngIf="p?.averageFinalRating==2">
-                                    <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star-o"></span>
-                                                            <span class="fa fa-star-o"></span>
-                                                            <span class="fa fa-star-o"></span>
+                                                            <span *ngIf="rating?.averageFinalRating==2">
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star-o"></span>
+                                                                <span class="fa fa-star-o"></span>
+                                                                <span class="fa fa-star-o"></span>
                                                             </span>
-                                                            <span *ngIf="p?.averageFinalRating>2 && p?.averageFinalRating<3">
-                                    <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star-half-o checked"></span>
-                                                            <span class="fa fa-star-o"></span>
-                                                            <span class="fa fa-star-o"></span>
+                                                            <span
+                                                                *ngIf="rating?.averageFinalRating>2 && rating?.averageFinalRating<3">
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star-half-o checked"></span>
+                                                                <span class="fa fa-star-o"></span>
+                                                                <span class="fa fa-star-o"></span>
                                                             </span>
-                                                            <span *ngIf="p?.averageFinalRating==3">
-                                    <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star-o"></span>
-                                                            <span class="fa fa-star-o"></span>
+                                                            <span *ngIf="rating?.averageFinalRating==3">
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star-o"></span>
+                                                                <span class="fa fa-star-o"></span>
                                                             </span>
-                                                            <span *ngIf="p?.averageFinalRating>3 && p?.averageFinalRating<4">
-                                    <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star-half-o checked"></span>
-                                                            <span class="fa fa-star-o"></span>
+                                                            <span
+                                                                *ngIf="rating?.averageFinalRating>3 && rating?.averageFinalRating<4">
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star-half-o checked"></span>
+                                                                <span class="fa fa-star-o"></span>
                                                             </span>
-                                                            <span *ngIf="p?.averageFinalRating==4">
-                                    <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star-o"></span>
+                                                            <span *ngIf="rating?.averageFinalRating==4">
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star-o"></span>
                                                             </span>
-                                                            <span *ngIf="p?.averageFinalRating>4 && p?.averageFinalRating<5">
-                                    <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star-half-o checked"></span>
+                                                            <span
+                                                                *ngIf="rating?.averageFinalRating>4 && rating?.averageFinalRating<5">
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star-half-o checked"></span>
                                                             </span>
-                                                            <span *ngIf="p?.averageFinalRating==5">
-                                    <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
+                                                            <span *ngIf="rating?.averageFinalRating==5">
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
                                                             </span>
                                                             <a> <span></span>(58 reviews)</a>
                                                         </p>
-                                                    </div>
-                                                    <div class="map-locationtext">
+                                                    </div> -->
+                                                    <div *ngIf="user?.addressLine1" class="map-locationtext">
                                                         <span><img src="assets/location-pintag.svg"> </span>
                                                         <h3>
-                                                            {{p?.location}}
+                                                            {{user?.addressLine1}}
                                                         </h3>
                                                     </div>
                                                 </div>
@@ -417,12 +439,13 @@ out of 5 </a> -->
                             </div>
                         </div>
                     </div>
-                    <div  id="ActivitiesList" style="visibility: hidden;">scroll</div>
-                    <div class="provider_full carousel-cat ativities-section-info"  [hidden]="!isGenOverview && !programs?.length">
+                    <div id="ActivitiesList" style="visibility: hidden;">scroll</div>
+                    <div class="provider_full carousel-cat ativities-section-info"
+                        [hidden]="!isGenOverview && !programs?.length">
                         <div class="activities-top-grid">
                             <div>
-                                <h4 class="might-try"> Activities 
-                                    <span><img src="assets/active-icon-group-9122.svg" alt="Icon"  /></span>
+                                <h4 class="might-try"> Activities
+                                    <span><img src="assets/active-icon-group-9122.svg" alt="Icon" /></span>
                                     <!-- <span><img src="assets/Activities-icon.svg" alt="" (click)="listView = true"></span> -->
                                 </h4>
                             </div>
@@ -449,8 +472,9 @@ out of 5 </a> -->
                                         <div class="category_list" id="accordionExample">
                                             <ul>
                                                 <li class="cursor">
-                                                    <a aria-expanded="true" data-target="#category" [ngClass]="{ active: isCategoryFilter }"
-                                                        data-toggle="collapse" joyrideStep="firstStep" title="💡 Search with filters"
+                                                    <a aria-expanded="true" data-target="#category"
+                                                        [ngClass]="{ active: isCategoryFilter }" data-toggle="collapse"
+                                                        joyrideStep="firstStep" title="💡 Search with filters"
                                                         text="Narrow down your search by clicking on any of the filters above. ">Categories</a>
                                                     <div class="collapse main_collpase time_collpase verification_modal partcategory"
                                                         id="category" data-parent="#accordionExample">
@@ -463,15 +487,17 @@ out of 5 </a> -->
                                                                     <div class="col-7 sub-categoriesfilterheader">
                                                                         <h2>
                                                                             Sub categories
-                    
+
                                                                             <span>
                                                                                 <span>
-                                                                                    <a class="clear cusror" data-target="#category"
+                                                                                    <a class="clear cusror"
+                                                                                        data-target="#category"
                                                                                         data-toggle="collapse"
                                                                                         (click)="selectedCat='';categoryId='';tempCategoryId='';subCats=[];selectedSubCategories=[];tempSearchedSubCategory='';tempSelectedSubCategories=[];programFilter()">Clear
                                                                                         all</a>
                                                                                 </span>
-                                                                                <button data-target="#category" data-toggle="collapse"
+                                                                                <button data-target="#category"
+                                                                                    data-toggle="collapse"
                                                                                     (click)="categoryId=tempCategoryId;searchedSubCategory=tempSearchedSubCategory;selectedSubCategories=tempSelectedSubCategories ;programFilter()">
                                                                                     APPLY FILTER
                                                                                 </button>
@@ -482,22 +508,28 @@ out of 5 </a> -->
                                                                 <div class="row meta-overflow-row">
                                                                     <div class="col-5 categories-filtercontent">
                                                                         <h3 *ngFor="let cat of categories"
-                                                                            [ngClass]="{ active: selectedCat == cat?.id }"
+                                                                            [ngClass]="{ active: (selectedCat == cat?.id) }"
                                                                             (click)="getSubCateById(cat)">
                                                                             {{ cat?.name }}
                                                                         </h3>
                                                                     </div>
                                                                     <div class="col-7 sub-categoriesfiltercontent">
-                                                                        <label class="cursor" *ngFor="let s of subCats; let i = index"
+                                                                        <label class="cursor"
+                                                                            *ngFor="let s of subCats; let i = index"
                                                                             for="categoriescheck{{i}}">
-                                                                            <span><input type="checkbox" [disabled]="!s?.programCount"
+                                                                            <span><input type="checkbox"
+                                                                                    [disabled]="!s?.programCount"
                                                                                     class="k-checkbox categories-checkbox"
-                                                                                    id="categoriescheck{{i}}" name="categoriescheck"
-                                                                                    value="{{ s }}" [checked]="s.checked" (change)="
+                                                                                    id="categoriescheck{{i}}"
+                                                                                    name="categoriescheck"
+                                                                                    value="{{ s }}"
+                                                                                    [checked]="s.checked" (change)="
                                                     onProgramsSubCategoryChange(i, $event)
                                                     " /></span>
-                                                                            <h3 [class.checkbox-checked-name]="s.checked">
-                                                                                {{ s?.name }}<span>({{ s?.programCount }})</span>
+                                                                            <h3
+                                                                                [class.checkbox-checked-name]="s.checked">
+                                                                                {{ s?.name }}<span>({{ s?.programCount
+                                                                                    }})</span>
                                                                             </h3>
                                                                         </label>
                                                                     </div>
@@ -507,37 +539,41 @@ out of 5 </a> -->
                                                     </div>
                                                 </li>
                                                 <li class="cursor">
-                                                    <a [ngClass]="{ active: isAgeFilter }" aria-controls="collapseExample"
-                                                        aria-expanded="true" data-target="#ageGroup" data-toggle="collapse">Age
+                                                    <a [ngClass]="{ active: isAgeFilter }"
+                                                        aria-controls="collapseExample" aria-expanded="true"
+                                                        data-target="#ageGroup" data-toggle="collapse">Age
                                                     </a>
                                                     <div class="collapse main_collpase verification_modal" id="ageGroup"
                                                         data-parent="#accordionExample">
                                                         <div class="collpase_content">
                                                             <div class="form-group">
-                                                                <ngx-slider [(value)]="minAge" [(highValue)]="maxAge" [options]="ageOption">
+                                                                <ngx-slider [(value)]="minAge" [(highValue)]="maxAge"
+                                                                    [options]="ageOption">
                                                                 </ngx-slider>
                                                             </div>
                                                         </div>
                                                         <div class="submit_btn">
-                                                            <button (click)="isAgeFilter=false;programFilter()" type="button"
-                                                                aria-controls="collapseExample" aria-expanded="true" data-target="#ageGroup"
+                                                            <button (click)="isAgeFilter=false;programFilter()"
+                                                                type="button" aria-controls="collapseExample"
+                                                                aria-expanded="true" data-target="#ageGroup"
                                                                 data-toggle="collapse" class="cancel_btn">
                                                                 Clear
                                                             </button>
-                    
+
                                                             <button (click)="isAgeFilter=true
-                                        ;programFilter()" search-results.scrollTop="0" data-target="#ageGroup" data-toggle="collapse"
-                                                                class="submitBtn">
+                                        ;programFilter()" search-results.scrollTop="0" data-target="#ageGroup"
+                                                                data-toggle="collapse" class="submitBtn">
                                                                 Apply
                                                             </button>
                                                         </div>
                                                     </div>
                                                 </li>
                                                 <li class="cursor">
-                                                    <a aria-expanded="true" [ngClass]="{ active: isTypeFilter }" aria-expanded="true"
-                                                        data-target="#typess" data-toggle="collapse">Type</a>
-                                                    <div class="collapse main_collpase typess verification_modal" id="typess"
-                                                        data-parent="#accordionExample">
+                                                    <a aria-expanded="true" [ngClass]="{ active: isTypeFilter }"
+                                                        aria-expanded="true" data-target="#typess"
+                                                        data-toggle="collapse">Type</a>
+                                                    <div class="collapse main_collpase typess verification_modal"
+                                                        id="typess" data-parent="#accordionExample">
                                                         <div class="collpase_content">
                                                             <div class="form-group typess">
                                                                 <div class="input_outer">
@@ -546,43 +582,47 @@ out of 5 </a> -->
                                                                             *ngFor="let type of programTypes;let i = index">
                                                                             <input type="checkbox" #types
                                                                                 (change)="onProgramTypeChange(i,type, $event.target.checked)"
-                                                                                class="k-checkbox" name="type1" value="{{type}}" />
+                                                                                class="k-checkbox" name="type1"
+                                                                                value="{{type}}" />
                                                                             <label for="type2" class="k-checkbox-label"
                                                                                 for="type1">{{type}}</label>
                                                                         </div>
-                    
-                    
+
+
                                                                     </form>
                                                                 </div>
                                                             </div>
-                    
+
                                                             <div class="submit_btn">
-                                                                <button class="cancel_btn" data-target="#typess" data-toggle="collapse"
+                                                                <button class="cancel_btn" data-target="#typess"
+                                                                    data-toggle="collapse"
                                                                     (click)="clearProgramTypes()">
                                                                     Clear
                                                                 </button>
-                                                                <button class="submitBtn" data-target="#typess" data-toggle="collapse"
+                                                                <button class="submitBtn" data-target="#typess"
+                                                                    data-toggle="collapse"
                                                                     (click)="selectedProgramTypes=tempSelectedProgramTypes;programFilter()">
                                                                     Apply
                                                                 </button>
                                                             </div>
-                    
+
                                                         </div>
                                                     </div>
                                                 </li>
                                                 <li class="cursor">
-                                                    <a [ngClass]="{ active: isDateFilter }" aria-expanded="true" data-target="#date"
-                                                        data-toggle="collapse">Dates</a>
+                                                    <a [ngClass]="{ active: isDateFilter }" aria-expanded="true"
+                                                        data-target="#date" data-toggle="collapse">Dates</a>
                                                     <div class="
                                         collapse
                                         main_collpase
                                         verification_modal
                                         date-rangecal
                                       " id="date" data-parent="#accordionExample">
-                                                        <ngx-daterangepicker-material (choosedDate)="choosedDate($event)"
-                                                            [minDate]="minDate" [autoApply]="true">
+                                                        <ngx-daterangepicker-material
+                                                            (choosedDate)="choosedDate($event)" [minDate]="minDate"
+                                                            [autoApply]="true">
                                                         </ngx-daterangepicker-material>
-                    
+
                                                         <div class="calender-botoombox">
                                                             <div class="calender-daterange">
                                                                 <div class="calender-daterange1" *ngIf="fromDate">
@@ -594,11 +634,13 @@ out of 5 </a> -->
                                                                 </div>
                                                             </div>
                                                             <div class="calender-buttons">
-                                                                <button class="calender-buttons1" data-target="#date" data-toggle="collapse"
+                                                                <button class="calender-buttons1" data-target="#date"
+                                                                    data-toggle="collapse"
                                                                     (click)="isDateFilter=false;programFilter()">
                                                                     Cancel
                                                                 </button>
-                                                                <button class="calender-buttons2" data-target="#date" data-toggle="collapse"
+                                                                <button class="calender-buttons2" data-target="#date"
+                                                                    data-toggle="collapse"
                                                                     (click)="isDateFilter=true;programFilter()">
                                                                     Apply
                                                                 </button>
@@ -607,10 +649,11 @@ out of 5 </a> -->
                                                     </div>
                                                 </li>
                                                 <li class="cursor">
-                                                    <a aria-controls="collapseExample" [ngClass]="{ active: isTimeFilter }"
-                                                        aria-expanded="true" data-target="#timess" data-toggle="collapse">Time</a>
-                                                    <div class="collapse main_collpase typess verification_modal" id="timess"
-                                                        data-parent="#accordionExample">
+                                                    <a aria-controls="collapseExample"
+                                                        [ngClass]="{ active: isTimeFilter }" aria-expanded="true"
+                                                        data-target="#timess" data-toggle="collapse">Time</a>
+                                                    <div class="collapse main_collpase typess verification_modal"
+                                                        id="timess" data-parent="#accordionExample">
                                                         <div class="collpase_content">
                                                             <div class="form-group typess">
                                                                 <div class="input_outer">
@@ -620,40 +663,42 @@ out of 5 </a> -->
                                                                             <input type="checkbox" class="k-checkbox"
                                                                                 (change)="onProgramTimeChange(i,time, $event.target.checked)"
                                                                                 #times name="time1" value="{{time}}" />
-                                                                            <label for="time1" class="k-checkbox-label">{{time}}
+                                                                            <label for="time1"
+                                                                                class="k-checkbox-label">{{time}}
                                                                                 ({{programTimesShow[i]}})</label>
                                                                         </div>
-                    
+
                                                                     </form>
                                                                 </div>
                                                             </div>
-                    
-                    
+
+
                                                             <div class="submit_btn">
-                                                                <button type="button" aria-controls="collapseExample" aria-expanded="true"
-                                                                    data-target="#timess" (click)="clearProgramTime()"
-                                                                    data-toggle="collapse" class="cancel_btn">
+                                                                <button type="button" aria-controls="collapseExample"
+                                                                    aria-expanded="true" data-target="#timess"
+                                                                    (click)="clearProgramTime()" data-toggle="collapse"
+                                                                    class="cancel_btn">
                                                                     Clear
                                                                 </button>
-                    
+
                                                                 <button
                                                                     (click)="selectedProgramTime=tempSelectedProgramTime;programFilter()"
                                                                     search-results.scrollTop="0" data-target="#timess"
                                                                     data-toggle="collapse" class="submitBtn">
                                                                     Apply
-                    
+
                                                                 </button>
                                                             </div>
-                    
+
                                                         </div>
                                                     </div>
                                                 </li>
-                    
+
                                                 <li class="cursor">
-                                                    <a aria-expanded="true" [ngClass]="{ active: isDaysFilter }" data-target="#Dayss"
-                                                        data-toggle="collapse">Days</a>
-                                                    <div class="collapse main_collpase typess verification_modal" id="Dayss"
-                                                        data-parent="#accordionExample">
+                                                    <a aria-expanded="true" [ngClass]="{ active: isDaysFilter }"
+                                                        data-target="#Dayss" data-toggle="collapse">Days</a>
+                                                    <div class="collapse main_collpase typess verification_modal"
+                                                        id="Dayss" data-parent="#accordionExample">
                                                         <div class="collpase_content">
                                                             <div class="form-group typess">
                                                                 <div class="input_outer">
@@ -661,7 +706,8 @@ out of 5 </a> -->
                                                                     <form action="">
                                                                         <div class="typess-flex"
                                                                             *ngFor="let day of weakDays; let i = index">
-                                                                            <input type="checkbox" class="k-checkbox" #days name="Days"
+                                                                            <input type="checkbox" class="k-checkbox"
+                                                                                #days name="Days"
                                                                                 (change)="onDayChange(i,day, $event.target.checked)"
                                                                                 value="{{day}}">
                                                                             <label for="Days1"
@@ -673,41 +719,45 @@ out of 5 </a> -->
                                                             <div class="submit_btn">
                                                                 <button (click)="clearProgramDays()" type="button"
                                                                     aria-controls="collapseExample" aria-expanded="true"
-                                                                    data-target="#Dayss" data-toggle="collapse" class="cancel_btn">
+                                                                    data-target="#Dayss" data-toggle="collapse"
+                                                                    class="cancel_btn">
                                                                     Clear
                                                                 </button>
-                    
-                                                                <button (click)="selectedDays=tempSelectedDays;programFilter()"
-                                                                    search-results.scrollTop="0" data-target="#Dayss" data-toggle="collapse"
-                                                                    class="submitBtn">
+
+                                                                <button
+                                                                    (click)="selectedDays=tempSelectedDays;programFilter()"
+                                                                    search-results.scrollTop="0" data-target="#Dayss"
+                                                                    data-toggle="collapse" class="submitBtn">
                                                                     Apply
                                                                 </button>
                                                             </div>
-                    
+
                                                         </div>
                                                     </div>
                                                 </li>
                                                 <li class="cursor">
-                                                    <a [ngClass]="{ active: isPriceFilter }" aria-controls="collapseExample"
-                                                        aria-expanded="true" data-target="#priceGroup" data-toggle="collapse">Price
+                                                    <a [ngClass]="{ active: isPriceFilter }"
+                                                        aria-controls="collapseExample" aria-expanded="true"
+                                                        data-target="#priceGroup" data-toggle="collapse">Price
                                                     </a>
-                                                    <div class="collapse main_collpase verification_modal" id="priceGroup"
-                                                        data-parent="#accordionExample">
+                                                    <div class="collapse main_collpase verification_modal"
+                                                        id="priceGroup" data-parent="#accordionExample">
                                                         <div class="collpase_content">
                                                             <div class="form-group">
-                                                                <ngx-slider [(value)]="minPrice" [(highValue)]="maxPrice"
-                                                                    [options]="priceOption">
+                                                                <ngx-slider [(value)]="minPrice"
+                                                                    [(highValue)]="maxPrice" [options]="priceOption">
                                                                 </ngx-slider>
                                                             </div>
                                                         </div>
                                                         <div class="submit_btn">
                                                             <button
                                                                 (click)="minPrice = 50;maxPrice = 300;isPriceFilter=false;programFilter()"
-                                                                type="button" aria-controls="collapseExample" aria-expanded="true"
-                                                                data-target="#priceGroup" data-toggle="collapse" class="cancel_btn">
+                                                                type="button" aria-controls="collapseExample"
+                                                                aria-expanded="true" data-target="#priceGroup"
+                                                                data-toggle="collapse" class="cancel_btn">
                                                                 Clear
                                                             </button>
-                    
+
                                                             <button (click)="isPriceFilter=true;programFilter()"
                                                                 search-results.scrollTop="0" data-target="#priceGroup"
                                                                 data-toggle="collapse" class="submitBtn">
@@ -716,7 +766,7 @@ out of 5 </a> -->
                                                         </div>
                                                     </div>
                                                 </li>
-                    
+
                                                 <!-- <li class="cursor">
                                                     <a class="top-rateds" aria-expanded="true" [ngClass]="{ active: isTopFilter }"><span
                                                             class="simple-toggle">
@@ -735,83 +785,95 @@ out of 5 </a> -->
                                         </div>
                                     </div>
                                 </div>
-                    
+
                                 <div class="col-md-3 toggle-border">
                                     <div class="toggle-filtersearch">
-                                        <button [class.active]="isOnline"
-                                            (click)="(isOnline?isOnline=false:isOnline=true);(isInPerson?isInPerson=false:false);programFilter()"
+                                        <button  [class.active]="isOnline"
+                                        (click)="(isOnline?isOnline=false:isOnline=true);(isInPerson?isInPerson=false:false);programFilter()"
                                             class="btn1-filtersearch">
                                             Online
                                         </button>
                                         <button [class.active]="isInPerson"
-                                            (click)="(isInPerson?isInPerson=false:isInPerson=true);(isOnline?isOnline=false:false);programFilter()"
+                                        (click)="(isInPerson?isInPerson=false:isInPerson=true);(isOnline?isOnline=false:false);programFilter()"
                                             class="btn2-filtersearch">
                                             In person
                                         </button>
                                     </div>
                                 </div>
                             </div>
-                            </div>
-                            <div class="row row-0 mb-40">
-                                <div class="col-12">
-                                    <div class="chip-set-bar chip-set-bar-btn" [hidden]="!showReset">
-                                        <div class="map-without-heading display-inline" *ngIf="searchedSubCategory">
-                                            <h2><a><span>{{searchedSubCategory}}</span><span
-                                                        *ngIf="selectedSubCategories?.length && selectedSubCategories?.length>1"> +
-                                                        {{selectedSubCategories?.length-1}} More</span></a> in New Jersey <span
-                                                    class="span-h3">&nbsp;|&nbsp; <b>{{activitiesCount}}</b> activities
-                                                    from <b>{{providerProgram?.length}}</b> providers</span></h2>
-                                        </div>
-                                        <button class="btn_style save_btn cursor" *ngIf="!isInPerson && isOnline">
-                                            online
-                                            <mat-icon (click)="contentLoaded=false;isOnline=!isOnline;programFilter()">cancel</mat-icon>
-                                        </button>
-                                        <button class="btn_style save_btn cursor" *ngIf="isInPerson && !isOnline">
-                                            in-persion
-                                            <mat-icon (click)="contentLoaded=false;isInPerson=!isInPerson;programFilter()">cancel</mat-icon>
-                                        </button>
-                    
-                    
-                                        <button class="btn_style save_btn cursor" *ngIf="isAgeFilter">
-                                            Age {{minAge}}-{{maxAge}} years
-                                            <mat-icon (click)="contentLoaded=false;isAgeFilter=!isAgeFilter;programFilter()">cancel
-                                            </mat-icon>
-                                        </button>
-                                        <button class="btn_style save_btn cursor" *ngIf="isPriceFilter">
-                                            Price ${{minPrice}}-${{maxPrice}}
-                                            <mat-icon (click)="contentLoaded=false;isPriceFilter=!isPriceFilter;programFilter()">cancel
-                                            </mat-icon>
-                                        </button>
-                                        <button class="btn_style save_btn cursor" *ngIf="isDateFilter">
-                                            {{fromDate | date: "MMM d " }}-{{toDate | date: "MMM d " }}
-                                            <mat-icon (click)="contentLoaded=false;isDateFilter=!isDateFilter;programFilter()">cancel
-                                            </mat-icon>
-                                        </button>
-                                        <button class="btn_style save_btn cursor" *ngIf="isTopFilterCheckBox">
-                                            Top Rated
-                                            <mat-icon
-                                                (click)="contentLoaded=false;isTopFilterCheckBox=false;isTopFilter=false;programFilter()">
-                                                cancel</mat-icon>
-                                        </button>
-                                        <button class="btn_style save_btn cursor" *ngFor="let day of this.selectedDays;index as i">
-                                            {{day}}
-                                            <mat-icon  class="ml-2">cancel</mat-icon>
-                                        </button>
-                                        <button class="btn_style save_btn cursor" *ngFor="let type of this.selectedProgramTypes;index as i">
-                                            {{type}}
-                                            <mat-icon  class="ml-2">cancel</mat-icon>
-                                        </button>
-                                        <button class="btn_style save_btn cursor" *ngFor="let time of this.selectedProgramTime;index as i">
-                                            {{time}}
-                                            <mat-icon  class="ml-2">cancel</mat-icon>
-                                        </button>
-                                        <span>
-                                            <a class="ml-2 clear-text cursor">Clear all</a>
-                                        </span>
-                                    </div>
-                                </div>
                         </div>
-                        
+                        <div class="row row-0 mb-40">
+                            <div class="col-12">
+                                <div class="chip-set-bar chip-set-bar-btn" [hidden]="!showReset">
+                                    <div class="map-without-heading display-inline" *ngIf="searchedSubCategory">
+                                        <h2><a><span>{{searchedSubCategory}}</span><span
+                                                    *ngIf="selectedSubCategories?.length && selectedSubCategories?.length>1">
+                                                    +
+                                                    {{selectedSubCategories?.length-1}} More</span></a> in New Jersey
+                                            <span class="span-h3">&nbsp;|&nbsp; <b>{{activitiesCount}}</b> activities
+                                                from <b>{{providerProgram?.length}}</b> providers</span></h2>
+                                    </div>
+                                    <button class="btn_style save_btn cursor" *ngIf="!isInPerson && isOnline">
+                                        online
+                                        <mat-icon (click)="contentLoaded=false;isOnline=!isOnline;programFilter()">
+                                            cancel</mat-icon>
+                                    </button>
+                                    <button class="btn_style save_btn cursor" *ngIf="isInPerson && !isOnline">
+                                        in-persion
+                                        <mat-icon (click)="contentLoaded=false;isInPerson=!isInPerson;programFilter()">
+                                            cancel</mat-icon>
+                                    </button>
+
+
+                                    <button class="btn_style save_btn cursor" *ngIf="isAgeFilter">
+                                        Age {{minAge}}-{{maxAge}} years
+                                        <mat-icon
+                                            (click)="contentLoaded=false;isAgeFilter=!isAgeFilter;programFilter()">
+                                            cancel
+                                        </mat-icon>
+                                    </button>
+                                    <button class="btn_style save_btn cursor" *ngIf="isPriceFilter">
+                                        Price ${{minPrice}}-${{maxPrice}}
+                                        <mat-icon
+                                            (click)="contentLoaded=false;isPriceFilter=!isPriceFilter;programFilter()">
+                                            cancel
+                                        </mat-icon>
+                                    </button>
+                                    <button class="btn_style save_btn cursor" *ngIf="isDateFilter">
+                                        {{fromDate | date: "MMM d " }}-{{toDate | date: "MMM d " }}
+                                        <mat-icon
+                                            (click)="contentLoaded=false;isDateFilter=!isDateFilter;programFilter()">
+                                            cancel
+                                        </mat-icon>
+                                    </button>
+                                    <button class="btn_style save_btn cursor" *ngIf="isTopFilterCheckBox">
+                                        Top Rated
+                                        <mat-icon
+                                            (click)="contentLoaded=false;isTopFilterCheckBox=false;isTopFilter=false;programFilter()">
+                                            cancel</mat-icon>
+                                    </button>
+                                    <button class="btn_style save_btn cursor"
+                                        *ngFor="let day of this.selectedDays;index as i">
+                                        {{day}}
+                                        <mat-icon class="ml-2">cancel</mat-icon>
+                                    </button>
+                                    <button class="btn_style save_btn cursor"
+                                        *ngFor="let type of this.selectedProgramTypes;index as i">
+                                        {{type}}
+                                        <mat-icon class="ml-2">cancel</mat-icon>
+                                    </button>
+                                    <button class="btn_style save_btn cursor"
+                                        *ngFor="let time of this.selectedProgramTime;index as i">
+                                        {{time}}
+                                        <mat-icon class="ml-2">cancel</mat-icon>
+                                    </button>
+                                    <span>
+                                        <a  (click)="resetFilter()" class="ml-2 clear-text cursor">Clear all</a>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="row">
                             <!-- <div class="col-12" *ngIf="programs?.length" [hidden]="listView">
                                 <div id="carouselExampleIndicators" class="carousel slide activities-carousel" data-ride="carousel">
@@ -882,76 +944,87 @@ out of 5 </a> -->
                                     </div>
                                 </div>
                             </div> -->
-
-                            <div class="col-12" *ngFor="let program of programs;index as i" [hidden]="!listView">
-
-                                <div class="row ativities-boxes-info align-items-center bg_color">
-                                    <div class="col-2 name" (click)='goToProgramDetail(program)'>
-                                        <h6 class="tdata">{{program.name}}</h6>
-                                    </div>
-                                    <div class="col-3">
-                                        <div class="btn-group-info">
-                                          <ul class="ul-tag-btn-info">
-                                              <li *ngFor='let cat of program?.category'><button class="btn-activites-info">{{cat.name}}</button></li>
-                                          </ul>
+                            <div *ngIf="programs?.length">
+                                <div class="col-12" *ngFor="let program of programs;index as i" [hidden]="!listView">
+                                    <div class="row ativities-boxes-info align-items-center bg_color">
+                                        <div class="col-2 name" (click)='goToProgramDetail(program)'>
+                                            <h6 class="tdata">{{program.name}}</h6>
                                         </div>
-                                    </div>
-                                    <div class="col-2">
-                                        <div class="left-icon-box-media">
-                                            <div>
-                                                <img src="assets/calender-icon-img1.png" alt="calender-icon">
-                                            </div>
-                                            <div>
-                                                <p *ngIf="!program?.isDateNotMention">Ongoing</p>
-                                                <p *ngIf="program?.isDateNotMention">{{program?.date.from | date:'MMMM dd'}} - {{program.date.to | date:'dd'}}</p>
+                                        <div class="col-3">
+                                            <div class="btn-group-info">
+                                                <ul class="ul-tag-btn-info">
+                                                    <li *ngFor='let cat of program?.category'><button
+                                                            class="btn-activites-info">{{cat.name}}</button></li>
+                                                </ul>
                                             </div>
                                         </div>
-                                        <div class="left-icon-box-media">
-                                            <div>
-                                                <img src="assets/watch-icon-img.png" alt="time-icon">
+                                        <div class="col-2">
+                                            <div class="left-icon-box-media">
+                                                <div>
+                                                    <img src="assets/calender-icon-img1.png" alt="calender-icon">
+                                                </div>
+                                                <div>
+                                                    <p *ngIf="!program?.isDateNotMention">Ongoing</p>
+                                                    <p *ngIf="program?.isDateNotMention">{{program?.date.from |
+                                                        date:'MMMM dd'}} - {{program.date.to | date:'dd'}}</p>
+                                                </div>
                                             </div>
-                                            <div>                        
-                                                <p *ngIf="!program?.isTimeNotMention">{{globalFunc.tools_replaceAll(program?.time?.from?.toFixed(2)?.toString(),".",":" )}} - {{globalFunc.tools_replaceAll(program?.time?.to?.toFixed(2)?.toString(),".",":" )}}</p>
-                                                <p *ngIf="program?.isTimeNotMention">Time not mentioned</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-3">
-                                        <div class="left-icon-box-media">
-                                            <div>
-                                                <img src="assets/user-icon-img.png" alt="users-icon">
-                                            </div>
-                                            <div>
-                                                <p>{{program?.ageGroup.from}} - {{program?.ageGroup.to}} Yrs</p>
-                                            </div>
-                                        </div>
-                                        <div class="left-icon-box-media">
-                                            <div>
-                                                <img src="assets/price-doller-icon.png" alt="price-icon">
-                                            </div>
-                                            <div>
-                                                <p>{{program?.pricePerParticipant}} <span [hidden]="!program?.pricePeriod?.priceAmount">per</span> {{program?.pricePeriod?.priceAmount}}</p>
+                                            <div class="left-icon-box-media">
+                                                <div>
+                                                    <img src="assets/watch-icon-img.png" alt="time-icon">
+                                                </div>
+                                                <div>
+                                                    <p *ngIf="!program?.isTimeNotMention">
+                                                        {{globalFunc.tools_replaceAll(program?.time?.from?.toFixed(2)?.toString(),".",":"
+                                                        )}} -
+                                                        {{globalFunc.tools_replaceAll(program?.time?.to?.toFixed(2)?.toString(),".",":"
+                                                        )}}</p>
+                                                    <p *ngIf="program?.isTimeNotMention">Time not mentioned</p>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-2">
-                                        <div class="cstm-btn-online-info" *ngIf="program?.inpersonOrVirtual=='Virtual'">
-                                            <button class="cstm-btn-online">Online</button>
-                                        </div>
-                                        <div class="left-icon-box-media" *ngIf="program?.inpersonOrVirtual=='Inperson'">
-                                            <div>
-                                                <img src="assets/location-icon.png" alt="location-icon">
+                                        <div class="col-3">
+                                            <div class="left-icon-box-media">
+                                                <div>
+                                                    <img src="assets/user-icon-img.png" alt="users-icon">
+                                                </div>
+                                                <div>
+                                                    <p>{{program?.ageGroup.from}} - {{program?.ageGroup.to}} Yrs</p>
+                                                </div>
                                             </div>
-                                            <div>
-                                                <p>{{program?.location}}</p>
+                                            <div class="left-icon-box-media">
+                                                <div>
+                                                    <img src="assets/price-doller-icon.png" alt="price-icon">
+                                                </div>
+                                                <div>
+                                                    <p>{{program?.pricePerParticipant}} <span
+                                                            [hidden]="!program?.pricePeriod?.priceAmount">per</span>
+                                                        {{program?.pricePeriod?.priceAmount}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="cstm-btn-online-info"
+                                                *ngIf="program?.inpersonOrVirtual=='Virtual'">
+                                                <button class="cstm-btn-online">Online</button>
+                                            </div>
+                                            <div class="left-icon-box-media"
+                                                *ngIf="program?.inpersonOrVirtual=='Inperson'">
+                                                <div>
+                                                    <img src="assets/location-icon.png" alt="location-icon">
+                                                </div>
+                                                <div>
+                                                    <p>{{program?.location}}</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
+                            <div class="col-12" *ngIf="!programs?.length" style="color: #494949;text-align: center;">
+                                <h1>Sorry no results found :(</h1> </div>
                         </div>
-                        <div class="" [hidden]="listView"> 
+                        <!-- <div class="" [hidden]="listView"> 
                             <a href="#carouselExampleIndicators" data-slide="next">
                                 <div class="carousel-nav-icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -960,19 +1033,18 @@ out of 5 </a> -->
                   </svg>
                                 </div>
                             </a>
-                        </div>
+                        </div> -->
                     </div>
-                
                 </div>
 
             </div>
         </div>
     </div>
 
-<ngx-ui-loader [fgsTemplate]="foregroundSpinner" fgsSize="190" bgsSize="190"> </ngx-ui-loader>
-<ng-template #foregroundSpinner>
-      <app-loader-file></app-loader-file>
-</ng-template>
+    <ngx-ui-loader [fgsTemplate]="foregroundSpinner" fgsSize="190" bgsSize="190"> </ngx-ui-loader>
+    <ng-template #foregroundSpinner>
+        <app-loader-file></app-loader-file>
+    </ng-template>
 
     <app-footer2></app-footer2>
 </body>

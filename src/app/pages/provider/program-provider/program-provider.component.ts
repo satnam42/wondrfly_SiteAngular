@@ -88,7 +88,6 @@ export class ProgramProviderComponent implements OnInit {
   userId=''
   scrollToActivities = '';
 
-  //  start copied from search page 
   isDateFilter: boolean = false;
   isTimeFilter: boolean = false;
   isDaysFilter: boolean = false;
@@ -201,7 +200,6 @@ export class ProgramProviderComponent implements OnInit {
   tempSelectedDays: any = []
   tempSelectedProgramTypes: any = []
   tempSelectedProgramTime: any = []
-  //  end copied from search page
   constructor(private router: Router,
     private apiservice: ApiService,
     private auth: AuthsService,
@@ -299,24 +297,10 @@ this.getProviderProgram()  }
   this.dataService.setScrollToActivities('')  
   }
 
-
-  // private setCurrentLocation() {
-  //   if ('geolocation' in navigator) {
-  //     navigator.geolocation.getCurrentPosition((position) => {
-  //       this.latitude = position.coords.latitude;
-  //       this.longitude = position.coords.longitude;
-  //       this.zoom = 4;
-
-  //       this.getAddress(this.latitude, this.longitude);
-  //     });
-  //   }
-  // }
-
   getAddress(latitude, longitude) {
     this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {
       if (status === 'OK') {
         if (results[0]) {
-          // this.zoom = 20;
           this.address = results[0].formatted_address;
         } else {
           window.alert('No results found');
@@ -330,7 +314,6 @@ this.getProviderProgram()  }
 
 
   ngOnInit() {
-    // window.scroll(0, 0);
     this.getProviderById()
     this.titleService.setTitle(this.title);
     this.metaTagService.updateTag(
@@ -385,7 +368,6 @@ this.getProviderProgram()  }
   }
 
 
-  // start copied from search page
   programFilter() {
     if (this.regWallCookies > 11) {
       this.isBetaPopUp = true
@@ -485,40 +467,24 @@ this.getProviderProgram()  }
       if (this.isAgeFilter) {
         filter += `&ageFrom=${this.minAge}&ageTo=${this.maxAge}`
       }
-      this.ngxLoader.start()
-      this.apiservice.programFilter(filter, 1, 100).subscribe((res: any) => {
+      this.apiservice.programFilter(filter, 1, 1).subscribe((res: any) => {
         this.showReset = true
-        if (res.isSuccess) {
-          // this.isTopFilterCheckBox = false
-          this.programs = res.data;
-          // if (!this.providerProgram.length) {
-          //   this.isLoaded = true
-          // }
-          // if (this.providerProgram.length) {
-          //   this.providerProgram[0].collapsed = true
-          // }
-          // if (this.providerProgram.length == 2) {MN JKBB
-          //   this.providerProgram[1].collapsed = true
-          // }
-          // else if (this.providerProgram.length > 2) {
-          //   this.providerProgram[1].collapsed = true
-          //   this.providerProgram[2].collapsed = true
-          // }
-          // if (categoryId || this.selectedSubCategories.length) {
-          //   const sum = this.providerProgram.reduce((accumulator, object) => {
-          //     return accumulator + object.programs.length;
-          //   }, 0);
-          //   this.activitiesCount = sum
-          // }
+        if (res.isSuccess && res.data.length) {
+          this.programs = res.data[0].programs;
         }
-        this.ngxLoader.stop()
+        else{
+          this.programs = []
+        }
       });
     }
     else {
       this.pageNo = 1
       this.programs = []
       this.isTopFilterCheckBox = false
-      this.getProviderProgram();
+      // this.getProviderProgram();
+       this.apiservice.getProgramByProvider(this.user.id, this.pageNo, 200).subscribe((res) => {
+        this.programs = res    
+    });
     }
   }
 
@@ -626,5 +592,48 @@ this.getProviderProgram()  }
         this.subCats = this.subCats.filter((item) => item.isActivated === true && item.programCount);
       })
     }
-    // end copied from search page
+    resetFilter() {
+      this.searchedSubCategory = '';
+      this.activityName = '';
+      this.isInPerson = false;
+      this.showReset = false;
+      this.isTypeFilter = false;
+      this.categoryId = '';
+      this.isOnline = false;
+      this.isDaysFilter = false
+      this.isTimeFilter = false;
+      this.isTopFilterCheckBox = false
+      this.isTopFilter = false;
+      this.isAgeFilter = false;
+      this.isDateFilter = false;
+      this.selectedSubCategories = [];
+      this.isPriceFilter = false;
+      this.isCategoryFilter = false;
+      this.maxAge = 5;
+      this.minAge = 0;
+      this.pageNo = 1;
+      this.pageSize = 20;
+      this.selectedProgramTime = []
+      this.programs = []
+      this.times.forEach((element) => {
+        element.nativeElement.checked = false;
+      });
+      this.selectedDays = []
+      this.days.forEach((element) => {
+        element.nativeElement.checked = false;
+      });
+      this.selectedProgramTypes = []
+      this.types.forEach((element) => {
+        element.nativeElement.checked = false;
+      });
+      this.selectedCat = '';
+      this.categoryId = '';
+      this.subCats = [];
+      this.selectedSubCategories = []
+      // this.scrollToActivities ='activities'
+       this.apiservice.getProgramByProvider(this.user.id, this.pageNo, 200).subscribe((res) => {
+        this.programs = res
+
+    
+    });    }
 }
