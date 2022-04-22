@@ -161,7 +161,6 @@ export class ProgramProviderComponent implements OnInit {
   shareUrlSocial = environment.baseUrl;
   selectedProgram: any;
   url: string;
-  suggested: any = [];
   programOwnerData: any = User
   isOnline: boolean = false;
   isInPerson: boolean = false;
@@ -171,7 +170,6 @@ export class ProgramProviderComponent implements OnInit {
   selectedCat: any;
   selectedSubCategories: any = [];
   catData: Category[];
-  isBetaPopUp: boolean = false;
   recentFilters: any = []
   searchedSubCategory = ''
   latt: any;
@@ -183,8 +181,6 @@ export class ProgramProviderComponent implements OnInit {
   selectedDays: any = []
   selectedProgramTypes: any = []
   selectedProgramTime: any = []
-  contentLoaded = false;
-  fakeLoaderData = [1, 2]
   currentUser: any;
   cookiesData: string;
   regWallCookies = 0
@@ -287,6 +283,7 @@ this.getProviderProgram()  }
 
   getProviderProgram = async () => {
         window.scroll(0, 0);
+        this.ngxLoader.start()
     await this.apiservice.getProgramByProvider(this.user.id, this.pageNo, 200).subscribe((res) => {
       this.programs = res
       if(this.scrollToActivities=='activities'){
@@ -294,6 +291,7 @@ this.getProviderProgram()  }
   }
   
   });
+  this.ngxLoader.stop()
   this.dataService.setScrollToActivities('')  
   }
 
@@ -367,20 +365,13 @@ this.getProviderProgram()  }
   centerChange(e) {
   }
 
-
   programFilter() {
-    if (this.regWallCookies > 11) {
-      this.isBetaPopUp = true
-    }
     this.isTimeFilter = false;
     this.isDaysFilter = false;
     this.isTopFilter = false;
     this.isTypeFilter = false;
     this.isCategoryFilter = false;
-    this.suggested = []
     if (this.isTopFilterCheckBox || this.categoryId || this.selectedDays.length || this.selectedProgramTypes.length || this.selectedSubCategories.length || this.selectedProgramTime.length || this.isOnline || this.isInPerson || this.isDateFilter || this.isPriceFilter || this.isAgeFilter) {
-      this.fakeLoaderData = [1, 2]
-      this.contentLoaded = false;
       let filter = ``
       let inpersonOrVirtual = ''
       let days = ''
@@ -467,6 +458,7 @@ this.getProviderProgram()  }
       if (this.isAgeFilter) {
         filter += `&ageFrom=${this.minAge}&ageTo=${this.maxAge}`
       }
+      this.ngxLoader.start()
       this.apiservice.programFilter(filter, 1, 1).subscribe((res: any) => {
         this.showReset = true
         if (res.isSuccess && res.data.length) {
@@ -476,15 +468,18 @@ this.getProviderProgram()  }
           this.programs = []
         }
       });
+      this.ngxLoader.stop()
     }
     else {
       this.pageNo = 1
       this.programs = []
       this.isTopFilterCheckBox = false
       // this.getProviderProgram();
+      this.showReset = false
        this.apiservice.getProgramByProvider(this.user.id, this.pageNo, 200).subscribe((res) => {
-        this.programs = res    
+        this.programs = res  
     });
+    this.ngxLoader.stop()
     }
   }
 
@@ -631,9 +626,11 @@ this.getProviderProgram()  }
       this.subCats = [];
       this.selectedSubCategories = []
       // this.scrollToActivities ='activities'
+      this.ngxLoader.start()
+      this.showReset = false
        this.apiservice.getProgramByProvider(this.user.id, this.pageNo, 200).subscribe((res) => {
         this.programs = res
-
-    
-    });    }
+    });  
+    this.ngxLoader.stop()
+  }
 }
