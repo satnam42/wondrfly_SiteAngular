@@ -2593,6 +2593,7 @@ ul.ul-tag-checkbox-info ul.ul-tag-checkbox-child .checkbox-txt {
   line-height: 27px;
   letter-spacing: 0.001em;
   color: #494949;
+  cursor: pointer;
 }
 .media-top-txt-div {
   display: flex;
@@ -2642,6 +2643,7 @@ ul.ul-tag-checkbox-info ul.ul-tag-checkbox-child .checkbox-txt {
   padding: 20px;
   margin-right: 5px;
   margin-left: 5px;
+  min-height: 262px;
 }
 .my-saved-carousel-slider .media-scroable .media-body .media-right-icon-h2 {
   display: grid;
@@ -2706,6 +2708,7 @@ ul.ul-tag-checkbox-info ul.ul-tag-checkbox-child .checkbox-txt {
   letter-spacing: 0.001em;
   text-decoration-line: underline;
   color: #53B2E8;
+  cursor: pointer;
 }
 .grid-label-checkbox {
   display: grid;
@@ -2722,4 +2725,8 @@ ul.ul-tag-checkbox-info ul.ul-tag-checkbox-child .checkbox-txt {
 }
 ::ng-deep.mat-chip-list-wrapper{
   margin: 0px !important;
+}
+
+.star-daialogbox {
+  top: 45px;
 }

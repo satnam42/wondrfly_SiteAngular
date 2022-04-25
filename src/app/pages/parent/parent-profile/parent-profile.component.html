@@ -615,7 +615,7 @@
                                 </div>
                             </div>
                             <div class="my-saved-prodivers-info">
-                                <div class="my-saved-body-content">
+                                <div class="my-saved-body-content" *ngFor="let data of savedProvider; let providerIndx = index">
                                     <div class="media-top-content-info mb-20">
                                         <div class="row row-0 align-items-center">
                                             <div class="col-md-8">
@@ -624,21 +624,103 @@
                                                         <img src="https://wondrfly.com/images/1643364878820Sports%20&%20fitness.png" />
                                                     </div>
                                                     <div class="left-icon-h2">
-                                                        <h2>The local Art & Craft School</h2>
+                                                        <h2 (click)="goToProviderProfile(data?.provider)">{{data?.provider?.firstName}}</h2>
                                                     </div>
-                                                    <div class="rating-starsearch">
+                                                    <div class="rating-starsearch" (click)=" getRating(data?.provider?._id); 
+                                                    " class="cursor" data-toggle="collapse"
+                                                                [attr.data-target]="'#collapseExamplestar' + providerIndx">
                                                         <p>
-                                                            <span class="ng-star-inserted">
+                                                            <span *ngIf="data?.provider?.averageFinalRating==0">
+                                                                <span class="fa fa-star-o"></span>
+                                                                <span class="fa fa-star-o"></span>
+                                                                <span class="fa fa-star-o"></span>
+                                                                <span class="fa fa-star-o"></span>
+                                                                <span class="fa fa-star-o"></span>
+                                                            </span>
+                                                            <span *ngIf="data?.provider?.averageFinalRating==1">
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star-o"></span>
+                                                                <span class="fa fa-star-o"></span>
+                                                                <span class="fa fa-star-o"></span>
+                                                                <span class="fa fa-star-o"></span>
+                                                            </span>
+                                                            <span
+                                                                *ngIf="data?.provider?.averageFinalRating>1 && data?.provider?.averageFinalRating<2">
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star-half-o checked"></span>
+                                                                <span class="fa fa-star-o"></span>
+                                                                <span class="fa fa-star-o"></span>
+                                                                <span class="fa fa-star-o"></span>
+                                                            </span>
+                                                            <span *ngIf="data?.provider?.averageFinalRating==2">
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star-o"></span>
+                                                                <span class="fa fa-star-o"></span>
+                                                                <span class="fa fa-star-o"></span>
+                                                            </span>
+                                                            <span
+                                                                *ngIf="data?.provider?.averageFinalRating>2 && data?.provider?.averageFinalRating<3">
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star-half-o checked"></span>
+                                                                <span class="fa fa-star-o"></span>
+                                                                <span class="fa fa-star-o"></span>
+                                                            </span>
+                                                            <span *ngIf="data?.provider?.averageFinalRating==3">
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star-o"></span>
+                                                                <span class="fa fa-star-o"></span>
+                                                            </span>
+                                                            <span
+                                                                *ngIf="data?.provider?.averageFinalRating>3 && data?.provider?.averageFinalRating<4">
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star-half-o checked"></span>
+                                                                <span class="fa fa-star-o"></span>
+                                                            </span>
+                                                            <span *ngIf="data?.provider?.averageFinalRating==4">
                                                                 <span class="fa fa-star checked"></span>
                                                                 <span class="fa fa-star checked"></span>
                                                                 <span class="fa fa-star checked"></span>
                                                                 <span class="fa fa-star checked"></span>
                                                                 <span class="fa fa-star-o"></span>
                                                             </span>
+                                                            <span
+                                                                *ngIf="data?.provider?.averageFinalRating>4 && data?.provider?.averageFinalRating<5">
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star-half-o checked"></span>
+                                                            </span>
+                                                            <span *ngIf="data?.provider?.averageFinalRating==5">
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                            </span>
+                                                            <!-- <a> <span></span>(58 reviews)</a> -->
                                                         </p>
                                                     </div>
+        
+                                                    <div *ngIf="rating" class="collapse star-daialogbox"
+                                                        id="collapseExamplestar{{ providerIndx }}">
+                                                        <button type="button" data-toggle="collapse"
+                                                            [attr.data-target]="'#collapseExamplestar' + providerIndx"
+                                                            class="close star-daialogicon" aria-label="Close">
+                                                            <span aria-hidden="true"><img src="assets/grey-close.png" /></span>
+                                                        </button>
+                                                        <app-rating [rating]="rating" [user]="data?.provider">
+                                                        </app-rating>
+                                                    </div>
                                                     <div class="share_icon">
-                                                        <a class="cursor">
+                                                        <a class="cursor" data-toggle="modal" data-target="#ShareModal"
+                                                        (click)="selectedShareData = data">
                                                             <img src="assets/share_gray.svg " alt="Share Icon" />
                                                         </a>
                                                         <div class="bookmark_outer">
@@ -651,18 +733,18 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="media-top-txt-div justify-content-right">
-                                                    <a class="btn-show-all-program">view all 25 activities</a>
+                                                    <a class="btn-show-all-program">view all<span *ngIf="data?.favourites?.length">{{data?.favourites?.length}}</span> activities</a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="my-saved-carousel-slider">
-                                        <div class="media-scroable">
-                                            <div class="media-activity">
+                                        <div class="media-scroable" *ngIf="data?.favourites">
+                                            <div class="media-activity" *ngFor="let program of data?.favourites">
                                                 <div class="media-body">
                                                     <div class="media-right-icon-h2">
-                                                        <div>
-                                                            <h2 class="cursor"> Kinderbots Learn Basic Crafts</h2>
+                                                        <div (click)="goToProgramDetail(program?.programs[0])">
+                                                            <h2 class="cursor"> {{program?.programs[0]?.name}}</h2>
                                                         </div>
                                                         <div class="media-right-share-icon">
                                                             <div class="bookmark_outer">
@@ -680,7 +762,10 @@
                                                                     <img src="assets/calender-icon-img1.png" alt="calender-icon">
                                                                 </div>
                                                                 <div>
-                                                                    <p>Thur, Mar 23- Mar 25</p>
+                                                                    <p *ngIf="!program?.programs[0]?.isDateNotMention">{{program?.programs[0]?.date?.from |
+                                                                        date:"EEE, MMM dd"}} - {{program?.programs[0]?.date?.to | date:"MMM dd"}}
+                                                                    </p>
+                                                                    <p *ngIf="program?.programs[0]?.isDateNotMention">Ongoing</p>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -690,7 +775,13 @@
                                                                     <img src="assets/watch-icon-img.png" alt="calender-icon">
                                                                 </div>
                                                                 <div>
-                                                                    <p>09:00AM – 11:00 AM</p>
+                                                                    <p *ngIf="!program?.programs[0]?.isTimeNotMention">
+                                                                        {{globalFunc.tools_replaceAll(program?.programs[0]?.time?.from?.toFixed(2)?.toString(),".",":"
+                                                                        )}} –
+                                                                        {{globalFunc.tools_replaceAll(program?.programs[0]?.time?.to?.toFixed(2)?.toString(),".",":"
+                                                                        )}}</p>
+                                                                    <p *ngIf="program?.programs[0]?.isTimeNotMention">Time not mentioned</p>
+            
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -700,7 +791,8 @@
                                                                     <img src="assets/user-icon-img.png" alt="user-icon">
                                                                 </div>
                                                                 <div>
-                                                                    <p>7-11 Yrs</p>
+                                                                    <p>{{ program?.programs[0]?.ageGroup?.from + "-" + program?.programs[0]?.ageGroup?.to }}
+                                                                        Yrs</p>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -710,7 +802,13 @@
                                                                     <img src="assets/price-doller-icon.png" alt="user-icon">
                                                                 </div>
                                                                 <div>
-                                                                    <p>$20 per hour</p>
+                                                                    <p *ngIf="!program?.programs[0]?.isFree && program?.programs[0]?.pricePerParticipant">
+                                                                        <span>{{ program?.programs[0]?.pricePerParticipant}}
+                                                                            <span *ngIf="program?.programs[0]?.pricePeriod?.periodAmount">/{{program?.programs[0]?.pricePeriod?.periodAmount }}</span>
+                                                                            </span>
+                                                                    </p>
+                                                                    <p *ngIf="program?.programs[0]?.isFree && !program?.programs[0]?.pricePerParticipant"><img
+                                                                            src="assets/price.svg" /><span> Free</span></p>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -718,9 +816,21 @@
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <div class="media-scroable" *ngIf="!data?.favourites">
+                                            <div class="media-activity">
+                                                <div class="media-body">
+                                                    <div class="no-saved-content">
+                                                        <h3>No saved activities</h3>
+                                                        <a class="explore-link"  (click)="goToProviderProfile(data?.provider,true)">Explore now </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
-                                <div class="my-saved-body-content">
+                                <!-- <div class="my-saved-body-content">
                                     <div class="media-top-content-info mb-20">
                                         <div class="row row-0 align-items-center">
                                             <div class="col-md-8">
@@ -773,7 +883,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                         
@@ -1508,7 +1618,7 @@
 
 
 <!-- <app-confirm-dialog></app-confirm-dialog> -->
-<share-popup [shareData]="selectedProgram"></share-popup>
+<share-popup [shareData]="selectedShareData" [isProvider]="true"></share-popup>
  <!-- loader -->
  <ngx-ui-loader [fgsTemplate]="foregroundSpinner" fgsSize="190" bgsSize="190"> </ngx-ui-loader>
  <ng-template #foregroundSpinner>

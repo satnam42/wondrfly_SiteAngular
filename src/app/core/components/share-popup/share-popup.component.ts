@@ -74,15 +74,18 @@ export class SharePopupComponent implements OnInit {
     let name:any
     let subject:any
     let emailSub:any
+    let id
     if(this.isProvider){
-      name = this.shareData.user[0].firstName;
+      console.log(this.shareData)
+      name = this.shareData.user ? this.shareData.user[0].firstName : this.shareData?.provider?.firstName;
       name = name.toLowerCase();
       name = name.replace(/ /g, "-");
       name = name.replace(/\?/g, "-");
       name = name.replace(/[{()}]/g, '');
+      id = this.shareData.user ? this.shareData.user[0]._id : this.shareData?.provider?._id;
       subject = "Check out this Provider profile and services on Wondrfly:"
       emailSub = "Check out this Provider profile and services on Wondrfly!"
-      this.shareUrl = `${this.baseUrl}provider/program-provider/${name}/${this.shareData._id}`;
+      this.shareUrl = `${this.baseUrl}provider/program-provider/${name}/${id}`;
     }
     else{
       name = this.shareData.name;

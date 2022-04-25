@@ -15,6 +15,8 @@ import { MatAutocompleteSelectedEvent } from "@angular/material/autocomplete";
 import { ToastrService } from "ngx-toastr";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { environment } from "src/environments/environment";
+import { DataService } from "src/app/core/services/dataservice.service ";
+import { Globals } from "src/app/core/common/imageLoader";
 @Component({
   selector: "parent-profile",
   templateUrl: "./parent-profile.component.html",
@@ -44,6 +46,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
   favourites: any = [];
   invitedUsers: User[] = []
   profileProgress: 0;
+  selectedShareData: any;
   fileData: File = null;
   formData = new FormData();
   childformData = new FormData();
@@ -164,11 +167,15 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
   currentYear = moment(Date.now()).format("YYYY");
   age = 0
   isLoaded = false;
+  savedProvider: any=[];
+  rating: any;
   constructor(
     private apiservice: ApiService,
     private router: Router,
     private ngxLoader: NgxUiLoaderService,
     private authService: AuthsService,
+    private dataservice: DataService,
+    public globalFunc:Globals,
     // private chatService: ChatService,
     public store: LocalStorageService,
     private snack: MatSnackBar,
@@ -177,7 +184,6 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
     this.activeList = this.store.getItem('activeList');
     this.currentUser = this.authService.currentUser();
     this.sendInvite = JSON.parse(this.store.getItem('sendInvite'));
-    this.savedProviders()
   }
 
   dateV() {
@@ -1251,6 +1257,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
     this.getUserById();
     this.getParentById();
     this.user.avatarImages = this.currentUser.avatarImages;
+    this.savedProviders();
     // this.chatService.getMessages().subscribe((message: Chat) => {
     //   if (message.msgFrom !== this.currentUser.firstName) {
     //     this.chatCollection.push(message);
@@ -1415,12 +1422,28 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
   }
   // saved providers list 
   savedProviders() {
-    this.apiservice
-      .getSavedProvidersByParentId(this.currentUser.id)
-      .subscribe((res: any) => {
+    this.ngxLoader.start();
+    this.apiservice.getSavedProvidersByParentId(this.currentUser.id).subscribe((res: any) => {
         console.log('fav providers  ', res)
+        this.savedProvider = res.data;
+        this.ngxLoader.stop();
       });
   }
+
+  goToProviderProfile(provider,  scrollToActivities?) {
+    if (scrollToActivities === 'activities') {
+      this.dataservice.setScrollToActivities(scrollToActivities)
+    }
+    var providerName = provider.firstName;
+    providerName = providerName.toLowerCase();
+    providerName = providerName.replace(/ /g, "-");
+    providerName = providerName.replace(/\?/g, "-");
+    this.router.navigate(['provider/program-provider', providerName, provider._id]);
+
+  }
+
+
+
   // categories list 
   getCategory() {
     this.apiservice.getCategory().subscribe((res: any) => {
@@ -1429,4 +1452,12 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
       console.log(this.categories)
     });
   }
+
+    // ---------------------------------navigate to program detail page -------------------------------------------
+    getRating(id) {
+      this.apiservice.getUserRating(id).subscribe((res: any) => {
+        this.rating = res
+        this.rating.finalAverageRating = parseFloat(String(this.rating.finalAverageRating)).toFixed(1)
+      });
+    }
 }

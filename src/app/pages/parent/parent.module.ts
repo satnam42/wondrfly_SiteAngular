@@ -20,6 +20,7 @@ import { MailchimpSubscribeFormModule } from 'src/app/core/components/mailchimp-
 import { SuggestionComponent } from './suggestion/suggestion.component';
 import { CounterModule } from './../../core/components/counter/counter.module';
 import { NgCircleProgressModule } from 'ng-circle-progress';
+import { RatingModule } from 'src/app/core/components/rating/rating.module';
 
 @NgModule({
     entryComponents: [],
@@ -45,6 +46,7 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
         MailchimpSubscribeFormModule,
         MarkdownModule,
         CounterModule,
+        RatingModule,
         NgCircleProgressModule.forRoot({
             // set defaults here
             radius: 100,
