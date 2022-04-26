@@ -1225,6 +1225,30 @@ getPublishedProgramByProvider(pageNo, pageSize, programType): Observable<Program
         return subject.asObservable();
     }
 
+      //  un-save provider 
+     unsaveProviders(id): Observable<any> {
+        const subject = new Subject<any>();
+        this.http.delete(`${this.root}/favourites/unsaveProvider/${id}`,this.getHeader()).subscribe((responseData: any) => {
+            if (responseData.statusCode !== 200) {
+                throw new Error('This request has failed ' + responseData.status);
+            }
+            const dataModel = responseData;
+            if (!dataModel.isSuccess) {
+                if (responseData.status === 200) {
+                    throw new Error(dataModel.code || dataModel.message || 'failed');
+                } else {
+                    throw new Error(responseData.status + '');
+                }
+            }
+            subject.next(responseData);
+        }, (error) => {
+            const dataModel = error;
+            subject.next(dataModel.error);
+
+        });
+        return subject.asObservable();
+    }
+
     programPublishUnpublish(id, isPublished) {
         const subject = new Subject<Program[]>();
         this.http.put(`${this.root}/programs/publish?programId=${id}&isPublished=${isPublished}`, '', this.getHeader()).subscribe((responseData: any) => {

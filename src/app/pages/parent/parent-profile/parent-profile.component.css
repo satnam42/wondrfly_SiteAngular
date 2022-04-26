@@ -2730,3 +2730,10 @@ ul.ul-tag-checkbox-info ul.ul-tag-checkbox-child .checkbox-txt {
 .star-daialogbox {
   top: 45px;
 }
+
+.my-saved-prodivers-info h3{
+font-family: "Poppins";
+font-size: 20px;
+line-height: 30px;
+color: #494949;
+}

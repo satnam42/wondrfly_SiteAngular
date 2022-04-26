@@ -614,7 +614,7 @@
                                     <h2 class="save-title-h2">My Saved Providers</h2>
                                 </div>
                             </div>
-                            <div class="my-saved-prodivers-info">
+                            <div class="my-saved-prodivers-info" *ngIf="savedProvider?.length">
                                 <div class="my-saved-body-content" *ngFor="let data of savedProvider; let providerIndx = index">
                                     <div class="media-top-content-info mb-20">
                                         <div class="row row-0 align-items-center">
@@ -724,7 +724,7 @@
                                                             <img src="assets/share_gray.svg " alt="Share Icon" />
                                                         </a>
                                                         <div class="bookmark_outer">
-                                                            <a class="bookmark_icon cursor">
+                                                            <a class="bookmark_icon cursor" (click)="removeFavProvider(data?.provider?._id)">
                                                                 <img class="imgsvg" src="assets/bookmark_gray.svg" alt="Menu Image " />
                                                             </a>
                                                         </div>
@@ -748,8 +748,8 @@
                                                         </div>
                                                         <div class="media-right-share-icon">
                                                             <div class="bookmark_outer">
-                                                                <a class="bookmark_icon cursor">
-                                                                    <img src="assets/bookmark_gray.svg" alt="Menu Image " />
+                                                                <a class="bookmark_icon cursor" (click)="removeFav(program?.programs[0]?._id)">
+                                                                    <img class="imgsvg" src="assets/bookmark_gray.svg" alt="Menu Image " />
                                                                 </a>
                                                             </div>
                                                         </div>
@@ -829,61 +829,10 @@
                                         </div>
 
                                     </div>
-                                </div>
-                                <!-- <div class="my-saved-body-content">
-                                    <div class="media-top-content-info mb-20">
-                                        <div class="row row-0 align-items-center">
-                                            <div class="col-md-8">
-                                                <div class="media-top-txt-div">
-                                                    <div class="left-icon-img">
-                                                        <img src="https://wondrfly.com/images/1643364878820Sports%20&%20fitness.png" />
-                                                    </div>
-                                                    <div class="left-icon-h2">
-                                                        <h2>The local Art & Craft School</h2>
-                                                    </div>
-                                                    <div class="rating-starsearch">
-                                                        <p>
-                                                            <span class="ng-star-inserted">
-                                                                <span class="fa fa-star checked"></span>
-                                                                <span class="fa fa-star checked"></span>
-                                                                <span class="fa fa-star checked"></span>
-                                                                <span class="fa fa-star checked"></span>
-                                                                <span class="fa fa-star-o"></span>
-                                                            </span>
-                                                        </p>
-                                                    </div>
-                                                    <div class="share_icon">
-                                                        <a class="cursor">
-                                                            <img src="assets/share_gray.svg " alt="Share Icon" />
-                                                        </a>
-                                                        <div class="bookmark_outer">
-                                                            <a class="bookmark_icon cursor">
-                                                                <img class="imgsvg" src="assets/bookmark_gray.svg" alt="Menu Image " />
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="media-top-txt-div justify-content-right">
-                                                    <a class="btn-show-all-program">view all 25 activities</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="my-saved-carousel-slider">
-                                        <div class="media-scroable">
-                                            <div class="media-activity">
-                                                <div class="media-body">
-                                                    <div class="no-saved-content">
-                                                        <h3>No saved activities</h3>
-                                                        <a class="explore-link">Explore now </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> -->
+                                </div>                              
+                            </div>
+                            <div  class="my-saved-prodivers-info" *ngIf="!savedProvider?.length">
+                                 <h3>No Saved Provider Found</h3>
                             </div>
                         </div>
                         

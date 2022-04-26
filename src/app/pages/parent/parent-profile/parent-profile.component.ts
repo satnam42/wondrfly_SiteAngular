@@ -1062,11 +1062,19 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
         this.profileProgress = res.profileProgress;
       });
   }
-  removeFav(favId) {
-    this.apiservice.deleteFavProgram(favId).subscribe((res: any) => {
-      this.getFav(this.currentUser.id);
+  removeFav(programId) {
+    this.apiservice.deleteFavProgram(programId).subscribe((res: any) => {
+      this.savedProviders();
     });
   }
+
+  removeFavProvider(providerId) {
+    this.apiservice.unsaveProviders(providerId).subscribe((res: any) => {
+      this.savedProviders();
+    });
+  }
+
+
   onScroll() {
     if (this.isScrol) {
       this.isScrol = false;
@@ -1424,7 +1432,6 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
   savedProviders() {
     this.ngxLoader.start();
     this.apiservice.getSavedProvidersByParentId(this.currentUser.id).subscribe((res: any) => {
-        console.log('fav providers  ', res)
         this.savedProvider = res.data;
         this.ngxLoader.stop();
       });
@@ -1449,7 +1456,6 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
     this.apiservice.getCategory().subscribe((res: any) => {
       this.categories = res;
       this.categories = this.categories.filter((item) => item.isActivated !== false);
-      console.log(this.categories)
     });
   }
 
