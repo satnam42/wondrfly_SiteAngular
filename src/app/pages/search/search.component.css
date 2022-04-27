@@ -3237,6 +3237,7 @@ button.btn-hide-up {font-family: 'Poppins';font-style: normal;font-weight: 400;f
 .map-search-checkbox-field .checkmark:after {position: absolute;top: 1.5px;left: 5px;width: 4px;height: 8px;border: solid #fff;border-width: 0 1.5px 1.5px 0;transform: rotate(45deg);}
 .map-search-info {position: absolute;z-index: 1;background: #FFFFFF;border: 1px solid #E5E9EC;box-sizing: border-box;border-radius: 4px;padding: 5px 10px;left: 0;top: 14px;right: 0;max-width: 200px;margin: 0px auto;text-align: center;}
 
+/* slider arrow css */
 .map-carousel-slider {
     position: relative;
     padding-bottom: 20px;
@@ -3281,6 +3282,7 @@ button.btn-hide-up {font-family: 'Poppins';font-style: normal;font-weight: 400;f
     filter: invert(68%) sepia(8%) saturate(3771%) hue-rotate(170deg) brightness(96%) contrast(88%);
     -webkit-filter: invert(68%) sepia(8%) saturate(3771%) hue-rotate(170deg) brightness(96%) contrast(88%);
 }
+/* end slider arrow css */
 .media-scroable {
     display: flex;
     overflow: hidden;

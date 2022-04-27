@@ -115,7 +115,6 @@ header .logo img {
   box-shadow: none;
   margin-top: 55px;
   overflow: visible;
-  margin-left: -10px;
 }
 
 .side_bar .progress .progress-bar {
@@ -135,7 +134,7 @@ header .logo img {
   color: #53b2e8;
   position: absolute;
   top: -22px;
-  left: 21px;
+  left: 0px;
 }
 
 
@@ -184,7 +183,6 @@ header .logo img {
 
 .side_bar .complete_score {
   margin-top: 7px;
-  margin-left: 10px;
 }
 
 .side_bar .complete_score p {
@@ -2596,6 +2594,7 @@ ul.ul-tag-checkbox-info ul.ul-tag-checkbox-child .checkbox-txt {
   letter-spacing: 0.001em;
   color: #494949;
   cursor: pointer;
+  max-width: 280px;
 }
 .media-top-txt-div {
   display: flex;
@@ -2750,3 +2749,50 @@ color: #494949;
 .list_outer .col-md-12:last-child .left-icon-box-media {
   margin-bottom: 0px!important;
 }
+
+/* start slider arrow css */
+.my-saved-carousel-slider {
+  position: relative;
+  padding-bottom: 20px;
+}
+.my-saved-carousel-slider .left-resourcebtn .carousel-nav-icon,
+.my-saved-carousel-slider .right-resourcebtn .carousel-nav-icon {
+  height: 40px;
+  width: 40px;
+  background: #fff;
+  border: 1px solid #ededed;
+  box-sizing: border-box;
+  color: #494949;
+  border-radius: 50%;
+  top: 34%;
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+}
+.my-saved-carousel-slider .left-resourcebtn .carousel-nav-icon {left: -20px;}
+.my-saved-carousel-slider .right-resourcebtn .carousel-nav-icon {right: -20px;}
+.my-saved-carousel-slider .left-resourcebtn .carousel-nav-icon svg,
+.my-saved-carousel-slider .right-resourcebtn .carousel-nav-icon svg  {
+  cursor: pointer;
+  width: 15px;
+  height: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  display: flex;
+  align-items: center;
+}
+.my-saved-carousel-slider .left-resourcebtn .carousel-nav-icon svg {
+  transform: rotate(180deg);
+  filter: invert(68%) sepia(8%) saturate(3771%) hue-rotate(170deg) brightness(96%) contrast(88%);
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+}
+.my-saved-carousel-slider .right-resourcebtn .carousel-nav-icon svg {
+  filter: invert(68%) sepia(8%) saturate(3771%) hue-rotate(170deg) brightness(96%) contrast(88%);
+  -webkit-filter: invert(68%) sepia(8%) saturate(3771%) hue-rotate(170deg) brightness(96%) contrast(88%);
+}
+/* end slider arrow css */
