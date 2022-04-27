@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FooterComponent } from '../../app/core/components/footer/footer.component';
 import { HeaderComponent } from '../../app/core/components/header/header.component';
@@ -66,7 +66,7 @@ const guards = [
   exports: [...thirdPartyModules, ...components],
   entryComponents: [],
   providers: [
-    ...services, ...guards,
+    ...services, ...guards,DatePipe,
   ]
 })
 export class CoreModule { }
