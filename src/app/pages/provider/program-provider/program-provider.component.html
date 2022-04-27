@@ -806,7 +806,7 @@ out of 5 </a> -->
                         <div class="row row-0 mb-40">
                             <div class="col-12">
                                 <div class="chip-set-bar chip-set-bar-btn" *ngIf="showReset">
-                                    <div class="map-without-heading display-inline" *ngIf="searchedSubCategory">
+                                    <!-- <div class="map-without-heading display-inline" *ngIf="searchedSubCategory">
                                         <h2><a><span>{{searchedSubCategory}}</span>
                                             <span
                                                     *ngIf="selectedSubCategories?.length && selectedSubCategories?.length>1">
@@ -814,11 +814,11 @@ out of 5 </a> -->
                                                     {{selectedSubCategories?.length-1}} More
                                                 </span>
                                             </a> 
-                                            <!-- in New Jersey
+                                            in New Jersey
                                             <span class="span-h3">&nbsp;|&nbsp; <b>{{activitiesCount}}</b> activities
-                                                from <b>{{providerProgram?.length}}</b> providers</span> -->
+                                                from <b>{{providerProgram?.length}}</b> providers</span>
                                             </h2>
-                                    </div>
+                                    </div> -->
                                     <button class="btn_style save_btn cursor" *ngIf="!isInPerson && isOnline">
                                         online
                                         <mat-icon (click)="isOnline=!isOnline;programFilter()">
