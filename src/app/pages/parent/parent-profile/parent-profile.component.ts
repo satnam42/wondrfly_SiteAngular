@@ -612,6 +612,15 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
     this.isAddChild = false;
     this.isEditChildBtn = false;
   }
+  scrollLeft(i) {
+    document.getElementById('widgetsContent' + i).scrollLeft -= 650;
+    // this.checkScroll()
+  }
+
+  scrollRight(i) {
+    document.getElementById('widgetsContent' + i).scrollLeft += 650;
+    // this.checkScroll()
+  }
 
   onNotification() {
     this.store.removeItem('activeList');
@@ -1431,10 +1440,12 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
   // saved providers list 
   savedProviders() {
     this.ngxLoader.start();
+    this.isLoaded = false
     this.apiservice.getSavedProvidersByParentId(this.currentUser.id).subscribe((res: any) => {
         this.savedProvider = res.data;
         this.ngxLoader.stop();
       });
+      this.isLoaded = true
   }
 
   goToProviderProfile(provider,  scrollToActivities?) {
