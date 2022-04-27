@@ -105,7 +105,7 @@ export class ProgramProviderComponent implements OnInit {
   locationData: any = {}
   favPrograms: any;
   isMap: boolean = true;
-  isLoaded = false
+  isLoaded: boolean;
   locations = [];
   categories: Category[];
   categoriesBySearch: any = new Category;
@@ -282,16 +282,15 @@ this.getProviderProgram()  }
 
 
   getProviderProgram = async () => {
+    this.isLoaded=false;
         window.scroll(0, 0);
         this.ngxLoader.start()
-        this.isLoaded=false;
     await this.apiservice.getProgramByProvider(this.user.id, this.pageNo, 200).subscribe((res) => {
       this.programs = res
-      this.isLoaded=true;
       if(this.scrollToActivities=='activities'){
         document.querySelector('#ActivitiesList').scrollIntoView({ behavior: 'smooth',block: 'start'});
   }
-  
+  this.isLoaded=true;
   });
   this.ngxLoader.stop()
   this.dataService.setScrollToActivities('')  
@@ -368,6 +367,7 @@ this.getProviderProgram()  }
   }
 
   programFilter() {
+    this.isLoaded=false;
     this.isTimeFilter = false;
     this.isDaysFilter = false;
     this.isTopFilter = false;
@@ -461,7 +461,6 @@ this.getProviderProgram()  }
         filter += `&ageFrom=${this.minAge}&ageTo=${this.maxAge}`
       }
       this.ngxLoader.start()
-      this.isLoaded=false;
 
       this.apiservice.programFilter(filter, 1, 1).subscribe((res: any) => {
         this.showReset = true
@@ -470,14 +469,13 @@ this.getProviderProgram()  }
           this.isLoaded=true;
         }
         else{
-          this.programs = []
+          this.programs = [];
+          this.isLoaded=true;
         }
       });
       this.ngxLoader.stop()
-    }
-    else {
+    } else {
       this.pageNo = 1
-      this.programs = []
       this.isTopFilterCheckBox = false
       // this.getProviderProgram();
       this.showReset = false
@@ -488,6 +486,8 @@ this.getProviderProgram()  }
     this.ngxLoader.stop()
     }
   }
+
+  
 
   onDayChange(indx: number, day: string, isChecked: boolean) {
     if (isChecked) {
