@@ -1749,3 +1749,5 @@ display: none;
   text-decoration-line: underline;
   color: #494949;
 }
+
+.min-height-288{min-height: 288px;}
