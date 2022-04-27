@@ -733,13 +733,13 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="media-top-txt-div justify-content-right">
-                                                    <a class="btn-show-all-program" (click)="goToProviderProfile(data?.provider,'activities')">view all <span *ngIf="data?.favourites?.length"> {{data?.favourites?.length}}</span> activities</a>
+                                                    <a class="btn-show-all-program" (click)="goToProviderProfile(data?.provider,'activities')">view all activities</a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="my-saved-carousel-slider">
-                                        <div class="left-resourcebtn">
+                                        <div class="left-resourcebtn" *ngIf="data?.favourites?.length>3">
                                             <a>
                                                 <div class="carousel-nav-icon"  (click)="scrollLeft(providerIndx)">
                                                     <svg _ngcontent-vyh-c185="" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" xmlns:xlink="http://www.w3.org/1999/xlink"><path _ngcontent-vyh-c185="" d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z"></path></svg>
@@ -825,7 +825,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="right-resourcebtn">
+                                        <div class="right-resourcebtn" *ngIf="data?.favourites?.length>3">
                                             <a>
                                                 <div class="carousel-nav-icon" (click)="scrollRight(providerIndx)">
                                                     <svg _ngcontent-vyh-c185="" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" xmlns:xlink="http://www.w3.org/1999/xlink"><path _ngcontent-vyh-c185="" d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z"></path></svg>
@@ -833,7 +833,7 @@
                                             </a>
                                         </div> 
 
-                                        <div class="media-scroable" *ngIf="!data?.favourites && isLoaded">
+                                        <div class="media-scroable" *ngIf="!data?.favourites">
                                             <div class="media-activity">
                                                 <div class="media-body">
                                                     <div class="no-saved-content">
@@ -847,7 +847,7 @@
                                     </div>
                                 </div>                              
                             </div>
-                            <div  class="my-saved-prodivers-info" *ngIf="!savedProvider?.length">
+                            <div  class="my-saved-prodivers-info" *ngIf="!savedProvider?.length && isLoaded">
                                  <h3>No Saved Provider Found</h3>
                             </div>
                         </div>

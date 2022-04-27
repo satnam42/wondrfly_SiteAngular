@@ -471,7 +471,7 @@ out of 5 </a> -->
                                     <div class="search-filterss">
                                         <div class="category_list" id="accordionExample">
                                             <ul>
-                                                <li class="cursor">
+                                                <!-- <li class="cursor">
                                                     <a aria-expanded="true" data-target="#category"
                                                         [ngClass]="{ active: isCategoryFilter }" data-toggle="collapse"
                                                         joyrideStep="firstStep" title="💡 Search with filters"
@@ -529,8 +529,8 @@ out of 5 </a> -->
                                                                             <h3
                                                                                 [class.checkbox-checked-name]="s.checked">
                                                                                 {{ s?.name }}
-                                                                                <!-- <span>({{ s?.programCount
-                                                                                }})</span> -->
+                                                                                <span>({{ s?.programCount
+                                                                                }})</span>
                                                                             </h3>
                                                                         </label>
                                                                     </div>
@@ -538,7 +538,7 @@ out of 5 </a> -->
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </li>
+                                                </li> -->
                                                 <li class="cursor">
                                                     <a [ngClass]="{ active: isAgeFilter }"
                                                         aria-controls="collapseExample" aria-expanded="true"
@@ -807,12 +807,17 @@ out of 5 </a> -->
                             <div class="col-12">
                                 <div class="chip-set-bar chip-set-bar-btn" *ngIf="showReset">
                                     <div class="map-without-heading display-inline" *ngIf="searchedSubCategory">
-                                        <h2><a><span>{{searchedSubCategory}}</span><span
+                                        <h2><a><span>{{searchedSubCategory}}</span>
+                                            <span
                                                     *ngIf="selectedSubCategories?.length && selectedSubCategories?.length>1">
                                                     +
-                                                    {{selectedSubCategories?.length-1}} More</span></a> in New Jersey
+                                                    {{selectedSubCategories?.length-1}} More
+                                                </span>
+                                            </a> 
+                                            <!-- in New Jersey
                                             <span class="span-h3">&nbsp;|&nbsp; <b>{{activitiesCount}}</b> activities
-                                                from <b>{{providerProgram?.length}}</b> providers</span></h2>
+                                                from <b>{{providerProgram?.length}}</b> providers</span> -->
+                                            </h2>
                                     </div>
                                     <button class="btn_style save_btn cursor" *ngIf="!isInPerson && isOnline">
                                         online

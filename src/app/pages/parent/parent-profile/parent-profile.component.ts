@@ -1444,8 +1444,8 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
     this.apiservice.getSavedProvidersByParentId(this.currentUser.id).subscribe((res: any) => {
         this.savedProvider = res.data;
         this.ngxLoader.stop();
+        this.isLoaded = true
       });
-      this.isLoaded = true
   }
 
   goToProviderProfile(provider,  scrollToActivities?) {
