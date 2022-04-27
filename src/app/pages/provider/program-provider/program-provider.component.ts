@@ -284,8 +284,10 @@ this.getProviderProgram()  }
   getProviderProgram = async () => {
         window.scroll(0, 0);
         this.ngxLoader.start()
+        this.isLoaded=false;
     await this.apiservice.getProgramByProvider(this.user.id, this.pageNo, 200).subscribe((res) => {
       this.programs = res
+      this.isLoaded=true;
       if(this.scrollToActivities=='activities'){
         document.querySelector('#ActivitiesList').scrollIntoView({ behavior: 'smooth',block: 'start'});
   }
@@ -459,10 +461,13 @@ this.getProviderProgram()  }
         filter += `&ageFrom=${this.minAge}&ageTo=${this.maxAge}`
       }
       this.ngxLoader.start()
+      this.isLoaded=false;
+
       this.apiservice.programFilter(filter, 1, 1).subscribe((res: any) => {
         this.showReset = true
         if (res.isSuccess && res.data.length) {
           this.programs = res.data[0].programs;
+          this.isLoaded=true;
         }
         else{
           this.programs = []
@@ -478,6 +483,7 @@ this.getProviderProgram()  }
       this.showReset = false
        this.apiservice.getProgramByProvider(this.user.id, this.pageNo, 200).subscribe((res) => {
         this.programs = res  
+        this.isLoaded=true;
     });
     this.ngxLoader.stop()
     }
@@ -628,8 +634,10 @@ this.getProviderProgram()  }
       // this.scrollToActivities ='activities'
       this.ngxLoader.start()
       this.showReset = false
+      this.isLoaded=false;
        this.apiservice.getProgramByProvider(this.user.id, this.pageNo, 200).subscribe((res) => {
         this.programs = res
+        this.isLoaded=true;
     });  
     this.ngxLoader.stop()
   }
