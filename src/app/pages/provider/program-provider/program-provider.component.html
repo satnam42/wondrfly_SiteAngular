@@ -1001,11 +1001,18 @@ out of 5 </a> -->
                                                 <div>
                                                     <img src="assets/price-doller-icon.png" alt="price-icon">
                                                 </div>
-                                                <div>
-                                                    <p>{{program?.pricePerParticipant}} <span
-                                                            [hidden]="!program?.pricePeriod?.priceAmount">per</span>
-                                                        {{program?.pricePeriod?.priceAmount}}</p>
-                                                </div>
+                                                <div *ngIf="(!program?.isFree && program?.pricePerParticipant)|| (program?.isFree && !program?.pricePerParticipant)">
+                                                    <p *ngIf="!program?.isFree && program?.pricePerParticipant">
+                                                        <span>{{
+                                                            program.pricePerParticipant
+                                                            }}<span *ngIf="program?.pricePeriod?.periodAmount">/{{
+                                                                program?.pricePeriod?.periodAmount
+                                                                }}</span></span>
+                                                    </p>
+                                                    <p *ngIf="program?.isFree && !program?.pricePerParticipant"><span> Free</span></p>
+                                            </div>
+
+
                                             </div>
                                         </div>
                                         <div class="col-2">
