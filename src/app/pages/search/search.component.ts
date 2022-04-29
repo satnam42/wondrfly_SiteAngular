@@ -576,6 +576,13 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.apiservice.getTagByCategoryId(cat.id).subscribe((res: any) => {
       this.subCats = res.data
       this.subCats = this.subCats.filter((item) => item.isActivated === true && item.programCount);
+     for(let i in this.subCats) {
+       for( let id of this.selectedSubCategories ){
+         if(id===this.subCats[i]._id){
+          this.subCats[i].checked = true;
+         }
+       }
+     }
     })
   }
 
