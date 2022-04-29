@@ -18,6 +18,7 @@ import { DataService } from 'src/app/core/services/dataservice.service ';
 import { environment } from 'src/environments/environment.prod';
 import { AnimationOptions } from 'ngx-lottie';
 import { AnimationItem } from 'lottie-web';
+import { createEvent, download } from './event-download.utils';
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',
@@ -123,7 +124,7 @@ export class DetailComponent implements OnInit {
   optionslotti: AnimationOptions = {
     path: '/assets/wLoader.json',
   };
-
+  events=[]
   constructor(private apiservice: ApiService,
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
@@ -241,6 +242,16 @@ export class DetailComponent implements OnInit {
     this.apiservice.getProgramById(this.program.id).subscribe(res => {
       this.ngxLoader.stop();
       this.program = res
+      let event:any = {
+        start: new Date(this.program.date.from),
+        // end: new Date('2020-01-01')
+        end: new Date(this.program.date.to),
+        summary: this.program.name,
+        description: this.program.description,
+        location: this.program.location,
+        url: 'https://www.wondrfly.com'
+      }
+      this.events.push(event)
       // this.program.time.from =moment(this.program.time.from).format("h:mm");
       // this.program.time.to = moment(this.program.time.to).format("h:mm");
       // this.program.time.from =this.convertNumToTime(this.program.time.from.toFixed(2))
@@ -483,4 +494,12 @@ else{
   }
   centerChange(e) {
   }
+//  event download
+    download() {
+      let content = createEvent(this.events)
+      console.log('events',this.events)
+      console.log('content',content)
+      download('activity.ics', content)
+    }
+  
 }

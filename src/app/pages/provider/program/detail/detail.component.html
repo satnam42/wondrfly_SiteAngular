@@ -48,7 +48,10 @@
                                                 <button *ngIf="program.inpersonOrVirtual=='Virtual'" class="btn-style">Online</button>
                                             </h3>
 
-                                            <div class="share_icon">
+                                            <div class="share_icon share-icon-calendar">
+                                                <div class="add-to-calendar-info">
+                                                    <button class="add-to-calendar-btn" (click)="download()"><img src="/assets/ph-calendar-plus-light.svg"/>Add to calendar</button>
+                                                </div>
                                                 <a data-toggle="modal" (click)="selectedProgram = program" data-target="#ShareModal" class="cursor">
                                                     <img src="assets/share_gray.svg " alt="Share Icon " />
                                                 </a>

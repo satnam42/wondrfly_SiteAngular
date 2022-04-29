@@ -123,7 +123,7 @@ a.business_btn.cursor.contact {
   margin: 0 0 0 0;
   position: relative;
   display: inline-block;
-  width: 90%;
+  width: 65%;
   align-items: center;
   display: flex;
 }
@@ -1447,8 +1447,10 @@ span.more-programscolor {
 }
 .share_icon {
   display: flex;
-  justify-content: space-between;
-  width: 6%;
+  justify-content: flex-end;
+  align-items: center;
+  column-gap: 15px;
+  width: 35%;
   position: absolute;
   top: 6px;
   right: 3px;
@@ -1826,3 +1828,18 @@ span#closeBtn {
   margin: 0 0 0 9px;
 }
 /* end bottom programs list */
+
+.add-to-calendar-btn img{padding-right:6px;}
+.add-to-calendar-btn{
+		font-family: 'Poppins';
+		font-style: normal;
+		font-weight: 400;
+		font-size: 12px;
+		line-height: 18px;
+		color: #FFFFFF;
+		background: #53B2E8;
+		border: 1px solid #53B2E8;
+		box-sizing: border-box;
+		border-radius: 20px;
+		padding: 9px 18px;
+}
