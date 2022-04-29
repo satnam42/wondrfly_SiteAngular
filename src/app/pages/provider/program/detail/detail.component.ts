@@ -497,7 +497,7 @@ else{
 //  event download
     download() {
       let content = createEvent(this.events)
-      download('activity.ics', content)
+      download(`${this.events[0].summary.slice(0,10)+'-wondrfly'}.ics`, content)
     }
   
 }
