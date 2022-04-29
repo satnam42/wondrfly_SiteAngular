@@ -497,8 +497,6 @@ else{
 //  event download
     download() {
       let content = createEvent(this.events)
-      console.log('events',this.events)
-      console.log('content',content)
       download('activity.ics', content)
     }
   
