@@ -238,6 +238,7 @@ export class DetailComponent implements OnInit {
   }
 
   getProgramById() {
+    this.events = []
     this.ngxLoader.start();
     this.apiservice.getProgramById(this.program.id).subscribe(res => {
       this.ngxLoader.stop();
@@ -251,6 +252,11 @@ export class DetailComponent implements OnInit {
         location: this.program.location,
         url: 'https://www.wondrfly.com'
       }
+
+      event.start.setHours(Math.trunc( this.program.time.from ))
+      event.start.setMinutes(this.globalFunc.getHourOrMinute(this.program.time.from.toFixed(2).toString(),".",":" ))
+      event.end.setHours(Math.trunc( this.program.time.to ))
+      event.end.setMinutes(this.globalFunc.getHourOrMinute(this.program.time.to.toFixed(2).toString(),".",":" ))
       this.events.push(event)
       // this.program.time.from =moment(this.program.time.from).format("h:mm");
       // this.program.time.to = moment(this.program.time.to).format("h:mm");
@@ -497,7 +503,9 @@ else{
 //  event download
     download() {
       let content = createEvent(this.events)
-      download(`${this.events[0].summary.slice(0,10)+'-wondrfly'}.ics`, content)
+      this.events[0].summary = this.events[0].summary.replace(/ /g, "-");
+      this.events[0].summary = this.events[0].summary.toLowerCase()
+      download(`${this.events[0].summary.slice(0,5)+'-wondrfly'}.ics`, content)
     }
   
 }

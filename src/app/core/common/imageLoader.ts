@@ -40,6 +40,12 @@ export class Globals {
     }
     return duration
   }
+  getHourOrMinute(str, find, replace) {
+      var escapedFind = find.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
+      str = this.date + " " + str?.replace(new RegExp(escapedFind, 'g'), replace)
+      return str = this.datePipe.transform(str, 'mm')
+  }
+  
   //  timeConvert (time) {
   //   // Check correct time format and split into components
   //   time = time.toString ().match (/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
