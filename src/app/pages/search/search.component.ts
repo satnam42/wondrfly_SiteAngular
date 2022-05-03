@@ -528,7 +528,8 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.apiservice.getPublishedProgramByProvider(this.pageNo, this.pageSize, 'published').subscribe((res: any) => {
       this.programs = this.programs.concat(res.data);
       if (res.isSuccess) {
-        this.providerProgram = this.programs;
+        // this.providerProgram = this.programs;
+        this.providerProgram = this.programs.sort((a, b) => b.user[0]?.averageFinalRating - a.user[0]?.averageFinalRating);
         if (!this.providerProgram.length) {
           this.isLoaded = true
         }
