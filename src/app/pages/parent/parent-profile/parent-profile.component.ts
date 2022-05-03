@@ -955,7 +955,13 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
       var birth = new Date(this.kid.dob);
       let birthYear = moment(birth).format("YYYY");
       let currentYear = moment(Date.now()).format("YYYY");
-      if (birthYear > currentYear) {
+
+      var d1 = new Date();
+      var d2 = new Date(this.kid.dob);
+       if(d2.getTime()>= d1.getTime()){
+        this.toastr.warning( 'please fill valid DOB' )
+       } 
+      else if (birthYear > currentYear) {
         this.ngxLoader.stop();
         this.toastr.warning("Please fill valid birth year");
       } else {
@@ -1008,7 +1014,12 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
     var birth = new Date(child.dob);
     let birthYear = moment(birth).format("YYYY");
     this.currentYear = moment(Date.now()).format("YYYY");
-    if (birthYear > this.currentYear) {
+    var d1 = new Date();
+    var d2 = new Date(this.kid.dob);
+     if(d2.getTime()>= d1.getTime()){
+      this.toastr.warning( 'please fill valid DOB' )
+     } 
+    else if (birthYear > this.currentYear) {
       this.toastr.warning("please fill valid birth year",);
     } else {
       if (this.childImageURl != "" && this.childImageURl != undefined) {

@@ -116,7 +116,12 @@ export class LoginParentComponent implements OnInit {
     var birth = new Date(this.kid.dob);
     let birthYear = moment(birth).format('YYYY');
     let currentYear = moment(Date.now()).format('YYYY');
-    if (birthYear >= currentYear) {
+    var d1 = new Date();
+    var d2 = new Date(this.kid.dob);
+     if(d2.getTime()>= d1.getTime()){
+      this.toastr.warning( 'please fill valid DOB' )
+     } 
+    else if (birthYear >= currentYear) {
       this.toastr.warning('Please Fill Valid Birth Year!')
     }
     else {
