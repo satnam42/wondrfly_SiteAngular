@@ -73,7 +73,8 @@ export class SharePopupComponent implements OnInit {
   genericSocialShare(provider) {
     let name:any
     let subject:any
-    let emailSub:any
+    let emailSubject:any
+    let emailBody:any
     let id
     if(this.isProvider){
       console.log(this.shareData)
@@ -83,8 +84,10 @@ export class SharePopupComponent implements OnInit {
       name = name.replace(/\?/g, "-");
       name = name.replace(/[{()}]/g, '');
       id = this.shareData.user ? this.shareData.user[0]._id : this.shareData?.provider?._id;
-      subject = "Check out this Provider profile and services on Wondrfly:"
-      emailSub = "Check out this Provider profile and services on Wondrfly!"
+
+      subject = "Check out this activity provider on Wondrfly:"
+      emailSubject = "Check out this activity provider on Wondrfly:"
+      emailBody = "Check out this activity provider on Wondrfly!"
       this.shareUrl = `${this.baseUrl}provider/program-provider/${name}/${id}`;
     }
     else{
@@ -94,7 +97,8 @@ export class SharePopupComponent implements OnInit {
       name = name.replace(/\?/g, "-");
       name = name.replace(/[{()}]/g, '');
       subject = "Check out this kids' activity on Wondrfly:"
-      emailSub = "Check out this kids' activity on Wondrfly!"
+      emailSubject = "Check out this kids' activity on Wondrfly!"
+      emailBody = "Check out this kids' activity on Wondrfly!"
       this.shareUrl = `${this.baseUrl}program/${name}/${this.shareData._id}`;
     }
 
@@ -106,7 +110,7 @@ export class SharePopupComponent implements OnInit {
       }
       case 'email': {
         navigator.clipboard.writeText(this.shareUrl).then().catch(e => console.error(e));
-        this.url = `mailto:?subject=${emailSub}&body=${subject} ${this.shareUrl}`;
+        this.url = `mailto:?subject=${emailSubject}&body=${emailBody} ${this.shareUrl}`;
         window.open(this.url, 'sharer', 'toolbar=0,status=0,width=648,height=395');
         return true;
       }

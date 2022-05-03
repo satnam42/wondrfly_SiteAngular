@@ -83,8 +83,8 @@
         </span>
 
         <ng-template  #finalAverageRatingg>
-          <span class="no-underline">(</span><a class="review-underline" *ngIf="rating?.totalReviews">{{rating?.totalReviews }} reviews</a>
-          <a class="review-underline" *ngIf="!rating?.totalReviews">0 reviews</a><span class="no-underline">)</span>
+          <span class="no-underline">(</span><a class="no-underline" *ngIf="rating?.totalReviews">{{rating?.totalReviews }} reviews</a>
+          <a class="no-underline" *ngIf="!rating?.totalReviews">0 reviews</a><span class="no-underline">)</span>
         </ng-template>
       </h2>
   </div>
