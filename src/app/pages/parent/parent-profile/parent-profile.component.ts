@@ -951,7 +951,6 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
       this.kid.avtar = this.childImageURl;
     }
     else {
-      this.ngxLoader.start();
       var birth = new Date(this.kid.dob);
       let birthYear = moment(birth).format("YYYY");
       let currentYear = moment(Date.now()).format("YYYY");
@@ -962,7 +961,6 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
         this.toastr.warning( 'please fill valid DOB' )
        } 
       else if (birthYear > currentYear) {
-        this.ngxLoader.stop();
         this.toastr.warning("Please fill valid birth year");
       } else {
         var ageDifMs = Date.now() - birth.getTime();
@@ -970,16 +968,15 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
         var age = Math.abs(ageDate.getUTCFullYear() - 1970);
         if (age > 16) {
           this.toastr.warning("Child age should be 16 years or less")
-          this.ngxLoader.stop();
         } else {
           this.kid.age = String(age);
+          this.ngxLoader.start();
           this.apiservice.addChild(this.kid).subscribe((res) => {
             childResponse = res;
+            this.ngxLoader.stop();
             this.getProfileProgress();
             this.headerComponent.getProfileProgress();
             this.headerComponent.getUserById();
-            this.ngxLoader.stop();
-
             if (childResponse.isSuccess) {
               this.kid.name = ''
               this.kid.age = ''
@@ -1028,7 +1025,6 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
       var ageDifMs = Date.now() - birth.getTime();
       var ageDate = new Date(ageDifMs); // miliseconds from epoch
       this.age = Math.abs(ageDate.getUTCFullYear() - 1970);
-      this.ngxLoader.stop();
       if (this.age > 16) {
         this.toastr.warning("Child age should be 16 years or less")
       }
@@ -1036,11 +1032,13 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
         child.age = String(this.age);
         child.avtar = child.avtar.split(this.baseUrl).pop();
         // child.avtar =  child.avtar.slice(21);
+        this.ngxLoader.start();
         this.apiservice.updateChild(child.id, child).subscribe((res: any) => {
           this.getProfileProgress();
           this.headerComponent.getProfileProgress();
           this.headerComponent.getUserById();
           if (res) {
+            this.ngxLoader.stop();
             window.document.getElementById("dissmiss-child-modal").click();
             this.onChildren(this.currentUser.id);
             // this.toastr.info(msg );
