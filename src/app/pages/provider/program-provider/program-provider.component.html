@@ -969,8 +969,8 @@ out of 5 </a> -->
                                                     <img src="assets/calender-icon-img1.png" alt="calender-icon">
                                                 </div>
                                                 <div>
-                                                    <p *ngIf="!program?.isDateNotMention">Ongoing</p>
-                                                    <p *ngIf="program?.isDateNotMention">{{program?.date.from |
+                                                    <p *ngIf="program?.isDateNotMention">Ongoing</p>
+                                                    <p *ngIf="!program?.isDateNotMention">{{program?.date.from |
                                                         date:'MMMM dd'}} - {{program.date.to | date:'dd'}}</p>
                                                 </div>
                                             </div>
