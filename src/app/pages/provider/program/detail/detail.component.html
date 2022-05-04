@@ -169,7 +169,7 @@
                                                     <img src="assets/bi_link.svg" alt="Location Pin" /><a href="{{program?.joiningLink}}" target="_blank" rel="noopener">Join via Link</a>
                                                 </p>
                                                 <p *ngIf="!program?.isDateNotMention">
-                                                    <img src="assets/calendar_orange.svg" alt="Calendar" />{{ program?.date?.from | date: "MMM d" }} - {{ program?.date?.to | date: "MMM d" }}
+                                                    <img src="assets/calendar_orange.svg" alt="Calendar" />{{ program?.date?.from | date: "MMM dd" }} - {{ program?.date?.to | date: "MMM dd" }}
                                                 </p>
                                                 <p *ngIf="program?.isDateNotMention">
                                                     <img src="assets/calendar_orange.svg" alt="Calendar" />Ongoing
@@ -812,9 +812,9 @@
                                             <div class="col-md-12 display-none">
                                                 <p *ngIf="!activity?.isDateNotMention">
                                                     <img src="assets/calendar.svg " alt="School image " />{{
-                                                        activity?.date?.from | date: "MMM d " }} – {{ activity?.date?.to |
+                                                        activity?.date?.from | date: "MMM dd " }} – {{ activity?.date?.to |
                                                     date:
-                                                    "MMM d " }}
+                                                    "MMM dd " }}
                                                 </p>
                                                 <p *ngIf="activity?.isDateNotMention">
                                                     Ongoing

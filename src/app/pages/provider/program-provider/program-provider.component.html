@@ -970,8 +970,7 @@ out of 5 </a> -->
                                                 </div>
                                                 <div>
                                                     <p *ngIf="program?.isDateNotMention">Ongoing</p>
-                                                    <p *ngIf="!program?.isDateNotMention">{{program?.date.from |
-                                                        date:'MMMM dd'}} - {{program.date.to | date:'dd'}}</p>
+                                                    <p *ngIf="!program?.isDateNotMention">{{program?.date.from | date:'MMM dd'}} - {{program.date.to | date:'MMM dd'}}</p>
                                                 </div>
                                             </div>
                                             <div class="left-icon-box-media">
