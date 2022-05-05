@@ -20,6 +20,7 @@ import { MarkdownModule } from './core/shared/markdown/markdown.module';
 import { JoyrideModule } from 'ngx-joyride';
 import { CookieService } from 'ngx-cookie-service';
 import { ActiveUser } from './core/guards';
+import { MapTheme } from './core/common/map-theme';
 
 const config: SocketIoConfig = { url: environment.socketUrl, options: {} };
 
@@ -54,6 +55,7 @@ const config: SocketIoConfig = { url: environment.socketUrl, options: {} };
     ChatService,
     Globals,
     CookieService,
+    MapTheme
   ],
   bootstrap: [AppComponent]
 })
