@@ -7,8 +7,8 @@ import { ApiService } from "../../services/api.service.service";
 import { DataService } from "../../services/dataservice.service ";
 
 @Component({
-selector: "app-header2",
-template: `
+  selector: "app-header2",
+  template: `
 <header [ngClass]="{ 'search-header': logoPosition }">
   <div [ngClass]="logoPosition? 'container-fluid':'container' ">
     <nav class="navbar navbar-expand-lg navbar-light">
@@ -37,7 +37,7 @@ template: `
         <input placeholder="Search Jersey City" (keydown.enter)="$event.preventDefault()" autocorrect="off" autocapitalize="off" spellcheck="off" #search readonly />
         </div>
         <div class="form-group cursor">
-      <button [disabled]="filterData.activityName" class="banner_button cursor" routerLink="/search">
+      <button  (click)="dataservice.setOption({})" [disabled]="filterData.activityName" class="banner_button cursor" routerLink="/search">
                     <img src="assets/search_icon.svg" alt="Search image" />
                   </button>
                                     </div>
@@ -245,281 +245,283 @@ template: `
 
 
 `,
-styleUrls: ["./header2.component.css"],
+  styleUrls: ["./header2.component.css"],
 })
 export class Header2Component implements OnInit {
-logoPosition = false;
-searchBar = false;
-routeName: string;
-categoriesBySearch: any;
-filterData: any = {
-subcatId: "",
-categoryId: '',
-activityName: "",
-searchedCategoryKey: '',
-lat: '',
-lng: '',
-};
-locationData: any = {
-lat: '',
-lng: '',
-}
-searchTerm= new FormControl();
-zoom = 14;
-allData: any=[];
-address: string;
-private count = 0;
-private n     = 3;
-private geoCoder;
-providersBySearch: any;
-lat: string
-lng: string
-regWallCookies=0;
-@ViewChild('search', { static: false }) searchElementRef: ElementRef;
+  logoPosition = false;
+  searchBar = false;
+  routeName: string;
+  categoriesBySearch: any;
+  filterData: any = {
+    subcatId: "",
+    categoryId: '',
+    activityName: "",
+    searchedCategoryKey: '',
+    lat: '',
+    lng: '',
+  };
+  locationData: any = {
+    lat: '',
+    lng: '',
+  }
+  searchTerm = new FormControl();
+  zoom = 14;
+  allData: any = [];
+  address: string;
+  private count = 0;
+  private n = 3;
+  private geoCoder;
+  providersBySearch: any;
+  lat: string
+  lng: string
+  regWallCookies = 0;
+  @ViewChild('search', { static: false }) searchElementRef: ElementRef;
   categoryData: any;
-constructor(
-private router: Router,
-private apiservice: ApiService,
-private mapsAPILoader: MapsAPILoader,
-private dataservice: DataService,
-private ngZone: NgZone,
-private cookies: CookieService,
-) {
-  this.regWallCookies = Number(this.cookies.get('regWall'))
-this.routeName = this.router.url;
-if (this.routeName === "/search") {
-this.logoPosition = true;
-}
-if (this.routeName === '/') { this.searchBar = true }
-}
-searchActivityByNameDate() {
-this.filterData.searchedCategoryKey = this.filterData.activityName
-this.filterData.categoryId = ''
-this.filterData.lat = ''
-this.filterData.lng = ''
-this.dataservice.setOption(this.filterData)
-this.router.navigate(['/search']);
-if (this.routeName === "/search") {
-this.router
-.navigateByUrl("/", { skipLocationChange: true })
-.then(() => this.router.navigate(["search"]));
-}
-}
-searchBySubCategory(id) {
-  let regCount = this.regWallCookies+1
-this.cookies.set('regWall', String(regCount), 30);
-this.filterData.activityName = ''
-this.filterData.lat = ''
-this.filterData.lng = ''
-this.filterData.categoryId = ''
-this.filterData.subcatId = id
-this.dataservice.setOption(this.filterData)
-this.router.navigate(['/search']);
-if (this.routeName === "/search") {
-this.router
-.navigateByUrl("/", { skipLocationChange: true })
-.then(() => this.router.navigate(["search"]));
-}
-}
-logo() {
-this.router.navigate([""]);
-}
-onTab(e,value){
-    this.searchTerm.setValue(value)
-}
-ngOnInit() {
-  this.searchTerm.valueChanges.subscribe((value) =>{
-    if(value){this.searchSubCategory(value)}else{
-      this.allData=[];
-    }   
-    })
-
-this.mapsAPILoader.load().then(() => {
-this.geoCoder = new google.maps.Geocoder;
-let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef?.nativeElement);
-autocomplete.addListener('place_changed', () => {
-this.ngZone.run(() => {
-let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-if (place.geometry === undefined || place.geometry === null) {
-return;
-}
-
-// set latitude, longitude
-this.lat = String(place.geometry.location.lat());
-this.lng = String(place.geometry.location.lng());
-});
-});
-});
-
-}
-
-searchByCategory(id) {
- let regCount = this.regWallCookies+1
-this.cookies.set('regWall', String(regCount), 30);
-this.filterData.activityName = ''
-this.filterData.categoryId = id
-this.filterData.subcatId = ''
-this.filterData.lat = ''
-this.filterData.lng = ''
-this.dataservice.setOption(this.filterData)
-this.router.navigate(["/search"]);
-if (this.routeName === "/search") {
-this.router
-.navigateByUrl("/", { skipLocationChange: true })
-.then(() => this.router.navigate(["search"]));
-}
-}
-// searchByLocation() {
-// this.filterData.activityName=''
-// this.filterData.categoryId = ''
-// this.filterData.subcatId= ''
-// this.filterData.lat = this.lat
-// this.filterData.lng = this.lng
-// this.dataservice.setLocation(this.filterData)
-// this.router.navigate(['/search']);
-// if (this.routeName === "/search") {
-// this.router
-// .navigateByUrl("/", { skipLocationChange: true })
-// .then(() => this.router.navigate(["search"]));
-// }
-// }
-
-searchSubCategory(key) {
- let groupDataAll:any =[
-    {label:'Category',data:[]},
-    {label:'Provider',data:[]},
-  ]
-  if(!key){
-    this.allData=[];
-  }else{
-  this.apiservice.searchTag(key).subscribe((res: any) => {
-  this.categoriesBySearch = res;
-  this.categoriesBySearch.category = this.categoriesBySearch.category.filter((item) => item.isActivated !== false);
-  this.categoriesBySearch.tags = this.categoriesBySearch.tags.filter((item) => item.isActivated !== false);
-  this.categoryData= this.categoriesBySearch.category.concat(this.categoriesBySearch.tags)
-  groupDataAll[0].data=this.categoryData;
-  }); 
-  this.apiservice.searchUsers(key, "provider").subscribe((res: any) => {
-    if (res.isSuccess===true) {
-    this.providersBySearch = res.data;
-    var i;
-    for(i = 0; i < this.providersBySearch.length; i++){
-      this.providersBySearch[i].name = this.providersBySearch[i]['firstName'];
-    groupDataAll[1].data=this.providersBySearch;
-    this.allData=groupDataAll
-    }}
-    else {
-      groupDataAll[1].data = []
-        this.allData=groupDataAll       }
-    });
+  constructor(
+    private router: Router,
+    private apiservice: ApiService,
+    private mapsAPILoader: MapsAPILoader,
+    public dataservice: DataService,
+    private ngZone: NgZone,
+    private cookies: CookieService,
+  ) {
+    this.regWallCookies = Number(this.cookies.get('regWall'))
+    this.routeName = this.router.url;
+    if (this.routeName === "/search") {
+      this.logoPosition = true;
+    }
+    if (this.routeName === '/') { this.searchBar = true }
   }
+  searchActivityByNameDate() {
+    this.filterData.searchedCategoryKey = this.filterData.activityName
+    this.filterData.categoryId = ''
+    this.filterData.lat = ''
+    this.filterData.lng = ''
+    this.dataservice.setOption(this.filterData)
+    this.router.navigate(['/search']);
+    if (this.routeName === "/search") {
+      this.router
+        .navigateByUrl("/", { skipLocationChange: true })
+        .then(() => this.router.navigate(["search"]));
+    }
   }
-
-
-
-// providerSearch(key) {
-// this.apiservice.searchUsers(key, "provider").subscribe((res: any) => {
-// if (res.data) {
-// this.providersBySearch = res.data;
-// }
-// else {
-// this.providersBySearch = []
-// }
-// });
-// }
-
-searchActivityByCategory(id) {
-this.filterData.activityName = "";
-this.filterData.subcatId = id;
-this.dataservice.setOption(this.filterData);
-this.router.navigate(["/search"]);
-if (this.routeName === "/search") {
-this.router
-.navigateByUrl("/", { skipLocationChange: true })
-.then(() => this.router.navigate(["search"]));
-}
-}
-
-selectSearchedOption(data){
-  if(data.role=='provider'){
-    this.filterData.activityName = "";
-data.name = data.name.toLowerCase();
-data.name = data.name.replace(/ /g, "-");
-data.name = data.name.replace(/\?/g, "-");
-this.router.navigate(["/provider/program-provider", data.name, data._id])
-this.router.navigate(["/provider/program-provider", data.name, data._id,]);
-if (this.routeName === "/provider/program-provider", data.name, data._id) {
-  this.router
-    .navigateByUrl("/", { skipLocationChange: true })
-    .then(() => this.router.navigate(["/provider/program-provider", data.name, data._id]));
-}
-  }else if(!data.categoryIds && !data.role){
-    this.filterData.activityName = "";
-this.filterData.subcatId ='';
-this.filterData.categoryId =  data._id;
-this.filterData.searchedCategoryKey=data.name;
-this.dataservice.setOption(this.filterData);
-this.router.navigate(["/search"]);
-if (this.routeName === "/search") {
-this.router
-.navigateByUrl("/", { skipLocationChange: true })
-.then(() => this.router.navigate(["search"]));
-}
-  }
-  else if(data.categoryIds && !data.role){
-    let regCount = this.regWallCookies+1
+  searchBySubCategory(id) {
+    let regCount = this.regWallCookies + 1
     this.cookies.set('regWall', String(regCount), 30);
     this.filterData.activityName = ''
     this.filterData.lat = ''
     this.filterData.lng = ''
-    this.filterData.searchedCategoryKey=data.name;
     this.filterData.categoryId = ''
-    this.filterData.subcatId = data._id
+    this.filterData.subcatId = id
     this.dataservice.setOption(this.filterData)
     this.router.navigate(['/search']);
     if (this.routeName === "/search") {
-    this.router
-    .navigateByUrl("/", { skipLocationChange: true })
-    .then(() => this.router.navigate(["search"]));
+      this.router
+        .navigateByUrl("/", { skipLocationChange: true })
+        .then(() => this.router.navigate(["search"]));
+    }
+  }
+  logo() {
+    this.router.navigate([""]);
+  }
+  onTab(e, value) {
+    this.searchTerm.setValue(value)
+  }
+  ngOnInit() {
+    this.searchTerm.valueChanges.subscribe((value) => {
+      if (value) { this.searchSubCategory(value) } else {
+        this.allData = [];
+      }
+    })
+
+    this.mapsAPILoader.load().then(() => {
+      this.geoCoder = new google.maps.Geocoder;
+      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef?.nativeElement);
+      autocomplete.addListener('place_changed', () => {
+        this.ngZone.run(() => {
+          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+          if (place.geometry === undefined || place.geometry === null) {
+            return;
+          }
+
+          // set latitude, longitude
+          this.lat = String(place.geometry.location.lat());
+          this.lng = String(place.geometry.location.lng());
+        });
+      });
+    });
+
+  }
+
+  searchByCategory(id) {
+    let regCount = this.regWallCookies + 1
+    this.cookies.set('regWall', String(regCount), 30);
+    this.filterData.activityName = ''
+    this.filterData.categoryId = id
+    this.filterData.subcatId = ''
+    this.filterData.lat = ''
+    this.filterData.lng = ''
+    this.dataservice.setOption(this.filterData)
+    this.router.navigate(["/search"]);
+    if (this.routeName === "/search") {
+      this.router
+        .navigateByUrl("/", { skipLocationChange: true })
+        .then(() => this.router.navigate(["search"]));
+    }
+  }
+  // searchByLocation() {
+  // this.filterData.activityName=''
+  // this.filterData.categoryId = ''
+  // this.filterData.subcatId= ''
+  // this.filterData.lat = this.lat
+  // this.filterData.lng = this.lng
+  // this.dataservice.setLocation(this.filterData)
+  // this.router.navigate(['/search']);
+  // if (this.routeName === "/search") {
+  // this.router
+  // .navigateByUrl("/", { skipLocationChange: true })
+  // .then(() => this.router.navigate(["search"]));
+  // }
+  // }
+
+  searchSubCategory(key) {
+    let groupDataAll: any = [
+      { label: 'Category', data: [] },
+      { label: 'Provider', data: [] },
+    ]
+    if (!key) {
+      this.allData = [];
+    } else {
+      this.apiservice.searchTag(key).subscribe((res: any) => {
+        this.categoriesBySearch = res;
+        this.categoriesBySearch.category = this.categoriesBySearch.category.filter((item) => item.isActivated !== false);
+        this.categoriesBySearch.tags = this.categoriesBySearch.tags.filter((item) => item.isActivated !== false);
+        this.categoryData = this.categoriesBySearch.category.concat(this.categoriesBySearch.tags)
+        groupDataAll[0].data = this.categoryData;
+      });
+      this.apiservice.searchUsers(key, "provider").subscribe((res: any) => {
+        if (res.isSuccess === true) {
+          this.providersBySearch = res.data;
+          var i;
+          for (i = 0; i < this.providersBySearch.length; i++) {
+            this.providersBySearch[i].name = this.providersBySearch[i]['firstName'];
+            groupDataAll[1].data = this.providersBySearch;
+            this.allData = groupDataAll
+          }
+        }
+        else {
+          groupDataAll[1].data = []
+          this.allData = groupDataAll
+        }
+      });
     }
   }
 
-}
 
-goToProviderProfile(provider) {
-this.filterData.activityName = "";
-provider.firstName = provider.firstName.toLowerCase();
-provider.firstName = provider.firstName.replace(/ /g, "-");
-provider.firstName = provider.firstName.replace(/\?/g, "-");
-this.router.navigate(["/provider/program-provider", provider.firstName, provider._id])
-this.router.navigate(["/provider/program-provider", provider.firstName, provider._id,]);
-if (this.routeName === "/provider/program-provider", provider.firstName, provider._id) {
-  this.router
-    .navigateByUrl("/", { skipLocationChange: true })
-    .then(() => this.router.navigate(["/provider/program-provider", provider.firstName, provider._id]));
-}
 
-}
+  // providerSearch(key) {
+  // this.apiservice.searchUsers(key, "provider").subscribe((res: any) => {
+  // if (res.data) {
+  // this.providersBySearch = res.data;
+  // }
+  // else {
+  // this.providersBySearch = []
+  // }
+  // });
+  // }
 
-// Get Current Location Coordinates
-setCurrentLocation() {
-this.mapsAPILoader.load().then(() => {
-if (navigator.geolocation) {
-navigator.geolocation.getCurrentPosition((position: any) => {
-this.zoom = 14;
-this.locationData.lat = position.coords.latitude;
-this.locationData.lng = position.coords.longitude;
-this.dataservice.setLocation(this.locationData)
-this.router.navigate(['/search']);
+  searchActivityByCategory(id) {
+    this.filterData.activityName = "";
+    this.filterData.subcatId = id;
+    this.dataservice.setOption(this.filterData);
+    this.router.navigate(["/search"]);
+    if (this.routeName === "/search") {
+      this.router
+        .navigateByUrl("/", { skipLocationChange: true })
+        .then(() => this.router.navigate(["search"]));
+    }
+  }
 
-if (this.routeName === "/search") {
-this.router
-.navigateByUrl("/", { skipLocationChange: true })
-.then(() => this.router.navigate(["search"]));
-}
-});
-} this.geoCoder = new google.maps.Geocoder;
-});
-}
+  selectSearchedOption(data) {
+    if (data.role == 'provider') {
+      this.filterData.activityName = "";
+      data.name = data.name.toLowerCase();
+      data.name = data.name.replace(/ /g, "-");
+      data.name = data.name.replace(/\?/g, "-");
+      this.router.navigate(["/provider/program-provider", data.name, data._id])
+      this.router.navigate(["/provider/program-provider", data.name, data._id,]);
+      if (this.routeName === "/provider/program-provider", data.name, data._id) {
+        this.router
+          .navigateByUrl("/", { skipLocationChange: true })
+          .then(() => this.router.navigate(["/provider/program-provider", data.name, data._id]));
+      }
+    } else if (!data.categoryIds && !data.role) {
+      this.filterData.activityName = "";
+      this.filterData.subcatId = '';
+      this.filterData.categoryId = data._id;
+      this.filterData.searchedCategoryKey = data.name;
+      this.dataservice.setOption(this.filterData);
+      this.router.navigate(["/search"]);
+      if (this.routeName === "/search") {
+        this.router
+          .navigateByUrl("/", { skipLocationChange: true })
+          .then(() => this.router.navigate(["search"]));
+      }
+    }
+    else if (data.categoryIds && !data.role) {
+      let regCount = this.regWallCookies + 1
+      this.cookies.set('regWall', String(regCount), 30);
+      this.filterData.activityName = ''
+      this.filterData.lat = ''
+      this.filterData.lng = ''
+      this.filterData.searchedCategoryKey = data.name;
+      this.filterData.categoryId = ''
+      this.filterData.subcatId = data._id
+      this.dataservice.setOption(this.filterData)
+      this.router.navigate(['/search']);
+      if (this.routeName === "/search") {
+        this.router
+          .navigateByUrl("/", { skipLocationChange: true })
+          .then(() => this.router.navigate(["search"]));
+      }
+    }
+
+  }
+
+  goToProviderProfile(provider) {
+    this.filterData.activityName = "";
+    provider.firstName = provider.firstName.toLowerCase();
+    provider.firstName = provider.firstName.replace(/ /g, "-");
+    provider.firstName = provider.firstName.replace(/\?/g, "-");
+    this.router.navigate(["/provider/program-provider", provider.firstName, provider._id])
+    this.router.navigate(["/provider/program-provider", provider.firstName, provider._id,]);
+    if (this.routeName === "/provider/program-provider", provider.firstName, provider._id) {
+      this.router
+        .navigateByUrl("/", { skipLocationChange: true })
+        .then(() => this.router.navigate(["/provider/program-provider", provider.firstName, provider._id]));
+    }
+
+  }
+
+  // Get Current Location Coordinates
+  setCurrentLocation() {
+    this.mapsAPILoader.load().then(() => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position: any) => {
+          this.zoom = 14;
+          this.locationData.lat = position.coords.latitude;
+          this.locationData.lng = position.coords.longitude;
+          this.dataservice.setLocation(this.locationData)
+          this.router.navigate(['/search']);
+
+          if (this.routeName === "/search") {
+            this.router
+              .navigateByUrl("/", { skipLocationChange: true })
+              .then(() => this.router.navigate(["search"]));
+          }
+        });
+      } this.geoCoder = new google.maps.Geocoder;
+    });
+  }
 
 }

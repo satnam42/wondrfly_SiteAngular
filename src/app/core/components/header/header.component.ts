@@ -44,9 +44,9 @@ export class HeaderComponent implements OnInit {
     lng: '',
   }
 
-  searchTerm= new FormControl();
-zoom = 14;
-allData: any=[];
+  searchTerm = new FormControl();
+  zoom = 14;
+  allData: any = [];
 
   initialUrl: any;
   feedbackData: any = {
@@ -81,7 +81,7 @@ allData: any=[];
     private toastr: ToastrService,
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
-    private dataservice: DataService,
+    public dataservice: DataService,
     public store: LocalStorageService
   ) {
     this.user = this.auth.currentUser();
@@ -246,15 +246,15 @@ allData: any=[];
       this.getUserById();
     });
   }
-  onTab(e,value){
-      this.searchTerm.setValue(value)
+  onTab(e, value) {
+    this.searchTerm.setValue(value)
   }
   ngOnInit() {
 
-      this.searchTerm.valueChanges.subscribe((value) =>{
-    if(value){this.searchSubCategory(value)}else{
-      this.allData=[];
-    }   
+    this.searchTerm.valueChanges.subscribe((value) => {
+      if (value) { this.searchSubCategory(value) } else {
+        this.allData = [];
+      }
     })
     this.getUserById();
 
@@ -394,35 +394,37 @@ allData: any=[];
   // }
 
   searchSubCategory(key) {
-    let groupDataAll:any =[
-       {label:'Category',data:[]},
-       {label:'Provider',data:[]},
-     ]
-     if(!key){
-       this.allData=[];
-     }else{
-     this.apiservice.searchTag(key).subscribe((res: any) => {
-     this.categoriesBySearch = res;
-     this.categoriesBySearch.category = this.categoriesBySearch.category.filter((item) => item.isActivated !== false);
-     this.categoriesBySearch.tags = this.categoriesBySearch.tags.filter((item) => item.isActivated !== false);
-     this.categoryData= this.categoriesBySearch.category.concat(this.categoriesBySearch.tags)
-     groupDataAll[0].data=this.categoryData;
-     }); 
-     this.apiservice.searchUsers(key, "provider").subscribe((res: any) => {
-       if (res.isSuccess===true) {
-       this.providersBySearch = res.data;
-       var i;
-       for(i = 0; i < this.providersBySearch.length; i++){
-         this.providersBySearch[i].name = this.providersBySearch[i]['firstName'];
-       groupDataAll[1].data=this.providersBySearch;
-       this.allData=groupDataAll
-       }}
-       else {
-        groupDataAll[1].data = []
-        this.allData=groupDataAll       }
-       });
-     }
-     }
+    let groupDataAll: any = [
+      { label: 'Category', data: [] },
+      { label: 'Provider', data: [] },
+    ]
+    if (!key) {
+      this.allData = [];
+    } else {
+      this.apiservice.searchTag(key).subscribe((res: any) => {
+        this.categoriesBySearch = res;
+        this.categoriesBySearch.category = this.categoriesBySearch.category.filter((item) => item.isActivated !== false);
+        this.categoriesBySearch.tags = this.categoriesBySearch.tags.filter((item) => item.isActivated !== false);
+        this.categoryData = this.categoriesBySearch.category.concat(this.categoriesBySearch.tags)
+        groupDataAll[0].data = this.categoryData;
+      });
+      this.apiservice.searchUsers(key, "provider").subscribe((res: any) => {
+        if (res.isSuccess === true) {
+          this.providersBySearch = res.data;
+          var i;
+          for (i = 0; i < this.providersBySearch.length; i++) {
+            this.providersBySearch[i].name = this.providersBySearch[i]['firstName'];
+            groupDataAll[1].data = this.providersBySearch;
+            this.allData = groupDataAll
+          }
+        }
+        else {
+          groupDataAll[1].data = []
+          this.allData = groupDataAll
+        }
+      });
+    }
+  }
 
   searchByCategory(id) {
     this.filterData.activityName = ''
@@ -486,47 +488,47 @@ allData: any=[];
     });
   }
 
-  selectSearchedOption(data){
-    if(data.role=='provider'){
+  selectSearchedOption(data) {
+    if (data.role == 'provider') {
       this.filterData.activityName = "";
-  data.name = data.name.toLowerCase();
-  data.name = data.name.replace(/ /g, "-");
-  data.name = data.name.replace(/\?/g, "-");
-  this.router.navigate(["/provider/program-provider", data.name, data._id])
-  this.router.navigate(["/provider/program-provider", data.name, data._id,]);
-  if (this.routeName === "/provider/program-provider", data.name, data._id) {
-    this.router
-      .navigateByUrl("/", { skipLocationChange: true })
-      .then(() => this.router.navigate(["/provider/program-provider", data.name, data._id]));
-  }
-    }else if(!data.categoryIds && !data.role){
+      data.name = data.name.toLowerCase();
+      data.name = data.name.replace(/ /g, "-");
+      data.name = data.name.replace(/\?/g, "-");
+      this.router.navigate(["/provider/program-provider", data.name, data._id])
+      this.router.navigate(["/provider/program-provider", data.name, data._id,]);
+      if (this.routeName === "/provider/program-provider", data.name, data._id) {
+        this.router
+          .navigateByUrl("/", { skipLocationChange: true })
+          .then(() => this.router.navigate(["/provider/program-provider", data.name, data._id]));
+      }
+    } else if (!data.categoryIds && !data.role) {
       this.filterData.activityName = "";
-  this.filterData.subcatId ='';
-  this.filterData.categoryId =  data._id;
-  this.filterData.searchedCategoryKey=data.name;
-  this.dataservice.setOption(this.filterData);
-  this.router.navigate(["/search"]);
-  if (this.routeName === "/search") {
-  this.router
-  .navigateByUrl("/", { skipLocationChange: true })
-  .then(() => this.router.navigate(["search"]));
-  }
+      this.filterData.subcatId = '';
+      this.filterData.categoryId = data._id;
+      this.filterData.searchedCategoryKey = data.name;
+      this.dataservice.setOption(this.filterData);
+      this.router.navigate(["/search"]);
+      if (this.routeName === "/search") {
+        this.router
+          .navigateByUrl("/", { skipLocationChange: true })
+          .then(() => this.router.navigate(["search"]));
+      }
     }
-    else if(data.categoryIds && !data.role){
+    else if (data.categoryIds && !data.role) {
       this.filterData.activityName = ''
       this.filterData.lat = ''
       this.filterData.lng = ''
-      this.filterData.searchedCategoryKey=data.name;
+      this.filterData.searchedCategoryKey = data.name;
       this.filterData.categoryId = ''
       this.filterData.subcatId = data._id
       this.dataservice.setOption(this.filterData)
       this.router.navigate(['/search']);
       if (this.routeName === "/search") {
-      this.router
-      .navigateByUrl("/", { skipLocationChange: true })
-      .then(() => this.router.navigate(["search"]));
+        this.router
+          .navigateByUrl("/", { skipLocationChange: true })
+          .then(() => this.router.navigate(["search"]));
       }
     }
-  
+
   }
 }

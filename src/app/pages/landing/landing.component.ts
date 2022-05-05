@@ -55,7 +55,7 @@ export class LandingComponent implements OnInit {
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
     private apiservice: ApiService,
-    private dataservice: DataService,
+    public dataservice: DataService,
     public auth: AuthsService,
     private titleService: Title,
     private metaTagService: Meta,
