@@ -50,9 +50,10 @@ export class SearchComponent implements OnInit, OnDestroy {
   userData: any = {};
   markerUrl = 'assets/location.svg';
   pageNo: number = 1;
-  pageSize: number = 20;
+  pageSize: number = 15;
   programs: any = [];
   providerProgram: any = [];
+  isInfiniteScrollDisabled:boolean
   isLogin: Boolean = false;
   key: string = '';
   providerRole: boolean = false;
@@ -452,6 +453,8 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   resetFilter() {
+this.dataservice.setOption({})   
+ this.isInfiniteScrollDisabled =false
     this.contentLoaded = false
     this.searchedSubCategory = '';
     this.activityName = '';
@@ -526,10 +529,12 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.ngxLoader.start()
     this.suggested = []
     this.apiservice.getPublishedProgramByProvider(this.pageNo, this.pageSize, 'published').subscribe((res: any) => {
-      this.programs = this.programs.concat(res.data);
+      this.programs = [...this.programs, ...res.data];
       if (res.isSuccess) {
-        // this.providerProgram = this.programs;
-        this.providerProgram = this.programs.sort((a, b) => b.user[0]?.averageFinalRating - a.user[0]?.averageFinalRating);
+        this.providerProgram = this.programs;
+        if (!res.data.length) {
+          this.isInfiniteScrollDisabled = true        }
+         this.providerProgram = this.programs.sort((a, b) => b.user[0]?.averageFinalRating - a.user[0]?.averageFinalRating);
         if (!this.providerProgram.length) {
           this.isLoaded = true
         }
@@ -577,13 +582,13 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.apiservice.getTagByCategoryId(cat.id).subscribe((res: any) => {
       this.subCats = res.data
       this.subCats = this.subCats.filter((item) => item.isActivated === true && item.programCount);
-     for(let i in this.subCats) {
-       for( let id of this.selectedSubCategories ){
-         if(id===this.subCats[i]._id){
-          this.subCats[i].checked = true;
-         }
-       }
-     }
+      for (let i in this.subCats) {
+        for (let id of this.selectedSubCategories) {
+          if (id === this.subCats[i]._id) {
+            this.subCats[i].checked = true;
+          }
+        }
+      }
     })
   }
 
@@ -651,6 +656,7 @@ export class SearchComponent implements OnInit, OnDestroy {
       this.isBetaPopUp = true
     }
     window.scroll(0, 0);
+    this.isInfiniteScrollDisabled =false
     this.isTimeFilter = false;
     this.isDaysFilter = false;
     this.isTopFilter = false;
@@ -658,7 +664,6 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.isCategoryFilter = false;
     this.suggested = []
     if (this.isTopFilterCheckBox || this.categoryId || this.selectedDays.length || this.selectedProgramTypes.length || this.selectedSubCategories.length || this.selectedProgramTime.length || this.isOnline || this.isInPerson || this.isDateFilter || this.isPriceFilter || this.isAgeFilter) {
-      this.fakeLoaderData = [1, 2]
       this.contentLoaded = false;
       let filter = ``
       let inpersonOrVirtual = ''
@@ -761,8 +766,6 @@ export class SearchComponent implements OnInit, OnDestroy {
           else {
             this.providerProgram = this.programs;
           }
-
-          console.log('this.providerProgram', this.providerProgram)
           if (!this.providerProgram.length) {
             this.isLoaded = true
           }
@@ -776,12 +779,12 @@ export class SearchComponent implements OnInit, OnDestroy {
             this.providerProgram[1].collapsed = true
             this.providerProgram[2].collapsed = true
           }
-          if (categoryId || this.selectedSubCategories.length) {
+          // if (categoryId || this.selectedSubCategories.length) {
             const sum = this.providerProgram.reduce((accumulator, object) => {
               return accumulator + object.programs.length;
             }, 0);
             this.activitiesCount = sum
-          }
+          // }
           // for (let i in this.programs) {
           //   let category = this.programs[i].category.filter((v, num, a) => a.findIndex(t => (t.name == v.name)) === num)
           //   this.programs[i].category = category
@@ -967,7 +970,6 @@ export class SearchComponent implements OnInit, OnDestroy {
     if (boleanType) {
       this.providerProgram[indx].isFav = boleanType
       this.apiservice.saveProvider(model).subscribe((res: any) => {
-        console.log(res)
       });
     }
     else {

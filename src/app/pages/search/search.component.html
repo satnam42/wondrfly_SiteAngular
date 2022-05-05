@@ -324,12 +324,15 @@
         <div class="row row-0">
             <div class="col-10" [ngClass]="{'col-12':isMap || isOnline}">
                 <div class="chip-set-bar chip-set-bar-btn" [hidden]="!showReset">
-                    <div class="map-without-heading display-inline" *ngIf="searchedSubCategory">
-                        <h2><a><span>{{searchedSubCategory}}</span><span
-                                    *ngIf="selectedSubCategories?.length && selectedSubCategories?.length>1"> +
-                                    {{selectedSubCategories?.length-1}} More</span></a> in Jersey City<span
-                                class="span-h3">&nbsp;|&nbsp; <b>{{activitiesCount}}</b> activities
-                                from <b>{{providerProgram?.length}}</b> providers</span></h2>
+                    <div class="map-without-heading display-inline">
+                        <h2>
+                            <span [hidden]="!searchedSubCategory"><a><span>{{searchedSubCategory}}</span><span
+                                        *ngIf="selectedSubCategories?.length && selectedSubCategories?.length>1"> +
+                                        {{selectedSubCategories?.length-1}} More</span></a> in Jersey City</span><span
+                                class="span-h3">&nbsp;<span *ngIf="searchedSubCategory">|</span>&nbsp;
+                                <b>{{activitiesCount}}</b> activities
+                                from <b>{{providerProgram?.length}}</b> providers</span>
+                        </h2>
                     </div>
                     <button class="btn_style save_btn cursor" *ngIf="!isInPerson && isOnline">
                         online
@@ -391,8 +394,9 @@
         <!-- start    providerprogram list  -->
         <div class="row row-0 borderserach" *ngIf="!isOnline">
             <div class="col-md-6 list_left" [ngClass]="{'col-md-12':!isMap}">
-                <div class="search-results" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="500"
-                    (scrolled)="onScroll()" [scrollWindow]="false">
+                <div class="search-results" infiniteScroll [infiniteScrollDisabled]="isInfiniteScrollDisabled"
+                    [infiniteScrollDistance]="0.1" [infiniteScrollThrottle]="50" (scrolled)="onScroll()"
+                    [scrollWindow]="false">
                     <div class="search-results-section"
                         *ngFor="let provider of providerProgram; let providerIndx = index">
                         <div class="media-top-content-info media-full-row-info">
@@ -413,7 +417,7 @@
                                         <div class="review-starsearch-info" (click)=" getRating(provider._id); 
                                 " class="cursor" data-toggle="collapse"
                                             [attr.data-target]="'#collapseExamplestar' + providerIndx">
-        
+
                                             <div class="rating-starsearch">
                                                 <p>
                                                     <span *ngIf="provider.user[0]?.averageFinalRating==0">
@@ -525,18 +529,25 @@
                                 <div class="col-md-2 ">
                                     <div class="media-share-icon">
                                         <ul class="ul-tag-share_icon">
-                                           <li><a class="cursor" data-toggle="modal" data-target="#ShareModal"(click)="selectedShareData = provider"><img src="assets/share_gray.svg" /></a></li>
-                                           <li>
-                                               <a *ngIf="provider?.isFav && parentRole && isLogin"  (click)="saveUnsaveProvider(providerIndx,false)" class="cursor"><img src="assets/bookmarkOrange.png" /></a>
-                                               <a *ngIf="!provider?.isFav && parentRole && isLogin" (click)="saveUnsaveProvider(providerIndx,true)" class="cursor"><img src="assets/bookmark_gray.svg" /></a>
-                                               <a *ngIf="!isLogin" class="cursor" routerLink="/login"><img src="assets/bookmark_gray.svg" /></a>
+                                            <li><a class="cursor" data-toggle="modal" data-target="#ShareModal"
+                                                    (click)="selectedShareData = provider"><img
+                                                        src="assets/share_gray.svg" /></a></li>
+                                            <li>
+                                                <a *ngIf="provider?.isFav && parentRole && isLogin"
+                                                    (click)="saveUnsaveProvider(providerIndx,false)" class="cursor"><img
+                                                        src="assets/bookmarkOrange.png" /></a>
+                                                <a *ngIf="!provider?.isFav && parentRole && isLogin"
+                                                    (click)="saveUnsaveProvider(providerIndx,true)" class="cursor"><img
+                                                        src="assets/bookmark_gray.svg" /></a>
+                                                <a *ngIf="!isLogin" class="cursor" routerLink="/login"><img
+                                                        src="assets/bookmark_gray.svg" /></a>
                                             </li>
-                                       </ul> 
-                                   </div>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
-                            
-                            
+
+
                         </div>
                         <!-- --------------------------------------------------Programs list second without map--------------------------------------------------- -->
                         <div [id]="'programDiv'+providerIndx" class="map-carousel-slider"
@@ -1022,8 +1033,7 @@
                             </div>
                             <div class="show-all-program-btn cursor" *ngIf="provider?.programs?.length>1">
                                 <a class="btn-show-all-program"
-                                    (click)="goToProviderProfile(provider.user[0],'activities')">Show all
-                                    {{provider?.programs?.length}} Activities</a>
+                                    (click)="goToProviderProfile(provider.user[0],'activities')">Show all Activities</a>
                             </div>
                         </div>
                         <!-- --------------------------------------------------Programs list first without map--------------------------------------------------- -->
