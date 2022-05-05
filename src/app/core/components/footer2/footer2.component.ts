@@ -24,9 +24,6 @@ import { Component, OnInit } from "@angular/core";
                   <li class="cursor">
                     <a [routerLink]="['/faq']">FAQ</a>
                   </li>
-                  <!-- <li class="cursor">
-                            <a [routerLink]="['/ambassador-policy']">Ambassador</a>
-                          </li> -->
                   <li class="cursor">
                     <a [routerLink]="['/term-condition']">Terms of use</a>
                   </li>
@@ -53,9 +50,6 @@ import { Component, OnInit } from "@angular/core";
                 >
                   <img src="assets/insta-black.svg" />
                 </a>
-                <!-- <a href="#" class="tweet">
-                          <img src="assets/tweet-black.svg">
-                         </a> -->
                 <a
                   href="https://www.pinterest.com/wondrfly/"
                   target="_blank"
@@ -63,9 +57,6 @@ import { Component, OnInit } from "@angular/core";
                 >
                   <img src="assets/pin-black.svg" />
                 </a>
-                <!-- <a href="#" class="link">
-                          <img src="assets/link-black.svg">
-                         </a> -->
               </div>
               <div class="copyright_text">
                 <p>© {{currentYear}} Wondrfly Inc. All Rights Reserved.</p>
@@ -79,8 +70,8 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./footer2.component.css"],
 })
 export class Footer2Component implements OnInit {
-  currentYear =new Date().getFullYear()
-  constructor() {}
+  currentYear = new Date().getFullYear()
+  constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 }

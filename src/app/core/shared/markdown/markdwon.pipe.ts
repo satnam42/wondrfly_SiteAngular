@@ -5,7 +5,7 @@ import * as markdown from "marked";
   name: 'markdown'
 })
 export class MarkdwonPipe implements PipeTransform {
-
+// markdown pipe 
   transform(value: any): any {
     if (value && value.length > 0) {
       return markdown(value);

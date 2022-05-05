@@ -20,9 +20,6 @@ import { Component, OnInit } from "@angular/core";
                     <li>
                       <a [routerLink]="['/faq']">FAQ</a>
                     </li>
-                    <!-- <li>
-                                <a [routerLink]="['/ambassador-policy']">Ambassador</a>
-                            </li> -->
                     <li>
                       <a [routerLink]="['/term-condition']"
                         >Terms of use</a
@@ -58,11 +55,6 @@ import { Component, OnInit } from "@angular/core";
                       <span class="icon icon-instagram"></span>
                     </a>
                   </li>
-                  <!-- <li>
-                            <a href="javascript:;">
-                                <span class="icon icon-twitter"></span>
-                            </a>
-                        </li> -->
                   <li>
                     <a
                       href="https://www.pinterest.com/wondrfly/"
@@ -71,13 +63,6 @@ import { Component, OnInit } from "@angular/core";
                       <span class="icon icon-pinterest"></span>
                     </a>
                   </li>
-                  <!-- <li>
-                            <a href="#">
-                                <span class="icon">
-                                    <img src="assets/linkedin.png">
-                                </span>
-                            </a>
-                        </li> -->
                 </ul>
               </div>
             </div>

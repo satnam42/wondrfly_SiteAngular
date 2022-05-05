@@ -11,12 +11,13 @@ export class Globals {
   constructor(public datePipe: DatePipe) {
 
   }
+  // ---time converter
   tools_replaceAll(str, find, replace) {
     var escapedFind = find.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
     str = this.date + " " + str?.replace(new RegExp(escapedFind, 'g'), replace)
     return str = this.datePipe.transform(str, 'h:mm a')
   }
-
+  // ---get duration by start and end time
   timeDifference(from, end) {
     var timeStart: any = new Date("01/01/2007 " + from)
     var timeEnd: any = new Date("01/01/2007 " + end)
@@ -40,21 +41,11 @@ export class Globals {
     }
     return duration
   }
+    // ---get hours or minutes 
   getHourOrMinute(str, find, replace) {
       var escapedFind = find.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
       str = this.date + " " + str?.replace(new RegExp(escapedFind, 'g'), replace)
       return str = this.datePipe.transform(str, 'mm')
   }
-  
-  //  timeConvert (time) {
-  //   // Check correct time format and split into components
-  //   time = time.toString ().match (/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
-  //   if (time.length > 1) { // If time format correct
-  //     time = time.slice (1);  // Remove full string match value
-  //     time[5] = +time[0] < 12 ? 'AM' : 'PM'; // Set AM/PM
-  //     time[0] = +time[0] % 12 || 12; // Adjust hours
-  //   }
-  //   return time.join (''); // return adjusted time or original string
-  // }
 
 }

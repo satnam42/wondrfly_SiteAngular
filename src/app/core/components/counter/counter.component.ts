@@ -22,7 +22,7 @@ export class CounterComponent implements OnInit, OnDestroy {
           this.futureString
 
     }
-
+// get days,hours,minutes,seconds from time
     dhms(t) {
         var days, hours, minutes, seconds;
         days = Math.floor(t / 86400);
@@ -52,7 +52,6 @@ export class CounterComponent implements OnInit, OnDestroy {
         this.counter$ = Observable.interval(1000).map((x) => {
            return Math.floor((this.future.getTime() - new Date().getTime()) / 1000);
         });
-
         this.subscription = this.counter$.subscribe((x) => this.message = this.dhms(x));
     }
 

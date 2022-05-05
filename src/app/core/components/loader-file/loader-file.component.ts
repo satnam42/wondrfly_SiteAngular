@@ -11,9 +11,7 @@ export class LoaderFileComponent implements OnInit {
   optionslotti: AnimationOptions = {
     path: '/assets/wLoader.json',
   };
-
   constructor() { }
-
   ngOnInit(): void {
   }
 

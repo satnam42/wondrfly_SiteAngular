@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import {SocialUser } from 'angularx-social-login';
+import { SocialUser } from 'angularx-social-login';
 import axios from 'axios';
 import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
@@ -133,7 +133,7 @@ export class SignupPopupComponent implements OnInit {
     role: 'parent',
     name: '',
 
-    facebookId:'',
+    facebookId: '',
 
     lastName: '',
     authToken: '',
@@ -166,21 +166,22 @@ export class SignupPopupComponent implements OnInit {
   }
 
 
-
+// password show/hide
   onPassword() {
     this.hide = !this.hide;
   }
+  // select role
   selectParent() {
     this.userData.role = "parent";
   }
+    // select role
   selectProvider() {
     this.userData.role = "provider";
   }
-
   signup() {
-      let email = this.userData.email.toLowerCase();
-      this.userData.email = email;
-      axios
+    let email = this.userData.email.toLowerCase();
+    this.userData.email = email;
+    axios
       .post(`${this.blogUrl}/auth/local/register`, {
         username: this.userData.firstName,
         email: this.userData.email,
@@ -188,40 +189,34 @@ export class SignupPopupComponent implements OnInit {
       })
       .then(response => {
 
-        if(response.status===200){
+        if (response.status === 200) {
           this.store.setObject('strapiData', response.data);
           this.store.setItem('jwt', response.data.jwt);
 
-      this.ngxLoader.start();
-      this.apiservice.addUser(this.userData).subscribe((res: any) => {
-        this.ngxLoader.stop();
-        if (res.isSuccess === true) {
+          this.ngxLoader.start();
+          this.apiservice.addUser(this.userData).subscribe((res: any) => {
+            this.ngxLoader.stop();
+            if (res.isSuccess === true) {
 
-          window.document.getElementById("close_modal").click();
-          this.store.setObject('CurrentUserWondrfly', res.data);
-          this.store.setItem('currentUserWondrflyToken', res.data.token);
-          // this.toastr.info('Success', this.message );
-          this.router.navigate(['parent/login-parent']);
+              window.document.getElementById("close_modal").click();
+              this.store.setObject('CurrentUserWondrfly', res.data);
+              this.store.setItem('currentUserWondrflyToken', res.data.token);
+              this.router.navigate(['parent/login-parent']);
+            }
+            else {
+              this.toastr.error(res.error)
+            }
+          })
         }
-        else {
-          this.toastr.error(res.error )
-        }
-      })
-    }
-  }).catch(error => {
-    this.toastr.error(  error.response.data.data[0].messages[0].message )
-  });
+      }).catch(error => {
+        this.toastr.error(error.response.data.data[0].messages[0].message)
+      });
   }
-
-
-
   ngOnInit() {
     this.parentForm = new FormGroup({
       name: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
-      password : new FormControl("", [Validators.required])
-      // rememberMe: new FormControl(false)
+      password: new FormControl("", [Validators.required])
     });
   }
-
 }

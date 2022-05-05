@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, NgZone, OnInit, Output, ViewChild } from "@angular/core";
+import { Component, ElementRef, NgZone, OnInit, ViewChild } from "@angular/core";
 import { Router } from "@angular/router";
 import { User } from "../../models";
 import { AuthsService } from "../../services/auths.service";
@@ -7,7 +7,6 @@ import { UserDataService } from "../../services/user-data.service";
 import { Globals } from "../../common/imageLoader";
 import { LocalStorageService } from "../../services";
 import { DataService } from "../../services/dataservice.service ";
-import { ToastrService } from "ngx-toastr";
 import { MapsAPILoader } from "@agm/core";
 import * as moment from "moment";
 import { FormControl } from "@angular/forms";
@@ -78,7 +77,6 @@ export class HeaderComponent implements OnInit {
     private apiservice: ApiService,
     private userdataservice: UserDataService,
     public imageLoader: Globals,
-    private toastr: ToastrService,
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
     public dataservice: DataService,
@@ -93,9 +91,7 @@ export class HeaderComponent implements OnInit {
     if (this.routeName === "/invite") {
       this.gitBoxImage = 'assets/invite-open.svg';
     }
-    // if(this.routeName === '/search'|| this.routeName === '/'){ this.searchBar=true}
     if (this.routeName === '/' || this.routeName === '/parent/my-wondrfly' || this.routeName === '/invite') { this.searchBar = true }
-
     if (this.user.role === "provider" || this.user.role === "parent") {
       if (this.user.role === "provider") {
         this.isLogin = true;
@@ -111,7 +107,6 @@ export class HeaderComponent implements OnInit {
     this.router
       .navigateByUrl("/", { skipLocationChange: true })
       .then(() => this.router.navigate(["parent/my-wondrfly"]));
-    // this.router.navigate([""]);
   }
   addProgram() {
     this.router.navigate(["/provider/program/add"]);
@@ -161,12 +156,9 @@ export class HeaderComponent implements OnInit {
       this.todayNotifications = this.user.notices.notifications.filter(obj => moment().isSame(obj.createdOn, 'day'));
       this.earlierNotifications = this.user.notices.notifications.filter(obj => !moment().isSame(obj.createdOn, 'day'));
       this.store.setObject('CurrentUserWondrfly', this.user);
-      // this.user.notices.notifications = this.user.notices.notifications.filter(notification=>notification.createdOn.getTime() < new Date().getTime())
-      // this.todayNotifications = this.user.notices.notifications.filter(notification=>notification.createdOn.getTime() == new Date().getTime())
       if (this.user.notificationsOnOff === true) {
         this.isToggle = true;
       }
-      // this.auth.setUser(this.user);
     });
   }
   clearAll() {
@@ -175,7 +167,6 @@ export class HeaderComponent implements OnInit {
       .subscribe((res: any) => {
         this.notification = res;
         this.getUserById();
-        // $("#progress").attr("data-percentage", this.profileProgress);
       });
   }
   deleteNotification(data, indx) {
@@ -320,7 +311,6 @@ export class HeaderComponent implements OnInit {
     this.userdataservice.logout();
     localStorage.clear();
     this.router.navigate([""]);
-    // window.document.getElementById("open_feedback_modal").click();
   }
   goToInviteList() {
     this.store.setItem('sendInvite', '1')
@@ -330,7 +320,6 @@ export class HeaderComponent implements OnInit {
     this.feedbackData.id = this.user.id;
     this.apiservice.sendFeedback(this.feedbackData).subscribe((res: any) => {
       if (res.isSuccess === true) {
-        // this.toastr.success("Thank you!");
         this.auth.logout();
         this.userdataservice.logout();
         localStorage.clear();
@@ -338,22 +327,12 @@ export class HeaderComponent implements OnInit {
       }
     });
   }
-
   cancelFeedback() {
     this.auth.logout();
     this.userdataservice.logout();
     localStorage.clear();
     this.router.navigate([""]);
   }
-
-  // searchSubCategory(key) {
-  //   this.apiservice.searchTag(key).subscribe((res: any) => {
-  //     this.categoriesBySearch = res;
-  //     this.categoriesBySearch.category = this.categoriesBySearch.category.filter((item) => item.isActivated !== false);
-  //     this.categoriesBySearch.tags = this.categoriesBySearch.tags.filter((item) => item.isActivated !== false);
-  //   });
-  // }
-
   providerSearch(key) {
     this.apiservice.searchUsers(key, "provider").subscribe((res: any) => {
       if (res.data) {
@@ -379,20 +358,6 @@ export class HeaderComponent implements OnInit {
         .then(() => this.router.navigate(["search"]));
     }
   }
-  // searchBySubCategory(id) {
-  //   this.filterData.activityName = '';
-  //   this.filterData.lat = ''
-  //   this.filterData.lng = ''
-  //   this.filterData.subcatId = id;
-  //   this.dataservice.setOption(this.filterData);
-  //   this.router.navigate(["/search"]);
-  //   if (this.routeName === "/search") {
-  //     this.router
-  //       .navigateByUrl("/", { skipLocationChange: true })
-  //       .then(() => this.router.navigate(["search"]));
-  //   }
-  // }
-
   searchSubCategory(key) {
     let groupDataAll: any = [
       { label: 'Category', data: [] },
@@ -482,7 +447,6 @@ export class HeaderComponent implements OnInit {
               .navigateByUrl("/", { skipLocationChange: true })
               .then(() => this.router.navigate(["search"]));
           }
-          // this.getAddress(this.lat, this.lng);
         });
       } this.geoCoder = new google.maps.Geocoder;
     });

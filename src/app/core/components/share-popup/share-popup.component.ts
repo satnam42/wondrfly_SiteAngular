@@ -127,7 +127,6 @@ export class SharePopupComponent implements OnInit {
       case 'copylink': {
         navigator.clipboard.writeText(this.shareUrl).then().catch(e => console.error(e));
         this.snack.open('Link copied', '', { duration: 500 });
-        // this.url = `${encodeURIComponent(this.baseUrl)}program/detail/${this.selectedProgramId}`;
       }
 
     }

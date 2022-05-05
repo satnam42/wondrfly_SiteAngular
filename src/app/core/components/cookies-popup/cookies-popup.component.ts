@@ -19,9 +19,8 @@ export class CookiesPopupComponent implements OnInit {
     this.currentUser = this.auth.currentUser();
     this.cookiesData = this.cookies.get('_ui');
    }
-
+  // ---accept coockies
    acceptCookies(){
-      // this.cookies.set('isTour', '0');
       if(this.currentUser){
       this.cookies.set('_ui', this.currentUser.id,30);
       }
@@ -29,14 +28,10 @@ export class CookiesPopupComponent implements OnInit {
         this.cookies.set('_ui', 'anonymous',30);
       }
       this.cookiesData = this.cookies.get('_ui');
-      // this.cookiesData = this.cookies.get('isTour');
       this.cookiesDataIdentify.emit(this.cookiesData)
      }
-
+  // ---decline coockies
      decline(){
-      // this.cookies.set('isTour', '!');
-      // this.cookiesData = this.cookies.get('isTour');
-      // this.cookies.set('isTour', '0');
       if(this.currentUser){
       this.cookies.set('_ui', this.currentUser.id,7);
       }
@@ -44,7 +39,6 @@ export class CookiesPopupComponent implements OnInit {
         this.cookies.set('_ui', 'anonymous',7);
       }
       this.cookiesData = this.cookies.get('_ui');
-      // this.cookiesData = this.cookies.get('isTour');
       this.cookiesDataIdentify.emit(this.cookiesData)
      }
 

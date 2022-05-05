@@ -2,7 +2,6 @@
   <header [ngClass]="{ 'search-header': logoPosition }">
     <div [ngClass]="logoPosition? 'container-fluid':'container' ">
       <nav class="navbar navbar-expand-lg navbar-light header_main">
-        <!-- <a class="navbar-brand" href="#">Navbar</a> -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -16,122 +15,6 @@
           <div class="left-searchpd" *ngIf="!searchBar || isLogin">
             <div class="left_search">
               <div>
-                <!-- <form class="banner_form" data-toggle="collapse" href="#dropdownprogram-provider" role="button"
-                  aria-expanded="false" aria-controls="dropdownprogram-provider">
-                  <div class="form-group ">
-                    <input type="text" autocomplete="off" (keyup)="
-                          searchSubCategory(filterData.activityName);
-                          providerSearch(filterData.activityName)
-                        " [(ngModel)]="filterData.activityName" placeholder="Search Activity..."
-                      class="form-control camp_input " name="activityName" />
-                  </div>
-                  <div class="search-location">
-                    <span data-toggle="modal" data-target="#locationMod">
-                      <img src="assets/search-location.png" /></span>
-                    <input placeholder="Search Jersey City" (keydown.enter)="$event.preventDefault()" autocorrect="off"
-                      autocapitalize="off" spellcheck="off" #search readonly />
-                  </div>
-                  <div class="form-group cursor">
-                    <button class="banner_button cursor" type="submit" routerLink="search"
-                      (click)="searchActivityByNameDate()">
-                      <img src="assets/search_icon.svg" alt="Search image" />
-                    </button>
-                  </div>
-
-                  <div class="dropdownprogram" *ngIf="
-                        (categoriesBySearch?.length ||
-                          providersBySearch?.length) &&
-                        filterData.activityName
-                      ">
-                    <div class="card card-body">
-                      <div class="program-list"
-                        *ngIf="categoriesBySearch?.category?.length || categoriesBySearch?.tags?.length">
-                        <h6 *ngFor="
-                              let category of categoriesBySearch?.category | slice: 0:1"
-                          (click)="filterData.searchedCategoryKey=category.name;searchByCategory(category?._id)">
-                          {{ category.name }}
-                          <span class="search-programlist">
-                            <img src="assets/program-search.svg" />
-                          </span>
-                        </h6>
-                        <h6 (click)="filterData.searchedCategoryKey=category.name;searchBySubCategory(category._id)"
-                          *ngFor="
-                              let category of categoriesBySearch?.tags | slice: 0:3
-                            ">
-                          {{ category.name }}
-                          <span class="search-programlist">
-                            <img src="assets/program-search.svg" />
-                          </span>
-                        </h6>
-                      </div>
-                      <hr />
-                      <div class="provider-list" *ngIf="providersBySearch?.length">
-                        <h5>Providers</h5>
-                        <h6 (click)="goToProviderProfile(provider)" *ngFor="
-                              let provider of providersBySearch | slice: 0:4
-                            ">
-                          {{ provider.firstName }}
-                        </h6>
-                      </div>
-                    </div>
-                  </div>
-                </form> -->
-
-
-                <!-- <form class="banner_form" data-toggle="collapse" href="#dropdownprogram-provider" role="button" aria-expanded="false" aria-controls="dropdownprogram-provider">
-                                    <div class="form-group ">
-                                        <input type="text" autocomplete="off" (keyup)="
-                        searchSubCategory(filterData.activityName);
-                        providerSearch(filterData.activityName)
-                      " [(ngModel)]="filterData.activityName" placeholder="Search Activity..." class="form-control camp_input " name="activityName" />
-                                    </div>
-                                    <div class="search-location">
-                                        <span data-toggle="modal" data-target="#locationMod">
-                    <img src="assets/search-location.png" /></span>
-                                        <input placeholder="Search Jersey City" (keydown.enter)="$event.preventDefault()" autocorrect="off" autocapitalize="off" spellcheck="off" #search readonly />
-                                    </div>
-                                    <div class="form-group cursor">
-                                        <button [disabled]="filterData.activityName" class="banner_button cursor" routerLink="/search">
-                    <img src="assets/search_icon.svg" alt="Search image" />
-                  </button>
-                                    </div>
-
-                                    <div class="dropdownprogram" *ngIf="
-                      (categoriesBySearch?.length ||
-                        providersBySearch?.length) &&
-                      filterData.activityName
-                    ">
-                                        <div class="card card-body">
-                                            <div class="program-list" *ngIf="categoriesBySearch?.category?.length || categoriesBySearch?.tags?.length">
-                                                <h6 *ngFor="
-                            let category of categoriesBySearch?.category | slice: 0:1" (click)="filterData.searchedCategoryKey=category.name;searchByCategory(category?._id)">
-                                                    {{ category.name }}
-                                                    <span class="search-programlist">
-                          <img src="assets/program-search.svg" />
-                        </span>
-                                                </h6>
-                                                <h6 (click)="filterData.searchedCategoryKey=category.name;searchBySubCategory(category._id)" *ngFor="
-                            let category of categoriesBySearch?.tags | slice: 0:3
-                          ">
-                                                    {{ category.name }}
-                                                    <span class="search-programlist">
-                          <img src="assets/program-search.svg" />
-                        </span>
-                                                </h6>
-                                            </div>
-                                            <hr />
-                                            <div class="provider-list" *ngIf="providersBySearch?.length">
-                                                <h5>Providers</h5>
-                                                <h6 (click)="goToProviderProfile(provider)" *ngFor="
-                            let provider of providersBySearch | slice: 0:4
-                          ">
-                                                    {{ provider.firstName }}
-                                                </h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form> -->
-
                 <form class="banner_form">
                   <div class="form-group ">
                     <input type="text" placeholder="Search Activity..." aria-label="Activity" [formControl]="searchTerm"
@@ -168,31 +51,24 @@
               </div>
             </div>
           </div>
-
           <ul *ngIf="isLogin" class="navbar-nav mr-auto">
-
             <li class="C">
               <a class="nav-link cursor" (click)="profile()" [class.active]="profileClass">
-                <!-- <span class="icon icon-user"></span> -->
                 <span class="icon "><img src="assets/Profile-icon.svg" alt="Logo" /></span> Profile
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" routerLink="/program/home" [class.active]="insightClass">
-                <!-- <span class="icon icon-statistics"></span> -->
                 <span class="icon "><img src="assets/Insights-icon.svg" alt="Logo" /></span> Insights
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" routerLink="/program/list" [class.active]="programClass">
-                <!-- <span class="icon icon-list"></span> -->
-
                 <span class="icon "><img src="assets/Activities-icon.svg" alt="Logo" /></span>Manage Activities
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" routerLink="/program/setting" [class.active]="settingClass">
-                <!-- <span class="icon icon-gear"></span> -->
                 <span class="icon "><img src="assets/Settings-icon.svg" alt="Logo" /></span>Settings
               </a>
             </li>
@@ -203,44 +79,17 @@
                         </li> -->
             <li class="nav-item">
               <a class="nav-link cursor" [class.active]="helpClass">
-                <!-- <span class="icon icon-information1"></span>  -->
-
                 <span class="icon "><img src="assets/Help-icon.svg" alt="Logo" /></span> Help
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link cursor" data-toggle="modal" data-target="#NotificationModal">
-                <!-- <span class="icon icon-bell"></span>  -->
-
                 <span class="icon "><img src="assets/Notification-icon.svg" alt="Logo" /></span> Notifications
               </a>
             </li>
           </ul>
           <div class="header_right row" [ngClass]="{ 'after-nav': logoPosition }">
-            <!-- <div class="submit-search">
-                            <a class="cursor" href="javascript:void(Tawk_API.toggle())">
-                              <button>
-                                <span>
-                                  <img src="assets/live-helpicon.png" /> </span
-                                >
-                              </button></a
-                            >
-                          </div> -->
             <div class="header-lefticons" *ngIf="!isLogin">
-              <!-- <a class="share-lefticon cursor">
-                  <span class="icon rel" routerLink='/invite'
-                    ><img class="invite-gift" src="{{gitBoxImage}}"/>
-                    <span class="Button-badge noti">
-                      <span>1</span>
-                    </span>
-                    <div class="box arrow-top">
-                      <h1>Try new feature</h1>
-                      <h2>Laoreet enim, id nulla iaculis dictumst nunc sem. Odio egestas mattis et pulvinar nunc velit eu sit felis.</h2>
-                      <button>Ok</button>
-                    </div>
-
-                  </span>
-                </a> -->
               <a class="noti-lefticon cursor" data-toggle="modal" data-target="#NotificationModal">
                 <span class="icon rel"><img src="assets/Notification-icon.svg" alt="Logo" />
                   <span class="Button-badge" *ngIf="newNotifications">
@@ -251,11 +100,6 @@
                   </span>
                 </span>
               </a>
-              <!-- <a class="share-lefticon cursor" (click)="savedList()">
-                  <span class="icon rel"
-                    ><img src="assets/bookmark_gray.svg" alt="Logo" />
-                  </span>
-                </a> -->
             </div>
             <div class="progress-imagewith">
               <a class="cursor" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -277,7 +121,6 @@
               <div class="dropdown-menu header-logoutdrop" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item cursor active-head" (click)="profile()"><img
                     src="assets/new-profile.svg" />Profile</a>
-                <!-- <a class="dropdown-item cursor active-head"  (click)="goToInviteList()"><img src="assets/invites.svg"/>Beta Invites</a> -->
                 <a class="dropdown-item cursor active-head" (click)="savedList()"><img
                     src="assets/saved-prog.svg" />Saved Activities</a>
                 <a class="dropdown-item cursor active-head" (click)="logout()"><img
@@ -294,8 +137,6 @@
                 </a>
               </div>
             </div>
-
-
           </div>
         </div>
       </nav>
@@ -317,7 +158,6 @@
           You have {{newNotifications}} New Notifications
           <span class="three_dots">
             <p class="noti-read">
-              <!-- <span><img src="assets/dotshorizontal.png"></span> -->
             </p>
             <span *ngIf="isLogin" (click)="clearAll()"> clear all </span>
           </span>
@@ -345,11 +185,7 @@
                 <date-format [date]="notification?.updatedOn"></date-format>
               </div>
             </div>
-
-
-
           </div>
-
           <hr class="grey_line" />
           <h6 class="today-heading" *ngIf="earlierNotifications?.length">Earlier</h6>
           <div class="notification cursor" *ngFor="
@@ -357,7 +193,6 @@
               let i = index
             " (mouseover)="readNotification(notification)" (click)="notificationView(notification)">
             <div class="img-notif">
-              <!-- <img src="assets/notic3.png"> -->
               <img src="assets/notic1.png">
               <span *ngIf="!notification.isRead" class="red_dot dots-span"><svg width="7" height="7" viewBox="0 0 4 4"
                   fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -373,8 +208,6 @@
                 <date-format [date]="notification?.updatedOn"></date-format>
               </div>
             </div>
-
-
           </div>
         </div>
       </div>
@@ -410,19 +243,16 @@
                       <img [ngClass]="{
                             active: feedbackData.feedback === 'poor'
                           }" src="assets/smile1.svg" />
-                      <!-- <h6>POOR</h6> -->
                     </div>
                     <div class="col-4" (click)="feedbackData.feedback = 'average'">
                       <img [ngClass]="{
                             active: feedbackData.feedback === 'average'
                           }" src="assets/smile2.svg" />
-                      <!-- <h6 >AVERAGE</h6> -->
                     </div>
                     <div class="col-4" (click)="feedbackData.feedback = 'great'">
                       <img [ngClass]="{
                             active: feedbackData.feedback === 'great'
                           }" src="assets/smile3.svg" />
-                      <!-- <h6>GREAT</h6> -->
                     </div>
                   </div>
                 </div>
@@ -473,23 +303,3 @@
     </div>
   </div>
 </div>
-
-
-<!--Start of tawk.to Status Code-->
-<!-- 
-<script type="text/javascript">
-    Tawk_API = Tawk_API || {};
-  
-    Tawk_API.onStatusChange = function (status) {
-      if (status === "online") {
-        document.getElementById("status").innerHTML =
-          '<a href="javascript:void(Tawk_API.toggle())">Online - Click to chat</a>';
-      } else if (status === "away") {
-        document.getElementById("status").innerHTML = "We are currently away";
-      } else if (status === "offline") {
-        document.getElementById("status").innerHTML = "Live chat is Offline";
-      }
-    };
-  </script>
-   -->
-<!--End of tawk.to Status Code -->

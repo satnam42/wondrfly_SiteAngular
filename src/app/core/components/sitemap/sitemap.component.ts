@@ -23,8 +23,6 @@ import { DataService } from '../../services/dataservice.service ';
           </div>
         </div>
       </header>
-
-
       <div class="container">
         <div class="row mt-5 mb-2 sitemap-wrapper">
           <div class="col-4 mx-auto mb-4">

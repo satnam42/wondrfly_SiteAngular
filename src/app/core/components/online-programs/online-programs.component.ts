@@ -21,34 +21,18 @@ export class OnlineProgramsComponent implements OnInit {
   categoryId: any = ''
   activityName: any = ''
   rating: any;
-  activityDate: any
   filterData: any = {
     categoryId: '',
   }
-
-  favPrograms: any;
-  isMap: boolean = true;
-  kids = new Child;
-  categoriesBySearch : any = new Category;
-  providersBySearch : any= new User;
   userData: any = {};
-  programList: any;
-  // totalPages: number;
-  filterClass: boolean = false;
   markerUrl = 'assets/location.svg';
-  pageNo: number = 1;
-  pageSize: number = 8;
   @Input() provider_programs: any=[];
   @Input() categories: any=[];
   @Input() suggested: any=[];
-  randomNumber:any = 0;
   isLogin: Boolean = false;
   key: string = '';
-  providerRole: boolean = false;
   parentRole: boolean = false;
   favProgramRes: any;
-  keyword = 'name';
-  searchKey = '';
   isSearched = false;
   isScrol= true;
   fav: any = {
@@ -64,7 +48,6 @@ export class OnlineProgramsComponent implements OnInit {
   whatsappActive = ''
   copylinkActive = ''
   totalRating:any = '';
-  // ng5slider end
   showReset = false;
   deleteProgramRes: any;
   baseUrl= environment.baseUrl;
@@ -81,8 +64,7 @@ export class OnlineProgramsComponent implements OnInit {
     private apiservice: ApiService,
     private router : Router,
     private auth: AuthsService,
-    private dataService: DataService) {
-     
+    private dataService: DataService) { 
       if( auth.currentUser()){
         this.isLogin=true;
         this.userData=auth.currentUser();
@@ -93,14 +75,11 @@ export class OnlineProgramsComponent implements OnInit {
 
 scrollLeft(i){
   document.getElementById('widgetsOnline'+i).scrollLeft -= 650;
-  // this.checkScroll()
 }
 
 scrollRight(i){
   document.getElementById('widgetsOnline'+i).scrollLeft += 650;
-  // this.checkScroll()
 }
-
 goToProviderProfile(provider) {
   var providerName = provider.firstName;
   providerName = providerName.toLowerCase();
@@ -108,8 +87,6 @@ goToProviderProfile(provider) {
   providerName = providerName.replace(/\?/g, "-");
   this.router.navigate(['/provider/program-provider', providerName, provider._id]);
 }
-
-
 addFavProgram(userId, programId, providerIndx,programIndx) {
   this.provider_programs[providerIndx].programs[programIndx].isFav = true;
   this.fav.userId = userId;
@@ -125,9 +102,6 @@ addFavProgram(userId, programId, providerIndx,programIndx) {
       this.deleteProgramRes = res;
     });
   }
-
-
-
   goToProgramDetail(data) {
     if (this.parentRole) {
       this.addAction(data._id);
@@ -157,14 +131,10 @@ getRating(id){
    setCategoryId(e) {
       this.filterData.subcatId = e.id
       this.filterData.searchedCategoryKey = e.name
-      // this.filterData.online = true
       this.dataService.setOption(this.filterData)
       this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
       this.router.navigate(['/search']))
 
     }
-
-
-// ---------------------suggested sub categories by sub catids -----------------------
 
 }

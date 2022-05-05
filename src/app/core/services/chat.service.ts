@@ -14,7 +14,6 @@ export interface ChatCollection {
 }
 
 export interface UserChatInfo {
-  // chatId: ChatCollection["id"];
   contactId: User["id"];
   contactName: User["firstName"];
   unread: number;
@@ -54,13 +53,11 @@ export class ChatService {
   }
   public getTyping = () => {
     return Observable.create((observer) => {
-      //receiving typing message.
       this.socket.on('typing', function (msg) {
         observer.next(msg);
       });
     });
   }
-
   createRomm(n1, n2) {
     this.socket.emit('set-room', { name1: n1, name2: n2 });
   }

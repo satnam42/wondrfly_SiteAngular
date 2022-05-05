@@ -28,27 +28,28 @@ export class MailchimpSubscribeForm {
 	// mailChimpEndpoint = 'https://wondrfly.us6.list-manage.com/subscribe/post-json?u=50d4a655c918bd43244bd72a1&amp;id=f53dcd12e8&';
 	constructor(private http: HttpClient,
 		private toastr: ToastrService,
-		private apiService:ApiService) { }
+		private apiService: ApiService) { }
 	emailControl = new FormControl('', [
 		Validators.required,
 		Validators.email,
 	]);
+	// subscribe to Newslatter
 	submit() {
-		let payload = {			
-				email: this.emailControl.value,
-				tags: [
-				  "Newslatter"
-				]		
+		let payload = {
+			email: this.emailControl.value,
+			tags: [
+				"Newslatter"
+			]
 		}
 		if (this.emailControl.status === 'VALID') {
-			this.apiService.subscribeToMailchimpNewsletter(payload).subscribe((res:any)=>{
-				if(res.isSuccess){
-										this.toastr.info('Thank you for subscribing!')
-									}
-									else{
-										this.toastr.error(this.emailControl.value+' is already subscribed!')
-									}
-})
+			this.apiService.subscribeToMailchimpNewsletter(payload).subscribe((res: any) => {
+				if (res.isSuccess) {
+					this.toastr.info('Thank you for subscribing!')
+				}
+				else {
+					this.toastr.error(this.emailControl.value + ' is already subscribed!')
+				}
+			})
 		}
 	}
 }

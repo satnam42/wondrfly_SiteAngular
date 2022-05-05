@@ -41,8 +41,6 @@ import { DataService } from "../../services/dataservice.service ";
                     <img src="assets/search_icon.svg" alt="Search image" />
                   </button>
                                     </div>
-
-
     <mat-autocomplete  autoActiveFirstOption #autoHeader2="matAutocomplete">
       <div *ngFor="let group of allData">
     <mat-optgroup *ngIf="group?.data?.length" [label]="group.label" >
@@ -56,132 +54,9 @@ import { DataService } from "../../services/dataservice.service ";
     </div>
     </mat-autocomplete>
 </form>
-
-            <!-- <form class="banner_form" data-toggle="collapse" href="#dropdownprogram-provider" role="button"
-              aria-expanded="false" aria-controls="dropdownprogram-provider">
-              <div class="form-group ">
-                <input type="text" autocomplete="off" (keyup)="
-                        searchSubCategory(filterData.activityName);
-                        providerSearch(filterData.activityName)
-                      " [(ngModel)]="filterData.activityName" placeholder="Search Activity..."
-                  class="form-control camp_input " name="activityName" />
-              </div>
-              <div class="search-location">
-                <span data-toggle="modal" data-target="#locationMod">
-                  <img src="assets/search-location.png" /></span>
-                <input placeholder="Search Jersey City" (keydown.enter)="$event.preventDefault()" autocorrect="off"
-                  autocapitalize="off" spellcheck="off" #search readonly />
-              </div>
-              <div class="form-group cursor">
-                <button class="banner_button cursor" type="submit" routerLink="search"
-                  (click)="searchActivityByNameDate()">
-                  <img src="assets/search_icon.svg" alt="Search image" />
-                </button>
-              </div>
-
-              <div class="dropdownprogram" *ngIf="
-                      (categoriesBySearch?.length ||
-                        providersBySearch?.length) &&
-                      filterData?.activityName
-                    ">
-                <div class="card card-body">
-                  <div class="program-list"
-                    *ngIf="categoriesBySearch?.category?.length || categoriesBySearch?.tags?.length">
-                    <h6 *ngFor=" let category of categoriesBySearch?.category | slice: 0:1  "
-                      (click)="filterData.searchedCategoryKey=category.name;searchByCategory(category?._id)">
-                      {{ category?.name }}
-                      <span class="search-programlist">
-                        <img src="assets/program-search.svg" />
-                      </span>
-                    </h6>
-                    <h6 (click)="filterData.searchedCategoryKey=category.name;searchBySubCategory(category?._id)"
-                      *ngFor="
-                            let category of categoriesBySearch?.tags | slice: 0:3
-                          ">
-                      {{ category?.name }}
-                      <span class="search-programlist">
-                        <img src="assets/program-search.svg" />
-                      </span>
-                    </h6>
-                  </div>
-                  <hr />
-                  <div class="provider-list" *ngIf="providersBySearch?.length">
-                    <h5>Providers</h5>
-                    <h6 (click)="goToProviderProfile(provider)" *ngFor="
-                            let provider of providersBySearch | slice: 0:4
-                          ">
-                      {{ provider?.firstName }}
-                    </h6>
-                  </div>
-                </div>
-              </div>
-            </form> -->
-
-
-            <!-- <form class="banner_form" data-toggle="collapse" href="#dropdownprogram-provider" role="button"
-              aria-expanded="false" aria-controls="dropdownprogram-provider">
-              <div class="form-group ">
-                <input type="text" autocomplete="off" (keyup)="
-                        searchSubCategory(filterData.activityName);
-                        providerSearch(filterData.activityName)
-                      " [(ngModel)]="filterData.activityName" placeholder="Search Activity..."
-                  class="form-control camp_input " name="activityName" />
-              </div>
-              <div class="search-location">
-                <span data-toggle="modal" data-target="#locationMod">
-                  <img src="assets/search-location.png" /></span>
-                <input placeholder="Search Jersey City" (keydown.enter)="$event.preventDefault()" autocorrect="off"
-                  autocapitalize="off" spellcheck="off" #search readonly />
-              </div>
-              <div class="form-group cursor">
-                <button [disabled]="filterData.activityName" class="banner_button cursor" routerLink="/search">
-                  <img src="assets/search_icon.svg" alt="Search image" />
-                </button>
-              </div>
-
-              <div class="dropdownprogram" *ngIf="
-                      (categoriesBySearch?.length ||
-                        providersBySearch?.length) &&
-                      filterData?.activityName
-                    ">
-                <div class="card card-body">
-                  <div class="program-list"
-                    *ngIf="categoriesBySearch?.category?.length || categoriesBySearch?.tags?.length">
-                    <h6 *ngFor=" let category of categoriesBySearch?.category | slice: 0:1  "
-                      (click)="filterData.searchedCategoryKey=category.name;searchByCategory(category?._id)">
-                      {{ category?.name }}
-                      <span class="search-programlist">
-                        <img src="assets/program-search.svg" />
-                      </span>
-                    </h6>
-                    <h6 (click)="filterData.searchedCategoryKey=category.name;searchBySubCategory(category?._id)"
-                      *ngFor="
-                            let category of categoriesBySearch?.tags | slice: 0:3
-                          ">
-                      {{ category?.name }}
-                      <span class="search-programlist">
-                        <img src="assets/program-search.svg" />
-                      </span>
-                    </h6>
-                  </div>
-                  <hr />
-                  <div class="provider-list" *ngIf="providersBySearch?.length">
-                    <h5>Providers</h5>
-                    <h6 (click)="goToProviderProfile(provider)" *ngFor="
-                            let provider of providersBySearch | slice: 0:4
-                          ">
-                      {{ provider?.firstName }}
-                    </h6>
-                  </div>
-                </div>
-              </div>
-            </form> -->
-
-
           </div>
         </div>
       </div>
-
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -194,9 +69,6 @@ import { DataService } from "../../services/dataservice.service ";
           <li class="nav-item">
             <a class="nav-link cursor" [routerLink]="['/blogs']">Blog</a>
           </li>
-          <!-- <li class="nav-item">
-                <a class="nav-link cursor" [routerLink]="['/faq']">FAQ</a>
-              </li> -->
           <li class="nav-item">
             <a class="nav-link cursor" [routerLink]="['/ask-to-join']">Join the Beta</a>
           </li>
@@ -292,6 +164,7 @@ export class Header2Component implements OnInit {
     }
     if (this.routeName === '/') { this.searchBar = true }
   }
+  // search by activity name or date
   searchActivityByNameDate() {
     this.filterData.searchedCategoryKey = this.filterData.activityName
     this.filterData.categoryId = ''
@@ -305,6 +178,7 @@ export class Header2Component implements OnInit {
         .then(() => this.router.navigate(["search"]));
     }
   }
+    // search by sub category
   searchBySubCategory(id) {
     let regCount = this.regWallCookies + 1
     this.cookies.set('regWall', String(regCount), 30);
@@ -324,16 +198,12 @@ export class Header2Component implements OnInit {
   logo() {
     this.router.navigate([""]);
   }
-  onTab(e, value) {
-    this.searchTerm.setValue(value)
-  }
   ngOnInit() {
     this.searchTerm.valueChanges.subscribe((value) => {
       if (value) { this.searchSubCategory(value) } else {
         this.allData = [];
       }
     })
-
     this.mapsAPILoader.load().then(() => {
       this.geoCoder = new google.maps.Geocoder;
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef?.nativeElement);
@@ -352,7 +222,7 @@ export class Header2Component implements OnInit {
     });
 
   }
-
+    // activity search by sub category
   searchByCategory(id) {
     let regCount = this.regWallCookies + 1
     this.cookies.set('regWall', String(regCount), 30);
@@ -369,21 +239,6 @@ export class Header2Component implements OnInit {
         .then(() => this.router.navigate(["search"]));
     }
   }
-  // searchByLocation() {
-  // this.filterData.activityName=''
-  // this.filterData.categoryId = ''
-  // this.filterData.subcatId= ''
-  // this.filterData.lat = this.lat
-  // this.filterData.lng = this.lng
-  // this.dataservice.setLocation(this.filterData)
-  // this.router.navigate(['/search']);
-  // if (this.routeName === "/search") {
-  // this.router
-  // .navigateByUrl("/", { skipLocationChange: true })
-  // .then(() => this.router.navigate(["search"]));
-  // }
-  // }
-
   searchSubCategory(key) {
     let groupDataAll: any = [
       { label: 'Category', data: [] },
@@ -416,32 +271,6 @@ export class Header2Component implements OnInit {
       });
     }
   }
-
-
-
-  // providerSearch(key) {
-  // this.apiservice.searchUsers(key, "provider").subscribe((res: any) => {
-  // if (res.data) {
-  // this.providersBySearch = res.data;
-  // }
-  // else {
-  // this.providersBySearch = []
-  // }
-  // });
-  // }
-
-  searchActivityByCategory(id) {
-    this.filterData.activityName = "";
-    this.filterData.subcatId = id;
-    this.dataservice.setOption(this.filterData);
-    this.router.navigate(["/search"]);
-    if (this.routeName === "/search") {
-      this.router
-        .navigateByUrl("/", { skipLocationChange: true })
-        .then(() => this.router.navigate(["search"]));
-    }
-  }
-
   selectSearchedOption(data) {
     if (data.role == 'provider') {
       this.filterData.activityName = "";

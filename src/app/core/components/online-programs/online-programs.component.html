@@ -424,8 +424,6 @@
             </div>
         </div>
         <!-- end  without map   -->
-
-
         <div *ngIf="suggested?.length" class="suggested-searchresult">
             <div class="suggested-result">
                 <h3 class="suggested-searcxhtext">
@@ -454,24 +452,5 @@
             <h1>Sorry no results found :(</h1>
         </div>
     </div>
-    <!-- <main class="page" *ngIf="!contentLoaded">
-
-        <div class="page-content" *ngFor="let i of fakeLoaderData">
-            <div class="placeholder-content d-flex justify-content-between">
-                <div class="placeholder-content_item"></div>
-                <div class="placeholder-content_item"></div>
-                <div class="placeholder-content_item"></div>
-                <div class="placeholder-content_item"></div>
-                <div class="placeholder-content_item"></div>
-                <div class="placeholder-content_item"></div>
-                <div class="placeholder-content_item"></div>
-                <div class="placeholder-content_item"></div>
-                <div class="placeholder-content_item"></div>
-                <div class="placeholder-content_item"></div>
-                <div class="placeholder-content_item"></div>
-            </div>
-
-        </div>
-    </main> -->
 </div>
 <share-popup [shareData]="selectedShareData" [isProvider]="true"></share-popup>

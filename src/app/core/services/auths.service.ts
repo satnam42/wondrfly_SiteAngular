@@ -34,14 +34,8 @@ export class AuthsService {
   }
 
   currentUser(): User {
-    // if (this._user) {
       this._user = this.store.getObject('CurrentUserWondrfly') as User;
       return this._user
-    // }
-// else{
-//   this.store.clear();
-// }
-
   }
 
 

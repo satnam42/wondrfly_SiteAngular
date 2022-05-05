@@ -10,10 +10,7 @@ import * as moment from 'moment';
 export class DateFormatComponent implements OnInit {
     @Input() date: Date;
     difference;
-    constructor() {
-
-    }
-
+    constructor() {}
     ngOnInit() {
     this.difference = moment(this.date).fromNow();
      }

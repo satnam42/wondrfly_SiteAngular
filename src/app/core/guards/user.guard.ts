@@ -18,20 +18,18 @@ export class UserGuard implements CanActivate {
     }
     const roles = next.data.roles as Role[];
     if (roles && !roles.some(r => this.auth.hasRole(r))) {
-        this.myRoute.navigate(["login"]);
-        return false;
-    } 
-      return true;  
+      this.myRoute.navigate(["login"]);
+      return false;
+    }
+    return true;
   }
 }
 @Injectable()
 export class ActiveUser implements CanActivate {
-
-  constructor(public router: Router,private auth: AuthsService,){ }
-
-  canActivate(): Observable<boolean> | Promise<boolean> | boolean{
-      if(!this.auth.currentUser()){
-         return true
-      }else{ this.router.navigate(["parent/my-wondrfly"]);}   
+  constructor(public router: Router, private auth: AuthsService,) { }
+  canActivate(): Observable<boolean> | Promise<boolean> | boolean {
+    if (!this.auth.currentUser()) {
+      return true
+    } else { this.router.navigate(["parent/my-wondrfly"]); }
   }
 }
