@@ -1185,7 +1185,7 @@
                                 src="assets/gis_map.png" /> Hide map <img class="right-arrow-icon"
                                 src="assets/right-arrow-icon.png" /></button>
                     </div>
-                    <agm-map *ngIf="providerProgram?.length; else nolocationfound" style="width: 100%; height: 100%"
+                    <agm-map *ngIf="providerProgram?.length; else nolocationfound" [styles]="mapTheme.customStyle" style="width: 100%; height: 100%"
                         (centerChange)="centerChange($event)" [zoom]="zoom" [usePanning]="true" [fitBounds]="true"
                         [latitude]="lat" [longitude]="lng" (mapClick)="mapClicked(previous)">
                         <div *ngFor="let data of providerProgram;let providerIndx = index">
@@ -1296,7 +1296,7 @@
                     </agm-map>
                     <!-- ------------------------ no programs location ------------ -->
                     <ng-template #nolocationfound>
-                        <agm-map style="width: 100%; height: 100%" [zoom]="14" [latitude]="40.72652470735903"
+                        <agm-map style="width: 100%; height: 100%" [styles]="mapTheme.customStyle" [zoom]="14" [latitude]="40.72652470735903"
                             [longitude]="-74.05900394007715">
                         </agm-map>
                     </ng-template>
@@ -1319,12 +1319,7 @@
 
 <share-popup [shareData]="selectedShareData" [isProvider]="true"></share-popup>
 <app-footer2 *ngIf="isOnline"></app-footer2>
-
-
-
-<div data-toggle="modal" data-target="#Exploring-Wonderfly" id='exploreModal'></div>
-
-<!-- Exploring Wonderfly Modal -->
+<!-- <div data-toggle="modal" data-target="#Exploring-Wonderfly" id='exploreModal'></div>
 <div class="modal fade" id="Exploring-Wonderfly" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -1348,14 +1343,7 @@
                                 <p>Filter activities by category, age range, date and time, <br> price, and more!.</p>
                             </div>
                         </div>
-                        <!-- <div class="carousel-item">
-                            <h1>Start exploring Wondrfly now!</h1>
-                            <img class="exploring-img" src="assets/tour-2.png" alt="Second slide">
-                            <div class="carousel-caption">
-                                <h5>Contact Providers</h5>
-                                <p>Click the Connect button under any provider’s picture to <br> contact them directly. </p>
-                            </div>
-                        </div> -->
+                
                         <div class="carousel-item">
                             <div class="upto_date">
                                 <div class="got-newsletter">
@@ -1378,7 +1366,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 <ngx-ui-loader [fgsTemplate]="foregroundSpinner" fgsSize="190" bgsSize="190"> </ngx-ui-loader>
 <ng-template #foregroundSpinner>
     <app-loader-file></app-loader-file>

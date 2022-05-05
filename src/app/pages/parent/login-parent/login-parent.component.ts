@@ -11,6 +11,7 @@ import { MapsAPILoader } from '@agm/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
+import { MapTheme } from 'src/app/core/common/map-theme';
 @Component({
   selector: 'app-login-parent',
   templateUrl: './login-parent.component.html',
@@ -68,6 +69,7 @@ export class LoginParentComponent implements OnInit {
     private titleService: Title,
     private metaTagService: Meta,
     private toastr: ToastrService,
+    public mapTheme: MapTheme
   ) {
     var retrievedObject = localStorage.getItem('CurrentUserWondrfly');
     this.parent = JSON.parse(retrievedObject);

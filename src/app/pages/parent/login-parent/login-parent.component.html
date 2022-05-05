@@ -40,7 +40,7 @@
                     </div>
                     <div class="img_container">
                         <div class="map">
-                            <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom" [zoomControl]="false" [streetViewControl]="false">
+                            <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom" [zoomControl]="false" [styles]="mapTheme.customStyle" [streetViewControl]="false">
                                 <div>
                                     <agm-marker [iconUrl]="markerUrl" [latitude]="latitude" [longitude]="longitude">
                                         <strong>{{ parent.firstName }}</strong>

@@ -14,6 +14,7 @@ import { environment } from 'src/environments/environment.prod';
 import { Globals } from 'src/app/core/common/imageLoader';
 import * as moment from 'moment';
 import { Options } from '@angular-slider/ngx-slider';
+import { MapTheme } from 'src/app/core/common/map-theme';
 
 @Component({
   selector: 'app-program-provider',
@@ -199,13 +200,13 @@ export class ProgramProviderComponent implements OnInit {
   constructor(private router: Router,
     private apiservice: ApiService,
     private auth: AuthsService,
-    private toastr: ToastrService,
     private ngxLoader: NgxUiLoaderService,
     private activatedRoute: ActivatedRoute,
     private titleService: Title,
     private metaTagService: Meta,
     private dataService: DataService,
-    public globalFunc: Globals) {
+    public globalFunc: Globals,
+    public mapTheme: MapTheme) {
       this.scrollToActivities = this.dataService.getScrollToActivities()
     this.activatedRoute.params.subscribe(params => {
       this.user.id = params['id'];

@@ -14,6 +14,7 @@ import { AuthsService } from 'src/app/core/services/auths.service';
 import { CookieService } from 'ngx-cookie-service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Globals } from 'src/app/core/common/imageLoader';
+import { MapTheme } from 'src/app/core/common/map-theme';
 @Component({
   selector: 'search',
   templateUrl: './search.component.html',
@@ -166,13 +167,13 @@ export class SearchComponent implements OnInit, OnDestroy {
     private mapsAPILoader: MapsAPILoader,
     private dataservice: DataService,
     private ngZone: NgZone,
-    private toast: ToastrService,
     private titleService: Title,
     private metaTagService: Meta,
     private cookies: CookieService,
     private joyride: JoyrideService,
     private ngxLoader: NgxUiLoaderService,
-    public globalFunc: Globals
+    public globalFunc: Globals,
+    public mapTheme: MapTheme
   ) {
     this.countVisit()
     this.minDate = moment();
@@ -259,7 +260,7 @@ export class SearchComponent implements OnInit, OnDestroy {
       this.cookies.set('isTour', '3', 30);
     }
     else if (this.cookiesData == '3' && !this.isOnline) {
-      window.document.getElementById("exploreModal").click();
+      // window.document.getElementById("exploreModal").click();
       this.cookies.set('isTour', '4', 30);
       window.scroll(0, 0);
     }

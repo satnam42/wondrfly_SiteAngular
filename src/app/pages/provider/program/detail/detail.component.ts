@@ -19,6 +19,7 @@ import { environment } from 'src/environments/environment.prod';
 import { AnimationOptions } from 'ngx-lottie';
 import { AnimationItem } from 'lottie-web';
 import { createEvent, download } from './event-download.utils';
+import { MapTheme } from 'src/app/core/common/map-theme';
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',
@@ -132,11 +133,11 @@ export class DetailComponent implements OnInit {
     private titleService: Title,
     private metaTagService: Meta,
     private ngxLoader: NgxUiLoaderService,
-    private toastr: ToastrService,
     private activatedRoute: ActivatedRoute,
     public auth: AuthsService,
     public globalFunc: Globals,
-    private dataService: DataService) {
+    private dataService: DataService,
+    public mapTheme: MapTheme) {
     this.activatedRoute.params.subscribe(params => {
       this.program.id = params['id'];
       return this.getProgramById()

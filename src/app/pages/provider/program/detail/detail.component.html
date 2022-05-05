@@ -433,7 +433,7 @@
                 </div>
               </div> -->
                             <div class="batch_right map_provider">
-                                <agm-map [latitude]="40.73614987717813" [longitude]="-74.04147784299793" (centerChange)="centerChange($event)" [zoom]="12" [zoomControl]="false" [streetViewControl]="false" (mapClick)="mapClicked(previous)">
+                                <agm-map [latitude]="40.73614987717813" [styles]="mapTheme.customStyle" [longitude]="-74.04147784299793" (centerChange)="centerChange($event)" [zoom]="12" [zoomControl]="false" [streetViewControl]="false" (mapClick)="mapClicked(previous)">
                                     <div>
                                         <agm-marker *ngIf="program?.lat && program?.lng" [iconUrl]="markerUrl" [latitude]="program?.lat" [longitude]="program?.lng" (markerClick)="clickedMarker(previous)">
                                             <strong>{{ program?.name }}</strong>

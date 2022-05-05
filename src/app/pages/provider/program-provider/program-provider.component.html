@@ -261,7 +261,7 @@ out of 5 </a> -->
                     <div class="row">
                         <div class="col-4">
                             <div *ngIf="isGenOverview" class="provider_map">
-                                <agm-map id="map" [latitude]="40.73614987717813" [longitude]="-74.04147784299793"
+                                <agm-map id="map" [latitude]="40.73614987717813" [styles]="mapTheme.customStyle" [longitude]="-74.04147784299793"
                                     (centerChange)="centerChange($event)" [zoom]="12" [styles]="" [zoomControl]="false"
                                     [streetViewControl]="false">
                                     <div (mapClick)="mapClicked(previous)">
