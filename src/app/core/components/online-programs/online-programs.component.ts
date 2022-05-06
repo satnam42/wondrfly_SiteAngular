@@ -21,6 +21,7 @@ export class OnlineProgramsComponent implements OnInit {
   categoryId: any = ''
   activityName: any = ''
   rating: any;
+  isRating:boolean
   filterData: any = {
     categoryId: '',
   }
@@ -122,10 +123,12 @@ addFavProgram(userId, programId, providerIndx,programIndx) {
   }
    // ---------------------------------navigate to program detail page -------------------------------------------
 getRating(id){
+  if(this.isRating){
     this.apiservice.getUserRating(id).subscribe((res:any) => {
-       this.rating = res
-       this.rating.finalAverageRating = parseFloat(String(this.rating.finalAverageRating)).toFixed(1)
-     });
+      this.rating = res
+      this.rating.finalAverageRating = parseFloat(String(this.rating.finalAverageRating)).toFixed(1)
+    });
+  }
    }
 
    setCategoryId(e) {

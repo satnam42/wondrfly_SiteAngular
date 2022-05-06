@@ -19,7 +19,7 @@
                     </div>
                     <div class="col-md-4 ">
                         <div class="media-top-txt-div justify-content-right"> 
-                        <div class="review-starsearch-info cursor" data-toggle="collapse" [attr.data-target]="'#collapseExamplestar' + providerIndx" (click)=" getRating(provider._id)">
+                        <div class="review-starsearch-info cursor" data-toggle="collapse" [attr.data-target]="'#collapseExamplestar' + providerIndx" (mouseover)="isRating=true;$event.target.click()" (mouseout)="isRating=false;$event.target.click()" (click)="getRating(provider._id)">
                             <!-- <div class="rating-starsearch">
                                 <p class="cursor">
                                     <span>

@@ -83,7 +83,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   whatsappActive = ''
   copylinkActive = ''
   totalRating: any = '';
-
+  isRating:boolean
   //  ng5slider start age group
   minAge: number = 0;
   maxAge: number = 5;
@@ -841,10 +841,12 @@ this.dataservice.setOption({})
 
   // ---------------------------------navigate to program detail page -------------------------------------------
   getRating(id) {
-    this.apiservice.getUserRating(id).subscribe((res: any) => {
-      this.rating = res
-      this.rating.finalAverageRating = parseFloat(String(this.rating.finalAverageRating)).toFixed(1)
-    });
+    if(this.isRating){
+      this.apiservice.getUserRating(id).subscribe((res: any) => {
+        res.finalAverageRating = parseFloat(String(res.finalAverageRating)).toFixed(1)
+        this.rating = res
+      });
+    }
   }
 
   //----------------------------------------search history get ---------------------------------------------------------

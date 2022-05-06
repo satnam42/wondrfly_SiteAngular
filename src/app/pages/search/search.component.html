@@ -414,8 +414,7 @@
                                 </div>
                                 <div class="col-md-4 ">
                                     <div class="media-top-txt-div justify-content-right">
-                                        <div class="review-starsearch-info" (click)=" getRating(provider._id); 
-                                " class="cursor" data-toggle="collapse"
+                                        <div class="review-starsearch-info" (mouseover)="isRating=true;$event.target.click()" (mouseout)="isRating=false;$event.target.click()" (click)="getRating(provider._id)" class="cursor" data-toggle="collapse"
                                             [attr.data-target]="'#collapseExamplestar' + providerIndx">
 
                                             <div class="rating-starsearch">
@@ -494,17 +493,19 @@
                                                         <span class="fa fa-star checked"></span>
                                                         <span class="fa fa-star checked"></span>
                                                     </span>
-                                                    <!-- <a> <span></span>(58 reviews)</a> -->
-                                                </p>
+   <!-- <span class="no-underline">(</span><a class="reviews-underline"
+                                                *ngIf="rating?.totalReviews">{{rating?.totalReviews }} reviews</a>
+                                            <a  class="reviews-underline"*ngIf="!rating?.totalReviews">0 reviews</a><span
+                                                class="no-underline">)</span>                                                </p> -->
                                             </div>
 
                                             <div *ngIf="rating" class="collapse star-daialogbox"
                                                 id="collapseExamplestar{{ providerIndx }}">
-                                                <button type="button" data-toggle="collapse"
+                                                <!-- <button type="button" data-toggle="collapse"
                                                     [attr.data-target]="'#collapseExamplestar' + providerIndx"
                                                     class="close star-daialogicon" aria-label="Close">
                                                     <span aria-hidden="true"><img src="assets/grey-close.png" /></span>
-                                                </button>
+                                                </button> -->
                                                 <app-rating [rating]="rating" [user]="provider.user[0]">
                                                 </app-rating>
                                             </div>
