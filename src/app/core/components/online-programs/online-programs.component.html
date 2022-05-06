@@ -104,8 +104,8 @@
                                     <span class="fa fa-star checked"></span>
                                     </span>
                                     <span class="no-underline">(</span><a class="reviews-underline"
-                                    *ngIf="rating?.totalReviews">{{rating?.totalReviews }}reviews</a>
-                                <a  class="reviews-underline"*ngIf="!rating?.totalReviews">0 reviews</a><span
+                                    *ngIf="provider.user[0]?.totalReviews">{{provider.user[0]?.totalReviews }}reviews</a>
+                                <a  class="reviews-underline"*ngIf="!provider.user[0]?.totalReviews">0 reviews</a><span
                                     class="no-underline">)</span>                                  </p>
                             </div>  
 
