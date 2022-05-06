@@ -544,6 +544,7 @@ this.dataservice.setOption({})
         this.providerProgram[2].collapsed = true
         this.ngxLoader.stop()
       }
+      console.log(this.providerProgram)
       // this.fakeLoaderData = [1,2]
       // this.contentLoaded = true;
       this.startTour()

@@ -6,7 +6,7 @@
             <div class="map-without-section-info">
                 <div class="media-top-content-info media-full-row-info">
                     <div class="row row-0 align-items-center mt-0">
-                    <div class="col-md-6 ">
+                    <div class="col-md-4">
                         <div class="media-top-txt-div">
                             <div class="left-icon-img">
                                 <img src="{{baseUrl+provider?.categories[0]?.logoUrl}}" />
@@ -17,8 +17,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 ">
-                        <div class="media-top-txt-div justify-content-right"> 
+                    <div class="col-md-3">
                         <div class="review-starsearch-info cursor" data-toggle="collapse" [attr.data-target]="'#collapseExamplestar' + providerIndx" (mouseover)="isRating=true;$event.target.click()" (mouseout)="isRating=false;$event.target.click()" (click)="getRating(provider._id)">
                             <!-- <div class="rating-starsearch">
                                 <p class="cursor">
@@ -104,8 +103,10 @@
                                     <span class="fa fa-star checked"></span>
                                     <span class="fa fa-star checked"></span>
                                     </span>
-                                    <!-- <a> <span></span>(58 reviews)</a> -->
-                                </p>
+                                    <span class="no-underline">(</span><a class="reviews-underline"
+                                    *ngIf="rating?.totalReviews">{{rating?.totalReviews }}reviews</a>
+                                <a  class="reviews-underline"*ngIf="!rating?.totalReviews">0 reviews</a><span
+                                    class="no-underline">)</span>                                  </p>
                             </div>  
 
                             <div *ngIf="rating" class="collapse star-daialogbox"
@@ -119,18 +120,19 @@
                             <app-rating [rating]="rating" [user]="provider.user[0]">
                             </app-rating>
                         </div>
-
-
                         </div>
-                        <div class="view-less-div">
-                            <div class="view-less-txt-info">
-                                <a  *ngIf="!provider.collapsed" class="btn-view-less"   (click)="provider.collapsed=true" aria-expanded="false" aria-controls="collapseDosing">View More  <i class="fas fa-chevron-down"></i></a>
-                                <a *ngIf="provider.collapsed" class="btn-view-less"  (click)="provider.collapsed=false" aria-expanded="false" aria-controls="collapseDosing">View Less  <i class="fas fa-chevron-up"></i></a> 
+                    </div>
+                    <div class="col-md-3">
+                        <div class="media-top-txt-div justify-content-right"> 
+                            <div class="view-less-div">
+                                <div class="view-less-txt-info">
+                                    <a *ngIf="!provider.collapsed" class="btn-view-less"   (click)="provider.collapsed=true" aria-expanded="false" aria-controls="collapseDosing">View More  <i class="fas fa-chevron-down"></i></a>
+                                    <a *ngIf="provider.collapsed" class="btn-view-less"  (click)="provider.collapsed=false" aria-expanded="false" aria-controls="collapseDosing">View Less  <i class="fas fa-chevron-up"></i></a> 
+                                </div>
                             </div>
                         </div>
                     </div>
-                    </div>
-                    <div class="col-md-2 ">
+                    <div class="col-md-2">
                         <div class="media-share-icon">
                             <ul class="ul-tag-share_icon">
                                 <li><a class="cursor" data-toggle="modal" data-target="#ShareModal"(click)="selectedShareData = provider"><img src="assets/share_gray.svg" /></a></li>

@@ -2396,3 +2396,11 @@ button.btn-hide-up {font-family: 'Poppins';font-style: normal;font-weight: 400;f
     width: 100%;
     max-width: 5em;
 }
+.reviews-underline {
+    text-decoration: underline;
+    color: #494949;
+    margin-left: 0px !important;
+  }
+  .no-underline {
+    color: #494949;
+  }

@@ -401,7 +401,7 @@
                         *ngFor="let provider of providerProgram; let providerIndx = index">
                         <div class="media-top-content-info media-full-row-info">
                             <div class="row row-0 align-items-center mt-0">
-                                <div class="col-md-6 ">
+                                <div class="col-md-4">
                                     <div class="media-top-txt-div">
                                         <div class="left-icon-img">
                                             <img src="{{baseUrl+provider?.categories[0]?.logoUrl}}" />
@@ -410,10 +410,10 @@
                                             (click)="goToProviderProfile(provider.user[0])">
                                             <h2>{{provider.user[0].firstName}}</h2>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 ">
-                                    <div class="media-top-txt-div justify-content-right">
+                                    </div> 
+                                </div>       
+                                <div class="col-md-4">
+                                    <div class="media-top-txt-div">        
                                         <div class="review-starsearch-info" (mouseover)="isRating=true;$event.target.click()" (mouseout)="isRating=false;$event.target.click()" (click)="getRating(provider._id)" class="cursor" data-toggle="collapse"
                                             [attr.data-target]="'#collapseExamplestar' + providerIndx">
 
@@ -493,25 +493,28 @@
                                                         <span class="fa fa-star checked"></span>
                                                         <span class="fa fa-star checked"></span>
                                                     </span>
-   <!-- <span class="no-underline">(</span><a class="reviews-underline"
-                                                *ngIf="rating?.totalReviews">{{rating?.totalReviews }} reviews</a>
-                                            <a  class="reviews-underline"*ngIf="!rating?.totalReviews">0 reviews</a><span
-                                                class="no-underline">)</span>                                                </p> -->
+                                                <span class="no-underline">(</span><a class="reviews-underline"
+                                                *ngIf="provider.user[0]?.totalReviews">{{provider.user[0]?.totalReviews }} reviews</a>
+                                            <a  class="reviews-underline"*ngIf="!provider.user[0]?.totalReviews">0 reviews</a><span
+                                                class="no-underline">)</span>                                                </p>
                                             </div>
 
                                             <div *ngIf="rating" class="collapse star-daialogbox"
                                                 id="collapseExamplestar{{ providerIndx }}">
-                                                <!-- <button type="button" data-toggle="collapse"
+                                                <button type="button" data-toggle="collapse"
                                                     [attr.data-target]="'#collapseExamplestar' + providerIndx"
                                                     class="close star-daialogicon" aria-label="Close">
                                                     <span aria-hidden="true"><img src="assets/grey-close.png" /></span>
-                                                </button> -->
+                                                </button>
                                                 <app-rating [rating]="rating" [user]="provider.user[0]">
                                                 </app-rating>
                                             </div>
-
-
                                         </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-2 ">
+                                    <div class="media-top-txt-div justify-content-right">                               
                                         <div class="view-less-div">
                                             <div class="view-less-txt-info collapsed">
                                                 <a *ngIf="!provider.collapsed" class="btn-view-less"
@@ -522,7 +525,6 @@
                                                     (click)="provider.collapsed=false" aria-expanded="false"
                                                     aria-controls="collapseDosing">View Less <i
                                                         class="fas fa-chevron-up"></i></a>
-
                                             </div>
                                         </div>
                                     </div>
