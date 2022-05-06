@@ -5,7 +5,7 @@
         <div class="map-without-page-info">
             <div class="map-without-section-info">
                 <div class="media-top-content-info media-full-row-info">
-                    <div class="row row-0 align-items-center mt-0">
+                    <div class="row row-0 mt-0">
                     <div class="col-md-4">
                         <div class="media-top-txt-div">
                             <div class="left-icon-img">
@@ -103,10 +103,10 @@
                                     <span class="fa fa-star checked"></span>
                                     <span class="fa fa-star checked"></span>
                                     </span>
-                                    <span class="no-underline">(</span><a class="reviews-underline"
-                                    *ngIf="provider.user[0]?.totalReviews">{{provider.user[0]?.totalReviews }}reviews</a>
-                                <a  class="reviews-underline"*ngIf="!provider.user[0]?.totalReviews">0 reviews</a><span
-                                    class="no-underline">)</span>                                  </p>
+                                    <a class="no-underline"><span class="no-underline">(</span><a class="reviews-underline"
+                                    *ngIf="provider.user[0]?.totalReviews">{{provider.user[0]?.totalReviews }}</a>
+                                <a  class="reviews-underline"*ngIf="!provider.user[0]?.totalReviews">0 </a><span
+                                    class="no-underline">)</span> </a>                                 </p>
                             </div>  
 
                             <div *ngIf="rating" class="collapse star-daialogbox"

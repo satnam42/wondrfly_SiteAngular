@@ -2259,7 +2259,7 @@ hr.N_line {
     font-size: 18px;line-height: 27px;letter-spacing: 0.001em;color: #494949;}
 .media-top-content-info {display: grid;grid-template-columns: auto 70px;column-gap: 5px;
     align-items: center;margin-bottom: 20px;}
-.media-top-txt-div {display: flex;column-gap: 10px;align-items: center;}
+.media-top-txt-div {display: flex;column-gap: 10px;align-items: start;}
 .review-starsearch-info {padding-left: 10px;}
 ul.ul-tag-share_icon {margin: 0px;padding: 0px;list-style: none;text-align: right;}
 ul.ul-tag-share_icon li {display: inline-block;padding-right: 10px;}
@@ -2397,10 +2397,12 @@ button.btn-hide-up {font-family: 'Poppins';font-style: normal;font-weight: 400;f
     max-width: 5em;
 }
 .reviews-underline {
-    text-decoration: underline;
+    /* text-decoration: underline; */
+    text-decoration: none !important;
     color: #494949;
     margin-left: 0px !important;
   }
   .no-underline {
+    text-decoration: none !important;
     color: #494949;
   }

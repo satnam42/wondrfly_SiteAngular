@@ -400,7 +400,7 @@
                     <div class="search-results-section"
                         *ngFor="let provider of providerProgram; let providerIndx = index">
                         <div class="media-top-content-info media-full-row-info">
-                            <div class="row row-0 align-items-center mt-0">
+                            <div class="row row-0 mt-0">
                                 <div class="col-md-4">
                                     <div class="media-top-txt-div">
                                         <div class="left-icon-img">
@@ -493,9 +493,9 @@
                                                         <span class="fa fa-star checked"></span>
                                                         <span class="fa fa-star checked"></span>
                                                     </span>
-                                                <span class="no-underline">(</span><a class="reviews-underline"
-                                                *ngIf="provider.user[0]?.totalReviews">{{provider.user[0]?.totalReviews }} reviews</a>
-                                            <a  class="reviews-underline"*ngIf="!provider.user[0]?.totalReviews">0 reviews</a><span
+                                                <span class="no-underline">(</span><a class="no-underline"
+                                                *ngIf="provider.user[0]?.totalReviews">{{provider.user[0]?.totalReviews }}</a>
+                                            <a  class="no-underline"*ngIf="!provider.user[0]?.totalReviews">0</a><span
                                                 class="no-underline">)</span>                                                </p>
                                             </div>
 
@@ -1279,8 +1279,10 @@
                                                     <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star checked"></span>
                                                 </span>
-                                                <!-- <a> <span></span>(58 reviews)</a> -->
-                                            </p>
+                                                <span class="no-underline">(</span><a class="no-underline"
+                                                *ngIf="data.user[0]?.totalReviews">{{data.user[0]?.totalReviews }}</a>
+                                            <a  class="no-underline"*ngIf="!data.user[0]?.totalReviews">0</a><span
+                                                class="no-underline">)</span>                                                </p>
                                         </div>
                                         <div class="map-locationtext" *ngIf="data?.user[0]?.location">
                                             <span><img src="assets/location-pintag.svg" /> </span>

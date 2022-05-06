@@ -1670,6 +1670,7 @@ span.close-filter {
     text-decoration: underline;
 }
 .no-underline {
+        text-decoration: none !important;
     color: #494949 !important;
     font-size: 13px;
 }
@@ -3187,7 +3188,7 @@ div#Exploring-Wonderfly .carousel-item h1 {
 .media-top-content-info {position: relative;display: grid;grid-template-columns: auto 70px;column-gap: 5px;
     align-items: center;margin-bottom: 20px;}
 .media-full-row-info{grid-template-columns: 100%!important;}
-.media-top-txt-div {display: flex;column-gap: 10px;align-items: center;}
+.media-top-txt-div {display: flex;column-gap: 10px;align-items: start;}
 .align-items-center{align-items: center;}
 .map-with-heading-h2{width: 100%;cursor: pointer;}
 .map-without-page-info .media-top-txt-div .left-icon-h2 {width: 100%;max-width: 380px;}
