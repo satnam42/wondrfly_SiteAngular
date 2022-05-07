@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment.prod';
 
 
@@ -65,7 +66,9 @@ export class SharePopupComponent implements OnInit {
   shareUrl: string;
   @Input() isProvider: boolean;
   url: string;
-  constructor(private snack: MatSnackBar) { }
+  constructor(private snack: MatSnackBar,
+    private toastr: ToastrService
+    ) { }
   ngOnInit() {
   }
   //----------------------------------------share activity or program detail in social media  ---------------------------------------------------------
@@ -126,7 +129,8 @@ export class SharePopupComponent implements OnInit {
       }
       case 'copylink': {
         navigator.clipboard.writeText(this.shareUrl).then().catch(e => console.error(e));
-        this.snack.open('Link copied', '', { duration: 500 });
+        // this.snack.open('Link copied', '', { duration: 500 });
+        this.toastr.success('Link copied');
       }
 
     }
