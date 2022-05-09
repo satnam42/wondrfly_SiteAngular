@@ -530,6 +530,7 @@ this.dataservice.setOption({})
     this.ngxLoader.start()
     this.suggested = []
     this.apiservice.getPublishedProgramByProvider(this.pageNo, this.pageSize, 'published').subscribe((res: any) => {
+      res.data = res.data.filter(item=>item.user[0].isActivated===true)
       this.programs = [...this.programs, ...res.data];
       if (res.isSuccess) {
         this.providerProgram = this.programs;
@@ -544,7 +545,6 @@ this.dataservice.setOption({})
         this.providerProgram[2].collapsed = true
         this.ngxLoader.stop()
       }
-      console.log(this.providerProgram)
       // this.fakeLoaderData = [1,2]
       // this.contentLoaded = true;
       this.startTour()
@@ -761,6 +761,7 @@ this.dataservice.setOption({})
         this.showReset = true
         if (res.isSuccess) {
           // this.isTopFilterCheckBox = false
+          res.data = res.data.filter(item=>item.user[0].isActivated===true)
           this.programs = res.data;
           if (this.isTopFilter) {
             this.providerProgram = this.programs.sort((a, b) => b.user[0]?.averageFinalRating - a.user[0]?.averageFinalRating);
