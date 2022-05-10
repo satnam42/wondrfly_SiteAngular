@@ -29,7 +29,7 @@
                                 <div class="session_details">
                                     <div class="row row-0">
                                         <div class="col-md-2">
-                                            <div *ngIf="program?.name" class="learn_code cursor" (click)="goToProfile()" [class.initial-alpha-profile]="!program?.subCategoryIds[0]?.logo && !program?.category[0]?.logoUrl">
+                                            <div *ngIf="program?.name" class="learn_code" [class.initial-alpha-profile]="!program?.subCategoryIds[0]?.logo && !program?.category[0]?.logoUrl">
                                                 <img *ngIf="program?.subCategoryIds[0]?.logo"[defaultImage]="defaultImage" lazyLoad="{{baseUrl+program?.subCategoryIds[0]?.logo }}" alt="logo" />
                                                 <img *ngIf="program?.category[0]?.logoUrl && !program?.subCategoryIds[0]?.logo" [defaultImage]="defaultImage" lazyLoad="{{baseUrl+program?.category[0]?.logoUrl }}" alt="logo" />
                                                 <h1 *ngIf="!program?.subCategoryIds[0]?.logo && !program?.category[0]?.logoUrl">
@@ -64,7 +64,7 @@
                                             </div>
 
                                             <h3 class="provider_name cursor">
-                                                <span (click)="goToProfile()">{{
+                                                <span>{{
                           program?.programOwner
                           }}</span>
 
@@ -635,7 +635,7 @@
                             <div class="row row-0 align-items-center mb-30">
                                 <div class="col-md-8">
                                     <h2 class="text-align-unset mb-0">
-                                        More activities from <span class="clr-blue cursor" (click)="goToProfile()">{{program?.programOwner}}</span>
+                                        More activities from <span class="clr-blue cursor">{{program?.programOwner}}</span>
                                     </h2>
                                 </div>
                                 <div class="col-md-4">
