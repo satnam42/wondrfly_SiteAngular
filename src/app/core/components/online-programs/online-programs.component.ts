@@ -65,7 +65,8 @@ export class OnlineProgramsComponent implements OnInit {
     private apiservice: ApiService,
     private router : Router,
     private auth: AuthsService,
-    private dataService: DataService) { 
+    private dataService: DataService,
+    public globalFunc:Globals) { 
       if( auth.currentUser()){
         this.isLogin=true;
         this.userData=auth.currentUser();
@@ -138,6 +139,10 @@ getRating(id){
       this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
       this.router.navigate(['/search']))
 
+    }
+    activitySorting(programs){
+      programs = programs.sort((a, b) => new Date(a.date.from).valueOf() - new Date(b.date.from).valueOf());
+      return programs
     }
 
 }

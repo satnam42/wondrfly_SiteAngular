@@ -323,6 +323,14 @@
         </div>
         <div class="row row-0">
             <div class="col-10" [ngClass]="{'col-12':isMap || isOnline}">
+                <div class="chip-set-bar chip-set-bar-btn" [hidden]="showReset">
+                    <div class="map-without-heading display-inline">
+                        <h2>
+                            <span class="span-h3">&nbsp;&nbsp;<b>{{activitiesCount}}</b> activities
+                                from <b>{{providerProgram?.length}}</b> providers</span>
+                        </h2>
+                    </div>
+                </div>
                 <div class="chip-set-bar chip-set-bar-btn" [hidden]="!showReset">
                     <div class="map-without-heading display-inline">
                         <h2>
@@ -410,11 +418,14 @@
                                             (click)="goToProviderProfile(provider.user[0])">
                                             <h2>{{provider.user[0].firstName}}</h2>
                                         </div>
-                                    </div> 
-                                </div>       
+                                    </div>
+                                </div>
                                 <div class="col-md-4">
-                                    <div class="media-top-txt-div">        
-                                        <div class="review-starsearch-info" (mouseover)="isRating=true;$event.target.click()" (mouseout)="isRating=false;$event.target.click()" (click)="getRating(provider._id)" class="cursor" data-toggle="collapse"
+                                    <div class="media-top-txt-div">
+                                        <div class="review-starsearch-info"
+                                            (mouseover)="isRating=true;$event.target.click()"
+                                            (mouseout)="isRating=false;$event.target.click()"
+                                            (click)="getRating(provider._id)" class="cursor" data-toggle="collapse"
                                             [attr.data-target]="'#collapseExamplestar' + providerIndx">
 
                                             <div class="rating-starsearch">
@@ -493,10 +504,13 @@
                                                         <span class="fa fa-star checked"></span>
                                                         <span class="fa fa-star checked"></span>
                                                     </span>
-                                                <span class="no-underline">(</span><a class="no-underline"
-                                                *ngIf="provider.user[0]?.totalReviews">{{provider.user[0]?.totalReviews }}</a>
-                                            <a  class="no-underline"*ngIf="!provider.user[0]?.totalReviews">0</a><span
-                                                class="no-underline">)</span>                                                </p>
+                                                    <span class="no-underline">(</span><a class="no-underline"
+                                                        *ngIf="provider.user[0]?.totalReviews">{{provider.user[0]?.totalReviews
+                                                        }}</a>
+                                                    <a class="no-underline"
+                                                        *ngIf="!provider.user[0]?.totalReviews">0</a><span
+                                                        class="no-underline">)</span>
+                                                </p>
                                             </div>
 
                                             <div *ngIf="rating" class="collapse star-daialogbox"
@@ -514,7 +528,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-2 ">
-                                    <div class="media-top-txt-div justify-content-right">                               
+                                    <div class="media-top-txt-div justify-content-right">
                                         <div class="view-less-div">
                                             <div class="view-less-txt-info collapsed">
                                                 <a *ngIf="!provider.collapsed" class="btn-view-less"
@@ -569,7 +583,7 @@
                                 </a>
                             </div>
                             <div [id]="'widgetsContent'+providerIndx" class="media-scroable">
-                                <div *ngFor="let program of provider?.programs| slice:0:9; let programIndx = index"
+                                <div *ngFor="let program of activitySorting(provider?.programs) | slice:0:9; let programIndx = index"
                                     class="media activity">
                                     <div class="media-left activity-imgs" (click)="goToProgramDetail(program)">
                                         <!-- <img [defaultImage]="defaultImage"
@@ -763,7 +777,7 @@
                                                     </div>
                                                     <div>
                                                         <p>{{program?.location?.substring(0,
-                                                            program?.location?.lastIndexOf(", "))}}</p>
+                                                            program?.location?.indexOf(", "))}}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1188,9 +1202,10 @@
                                 src="assets/gis_map.png" /> Hide map <img class="right-arrow-icon"
                                 src="assets/right-arrow-icon.png" /></button>
                     </div>
-                    <agm-map *ngIf="providerProgram?.length; else nolocationfound" [styles]="mapTheme.customStyle" style="width: 100%; height: 100%"
-                        (centerChange)="centerChange($event)" [zoom]="zoom" [usePanning]="true" [fitBounds]="true"
-                        [latitude]="lat" [longitude]="lng" (mapClick)="mapClicked(previous)">
+                    <agm-map *ngIf="providerProgram?.length; else nolocationfound" [styles]="mapTheme.customStyle"
+                        style="width: 100%; height: 100%" (centerChange)="centerChange($event)" [zoom]="zoom"
+                        [usePanning]="true" [fitBounds]="true" [latitude]="lat" [longitude]="lng"
+                        (mapClick)="mapClicked(previous)">
                         <div *ngFor="let data of providerProgram;let providerIndx = index">
                             <agm-marker *ngIf="data.user[0]?.lat && data?.user[0]?.lng" [iconUrl]="markerUrl"
                                 (markerClick)="clickedMarker(previous)" [latitude]="data?.user[0]?.lat"
@@ -1280,9 +1295,11 @@
                                                     <span class="fa fa-star checked"></span>
                                                 </span>
                                                 <span class="no-underline">(</span><a class="no-underline"
-                                                *ngIf="data.user[0]?.totalReviews">{{data.user[0]?.totalReviews }}</a>
-                                            <a  class="no-underline"*ngIf="!data.user[0]?.totalReviews">0</a><span
-                                                class="no-underline">)</span>                                                </p>
+                                                    *ngIf="data.user[0]?.totalReviews">{{data.user[0]?.totalReviews
+                                                    }}</a>
+                                                <a class="no-underline" *ngIf="!data.user[0]?.totalReviews">0</a><span
+                                                    class="no-underline">)</span>
+                                            </p>
                                         </div>
                                         <div class="map-locationtext" *ngIf="data?.user[0]?.location">
                                             <span><img src="assets/location-pintag.svg" /> </span>
@@ -1301,8 +1318,8 @@
                     </agm-map>
                     <!-- ------------------------ no programs location ------------ -->
                     <ng-template #nolocationfound>
-                        <agm-map style="width: 100%; height: 100%" [styles]="mapTheme.customStyle" [zoom]="14" [latitude]="40.72652470735903"
-                            [longitude]="-74.05900394007715">
+                        <agm-map style="width: 100%; height: 100%" [styles]="mapTheme.customStyle" [zoom]="14"
+                            [latitude]="40.72652470735903" [longitude]="-74.05900394007715">
                         </agm-map>
                     </ng-template>
                     <!-- ---------------------------------------------------------- -->

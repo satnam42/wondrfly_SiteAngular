@@ -109,7 +109,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   // latitude: number = 40.5682945; longitude: number = -74.0409239;
   lat = 40.72652470735903;
   lng = -74.05900394007715;
-  zoom = 13;
+  zoom = 15;
   address: string;
   private geoCoder;
   user = new User
@@ -505,7 +505,11 @@ this.dataservice.setOption({})
     programName = programName.toLowerCase();
     programName = programName.replace(/ /g, "-");
     programName = programName.replace(/\?/g, "-");
-    this.router.navigate(['program', programName, data._id]);
+    // this.router.navigate(['program', programName, data._id]);
+    const url = this.router.serializeUrl(
+      this.router.createUrlTree(['program', programName, data._id])
+    );
+    window.open(url, '_blank');
   }
   addAction(programId) {
     let body = {
@@ -522,7 +526,10 @@ this.dataservice.setOption({})
       this.loadMore();
     }
   }
-
+  activitySorting(programs){
+    programs = programs.sort((a, b) => new Date(a.date.from).valueOf() - new Date(b.date.from).valueOf());
+    return programs
+  }
   getPublishedProgram() {
     // this.contentLoaded = false;
     this.activityName = ''
@@ -545,6 +552,10 @@ this.dataservice.setOption({})
         this.providerProgram[2].collapsed = true
         this.ngxLoader.stop()
       }
+      const sum = this.providerProgram.reduce((accumulator, object) => {
+        return accumulator + object.programs.length;
+      }, 0);
+      this.activitiesCount = sum
       // this.fakeLoaderData = [1,2]
       // this.contentLoaded = true;
       this.startTour()
@@ -830,7 +841,11 @@ this.dataservice.setOption({})
     providerName = providerName.toLowerCase();
     providerName = providerName.replace(/ /g, "-");
     providerName = providerName.replace(/\?/g, "-");
-    this.router.navigate(['/provider/program-provider', providerName, provider._id]);
+    // this.router.navigate(['/provider/program-provider', providerName, provider._id]);
+    const url = this.router.serializeUrl(
+      this.router.createUrlTree(['/provider/program-provider', providerName, provider._id])
+    );
+    window.open(url, '_blank');
   }
 
   ngOnDestroy() {

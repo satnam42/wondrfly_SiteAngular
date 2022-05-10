@@ -180,10 +180,10 @@ out of 5 </a> -->
                                 <div *ngIf="isGenOverview || isPeople" class="people_section overview desc-overflow">
 
                                     <h2 class="overview-heading">About us</h2>
-                                    <p *ngIf="user.about" class="overview-data">{{user.about | slice:0:360}}
+                                    <p *ngIf="user.about" class="overview-data">{{user.about}}
                                     </p>
-                                    <p *ngIf="!user.about" class="overview-data">{{user.note | slice:0:360}}
-                                    </p>
+                                    <!-- <p *ngIf="!user.about" class="overview-data">{{user.note}}
+                                    </p> -->
                                     <div class="media skills_sec-div">
                                         <!-- <div class="media-left">
                                             <div class="people_profile" [class.initial-alpha-profile]="!user?.avatarImages">
@@ -195,10 +195,8 @@ out of 5 </a> -->
                                             <h4>{{user.firstName}}</h4>
                                         </div> -->
                                         <div class="media-body">
-                                            <p *ngIf="user?.about && user.about?.length>=230">{{user?.about |
-                                                slice:360:1000}}}}</p>
-                                            <p *ngIf="user?.note && user.note?.length>=230">{{user?.note |
-                                                slice:360:1000}}</p>
+                                            <p *ngIf="user?.about">{{user?.about}}</p>
+                                            <p *ngIf="!user?.about">{{user?.note}}</p>
                                             <div class="skills_sec" *ngIf='user?.subCategoryIds?.length'>
                                                 <h3>Activities</h3>
                                                 <div class="skill_flex">
