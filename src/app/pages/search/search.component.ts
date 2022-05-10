@@ -113,6 +113,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   address: string;
   private geoCoder;
   isMapMoveChecked: boolean
+  coordinates:any = {}
   user = new User
   @ViewChild('search', { static: true })
   public searchElementRef: ElementRef;
@@ -274,9 +275,10 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   centerChange(e) {
+    this.coordinates = e
     if (this.isMapMoveChecked) {
       this.isMapFilter=true
-      setTimeout(() =>this.programFilter(e),1000); 
+      setTimeout(() =>this.programFilter(),1000); 
        }
   }
 
@@ -663,7 +665,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.apiservice.parentAnalytics(key, this.userId, value).subscribe((res: any) => {
     });
   }
-  programFilter(e?) {
+  programFilter() {
     if (this.regWallCookies > 11) {
       this.isBetaPopUp = true
     }
@@ -769,7 +771,7 @@ export class SearchComponent implements OnInit, OnDestroy {
       }
       if (this.isMapFilter) {
         pageSize=10
-        filter += `&lat=${e.lat}&lng=${e.lng}`
+        filter += `&lat=${this.coordinates.lat}&lng=${this.coordinates.lng}`
       }
       this.ngxLoader.start()
       this.apiservice.programFilter(filter, 1,pageSize).subscribe((res: any) => {
