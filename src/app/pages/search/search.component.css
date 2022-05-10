@@ -3232,9 +3232,10 @@ button.btn-hide-up {font-family: 'Poppins';font-style: normal;font-weight: 400;f
 
 .map-search-checkbox-field {display: block;position: relative;padding-left: 20px;cursor: pointer;font-family: 'Poppins';font-style: normal;font-weight: 500;font-size: 12px;line-height: 18px;color: #494949;}
 .map-search-checkbox-field input {cursor: pointer;display: none;}
-.map-search-checkbox-field .checkmark {position: absolute;top: 2px;left: 0;height: 15px;width: 15px;padding: 6.5px;display: inline-block;vertical-align: middle;cursor: pointer;background: #53B2E8;border: 1px solid #53B2E8;box-sizing: border-box;border-radius: 3px;}
+.map-search-checkbox-field .checkmark {position: absolute;top: 2px;left: 0;height: 15px;width: 15px;padding: 6.5px;display: inline-block;vertical-align: middle;cursor: pointer;border: 1px solid #53B2E8;box-sizing: border-box;border-radius: 3px;}
 .map-search-checkbox-field .checkmark:after {content: "";position: absolute;display: none;}
 .map-search-checkbox-field input:checked ~ .checkmark:after {display: block;}
+.map-search-checkbox-field input:checked ~ .checkmark{background: #53B2E8;}
 .map-search-checkbox-field .checkmark:after {position: absolute;top: 1.5px;left: 5px;width: 4px;height: 8px;border: solid #fff;border-width: 0 1.5px 1.5px 0;transform: rotate(45deg);}
 .map-search-info {position: absolute;z-index: 1;background: #FFFFFF;border: 1px solid #E5E9EC;box-sizing: border-box;border-radius: 4px;padding: 5px 10px;left: 0;top: 14px;right: 0;max-width: 200px;margin: 0px auto;text-align: center;}
 

@@ -33,6 +33,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   isTypeFilter: boolean = false;
   isCategoryFilter: boolean = false;
   isTopFilterCheckBox: boolean = false;
+  isMapFilter:boolean = false;
   isAlert: boolean = true;
   isFav: boolean = false;
   categoryId: any = ''
@@ -43,7 +44,6 @@ export class SearchComponent implements OnInit, OnDestroy {
   favPrograms: any;
   isMap: boolean = true;
   isLoaded = false
-  locations = [];
   categories: Category[];
   categoriesBySearch: any = new Category;
   isActive: boolean = false
@@ -54,7 +54,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   pageSize: number = 15;
   programs: any = [];
   providerProgram: any = [];
-  isInfiniteScrollDisabled:boolean
+  isInfiniteScrollDisabled: boolean
   isLogin: Boolean = false;
   key: string = '';
   providerRole: boolean = false;
@@ -83,7 +83,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   whatsappActive = ''
   copylinkActive = ''
   totalRating: any = '';
-  isRating:boolean
+  isRating: boolean
   //  ng5slider start age group
   minAge: number = 0;
   maxAge: number = 5;
@@ -112,6 +112,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   zoom = 15;
   address: string;
   private geoCoder;
+  isMapMoveChecked: boolean
   user = new User
   @ViewChild('search', { static: true })
   public searchElementRef: ElementRef;
@@ -273,14 +274,10 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   centerChange(e) {
-    this.locations.push(e);
-    if (this.locations.length > 15) {
-      this.locations = [];
-      this.lat = e.lat;
-      this.lng = e.lng;
-      // this.programByLatLng();
-    }
-
+    if (this.isMapMoveChecked) {
+      this.isMapFilter=true
+      setTimeout(() =>this.programFilter(e),1000); 
+       }
   }
 
   clickedMarker(infowindow) {
@@ -454,8 +451,8 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   resetFilter() {
-this.dataservice.setOption({})   
- this.isInfiniteScrollDisabled =false
+    this.dataservice.setOption({})
+    this.isInfiniteScrollDisabled = false
     this.contentLoaded = false
     this.searchedSubCategory = '';
     this.activityName = '';
@@ -468,6 +465,7 @@ this.dataservice.setOption({})
     this.isTimeFilter = false;
     this.isTopFilterCheckBox = false
     this.isTopFilter = false;
+    this.isMapFilter = false;
     this.isAgeFilter = false;
     this.isDateFilter = false;
     this.selectedSubCategories = [];
@@ -526,7 +524,7 @@ this.dataservice.setOption({})
       this.loadMore();
     }
   }
-  activitySorting(programs){
+  activitySorting(programs) {
     programs = programs.sort((a, b) => new Date(a.date.from).valueOf() - new Date(b.date.from).valueOf());
     return programs
   }
@@ -537,13 +535,14 @@ this.dataservice.setOption({})
     this.ngxLoader.start()
     this.suggested = []
     this.apiservice.getPublishedProgramByProvider(this.pageNo, this.pageSize, 'published').subscribe((res: any) => {
-      res.data = res.data.filter(item=>item.user[0].isActivated===true)
+      res.data = res.data.filter(item => item.user[0].isActivated === true)
       this.programs = [...this.programs, ...res.data];
       if (res.isSuccess) {
         this.providerProgram = this.programs;
         if (!res.data.length) {
-          this.isInfiniteScrollDisabled = true        }
-         this.providerProgram = this.programs.sort((a, b) => b.user[0]?.averageFinalRating - a.user[0]?.averageFinalRating);
+          this.isInfiniteScrollDisabled = true
+        }
+        this.providerProgram = this.programs.sort((a, b) => b.user[0]?.averageFinalRating - a.user[0]?.averageFinalRating);
         if (!this.providerProgram.length) {
           this.isLoaded = true
         }
@@ -664,19 +663,20 @@ this.dataservice.setOption({})
     this.apiservice.parentAnalytics(key, this.userId, value).subscribe((res: any) => {
     });
   }
-  programFilter() {
+  programFilter(e?) {
     if (this.regWallCookies > 11) {
       this.isBetaPopUp = true
     }
     window.scroll(0, 0);
-    this.isInfiniteScrollDisabled =false
+    this.isInfiniteScrollDisabled = false
     this.isTimeFilter = false;
     this.isDaysFilter = false;
     this.isTopFilter = false;
     this.isTypeFilter = false;
     this.isCategoryFilter = false;
     this.suggested = []
-    if (this.isTopFilterCheckBox || this.categoryId || this.selectedDays.length || this.selectedProgramTypes.length || this.selectedSubCategories.length || this.selectedProgramTime.length || this.isOnline || this.isInPerson || this.isDateFilter || this.isPriceFilter || this.isAgeFilter) {
+    if (this.isMapFilter || this.isTopFilterCheckBox || this.categoryId || this.selectedDays.length || this.selectedProgramTypes.length || this.selectedSubCategories.length || this.selectedProgramTime.length || this.isOnline || this.isInPerson || this.isDateFilter || this.isPriceFilter || this.isAgeFilter) {
+     let pageSize =100;
       this.contentLoaded = false;
       let filter = ``
       let inpersonOrVirtual = ''
@@ -767,12 +767,16 @@ this.dataservice.setOption({})
       if (this.isAgeFilter) {
         filter += `&ageFrom=${this.minAge}&ageTo=${this.maxAge}`
       }
+      if (this.isMapFilter) {
+        pageSize=10
+        filter += `&lat=${e.lat}&lng=${e.lng}`
+      }
       this.ngxLoader.start()
-      this.apiservice.programFilter(filter, 1, 100).subscribe((res: any) => {
+      this.apiservice.programFilter(filter, 1,pageSize).subscribe((res: any) => {
         this.showReset = true
         if (res.isSuccess) {
           // this.isTopFilterCheckBox = false
-          res.data = res.data.filter(item=>item.user[0].isActivated===true)
+          res.data = res.data.filter(item => item.user[0].isActivated === true)
           this.programs = res.data;
           if (this.isTopFilter) {
             this.providerProgram = this.programs.sort((a, b) => b.user[0]?.averageFinalRating - a.user[0]?.averageFinalRating);
@@ -794,10 +798,10 @@ this.dataservice.setOption({})
             this.providerProgram[2].collapsed = true
           }
           // if (categoryId || this.selectedSubCategories.length) {
-            const sum = this.providerProgram.reduce((accumulator, object) => {
-              return accumulator + object.programs.length;
-            }, 0);
-            this.activitiesCount = sum
+          const sum = this.providerProgram.reduce((accumulator, object) => {
+            return accumulator + object.programs.length;
+          }, 0);
+          this.activitiesCount = sum
           // }
           // for (let i in this.programs) {
           //   let category = this.programs[i].category.filter((v, num, a) => a.findIndex(t => (t.name == v.name)) === num)
@@ -858,7 +862,7 @@ this.dataservice.setOption({})
 
   // ---------------------------------navigate to program detail page -------------------------------------------
   getRating(id) {
-    if(this.isRating){
+    if (this.isRating) {
       this.apiservice.getUserRating(id).subscribe((res: any) => {
         res.finalAverageRating = parseFloat(String(res.finalAverageRating)).toFixed(1)
         this.rating = res

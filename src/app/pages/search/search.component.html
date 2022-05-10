@@ -367,6 +367,11 @@
                         <mat-icon (click)="contentLoaded=false;isDateFilter=!isDateFilter;programFilter()">cancel
                         </mat-icon>
                     </button>
+                    <button class="btn_style save_btn cursor" *ngIf="isMapFilter">
+                        {{activitiesCount}} activities found in map area
+                        <mat-icon (click)="contentLoaded=false;isMapFilter=!isMapFilter;programFilter()">cancel
+                        </mat-icon>
+                    </button>
                     <button class="btn_style save_btn cursor" *ngIf="isTopFilterCheckBox">
                         Top Rated
                         <mat-icon
@@ -1190,13 +1195,13 @@
             </div>
             <div class="col-md-6" *ngIf="isMap">
                 <div class="map_section">
-                    <!-- <div class="map-search-info">
+                    <div class="map-search-info">
                         <label class="map-search-checkbox-field">
-                            <input type="checkbox" checked="checked">
+                            <input type="checkbox" [class.] [checked]="isMapMoveChecked" (change)="isMapMoveChecked=!isMapMoveChecked">
                             <span class="checkmark"></span>
                             <span class="checkbox-txt">Search as I move the Map</span>
                         </label>
-                    </div> -->
+                    </div>
                     <div class="btn-hide-up-info">
                         <button class="btn-hide-up" (click)="isMap=!isMap"><img class="gis-map-icon"
                                 src="assets/gis_map.png" /> Hide map <img class="right-arrow-icon"
@@ -1318,7 +1323,7 @@
                     </agm-map>
                     <!-- ------------------------ no programs location ------------ -->
                     <ng-template #nolocationfound>
-                        <agm-map style="width: 100%; height: 100%" [styles]="mapTheme.customStyle" [zoom]="14"
+                        <agm-map style="width: 100%; height: 100%" (centerChange)="centerChange($event)"  [styles]="mapTheme.customStyle" [zoom]="14"
                             [latitude]="40.72652470735903" [longitude]="-74.05900394007715">
                         </agm-map>
                     </ng-template>
