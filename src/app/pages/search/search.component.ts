@@ -505,11 +505,11 @@ export class SearchComponent implements OnInit, OnDestroy {
     programName = programName.toLowerCase();
     programName = programName.replace(/ /g, "-");
     programName = programName.replace(/\?/g, "-");
-    // this.router.navigate(['program', programName, data._id]);
-    const url = this.router.serializeUrl(
-      this.router.createUrlTree(['program', programName, data._id])
-    );
-    window.open(url, '_blank');
+    this.router.navigate(['program', programName, data._id]);
+    // const url = this.router.serializeUrl(
+    //   this.router.createUrlTree(['program', programName, data._id])
+    // );
+    // window.open(url, '_blank');
   }
   addAction(programId) {
     let body = {
@@ -847,11 +847,11 @@ export class SearchComponent implements OnInit, OnDestroy {
     providerName = providerName.toLowerCase();
     providerName = providerName.replace(/ /g, "-");
     providerName = providerName.replace(/\?/g, "-");
-    // this.router.navigate(['/provider/program-provider', providerName, provider._id]);
-    const url = this.router.serializeUrl(
-      this.router.createUrlTree(['/provider/program-provider', providerName, provider._id])
-    );
-    window.open(url, '_blank');
+    this.router.navigate(['/provider/program-provider', providerName, provider._id]);
+    // const url = this.router.serializeUrl(
+    //   this.router.createUrlTree(['/provider/program-provider', providerName, provider._id])
+    // );
+    // window.open(url, '_blank');
   }
 
   ngOnDestroy() {
