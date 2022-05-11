@@ -112,7 +112,8 @@ addFavProgram(userId, programId, providerIndx,programIndx) {
     programName = programName.toLowerCase();
     programName = programName.replace(/ /g, "-");
     programName = programName.replace(/\?/g, "-");
-    this.router.navigate(['program', programName, data._id]);
+    return `/program/${programName}/${data._id}`
+    // this.router.navigate(['program', programName, data._id]);
   }
   addAction(programId) {
     let body = {
@@ -123,13 +124,19 @@ addFavProgram(userId, programId, providerIndx,programIndx) {
     });
   }
    // ---------------------------------navigate to program detail page -------------------------------------------
-getRating(id){
+getRating(id,indx){
   if(this.isRating){
     this.apiservice.getUserRating(id).subscribe((res:any) => {
       this.rating = res
       this.rating.finalAverageRating = parseFloat(String(this.rating.finalAverageRating)).toFixed(1)
+      this.provider_programs[indx].rating = this.rating
     });
+    if(this.provider_programs[indx].isCollapsed){
+      this.provider_programs[indx].isCollapsed =false
+    }
+    else{      this.provider_programs[indx].isCollapsed =true  }
   }
+  
    }
 
    setCategoryId(e) {

@@ -18,7 +18,7 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <div class="review-starsearch-info cursor" data-toggle="collapse" [attr.data-target]="'#collapseExamplestar' + providerIndx" (mouseover)="isRating=true;$event.target.click()" (mouseout)="isRating=false;$event.target.click()" (click)="getRating(provider._id)">
+                        <div class="review-starsearch-info cursor" data-toggle="collapse" [attr.data-target]="'#collapseExamplestar' + providerIndx" (mouseover)="isRating=true;$event.target.click()" (mouseout)="isRating=false;$event.target.click()" (click)="getRating(provider._id,providerIndx)">
                             <!-- <div class="rating-starsearch">
                                 <p class="cursor">
                                     <span>
@@ -109,15 +109,13 @@
                                     class="no-underline">)</span> </a>                                 </p>
                             </div>  
 
-                            <div *ngIf="rating" class="collapse star-daialogbox"
-                            id="collapseExamplestar{{ providerIndx }}">
-                            <button type="button" data-toggle="collapse"
-                                [attr.data-target]="'#collapseExamplestar' + providerIndx"
+                            <div *ngIf="provider_programs[providerIndx]?.isCollapsed" class="star-daialogbox">
+                            <!-- <button type="button"
                                 class="close star-daialogicon" aria-label="Close">
                                 <span aria-hidden="true"><img
                                         src="assets/grey-close.png" /></span>
-                            </button>
-                            <app-rating [rating]="rating" [user]="provider.user[0]">
+                            </button> -->
+                            <app-rating *ngIf="provider_programs[providerIndx]?.rating" [rating]="provider_programs[providerIndx]?.rating" [user]="provider.user[0]">
                             </app-rating>
                         </div>
                         </div>
@@ -162,8 +160,8 @@
                             <div class="media-body">
                                 <div class="media-right-icon-h2">
                                     <div>
-                                        <h2 class="cursor" (click)="goToProgramDetail(program)">
-                                            {{ program?.name }}
+                                        <h2 class="cursor">
+                                            <a style="color:#53B2E8;" class="cursor" routerLink="{{goToProgramDetail(program)}}"> {{ program?.name }}</a>
                                         </h2>
                                     </div>
                                     <div class="media-right-share-icon">
@@ -189,11 +187,9 @@
                                     </div>
                                     <div class="rating-starsearch">
                                         <p (click)="
-                                          getRating(program);
+                                          getRating(program,programIndx);
                                           programOwnerData.firstName = program?.programOwner
-                                        " class="cursor" data-toggle="collapse"
-                                            [attr.data-target]="'#collapseExamplestar' + programIndx" role="button"
-                                            aria-expanded="false" aria-controls="collapseExamplestar">
+                                        " class="cursor" role="button" >
                                             <span *ngIf="program?.averageFinalRating == 0">
                                                 <span class="fa fa-star-o"></span>
                                                 <span class="fa fa-star-o"></span>

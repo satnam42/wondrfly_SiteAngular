@@ -505,7 +505,8 @@ export class SearchComponent implements OnInit, OnDestroy {
     programName = programName.toLowerCase();
     programName = programName.replace(/ /g, "-");
     programName = programName.replace(/\?/g, "-");
-    this.router.navigate(['program', programName, data._id]);
+    return `/program/${programName}/${data._id}`
+    // this.router.navigate(['program', programName, data._id]);
     // const url = this.router.serializeUrl(
     //   this.router.createUrlTree(['program', programName, data._id])
     // );
@@ -863,12 +864,19 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   // ---------------------------------navigate to program detail page -------------------------------------------
-  getRating(id) {
+  getRating(id,indx) {
     if (this.isRating) {
       this.apiservice.getUserRating(id).subscribe((res: any) => {
         res.finalAverageRating = parseFloat(String(res.finalAverageRating)).toFixed(1)
         this.rating = res
+        this.providerProgram[indx].rating = this.rating
       });
+    }
+    if(this.providerProgram[indx].isCollapsed){
+      this.providerProgram[indx].isCollapsed = false
+    }
+    else{
+      this.providerProgram[indx].isCollapsed = true
     }
   }
 

@@ -323,14 +323,14 @@
         </div>
         <div class="row row-0">
             <div class="col-10" [ngClass]="{'col-12':isMap || isOnline}">
-                <!-- <div class="chip-set-bar chip-set-bar-btn" [hidden]="showReset">
+                <div class="chip-set-bar chip-set-bar-btn" [hidden]="showReset">
                     <div class="map-without-heading display-inline">
                         <h2>
                             <span class="span-h3">&nbsp;&nbsp;<b>{{activitiesCount}}</b> activities
                                 from <b>{{providerProgram?.length}}</b> providers</span>
                         </h2>
                     </div>
-                </div> -->
+                </div>
                 <div class="chip-set-bar chip-set-bar-btn" [hidden]="!showReset">
                     <div class="map-without-heading display-inline">
                         <h2>
@@ -430,8 +430,7 @@
                                         <div class="review-starsearch-info"
                                             (mouseover)="isRating=true;$event.target.click()"
                                             (mouseout)="isRating=false;$event.target.click()"
-                                            (click)="getRating(provider._id)" class="cursor" data-toggle="collapse"
-                                            [attr.data-target]="'#collapseExamplestar' + providerIndx">
+                                            (click)="getRating(provider._id,providerIndx)" class="cursor">
 
                                             <div class="rating-starsearch">
                                                 <p>
@@ -518,14 +517,13 @@
                                                 </p>
                                             </div>
 
-                                            <div *ngIf="rating" class="collapse star-daialogbox"
-                                                id="collapseExamplestar{{ providerIndx }}">
-                                                <button type="button" data-toggle="collapse"
-                                                    [attr.data-target]="'#collapseExamplestar' + providerIndx"
+                                            <div *ngIf="providerProgram[providerIndx]?.isCollapsed" class="star-daialogbox"
+                                                >
+                                                <!-- <button type="button" data-toggle="collapse"
                                                     class="close star-daialogicon" aria-label="Close">
                                                     <span aria-hidden="true"><img src="assets/grey-close.png" /></span>
-                                                </button>
-                                                <app-rating [rating]="rating" [user]="provider.user[0]">
+                                                </button> -->
+                                                <app-rating *ngIf="providerProgram[providerIndx]?.rating" [rating]="providerProgram[providerIndx]?.rating" [user]="provider.user[0]">
                                                 </app-rating>
                                             </div>
                                         </div>
@@ -599,8 +597,8 @@
                                     <div class="media-body">
                                         <div class="media-right-icon-h2">
                                             <div>
-                                                <h2 class="cursor" (click)="goToProgramDetail(program)">
-                                                    {{ program?.name }}
+                                                <h2>
+                                                   <a style="color:#53B2E8;" class="cursor" routerLink="{{goToProgramDetail(program)}}"> {{ program?.name }}</a>
                                                 </h2>
                                             </div>
                                             <div class="media-right-share-icon">
@@ -845,9 +843,9 @@
                                             <div class="col-md-12 display-none">
                                                 <p *ngIf="!program?.isDateNotMention">
                                                     <img src="assets/calendar.svg " alt="School image " />{{
-                                                    program?.date?.from | date: "MMM dd " }} – {{ program?.date?.to |
+                                                    program?.date?.from | date: "MMM dd" }} – {{ program?.date?.to |
                                                     date:
-                                                    "MMM dd " }}
+                                                    "MMM dd" }}
                                                 </p>
                                                 <p *ngIf="program?.isDateNotMention">
                                                     Ongoing
@@ -1221,9 +1219,7 @@
                                             {{ data?.user[0]?.firstName }}
                                         </h1>
                                         <h2>{{ data?.user[0]?.addressLine1 }}</h2>
-                                        <div class="rating-starsearch" (click)=" getRating(data?.user[0]?._id); 
-                            " class="cursor" data-toggle="collapse"
-                                            [attr.data-target]="'#collapseExamplestar2' + providerIndx">
+                                        <div class="rating-starsearch" class="cursor" >
                                             <p>
                                                 <span *ngIf="data?.user[0]?.averageFinalRating==0">
                                                     <span class="fa fa-star-o"></span>
