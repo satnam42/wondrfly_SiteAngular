@@ -148,7 +148,8 @@ export class SearchComponent implements OnInit, OnDestroy {
   fakeLoaderData = [1, 2]
   currentUser: any;
   cookiesData: string;
-  regWallCookies = 0
+  activitySearched = 0
+  activityClicked = 0
   moment = moment;
   minDate: moment.Moment;
   userId = ''
@@ -177,9 +178,15 @@ export class SearchComponent implements OnInit, OnDestroy {
     public globalFunc: Globals,
     public mapTheme: MapTheme
   ) {
+    this.activityClicked = Number(this.cookies.get('activityClicked'))
+    this.activitySearched = Number(this.cookies.get('activitySearched'))
+    if (this.activitySearched > 2 && this.activityClicked>9) {
+      this.isBetaPopUp = true
+    }
+    // let regCount = this.activitySearched + 1
+    // this.cookies.set('activitySearched', String(regCount), 30);
     this.countVisit()
     this.minDate = moment();
-
     // this.locationData = dataservice.getLocation()
     // if(this.locationData){
     //   this.contentLoaded=true;
@@ -188,8 +195,8 @@ export class SearchComponent implements OnInit, OnDestroy {
     //     this.lngg= this.locationData.lng
     //   }
     // }
-    this.regWallCookies = Number(this.cookies.get('regWall'))
-
+    // let regCount = this.activitySearched + 1
+    // this.cookies.set('activitySearched', String(regCount), 30);
     this.contentLoaded = false
     this.currentUser = auth.currentUser();
     this.filterData = dataservice.getOption()
@@ -498,9 +505,6 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   goToProgramDetail(data) {
-    if (this.parentRole) {
-      this.addAction(data._id);
-    }
     var programName = data.name;
     programName = programName.toLowerCase();
     programName = programName.replace(/ /g, "-");
@@ -513,6 +517,11 @@ export class SearchComponent implements OnInit, OnDestroy {
     // window.open(url, '_blank');
   }
   addAction(programId) {
+    let regCount = this.activityClicked + 1
+    this.cookies.set('activityClicked', String(regCount), 30);
+    if (this.parentRole) {
+      this.addAction(programId);
+    }
     let body = {
       action: 'click',
       programId: programId
@@ -667,9 +676,6 @@ export class SearchComponent implements OnInit, OnDestroy {
     });
   }
   programFilter() {
-    if (this.regWallCookies > 11) {
-      this.isBetaPopUp = true
-    }
     window.scroll(0, 0);
     this.isInfiniteScrollDisabled = false
     this.isTimeFilter = false;

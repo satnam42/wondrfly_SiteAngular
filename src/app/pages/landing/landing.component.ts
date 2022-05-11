@@ -46,7 +46,7 @@ export class LandingComponent implements OnInit {
   altBanner: any = ''
   private geoCoder;
   cookiesData: string;
-  regWallCookies = 0
+  activitySearched = 0
   @ViewChild('search') searchElementRef: ElementRef;
   allData: any=[];
   searchTermlanding= new FormControl();
@@ -61,11 +61,11 @@ export class LandingComponent implements OnInit {
     private metaTagService: Meta,
     private cookies: CookieService
   ) {
-    this.regWallCookies = Number(this.cookies.get('regWall'))
+    this.activitySearched = Number(this.cookies.get('activitySearched'))
   }
   searchBySubCategory(id) {
-    let regCount = this.regWallCookies + 1
-    this.cookies.set('regWall', String(regCount), 30);
+    let regCount = this.activitySearched + 1
+    this.cookies.set('activitySearched', String(regCount), 30);
     this.filterData.activityName = ''
     this.filterData.lat = ''
     this.filterData.lng = ''
@@ -76,8 +76,8 @@ export class LandingComponent implements OnInit {
   }
 
   searchByCategory(id) {
-    let regCount = this.regWallCookies + 1
-    this.cookies.set('regWall', String(regCount), 30);
+    let regCount = this.activitySearched + 1
+    this.cookies.set('activitySearched', String(regCount), 30);
     this.filterData.activityName = ''
     this.filterData.lat = ''
     this.filterData.lng = ''
@@ -256,6 +256,8 @@ export class LandingComponent implements OnInit {
   data.name = data.name.replace(/\?/g, "-");
   this.router.navigate(["/provider/program-provider", data.name, data._id])
     }else if(!data.categoryIds && !data.role){
+      let regCount = this.activitySearched + 1
+      this.cookies.set('activitySearched', String(regCount), 30);
       this.filterData.activityName = "";
   this.filterData.subcatId ='';
   this.filterData.categoryId =  data._id;
@@ -264,8 +266,8 @@ export class LandingComponent implements OnInit {
   this.router.navigate(["/search"]);
     }
     else if(data.categoryIds && !data.role){
-      let regCount = this.regWallCookies+1
-      this.cookies.set('regWall', String(regCount), 30);
+      let regCount = this.activitySearched + 1
+      this.cookies.set('activitySearched', String(regCount), 30);
       this.filterData.activityName = ''
       this.filterData.lat = ''
       this.filterData.lng = ''

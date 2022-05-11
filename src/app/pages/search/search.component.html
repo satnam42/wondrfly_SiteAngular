@@ -4,9 +4,10 @@
 <div class="beta-full" *ngIf="isBetaPopUp && !isLogin">
     <div class="beta-fullbox">
         <h1>
-            Wondrfly is currently a Beta program. To get full access, you would need to join as a Beta User.
+            Wondrfly is currently in beta. Join our exclusive
+             beta program to experience more!
         </h1>
-        <button [routerLink]="['/ask-to-join']">Join The Beta</button>
+        <button [routerLink]="['/ask-to-join']">JOIN BETA PROGRAM</button>
     </div>
 </div>
 <section class="main_outer common-headermargin" [ngClass]="{'click-disabled':isBetaPopUp && !isLogin}">
@@ -598,7 +599,7 @@
                                         <div class="media-right-icon-h2">
                                             <div>
                                                 <h2>
-                                                   <a style="color:#53B2E8;" class="cursor" routerLink="{{goToProgramDetail(program)}}"> {{ program?.name }}</a>
+                                                   <a  (click)="addAction(program?._id)" style="color:#53B2E8;" class="cursor" routerLink="{{goToProgramDetail(program)}}"> {{ program?.name }}</a>
                                                 </h2>
                                             </div>
                                             <div class="media-right-share-icon">

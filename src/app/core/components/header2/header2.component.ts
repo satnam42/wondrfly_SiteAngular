@@ -146,7 +146,7 @@ export class Header2Component implements OnInit {
   providersBySearch: any;
   lat: string
   lng: string
-  regWallCookies = 0;
+  activitySearched = 0;
   @ViewChild('search', { static: false }) searchElementRef: ElementRef;
   categoryData: any;
   constructor(
@@ -157,7 +157,7 @@ export class Header2Component implements OnInit {
     private ngZone: NgZone,
     private cookies: CookieService,
   ) {
-    this.regWallCookies = Number(this.cookies.get('regWall'))
+    this.activitySearched = Number(this.cookies.get('activitySearched'))
     this.routeName = this.router.url;
     if (this.routeName === "/search") {
       this.logoPosition = true;
@@ -180,8 +180,8 @@ export class Header2Component implements OnInit {
   }
     // search by sub category
   searchBySubCategory(id) {
-    let regCount = this.regWallCookies + 1
-    this.cookies.set('regWall', String(regCount), 30);
+    let regCount = this.activitySearched + 1
+    this.cookies.set('activitySearched', String(regCount), 30);
     this.filterData.activityName = ''
     this.filterData.lat = ''
     this.filterData.lng = ''
@@ -224,8 +224,8 @@ export class Header2Component implements OnInit {
   }
     // activity search by sub category
   searchByCategory(id) {
-    let regCount = this.regWallCookies + 1
-    this.cookies.set('regWall', String(regCount), 30);
+    let regCount = this.activitySearched + 1
+    this.cookies.set('activitySearched', String(regCount), 30);
     this.filterData.activityName = ''
     this.filterData.categoryId = id
     this.filterData.subcatId = ''
@@ -285,7 +285,8 @@ export class Header2Component implements OnInit {
           .then(() => this.router.navigate(["/provider/program-provider", data.name, data._id]));
       }
     } else if (!data.categoryIds && !data.role) {
-      this.filterData.activityName = "";
+      let regCount = this.activitySearched + 1
+      this.cookies.set('activitySearched', String(regCount), 30);      this.filterData.activityName = "";
       this.filterData.subcatId = '';
       this.filterData.categoryId = data._id;
       this.filterData.searchedCategoryKey = data.name;
@@ -298,8 +299,8 @@ export class Header2Component implements OnInit {
       }
     }
     else if (data.categoryIds && !data.role) {
-      let regCount = this.regWallCookies + 1
-      this.cookies.set('regWall', String(regCount), 30);
+      let regCount = this.activitySearched + 1
+      this.cookies.set('activitySearched', String(regCount), 30);
       this.filterData.activityName = ''
       this.filterData.lat = ''
       this.filterData.lng = ''

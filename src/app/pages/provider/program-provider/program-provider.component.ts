@@ -184,7 +184,7 @@ export class ProgramProviderComponent implements OnInit {
   selectedProgramTime: any = []
   currentUser: any;
   cookiesData: string;
-  regWallCookies = 0
+  activitySearched = 0
   moment = moment;
   minDate: moment.Moment;
   upArrow: boolean = false;
