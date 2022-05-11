@@ -138,7 +138,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   latt: any;
   lngg: any;
   weakDays = ['sunday', 'monday', 'tuesday', 'wednesday', 'thrusday', 'friday', 'saturday']
-  programTypes = ['Camps', 'Semesters', 'Drop-In', 'Other']
+  programTypes = ['Camps', 'Semesters', 'Drops-in', 'Other']
   programTimes = ['early-morning', 'morning', 'afternoon', 'late-afternoon', 'evening']
   programTimesShow = ['6am - 9am', '9am - 12pm', '12pm - 3pm', '3pm - 6pm', '6pm - 9pm']
   selectedDays: any = []
