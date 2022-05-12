@@ -23,7 +23,7 @@ button:focus {
   display: inline-block;
   text-align: center;
   font-family: "poppins";
-  font-size: 13px;
+  font-size: 14px;
   letter-spacing: 0.02em;
   text-transform: uppercase;
   font-weight: 600;
@@ -90,15 +90,14 @@ header .logo img {
 
 .page_heading h2 {
   font-family: "Poppins";
-  font-weight: 500;
+  font-weight: 600;
   font-size: 20px;
   line-height: 18px;
   color: #494949;
   margin-top: 15px;
-  padding-left: 38px;
   text-transform: capitalize;
   word-break: break-word;
-
+text-align: center;
 }
 
 .side_bar .progress-title {
@@ -140,12 +139,14 @@ header .logo img {
 
 
 .initial-alpha-profile {
-  position: relative;
-  background: #dcf3ff;
-  width: 130px;
-    height: 130px;
+    position: relative;
+    background: #dcf3ff;
+    width: 98px;
+    height: 98px;
     border-radius: 50%;
-    display: inline-block;
+    display: block;
+    margin: 0px auto;
+    text-align: center;
     overflow: hidden;
 }
 .initial-alpha-profile h1 {
@@ -154,7 +155,9 @@ header .logo img {
   left: 50%;
   transform: translate(-50%, -50%);
   color: #53b2e8;
-  font-size: 40px;
+  font-size: 50px;
+  line-height: 75px;
+  font-weight: 700;
   font-family: "poppins";
   text-transform: uppercase;
 }
@@ -260,7 +263,7 @@ header .logo img {
   background: #f2f2f2;
   box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
-  padding: 50px 34px 20px 100px;
+  padding: 50px 70px 40px 70px;
   margin-top:50px;
 }
 
@@ -289,9 +292,7 @@ header .logo img {
 }
 
 .details_form .form-group {
-  margin-bottom: 4px;
-  margin-top: 4px;
-  position: relative;
+  position: relative;margin-bottom: 10px;
 }
 
 .details_form .form-group .mat-form-field {
@@ -327,18 +328,18 @@ header .logo img {
   line-height: 14px;
   text-transform: uppercase;
   color: #494949;
-  padding: 0 0 0 15px;
+  padding: 0px;
 }
-
+.custom_select select{color: rgba(0, 0, 0, 0.3);}
 .form-group .form-control,
 .form-group input {
   width: 100%;
     min-height: 52px;
     height: auto;
     font-size: 13px;
-    color: #494949;
+    color: rgba(0, 0, 0, 0.3);
     transition: 0.8s;
-    padding: 14px;
+    padding: 15px;
     background: #FFFFFF;
     border: 1px solid #E5E9EC !important;
     box-sizing: border-box;
@@ -348,8 +349,10 @@ header .logo img {
 .form-group input:hover{
   border: 1px solid #53b2e8 !important;
 }
-
-
+.modal_custom .modal-body {
+  padding: 20px 15px 30px;
+}
+.mt-20{margin-top: 20px;}
 
 .form-group textarea.form-control {
   min-height: 180px;
@@ -433,8 +436,8 @@ header .logo img {
 }
 
 .bottom_arrow {
-  padding: 11px 0;
-  background: rgba(255, 255, 255, 0.1);
+  /* padding: 11px 0;
+  background: rgba(255, 255, 255, 0.1); */
   /* box-shadow: inset 0px 1px 0px rgba(0, 0, 0, 0.1); */
   width: 100%;
   margin-top: 30px;
@@ -476,6 +479,7 @@ span.parent-close {
 .personal_details .margin_top {
   margin-top: 38px;
 }
+.margin_bottom{margin-bottom: 15px;}
 
 /* .activity .media-left {
   max-width: 230px;
@@ -1216,17 +1220,17 @@ select.ng-invalid.ng-touched {
   text-align: center;
   position: relative;
 }
-
+/* 
 .notifications {
   margin-top: 28px;
-}
+} */
 
 .profile_outer {
   max-width: 148px;
   position: relative;
   padding-left: 10px;
   margin-left: auto;
-  margin-right: auto;
+  margin-right: auto; 
 }
 
 .profile_outer .profile_image {
@@ -1255,12 +1259,52 @@ select.ng-invalid.ng-touched {
   right: 0;
   bottom: 0;
 }
+.Children_table .edit_profile {
+  width: 22px!important;
+  height: 22px!important;
+  line-height: 15px!important;
+  left: 0;
+  right: -60px;
+  margin: 0px auto; 
+}
+.Children_table .edit_profile a label img {
+  width: 10px;
+}
+.btn-bg-blue{
+    color: #fff!important;
+    background-color: #53b2e8!important;
+    border-color: #53b2e8!important;
+}
 
+.mb-50{margin-bottom: 50px!important;}
 .guardian_table .guardian_profile {
   width: 97px;
   height: 97px;
   border-radius: 50%;
   overflow: hidden;
+}
+.Children_table .page_heading .profile_outer {
+  max-width: unset;
+  padding: 0px;
+}
+.Children_table .page_heading {
+  margin-top: 0;
+}
+.Children_table .content-childrenpart {
+  padding: 0px 20px 0px 35px;
+}
+.Children_table .content-childrenpart p {
+  font-size: 12px;
+  line-height: 18px;
+}
+.Children_table .content-childrenpart .content-btn button.btn_style {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: 0.001em;
+  min-height: unset;
+  padding: 6px 12px!important;
+  margin: 0px 10px 0px 0px!important;
 }
 
 .guardian_table tr td,
@@ -1350,7 +1394,7 @@ select.ng-invalid.ng-touched {
   border-radius: 20px;
   padding: 8px 12px;
   color: #494949;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .guardian_table .dropdown .dropdown-item:hover {
@@ -1985,12 +2029,12 @@ h2.description-activities {
 }
 
 .Children_table {
-  padding: 10px;
+  padding: 20px 20px 20px 30px;
   background: #ffffff;
   box-shadow: 0px 4px 4px rgb(0 0 0 / 10%);
   border-radius: 20px;
-  padding-top: 35px;
-  padding-bottom: 40px;
+  /* padding-top: 35px;
+  padding-bottom: 40px; */
   display: flex;
 }
 .guardian_table .dropdown {
@@ -2010,7 +2054,6 @@ h2.description-activities {
   text-transform: capitalize;
   margin-top: 5px;
   padding-left: 0px;
-  margin-left: -13px;
 }
 .Children_table .page_heading h3 {
   font-family: "Poppins";
@@ -2143,6 +2186,7 @@ span.text-absolu {
 }
 .notifications.down-spacing {
   display: flex;
+  column-gap: 20px;
   padding-bottom: 80px;
 }
 
@@ -2168,7 +2212,7 @@ span.text-absolu {
   font-family: "Poppins";
   font-size: 12px;
   font-weight: 600;
-  line-height: 14px;
+  line-height: 18px;
   text-transform: uppercase;
   color: #494949;
   padding-left: 0px;

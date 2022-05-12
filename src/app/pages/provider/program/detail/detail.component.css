@@ -1484,6 +1484,7 @@ button.addimagebtn {
   position: relative;
   top: -3px;
   left: 10px;
+  min-width: 175px;
 }
 .star-daialogbox {
   position: absolute;
