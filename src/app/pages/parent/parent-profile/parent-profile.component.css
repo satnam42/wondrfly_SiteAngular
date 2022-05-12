@@ -332,14 +332,13 @@ text-align: center;
   color: #494949;
   padding: 0px;
 }
-.custom_select select{color: rgba(0, 0, 0, 0.3);}
 .form-group .form-control,
 .form-group input {
   width: 100%;
     min-height: 52px;
     height: auto;
     font-size: 13px;
-    color: rgba(0, 0, 0, 0.3);
+    color: #494949;
     transition: 0.8s;
     padding: 15px;
     background: #FFFFFF;
