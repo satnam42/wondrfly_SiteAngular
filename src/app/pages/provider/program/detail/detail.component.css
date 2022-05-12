@@ -1545,7 +1545,7 @@ button.bt-chat {
   grid-template-columns: 15px auto;
   column-gap: 5px;
   align-items: center;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 .media-body.body-detail-info {
   padding-bottom: 15px!important;
@@ -1577,9 +1577,6 @@ button.bt-chat {
   overflow: hidden;
   text-overflow: ellipsis;
   margin-bottom: 0px!important;
-}
-.media-body.body-detail-info .media-right-icon-h2 {
-  margin-bottom: 10px!important;
 }
 /* map popup */
 /* .map-popup {
@@ -1803,7 +1800,7 @@ span#closeBtn {
 }
 .media-scroable .media.activity {
     min-width: 220px;
-    /* max-width: 220px; */
+    max-width: 220px;
     border: 0px;
     margin: 0px;
     padding-bottom: 20px;
@@ -1821,11 +1818,9 @@ span#closeBtn {
 .display-none {
     display: none;
 }
-.media-scroable .media.activity .media-body {background: #FFFFFF;box-shadow: 0px 10px 20px rgb(0 0 0 / 10%);position: relative;border-radius: 18px;padding: 20px;min-height: 282px;}
+.media-scroable .media.activity .media-body {background: #FFFFFF;box-shadow: 0px 10px 20px rgb(0 0 0 / 10%);position: relative;border-radius: 18px;padding: 20px;min-height: 235px;}
 .media-scroable .media.activity .media-body h2 {font-family: 'Poppins';font-style: normal;font-weight: 400;font-size: 14px;line-height: 21px;align-items: center;letter-spacing: 0.001em;color: #53B2E8;max-width: 100%;display: -webkit-box;min-height: 45px;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;}
-.media-right-icon-h2 {display: grid;grid-template-columns: auto 30px;margin-bottom: 20px; 
-  /* align-items: center;height: 50px; */
-}
+.media-right-icon-h2 {display: grid;grid-template-columns: auto 30px;margin-bottom: 10px;}
 .activity .media-body .bookmark_outer {
   display: inline-block;
   margin: 0 0 0 9px;

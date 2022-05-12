@@ -2649,12 +2649,12 @@ ul.ul-tag-checkbox-info ul.ul-tag-checkbox-child .checkbox-txt {
   padding: 20px;
   margin-right: 5px;
   margin-left: 5px;
-  min-height: 231px;
+  min-height: 205px;
 }
 .my-saved-carousel-slider .media-scroable .media-body .media-right-icon-h2 {
   display: grid;
   grid-template-columns: auto 30px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 .my-saved-body-content {
   border-bottom: 1px solid #E0E0E0;
@@ -2682,7 +2682,7 @@ ul.ul-tag-checkbox-info ul.ul-tag-checkbox-child .checkbox-txt {
   grid-template-columns: 15px auto;
   align-items: center;
   column-gap: 5px;
-  margin-bottom: 10px;
+  margin-bottom: 4px;
 }
 .my-saved-carousel-slider .media-body .left-icon-box-media p {
   font-family: 'Poppins';
