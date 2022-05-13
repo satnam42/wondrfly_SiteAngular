@@ -203,7 +203,8 @@ export class SearchComponent implements OnInit, OnDestroy {
     // this.exploreModal()
     var retrievedObject = localStorage.getItem('CurrentUserWondrfly');
     this.userData = JSON.parse(retrievedObject);
-    if (this.filterData.subcatId || this.filterData.categoryId || this.filterData.kidAge) {
+    this.selectedProgramTypes.push('Drops-in')
+    if (this.filterData.subcatId || this.filterData.categoryId || this.filterData.kidAge || this.selectedProgramTypes.length) {
       this.categoryId = this.filterData.categoryId
       this.searchedSubCategory = this.filterData.searchedCategoryKey
       if (this.filterData.subcatId) {

@@ -1305,7 +1305,7 @@ select.ng-invalid.ng-touched {
   letter-spacing: 0.001em;
   min-height: unset;
   padding: 6px 12px!important;
-  margin: 0px 10px 0px 0px!important;
+  margin: 0px 10px 10px 0px!important;
 }
 
 .guardian_table tr td,
