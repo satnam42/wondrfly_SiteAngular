@@ -138,7 +138,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   latt: any;
   lngg: any;
   weakDays = ['sunday', 'monday', 'tuesday', 'wednesday', 'thrusday', 'friday', 'saturday']
-  programTypes = ['Camps', 'Semesters', 'Drops-in', 'Other']
+  programTypes = ['Camps', 'Semesters', 'Drop-ins', 'Other']
   programTimes = ['early-morning', 'morning', 'afternoon', 'late-afternoon', 'evening']
   programTimesShow = ['6am - 9am', '9am - 12pm', '12pm - 3pm', '3pm - 6pm', '6pm - 9pm']
   selectedDays: any = []
@@ -203,7 +203,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     // this.exploreModal()
     var retrievedObject = localStorage.getItem('CurrentUserWondrfly');
     this.userData = JSON.parse(retrievedObject);
-    this.selectedProgramTypes.push('Drops-in')
+    this.selectedProgramTypes.push('Drop-ins')
     if (this.filterData.subcatId || this.filterData.categoryId || this.filterData.kidAge || this.selectedProgramTypes.length) {
       this.categoryId = this.filterData.categoryId
       this.searchedSubCategory = this.filterData.searchedCategoryKey
@@ -717,6 +717,9 @@ export class SearchComponent implements OnInit, OnDestroy {
         }
       }
       for (let type of this.selectedProgramTypes) {
+        if(type==='Drop-ins'){
+          type='Drops-in'
+        }
         this.isTypeFilter = true
         if (typesCount === 1) {
           types += type
