@@ -660,13 +660,73 @@ span.wnderfly-btn {
     color: #828282;
     margin-left: 20px;
 }
-
-
-
-
 ::ng-deep.chips-box span.mat-form-field-label-wrapper {
   display: none;
 }
 ::ng-deep.mat-chip-list-wrapper{
   margin: 0px !important;
 }
+
+.add-child-txt-h4 {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 10px;
+  line-height: 15px;
+  letter-spacing: 0.01em;
+  text-transform: capitalize;
+  color: #53b2e8;
+  text-align: left;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.add-another-box {
+  display: grid;
+  grid-template-columns: auto 42px;
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #53b2e8;
+  box-sizing: border-box;
+  border-radius: 20px;
+  padding: 10px 15px;
+  column-gap: 10px;
+  text-align: left;
+}
+.child-name-h4, .child-dob-h4 {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: 0.001em;
+  color: #494949;
+}
+.child-name-dob-info {
+  display: flex;
+  column-gap: 15px;
+  align-items: center;
+}
+.child-edit-delete-info {
+  display: flex;
+  column-gap: 10px;
+}
+button.child-interests-btn {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: 0.001em;
+  color: #53b2e8;
+  background-color: #fff;
+  padding: 3px 10px;
+  border: 1px solid #53b2e8;
+  border-radius: 40px;
+  margin: 2px 5px 2px 0px;
+  display: inline-block;
+}
+.edit-child-btn, .delete-child-btn {
+  cursor: pointer;
+}
+.mt-15{margin-top: 15px;}
+.pt-0{padding-top: 0px;}

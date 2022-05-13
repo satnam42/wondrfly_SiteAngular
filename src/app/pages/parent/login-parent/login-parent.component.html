@@ -78,9 +78,26 @@
                     <!-- These details will help us find personalized activity recommendations <br> based on your child's age, interests and availability -->
                 </p>
            
-
                 <div class="N_inputs_container">
                     <form [formGroup]="addChildForm">
+                        <div class="business_name">
+                            <div class="add-another-child-info">
+                                <div class="add-another-box">
+                                    <div class="child-name-dob-info">
+                                        <div><h4 class="child-name-h4">Joe</h4></div>
+                                        <div><h4 class="child-dob-h4"><img src="/assets/calendar-black-icon.svg"/> 01 May 2016</h4></div>
+                                        <div class="child-interests-btn-info">
+                                            <button class="child-interests-btn">Soccer <img src="/assets/crose-blue-icon.svg"/></button>
+                                            <button class="child-interests-btn">+5 more</button>
+                                        </div>
+                                    </div>
+                                    <div class="child-edit-delete-info">
+                                        <div class="edit-child-btn"><img src="/assets/edit-blue-icon.svg"/></div>
+                                        <div class="delete-child-btn"><img src="/assets/delet-blue-icon.svg"/></div>
+                                    </div>    
+                                </div>
+                            </div>
+                        </div>
                         <div class="business_name">
                             <div class="N_container_box_input_heading">NAME</div>
                             <input type="text" placeholder="Type" form [formControl]="addChildForm.controls['name']" class="my_inputs" [(ngModel)]="kid.name" />
@@ -103,9 +120,12 @@
                             <div class="N_container_box_input_heading">DATE OF BIRTH</div>
                             <input type="date" id="listingDate" min='2007-01-01' placeholder="mm/dd/yy" [formControl]="addChildForm.controls['dob']" class="my_inputs" [(ngModel)]="kid.dob" />
                         </div>
-                        <div class="business_name">
+                        <div class="business_name pt-0">
                             <div class="N_container_box_input_heading">how did you hear about us?</div>
                             <input type="text" [formControl]="locationForm.controls['source']" [(ngModel)]="parent.source" placeholder="Type" class="my_inputs" />
+                        </div>
+                        <div class="add-another-child-txt mt-15">
+                            <h4 class="add-child-txt-h4">+ Add Another Child</h4>
                         </div>
                     </form>
                 </div>
