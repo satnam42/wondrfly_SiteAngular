@@ -287,7 +287,38 @@
                                     </div>
                                 </div>
                             </li>
+                            <li class="cursor">
+                                <a aria-expanded="true" [ngClass]="{ active:(isOnline || isInPerson)}" aria-expanded="true"
+                                    data-target="#format" data-toggle="collapse">Format</a>
+                                <div class="collapse main_collpase typess verification_modal" id="format"
+                                    data-parent="#accordionExample">
+                                    <div class="collpase_content">
+                                        <div class="form-group typess">
+                                            <div class="input_outer">
+                                                <form action="">
+                                                    <div class="typess-flex" >
+                                                        <input type="checkbox" [checked]="isOnline && !isInPerson"
+                                                        (change)="(isOnline?isOnline=false:isOnline=true);(isInPerson?isInPerson=false:false);programFilter()"
+                                                            class="k-checkbox" />
+                                                          
+                                                        <label  class="k-checkbox-label"
+                                                            for="type1">Online</label>
+                                                    </div>
+                                                    <div class="typess-flex">
+                                                        <input type="checkbox" [checked]="!isOnline && isInPerson"
+                                                        (change)="(isInPerson?isInPerson=false:isInPerson=true);(isOnline?isOnline=false:false);programFilter()"
+                                                            class="k-checkbox" />
+                                                            <label  class="k-checkbox-label"
+                                                            for="type1">In-person</label>
+                                                    </div>
 
+
+                                                </form>
+                                            </div>
+                                        </div>
+                                   </div>
+                                </div>
+                            </li>
                             <li class="cursor">
                                 <a class="top-rateds" aria-expanded="true" [ngClass]="{ active: isTopFilter }"><span
                                         class="simple-toggle">
@@ -599,7 +630,8 @@
                                         <div class="media-right-icon-h2">
                                             <div>
                                                 <h2>
-                                                   <a  (click)="addAction(program?._id)" style="color:#53B2E8;" class="cursor" routerLink="{{goToProgramDetail(program)}}"> {{ program?.name }}</a>
+                                                   <a data-toggle="tooltip" data-placement="bottom"
+                                                   title="{{program?.name}}" (click)="addAction(program?._id)" style="color:#53B2E8;" class="cursor" routerLink="{{goToProgramDetail(program)}}"> {{ program?.name }}</a>
                                                 </h2>
                                             </div>
                                             <div class="media-right-share-icon">

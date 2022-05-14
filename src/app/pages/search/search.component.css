@@ -1897,6 +1897,32 @@ span.close-filter {
     align-items: flex-end;
 }
 
+
+
+
+
+#format .form-group.typess input {
+    width: auto !important;
+    min-height: 0px;
+    padding: 8px;
+}
+
+#format {
+    min-width: auto;
+    padding: 10px;
+}
+
+#format .form-group.typess label {
+    line-height: 16px;
+    margin-top: 15px;
+}
+
+#format .typess-flex {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
 #Dayss .form-group.typess input {
     width: auto !important;
     min-height: 0px;

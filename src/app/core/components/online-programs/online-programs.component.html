@@ -160,7 +160,8 @@
                                 <div class="media-right-icon-h2">
                                     <div>
                                         <h2 class="cursor">
-                                            <a style="color:#53B2E8;" class="cursor" routerLink="{{goToProgramDetail(program)}}"> {{ program?.name }}</a>
+                                            <a data-toggle="tooltip" data-placement="bottom"
+                                            title="{{program?.name}}"  style="color:#53B2E8;" class="cursor" routerLink="{{goToProgramDetail(program)}}"> {{ program?.name }}</a>
                                         </h2>
                                     </div>
                                     <div class="media-right-share-icon">
