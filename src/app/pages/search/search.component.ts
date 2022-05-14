@@ -559,9 +559,9 @@ export class SearchComponent implements OnInit, OnDestroy {
         if (!this.providerProgram.length) {
           this.isLoaded = true
         }
-        this.providerProgram[0].collapsed = true
-        this.providerProgram[1].collapsed = true
-        this.providerProgram[2].collapsed = true
+        // this.providerProgram[0].collapsed = true
+        // this.providerProgram[1].collapsed = true
+        // this.providerProgram[2].collapsed = true
         this.ngxLoader.stop()
       }
       const sum = this.providerProgram.reduce((accumulator, object) => {
@@ -800,16 +800,16 @@ export class SearchComponent implements OnInit, OnDestroy {
           if (!this.providerProgram.length) {
             this.isLoaded = true
           }
-          if (this.providerProgram.length) {
-            this.providerProgram[0].collapsed = true
-          }
-          if (this.providerProgram.length == 2) {
-            this.providerProgram[1].collapsed = true
-          }
-          else if (this.providerProgram.length > 2) {
-            this.providerProgram[1].collapsed = true
-            this.providerProgram[2].collapsed = true
-          }
+          // if (this.providerProgram.length) {
+          //   this.providerProgram[0].collapsed = true
+          // }
+          // if (this.providerProgram.length == 2) {
+          //   this.providerProgram[1].collapsed = true
+          // }
+          // else if (this.providerProgram.length > 2) {
+          //   this.providerProgram[1].collapsed = true
+          //   this.providerProgram[2].collapsed = true
+          // }
           // if (categoryId || this.selectedSubCategories.length) {
           const sum = this.providerProgram.reduce((accumulator, object) => {
             return accumulator + object.programs.length;

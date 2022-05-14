@@ -535,12 +535,12 @@
                                     <div class="media-top-txt-div justify-content-right">
                                         <div class="view-less-div">
                                             <div class="view-less-txt-info collapsed">
-                                                <a *ngIf="!provider.collapsed" class="btn-view-less"
-                                                    (click)="provider.collapsed=true" aria-expanded="false"
-                                                    aria-controls="collapseDosing">View More <i
-                                                        class="fas fa-chevron-down"></i></a>
                                                 <a *ngIf="provider.collapsed" class="btn-view-less"
                                                     (click)="provider.collapsed=false" aria-expanded="false"
+                                                    aria-controls="collapseDosing">View More <i
+                                                        class="fas fa-chevron-down"></i></a>
+                                                <a *ngIf="!provider.collapsed" class="btn-view-less"
+                                                    (click)="provider.collapsed=true" aria-expanded="false"
                                                     aria-controls="collapseDosing">View Less <i
                                                         class="fas fa-chevron-up"></i></a>
                                             </div>
@@ -573,7 +573,7 @@
                         <!-- --------------------------------------------------Programs list second without map--------------------------------------------------- -->
                         <div [id]="'programDiv'+providerIndx" class="map-carousel-slider"
                             aria-labelledby="heading-dosing"
-                            [ngClass]="{'collapse': !providerProgram[providerIndx].collapsed, 'collapsed': providerProgram[providerIndx].collapsed}">
+                            [ngClass]="{'collapse': providerProgram[providerIndx].collapsed, 'collapsed': !providerProgram[providerIndx].collapsed}">
                             <div class="left-resourcebtn"
                                 *ngIf="isMap?provider?.programs?.length>2:provider?.programs?.length>6">
                                 <a>

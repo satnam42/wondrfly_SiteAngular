@@ -124,8 +124,8 @@
                         <div class="media-top-txt-div justify-content-right"> 
                             <div class="view-less-div">
                                 <div class="view-less-txt-info">
-                                    <a *ngIf="!provider.collapsed" class="btn-view-less"   (click)="provider.collapsed=true" aria-expanded="false" aria-controls="collapseDosing">View More  <i class="fas fa-chevron-down"></i></a>
-                                    <a *ngIf="provider.collapsed" class="btn-view-less"  (click)="provider.collapsed=false" aria-expanded="false" aria-controls="collapseDosing">View Less  <i class="fas fa-chevron-up"></i></a> 
+                                    <a *ngIf="provider.collapsed" class="btn-view-less"   (click)="provider.collapsed=false" aria-expanded="false" aria-controls="collapseDosing">View More  <i class="fas fa-chevron-down"></i></a>
+                                    <a *ngIf="!provider.collapsed" class="btn-view-less"  (click)="provider.collapsed=true" aria-expanded="false" aria-controls="collapseDosing">View Less  <i class="fas fa-chevron-up"></i></a> 
                                 </div>
                             </div>
                         </div>
@@ -140,8 +140,7 @@
                     </div>
                     </div>   
                 </div>
-                <!-------------------Programs list first with map--------------------->
-                <div class="collapse"[id]="'programDiv'+providerIndx" [ngClass]="{'collapse': !provider_programs[providerIndx].collapsed, 'collapsed': provider_programs[providerIndx].collapsed}">
+                <div class="collapse"[id]="'programDiv'+providerIndx" [ngClass]="{'collapse': provider_programs[providerIndx].collapsed, 'collapsed': !provider_programs[providerIndx].collapsed}">
                 <div class="map-carousel-slider map-without-slider-info">
                     <div class="left-resourcebtn" *ngIf="provider?.programs?.length>5">
                         <a>

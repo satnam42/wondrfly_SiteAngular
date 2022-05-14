@@ -315,7 +315,7 @@
                                             <img src="assets/edit_skyblue.svg" alt="Edit Image" />
                                         </a>
                                     </div>
-                                    <h2>About us</h2>
+                                    <h2>About {{user?.firstName}}</h2>
                                     <div class="media">
                                         <!-- <div class="media-left">
                       <div class="people_profile" [class.initial-alpha]="!user?.avatarImages">
@@ -328,16 +328,19 @@
                       </div>
                       <h4>{{ user?.firstName }}</h4>
                     </div> -->
-                                        <div class="media-body">
+                                       
+                    
+                    
+                    <div class="media-body">
                                             <p>{{ user?.note }}</p>
-                                            <div class="skills_sec" *ngIf="user?.subCategoryIds?.length">
+                                            <!-- <div class="skills_sec" *ngIf="user?.subCategoryIds?.length">
                                                 <h3>Activities</h3>
                                                 <div class="skill_flex">
                                                 <div class="skill_outer" *ngFor="let skill of user?.subCategoryIds">
                                                     <span>{{ skill?.name }}</span>
                                                 </div>
                                             </div>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                 </div>
