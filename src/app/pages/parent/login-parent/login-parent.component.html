@@ -80,20 +80,20 @@
            
                 <div class="N_inputs_container">
                     <form [formGroup]="addChildForm">
-                        <div class="business_name">
+                        <div class="business_name" *ngFor="let kid of kids;let i = index">
                             <div class="add-another-child-info">
                                 <div class="add-another-box">
                                     <div class="child-name-dob-info">
-                                        <div><h4 class="child-name-h4">Joe</h4></div>
-                                        <div><h4 class="child-dob-h4"><img src="/assets/calendar-black-icon.svg"/> 01 May 2016</h4></div>
-                                        <div class="child-interests-btn-info">
-                                            <button class="child-interests-btn">Soccer <img src="/assets/crose-blue-icon.svg"/></button>
-                                            <button class="child-interests-btn">+5 more</button>
+                                        <div><h4 class="child-name-h4 name-fix-width">{{kid?.name}}</h4></div>
+                                        <div><h4 class="child-dob-h4"><img src="/assets/calendar-black-icon.svg"/>{{kid?.dob | date:'dd LLL yyyy'}}</h4></div>
+                                        <div class="child-interests-btn-info" *ngIf="kid?.interestInfo?.length">
+                                            <button class="child-interests-btn">{{kid?.interestInfo[0]?.name}} <img (click)="kid?.interestInfo.splice(0,1)" src="/assets/crose-blue-icon.svg"/></button>
+                                            <button *ngIf="kid?.interestInfo?.length>1" class="child-interests-btn">+{{kid?.interestInfo?.length-1}} more</button>
                                         </div>
                                     </div>
                                     <div class="child-edit-delete-info">
                                         <div class="edit-child-btn"><img src="/assets/edit-blue-icon.svg"/></div>
-                                        <div class="delete-child-btn"><img src="/assets/delet-blue-icon.svg"/></div>
+                                        <div class="delete-child-btn"><img (click)="kids.splice(i,1)" src="/assets/delet-blue-icon.svg"/></div>
                                     </div>    
                                 </div>
                             </div>
@@ -120,12 +120,147 @@
                             <div class="N_container_box_input_heading">DATE OF BIRTH</div>
                             <input type="date" id="listingDate" min='2007-01-01' placeholder="mm/dd/yy" [formControl]="addChildForm.controls['dob']" class="my_inputs" [(ngModel)]="kid.dob" />
                         </div>
-                        <div class="business_name pt-0">
+                        <div class="business_name">
+                            <div class="N_container_box_input_heading">CHILD INTRESTS</div>
+                            <form>
+                                <div >
+                                    <!-- <div class="form-group">
+                                        <div class="input_outer">
+                                            <div class="ng-autocomplete">
+                                                <ng-autocomplete [data]="searchTags?.tags" placeholder="Type" [searchKeyword]="keyword" (selected)="selectEvent($event)" (inputChanged)="onChangeSearch($event)" [itemTemplate]="itemTemplates" [notFoundTemplate]="notFoundTemplates">
+                                                </ng-autocomplete>
+            
+                                                <ng-template #itemTemplates let-item>
+                                                    <a [innerHTML]="item.name"></a>
+                                                </ng-template>
+            
+                                                <ng-template #notFoundTemplates let-notFound>
+                                                    <div *ngIf="searchTags?.tags?.length" [innerHTML]="notFound"></div>
+                                                </ng-template>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <mat-form-field class="demo-chip-list">
+                                            <mat-chip-list>
+                                                <mat-chip *ngFor="let t of selectedTags" [selectable]="selectable" [removable]="removable" (removed)="remove(t)">
+                                                    {{ t.name }}
+                                                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                                </mat-chip>
+                                            </mat-chip-list>
+                                        </mat-form-field>
+                                    </div> -->
+                                
+                                    <div class="form-group">
+                                        <!-- <label>Interest</label> -->
+                                        <div class="input_outer">
+                                            <!-- <input type="text" placeholder="Search" class="form-control" autocomplete="off"  (change)="onChangeSearch($event)" [(ngModel)]="keyword" name="Intrest" /> -->
+                                            <input type="text" placeholder="Type Activities" class="form-control" autocomplete="off"
+                                                [formControl]="searchTagValue" [(ngModel)]="keyword" name="Intrest" />
+            
+                                        </div>
+                                    </div>
+                                    <!-- <div class="search-checkbox-info" [hidden]="!searchedTags?.length || !keyword">
+                                        <div class="search-checkbox-div">
+                                            <ul class="ul-tag-checkbox-info">
+                                                <li *ngFor="let category of searchedTags;let i = index">
+                                                    <label class="box-checkbox-txt">
+                                                        <input type="checkbox" [checked]="searchedTags[i].category.isSelected"
+                                                            (click)="checkOrUncheckAllTags($event,i)" [id]="'category'+i">
+                                                        <span class="checkmark"></span>
+                                                        <span class="checkbox-txt">{{category.category.name}}</span>
+                                                    </label>
+                                                    <ul class="ul-tag-checkbox-child">
+                                                        <li *ngFor="let subCategory of category.tags;let j = index">
+                                                            <label class="box-checkbox-txt">
+                                                                <input type="checkbox" [checked]="category.tags[j].isSelected"
+                                                                    (click)="checkOrUncheckTag($event,i,j)">
+                                                                <span class="checkmark"></span>
+                                                                <span class="checkbox-txt">{{subCategory.name}}</span>
+                                                            </label>
+                                                        </li>
+            
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div> -->
+                                    <div class="search-checkbox-info" [hidden]="!searchedTags?.length || !keyword">
+                                        <div class="search-checkbox-div">
+                                            <ul class="ul-tag-checkbox-info">
+                                                <li *ngFor="let category of searchedTags;let i = index">
+                                                    <div class="grid-label-checkbox">
+                                                    <label class="box-checkbox-txt">
+                                                        <input type="checkbox" [checked]="searchedTags[i].category.isSelected"
+                                                            (click)="checkOrUncheckAllTags($event,i)" [id]="'category'+i">
+                                                        <span class="checkmark"></span>
+                                                        <span class="checkbox-txt">{{category?.category?.name}}</span>
+                                                    </label>
+                                                    <!-- <div class="ul-tag-btn-showall">
+                                                        <a  *ngIf="!category.collapsed" class="btn-showall cursor" (click)="category.collapsed=true" >Show all<i class="fas fa-chevron-down"></i></a>
+                                                        <a *ngIf="category.collapsed" class="btn-showall cursor" (click)="category.collapsed=false" > Hide all <i class="fas fa-chevron-up"></i></a>
+                                                    </div> -->
+                                                    <div class="ul-tag-btn-showall">
+                                                        <a class="btn-showall cursor" (click)="getSubCateById(category?.category,i)"  >Show all<i class="fas fa-chevron-down"></i></a>
+                                                    </div>
+                                                    </div>
+                                                    <!-- <ul class="ul-tag-checkbox-child" [ngClass]="{'collapse': !searchedTags[i].collapsed, 'collapsed': searchedTags[i].collapsed}"> -->
+                                                    <ul class="ul-tag-checkbox-child">
+                                                        <li *ngFor="let subCategory of category.tags;let j = index">
+                                                            <label class="box-checkbox-txt">
+                                                                <input type="checkbox" [checked]="category.tags[j].isSelected"
+                                                                    (click)="checkOrUncheckTag($event,i,j)">
+                                                                <span class="checkmark"></span>
+                                                                <span class="checkbox-txt">{{subCategory.name}}</span>
+                                                            </label>
+                                                        </li>
+            
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- End search check box html -->
+                                    <div class="form-group" *ngIf="kid?.interestInfo?.length">
+                                        <br />
+                                        <div class="chips-box">
+                                            <div class="chips-scrollbar">   
+                                           <mat-form-field class="demo-chip-list">
+                                               <mat-chip-list>
+                                                   <mat-chip *ngFor="let t of kid?.interestInfo; let indx = index"
+                                                       [selectable]="selectable" [removable]="removable" (removed)="remove(t)">
+                                                       {{ t.name }}
+                                                       <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                                   </mat-chip>
+                                               </mat-chip-list>
+                                           </mat-form-field>
+                                           </div>
+                                       </div>
+                                    </div>
+                                
+                                </div>
+                                <!-- <div class="small_boxes">
+                                    <div class="row">
+                                        <div class="col-3" *ngFor="let tag of tags | slice: 0:8">
+                                            <div class="category_list" (click)="selectSkills(tag)">
+                                                <div class="box-border" [ngClass]="{ active: tag.active }">
+                                                    <img class="cat_img my_box" *ngIf="tag?.icon" src="{{baseUrl+tag?.icon}}" alt="icon" />
+                                                    <img class="cat_img my_box" *ngIf="!tag?.icon" src="assets/favicon.svg" alt="icon" />
+                                                </div>
+            
+                                                <span [ngClass]="{ active: tag.active }">
+                                {{ tag.name }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> -->
+                            </form>
+                        </div>
+                        <!-- <div class="business_name pt-0">
                             <div class="N_container_box_input_heading">how did you hear about us?</div>
                             <input type="text" [formControl]="locationForm.controls['source']" [(ngModel)]="parent.source" placeholder="Type" class="my_inputs" />
-                        </div>
+                        </div> -->
                         <div class="add-another-child-txt mt-15">
-                            <h4 class="add-child-txt-h4">+ Add Another Child</h4>
+                            <h4 class="add-child-txt-h4"  (click)="validAge('add-another-child')">+ Add Another Child</h4>
                         </div>
                     </form>
                 </div>
@@ -138,7 +273,7 @@
                             </div>
                         </div>
                         <div class="col-6">
-                            <div [ngClass]="{ disable_next: !kid.name }" (click)="validAge()" class="next_btn cursor">
+                            <div [ngClass]="{ disable_next: !kid.name }"  (click)="validAge()" class="next_btn cursor">
                                 <a> Next </a>
                             </div>
                         </div>
@@ -146,71 +281,21 @@
                 </div>
             </div>
 
-            <div *ngIf="step3" class="box text-center p-3 bg-white">
+            <!-- <div *ngIf="step3" class="box text-center p-3 bg-white">
                 <h2 class="my_heading1">Which activities is your child interested in?</h2>
                 <br />
                 <form>
                     <div class="N_inputs_container">
-                        <!-- <div class="form-group">
-                            <div class="input_outer">
-                                <div class="ng-autocomplete">
-                                    <ng-autocomplete [data]="searchTags?.tags" placeholder="Type" [searchKeyword]="keyword" (selected)="selectEvent($event)" (inputChanged)="onChangeSearch($event)" [itemTemplate]="itemTemplates" [notFoundTemplate]="notFoundTemplates">
-                                    </ng-autocomplete>
-
-                                    <ng-template #itemTemplates let-item>
-                                        <a [innerHTML]="item.name"></a>
-                                    </ng-template>
-
-                                    <ng-template #notFoundTemplates let-notFound>
-                                        <div *ngIf="searchTags?.tags?.length" [innerHTML]="notFound"></div>
-                                    </ng-template>
-                                </div>
-                            </div>
-                            <br />
-                            <mat-form-field class="demo-chip-list">
-                                <mat-chip-list>
-                                    <mat-chip *ngFor="let t of selectedTags" [selectable]="selectable" [removable]="removable" (removed)="remove(t)">
-                                        {{ t.name }}
-                                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                                    </mat-chip>
-                                </mat-chip-list>
-                            </mat-form-field>
-                        </div> -->
+                    
                     
                         <div class="form-group">
-                            <!-- <label>Interest</label> -->
                             <div class="input_outer">
-                                <!-- <input type="text" placeholder="Search" class="form-control" autocomplete="off"  (change)="onChangeSearch($event)" [(ngModel)]="keyword" name="Intrest" /> -->
                                 <input type="text" placeholder="Type Activities" class="form-control" autocomplete="off"
                                     [formControl]="searchTagValue" [(ngModel)]="keyword" name="Intrest" />
 
                             </div>
                         </div>
-                        <!-- <div class="search-checkbox-info" [hidden]="!searchedTags?.length || !keyword">
-                            <div class="search-checkbox-div">
-                                <ul class="ul-tag-checkbox-info">
-                                    <li *ngFor="let category of searchedTags;let i = index">
-                                        <label class="box-checkbox-txt">
-                                            <input type="checkbox" [checked]="searchedTags[i].category.isSelected"
-                                                (click)="checkOrUncheckAllTags($event,i)" [id]="'category'+i">
-                                            <span class="checkmark"></span>
-                                            <span class="checkbox-txt">{{category.category.name}}</span>
-                                        </label>
-                                        <ul class="ul-tag-checkbox-child">
-                                            <li *ngFor="let subCategory of category.tags;let j = index">
-                                                <label class="box-checkbox-txt">
-                                                    <input type="checkbox" [checked]="category.tags[j].isSelected"
-                                                        (click)="checkOrUncheckTag($event,i,j)">
-                                                    <span class="checkmark"></span>
-                                                    <span class="checkbox-txt">{{subCategory.name}}</span>
-                                                </label>
-                                            </li>
-
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div> -->
+                     
                         <div class="search-checkbox-info" [hidden]="!searchedTags?.length || !keyword">
                             <div class="search-checkbox-div">
                                 <ul class="ul-tag-checkbox-info">
@@ -222,15 +307,11 @@
                                             <span class="checkmark"></span>
                                             <span class="checkbox-txt">{{category?.category?.name}}</span>
                                         </label>
-                                        <!-- <div class="ul-tag-btn-showall">
-                                            <a  *ngIf="!category.collapsed" class="btn-showall cursor" (click)="category.collapsed=true" >Show all<i class="fas fa-chevron-down"></i></a>
-                                            <a *ngIf="category.collapsed" class="btn-showall cursor" (click)="category.collapsed=false" > Hide all <i class="fas fa-chevron-up"></i></a>
-                                        </div> -->
+                                    
                                         <div class="ul-tag-btn-showall">
                                             <a class="btn-showall cursor" (click)="getSubCateById(category?.category,i)"  >Show all<i class="fas fa-chevron-down"></i></a>
                                         </div>
                                         </div>
-                                        <!-- <ul class="ul-tag-checkbox-child" [ngClass]="{'collapse': !searchedTags[i].collapsed, 'collapsed': searchedTags[i].collapsed}"> -->
                                         <ul class="ul-tag-checkbox-child">
                                             <li *ngFor="let subCategory of category.tags;let j = index">
                                                 <label class="box-checkbox-txt">
@@ -246,7 +327,6 @@
                                 </ul>
                             </div>
                         </div>
-                        <!-- End search check box html -->
                         <div class="form-group" *ngIf="kid?.interestInfo?.length">
                             <br />
                             <div class="chips-box">
@@ -265,21 +345,7 @@
                         </div>
                     
                     </div>
-                    <!-- <div class="small_boxes">
-                        <div class="row">
-                            <div class="col-3" *ngFor="let tag of tags | slice: 0:8">
-                                <div class="category_list" (click)="selectSkills(tag)">
-                                    <div class="box-border" [ngClass]="{ active: tag.active }">
-                                        <img class="cat_img my_box" *ngIf="tag?.icon" src="{{baseUrl+tag?.icon}}" alt="icon" />
-                                        <img class="cat_img my_box" *ngIf="!tag?.icon" src="assets/favicon.svg" alt="icon" />
-                                    </div>
-
-                                    <span [ngClass]="{ active: tag.active }">
-                    {{ tag.name }}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
+              
                 </form>
                 <div class="N_btns">
                     <div class="row">
@@ -295,139 +361,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- <div *ngIf="step4" class="box text-center p-3 bg-white">
-                <p></p>
-                <h2 class="my_heading1">Tell us more about your child’s interests</h2>
-                <br />
-                <form>
-                    <div class="N_inputs_container">
-                        <div class="form-group">
-                            <div class="input_outer">
-                                <div class="ng-autocomplete">
-                                    <ng-autocomplete [data]="searchTags?.tags" placeholder="Type" [searchKeyword]="keyword" (selected)="selectEvent($event)" (inputChanged)="onChangeSearch($event)" [itemTemplate]="itemTemplates" [notFoundTemplate]="notFoundTemplates">
-                                    </ng-autocomplete>
-
-                                    <ng-template #itemTemplates let-item>
-                                        <a [innerHTML]="item.name"></a>
-                                    </ng-template>
-
-                                    <ng-template #notFoundTemplates let-notFound>
-                                        <div *ngIf="searchTags?.tags?.length" [innerHTML]="notFound"></div>
-                                    </ng-template>
-                                </div>
-                            </div>
-
-                            <br />
-                            <mat-form-field class="demo-chip-list">
-                                <mat-chip-list>
-                                    <mat-chip *ngFor="let t of selectedTags" [selectable]="selectable" [removable]="removable" (removed)="remove(t)">
-                                        {{ t.name }}
-                                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                                    </mat-chip>
-                                </mat-chip-list>
-                            </mat-form-field>
-                        </div>
-                    </div>
-                    <div class="small_boxes">
-                        <div class="row">
-                            <div class="col-3" *ngFor="let tag of tags | slice: 9:17">
-                                <div class="category_list" (click)="selectSkills(tag)">
-                                    <div class="box-border" [ngClass]="{ active: tag.active }">
-                                        <img class="cat_img my_box" *ngIf="tag?.icon" src="{{baseUrl+tag?.icon}}" alt="icon" />
-                                        <img class="cat_img my_box" *ngIf="!tag?.icon" src="assets/favicon.svg" alt="icon" />
-                                    </div>
-
-                                    <span [ngClass]="{ active: tag.active }">
-                    {{ tag?.name }}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-                <div class="N_btns">
-                    <div class="row">
-                        <div class="col-6">
-                            <div (click)="backStep()" class="back_btn cursor">
-                                <a> back </a>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div (click)="nextStep()" class="next_btn cursor">
-                                <a> Next </a>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
             </div> -->
-
-            <div *ngIf="step4" class="box text-center p-3 bg-white">
+            <div *ngIf="step3" class="box text-center p-3 bg-white">
                 <h2 class="my_heading1">Welcome to Wondrfly!</h2>
-                <!-- <div class="N_inputs_container">
-          <form [formGroup]="addChildForm">
-            <div class="business_name why-wonderflyinput">
-              <input
-                type="text"
-                placeholder="Where did you hear from us?"
-                [formControl]="addChildForm.controls['fromWhereYouHeard']"
-                [(ngModel)]="kid.fromWhereYouHeard"
-                class="my_inputs"
-                data-toggle="collapse"
-                href="#whywonderflydrop"
-                role="button"
-                aria-expanded="false"
-                aria-controls="whywonderflydrop"
-              />
-            </div>
-            <div class="whywonderfly-dropdown collapse" id="whywonderflydrop">
-              <a (click)="kid.fromWhereYouHeard = 'search engine'"
-                ><h1>
-                  <span>
-                    <img src="assets/search.svg" />
-                  </span>
-                  Search Engine
-                </h1></a
-              >
-              <a (click)="kid.fromWhereYouHeard = 'social media'"
-                ><h1>
-                  <span>
-                    <img src="assets/social-media.svg" />
-                  </span>
-                  Social Media
-                </h1></a
-              >
-              <a (click)="kid.fromWhereYouHeard = 'from a friend'"
-                ><h1>
-                  <span>
-                    <img src="assets/from-friend.svg" />
-                  </span>
-                  From a Friend
-                </h1></a
-              >
-              <a (click)="kid.fromWhereYouHeard = 'facebook ad'"
-                ><h1>
-                  <span>
-                    <img src="assets/fb-ad.svg" />
-                  </span>
-                  Facebook Ad
-                </h1></a
-              >
-              <a (click)="kid.fromWhereYouHeard = 'google ad'"
-                ><h1>
-                  <span>
-                    <img src="assets/google-ad.svg" />
-                  </span>
-                  Google Ad
-                </h1></a
-              >
-            </div>
-          </form>
-        </div> -->
-                <!-- <div class="welcomeImg">
-          <img src="assets/welcomeScreen.png" class="welcomeImg" alt="" />
-        </div> -->
                 <div class="laststep-onboarding">
                     <h6>
                         You can now explore over 2000 activities for kids!

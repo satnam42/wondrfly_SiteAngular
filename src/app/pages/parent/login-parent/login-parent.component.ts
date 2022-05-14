@@ -37,13 +37,14 @@ export class LoginParentComponent implements OnInit {
   filtredCats: any = []
   interests: any = [];
   kid = new Child;
+  kids: any = []
   step1 = true;
   step2 = false;
   step3 = false;
   step4 = false;
   // step5 = false
   total = 4;
-  finished=1
+  finished = 1
   title = 'Onboarding - Wondrfly';
   markerUrl = 'assets/location.svg';
   private geoCoder;
@@ -60,7 +61,7 @@ export class LoginParentComponent implements OnInit {
   searchedTags: any = []
   subCategoryCheckbox: any = []
   categoryChecked: any = []
-  searchTagValue= new FormControl()
+  searchTagValue = new FormControl()
   constructor(private router: Router,
     private apiservice: ApiService,
     private ngxLoader: NgxUiLoaderService,
@@ -83,13 +84,13 @@ export class LoginParentComponent implements OnInit {
   // }
 
   remove(t) {
-    for(let i in this.searchedTags) {
-        let indx = this.searchedTags[i].tags.findIndex(x => x._id===t._id)
-        if(indx >= 0){
-          this.searchedTags[i].category.isSelected=false;
-          this.searchedTags[i].tags[indx].isSelected=false;
-        }
+    for (let i in this.searchedTags) {
+      let indx = this.searchedTags[i].tags.findIndex(x => x._id === t._id)
+      if (indx >= 0) {
+        this.searchedTags[i].category.isSelected = false;
+        this.searchedTags[i].tags[indx].isSelected = false;
       }
+    }
     const index = this.kid.interestInfo.indexOf(t);
 
     if (index >= 0) {
@@ -114,48 +115,84 @@ export class LoginParentComponent implements OnInit {
     document.getElementById("listingDate").setAttribute("max", this.maxDate);
   }
 
-  validAge() {
-    var birth = new Date(this.kid.dob);
-    let birthYear = moment(birth).format('YYYY');
-    let currentYear = moment(Date.now()).format('YYYY');
-    var d1 = new Date();
-    var d2 = new Date(this.kid.dob);
-     if(d2.getTime()>= d1.getTime()){
-      this.toastr.warning( 'please fill valid DOB' )
-     } 
-    else if (birthYear >= currentYear) {
-      this.toastr.warning('Please Fill Valid Birth Year!')
-    }
-    else {
-      var ageDifMs = Date.now() - birth.getTime();
-      var ageDate = new Date(ageDifMs); // miliseconds from epoch
-      var age = Math.abs(ageDate.getUTCFullYear() - 1970);
-      if (age >16) {
-        this.toastr.warning("Child age should be 16 years or less");
-      } else {
-        this.kid.age = String(age);
-        this.kid.relationToChild = 'father'
-        this.kid.sex = 'male'
-        this.nextStep()
+  validAge(addAnother?) {
+    if (addAnother === 'add-another-child') {
+      var birth = new Date(this.kid.dob);
+      let birthYear = moment(birth).format('YYYY');
+      let currentYear = moment(Date.now()).format('YYYY');
+      var d1 = new Date();
+      var d2 = new Date(this.kid.dob);
+      if (!this.kid.name) {
+        this.toastr.warning('please fill valid  name')
+      }
+      else if (d2.getTime() >= d1.getTime()) {
+        this.toastr.warning('please fill valid DOB')
+      }
+      else if (birthYear >= currentYear) {
+        this.toastr.warning('Please Fill Valid Birth Year!')
+      }
+      else {
+        var ageDifMs = Date.now() - birth.getTime();
+        var ageDate = new Date(ageDifMs); // miliseconds from epoch
+        var age = Math.abs(ageDate.getUTCFullYear() - 1970);
+        if (age > 16) {
+          this.toastr.warning("Child age should be 16 years or less");
+        } else {
+          this.kid.age = String(age);
+          this.kid.relationToChild = 'father'
+          this.kid.sex = 'male'
+           this.kid.parentId = this.parent.id
+          this.kids.push(this.kid)
+          console.log('kids',this.kids)
+          let emptyChild = new Child 
+          this.kid = emptyChild
+          this.searchedTags = []
+          this.keyword = ''
+        }
       }
     }
-  }
+    else {
+      var birth = new Date(this.kid.dob);
+      let birthYear = moment(birth).format('YYYY');
+      let currentYear = moment(Date.now()).format('YYYY');
+      var d1 = new Date();
+      var d2 = new Date(this.kid.dob);
+      if (!this.kid.name) {
+        this.toastr.warning('please fill valid  name')
+      }
+      else if (d2.getTime() >= d1.getTime()) {
+        this.toastr.warning('please fill valid DOB')
+      }
+      else if (birthYear >= currentYear) {
+        this.toastr.warning('Please Fill Valid Birth Year!')
+      }
+      else {
+        var ageDifMs = Date.now() - birth.getTime();
+        var ageDate = new Date(ageDifMs); // miliseconds from epoch
+        var age = Math.abs(ageDate.getUTCFullYear() - 1970);
+        if (age > 16) {
+          this.toastr.warning("Child age should be 16 years or less");
+        } else {
+          this.kid.age = String(age);
+          this.kid.relationToChild = 'father'
+          this.kid.sex = 'male'
+          this.kid.parentId = this.parent.id
+          this.nextStep()
+        }
+      }
+    }
 
+  }
   addChild() {
     // this.kid.interestInfo = this.selectedTags
-    this.kid.parentId = this.parent.id
-    this.ngxLoader.start();
-    this.apiservice.addChild(this.kid).subscribe((res: any) => {
-      this.ngxLoader.stop();
-      // if(res.isSuccess===true){
-      // }
-    });
-    this.ngxLoader.stop();
+      this.kids.push(this.kid)
+    for(let kid of this.kids){
+      this.apiservice.addChild(kid).subscribe((res: any) => {
+console.log(res)
+      });
+    }
+
   }
-
-
-
-
 
   // ------------------------------------------auto-complete search functionality for tags-------------------
   selectEvent(item) {
@@ -184,7 +221,7 @@ export class LoginParentComponent implements OnInit {
   //        let filtredtags = this.tags.filter((item) => item.isActivated === true);
   //       let categories = []
   //       this.searchedTags = []
-     
+
   //       filtredtags.forEach(tag => {
   //         categories.push(tag.categoryIds[0])
   //       });
@@ -249,7 +286,7 @@ export class LoginParentComponent implements OnInit {
           for (let i in filtredtags) {
             if (this.filtredCats[j]._id === filtredtags[i].categoryIds[0]._id) {
               modifiedObj.category = this.filtredCats[j]
-              let indx = this.kid .interestInfo.findIndex(x => x._id === filtredtags[i]._id)
+              let indx = this.kid.interestInfo.findIndex(x => x._id === filtredtags[i]._id)
               if (indx >= 0) {
                 filtredtags[i].isSelected = true
               }
@@ -275,7 +312,7 @@ export class LoginParentComponent implements OnInit {
           let name = el.name.toLowerCase();
           let isMatched = name.includes(key)
           if (isMatched) {
-            el._id= el.id
+            el._id = el.id
             modifiedObj.category = el
 
             this.searchedTags.push(modifiedObj)
@@ -329,26 +366,26 @@ export class LoginParentComponent implements OnInit {
       }
     }
   }
-    // ---------------------------------------------get subCateById-------------------------------------
-    getSubCateById(cat,indx) {
-      this.apiservice.getTagByCategoryId(cat._id).subscribe((res: any) => {
-         if(res.isSuccess){
-           this.searchedTags[indx].tags = res.data
-           this.searchedTags[indx].tags = this.searchedTags[indx].tags.filter((item) => item.isActivated === true);
-           this.searchedTags[indx].tags.forEach(tag => {
-            if (this.kid.interestInfo.indexOf(tag) == -1) {
-              if (this.kid.interestInfo.find(category => category._id === tag._id)) {
-                tag.isSelected = true
-              }
+  // ---------------------------------------------get subCateById-------------------------------------
+  getSubCateById(cat, indx) {
+    this.apiservice.getTagByCategoryId(cat._id).subscribe((res: any) => {
+      if (res.isSuccess) {
+        this.searchedTags[indx].tags = res.data
+        this.searchedTags[indx].tags = this.searchedTags[indx].tags.filter((item) => item.isActivated === true);
+        this.searchedTags[indx].tags.forEach(tag => {
+          if (this.kid.interestInfo.indexOf(tag) == -1) {
+            if (this.kid.interestInfo.find(category => category._id === tag._id)) {
+              tag.isSelected = true
             }
-          });
-          let index = this.searchedTags[indx].tags.findIndex(x => x.isSelected!==true)
-          if (index!==-1) {
-              this.searchedTags[indx].category.isSelected = false;
-            }
-         }
-       })
-     }
+          }
+        });
+        let index = this.searchedTags[indx].tags.findIndex(x => x.isSelected !== true)
+        if (index !== -1) {
+          this.searchedTags[indx].category.isSelected = false;
+        }
+      }
+    })
+  }
   ngOnInit() {
     this.searchTagValue.valueChanges.subscribe((value) => {
       if (value) { this.onChangeSearch(value) } else {
@@ -383,9 +420,9 @@ export class LoginParentComponent implements OnInit {
       this.geoCoder = new google.maps.Geocoder;
       var options = {
         types: ['(cities)'],
-        componentRestrictions: {country: "us"}
-       };
-      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement,options);
+        componentRestrictions: { country: "us" }
+      };
+      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, options);
       autocomplete.addListener('place_changed', () => {
         this.ngZone.run(() => {
           let place: google.maps.places.PlaceResult = autocomplete.getPlace();
@@ -412,20 +449,20 @@ export class LoginParentComponent implements OnInit {
       this.step1 = false;
       this.step2 = true;
       this.progressBarVaue += 25;
-      this.finished +=1
+      this.finished += 1
 
     }
     else if (this.step2) {
       this.step3 = true;
       this.step2 = false;
       this.progressBarVaue += 28;
-      this.finished +=1
+      this.finished += 1
     }
     else if (this.step3) {
       this.step4 = true;
       this.step3 = false;
       this.progressBarVaue += 25;
-      this.finished +=1
+      this.finished += 1
     }
     // else if (this.step4) {
     //   this.step5 = true;
@@ -440,19 +477,19 @@ export class LoginParentComponent implements OnInit {
       this.step1 = true;
       this.step2 = false;
       this.progressBarVaue -= 25;
-      this.finished -=1
+      this.finished -= 1
     }
     else if (this.step3) {
       this.step2 = true;
       this.step3 = false;
       this.progressBarVaue -= 28;
-      this.finished -=1
+      this.finished -= 1
     }
     else if (this.step4) {
       this.step3 = true;
       this.step4 = false;
       this.progressBarVaue -= 25;
-      this.finished -=1;
+      this.finished -= 1;
     }
     // else if (this.step5) {
     //   this.step4 = true;
@@ -502,10 +539,10 @@ export class LoginParentComponent implements OnInit {
 
   checkOrUncheckAllTags(e, categoryIndx) {
     if (e.target.checked === true) {
-      if(!this.searchedTags[categoryIndx].tags.length){
+      if (!this.searchedTags[categoryIndx].tags.length) {
         this.apiservice.getTagByCategoryId(this.searchedTags[categoryIndx].category._id).subscribe((res: any) => {
           if (res.isSuccess) {
-            this.searchedTags[categoryIndx].tags= res.data
+            this.searchedTags[categoryIndx].tags = res.data
             this.searchedTags[categoryIndx].category.isSelected = true;
             this.searchedTags[categoryIndx].tags.forEach(tag => {
               tag.isSelected = true
@@ -518,7 +555,7 @@ export class LoginParentComponent implements OnInit {
           }
         })
       }
-      else{
+      else {
         this.searchedTags[categoryIndx].category.isSelected = true;
         this.searchedTags[categoryIndx].tags.forEach(tag => {
           tag.isSelected = true
@@ -531,10 +568,10 @@ export class LoginParentComponent implements OnInit {
       }
 
     } else {
-      if(!this.searchedTags[categoryIndx].tags.length){
+      if (!this.searchedTags[categoryIndx].tags.length) {
         this.apiservice.getTagByCategoryId(this.searchedTags[categoryIndx].category._id).subscribe((res: any) => {
           if (res.isSuccess) {
-            this.searchedTags[categoryIndx].tags= res.data
+            this.searchedTags[categoryIndx].tags = res.data
             this.searchedTags[categoryIndx].category.isSelected = false;
             this.searchedTags[categoryIndx].tags.forEach(tag => {
               let index = this.kid.interestInfo.findIndex(x => x._id === tag._id)
@@ -545,7 +582,7 @@ export class LoginParentComponent implements OnInit {
             });
           }
         })
-      }else{
+      } else {
         this.searchedTags[categoryIndx].category.isSelected = false;
         this.searchedTags[categoryIndx].tags.forEach(tag => {
           let index = this.kid.interestInfo.findIndex(x => x._id === tag._id)
@@ -575,10 +612,10 @@ export class LoginParentComponent implements OnInit {
       }
     }
     else {
-        let index = this.kid.interestInfo.findIndex(x => x._id===this.searchedTags[categoryIndx].tags[tagIndex]._id)
-        if (index!==-1) {
-          this.kid.interestInfo.splice(index, 1)
-        }
+      let index = this.kid.interestInfo.findIndex(x => x._id === this.searchedTags[categoryIndx].tags[tagIndex]._id)
+      if (index !== -1) {
+        this.kid.interestInfo.splice(index, 1)
+      }
       this.searchedTags[categoryIndx].tags[tagIndex].isSelected = false
       this.searchedTags[categoryIndx].category.isSelected = false;
     }

@@ -701,9 +701,17 @@ span.wnderfly-btn {
   letter-spacing: 0.001em;
   color: #494949;
 }
+.child-dob-h4 img{
+  margin-right: 5px;
+}
+.name-fix-width{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 50px;}
 .child-name-dob-info {
   display: flex;
-  column-gap: 15px;
+  column-gap: 5px;
   align-items: center;
 }
 .child-edit-delete-info {
