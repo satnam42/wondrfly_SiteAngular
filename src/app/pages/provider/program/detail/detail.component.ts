@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, NgZone, QueryList, ViewChildren } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { Program, Category } from 'src/app/core/models';
+import { Program, Category, User } from 'src/app/core/models';
 import { ApiService } from 'src/app/core/services/api.service.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
@@ -86,8 +86,8 @@ export class DetailComponent implements OnInit {
   userId = ''
   fromTime = new Date;
   toTime = new Date;
-  toDate = new Date;
-  fromDate = new Date;
+  fromDate: any;
+  toDate: any;
   markerUrl = 'assets/location.svg'
   latitude: number;
   longitude: number;
@@ -126,6 +126,114 @@ export class DetailComponent implements OnInit {
     path: '/assets/wLoader.json',
   };
   events=[]
+
+  currentYear = new Date().getFullYear()
+  isDateFilter: boolean = false;
+  isTimeFilter: boolean = false;
+  isDaysFilter: boolean = false;
+  isAgeFilter: boolean = false;
+  isTopFilter: boolean = false;
+  isPriceFilter: boolean = false;
+  isTypeFilter: boolean = false;
+  isCategoryFilter: boolean = false;
+  isTopFilterCheckBox: boolean = false;
+  isMapFilter:boolean = false;
+  isAlert: boolean = true;
+  isFav: boolean = false;
+  categoryId: any = ''
+  activityName: any = ''
+  filterData: any = {};
+  locationData: any = {}
+  favPrograms: any;
+  isMap: boolean = true;
+  isLoaded = false
+  categoriesBySearch: any = new Category;
+  isActive: boolean = false
+  providersBySearch: any = new User;
+  userData: any = {};
+  providerProgram: any = [];
+  isInfiniteScrollDisabled: boolean
+  key: string = '';
+  parentRole: boolean = false;
+  favProgramRes: any;
+  searchKey = '';
+  fav: any = {
+    userId: '',
+    programId: '',
+  };
+  timeSession = ''
+  typeChecked = ''
+  dateRange: any = {};
+  minPrice: any = 50;
+  maxPrice: any = 300;
+  favourites: any = [];
+  facebookActive = ''
+  messengerActive = ''
+  emailActive = ''
+  whatsappActive = ''
+  copylinkActive = ''
+  priceOption: Options = {
+    floor: 0,
+    ceil: 800,
+    translate: (value: number): string => {
+      return '$' + value;
+    }
+  };
+  // ng5slider end
+  showReset = false;
+  deleteProgramRes: any;
+  // latitude: number = 40.5682945; longitude: number = -74.0409239;
+  lat = 40.72652470735903;
+  lng = -74.05900394007715;
+  isMapMoveChecked: boolean
+  coordinates:any = {}
+  @ViewChild('search', { static: true })
+  shareUrlSocial = environment.baseUrl;
+  selectedShareData: any;
+  url: string;
+  suggested: any = [];
+  programOwnerData: any = User
+  isOnline: boolean = false;
+  isInPerson: boolean = false;
+  type1: any
+  subCats: any = [];
+  filterName = '';
+  selectedCat: any;
+  selectedSubCategories: any = [];
+  catData: Category[];
+  isBetaPopUp: boolean = false;
+  recentFilters: any = []
+  searchedSubCategory = ''
+  latt: any;
+  lngg: any;
+  weakDays = ['sunday', 'monday', 'tuesday', 'wednesday', 'thrusday', 'friday', 'saturday']
+  programTypes = ['Camps', 'Semesters', 'Drop-ins', 'Other']
+  programTimes = ['early-morning', 'morning', 'afternoon', 'late-afternoon', 'evening']
+  programTimesShow = ['6am - 9am', '9am - 12pm', '12pm - 3pm', '3pm - 6pm', '6pm - 9pm']
+  selectedDays: any = []
+  selectedProgramTypes: any = []
+  selectedProgramTime: any = []
+  contentLoaded = false;
+  fakeLoaderData = [1, 2]
+  currentUser: any;
+  cookiesData: string;
+  activitySearched = 0
+  activityClicked = 0
+  moment = moment;
+  minDate: moment.Moment;
+  upArrow: boolean = false;
+  upArrow2: boolean = false;
+  providerr = new User;
+  activitiesCount = 0
+  tempCategoryId = ''
+  tempSearchedSubCategory = ''
+  tempSelectedSubCategories = []
+  tempSelectedDays: any = []
+  tempSelectedProgramTypes: any = []
+  tempSelectedProgramTime: any = []
+
+
+
   constructor(private apiservice: ApiService,
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
@@ -361,7 +469,7 @@ export class DetailComponent implements OnInit {
   }
 
   getProviderProgram = async () => {
-    await this.apiservice.getProgramByProvider(this.program.user, this.pageNo, this.pageSize).subscribe((res) => {
+    await this.apiservice.getProgramByProvider(this.program.user, this.pageNo,200).subscribe((res) => {
       this.isScrol = true;
       this.programs = res
       let programs = []
@@ -509,4 +617,310 @@ else{
       download(`${this.events[0].summary.slice(0,5)+'-wondrfly'}.ics`, content)
     }
   
+
+    programFilter() {
+      this.isLoaded=false;
+      this.isTimeFilter = false;
+      this.isDaysFilter = false;
+      this.isTopFilter = false;
+      this.isTypeFilter = false;
+      this.isCategoryFilter = false;
+      if (this.isTopFilterCheckBox || this.categoryId || this.selectedDays.length || this.selectedProgramTypes.length || this.selectedSubCategories.length || this.selectedProgramTime.length || this.isOnline || this.isInPerson || this.isDateFilter || this.isPriceFilter || this.isAgeFilter) {
+        let filter = ``
+        let inpersonOrVirtual = ''
+        let days = ''
+        let categoryId = ''
+        let tags = ''
+        let types = ''
+        let times = ''
+        let daysCount = 1
+        let typesCount = 1
+        let tagsCount = 1
+        let timesCount = 1
+        let ratingFrom = 4
+        let ratingTo = 5
+        if (this.categoryId) {
+          this.isCategoryFilter = true;
+          categoryId = this.categoryId
+        }
+        for (let day of this.selectedDays) {
+          this.isDaysFilter = true;
+          if (daysCount === 1) {
+            days += day
+            daysCount++
+          }
+          else {
+            days += ',' + day
+          }
+        }
+        for (let type of this.selectedProgramTypes) {
+          this.isTypeFilter = true
+          if (typesCount === 1) {
+            types += type
+            typesCount++
+          }
+          else {
+            types += ',' + type
+          }
+        }
+        for (let tag of this.selectedSubCategories) {
+          this.isCategoryFilter = true
+          if (tagsCount === 1) {
+            tags += tag
+            tagsCount++
+          }
+          else {
+            tags += ',' + tag
+          }
+        }
+        for (let time of this.selectedProgramTime) {
+          this.isTimeFilter = true
+          if (timesCount === 1) {
+            times += time
+            timesCount++
+          }
+          else {
+            times += ',' + time
+          }
+        }
+        if (!categoryId && !this.selectedSubCategories.length) {
+          this.searchedSubCategory = '';
+        }
+        if (this.isOnline) {
+          inpersonOrVirtual = 'online'
+        }
+        else if (this.isInPerson) {
+          inpersonOrVirtual = 'inperson'
+        }
+        else {
+          inpersonOrVirtual = ''
+        }
+        const dateFormat = "YYYY-MM-DD";
+        this.fromDate = moment(this.fromDate).format(dateFormat);
+        this.toDate = moment(this.toDate).format(dateFormat);
+        filter = `providerId=${this.user.id}&time=${times}&categoryId=${categoryId}&tagsIds=${tags}&type=${types}&inpersonOrVirtual=${inpersonOrVirtual}&day=${days}`
+        if (this.isTopFilterCheckBox) {
+          this.isTopFilter = true;
+          filter += `&ratingFrom=${ratingFrom}&ratingTo=${ratingTo}`
+        }
+        if (this.isDateFilter) {
+          filter += `&fromDate=${this.fromDate}&toDate=${this.toDate}`
+        }
+        if (this.isPriceFilter) {
+          filter += `&priceFrom=${this.minPrice}&priceTo=${this.maxPrice}`
+        }
+        if (this.isAgeFilter) {
+          filter += `&ageFrom=${this.minAge}&ageTo=${this.maxAge}`
+        }
+        this.ngxLoader.start()
+  
+        this.apiservice.programFilter(filter, 1, 1).subscribe((res: any) => {
+          this.showReset = true
+          if (res.isSuccess && res.data.length) {
+            this.programs = res.data[0].programs;
+            this.isLoaded=true;
+          }
+          else{
+            this.programs = [];
+            this.isLoaded=true;
+          }
+        });
+        this.ngxLoader.stop()
+      } else {
+        this.pageNo = 1
+        this.isTopFilterCheckBox = false
+        // this.getProviderProgram();
+        this.showReset = false
+         this.apiservice.getProgramByProvider(this.user.id, this.pageNo, 200).subscribe((res) => {
+          this.programs = res  
+          this.isLoaded=true;
+      });
+      this.ngxLoader.stop()
+      }
+    }
+  
+  
+
+    onDayChange(indx: number, day: string, isChecked: boolean) {
+      if (isChecked) {
+        this.tempSelectedDays.push(day)
+      } else {
+        this.tempSelectedDays.splice(day, -1)
+        let el = this.tempSelectedDays.find(itm => itm === day);
+        if (el) this.tempSelectedDays.splice(this.tempSelectedDays.indexOf(el), 1);
+      }
+    }
+    onProgramTypeChange(indx: number, type: string, isChecked: boolean) {
+      if (isChecked) {
+        this.tempSelectedProgramTypes.push(type)
+      } else {
+        this.tempSelectedProgramTypes.splice(type, -1)
+        let el = this.tempSelectedProgramTypes.find(itm => itm === type);
+        if (el) this.tempSelectedProgramTypes.splice(this.tempSelectedProgramTypes.indexOf(el), 1);
+      }
+    }
+    onProgramTimeChange(indx: number, time: string, isChecked: boolean) {
+      if (isChecked) {
+        this.tempSelectedProgramTime.push(time)
+      } else {
+        this.tempSelectedProgramTime.splice(time, -1)
+        let el = this.tempSelectedProgramTime.find(itm => itm === time);
+        if (el) this.tempSelectedProgramTime.splice(this.tempSelectedProgramTime.indexOf(el), 1);
+      }
+    }
+    onProgramsSubCategoryChange(i, event) {
+      this.tempCategoryId = ''
+      this.subCats[i].checked = event.target.checked;
+      if (this.subCats[i].checked) {
+        this.tempSearchedSubCategory = this.subCats[i].name;
+        this.tempSelectedSubCategories.push(this.subCats[i]._id);
+      }
+      else {
+        const index = this.tempSelectedSubCategories.indexOf(this.subCats[i]._id);
+        if (index >= 0) {
+          this.tempSelectedSubCategories.splice(index, 1);
+        }
+      }
+    }
+  
+  
+  
+    @ViewChildren("types") types: QueryList<ElementRef>;
+    clearProgramTypes() {
+      this.selectedProgramTypes = []
+      this.tempSelectedProgramTypes = []
+      this.types.forEach((element) => {
+        element.nativeElement.checked = false;
+      });
+      this.programFilter()
+    }
+  
+    @ViewChildren("days") days: QueryList<ElementRef>;
+    clearProgramDays() {
+      this.selectedDays = []
+      this.tempSelectedDays = []
+      this.days.forEach((element) => {
+        element.nativeElement.checked = false;
+      });
+      this.programFilter()
+    }
+    @ViewChildren("times") times: QueryList<ElementRef>;
+    clearProgramTime() {
+      this.selectedProgramTime = []
+      this.tempSelectedProgramTime = []
+      this.times.forEach((element) => {
+        element.nativeElement.checked = false;
+      });
+      this.programFilter()
+    }
+    choosedDate(e) {
+      this.fromDate = e.startDate._d
+      this.toDate = e.endDate._d
+    }
+  
+  
+   // ---------------------------------------------get categories-------------------------------------
+   getCategory() {
+    let removedCategory;
+    this.apiservice.getCategory().subscribe((res: any) => {
+      this.categories = res;
+      const idToRemove = '60b47687bb70a952280bfa7b';
+      removedCategory = this.categories.filter((item) => item.id === idToRemove);
+      this.categories = this.categories.filter((item) => item.id !== idToRemove);
+      this.categories.push(removedCategory[0])
+      this.categories = this.categories.filter((item) => item.isActivated !== false);
+      this.catData = this.categories
+    });
+  }
+  
+  
+      // ---------------------------------------------get subCateById-------------------------------------
+      getSubCateById(cat) {
+        this.tempCategoryId = cat.id
+        this.selectedCat = cat.id
+        this.tempSelectedSubCategories = []
+        this.tempSearchedSubCategory = cat.name
+        this.apiservice.getTagByCategoryId(cat.id).subscribe((res: any) => {
+          this.subCats = res.data
+          this.subCats = this.subCats.filter((item) => item.isActivated === true && item.programCount);
+        })
+      }
+      resetFilter() {
+        this.searchedSubCategory = '';
+        this.activityName = '';
+        this.isInPerson = false;
+        this.showReset = false;
+        this.isTypeFilter = false;
+        this.categoryId = '';
+        this.isOnline = false;
+        this.isDaysFilter = false
+        this.isTimeFilter = false;
+        this.isTopFilterCheckBox = false
+        this.isTopFilter = false;
+        this.isAgeFilter = false;
+        this.isDateFilter = false;
+        this.selectedSubCategories = [];
+        this.isPriceFilter = false;
+        this.isCategoryFilter = false;
+        this.maxAge = 5;
+        this.minAge = 0;
+        this.pageNo = 1;
+        this.pageSize = 20;
+        this.selectedProgramTime = []
+        this.programs = []
+        this.times.forEach((element) => {
+          element.nativeElement.checked = false;
+        });
+        this.selectedDays = []
+        this.days.forEach((element) => {
+          element.nativeElement.checked = false;
+        });
+        this.selectedProgramTypes = []
+        this.types.forEach((element) => {
+          element.nativeElement.checked = false;
+        });
+        this.selectedCat = '';
+        this.categoryId = '';
+        this.subCats = [];
+        this.selectedSubCategories = []
+        // this.scrollToActivities ='activities'
+        this.ngxLoader.start()
+        this.showReset = false
+        this.isLoaded=false;
+         this.apiservice.getProgramByProvider(this.user.id, this.pageNo, 200).subscribe((res) => {
+          this.programs = res
+          this.isLoaded=true;
+      });  
+      this.ngxLoader.stop()
+    }
+    removeRecentSearches(type, indx) {
+      switch (type) {
+        case 'days': {
+          this.days.forEach((element) => {
+            if (element.nativeElement.defaultValue === this.selectedDays[indx]) {
+              this.selectedDays.splice(indx, 1);
+              element.nativeElement.checked = false;
+            }
+          });
+        }
+        case 'times': {
+          this.times.forEach((element) => {
+            if (element.nativeElement.value === this.selectedProgramTime[indx]) {
+              this.selectedProgramTime.splice(indx, 1);
+              element.nativeElement.checked = false;
+            }
+          });
+        }
+        case 'types': {
+          this.types.forEach((element) => {
+            if (element.nativeElement.value === this.selectedProgramTypes[indx]) {
+              this.selectedProgramTypes.splice(indx, 1);
+              element.nativeElement.checked = false;
+            }
+          });
+        }
+      }
+      this.programFilter();
+    }
+    
 }

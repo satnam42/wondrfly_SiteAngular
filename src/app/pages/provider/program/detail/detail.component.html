@@ -381,14 +381,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- <div class="col-md-12">
-                                            <div class="social-icons media company_info align-items-center">
-                                                <a><span  class="icon"><img  src="assets/fb-123.png"></span></a>
-                                                <a><span  class="icon"><img  src="assets/insta.png"></span></a>
-                                                <a><span class="icon"><img  src="assets/linked_in.png"></span></a>
-                                                <a><span class="icon"><img  src="assets/tweet.png"></span></a>
-                                            </div>
-                                        </div> -->
+                                      
                                     </div>
                                 </div>
                             </div>
@@ -556,16 +549,11 @@
                                         <div class="media">
                                             <div class="media-body">
                                                 <h4>{{ user?.firstName }}</h4>
-                                                <!-- <h5>Kids land owner</h5> -->
                                             </div>
                                             <div class="media-left">
                                                 <div class="people_profile" [class.initial-alpha]="!user?.avatarImages">
                                                     <img *ngIf="user?.avatarImages" src="{{ user?.avatarImages }}" alt="Profile" />
-                                                    <!-- <img
-                            *ngIf="!user?.avatarImages"
-                            src="assets/gray_background.jpeg"
-                            alt="Profile"
-                          /> -->
+                                     
                                                     <h1 *ngIf="!user?.avatarImages" [class.initial-alpha]="!user?.avatarImages">
                                                         {{ user?.firstName?.charAt(0) + user?.firstName?.charAt(1) }}
                                                     </h1>
@@ -631,7 +619,7 @@
                             </div>
                         </div>
 
-                        <div class="container description_text slider carousel-cat" *ngIf="programs?.length">
+                        <!-- <div class="container description_text slider carousel-cat" *ngIf="programs?.length">
                             <div class="row row-0 align-items-center mb-30">
                                 <div class="col-md-8">
                                     <h2 class="text-align-unset mb-0">
@@ -642,92 +630,10 @@
                                     <span class="flat-right blue_heading cursor" (click)="goToProfile('activities')">VIEW ALL {{programs?.length}}</span>
                                 </div>
                             </div>
-                            
-                            <!-- <div class="row">
-                                <div class="col-12">
-                                    <div id="carouselExampleIndicators" class="carousel slide activities-carousel" data-ride="carousel">
-                                        <div class="carousel-inner">
-                                            <div class="carousel-item active container">
-                                                <div class="row">
-                                                    <div class="col-12 col-md" *ngFor="let program of programs | slice: 0:3">
-                                                        <div class="activities_slide">
-                                                            <div class="slide_image cursor" (click)="clickedProgram(program)">
-                                                                <img [defaultImage]="defaultImage" [errorImage]="errorImage" [lazyLoad]="
-                                    baseUrl + program?.category[0]?.pattern
-                                  " />
-                                                            </div>
-                                                            <div class="slide_text">
-                                                                <h3>
-                                                                    <span class="title cursor" (click)="clickedProgram(program)">{{ program?.name
-                                    }}</span>
-                                                                </h3>
-                                                                <div class="sports_btn" *ngFor="let cat of program?.category">
-                                                                    <span>{{ cat?.name }}</span>
-                                                                </div>
-                                                                <div class="date_age">
-                                                                    <p *ngIf="!program.isDateNotMention">
-                                                                        <img alt="Loction Pin" src="assets/calendar.svg" /> {{ program?.date?.from | date: "mediumDate" }} - {{ program?.date?.to | date: "mediumDate" }}
-                                                                    </p>
-                                                                    <p *ngIf="program.isDateNotMention">
-                                                                        <img alt="Loction Pin" src="assets/calendar.svg" /> Ongoing
-                                                                    </p>
-                                                                    <p>
-                                                                        <img alt="Loction Pin" src="assets/user_group.svg" /> {{ program?.ageGroup?.from }} - {{ program?.ageGroup?.to }} Yrs.
-                                                                    </p>
-                                                                 
-                                                                    <p *ngIf="!program?.isTimeNotMention">
-                                                                        <img alt="Loction Pin" src="assets/user_group.svg" /> {{ program?.time?.from.toFixed(2)}} - {{ program?.time?.to.toFixed(2)}}
-                                                                    </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="carousel-item" *ngIf="programs?.length > 3">
-                                                <div class="row">
-                                                    <div class="col-12 col-md" *ngFor="let program of programs | slice: 3:6">
-                                                        <div class="activities_slide">
-                                                            <div class="slide_image cursor" (click)="clickedProgram(program)">
-                                                                <img [defaultImage]="defaultImage" [errorImage]="errorImage" [lazyLoad]="
-                                    baseUrl + program?.category[0]?.pattern
-                                  " />
-                                                            </div>
-                                                            <div class="slide_text">
-                                                                <h3>
-                                                                    <span class="title cursor" (click)="clickedProgram(program)">{{ program?.name }}</span>
-                                                                </h3>
-                                                                <div class="sports_btn" *ngFor="let cat of program?.category">
-                                                                    <span>{{ cat?.name }}</span>
-                                                                </div>
-                                                                <div class="date_age">
-                                                                    <p>
-                                                                        <img alt="Loction Pin" src="assets/calendar.svg" /> {{ program?.date?.from | date: "mediumDate" }} - {{ program?.date?.to | date: "mediumDate" }}
-                                                                    </p>
-                                                                    <p>
-                                                                        <img alt="Loction Pin" src="assets/user_group.svg" /> {{ program?.ageGroup?.from }} - {{ program?.ageGroup?.to }} Yrs.
-                                                                    </p>
-                                                              
-                                                                    <p *ngIf="!program?.isTimeNotMention">
-                                                                        <img alt="Loction Pin" src="assets/user_group.svg" /> {{ program?.time?.from.toFixed(2) }} - {{ program?.time?.to.toFixed(2) }}
-                                                                    </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
+                       
                             <div   [id]="'widgetsContent'" class="media-scroable">
                                 <div *ngFor="let activity of programs | slice:0:4; let i = index" class="media activity">
                                     <div class="media-left activity-imgs">
-                                        <!-- <img [defaultImage]="defaultImage"
-                                            [errorImage]="baseUrl + program?.category[0]?.pattern"
-                                            [lazyLoad]="baseUrl + program?.subCategoryIds[0]?.pattern" /> -->
-                                        <!-- <img *ngIf="program?.category[0]?.pattern && !program?.subCategoryIds[0]?.pattern" [defaultImage]="defaultImage" [lazyLoad]="baseUrl + program?.category[0]?.pattern" /> -->
                                     </div>
                                     <div class="media-body body-detail-info">
                                         <div class="media-right-icon-h2">
@@ -739,11 +645,7 @@
                                             <div class="media-right-share-icon">
                                                 <a data-toggle="modal" (click)="selectedProgram = activity"
                                                     data-target="#ShareModal" class="cursor display-none">
-                                                    <!-- <img src="assets/share_gray.svg " class="section1"
-                                                        joyrideStep="secondStep{{providerIndx}}"
-                                                        title="💡 Share with friends and family"
-                                                        text="Click here to share your favorite activities!"
-                                                        alt="Share Icon " /> -->
+                                                
                                                         <img src="assets/share_gray.svg " alt="Share Icon " />
                                                 </a>
                                                 <div class="bookmark_outer">
@@ -809,7 +711,6 @@
                                                         </p>
                                                         <p *ngIf="activity?.isFree && !activity?.pricePerParticipant"><img
                                                                 src="assets/price.svg" /><span> Free</span></p>
-                                                        <!-- <p *ngIf="!activity?.isFree && !activity?.pricePerParticipant"><img src="assets/price.svg" /><span> Price Not Mentioned</span></p> -->
                                                     </div>
                                                 </div>
                                             </div>
@@ -830,200 +731,617 @@
                                     </div>
                                 </div>
 
-                              
-                                <!-- --------------------------------------------------Programs list second--------------------------------------------------- -->
-                                <!-- <div *ngFor="let program of programs | slice:6; let i = index" class="media activity">
-                            <div class="media-left activity-imgs" (click)="goToProgramDetail(program)">
-                                <img [defaultImage]="defaultImage" [errorImage]="baseUrl + program?.category[0]?.pattern" [lazyLoad]="baseUrl + program?.subCategoryIds[0]?.pattern" />
+                             
                             </div>
-                            <div class="media-body">
-                                <div class="share_icon">
-                                    <a data-toggle="modal" (click)="selectedProgram = program" data-target="#ShareModal" class="cursor">
-                                        <img src="assets/share_gray.svg "  alt="Share Icon " />
-                                    </a>
-                                    <div class="bookmark_outer">
-                                        <a *ngIf="!program?.isFav && parentRole && isLogin" (click)="addFavProgram(userData.id, program?._id, i+6)" class="bookmark_icon cursor"><img src="assets/bookmark_gray.svg " alt="Menu Image " /></a>
-
-                                        <a *ngIf="!isLogin" routerLink="/login" class="bookmark_icon cursor"><img src="assets/bookmark_gray.svg " alt="Menu Image " /></a>
-
-                                        <a *ngIf="program?.isFav && parentRole && isLogin" (click)="deleteFavProgram(program?._id, i+6)" class="bookmark_icon cursor"><img src="assets/bookmarkOrange.png " alt="Menu Image " /></a>
-                                    </div>
+                            
+                        </div> -->
+                        <div id="ActivitiesList" style="visibility: hidden;">scroll</div>
+                        <div class="provider_full carousel-cat ativities-section-info">
+                            <div class="activities-top-grid">
+                                <div>
+                                    <h4 class="might-try"> Activities
+                                        <span><img src="assets/active-icon-group-9122.svg" alt="Icon" /></span>
+                                        <!-- <span><img src="assets/Activities-icon.svg" alt="" (click)="listView = true"></span> -->
+                                    </h4>
                                 </div>
-                                <h2 class="cursor" (click)="goToProgramDetail(program)">
-                                    {{ program?.name }}
-                                </h2>
-                                <div class="list_outer row row-0">
-                                    <div class="list col-12 mt-2 mb-1">
-                                        <p>by {{ program?.programOwner }}</p>
-                                    </div>
-                                    <div class="rating-starsearch">
-                                        <p (click)="
-                          getRating(program);
-                          programOwnerData.firstName = program?.programOwner
-                        " class="cursor" data-toggle="collapse" [attr.data-target]="'#collapseExamplestar' + i" role="button" aria-expanded="false" aria-controls="collapseExamplestar">
-                                            <span *ngIf="program?.averageFinalRating == 0">
-                          <span class="fa fa-star-o"></span>
-                                            <span class="fa fa-star-o"></span>
-                                            <span class="fa fa-star-o"></span>
-                                            <span class="fa fa-star-o"></span>
-                                            <span class="fa fa-star-o"></span>
-                                            </span>
-                                            <span *ngIf="program?.averageFinalRating == 1">
-                          <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star-o"></span>
-                                            <span class="fa fa-star-o"></span>
-                                            <span class="fa fa-star-o"></span>
-                                            <span class="fa fa-star-o"></span>
-                                            </span>
-                                            <span *ngIf="
-                            program?.averageFinalRating > 1 &&
-                            program?.averageFinalRating < 2
-                          ">
-                          <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star-half-o checked"></span>
-                                            <span class="fa fa-star-o"></span>
-                                            <span class="fa fa-star-o"></span>
-                                            <span class="fa fa-star-o"></span>
-                                            </span>
-                                            <span *ngIf="program?.averageFinalRating == 2">
-                          <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star-o"></span>
-                                            <span class="fa fa-star-o"></span>
-                                            <span class="fa fa-star-o"></span>
-                                            </span>
-                                            <span *ngIf="
-                            program?.averageFinalRating > 2 &&
-                            program?.averageFinalRating < 3
-                          ">
-                          <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star-half-o checked"></span>
-                                            <span class="fa fa-star-o"></span>
-                                            <span class="fa fa-star-o"></span>
-                                            </span>
-                                            <span *ngIf="program?.averageFinalRating == 3">
-                          <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star-o"></span>
-                                            <span class="fa fa-star-o"></span>
-                                            </span>
-                                            <span *ngIf="
-                            program?.averageFinalRating > 3 &&
-                            program?.averageFinalRating < 4
-                          ">
-                          <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star-half-o checked"></span>
-                                            <span class="fa fa-star-o"></span>
-                                            </span>
-                                            <span *ngIf="program?.averageFinalRating == 4">
-                          <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star-o"></span>
-                                            </span>
-                                            <span *ngIf="
-                            program?.averageFinalRating > 4 &&
-                            program?.averageFinalRating < 5
-                          ">
-                          <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star-half-o checked"></span>
-                                            </span>
-                                            <span *ngIf="program?.averageFinalRating == 5">
-                          <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            </span>
-                                            <span class="no-underline">(</span><a *ngIf="program?.totalReviews">{{program?.totalReviews }} reviews</a>
-                                            <a *ngIf="!program?.totalReviews">0 reviews</a><span class="no-underline">)</span>
-                                        </p>
-                                        <div *ngIf="rating" class="collapse star-daialogbox" id="collapseExamplestar{{ i }}">
-                                            <button type="button" data-toggle="collapse" [attr.data-target]="'#collapseExamplestar' + i" class="close star-daialogicon" aria-label="Close">
-                          <span aria-hidden="true"><img src="assets/grey-close.png" /></span>
-                        </button>
-                                            <app-rating [rating]="rating" [user]="programOwnerData"></app-rating>
+                                <!-- <div>
+                                    <ul class="act-top-right-btn">
+                                        <li><a class="act-top-btn">Age</a></li>
+                                        <li><a class="act-top-btn">Type</a></li>
+                                        <li><a class="act-top-btn">Dates</a></li>
+                                        <li><a class="act-top-btn">Time</a></li>
+                                        <li><a class="act-top-btn">Days</a></li>
+                                        <li><a class="act-top-btn">Price</a></li>
+                                        <li>
+                                            <div class="toggle-filtersearch">
+                                                <button class="btn1-filtersearch"> Online </button>
+                                                <button class="btn2-filtersearch"> In person </button>
+                                            </div>
+                                        </li>
+                                    </ul>    
+                                </div> -->
+    
+                                <div class="row row-0">
+                                    <div class="col-md-9">
+                                        <div class="search-filterss">
+                                            <div class="category_list" id="accordionExample">
+                                                <ul>
+                                                    <li class="cursor">
+                                                        <a aria-expanded="true" data-target="#category"
+                                                            [ngClass]="{ active: isCategoryFilter }" data-toggle="collapse"
+                                                            joyrideStep="firstStep" title="💡 Search with filters"
+                                                            text="Narrow down your search by clicking on any of the filters above. ">Categories</a>
+                                                        <div class="collapse main_collpase time_collpase verification_modal partcategory"
+                                                            id="category" data-parent="#accordionExample">
+                                                            <div class="collpase_content cate-dilter">
+                                                                <div class="container">
+                                                                    <div class="row categories-filt">
+                                                                        <div class="col-5 categories-filterheader">
+                                                                            <h2>Categories</h2>
+                                                                        </div>
+                                                                        <div class="col-7 sub-categoriesfilterheader">
+                                                                            <h2>
+                                                                                Sub categories
+    
+                                                                                <span>
+                                                                                    <span>
+                                                                                        <a class="clear cusror"
+                                                                                            data-target="#category"
+                                                                                            data-toggle="collapse"
+                                                                                            (click)="selectedCat='';categoryId='';tempCategoryId='';subCats=[];selectedSubCategories=[];tempSearchedSubCategory='';tempSelectedSubCategories=[];programFilter()">Clear
+                                                                                            all</a>
+                                                                                    </span>
+                                                                                    <button data-target="#category"
+                                                                                        data-toggle="collapse"
+                                                                                        (click)="categoryId=tempCategoryId;searchedSubCategory=tempSearchedSubCategory;selectedSubCategories=tempSelectedSubCategories ;programFilter()">
+                                                                                        APPLY FILTER
+                                                                                    </button>
+                                                                                </span>
+                                                                            </h2>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row meta-overflow-row">
+                                                                        <div class="col-5 categories-filtercontent">
+                                                                            <h3 *ngFor="let cat of categories"
+                                                                                [ngClass]="{ active: (selectedCat == cat?.id) }"
+                                                                                (click)="getSubCateById(cat)">
+                                                                                {{ cat?.name }}
+                                                                            </h3>
+                                                                        </div>
+                                                                        <div class="col-7 sub-categoriesfiltercontent">
+                                                                            <label class="cursor"
+                                                                                *ngFor="let s of subCats; let i = index"
+                                                                                for="categoriescheck{{i}}">
+                                                                                <span><input type="checkbox"
+                                                                                        [disabled]="!s?.programCount"
+                                                                                        class="k-checkbox categories-checkbox"
+                                                                                        id="categoriescheck{{i}}"
+                                                                                        name="categoriescheck"
+                                                                                        value="{{ s }}"
+                                                                                        [checked]="s.checked" (change)="
+                                                        onProgramsSubCategoryChange(i, $event)
+                                                        " /></span>
+                                                                                <h3
+                                                                                    [class.checkbox-checked-name]="s.checked">
+                                                                                    {{ s?.name }}
+                                                                                    <span>({{ s?.programCount
+                                                                                    }})</span>
+                                                                                </h3>
+                                                                            </label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="cursor">
+                                                        <a [ngClass]="{ active: isAgeFilter }"
+                                                            aria-controls="collapseExample" aria-expanded="true"
+                                                            data-target="#ageGroup" data-toggle="collapse">Age
+                                                        </a>
+                                                        <div class="collapse main_collpase verification_modal" id="ageGroup"
+                                                            data-parent="#accordionExample">
+                                                            <div class="collpase_content">
+                                                                <div class="form-group">
+                                                                    <ngx-slider [(value)]="minAge" [(highValue)]="maxAge"
+                                                                        [options]="ageOption">
+                                                                    </ngx-slider>
+                                                                </div>
+                                                            </div>
+                                                            <div class="submit_btn">
+                                                                <button (click)="isAgeFilter=false;programFilter()"
+                                                                    type="button" aria-controls="collapseExample"
+                                                                    aria-expanded="true" data-target="#ageGroup"
+                                                                    data-toggle="collapse" class="cancel_btn">
+                                                                    Clear
+                                                                </button>
+    
+                                                                <button (click)="isAgeFilter=true
+                                            ;programFilter()" search-results.scrollTop="0" data-target="#ageGroup"
+                                                                    data-toggle="collapse" class="submitBtn">
+                                                                    Apply
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="cursor">
+                                                        <a aria-expanded="true" [ngClass]="{ active: isTypeFilter }"
+                                                            aria-expanded="true" data-target="#typess"
+                                                            data-toggle="collapse">Type</a>
+                                                        <div class="collapse main_collpase typess verification_modal"
+                                                            id="typess" data-parent="#accordionExample">
+                                                            <div class="collpase_content">
+                                                                <div class="form-group typess">
+                                                                    <div class="input_outer">
+                                                                        <form action="">
+                                                                            <div class="typess-flex"
+                                                                                *ngFor="let type of programTypes;let i = index">
+                                                                                <input type="checkbox" #types
+                                                                                    (change)="onProgramTypeChange(i,type, $event.target.checked)"
+                                                                                    class="k-checkbox" name="type1"
+                                                                                    value="{{type}}" />
+                                                                                <label for="type2" class="k-checkbox-label"
+                                                                                    for="type1">{{type}}</label>
+                                                                            </div>
+    
+    
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+    
+                                                                <div class="submit_btn">
+                                                                    <button class="cancel_btn" data-target="#typess"
+                                                                        data-toggle="collapse"
+                                                                        (click)="clearProgramTypes()">
+                                                                        Clear
+                                                                    </button>
+                                                                    <button class="submitBtn" data-target="#typess"
+                                                                        data-toggle="collapse"
+                                                                        (click)="selectedProgramTypes=tempSelectedProgramTypes;programFilter()">
+                                                                        Apply
+                                                                    </button>
+                                                                </div>
+    
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="cursor">
+                                                        <a [ngClass]="{ active: isDateFilter }" aria-expanded="true"
+                                                            data-target="#date" data-toggle="collapse">Dates</a>
+                                                        <div class="
+                                            collapse
+                                            main_collpase
+                                            verification_modal
+                                            date-rangecal
+                                          " id="date" data-parent="#accordionExample">
+                                                            <ngx-daterangepicker-material
+                                                                (choosedDate)="choosedDate($event)" [minDate]="minDate"
+                                                                [autoApply]="true">
+                                                            </ngx-daterangepicker-material>
+    
+                                                            <div class="calender-botoombox">
+                                                                <div class="calender-daterange">
+                                                                    <div class="calender-daterange1" *ngIf="fromDate">
+                                                                        {{ fromDate | date: "shortDate" }}
+                                                                    </div>
+                                                                    <img *ngIf="toDate" src="assets/calenderarrows.svg" />
+                                                                    <div class="calender-daterange2" *ngIf="toDate">
+                                                                        {{ toDate | date: "shortDate" }}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="calender-buttons">
+                                                                    <button class="calender-buttons1" data-target="#date"
+                                                                        data-toggle="collapse"
+                                                                        (click)="isDateFilter=false;programFilter()">
+                                                                        Cancel
+                                                                    </button>
+                                                                    <button class="calender-buttons2" data-target="#date"
+                                                                        data-toggle="collapse"
+                                                                        (click)="isDateFilter=true;programFilter()">
+                                                                        Apply
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="cursor">
+                                                        <a aria-controls="collapseExample"
+                                                            [ngClass]="{ active: isTimeFilter }" aria-expanded="true"
+                                                            data-target="#timess" data-toggle="collapse">Time</a>
+                                                        <div class="collapse main_collpase typess verification_modal"
+                                                            id="timess" data-parent="#accordionExample">
+                                                            <div class="collpase_content">
+                                                                <div class="form-group typess">
+                                                                    <div class="input_outer">
+                                                                        <form action="">
+                                                                            <div class="typess-flex"
+                                                                                *ngFor="let time of programTimes;let i = index">
+                                                                                <input type="checkbox" class="k-checkbox"
+                                                                                    (change)="onProgramTimeChange(i,time, $event.target.checked)"
+                                                                                    #times name="time1" value="{{time}}" />
+                                                                                <label for="time1"
+                                                                                    class="k-checkbox-label">{{time}}
+                                                                                    ({{programTimesShow[i]}})</label>
+                                                                            </div>
+    
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+    
+    
+                                                                <div class="submit_btn">
+                                                                    <button type="button" aria-controls="collapseExample"
+                                                                        aria-expanded="true" data-target="#timess"
+                                                                        (click)="clearProgramTime()" data-toggle="collapse"
+                                                                        class="cancel_btn">
+                                                                        Clear
+                                                                    </button>
+    
+                                                                    <button
+                                                                        (click)="selectedProgramTime=tempSelectedProgramTime;programFilter()"
+                                                                        search-results.scrollTop="0" data-target="#timess"
+                                                                        data-toggle="collapse" class="submitBtn">
+                                                                        Apply
+    
+                                                                    </button>
+                                                                </div>
+    
+                                                            </div>
+                                                        </div>
+                                                    </li>
+    
+                                                    <li class="cursor">
+                                                        <a aria-expanded="true" [ngClass]="{ active: isDaysFilter }"
+                                                            data-target="#Dayss" data-toggle="collapse">Days</a>
+                                                        <div class="collapse main_collpase typess verification_modal"
+                                                            id="Dayss" data-parent="#accordionExample">
+                                                            <div class="collpase_content">
+                                                                <div class="form-group typess">
+                                                                    <div class="input_outer">
+                                                                        <h1>Select Days</h1>
+                                                                        <form action="">
+                                                                            <div class="typess-flex"
+                                                                                *ngFor="let day of weakDays; let i = index">
+                                                                                <input type="checkbox" class="k-checkbox"
+                                                                                    #days name="Days"
+                                                                                    (change)="onDayChange(i,day, $event.target.checked)"
+                                                                                    value="{{day}}">
+                                                                                <label for="Days1"
+                                                                                    class="k-checkbox-label">{{day.charAt(0)+day.charAt(1)+day.charAt(2)}}</label>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="submit_btn">
+                                                                    <button (click)="clearProgramDays()" type="button"
+                                                                        aria-controls="collapseExample" aria-expanded="true"
+                                                                        data-target="#Dayss" data-toggle="collapse"
+                                                                        class="cancel_btn">
+                                                                        Clear
+                                                                    </button>
+    
+                                                                    <button
+                                                                        (click)="selectedDays=tempSelectedDays;programFilter()"
+                                                                        search-results.scrollTop="0" data-target="#Dayss"
+                                                                        data-toggle="collapse" class="submitBtn">
+                                                                        Apply
+                                                                    </button>
+                                                                </div>
+    
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="cursor">
+                                                        <a [ngClass]="{ active: isPriceFilter }"
+                                                            aria-controls="collapseExample" aria-expanded="true"
+                                                            data-target="#priceGroup" data-toggle="collapse">Price
+                                                        </a>
+                                                        <div class="collapse main_collpase verification_modal"
+                                                            id="priceGroup" data-parent="#accordionExample">
+                                                            <div class="collpase_content">
+                                                                <div class="form-group">
+                                                                    <ngx-slider [(value)]="minPrice"
+                                                                        [(highValue)]="maxPrice" [options]="priceOption">
+                                                                    </ngx-slider>
+                                                                </div>
+                                                            </div>
+                                                            <div class="submit_btn">
+                                                                <button
+                                                                    (click)="minPrice = 50;maxPrice = 300;isPriceFilter=false;programFilter()"
+                                                                    type="button" aria-controls="collapseExample"
+                                                                    aria-expanded="true" data-target="#priceGroup"
+                                                                    data-toggle="collapse" class="cancel_btn">
+                                                                    Clear
+                                                                </button>
+    
+                                                                <button (click)="isPriceFilter=true;programFilter()"
+                                                                    search-results.scrollTop="0" data-target="#priceGroup"
+                                                                    data-toggle="collapse" class="submitBtn">
+                                                                    Apply
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+    
+                                                    <!-- <li class="cursor">
+                                                        <a class="top-rateds" aria-expanded="true" [ngClass]="{ active: isTopFilter }"><span
+                                                                class="simple-toggle">
+                                                                Top Rated
+                                                                <span>
+                                                                    <label class="switch1">
+                                                                        <input [(ngModel)]="isTopFilterCheckBox"
+                                                                            (change)="contentLoaded=false;programFilter()" type="checkbox" />
+                                                                        <span class="slider1"></span>
+                                                                    </label>
+                                                                </span>
+                                                            </span>
+                                                        </a>
+                                                    </li> -->
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="coding_text">
-                                        <div *ngIf="program?.subCategoryIds?.length || program?.category?.length" class="coding-text-1">
-                                            <h3 class="cursor" *ngFor="
-                            let cat of program?.category" (click)="selectedCat='';categoryId='';selectedSubCategories=[];subCats=[];searchedSubCategory=cat?.name; categoryId = cat._id;programFilter() ">
-                                                {{ cat?.name }}
-                                            </h3>
-                                            <h3 class="cursor" *ngFor="
-                            let subCat of program?.subCategoryIds | slice: 0:2
-                          " (click)="selectedCat='';categoryId='';subCats=[];searchedSubCategory=subCat?.name; selectedSubCategories[0] = subCat?._id;programFilter() ">
-                                                {{ subCat?.name }}
-                                            </h3>
-                                            <h6 *ngIf="program?.subCategoryIds?.length > 2" class="" data-toggle="collapse" href="#morecategories" [attr.data-target]="'#morecategories' + i">
-                                                +{{ program?.subCategoryIds?.length - 2 }} more
-                                                <div class="collapse main_collpases verification_modal" id="morecategories{{ i }}" data-parent="#accordionExample">
-                                                    <div class="collpase_content">
-                                                        <div class="categories-content">
-                                                            <span><img src="assets/grey-close.png" /> </span>
-                                                            <h5 *ngFor="
-                                    let subCat of program?.subCategoryIds
-                                      | slice: 2:program?.subCategoryIds?.length
-                                  " class="collapse-btn cursor" (click)="selectedCat='';categoryId='';subCats=[];searchedSubCategory=subCat?.name; selectedSubCategories[0] = subCat._id;programFilter() ">
-                                                                {{ subCat?.name }}
-                                                            </h5>
+    
+                                    <div class="col-md-3 toggle-border">
+                                        <div class="toggle-filtersearch">
+                                            <button  [class.active]="isOnline"
+                                            (click)="(isOnline?isOnline=false:isOnline=true);(isInPerson?isInPerson=false:false);programFilter()"
+                                                class="btn1-filtersearch">
+                                                Online
+                                            </button>
+                                            <button [class.active]="isInPerson"
+                                            (click)="(isInPerson?isInPerson=false:isInPerson=true);(isOnline?isOnline=false:false);programFilter()"
+                                                class="btn2-filtersearch">
+                                                In person
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row row-0 mb-40">
+                                <div class="col-12">
+                                    <div class="chip-set-bar chip-set-bar-btn" *ngIf="showReset">
+                                        <!-- <div class="map-without-heading display-inline" *ngIf="searchedSubCategory">
+                                            <h2><a><span>{{searchedSubCategory}}</span>
+                                                <span
+                                                        *ngIf="selectedSubCategories?.length && selectedSubCategories?.length>1">
+                                                        +
+                                                        {{selectedSubCategories?.length-1}} More
+                                                    </span>
+                                                </a> 
+                                                in New Jersey
+                                                <span class="span-h3">&nbsp;|&nbsp; <b>{{activitiesCount}}</b> activities
+                                                    from <b>{{providerProgram?.length}}</b> providers</span>
+                                                </h2>
+                                        </div> -->
+                                        <button class="btn_style save_btn cursor" *ngIf="!isInPerson && isOnline">
+                                            online
+                                            <mat-icon (click)="isOnline=!isOnline;programFilter()">
+                                                cancel</mat-icon>
+                                        </button>
+                                        <button class="btn_style save_btn cursor" *ngIf="isInPerson && !isOnline">
+                                            in-persion
+                                            <mat-icon (click)="isInPerson=!isInPerson;programFilter()">
+                                                cancel</mat-icon>
+                                        </button>
+    
+    
+                                        <button class="btn_style save_btn cursor" *ngIf="isAgeFilter">
+                                            Age {{minAge}}-{{maxAge}} years
+                                            <mat-icon
+                                                (click)="isAgeFilter=!isAgeFilter;programFilter()">
+                                                cancel
+                                            </mat-icon>
+                                        </button>
+                                        <button class="btn_style save_btn cursor" *ngIf="isPriceFilter">
+                                            Price ${{minPrice}}-${{maxPrice}}
+                                            <mat-icon
+                                                (click)="isPriceFilter=!isPriceFilter;programFilter()">
+                                                cancel
+                                            </mat-icon>
+                                        </button>
+                                        <button class="btn_style save_btn cursor" *ngIf="isDateFilter">
+                                            {{fromDate | date: "MMM d " }}-{{toDate | date: "MMM d " }}
+                                            <mat-icon
+                                                (click)="isDateFilter=!isDateFilter;programFilter()">
+                                                cancel
+                                            </mat-icon>
+                                        </button>
+                                        <button class="btn_style save_btn cursor" *ngIf="isTopFilterCheckBox">
+                                            Top Rated
+                                            <mat-icon
+                                                (click)="isTopFilterCheckBox=false;isTopFilter=false;programFilter()">
+                                                cancel</mat-icon>
+                                        </button>
+                                        <button class="btn_style save_btn cursor"
+                                            *ngFor="let day of this.selectedDays;index as i">
+                                            {{day}}
+                                            <mat-icon (click)="removeRecentSearches('days',i)" class="ml-2">cancel</mat-icon>
+                                        </button>
+                                        <button class="btn_style save_btn cursor"
+                                            *ngFor="let type of this.selectedProgramTypes;index as i">
+                                            {{type}}
+                                            <mat-icon (click)="removeRecentSearches('types',i)" class="ml-2">cancel</mat-icon>
+                                        </button>
+                                        <button class="btn_style save_btn cursor"
+                                            *ngFor="let time of this.selectedProgramTime;index as i">
+                                            {{time}}
+                                            <mat-icon (click)="removeRecentSearches('times',i)" class="ml-2">cancel</mat-icon>
+                                        </button>
+                                        <span>
+                                            <a  (click)="resetFilter()" class="ml-2 clear-text cursor">Clear all</a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="row">
+                                <!-- <div class="col-12" *ngIf="programs?.length" [hidden]="listView">
+                                    <div id="carouselExampleIndicators" class="carousel slide activities-carousel" data-ride="carousel">
+    
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active container">
+                                                <div class="row">
+                                                    <div class="col-12 col-md" *ngFor='let program of programs | slice:0:3'>
+                                                        <div class="activities_slide">
+                                                            <div class="slide_image cursor" (click)='goToProgramDetail(program)'>
+                                                                <img [defaultImage]="defaultImage" [errorImage]="errorImage" [lazyLoad]="baseUrl + program?.category[0]?.pattern" />
+                                                            </div>
+                                                            <div class="slide_text">
+                                                                <h3>
+                                                                    <span class="title cursor" (click)='goToProgramDetail(program)'>{{program?.name}}</span>
+                                                                    
+                                                                </h3>
+                                                                <div class="sports_btn" *ngFor='let cat of program?.category'>
+                                                                    <span>{{cat?.name}}</span>
+                                                                </div>
+                                                                <div class="date_age">
+                                                                    <p>
+                                                                        <img alt="Loction Pin" src="assets/calendar.svg"> {{program?.date.from | date:'mediumDate'}} - {{program?.date?.to | date:'mediumDate'}}
+                                                                    </p>
+                                                                    <p>
+                                                                        <img alt="Loction Pin" src="assets/user_group.svg"> {{program?.ageGroup.from}} - {{program?.ageGroup.to}} Yrs
+                                                                    </p>
+                                                                    <p>
+                                                                        <img alt="Loction Pin" src="assets/user_group.svg"> {{globalFunc.tools_replaceAll(program?.time?.from?.toFixed(2)?.toString(),".",":" )}} - {{globalFunc.tools_replaceAll(program?.time?.to?.toFixed(2)?.toString(),".",":" )}}
+                                                                    </p>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </h6>
+                                            </div>
+                                            <div class="carousel-item" *ngIf="programs?.length>3">
+                                                <div class="row">
+                                                    <div class="col-12 col-md" *ngFor='let program of programs | slice:3:6'>
+                                                        <div class="activities_slide">
+                                                            <div class="slide_image cursor" (click)='goToProgramDetail(program)'>
+                                                                <img [defaultImage]="defaultImage" [errorImage]="errorImage" [lazyLoad]="baseUrl + program?.category[0]?.pattern" />
+                                                            </div>
+                                                            <div class="slide_text">
+                                                                <h3>
+                                                                    <span class="title cursor" (click)='goToProgramDetail(program)'>{{program?.name}}</span>
+                                                                </h3>
+                                                                <div class="sports_btn" *ngFor='let cat of program?.category'>
+                                                                    <span>{{cat?.name}}</span>
+                                                                </div>
+                                                                <div class="date_age">
+                                                                    <p>
+                                                                        <img alt="Loction Pin" src="assets/calendar.svg"> {{program?.date.from | date:'mediumDate'}} - {{program.date.to | date:'mediumDate'}}
+                                                                    </p>
+                                                                    <p>
+                                                                        <img alt="Loction Pin" src="assets/user_group.svg"> {{program?.ageGroup.from}} - {{program?.ageGroup.to}} Yrs
+                                                                    </p>
+                                                                    <p>
+                                                                        <img alt="Loction Pin" src="assets/user_group.svg"> {{globalFunc.tools_replaceAll(program?.time?.from?.toFixed(2)?.toString(),".",":" )}} - {{globalFunc.tools_replaceAll(program?.time?.to?.toFixed(2)?.toString(),".",":" )}}
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+    
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-
-                                    <div class="list col-md-4">
-                                        <p>
-                                            <img src="assets/user_group.svg " alt="School image " />{{ program?.ageGroup?.from + "-" + program?.ageGroup?.to }} Yrs
-                                        </p>
+                                </div> -->
+                                    <div class="col-12" *ngFor="let program of programs;index as i" [hidden]="!programs?.length">
+                                        <div class="row ativities-boxes-info align-items-center bg_color">
+                                            <div class="col-2 name">
+                                                <h6 class="tdata">{{program.name}}</h6>
+                                            </div>
+                                            <div class="col-3">
+                                                <div class="btn-group-info">
+                                                    <ul class="ul-tag-btn-info">
+                                                        <li *ngFor='let cat of program?.category'><button
+                                                                class="btn-activites-info">{{cat.name}}</button></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="col-2">
+                                                <div class="left-icon-box-media">
+                                                    <div>
+                                                        <img src="assets/calender-icon-img1.png" alt="calender-icon">
+                                                    </div>
+                                                    <div>
+                                                        <p *ngIf="program?.isDateNotMention">Ongoing</p>
+                                                        <p *ngIf="!program?.isDateNotMention">{{program?.date.from | date:'MMM dd'}} - {{program.date.to | date:'MMM dd'}}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="left-icon-box-media">
+                                                    <div>
+                                                        <img src="assets/watch-icon-img.png" alt="time-icon">
+                                                    </div>
+                                                    <div>
+                                                        <p *ngIf="!program?.isTimeNotMention">
+                                                            {{globalFunc.tools_replaceAll(program?.time?.from?.toFixed(2)?.toString(),".",":"
+                                                            )}} -
+                                                            {{globalFunc.tools_replaceAll(program?.time?.to?.toFixed(2)?.toString(),".",":"
+                                                            )}}</p>
+                                                        <p *ngIf="program?.isTimeNotMention">Time not mentioned</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-3">
+                                                <div class="left-icon-box-media">
+                                                    <div>
+                                                        <img src="assets/user-icon-img.png" alt="users-icon">
+                                                    </div>
+                                                    <div>
+                                                        <p>{{program?.ageGroup.from}} - {{program?.ageGroup.to}} Yrs</p>
+                                                    </div>
+                                                </div>
+                                                <div class="left-icon-box-media">
+                                                    <div>
+                                                        <img src="assets/price-doller-icon.png" alt="price-icon">
+                                                    </div>
+                                                    <div *ngIf="(!program?.isFree && program?.pricePerParticipant)|| (program?.isFree && !program?.pricePerParticipant)">
+                                                        <p *ngIf="!program?.isFree && program?.pricePerParticipant">
+                                                            <span>{{
+                                                                program.pricePerParticipant
+                                                                }}<span *ngIf="program?.pricePeriod?.periodAmount">/{{
+                                                                    program?.pricePeriod?.periodAmount
+                                                                    }}</span></span>
+                                                        </p>
+                                                        <p *ngIf="program?.isFree && !program?.pricePerParticipant"><span> Free</span></p>
+                                                </div>
+    
+    
+                                                </div>
+                                            </div>
+                                            <div class="col-2">
+                                                <div class="cstm-btn-online-info"
+                                                    *ngIf="program?.inpersonOrVirtual=='Virtual'">
+                                                    <button class="cstm-btn-online">Online</button>
+                                                </div>
+                                                <div class="left-icon-box-media"
+                                                    *ngIf="program?.inpersonOrVirtual=='Inperson'">
+                                                    <div>
+                                                        <img src="assets/location-icon.png" alt="location-icon">
+                                                    </div>
+                                                    <div>
+                                                        <p>{{program?.location}}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="list col-md-6">
-                                        <p *ngIf="!program?.isDateNotMention">
-                                            <img src="assets/calendar.svg " alt="School image " />{{ program?.date?.from | date: "MMM d " }} – {{ program?.date?.to | date: "MMM d " }}
-                                        </p>
-                                        <p *ngIf="program?.isDateNotMention">
-                                            Ongoing
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="price-box">
-                                    <p *ngIf="!program?.isFree && program?.pricePerParticipant">
-                                        <span><img src="assets/price.svg" />{{
-                        program.pricePerParticipant
-                        }}<span *ngIf="program?.pricePeriod?.periodAmount">/{{ program?.pricePeriod?.periodAmount
-                          }}</span></span>
-                                    </p>
-                                    <p *ngIf="program?.isFree && !program?.pricePerParticipant"><img src="assets/price.svg" /><span> Free</span></p>
-                                    <p *ngIf="!program?.isFree && !program?.pricePerParticipant"><img src="assets/price.svg" /><span> Price Not Mentioned</span></p>
-                                </div>
-                                <div class="rating_box">
-
-                                </div>
-                            </div>
-                        </div> -->
-                            </div>
-                            <!-- <div class="" *ngIf="programs?.length>4">
+                                    <h1 *ngIf="!programs?.length && isLoaded" style="color: #494949;">Sorry no results found :(</h1> </div>
+                            <!-- <div class="" [hidden]="listView"> 
                                 <a href="#carouselExampleIndicators" data-slide="next">
                                     <div class="carousel-nav-icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" xmlns:xlink="http://www.w3.org/1999/xlink">
-                      <path
-                        d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z" />
-                    </svg>
+                        <path
+                          d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z" />
+                      </svg>
                                     </div>
                                 </a>
                             </div> -->
                         </div>
+
+
+
+                   
                     </div>
                 </div>
             </div>
@@ -1035,10 +1353,6 @@
 
 
 <share-popup [shareData]="selectedProgram" fgsSize="100"></share-popup>
-
-<!-- <ngx-ui-loader></ngx-ui-loader> -->
-
-
 <share-popup [shareData]="selectedProgram"></share-popup>
 <ngx-ui-loader [fgsTemplate]="foregroundSpinner" fgsSize="190" bgsSize="190"> </ngx-ui-loader>
 <ng-template #foregroundSpinner>

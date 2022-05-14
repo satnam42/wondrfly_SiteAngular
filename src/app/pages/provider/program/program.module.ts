@@ -12,6 +12,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { MatInputModule } from '@angular/material/input';
 import { ReadMoreModule } from 'src/app/core/components/read-more/read-more.module';
+import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 
 @NgModule({
   entryComponents: [],
@@ -31,6 +32,7 @@ import { ReadMoreModule } from 'src/app/core/components/read-more/read-more.modu
     MatInputModule,
     AgmCoreModule,
     sharePopupModule,
+    NgxDaterangepickerMd.forRoot(),
   ],
   exports: [
     ProgramComponent,
