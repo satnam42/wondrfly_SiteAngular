@@ -102,16 +102,14 @@ export class DetailComponent implements OnInit {
   program_mins: any;
   //  ng5slider start age group
 
-  minAge: number;
-  maxAge: number;
-
+  minAge: number = 0;
+  maxAge: number = 5;
   ageOption: Options = {
     floor: 0,
-    ceil: 100,
+    ceil: 15,
     translate: (value: number): string => {
       return value + ' YRS';
     }
-
   };
   previous;
   totalRating: any = '';
