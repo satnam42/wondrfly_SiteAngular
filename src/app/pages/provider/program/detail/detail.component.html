@@ -740,7 +740,7 @@
                             <div class="activities-top-grid">
                                 <div>
                                     <h4 class="might-try"> Activities
-                                        <span><img src="assets/active-icon-group-9122.svg" alt="Icon" /></span>
+                                        <!-- <span><img src="assets/active-icon-group-9122.svg" alt="Icon" /></span> -->
                                         <!-- <span><img src="assets/Activities-icon.svg" alt="" (click)="listView = true"></span> -->
                                     </h4>
                                 </div>
@@ -782,7 +782,6 @@
                                                                         <div class="col-7 sub-categoriesfilterheader">
                                                                             <h2>
                                                                                 Sub categories
-    
                                                                                 <span>
                                                                                     <span>
                                                                                         <a class="clear cusror"
@@ -824,8 +823,8 @@
                                                                                 <h3
                                                                                     [class.checkbox-checked-name]="s.checked">
                                                                                     {{ s?.name }}
-                                                                                    <span>({{ s?.programCount
-                                                                                    }})</span>
+                                                                                    <!-- <span>({{ s?.programCount
+                                                                                    }})</span> -->
                                                                                 </h3>
                                                                             </label>
                                                                         </div>
@@ -1101,7 +1100,7 @@
                             <div class="row row-0 mb-40">
                                 <div class="col-12">
                                     <div class="chip-set-bar chip-set-bar-btn" *ngIf="showReset">
-                                        <!-- <div class="map-without-heading display-inline" *ngIf="searchedSubCategory">
+                                        <div class="map-without-heading display-inline" *ngIf="searchedSubCategory">
                                             <h2><a><span>{{searchedSubCategory}}</span>
                                                 <span
                                                         *ngIf="selectedSubCategories?.length && selectedSubCategories?.length>1">
@@ -1113,7 +1112,7 @@
                                                 <span class="span-h3">&nbsp;|&nbsp; <b>{{activitiesCount}}</b> activities
                                                     from <b>{{providerProgram?.length}}</b> providers</span>
                                                 </h2>
-                                        </div> -->
+                                        </div>
                                         <button class="btn_style save_btn cursor" *ngIf="!isInPerson && isOnline">
                                             online
                                             <mat-icon (click)="isOnline=!isOnline;programFilter()">
@@ -1326,7 +1325,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <h1 *ngIf="!programs?.length && isLoaded" style="color: #494949;">Sorry no results found :(</h1> </div>
+                                    <div  class="col-12"style="align-items: center;" *ngIf="!programs?.length && isLoaded"><h1 style="color: #494949;">Sorry no results found :(</h1> </div>
+                                </div>
                             <!-- <div class="" [hidden]="listView"> 
                                 <a href="#carouselExampleIndicators" data-slide="next">
                                     <div class="carousel-nav-icon">
