@@ -654,6 +654,9 @@ else{
           }
         }
         for (let type of this.selectedProgramTypes) {
+          if(type=='Drop-ins'){
+            type='Drops-in'
+          }
           this.isTypeFilter = true
           if (typesCount === 1) {
             types += type

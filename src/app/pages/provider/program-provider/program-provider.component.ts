@@ -176,7 +176,7 @@ export class ProgramProviderComponent implements OnInit {
   latt: any;
   lngg: any;
   weakDays = ['sunday', 'monday', 'tuesday', 'wednesday', 'thrusday', 'friday', 'saturday']
-  programTypes = ['Camps', 'Semesters', 'Drop-In', 'Other']
+  programTypes = ['Camps', 'Semesters', 'Drop-ins', 'Other']
   programTimes = ['early-morning', 'morning', 'afternoon', 'late-afternoon', 'evening']
   programTimesShow = ['6am - 9am', '9am - 12pm', '12pm - 3pm', '3pm - 6pm', '6pm - 9pm']
   selectedDays: any = []
@@ -403,6 +403,9 @@ this.getProviderProgram()  }
         }
       }
       for (let type of this.selectedProgramTypes) {
+        if(type=='Drop-ins'){
+          type='Drops-in'
+        }
         this.isTypeFilter = true
         if (typesCount === 1) {
           types += type
