@@ -297,7 +297,8 @@
                                             <div class="input_outer">
                                                 <form action="">
                                                     <div class="typess-flex" >
-                                                        <input type="checkbox" [checked]="isOnline && !isInPerson"
+                                                        <input  data-target="#format"
+                                                        data-toggle="collapse" type="checkbox" [checked]="isOnline && !isInPerson"
                                                         (change)="(isOnline?isOnline=false:isOnline=true);(isInPerson?isInPerson=false:false);programFilter()"
                                                             class="k-checkbox" />
                                                           
@@ -305,7 +306,8 @@
                                                             for="type1">Online</label>
                                                     </div>
                                                     <div class="typess-flex">
-                                                        <input type="checkbox" [checked]="!isOnline && isInPerson"
+                                                        <input type="checkbox" data-target="#format"
+                                                        data-toggle="collapse" [checked]="!isOnline && isInPerson"
                                                         (change)="(isInPerson?isInPerson=false:isInPerson=true);(isOnline?isOnline=false:false);programFilter()"
                                                             class="k-checkbox" />
                                                             <label  class="k-checkbox-label"
@@ -337,7 +339,7 @@
                     </div>
                 </div>
             </div>
-
+<!-- 
             <div class="col-md-4 toggle-border">
                 <div class="toggle-filtersearch">
                     <button [class.active]="isOnline"
@@ -351,7 +353,7 @@
                         In person
                     </button>
                 </div>
-            </div>
+            </div> -->
         </div>
         <div class="row row-0">
             <div class="col-10" [ngClass]="{'col-12':isMap || isOnline}">
