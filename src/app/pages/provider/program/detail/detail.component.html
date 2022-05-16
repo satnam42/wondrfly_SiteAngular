@@ -53,13 +53,13 @@
                                                     <button class="add-to-calendar-btn" (click)="download()"><img src="/assets/ph-calendar-plus-light.svg"/>Add to calendar</button>
                                                 </div>
                                                 <a data-toggle="modal" (click)="selectedProgram = program" data-target="#ShareModal" class="cursor">
-                                                    <img src="assets/share_gray.svg " alt="Share Icon " />
+                                                    <img src="assets/save-blue-icon.svg" alt="Share Icon " />
                                                 </a>
                                                 <div class="bookmark_outer" *ngIf="userId && !providerRole">
                                                     <a class="bookmark_icon cursor" *ngIf="!program.isFav" (click)="addFav()">
-                                                        <img src="assets/bookmark_gray.svg  " alt="Menu Image " /></a>
+                                                        <img src="assets/share-blue-icon.svg" alt="Menu Image " /></a>
 
-                                                    <a class="bookmark_icon cursor" *ngIf="program?.isFav" (click)="deleteFav()"><img src="assets/bookmarkOrange.png " alt="Menu Image " /></a>
+                                                    <a class="bookmark_icon cursor" *ngIf="program?.isFav" (click)="deleteFav()"><img src="assets/bookmark-active.svg" alt="Menu Image " /></a>
                                                 </div>
                                             </div>
 
