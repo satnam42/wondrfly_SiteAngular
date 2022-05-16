@@ -1,10 +1,10 @@
 <body [ngClass]="currentOS == 'Mac' ? 'mac-class' : 'windows-class'">
   <!-- <app-alert></app-alert> -->
-  <!-- <div [ngClass]="{'click-disabled':!cookiesData}">
+  <div [ngClass]="{'click-disabled':!cookiesData}">
     <router-outlet></router-outlet>
-  </div>  -->
-  <div>
+  </div> 
+  <!-- <div>
     <router-outlet></router-outlet>
-  </div>
-  <!-- <app-cookies-popup  (cookiesDataIdentify)="checkCookieData($event)"></app-cookies-popup> -->
+  </div> -->
+   <app-cookies-popup  (cookiesDataIdentify)="checkCookieData($event)"></app-cookies-popup>
 </body>

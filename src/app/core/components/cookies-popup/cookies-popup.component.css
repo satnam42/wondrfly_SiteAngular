@@ -1,13 +1,26 @@
-.cookies{
+.cookies {
     background: #FFFFFF;
     box-shadow: 0px -3px 20px rgb(0 0 0 / 10%);
-    padding: 115px;
-    padding-top: 30px;
-    padding-bottom: 30px;
+    border-radius: 20px;
+    padding: 40px;
     position: fixed;
-    bottom: 0px;
     z-index: 999;
     width: 100%;
+    max-width: 590px;
+    margin: 0px auto;
+    left: 0;
+    right: 0;
+    top: 110px;
+}
+.bg-opacity-clr {
+    background: #2125291c;
+    position: fixed;
+    z-index: 999;
+    width: 100%;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
 }
 .cookies h1 {
     font-family: "Poppins";
