@@ -152,6 +152,7 @@ button.camp-btn {
   margin-bottom: 2px;
   width: 120px;
   text-align: center;
+  cursor: default;
 }
 
 /* button:not(:disabled) {
@@ -1907,7 +1908,6 @@ h2.provider_name span.provider-heading-h2 {
   align-items: center;
   letter-spacing: 0.001em;
   color: #53B2E8;
-  cursor: pointer;
 }
 .ul-tag-btn-info .btn-activites-info {
   font-family: 'Poppins';

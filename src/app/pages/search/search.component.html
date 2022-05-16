@@ -486,8 +486,7 @@
                                         <div class="left-icon-img">
                                             <img src="{{baseUrl+provider?.categories[0]?.logoUrl}}" />
                                         </div>
-                                        <div class="left-icon-h2 map-with-heading-h2"
-                                            (click)="goToProviderProfile(provider.user[0])">
+                                        <div class="left-icon-h2 map-with-heading-h2">
                                             <h2>{{provider.user[0].firstName}}</h2>
                                         </div>
                                     </div>
@@ -1383,9 +1382,9 @@
                                                 {{ data?.user[0]?.location }}
                                             </h3>
                                         </div>
-                                        <button (click)="goToProviderProfile(data?.user[0])" class="map-buttonas">
+                                        <!-- <button (click)="goToProviderProfile(data?.user[0])" class="map-buttonas">
                                             View
-                                        </button>
+                                        </button> -->
                                     </div>
                                     <!-- {{data?.user[0]?.firstName}} -->
                                 </agm-info-window>

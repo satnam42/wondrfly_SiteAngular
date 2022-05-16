@@ -5,10 +5,10 @@
 .beta-suggestionheading h1 {
     font-family: "Poppins";
     font-style: normal;
-    font-weight: 500;
-    font-size: 28px;
+    font-weight: 600;
+    font-size: 38px;
     line-height: 18px;
-    color: #53b2e8;
+    color: #777CEA;
     text-align: center;
 }
 
@@ -126,8 +126,8 @@ button {
 }
 
 .banner_form .banner_button {
-    background: #fa627d;
-    border: 1px solid #fa627d;
+    background:#777CEA;
+    border: 1px solid #777CEA;
     border-radius: 50%;
     width: 45px;
     height: 45px;

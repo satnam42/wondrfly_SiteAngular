@@ -760,8 +760,8 @@ a.top-rateds {
 }
 
 .banner_form .banner_button {
-    background: #fa627d;
-    border: 1px solid #fa627d;
+    background:#777CEA;
+    border: 1px solid #777CEA;
     border-radius: 50%;
     width: 45px;
     height: 45px;
@@ -3216,7 +3216,7 @@ div#Exploring-Wonderfly .carousel-item h1 {
 .media-full-row-info{grid-template-columns: 100%!important;}
 .media-top-txt-div {display: flex;column-gap: 10px;align-items: start;}
 .align-items-center{align-items: center;}
-.map-with-heading-h2{width: 100%;cursor: pointer;}
+.map-with-heading-h2{width: 100%;}
 .map-without-page-info .media-top-txt-div .left-icon-h2 {width: 100%;max-width: 380px;}
 .justify-content-right{justify-content: right;}
 .mt-0{margin-bottom:0px!important;}
