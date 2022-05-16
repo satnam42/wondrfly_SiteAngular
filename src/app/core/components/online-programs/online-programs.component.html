@@ -133,8 +133,8 @@
                     <div class="col-md-2">
                         <div class="media-share-icon">
                             <ul class="ul-tag-share_icon">
-                                <li><a class="cursor" data-toggle="modal" data-target="#ShareModal"(click)="selectedShareData = provider"><img src="assets/share_gray.svg" /></a></li>
-                                <li><a ><img src="assets/bookmark_gray.svg" /></a></li>
+                                <li><a class="cursor" data-toggle="modal" data-target="#ShareModal"(click)="selectedShareData = provider"><img src="assets/save-blue-icon.svg" /></a></li>
+                                <li><a ><img src="assets/share-blue-icon.svg" /></a></li>
                             </ul>
                         </div>
                     </div>
@@ -159,24 +159,26 @@
                             <div class="media-body">
                                 <div class="media-right-icon-h2">
                                     <div>
-                                        <h2 class="cursor">
-                                            <a data-toggle="tooltip" data-placement="bottom"
-                                            title="{{program?.name}}"  style="color:#53B2E8;" class="cursor" routerLink="{{goToProgramDetail(program)}}"> {{ program?.name }}</a>
-                                        </h2>
+                                        <div class="tooltip-div">
+                                            <h2 class="cursor">
+                                                <a  style="color:#53B2E8;" class="cursor" routerLink="{{goToProgramDetail(program)}}"> {{ program?.name }}</a>
+                                                <span class="tooltip-text">{{program?.name}}</span>
+                                            </h2>
+                                        </div>
                                     </div>
-                                    <div class="media-right-share-icon">
+                                    <div class="media-right-share-icon text-right">
                                         <div class="bookmark_outer">
                                             <a *ngIf="!program?.isFav && isLogin"
                                             (click)="addFavProgram(userData.id, provider_programs[providerIndx]?.programs[programIndx]?._id, providerIndx,programIndx)"
-                                                class="bookmark_icon cursor"><img src="assets/bookmark_gray.svg "
+                                                class="bookmark_icon cursor"><img src="assets/bookmark_gray1.svg"
                                                     alt="Menu Image "/></a>
 
                                             <a *ngIf="!isLogin" routerLink="/login" class="bookmark_icon cursor"><img
-                                                    src="assets/bookmark_gray.svg " alt="Menu Image " /></a>
+                                                    src="assets/bookmark_gray1.svg" alt="Menu Image " /></a>
 
                                             <a *ngIf="program?.isFav && isLogin"
                                             (click)="deleteFavProgram(provider_programs[providerIndx]?.programs[programIndx]?._id, providerIndx,programIndx)"
-                                                class="bookmark_icon cursor"><img src="assets/bookmarkOrange.png "
+                                                class="bookmark_icon cursor"><img src="assets/bookmark-active.svg"
                                                     alt="Menu Image " /></a>
                                         </div>
                                     </div>
@@ -322,7 +324,12 @@
                                             </h6>
                                         </div>
                                     </div> -->
-                                    <div class="col-md-12">
+                                    <div class="col-md-12" *ngIf="program?.inpersonOrVirtual=='Virtual'">
+                                        <div class="without-location-online-btn">
+                                            <button class="loc-without-online">Online</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12"  *ngIf="program?.inpersonOrVirtual=='Inperson'">
                                         <div class="left-icon-box-media">
                                             <div><img src="assets/calender-icon-img1.png" alt="calender-icon" />
                                             </div>

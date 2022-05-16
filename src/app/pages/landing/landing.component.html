@@ -74,11 +74,11 @@
                                     </div>
                                 </div>
                             </form> -->
-                            <form class="banner_form" data-toggle="collapse" href="#dropdownprogram-provider" role="button" aria-expanded="false" aria-controls="dropdownprogram-provider">
+                            <form class="banner_form" [ngClass]="{'banner_form_error':searchTermlanding.value && (!allData[0]?.data?.length && !allData[1]?.data?.length)}" data-toggle="collapse" href="#dropdownprogram-provider" role="button" aria-expanded="false" aria-controls="dropdownprogram-provider">
                                 <div class="left-searchpd">
                                     <div class="left_search">
                                         <div>
-                            <form class="banner_form"  [ngClass]="{'banner_form_error':searchTermlanding.value && (!allData[0]?.data?.length && !allData[1]?.data?.length)}">
+                            <form class="banner_form">
                                 <div class="form-group ">
                           <input type="text"
                           placeholder="Search Activity..."
