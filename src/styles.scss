@@ -56,7 +56,9 @@ label {
 body a:hover {
   text-decoration: none;
 }
-
+.banner_form_error{
+  border: 1px solid red !important;
+}
 .row-0 {
   margin-right: 0;
   margin-left: 0;

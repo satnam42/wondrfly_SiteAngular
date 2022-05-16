@@ -21,7 +21,7 @@ import { DataService } from "../../services/dataservice.service ";
         <div class="left_search">
           <div>
 
-          <form class="banner_form">
+          <form class="banner_form" [ngClass]="{'banner_form_error':searchTerm.value && (!allData[0]?.data?.length && !allData[1]?.data?.length)}">
           <div class="form-group ">
     <input type="text"
     placeholder="Search Activity..."
