@@ -320,14 +320,14 @@
                                 </div>
                             </li>
                             <li class="cursor">
-                                <a aria-expanded="true" [ngClass]="{ active:(isOnline || isInPerson)}" aria-expanded="true"
+                                <a aria-expanded="true"(click)="isTopFilterCheckBox=!isTopFilterCheckBox;programFilter()" [ngClass]="{ active:isTopFilterCheckBox}" aria-expanded="true"
                                     data-target="#Rating" data-toggle="collapse">Rating</a>
-                                <div class="rating-collapse-info collapse main_collpase typess verification_modal" id="Rating"
+                                <!-- <div class="rating-collapse-info collapse main_collpase typess verification_modal" id="Rating"
                                     data-parent="#accordionExample">
                                     <div class="collpase_content">
                                         <div class="form-group typess">
                                             <div class="input_outer">
-                                                <!-- <form action="">
+                                                <form action="">
                                                     <div class="typess-flex" >
                                                         <input  data-target="#format"
                                                         data-toggle="collapse" type="checkbox" [checked]="isOnline && !isInPerson"
@@ -347,14 +347,14 @@
                                                     </div>
 
 
-                                                </form> -->
+                                                </form>
                                             </div>
                                         </div>
                                    </div>
-                                </div>
+                                </div> -->
                             </li>
 
-                            <li class="cursor">
+                            <!-- <li class="cursor">
                                 <a class="top-rateds" aria-expanded="true" [ngClass]="{ active: isTopFilter }"><span
                                         class="simple-toggle">
                                         Top Rated
@@ -367,7 +367,7 @@
                                         </span>
                                     </span>
                                 </a>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                 </div>
@@ -844,12 +844,12 @@
                                                     </h6>
                                                 </div>
                                             </div> -->
-                                            <div class="col-md-12">
+                                            <div class="col-md-12" *ngIf="program?.inpersonOrVirtual=='Virtual'">
                                                 <div class="without-location-online-btn">
                                                     <button class="loc-without-online">Online</button>
                                                 </div>
                                             </div>
-                                            <div class="col-md-12" *ngIf="program?.location">
+                                            <div class="col-md-12" *ngIf="program?.inpersonOrVirtual=='Inperson'">
                                                 <div class="left-icon-box-media">
                                                     <div><img src="assets/location-dark-icon.png" alt="location-icon" />
                                                     </div>

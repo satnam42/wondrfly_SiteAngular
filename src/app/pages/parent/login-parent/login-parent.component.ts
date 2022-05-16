@@ -114,7 +114,9 @@ export class LoginParentComponent implements OnInit {
     this.maxDate = moment(today).format("YYYY-MM-DD");
     document.getElementById("listingDate").setAttribute("max", this.maxDate);
   }
-
+  editKid(indx) {
+    this.kid = this.kids[indx]
+  }
   validAge(addAnother?) {
     if (addAnother === 'add-another-child') {
       var birth = new Date(this.kid.dob);
@@ -141,10 +143,13 @@ export class LoginParentComponent implements OnInit {
           this.kid.age = String(age);
           this.kid.relationToChild = 'father'
           this.kid.sex = 'male'
-           this.kid.parentId = this.parent.id
-          this.kids.push(this.kid)
-          console.log('kids',this.kids)
-          let emptyChild = new Child 
+          this.kid.parentId = this.parent.id
+          let index = this.kids.findIndex(x => x === this.kid)
+          if (index == -1) {
+            this.kids.push(this.kid)
+          }
+          console.log('kids', this.kids)
+          let emptyChild = new Child
           this.kid = emptyChild
           this.searchedTags = []
           this.keyword = ''
@@ -185,10 +190,13 @@ export class LoginParentComponent implements OnInit {
   }
   addChild() {
     // this.kid.interestInfo = this.selectedTags
+    let index = this.kids.findIndex(x => x === this.kid)
+    if (index == -1) {
       this.kids.push(this.kid)
-    for(let kid of this.kids){
+    }
+    for (let kid of this.kids) {
       this.apiservice.addChild(kid).subscribe((res: any) => {
-console.log(res)
+        console.log(res)
       });
     }
 
