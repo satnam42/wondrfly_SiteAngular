@@ -180,9 +180,6 @@ export class SearchComponent implements OnInit, OnDestroy {
   ) {
     this.activityClicked = Number(this.cookies.get('activityClicked'))
     this.activitySearched = Number(this.cookies.get('activitySearched'))
-    if (this.activitySearched > 2 && this.activityClicked>9) {
-      this.isBetaPopUp = true
-    }
     // let regCount = this.activitySearched + 1
     // this.cookies.set('activitySearched', String(regCount), 30);
     this.countVisit()
