@@ -683,7 +683,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.isCategoryFilter = false;
     this.suggested = []
     if (this.isMapFilter || this.isTopFilterCheckBox || this.categoryId || this.selectedDays.length || this.selectedProgramTypes.length || this.selectedSubCategories.length || this.selectedProgramTime.length || this.isOnline || this.isInPerson || this.isDateFilter || this.isPriceFilter || this.isAgeFilter) {
-     let pageSize =100;
+     let pageSize =50;
       this.contentLoaded = false;
       let filter = ``
       let inpersonOrVirtual = ''
