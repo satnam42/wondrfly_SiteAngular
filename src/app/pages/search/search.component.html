@@ -319,7 +319,7 @@
                             </li>
                             <li class="cursor">
                                 <a aria-expanded="true"(click)="isTopFilterCheckBox=!isTopFilterCheckBox;programFilter()" [ngClass]="{ active:isTopFilterCheckBox}" aria-expanded="true"
-                                    data-target="#Rating" data-toggle="collapse">Rating</a>
+                                    data-target="#Rating" data-toggle="collapse">Top Rated</a>
                                 <!-- <div class="rating-collapse-info collapse main_collpase typess verification_modal" id="Rating"
                                     data-parent="#accordionExample">
                                     <div class="collpase_content">
@@ -437,12 +437,12 @@
                         <mat-icon (click)="contentLoaded=false;isMapFilter=!isMapFilter;programFilter()">cancel
                         </mat-icon>
                     </button> -->
-                    <!-- <button class="btn_style save_btn cursor" *ngIf="isTopFilterCheckBox">
+                    <button class="btn_style save_btn cursor" *ngIf="isTopFilterCheckBox">
                         Top Rated
                         <mat-icon
                             (click)="contentLoaded=false;isTopFilterCheckBox=false;isTopFilter=false;programFilter()">
                             cancel</mat-icon>
-                    </button> -->
+                    </button>
                     <button class="btn_style save_btn cursor" *ngFor="let day of this.selectedDays;index as i">
                         {{day}}
                         <mat-icon (click)="removeRecentSearches('days',i)" class="ml-2">cancel</mat-icon>
