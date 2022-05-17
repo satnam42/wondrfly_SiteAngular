@@ -70,6 +70,9 @@ export class OnlineProgramsComponent implements OnInit {
       if( auth.currentUser()){
         this.isLogin=true;
         this.userData=auth.currentUser();
+        if(this.userData.role==='parent'){
+          this.parentRole = true
+        }
       }
   }
   ngOnInit() {
@@ -105,9 +108,6 @@ addFavProgram(userId, programId, providerIndx,programIndx) {
     });
   }
   goToProgramDetail(data) {
-    if (this.parentRole) {
-      this.addAction(data._id);
-    }
     var programName = data.name;
     programName = programName.toLowerCase();
     programName = programName.replace(/ /g, "-");
@@ -151,5 +151,19 @@ getRating(id,indx){
       programs = programs.sort((a, b) => new Date(a.date.from).valueOf() - new Date(b.date.from).valueOf());
       return programs
     }
-
+  //  save provider
+  saveUnsaveProvider(indx, boleanType) {
+    let model = {
+      parent: this.userData.id,
+      provider: this.provider_programs[indx]._id
+    }
+    if (boleanType) {
+      this.provider_programs[indx].isFav = boleanType
+      this.apiservice.saveProvider(model).subscribe((res: any) => {
+      });
+    }
+    else {
+      this.provider_programs[indx].isFav = boleanType
+    }
+  }
 }

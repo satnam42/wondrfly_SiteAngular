@@ -20,6 +20,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { LoaderFileComponent } from './components/loader-file/loader-file.component';
 import { LottieModule } from 'ngx-lottie';
 import player from 'lottie-web';
+import { RegWallComponent } from './components/reg-wall/reg-wall.component';
 
 export function playerFactory() {
   return player;
@@ -33,6 +34,7 @@ const components = [
   Header2Component,
   Footer2Component,
   AlertComponent,
+  RegWallComponent,
   CookiesPopupComponent,
   LoaderFileComponent
 ]

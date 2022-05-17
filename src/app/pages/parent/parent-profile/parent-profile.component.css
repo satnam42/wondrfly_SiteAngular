@@ -1849,10 +1849,10 @@ span.search_btn {
 h2.description-activities {
   padding-bottom: 20px;
 }
-.imgsvg {
+/* .imgsvg {
   filter: invert(61%) sepia(59%) saturate(442%) hue-rotate(159deg)
     brightness(95%) contrast(93%);
-}
+} */
 .activities_slide .slide_image {
   filter: drop-shadow(3px 3px 3px rgba(0, 0, 0, 0.1));
   border-radius: 20px 20px 0px 0px;

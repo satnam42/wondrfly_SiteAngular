@@ -678,20 +678,20 @@
                                                         title="💡 Share with friends and family"
                                                         text="Click here to share your favorite activities!"
                                                         alt="Share Icon " /> -->
-                                                    <img src="assets/share_gray.svg " alt="Share Icon " />
+                                                    <img src="assets/share-blue-icon.svg" alt="Share Icon " />
                                                 </a>
                                                 <div class="bookmark_outer">
                                                     <a *ngIf="!program?.isFav && isLogin"
                                                         (click)="addFavProgram(userData.id, providerProgram[providerIndx]?.programs[programIndx]?._id, providerIndx,programIndx)"
                                                         class="bookmark_icon cursor"><img
-                                                            src="assets/bookmark_gray1.svg " alt="Menu Image "
+                                                            src="assets/share-blue-icon.svg" alt="Menu Image "
                                                             joyrideStep="thirdStep{{providerIndx}}{{programIndx}}"
                                                             title="💡 Save activities for later"
                                                             text="Click here to save your favorite activities all in one place for when you need them!" /></a>
 
                                                     <a *ngIf="!isLogin" routerLink="/login"
                                                         class="bookmark_icon cursor"><img
-                                                            src="assets/bookmark_gray1.svg " alt="Menu Image " /></a>
+                                                            src="assets/share-blue-icon.svg" alt="Menu Image " /></a>
 
                                                     <a *ngIf="program?.isFav && parentRole && isLogin"
                                                         (click)="deleteFavProgram(providerProgram[providerIndx]?.programs[programIndx]?._id, providerIndx,programIndx)"
