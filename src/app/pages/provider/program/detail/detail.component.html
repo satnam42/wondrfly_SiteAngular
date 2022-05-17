@@ -61,6 +61,10 @@
 
                                                     <a class="bookmark_icon cursor" *ngIf="program?.isFav" (click)="deleteFav()"><img src="assets/bookmark-active.svg" alt="Menu Image " /></a>
                                                 </div>
+                                                <div class="bookmark_outer" *ngIf="!isLogin">
+                                                    <a class="bookmark_icon cursor"  routerLink="/login">
+                                                        <img src="assets/share-blue-icon.svg" alt="Menu Image " /></a>
+                                                </div>
                                             </div>
 
                                             <h3 class="provider_name">
