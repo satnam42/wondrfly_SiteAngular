@@ -369,7 +369,7 @@ export class HeaderComponent implements OnInit {
       this.apiservice.searchTag(key).subscribe((res: any) => {
         this.categoriesBySearch = res;
         this.categoriesBySearch.category = this.categoriesBySearch.category.filter((item) => item.isActivated !== false);
-        this.categoriesBySearch.tags = this.categoriesBySearch.tags.filter((item) => item.isActivated !== false);
+        this.categoriesBySearch.tags = this.categoriesBySearch.tags.filter((item) => item.isActivated !== false && item.programCount);
         this.categoryData = this.categoriesBySearch.category.concat(this.categoriesBySearch.tags)
         groupDataAll[0].data = this.categoryData;
       });
