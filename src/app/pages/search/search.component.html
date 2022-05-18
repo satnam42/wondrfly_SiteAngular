@@ -485,12 +485,17 @@
                                             <img src="{{baseUrl+provider?.categories[0]?.logoUrl}}" />
                                         </div>
                                         <div class="left-icon-h2 map-with-heading-h2">
-                                            <h2>{{provider.user[0].firstName}}</h2>
+                                            <div class="tooltip-div map-h2-tooltip">
+                                                <h2>
+                                                    {{provider.user[0].firstName}}
+                                                    <span class="tooltip-text">{{provider.user[0].firstName}}</span>
+                                                </h2>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="media-top-txt-div">
+                                <div class="col-md-6">
+                                    <div class="media-top-txt-div max-width-400">
                                         <div class="review-starsearch-info"
                                             (mouseover)="isRating=true;$event.target.click()"
                                             (mouseout)="isRating=false;$event.target.click()"
@@ -591,11 +596,6 @@
                                                 </app-rating>
                                             </div>
                                         </div>
-
-                                    </div>
-                                </div>
-                                <div class="col-md-2 ">
-                                    <div class="media-top-txt-div justify-content-right">
                                         <div class="view-less-div">
                                             <div class="view-less-txt-info collapsed">
                                                 <a *ngIf="provider.collapsed" class="btn-view-less"
@@ -610,7 +610,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-2 ">
+                                <div class="col-md-2">
                                     <div class="media-share-icon">
                                         <ul class="ul-tag-share_icon">
                                             <li><a class="cursor" data-toggle="modal" data-target="#ShareModal"

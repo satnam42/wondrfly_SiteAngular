@@ -3212,7 +3212,7 @@ div#Exploring-Wonderfly .carousel-item h1 {
 .media-top-content-info .left-icon-h2 h2 {font-family: 'Poppins';font-style: normal;font-weight: 600;
     font-size: 18px;line-height: 27px;letter-spacing: 0.001em;color: #494949;}
 .media-top-content-info {position: relative;display: grid;grid-template-columns: auto 70px;column-gap: 5px;
-    align-items: center;margin-bottom: 20px;}
+    align-items: center;margin-bottom: 15px;}
 .media-full-row-info{grid-template-columns: 100%!important;}
 .media-top-txt-div {display: flex;column-gap: 10px;align-items: start;}
 .align-items-center{align-items: center;}
@@ -3321,7 +3321,7 @@ button.btn-hide-up {font-family: 'Poppins';font-style: normal;font-weight: 400;f
     max-width: 220px;
     border: 0px;
     margin: 0px;
-    padding-bottom: 20px;
+    padding-bottom: 15px;
 }
 .media-scroable .media.activity .media-body {
     padding: 15px 15px;
@@ -3358,7 +3358,7 @@ button.btn-hide-up {font-family: 'Poppins';font-style: normal;font-weight: 400;f
 }
 .search-results-section {
     /* border-bottom: 1px solid #E5E9EC; */
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 .text-right{text-align: right;}
 /* end search-left-bar-css */
@@ -3579,3 +3579,15 @@ footer {
   .tooltip-div:hover .tooltip-text {
     visibility: visible;
   }
+  .tooltip-div.map-h2-tooltip .tooltip-text {
+    left: 0!important;
+    top: 100%!important;
+}
+.tooltip-div.map-h2-tooltip h2 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.max-width-400{position: relative;max-width: 400px;}

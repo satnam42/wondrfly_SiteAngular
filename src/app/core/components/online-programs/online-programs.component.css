@@ -2082,7 +2082,7 @@ hr.N_line {
 }
 .online-searchresult .search-results .media.activity {
   background-color: #fff;
-  margin-top: 25px;
+  /* margin-top: 25px; */
   /* box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1); */
   /* border-radius: 20px; */
 }
@@ -2200,7 +2200,7 @@ hr.N_line {
     /* border-bottom: 1px solid #E5E9EC; */
     margin-left: 40px;
     margin-right: 40px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 .map-without-top-section-info {
     position: relative;
@@ -2255,7 +2255,7 @@ hr.N_line {
 .media-top-content-info .left-icon-h2 h2 {font-family: 'Poppins';font-style: normal;font-weight: 600;
     font-size: 18px;line-height: 27px;letter-spacing: 0.001em;color: #494949;}
 .media-top-content-info {display: grid;grid-template-columns: auto 70px;column-gap: 5px;
-    align-items: center;margin-bottom: 20px;}
+    align-items: center;margin-bottom: 10px;}
 .media-top-txt-div {display: flex;column-gap: 10px;align-items: start;}
 .review-starsearch-info {padding-left: 10px;}
 ul.ul-tag-share_icon {margin: 0px;padding: 0px;list-style: none;text-align: right;}
@@ -2345,7 +2345,7 @@ button.btn-hide-up {font-family: 'Poppins';font-style: normal;font-weight: 400;f
     max-width: 220px ;
     border: 0px;
     margin: 0px;
-    padding-bottom: 20px;
+    padding-bottom: 15px;
 }
 .media-scroable .media.activity .media-body {
     padding: 15px 15px;
@@ -2454,3 +2454,15 @@ button.btn-hide-up {font-family: 'Poppins';font-style: normal;font-weight: 400;f
   .tooltip-div:hover .tooltip-text {
     visibility: visible;
   }
+  .tooltip-div.map-h2-tooltip .tooltip-text {
+    left: 0!important;
+    top: 100%!important;
+}
+.tooltip-div.map-h2-tooltip h2 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.max-width-400{position: relative;max-width: 400px;}

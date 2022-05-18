@@ -10,14 +10,19 @@
                         <div class="media-top-txt-div">
                             <div class="left-icon-img">
                                 <img src="{{baseUrl+provider?.categories[0]?.logoUrl}}" />
-
                             </div>
                             <div class="left-icon-h2">
-                                <h2>{{provider.user[0].firstName}}</h2>
+                                <div class="tooltip-div map-h2-tooltip">
+                                    <h2>
+                                        {{provider.user[0].firstName}}
+                                        <span class="tooltip-text">{{provider.user[0].firstName}}</span>
+                                    </h2>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
+                        <div class="media-top-txt-div max-width-400"> 
                         <div class="review-starsearch-info cursor" data-toggle="collapse" [attr.data-target]="'#collapseExamplestar' + providerIndx" (mouseover)="isRating=true;$event.target.click()" (mouseout)="isRating=false;$event.target.click()" (click)="getRating(provider._id,providerIndx)">
                             <!-- <div class="rating-starsearch">
                                 <p class="cursor">
@@ -119,10 +124,7 @@
                             </app-rating>
                         </div>
                         </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="media-top-txt-div justify-content-right"> 
-                            <div class="view-less-div">
+                        <div class="view-less-div">
                                 <div class="view-less-txt-info">
                                     <a *ngIf="provider.collapsed" class="btn-view-less"   (click)="provider.collapsed=false" aria-expanded="false" aria-controls="collapseDosing">View More  <i class="fas fa-chevron-down"></i></a>
                                     <a *ngIf="!provider.collapsed" class="btn-view-less"  (click)="provider.collapsed=true" aria-expanded="false" aria-controls="collapseDosing">View Less  <i class="fas fa-chevron-up"></i></a> 
@@ -130,8 +132,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-2">
-                        <div class="media-share-icon">
+                    <div class="col-md-4">
+                        <div class="media-share-icon max-width-400">
                             <ul class="ul-tag-share_icon">
                                 <li><a class="cursor" data-toggle="modal" data-target="#ShareModal"(click)="selectedShareData = provider"><img src="assets/save-blue-icon.svg" /></a></li>
                                 <li>
