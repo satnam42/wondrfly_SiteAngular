@@ -621,7 +621,13 @@
                                             <div class="col-md-8">
                                                 <div class="media-top-txt-div">
                                                     <div class="left-icon-img">
-                                                        <img src="https://wondrfly.com/images/1643364878820Sports%20&%20fitness.png" />
+                                                        <img *ngIf="data?.category?.length;else tagsUrl" src="{{baseUrl+data?.category[0]?.logoUrl}}" />
+                                                        <ng-template #tagsUrl>
+                                                            <img  *ngIf="data?.tags?.length; else noLogoFound" src="{{baseUrl+data?.tags[0]?.logo}}" />
+                                                            <ng-template #noLogoFound>
+                                                                <img  src="https://wondrfly.com/images/1643352351489music.png" />
+                                                                </ng-template>
+                                                        </ng-template>
                                                     </div>
                                                     <div class="left-icon-h2">
                                                         <h2 (click)="goToProviderProfile(data?.provider)">{{data?.provider?.firstName}}</h2>
