@@ -1278,7 +1278,7 @@
                                 src="assets/right-arrow-icon.png" /></button>
                     </div>
                     <agm-map *ngIf="providerProgram?.length; else nolocationfound" [styles]="mapTheme.customStyle"
-                        style="width: 100%; height: 100%" (centerChange)="centerChange($event)" [zoom]="zoom"
+                        style="width: 100%; height: 100%" (mapReady)="dragEnd($event)" (centerChange)="centerChange($event)" [zoom]="zoom" [mapDraggable]="true"
                         [usePanning]="true" [fitBounds]="true" [latitude]="lat" [longitude]="lng"
                         (mapClick)="mapClicked(previous)">
                         <div *ngFor="let data of providerProgram;let providerIndx = index">
@@ -1391,7 +1391,7 @@
                     </agm-map>
                     <!-- ------------------------ no programs location ------------ -->
                     <ng-template #nolocationfound>
-                        <agm-map style="width: 100%; height: 100%" (centerChange)="centerChange($event)"  [styles]="mapTheme.customStyle" [zoom]="14"
+                        <agm-map style="width: 100%; height: 100%" (mapReady)="dragEnd($event)" (centerChange)="centerChange($event)"  [styles]="mapTheme.customStyle" [zoom]="14"
                             [latitude]="40.72652470735903" [longitude]="-74.05900394007715">
                         </agm-map>
                     </ng-template>

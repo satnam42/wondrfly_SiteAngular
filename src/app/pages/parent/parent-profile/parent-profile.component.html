@@ -618,7 +618,7 @@
                                 <div class="my-saved-body-content" *ngFor="let data of savedProvider; let providerIndx = index">
                                     <div class="media-top-content-info mb-20">
                                         <div class="row row-0 align-items-center">
-                                            <div class="col-md-8">
+                                            <div class="col-md-12">
                                                 <div class="media-top-txt-div">
                                                     <div class="left-icon-img">
                                                         <img *ngIf="data?.category?.length;else tagsUrl" src="{{baseUrl+data?.category[0]?.logoUrl}}" />
@@ -737,11 +737,11 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
-                                                <!-- <div class="media-top-txt-div justify-content-right">
+                                            <!-- <div class="col-md-4">
+                                                 <div class="media-top-txt-div justify-content-right">
                                                     <a class="btn-show-all-program" (click)="goToProviderProfile(data?.provider,'activities')">view all activities</a>
-                                                </div> -->
-                                            </div>
+                                                </div> 
+                                            </div>-->
                                         </div>
                                     </div>
                                     <div class="my-saved-carousel-slider">

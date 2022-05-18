@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone, OnDestroy, QueryList, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/core/services/api.service.service';
-import { MapsAPILoader } from '@agm/core';
+import { LatLngLiteral, MapsAPILoader } from '@agm/core';
 import * as moment from 'moment';
 import { Category, User } from 'src/app/core/models';
 import { DataService } from 'src/app/core/services/dataservice.service ';
@@ -201,8 +201,9 @@ export class SearchComponent implements OnInit, OnDestroy {
     var retrievedObject = localStorage.getItem('CurrentUserWondrfly');
     this.userData = JSON.parse(retrievedObject);
     this.selectedProgramTypes.push('Drop-ins')
-    if (this.filterData.subcatId || this.filterData.categoryId || this.filterData.kidAge || this.selectedProgramTypes.length) {
-      this.categoryId = this.filterData.categoryId
+    if (this.filterData.subcatId || this.filterData.categoryId || this.filterData.kidAge) {
+      this.selectedProgramTypes = []
+       this.categoryId = this.filterData.categoryId
       this.searchedSubCategory = this.filterData.searchedCategoryKey
       if (this.filterData.subcatId) {
         this.selectedSubCategories[0] = this.filterData.subcatId;
@@ -229,6 +230,9 @@ export class SearchComponent implements OnInit, OnDestroy {
       if (this.filterData?.online) {
         this.isOnline = true;
       }
+      this.programFilter()
+    }
+    else if (this.selectedProgramTypes.length){
       this.programFilter()
     }
     else if (this.filterData.activityName) {
@@ -279,14 +283,20 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.toDate = e.endDate._d
   }
 
-  centerChange(e) {
-    this.coordinates = e
-    if (this.isMapMoveChecked) {
-      this.isMapFilter=true
-      setTimeout(() =>this.programFilter(),1000); 
-       }
+ centerChange(coords: LatLngLiteral) {
+    this.coordinates.lat = coords.lat;
+    this.coordinates.lng = coords.lng;
   }
+ dragEnd(map) {
+    map.addListener("dragend", () => {
+      if (this.isMapMoveChecked) {
+        console.log('dragEnd')
+        this.isMapFilter=true
+      this.programFilter()
+      } 
+         });
 
+  }
   clickedMarker(infowindow) {
     if (this.previous) {
       this.previous.close();
