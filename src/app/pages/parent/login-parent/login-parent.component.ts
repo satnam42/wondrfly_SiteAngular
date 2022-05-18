@@ -190,14 +190,19 @@ export class LoginParentComponent implements OnInit {
   }
   addChild() {
     // this.kid.interestInfo = this.selectedTags
+    let i =0
     let index = this.kids.findIndex(x => x === this.kid)
     if (index == -1) {
       this.kids.push(this.kid)
     }
     for (let kid of this.kids) {
+      i++;
       this.apiservice.addChild(kid).subscribe((res: any) => {
         console.log(res)
       });
+    }
+    if(i==this.kids.length){
+      this.updateParent()
     }
 
   }
