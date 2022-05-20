@@ -2,7 +2,8 @@
 
 .beta-fullbox h1 {
     font-family: "Poppins";
-    font-weight: normal;
+    font-style: normal;
+    font-weight: 400;
     font-size: 36px;
     line-height: 54px;
     text-align: center;
@@ -16,22 +17,34 @@
     padding-left: 200px;
     padding-right: 200px;
     position: fixed;
-    z-index: 20;
+    z-index: 111;
     bottom: 0px;
     box-shadow: 0px 17px 25px 36px #ffff;
 }
 
 .beta-fullbox button {
-    background-color: #53b2e8;
-    border-color: #53b2e8;
-    box-shadow: none;
-    border-radius: 26px;
+    font-family: "Poppins";
     font-weight: 600;
-    font-size: 13px;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0.001em;
+    background-color: #53b2e8;
+    box-shadow: 0px 1px 1px rgb(0 0 0 / 25%);
+    border-radius: 50px;
     color: #fff;
-    border: 0px;
-    padding: 12px;
-    padding-left: 40px;
-    padding-right: 40px;
+    border: 1px solid #53b2e8;
+    padding: 15px 10px;
+    text-transform: uppercase;
+    max-width: 213px;
+    width: 100%;
     margin-top: 30px;
+}
+.outline-btn{
+    background-color: #fff !important;
+    color: #53b2e8 !important;
+}
+.display-flex-btn {
+    display: flex;
+    justify-content: center;
+    column-gap: 20px;
 }
