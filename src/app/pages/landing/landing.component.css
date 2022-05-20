@@ -348,7 +348,7 @@ button.banner_button.cursor img {
   padding-right:20px;
 }
 .search-results::-webkit-scrollbar {
-  width: 4px;
+  width: 8px;
   height: 4px;
 }
 

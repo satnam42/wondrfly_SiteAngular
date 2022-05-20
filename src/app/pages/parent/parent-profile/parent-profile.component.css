@@ -1731,7 +1731,7 @@ span.search_btn {
     overflow-y: auto;
   }
   .side_bar::-webkit-scrollbar {
-    width: 4px;
+    width: 6px;
     height: 4px;
   }
   .side_bar::-webkit-scrollbar-track {

@@ -2257,7 +2257,7 @@ button.banner_button.cursor img {
 }
 
 .search-results::-webkit-scrollbar {
-    width: 4px;
+    width: 8px;
     height: 4px;
 }
 
