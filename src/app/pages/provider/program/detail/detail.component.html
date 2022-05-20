@@ -171,7 +171,8 @@
                                             </h3>
                                             <div class="programInfo">
                                                 <p *ngIf="program.inpersonOrVirtual!='Virtual'">
-                                                    <img src="assets/loction_pin.svg" alt="Location Pin" />{{ program?.location }}
+                                                    <img src="assets/loction_pin.svg" alt="Location Pin" />{{program?.location?.substring(0,
+                                                        program?.location?.indexOf(", "))}}
                                                 </p>
                                                 <p *ngIf="program.inpersonOrVirtual=='Virtual' && program?.joiningLink">
                                                     <img src="assets/bi_link.svg" alt="Location Pin" /><a href="{{program?.joiningLink}}" target="_blank" rel="noopener">Join via Link</a>
@@ -538,7 +539,8 @@
                                                         <span><img src="assets/location-pintag.svg" />
                             </span>
                                                         <h3>
-                                                            {{ program?.location }}
+                                                            {{program?.location?.substring(0,
+                                                                program?.location?.indexOf(", "))}}
                                                         </h3>
                                                     </div>
                                                 </div>
@@ -1326,7 +1328,8 @@
                                                         <img src="assets/location-icon.png" alt="location-icon">
                                                     </div>
                                                     <div>
-                                                        <p>{{program?.location}}</p>
+                                                        <p>{{program?.location?.substring(0,
+                                                            program?.location?.indexOf(", "))}}</p>
                                                     </div>
                                                 </div>
                                             </div>
