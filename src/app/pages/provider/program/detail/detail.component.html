@@ -57,13 +57,14 @@
                                                 </a>
                                                 <div class="bookmark_outer" *ngIf="userId && !providerRole">
                                                     <a class="bookmark_icon cursor" *ngIf="!program.isFav" (click)="addFav()">
-                                                        <img src="assets/share-blue-icon.svg" alt="Menu Image " /></a>
+                                                        <img src="assets/bookmark-active.svg" alt="Menu Image " /></a>
 
-                                                    <a class="bookmark_icon cursor" *ngIf="program?.isFav" (click)="deleteFav()"><img src="assets/bookmark-active.svg" alt="Menu Image " /></a>
+                                                    <a class="bookmark_icon cursor" *ngIf="program?.isFav" (click)="deleteFav()">
+                                                        <img src="assets/bookmark-active-min.svg" alt="Menu Image " /></a>
                                                 </div>
                                                 <div class="bookmark_outer" *ngIf="!isLogin">
                                                     <a class="bookmark_icon cursor"  routerLink="/login">
-                                                        <img src="assets/share-blue-icon.svg" alt="Menu Image " /></a>
+                                                        <img src="assets/bookmark-active.svg" alt="Menu Image " /></a>
                                                 </div>
                                             </div>
 

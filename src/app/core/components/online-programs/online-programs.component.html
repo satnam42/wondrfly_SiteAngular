@@ -139,13 +139,14 @@
                                 <li>
                                     <a *ngIf="provider?.isFav && parentRole && isLogin"
                                         (click)="saveUnsaveProvider(providerIndx,false)" class="cursor"><img
-                                            src="assets/bookmark-active.svg" /></a>
+                                            src="assets/bookmark-active-min.svg" /></a>
                                     <a *ngIf="!provider?.isFav && parentRole && isLogin"
                                         (click)="saveUnsaveProvider(providerIndx,true)" class="cursor"><img
-                                            src="assets/share-blue-icon.svg" /></a>
+                                            src="assets/bookmark-active.svg" /></a>
                                     <a *ngIf="!isLogin" class="cursor" routerLink="/login"><img
-                                            src="assets/share-blue-icon.svg" /></a>
-                                </li>                            </ul>
+                                            src="assets/bookmark-active.svg" /></a>
+                                </li> 
+                            </ul>
                         </div>
                     </div>
                     </div>   
@@ -180,14 +181,14 @@
                                         <div class="bookmark_outer">
                                             <a *ngIf="!program?.isFav && isLogin"
                                             (click)="addFavProgram(userData.id, provider_programs[providerIndx]?.programs[programIndx]?._id, providerIndx,programIndx)"
-                                                class="bookmark_icon cursor"><img src="assets/share-blue-icon.svg" alt="Menu Image "/></a>
+                                                class="bookmark_icon cursor"><img src="assets/bookmark-active.svg" alt="Menu Image "/></a>
 
                                             <a *ngIf="!isLogin" routerLink="/login" class="bookmark_icon cursor"><img
-                                                    src="assets/share-blue-icon.svg" alt="Menu Image " /></a>
+                                                    src="assets/bookmark-active.svg" alt="Menu Image " /></a>
 
                                             <a *ngIf="program?.isFav && isLogin"
                                             (click)="deleteFavProgram(provider_programs[providerIndx]?.programs[programIndx]?._id, providerIndx,programIndx)"
-                                                class="bookmark_icon cursor"><img src="assets/bookmark-active.svg"
+                                                class="bookmark_icon cursor"><img src="assets/bookmark-active-min.svg"
                                                     alt="Menu Image " /></a>
                                         </div>
                                     </div>

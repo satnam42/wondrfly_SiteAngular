@@ -1,0 +1,12 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" width="26" height="26">
+	<title>saveactive-blue-icon-svg</title>
+	<style>
+		.s0 { fill: #e2f5ff } 
+		.s1 { fill: none;stroke: #53b2e8;stroke-linecap: square;stroke-width: .9 } 
+	</style>
+	<g id="Folder 1">
+		<circle id="Layer" class="s0" cx="13" cy="13" r="13"/>
+		<path id="Layer" class="s1" d="m16.3 13h3.2"/>
+		<path id="Layer" class="s1" d="m17.6 16.6v2.2l-4.8-2.8-4.9 2.8v-10.5c0-0.3 0.2-0.5 0.4-0.8 0.2-0.2 0.4-0.3 0.7-0.3h7.5c0.3 0 0.6 0.1 0.8 0.3 0.2 0.3 0.3 0.5 0.3 0.8v0.6"/>
+	</g>
+</svg>
