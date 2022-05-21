@@ -7,19 +7,13 @@
         <div class="row">
             <div class="col-12">
                 <div class="header_right">
-
                     <circle-progress [percent]="100*finished/total" [backgroundStroke]="'#fff'"
                         [subtitleFormat]="formatSubtitle" [space]="-5" [showTitle]="false" [showUnits]="false"
                         [subtitleFontSize]="15" [radius]="19" [outerStrokeWidth]="5" [innerStrokeWidth]="5"
                         [outerStrokeColor]="'#53B2E8'" [innerStrokeColor]="'#fff'" [animation]="true"
                         [animationDuration]="300"></circle-progress>
-
-
-
                     <span class="upper-headingsec">Get Started!</span>
                 </div>
-
-
             </div>
         </div>
     </div>
@@ -27,7 +21,6 @@
         <div class="menu-box">
             <span class="wnderfly-btn">© 2021 WONDRFLY Inc.</span>
             <div [hidden]="!step1" class="box text-center p-3 bg-white">
-                <p></p>
                 <h2 class="my_heading1">Where are you?</h2>
                 <p class="pt-1">
                     Your location will help us to find the best activities near you
@@ -71,13 +64,11 @@
             </div>
 
             <div [hidden]="!step2" class="box text-center p-3 bg-white">
-                <p></p>
                 <h2 class="my_heading1">Tell us about your child</h2>
                 <p class="pt-1">
                     This will help us personalize your activity recommendations
                     <!-- These details will help us find personalized activity recommendations <br> based on your child's age, interests and availability -->
                 </p>
-           
                 <div class="N_inputs_container">
                     <form [formGroup]="addChildForm">
                         <div class="business_name" *ngFor="let kid of kids;let i = index">
@@ -362,23 +353,20 @@
                     </div>
                 </div>
             </div> -->
-            <div *ngIf="step3" class="box text-center p-3 bg-white">
-                <h2 class="my_heading1">Welcome to Wondrfly!</h2>
+            <div *ngIf="step3" class="welcome-popup-box box text-center p-3 bg-white" style="background-image: url(assets/wel-top-bg-img.svg), url(assets/wel-bottom-bg-img.svg);">
+                <h2 class="wlc-h2">Welcome to Wondrfly!</h2>
                 <div class="laststep-onboarding">
-                    <h6>
-                        You can now explore over 2000 activities for kids!
-                        <br>
-                        <br> We’re growing fast, so be sure to check back for more.
-                    </h6>
+                    <p>You can now explore over 2000 activities for kids!</p>
+                    <p>We’re growing fast, so be sure to check back for more.</p>
                 </div>
                 <div class="N_btns">
-                    <div class="row">
-                        <div class="col-6">
+                    <div class="row mt-40">
+                        <!-- <div class="col-6">
                             <div (click)="backStep()" class="back_btn cursor">
                                 <a> back </a>
                             </div>
-                        </div>
-                        <div class="col-6">
+                        </div> -->
+                        <div class="col-12">
                             <div (click)="addChild()" class="next_btn cursor">
                                 <a> Finish </a>
                             </div>
