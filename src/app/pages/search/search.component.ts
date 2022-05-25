@@ -783,15 +783,15 @@ export class SearchComponent implements OnInit, OnDestroy {
     programName = programName.replace(/ /g, "-");
     programName = programName.replace(/\?/g, "-");
     let url = ``
-    if(Object.keys(this.filterObj).length){
-      const filter = new URLSearchParams(this.filterObj).toString();
-      url = `/program/${programName}/${data._id}?filter=${filter}`
-      return url
-    }
-    else{
+    // if(Object.keys(this.filterObj).length){
+    //   const filter = new URLSearchParams(this.filterObj).toString();
+    //   url = `/program/${programName}/${data._id}?filter=${filter}`
+    //   return url
+    // }
+    // else{
       url = `/program/${programName}/${data._id}`
       return url
-    }
+    // }
 
     // this.router.navigate(['program', programName, data._id]);
     // const url = this.router.serializeUrl(
