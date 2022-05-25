@@ -20,7 +20,6 @@ import { AnimationOptions } from 'ngx-lottie';
 import { AnimationItem } from 'lottie-web';
 import { createEvent, download } from './event-download.utils';
 import { MapTheme } from 'src/app/core/common/map-theme';
-import { resourceUsage } from 'process';
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',
@@ -223,8 +222,16 @@ export class DetailComponent implements OnInit {
   upArrow: boolean = false;
   upArrow2: boolean = false;
   providerr = new User;
-  filterObj:any = {}
   activitiesCount = 0
+  tempCategoryId = ''
+  tempSearchedSubCategory = ''
+  tempSelectedSubCategories = []
+  tempSelectedDays: any = []
+  tempSelectedProgramTypes: any = []
+  tempSelectedProgramTime: any = []
+
+
+
   constructor(private apiservice: ApiService,
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
@@ -239,7 +246,7 @@ export class DetailComponent implements OnInit {
     public mapTheme: MapTheme) {
     this.activatedRoute.params.subscribe(params => {
       this.program.id = params['id'];
-      // return this.getProgramById()
+      return this.getProgramById()
     });
     this.user = JSON.parse(localStorage.getItem('CurrentUserWondrfly'));
     if (this.user) {
@@ -373,7 +380,7 @@ export class DetailComponent implements OnInit {
       );
       this.programImgURL = this.program.programCoverPic;
       // this.userLogo = this.program.provider.logo
-      // this.getProviderProgram();
+      this.getProviderProgram();
       this.getProviderById()
       this.program_mins = moment.utc(moment(this.program.time.to, "HH:mm:ss").diff(moment(this.program.time.from, "HH:mm:ss"))).format("mm")
       this.parentAnalyticAction()
@@ -422,6 +429,34 @@ export class DetailComponent implements OnInit {
   mapClicked(e) {
     this.clickedMarker(e)
   }
+  // claimBusiness() {
+  //   if (this.user && this.user.role === 'provider') {
+  //     this.claim.requestBy = this.user.id;
+  //     this.claim.requestOn = this.program.user;
+  //     this.ngxLoader.start();
+  //     this.apiservice.claimRequest(this.claim).subscribe(res => {
+  //       this.toastyService.info({ title: 'Info', msg: this.message })
+  //       this.ngxLoader.stop();
+
+  //     }); this.ngxLoader.stop();
+
+  //   } else {
+  //     if (this.user && this.user.role === 'parent') {
+  //       this.ngxLoader.start();
+  //       let msg = 'please  register or login as provider to claim this business!';
+  //       this.toastyService.info({ title: 'Info', msg: msg })
+  //       this.ngxLoader.stop();
+
+  //     } else {
+  //       this.ngxLoader.start();
+  //       let msg = 'please login to claim this business and try again!'
+  //       this.toastyService.info({ title: 'Info', msg: msg })
+  //       this.ngxLoader.stop();
+  //     }
+  //   }
+
+  // }
+
   addAction(programId) {
     let body = {
       action: "view",
@@ -435,9 +470,10 @@ export class DetailComponent implements OnInit {
     await this.apiservice.getProgramByProvider(this.program.user, this.pageNo,200).subscribe((res) => {
       this.isScrol = true;
       this.programs = res
-      console.log('resssss',resourceUsage)
       let programs = []
       this.programs.forEach(program => {
+        // program.time.from =this.convertNumToTime(program.time.from.toFixed(2))
+        // program.time.to =this.convertNumToTime(program.time.to.toFixed(2))
         programs.push(program)
       });
       this.programs = programs
@@ -456,82 +492,6 @@ export class DetailComponent implements OnInit {
     window.scroll(0,0)
     this.bannerIndx = Math.floor(Math.random() * this.bannerImages.length);
     // this.getBadges();
-    this.activatedRoute.queryParams
-    .subscribe((params: any) => {
-      if (params.filter) {
-        this.filterObj = JSON.parse('{"' + params.filter.replace(/&/g, '","').replace(/=/g, '":"') + '"}', function (key, value) { return key === "" ? value : decodeURIComponent(value) })
-        if (this.filterObj.hasOwnProperty('categoryId')) {
-          this.checkCategoryFilter(this.filterObj.categoryId,'category')
-          this.isCategoryFilter = true;
-          this.categoryId = this.filterObj.categoryId;
-        }
-        if (this.filterObj.hasOwnProperty('tagsIds')) {
-          this.isCategoryFilter = true;
-          let ids = this.filterObj.tagsIds.split(',');
-          this.selectedSubCategories = ids;
-          this.checkCategoryFilter(this.selectedSubCategories[0],'subcategory')
-        }
-
-        if (this.filterObj.hasOwnProperty('day')) {
-          this.isDaysFilter = true;
-          let days = this.filterObj.day.split(',');
-          this.selectedDays = days;
-        }
-        if (this.filterObj.hasOwnProperty('time')) {
-          this.isTimeFilter = true;
-          let time = this.filterObj.time.split(',');
-          this.selectedProgramTime = time
-        }
-        if (this.filterObj.hasOwnProperty('type')) {
-          this.isTypeFilter = true;
-          let type = this.filterObj.type.split(',');
-          var index = type.indexOf('Drops-in');
-          if (~index) {
-            type[index] = 'Drop-ins';
-          }
-          this.selectedProgramTypes = type
-        }
-        if (this.filterObj.hasOwnProperty('ratingFrom') && this.filterObj.hasOwnProperty('ratingTo')) {
-          this.isTopFilterCheckBox = true
-        }
-        if (this.filterObj.hasOwnProperty('inpersonOrVirtual')) {
-          if (this.filterObj.inpersonOrVirtual == 'online') {
-            this.isOnline = true
-          }
-          else if (this.filterObj.inpersonOrVirtual == 'inperson') {
-            this.isInPerson = true
-          }
-        }
-        if (this.filterObj.hasOwnProperty('fromDate') && this.filterObj.hasOwnProperty('toDate')) {
-          this.isDateFilter = true
-          this.fromDate = this.filterObj.fromDate
-          this.toDate = this.filterObj.toDate
-        }
-
-        if (this.filterObj.hasOwnProperty('ageFrom') && this.filterObj.hasOwnProperty('ageTo')) {
-          this.isAgeFilter = true
-          this.minAge = +this.filterObj.ageFrom
-          this.maxAge = +this.filterObj.ageTo
-        }
-        if (this.filterObj.hasOwnProperty('priceFrom') && this.filterObj.hasOwnProperty('priceTo')) {
-          this.isPriceFilter = true
-          this.minPrice = +this.filterObj.priceFrom
-          this.maxPrice = +this.filterObj.priceTo
-        }
-        if (this.filterObj.hasOwnProperty('lat') && this.filterObj.hasOwnProperty('lng')) {
-          this.isMapFilter = true
-          this.coordinates.lat = +this.filterObj.lat;
-          this.coordinates.lng = +this.filterObj.lng;
-        }
-        this.programFilter(params.filter)
-      } else {
-        this.router.navigate(
-          [],
-          { relativeTo: this.activatedRoute, queryParams: {} }
-        );
-        this.getProviderProgram()
-      }
-    })
     this.getCategoryList();
 
     this.mapsAPILoader.load().then(() => {
@@ -557,6 +517,19 @@ export class DetailComponent implements OnInit {
     });
 
   }
+
+  // Get Current Location Coordinates
+  // private setCurrentLocation() {
+  //   if ('geolocation' in navigator) {
+  //     navigator.geolocation.getCurrentPosition((position) => {
+  //       this.latitude = position.coords.latitude;
+  //       this.longitude = position.coords.longitude;
+  //       this.zoom = 4;
+
+  //       this.getAddress(this.latitude, this.longitude);
+  //     });
+  //   }
+  // }
 
   getAddress(latitude, longitude) {
     this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {
@@ -643,319 +616,203 @@ else{
     }
   
 
-    checkCategoryFilter(id,type) {
-      if(type==='category'){
-        this.apiservice.getCategory().subscribe((res: any) => {
-          let index = res.findIndex(object => {
-            return object.id === id;
-          });
-          if(~index){
-            this.searchedSubCategory = res[index].name
-          }
-        });
-      }
-      if(type==='subcategory'){
-        this.apiservice.getTag().subscribe((res: any) => {
-          console.log('res',res)
-          let index = res.data.findIndex(object => {
-            return object._id === id;
-          });
-          if(~index){
-            this.searchedSubCategory = res.data[index].name
-          }
-          console.log('searchedSubCategory',this.searchedSubCategory)
-          console.log('res',res)
-          console.log('id',id)
-        });
-      }
-  
-    }
-    programFilter(filter) {
-     
-      this.ngxLoader.start()
-      this.apiservice.programFilter(filter, 1, 1).subscribe((res: any) => {
-        this.showReset = true
-        if (res.isSuccess) {
-          this.activitiesCount =res.total
-          res.items = res.items .filter(item => item.user[0].isActivated === true)
-          this.programs = res.items;
-          if (this.isTopFilter) {
-            this.providerProgram = this.programs.sort((a, b) => b.user[0]?.averageFinalRating - a.user[0]?.averageFinalRating);
+    programFilter() {
+      this.isLoaded=false;
+      this.isTimeFilter = false;
+      this.isDaysFilter = false;
+      this.isTopFilter = false;
+      this.isTypeFilter = false;
+      this.isCategoryFilter = false;
+      if (this.isTopFilterCheckBox || this.categoryId || this.selectedDays.length || this.selectedProgramTypes.length || this.selectedSubCategories.length || this.selectedProgramTime.length || this.isOnline || this.isInPerson || this.isDateFilter || this.isPriceFilter || this.isAgeFilter) {
+        let filter = ``
+        let inpersonOrVirtual = ''
+        let days = ''
+        let categoryId = ''
+        let tags = ''
+        let types = ''
+        let times = ''
+        let daysCount = 1
+        let typesCount = 1
+        let tagsCount = 1
+        let timesCount = 1
+        let ratingFrom = 4
+        let ratingTo = 5
+        if (this.categoryId) {
+          this.isCategoryFilter = true;
+          categoryId = this.categoryId
+        }
+        for (let day of this.selectedDays) {
+          this.isDaysFilter = true;
+          if (daysCount === 1) {
+            days += day
+            daysCount++
           }
           else {
-            this.providerProgram = this.programs;
+            days += ',' + day
           }
-          if (!this.providerProgram.length) {
-            this.isLoaded = true
-          }
-
-          this.isScrol = false;
         }
+        for (let type of this.selectedProgramTypes) {
+          if(type=='Drop-ins'){
+            type='Drops-in'
+          }
+          this.isTypeFilter = true
+          if (typesCount === 1) {
+            types += type
+            typesCount++
+          }
+          else {
+            types += ',' + type
+          }
+        }
+        for (let tag of this.selectedSubCategories) {
+          this.isCategoryFilter = true
+          if (tagsCount === 1) {
+            tags += tag
+            tagsCount++
+          }
+          else {
+            tags += ',' + tag
+          }
+        }
+        for (let time of this.selectedProgramTime) {
+          this.isTimeFilter = true
+          if (timesCount === 1) {
+            times += time
+            timesCount++
+          }
+          else {
+            times += ',' + time
+          }
+        }
+        if (!categoryId && !this.selectedSubCategories.length) {
+          this.searchedSubCategory = '';
+        }
+        if (this.isOnline) {
+          inpersonOrVirtual = 'online'
+        }
+        else if (this.isInPerson) {
+          inpersonOrVirtual = 'inperson'
+        }
+        else {
+          inpersonOrVirtual = ''
+        }
+        const dateFormat = "YYYY-MM-DD";
+        this.fromDate = moment(this.fromDate).format(dateFormat);
+        this.toDate = moment(this.toDate).format(dateFormat);
+        filter = `providerId=${this.user.id}&time=${times}&categoryId=${categoryId}&tagsIds=${tags}&type=${types}&inpersonOrVirtual=${inpersonOrVirtual}&day=${days}`
+        if (this.isTopFilterCheckBox) {
+          this.isTopFilter = true;
+          filter += `&ratingFrom=${ratingFrom}&ratingTo=${ratingTo}`
+        }
+        if (this.isDateFilter) {
+          filter += `&fromDate=${this.fromDate}&toDate=${this.toDate}`
+        }
+        if (this.isPriceFilter) {
+          filter += `&priceFrom=${this.minPrice}&priceTo=${this.maxPrice}`
+        }
+        if (this.isAgeFilter) {
+          filter += `&ageFrom=${this.minAge}&ageTo=${this.maxAge}`
+        }
+        this.ngxLoader.start()
+  
+        this.apiservice.programFilter(filter, 1, 1).subscribe((res: any) => {
+          this.showReset = true
+          if (res.isSuccess && res.data.length) {
+            this.programs = res.data[0].programs;
+            this.isLoaded=true;
+          }
+          else{
+            this.programs = [];
+            this.isLoaded=true;
+          }
+        });
         this.ngxLoader.stop()
-        var filterObj = JSON.parse('{"' + filter.replace(/&/g, '","').replace(/=/g, '":"') + '"}', function (key, value) { return key === "" ? value : decodeURIComponent(value) })
-        console.log('filterObj', filterObj)
+      } else {
+        this.pageNo = 1
+        this.isTopFilterCheckBox = false
+        // this.getProviderProgram();
+        this.showReset = false
+         this.apiservice.getProgramByProvider(this.user.id, this.pageNo, 200).subscribe((res) => {
+          this.programs = res  
+          this.isLoaded=true;
       });
+      this.ngxLoader.stop()
+      }
     }
+  
   
 
     onDayChange(indx: number, day: string, isChecked: boolean) {
       if (isChecked) {
-        this.selectedDays.push(day)
+        this.tempSelectedDays.push(day)
       } else {
-        this.selectedDays.splice(day, -1)
-        let el = this.selectedDays.find(itm => itm === day);
-        if (el) this.selectedDays.splice(this.selectedDays.indexOf(el), 1);
+        this.tempSelectedDays.splice(day, -1)
+        let el = this.tempSelectedDays.find(itm => itm === day);
+        if (el) this.tempSelectedDays.splice(this.tempSelectedDays.indexOf(el), 1);
       }
     }
     onProgramTypeChange(indx: number, type: string, isChecked: boolean) {
       if (isChecked) {
-        this.selectedProgramTypes.push(type)
+        this.tempSelectedProgramTypes.push(type)
       } else {
-        this.selectedProgramTypes.splice(type, -1)
-        let el = this.selectedProgramTypes.find(itm => itm === type);
-        if (el) this.selectedProgramTypes.splice(this.selectedProgramTypes.indexOf(el), 1);
+        this.tempSelectedProgramTypes.splice(type, -1)
+        let el = this.tempSelectedProgramTypes.find(itm => itm === type);
+        if (el) this.tempSelectedProgramTypes.splice(this.tempSelectedProgramTypes.indexOf(el), 1);
       }
     }
     onProgramTimeChange(indx: number, time: string, isChecked: boolean) {
       if (isChecked) {
-        this.selectedProgramTime.push(time)
+        this.tempSelectedProgramTime.push(time)
       } else {
-        this.selectedProgramTime.splice(time, -1)
-        let el = this.selectedProgramTime.find(itm => itm === time);
-        if (el) this.selectedProgramTime.splice(this.selectedProgramTime.indexOf(el), 1);
+        this.tempSelectedProgramTime.splice(time, -1)
+        let el = this.tempSelectedProgramTime.find(itm => itm === time);
+        if (el) this.tempSelectedProgramTime.splice(this.tempSelectedProgramTime.indexOf(el), 1);
       }
     }
     onProgramsSubCategoryChange(i, event) {
-      this.categoryId = ''
+      this.tempCategoryId = ''
       this.subCats[i].checked = event.target.checked;
       if (this.subCats[i].checked) {
-        this.searchedSubCategory = this.subCats[i].name;
-        this.selectedSubCategories.push(this.subCats[i]._id);
+        this.tempSearchedSubCategory = this.subCats[i].name;
+        this.tempSelectedSubCategories.push(this.subCats[i]._id);
       }
       else {
-        const index = this.selectedSubCategories.indexOf(this.subCats[i]._id);
+        const index = this.tempSelectedSubCategories.indexOf(this.subCats[i]._id);
         if (index >= 0) {
-          this.selectedSubCategories.splice(index, 1);
+          this.tempSelectedSubCategories.splice(index, 1);
         }
       }
     }
   
-    setFilterQuery(filterType) {
-      this.activatedRoute.queryParams
-        .subscribe((params: any) => {
-          if (params.filter) {
-            this.filterObj = JSON.parse('{"' + params.filter.replace(/&/g, '","').replace(/=/g, '":"') + '"}', function (key, value) { return key === "" ? value : decodeURIComponent(value) })
-          }
-        })
-      switch (filterType) {
-        case 'category':
   
-          if (this.filterObj.hasOwnProperty('categoryId') && this.categoryId) {
-            delete this.filterObj['tagsIds'];
-            this.filterObj.categoryId = this.categoryId
-          }
-          else if (!this.filterObj.hasOwnProperty('categoryId') && this.categoryId) {
-            delete this.filterObj['tagsIds'];
-            Object.assign(this.filterObj, { categoryId: this.categoryId });
-          } else {
-            delete this.filterObj['categoryId'];
-            if (this.filterObj.hasOwnProperty('tagsIds') && this.selectedSubCategories.length) {
-              this.filterObj.tagsIds = this.selectedSubCategories.toString();
-            }
-            else if (!this.filterObj.hasOwnProperty('tagsIds') && this.selectedSubCategories.length) {
-              Object.assign(this.filterObj, { tagsIds: this.selectedSubCategories.toString() });
-            }
-            else {
-              delete this.filterObj['tagsIds'];
-            }
-          }
-          break;
-        case 'day':
-  
-          if (this.filterObj.hasOwnProperty('day') && this.selectedDays.length) {
-            this.filterObj.day = this.selectedDays.toString();
-          }
-          else if (!this.filterObj.hasOwnProperty('day') && this.selectedDays.length) {
-            Object.assign(this.filterObj, { day: this.selectedDays.toString() });
-          }
-          else {
-            delete this.filterObj['day'];
-          }
-          break;
-  
-        case 'time':
-  
-          if (this.filterObj.hasOwnProperty('time') && this.selectedProgramTime.length) {
-            this.filterObj.day = this.selectedDays.toString();
-          }
-          else if (!this.filterObj.hasOwnProperty('time') && this.selectedProgramTime.length) {
-            Object.assign(this.filterObj, { time: this.selectedProgramTime.toString() });
-          }
-          else {
-            delete this.filterObj['time'];
-          }
-          break;
-  
-        case 'type':
-          let array:any = [];
-          array = [...this.selectedProgramTypes]
-          var index = array.indexOf('Drop-ins');
-          if (~index) {
-              array[index] = 'Drops-in';
-          }
-          if (this.filterObj.hasOwnProperty('type') && array.length) {
-            this.filterObj.type = array.toString();
-          }
-          else if (!this.filterObj.hasOwnProperty('type') && array.length) {
-            Object.assign(this.filterObj, { type: array.toString() });
-          }
-          else {
-            delete this.filterObj['type'];
-          }
-          break;
-  
-        case 'rating':
-  
-          if (this.filterObj.hasOwnProperty('ratingFrom') && this.filterObj.hasOwnProperty('ratingTo') && this.isTopFilterCheckBox) {
-            this.filterObj.ratingFrom = 4;
-            this.filterObj.ratingTo = 5;
-  
-          }
-          else if (!this.filterObj.hasOwnProperty('ratingFrom') && !this.filterObj.hasOwnProperty('ratingTo') && this.isTopFilterCheckBox) {
-            Object.assign(this.filterObj, { ratingFrom: 4 });
-            Object.assign(this.filterObj, { ratingTo: 5 });
-  
-          } else {
-            delete this.filterObj['ratingFrom']
-            delete this.filterObj['ratingTo']
-          }
-          break;
-  
-        case 'online':
-  
-          if (this.filterObj.hasOwnProperty('inpersonOrVirtual') && this.isOnline) {
-            this.filterObj.inpersonOrVirtual = 'online';
-          }
-          else if (!this.filterObj.hasOwnProperty('inpersonOrVirtual') && this.isOnline) {
-            Object.assign(this.filterObj, { inpersonOrVirtual: 'online' });
-          } else {
-            delete this.filterObj['inpersonOrVirtual']
-          }
-          break;
-  
-        case 'inperson':
-  
-          if (this.filterObj.hasOwnProperty('inpersonOrVirtual') && this.isInPerson) {
-            this.filterObj.inpersonOrVirtual = 'inperson';
-          }
-          else if (!this.filterObj.hasOwnProperty('inpersonOrVirtual') && this.isInPerson) {
-            Object.assign(this.filterObj, { inpersonOrVirtual: 'inperson' });
-          } else {
-            delete this.filterObj['inpersonOrVirtual']
-          }
-          break;
-  
-        case 'date':
-          const dateFormat = "YYYY-MM-DD";
-          this.fromDate = moment(this.fromDate).format(dateFormat);
-          this.toDate = moment(this.toDate).format(dateFormat);
-          if (this.filterObj.hasOwnProperty('fromDate') && this.filterObj.hasOwnProperty('toDate') && this.isDateFilter && this.toDate.length) {
-            console.log(this.toDate)
-            this.filterObj.fromDate = this.fromDate;
-            this.filterObj.toDate = this.toDate;
-          }
-          else if (!this.filterObj.hasOwnProperty('fromDate') && !this.filterObj.hasOwnProperty('toDate') && this.isDateFilter && this.toDate.length) {
-            Object.assign(this.filterObj, { fromDate: this.fromDate });
-            Object.assign(this.filterObj, { toDate: this.toDate });
-          } else {
-            delete this.filterObj['fromDate']
-            delete this.filterObj['toDate']
-          }
-          break;
-        case 'age':
-  
-          if (this.filterObj.hasOwnProperty('ageFrom') && this.filterObj.hasOwnProperty('ageTo') && this.isAgeFilter) {
-            this.filterObj.ageFrom = this.minAge;
-            this.filterObj.ageTo = this.maxAge;
-          }
-          else if (!this.filterObj.hasOwnProperty('ageFrom') && !this.filterObj.hasOwnProperty('ageTo') && this.isAgeFilter) {
-            Object.assign(this.filterObj, { ageFrom: this.minAge });
-            Object.assign(this.filterObj, { ageTo: this.maxAge });
-          } else {
-            delete this.filterObj['ageFrom']
-            delete this.filterObj['ageTo']
-          }
-          break;
-        case 'price':
-          if (this.filterObj.hasOwnProperty('priceFrom') && this.filterObj.hasOwnProperty('priceTo') && this.isPriceFilter) {
-            this.filterObj.fromDate = this.fromDate;
-            this.filterObj.toDate = this.toDate;
-          }
-          else if (!this.filterObj.hasOwnProperty('priceFrom') && !this.filterObj.hasOwnProperty('priceTo') && this.isPriceFilter) {
-            Object.assign(this.filterObj, { priceFrom: this.minPrice });
-            Object.assign(this.filterObj, { priceTo: this.maxPrice });
-          } else {
-            delete this.filterObj['priceFrom']
-            delete this.filterObj['priceTo']
-          }
-          break;
-        case 'map':
-          if (this.filterObj.hasOwnProperty('lat') && this.filterObj.hasOwnProperty('lng') && Object.keys(this.coordinates).length && this.isMapFilter) {
-            this.filterObj.lat = this.coordinates.lat;
-            this.filterObj.lng = this.coordinates.lng;
-          }
-          else if (!this.filterObj.hasOwnProperty('lat') && !this.filterObj.hasOwnProperty('lat') && Object.keys(this.coordinates).length && this.isMapFilter) {
-            Object.assign(this.filterObj, { lat: this.coordinates.lat });
-            Object.assign(this.filterObj, { lat: this.coordinates.lng });
-          } else {
-            delete this.filterObj['lat']
-            delete this.filterObj['lat']
-          }
-          break;
-      }
-  
-      const filter = new URLSearchParams(this.filterObj).toString();
-      this.router.navigate(
-        [],
-        {
-          relativeTo: this.activatedRoute, queryParams: {
-            filter: filter
-          }
-        }
-      );
-      // this.router
-      // .navigateByUrl("/", { skipLocationChange: true })
-      // .then(() => this.router.navigate(['/search'], {
-      //   queryParams: {
-      //     filter: filter
-      //   }
-      // }));
-    }
   
     @ViewChildren("types") types: QueryList<ElementRef>;
     clearProgramTypes() {
       this.selectedProgramTypes = []
+      this.tempSelectedProgramTypes = []
       this.types.forEach((element) => {
         element.nativeElement.checked = false;
       });
-      this.setFilterQuery('type')
+      this.programFilter()
     }
   
     @ViewChildren("days") days: QueryList<ElementRef>;
     clearProgramDays() {
       this.selectedDays = []
+      this.tempSelectedDays = []
       this.days.forEach((element) => {
         element.nativeElement.checked = false;
       });
-      this.setFilterQuery('day')
+      this.programFilter()
     }
     @ViewChildren("times") times: QueryList<ElementRef>;
     clearProgramTime() {
       this.selectedProgramTime = []
+      this.tempSelectedProgramTime = []
       this.times.forEach((element) => {
         element.nativeElement.checked = false;
       });
-      this.setFilterQuery('time')
+      this.programFilter()
     }
     choosedDate(e) {
       this.fromDate = e.startDate._d
@@ -980,10 +837,10 @@ else{
   
       // ---------------------------------------------get subCateById-------------------------------------
       getSubCateById(cat) {
-        this.categoryId = cat.id
+        this.tempCategoryId = cat.id
         this.selectedCat = cat.id
-        this.selectedSubCategories = []
-        this.searchedSubCategory = cat.name
+        this.tempSelectedSubCategories = []
+        this.tempSearchedSubCategory = cat.name
         this.apiservice.getTagByCategoryId(cat.id).subscribe((res: any) => {
           this.subCats = res.data
           this.subCats = this.subCats.filter((item) => item.isActivated === true && item.programCount);
@@ -1046,7 +903,6 @@ else{
               element.nativeElement.checked = false;
             }
           });
-          this.setFilterQuery('day')
         }
         case 'times': {
           this.times.forEach((element) => {
@@ -1055,7 +911,6 @@ else{
               element.nativeElement.checked = false;
             }
           });
-          this.setFilterQuery('time')
         }
         case 'types': {
           this.types.forEach((element) => {
@@ -1064,9 +919,9 @@ else{
               element.nativeElement.checked = false;
             }
           });
-          this.setFilterQuery('type')
         }
       }
+      this.programFilter();
     }
     
 }
