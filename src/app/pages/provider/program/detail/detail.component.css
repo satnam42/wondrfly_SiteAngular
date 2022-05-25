@@ -1692,7 +1692,7 @@ div#cat-subcat {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  margin: 30px 0px;
+  margin: 10px 0px 0px 0px;
 }
 
 .moreBtn {
@@ -1951,8 +1951,8 @@ ul.ul-tag-btn-info li {
   font-size: 11px;
   line-height: 16px;
   letter-spacing: 0.001em;
-  color: #53B2E8;
-  background: #E2F5FF;
+  color: #777CEA;
+  background: rgba(119, 124, 234, 0.19);
   border-radius: 20px;
   border: none;
   padding: 7px 5px;
@@ -2549,26 +2549,37 @@ display: none;
 }
 
 .calender-buttons button.calender-buttons1 {
-  background: #ffffff;
-  border: 1.25973px solid #53b2e8;
-  box-sizing: border-box;
-  border-radius: 25.1946px;
-  padding: 10px;
-  padding-left: 15px;
-  padding-right: 15px;
-  color: #53b2e8;
-  margin-right: 20px;
-  margin-left: 20px;
+    background: #ffffff;
+    border: 1.25973px solid #53b2e8;
+    box-sizing: border-box;
+    border-radius: 25.1946px;
+    color: #53b2e8;
+    margin-right: 20px;
+    margin-left: 20px;
+    min-height: 34px;
+    min-width: 70px;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: 0.8s;
 }
 
 .calender-buttons button.calender-buttons2 {
-  background: #53b2e8;
-  box-sizing: border-box;
-  border-radius: 25.1946px;
-  padding: 10px;
-  padding-left: 15px;
-  padding-right: 15px;
-  border: 1px solid #53b2e8;
+    background: #53b2e8;
+    box-sizing: border-box;
+    border-radius: 25.1946px;
+    padding: 5px;
+    border: 1px solid #53b2e8;
+    color: #fff;
+    min-height: 34px;
+    min-width: 70px;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: 0.8s;
+}
+.calender-buttons button.calender-buttons1:hover {
+  background: #53B2E8;
   color: #fff;
 }
 
