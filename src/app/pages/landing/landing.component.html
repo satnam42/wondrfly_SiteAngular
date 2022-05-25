@@ -41,7 +41,7 @@
                         ">
                                                     <div class="card card-body">
                                                         <div class="program-list" *ngIf="categoriesBySearch.category?.length || categoriesBySearch.tags?.length">
-                                                            <h6 (click)="filterData.searchedCategoryKey=category.name;searchByCategory(category._id)" *ngFor="
+                                                            <h6 (click)="filterData.searchedCategoryKey=category.name;searchByCategory(category)" *ngFor="
                             let category of categoriesBySearch?.category | slice: 0:1
                           ">
                                                                 {{ category.name }}
@@ -49,7 +49,7 @@
                                   <img src="assets/program-search.svg" />
                                 </span>
                                                             </h6>
-                                                            <h6 (click)="filterData.searchedCategoryKey=category.name;searchBySubCategory(category._id)" *ngFor="
+                                                            <h6 (click)="filterData.searchedCategoryKey=category.name;searchBySubCategory(category)" *ngFor="
                                 let category of categoriesBySearch?.tags | slice: 0:3
                               ">
                                                                 {{ category.name }}
@@ -136,7 +136,7 @@
                 <div class="activity_category_list">
                     <div class="row">
                         <div class="col-md-4" *ngFor="let category of categories | slice: 0:6; let i = index">
-                            <div class="category_list_box cursor" (click)="searchByCategory(category.id);filterData.searchedCategoryKey=category.name">
+                            <div class="category_list_box cursor" (click)="searchByCategory(category);filterData.searchedCategoryKey=category.name">
                                 <a>
                                     <div class="category_image">
                                         <img [defaultImage]="defaultImage" [lazyLoad]="baseUrl + category?.imageUrl" alt="{{ category?.alternativeText }}" />

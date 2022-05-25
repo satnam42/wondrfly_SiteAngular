@@ -37,11 +37,11 @@
                                                             <span>
                                                                 <a class="clear cusror" data-target="#category"
                                                                     data-toggle="collapse"
-                                                                    (click)="selectedCat='';categoryId='';tempCategoryId='';subCats=[];selectedSubCategories=[];tempSearchedSubCategory='';tempSelectedSubCategories=[];programFilter()">Clear
+                                                                    (click)="selectedCat='';categoryId='';subCats=[];selectedSubCategories=[];resetFilter()">Clear
                                                                     all</a>
                                                             </span>
                                                             <button data-target="#category" data-toggle="collapse"
-                                                                (click)="categoryId=tempCategoryId;searchedSubCategory=tempSearchedSubCategory;selectedSubCategories=tempSelectedSubCategories ;programFilter()">
+                                                                (click)="setFilterQuery('category')">
                                                                 APPLY FILTER
                                                             </button>
                                                         </span>
@@ -88,14 +88,14 @@
                                         </div>
                                     </div>
                                     <div class="submit_btn">
-                                        <button (click)="isAgeFilter=false;programFilter()" type="button"
+                                        <button type="button"
                                             aria-controls="collapseExample" aria-expanded="true" data-target="#ageGroup"
                                             data-toggle="collapse" class="cancel_btn">
                                             Clear
                                         </button>
 
                                         <button (click)="isAgeFilter=true
-                    ;programFilter()" search-results.scrollTop="0" data-target="#ageGroup" data-toggle="collapse"
+                    ;setFilterQuery('age')" search-results.scrollTop="0" data-target="#ageGroup" data-toggle="collapse"
                                             class="submitBtn">
                                             Apply
                                         </button>
@@ -127,11 +127,11 @@
 
                                         <div class="submit_btn">
                                             <button class="cancel_btn" data-target="#typess" data-toggle="collapse"
-                                                (click)="clearProgramTypes()">
+                                                (click)="this.isTypeFilter=false;clearProgramTypes()">
                                                 Clear
                                             </button>
                                             <button class="submitBtn" data-target="#typess" data-toggle="collapse"
-                                                (click)="selectedProgramTypes=tempSelectedProgramTypes;programFilter()">
+                                                (click)="setFilterQuery('type')">
                                                 Apply
                                             </button>
                                         </div>
@@ -164,11 +164,11 @@
                                         </div>
                                         <div class="calender-buttons">
                                             <button class="calender-buttons1" data-target="#date" data-toggle="collapse"
-                                                (click)="isDateFilter=false;programFilter()">
+                                                >
                                                 Cancel
                                             </button>
                                             <button class="calender-buttons2" data-target="#date" data-toggle="collapse"
-                                                (click)="isDateFilter=true;programFilter()">
+                                                (click)="isDateFilter=true;setFilterQuery('date')">
                                                 Apply
                                             </button>
                                         </div>
@@ -200,13 +200,13 @@
 
                                         <div class="submit_btn">
                                             <button type="button" aria-controls="collapseExample" aria-expanded="true"
-                                                data-target="#timess" (click)="clearProgramTime()"
+                                                data-target="#timess" (click)="isTimeFilter=false;clearProgramTime()"
                                                 data-toggle="collapse" class="cancel_btn">
                                                 Clear
                                             </button>
 
                                             <button
-                                                (click)="selectedProgramTime=tempSelectedProgramTime;programFilter()"
+                                                (click)="setFilterQuery('time')"
                                                 search-results.scrollTop="0" data-target="#timess"
                                                 data-toggle="collapse" class="submitBtn">
                                                 Apply
@@ -240,13 +240,13 @@
                                             </div>
                                         </div>
                                         <div class="submit_btn">
-                                            <button (click)="clearProgramDays()" type="button"
+                                            <button (click)="isDaysFilter=false;clearProgramDays()" type="button"
                                                 aria-controls="collapseExample" aria-expanded="true"
                                                 data-target="#Dayss" data-toggle="collapse" class="cancel_btn">
                                                 Clear
                                             </button>
 
-                                            <button (click)="selectedDays=tempSelectedDays;programFilter()"
+                                            <button (click)="setFilterQuery('day')"
                                                 search-results.scrollTop="0" data-target="#Dayss" data-toggle="collapse"
                                                 class="submitBtn">
                                                 Apply
@@ -271,13 +271,13 @@
                                     </div>
                                     <div class="submit_btn">
                                         <button
-                                            (click)="minPrice = 50;maxPrice = 300;isPriceFilter=false;programFilter()"
+                                            (click)="minPrice = 50;maxPrice = 300"
                                             type="button" aria-controls="collapseExample" aria-expanded="true"
                                             data-target="#priceGroup" data-toggle="collapse" class="cancel_btn">
                                             Clear
                                         </button>
 
-                                        <button (click)="isPriceFilter=true;programFilter()"
+                                        <button (click)="isPriceFilter=true;setFilterQuery('price')"
                                             search-results.scrollTop="0" data-target="#priceGroup"
                                             data-toggle="collapse" class="submitBtn">
                                             Apply
@@ -297,7 +297,7 @@
                                                     <div class="typess-flex" >
                                                         <input  data-target="#format"
                                                         data-toggle="collapse" type="checkbox" [checked]="isOnline && !isInPerson"
-                                                        (change)="(isOnline?isOnline=false:isOnline=true);(isInPerson?isInPerson=false:false);programFilter()"
+                                                        (change)="(isOnline?isOnline=false:isOnline=true);(isInPerson?isInPerson=false:false);setFilterQuery('online')"
                                                             class="k-checkbox" />
                                                           
                                                         <label  class="k-checkbox-label"
@@ -306,7 +306,7 @@
                                                     <div class="typess-flex">
                                                         <input type="checkbox" data-target="#format"
                                                         data-toggle="collapse" [checked]="!isOnline && isInPerson"
-                                                        (change)="(isInPerson?isInPerson=false:isInPerson=true);(isOnline?isOnline=false:false);programFilter()"
+                                                        (change)="(isInPerson?isInPerson=false:isInPerson=true);(isOnline?isOnline=false:false);setFilterQuery('inperson')"
                                                             class="k-checkbox" />
                                                             <label  class="k-checkbox-label"
                                                             for="type1">In-person</label>
@@ -318,7 +318,7 @@
                                 </div>
                             </li>
                             <li class="cursor">
-                                <a aria-expanded="true"(click)="isTopFilterCheckBox=!isTopFilterCheckBox;programFilter()" [ngClass]="{ active:isTopFilterCheckBox}" aria-expanded="true"
+                                <a aria-expanded="true"(click)="isTopFilterCheckBox=!isTopFilterCheckBox;setFilterQuery('rating')" [ngClass]="{ active:isTopFilterCheckBox}" aria-expanded="true"
                                     data-target="#Rating" data-toggle="collapse">Top Rated</a>
                                 <!-- <div class="rating-collapse-info collapse main_collpase typess verification_modal" id="Rating"
                                     data-parent="#accordionExample">
@@ -409,27 +409,27 @@
                     </div>
                     <button class="btn_style save_btn cursor" *ngIf="!isInPerson && isOnline">
                         online
-                        <mat-icon (click)="contentLoaded=false;isOnline=!isOnline;programFilter()">cancel</mat-icon>
+                        <mat-icon (click)="contentLoaded=false;isOnline=!isOnline;setFilterQuery('online')">cancel</mat-icon>
                     </button>
                     <button class="btn_style save_btn cursor" *ngIf="isInPerson && !isOnline">
                         in-persion
-                        <mat-icon (click)="contentLoaded=false;isInPerson=!isInPerson;programFilter()">cancel</mat-icon>
+                        <mat-icon (click)="contentLoaded=false;isInPerson=!isInPerson;setFilterQuery('inperson')">cancel</mat-icon>
                     </button>
 
 
                     <button class="btn_style save_btn cursor" *ngIf="isAgeFilter">
                         Age {{minAge}}-{{maxAge}} years
-                        <mat-icon (click)="contentLoaded=false;isAgeFilter=!isAgeFilter;programFilter()">cancel
+                        <mat-icon (click)="contentLoaded=false;isAgeFilter=!isAgeFilter;setFilterQuery('age')">cancel
                         </mat-icon>
                     </button>
                     <button class="btn_style save_btn cursor" *ngIf="isPriceFilter">
                         Price ${{minPrice}}-${{maxPrice}}
-                        <mat-icon (click)="contentLoaded=false;isPriceFilter=!isPriceFilter;programFilter()">cancel
+                        <mat-icon (click)="contentLoaded=false;isPriceFilter=!isPriceFilter;setFilterQuery('price')">cancel
                         </mat-icon>
                     </button>
                     <button class="btn_style save_btn cursor" *ngIf="isDateFilter">
                         {{fromDate | date: "MMM d " }}-{{toDate | date: "MMM d " }}
-                        <mat-icon (click)="contentLoaded=false;isDateFilter=!isDateFilter;programFilter()">cancel
+                        <mat-icon (click)="contentLoaded=false;isDateFilter=!isDateFilter;setFilterQuery('date')">cancel
                         </mat-icon>
                     </button>
                     <!-- <button class="btn_style save_btn cursor" *ngIf="isMapFilter">
@@ -440,7 +440,7 @@
                     <button class="btn_style save_btn cursor" *ngIf="isTopFilterCheckBox">
                         Top Rated
                         <mat-icon
-                            (click)="contentLoaded=false;isTopFilterCheckBox=false;isTopFilter=false;programFilter()">
+                            (click)="contentLoaded=false;isTopFilterCheckBox=false;isTopFilter=false;setFilterQuery('rating')">
                             cancel</mat-icon>
                     </button>
                     <button class="btn_style save_btn cursor" *ngFor="let day of this.selectedDays;index as i">

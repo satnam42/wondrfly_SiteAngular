@@ -170,39 +170,68 @@ export class SuggestionComponent implements OnInit {
     this.router.navigate(['/search']);
 
   }
-  searchBySubCategory(id) {
-    this.filterData.activityName = ''
-    this.filterData.categoryId = ''
-    this.filterData.lat = ''
-    this.filterData.lng = ''
-    this.filterData.subcatId = id
-    this.filterData.childIntrests = []
-    this.dataservice.setOption(this.filterData)
-    this.router.navigate(['/search']);
+  searchBySubCategory(data) {
+    // this.filterData.activityName = ''
+    // this.filterData.categoryId = ''
+    // this.filterData.lat = ''
+    // this.filterData.lng = ''
+    // this.filterData.subcatId = data._id
+    // this.filterData.childIntrests = []
+    // this.dataservice.setOption(this.filterData)
+    // this.router.navigate(['/search']);
+    let filter = ``
+    if(this.filterData.kidAge){
+      filter = `tagsIds=${data._id}&ageFrom=${0}&ageTo=${this.filterData.kidAge}`
+      this.router.navigate(['/search'], {
+        queryParams: {
+          filter: filter
+        }
+      });
+    }else{
+      filter = `tagsIds=${data._id}`
+      this.router.navigate(['/search'], {
+        queryParams: {
+          filter: filter
+        }
+      });
+    }
   }
   clickOnViewAllChildIntrests(indx) {
-    this.filterData.activityName = ''
-    this.filterData.categoryId = ''
-    this.filterData.lat = ''
-    this.filterData.lng = ''
-    this.filterData.subcatId = ''
-    this.filterData.childIntrests = []
+    // this.filterData.activityName = ''
+    // this.filterData.categoryId = ''
+    // this.filterData.lat = ''
+    // this.filterData.lng = ''
+    // this.filterData.subcatId = ''
+    // this.filterData.childIntrests = []
+    let filter = ``
     this.kids[indx].interestInfo.forEach(intrest => {
       {
         this.filterData.childIntrests.push(intrest._id)
       }
     });
-    this.dataservice.setOption(this.filterData)
-    this.router.navigate(['/search']);
+      filter = `tagsIds=${this.filterData.childIntrests.toString()}&ageFrom=${0}&ageTo=${this.filterData.kidAge}`
+      this.router.navigate(['/search'], {
+        queryParams: {
+          filter: filter
+        }
+      });
+    // this.dataservice.setOption(this.filterData)
+    // this.router.navigate(['/search']);
   }
-  searchByCategory(id) {
-    this.filterData.kidAge = ''
-    this.filterData.subcatId = ''
-    this.filterData.activityName = ''
-    this.filterData.categoryId = id
-    this.filterData.childIntrests = []
-    this.dataservice.setOption(this.filterData)
-    this.router.navigate(['/search']);
+  searchByCategory(data) {
+    // this.filterData.kidAge = ''
+    // this.filterData.subcatId = ''
+    // this.filterData.activityName = ''
+    // this.filterData.categoryId = id
+    // this.filterData.childIntrests = []
+    // this.dataservice.setOption(this.filterData)
+    // this.router.navigate(['/search']);
+    let filter = `categoryId=${data._id}`
+    this.router.navigate(['/search'], {
+      queryParams: {
+        filter: filter
+      }
+    });
   }
 
   doTogather(data) {
@@ -368,7 +397,6 @@ export class SuggestionComponent implements OnInit {
     }
   }
   ngOnInit() {
-
     this.searchMywondrfly.valueChanges.subscribe((value) => {
       if (value) { this.searchSubCategory(value) } else {
         this.allData = [];
@@ -419,22 +447,34 @@ export class SuggestionComponent implements OnInit {
       data.name = data.name.replace(/\?/g, "-");
       this.router.navigate(["/provider/program-provider", data.name, data._id])
     } else if (!data.categoryIds && !data.role) {
-      this.filterData.activityName = "";
-      this.filterData.subcatId = '';
-      this.filterData.categoryId = data._id;
-      this.filterData.searchedCategoryKey = data.name;
-      this.dataservice.setOption(this.filterData);
-      this.router.navigate(["/search"]);
+      // this.filterData.activityName = "";
+      // this.filterData.subcatId = '';
+      // this.filterData.categoryId = data._id;
+      // this.filterData.searchedCategoryKey = data.name;
+      // this.dataservice.setOption(this.filterData);
+      // this.router.navigate(["/search"]);
+      let filter = `categoryId=${data._id}`
+      this.router.navigate(['/search'], {
+        queryParams: {
+          filter: filter
+        }
+      });
     }
     else if (data.categoryIds && !data.role) {
-      this.filterData.activityName = ''
-      this.filterData.lat = ''
-      this.filterData.lng = ''
-      this.filterData.searchedCategoryKey = data.name;
-      this.filterData.categoryId = ''
-      this.filterData.subcatId = data._id
-      this.dataservice.setOption(this.filterData)
-      this.router.navigate(['/search']);
+      // this.filterData.activityName = ''
+      // this.filterData.lat = ''
+      // this.filterData.lng = ''
+      // this.filterData.searchedCategoryKey = data.name;
+      // this.filterData.categoryId = ''
+      // this.filterData.subcatId = data._id
+      // this.dataservice.setOption(this.filterData)
+      // this.router.navigate(['/search']);
+      let filter = `tagsIds=${data._id}`
+      this.router.navigate(['/search'], {
+        queryParams: {
+          filter: filter
+        }
+      });
     }
 
   }

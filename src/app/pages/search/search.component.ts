@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone, OnDestroy, QueryList, ViewChildren } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ApiService } from 'src/app/core/services/api.service.service';
 import { LatLngLiteral, MapsAPILoader } from '@agm/core';
 import * as moment from 'moment';
@@ -8,7 +8,6 @@ import { DataService } from 'src/app/core/services/dataservice.service ';
 import { environment } from 'src/environments/environment.prod';
 import { Meta, Title } from '@angular/platform-browser';
 import { Options } from '@angular-slider/ngx-slider';
-import { ToastrService } from 'ngx-toastr';
 import { JoyrideService } from 'ngx-joyride';
 import { AuthsService } from 'src/app/core/services/auths.service';
 import { CookieService } from 'ngx-cookie-service';
@@ -33,10 +32,11 @@ export class SearchComponent implements OnInit, OnDestroy {
   isTypeFilter: boolean = false;
   isCategoryFilter: boolean = false;
   isTopFilterCheckBox: boolean = false;
-  isMapFilter:boolean = false;
+  isMapFilter: boolean = false;
   isAlert: boolean = true;
   isFav: boolean = false;
   categoryId: any = ''
+  filterObj: any = {}
   activityName: any = ''
   rating: any;
   filterData: any = {};
@@ -113,7 +113,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   address: string;
   private geoCoder;
   isMapMoveChecked: boolean
-  coordinates:any = {}
+  coordinates: any = {}
   user = new User
   @ViewChild('search', { static: true })
   public searchElementRef: ElementRef;
@@ -157,14 +157,9 @@ export class SearchComponent implements OnInit, OnDestroy {
   upArrow2: boolean = false;
   providerr = new User;
   activitiesCount = 0
-  tempCategoryId = ''
-  tempSearchedSubCategory = ''
-  tempSelectedSubCategories = []
-  tempSelectedDays: any = []
-  tempSelectedProgramTypes: any = []
-  tempSelectedProgramTime: any = []
   constructor(
     private router: Router,
+    private activatedRoute: ActivatedRoute,
     private apiservice: ApiService,
     private auth: AuthsService,
     private mapsAPILoader: MapsAPILoader,
@@ -200,48 +195,48 @@ export class SearchComponent implements OnInit, OnDestroy {
     // this.exploreModal()
     var retrievedObject = localStorage.getItem('CurrentUserWondrfly');
     this.userData = JSON.parse(retrievedObject);
-    this.selectedProgramTypes.push('Drop-ins')
-    if (this.filterData.subcatId || this.filterData.categoryId || this.filterData.kidAge) {
-      this.selectedProgramTypes = []
-       this.categoryId = this.filterData.categoryId
-      this.searchedSubCategory = this.filterData.searchedCategoryKey
-      if (this.filterData.subcatId) {
-        this.selectedSubCategories[0] = this.filterData.subcatId;
-      }
-      if (this.filterData.childIntrests) {
-        for (let intrest of this.filterData.childIntrests) {
-          this.selectedSubCategories.push(intrest)
-        }
-      }
-      if (this.filterData.kidAge?.length) {
+    // this.selectedProgramTypes.push('Drop-ins')
+    // if (this.filterData.subcatId || this.filterData.categoryId || this.filterData.kidAge) {
+    //   this.selectedProgramTypes = []
+    //    this.categoryId = this.filterData.categoryId
+    //   this.searchedSubCategory = this.filterData.searchedCategoryKey
+    //   if (this.filterData.subcatId) {
+    //     this.selectedSubCategories[0] = this.filterData.subcatId;
+    //   }
+    //   if (this.filterData.childIntrests) {
+    //     for (let intrest of this.filterData.childIntrests) {
+    //       this.selectedSubCategories.push(intrest)
+    //     }
+    //   }
+    //   if (this.filterData.kidAge?.length) {
 
 
-        if (this.filterData.kidAge >= 1) {
-          this.isAgeFilter = true
-          this.maxAge = Number(this.filterData.kidAge)
-          this.minAge = 0
-        }
-        if (this.filterData.kidAge < 1) {
-          this.isAgeFilter = true
-          this.maxAge = 1
-          this.minAge = 0
-        }
-      }
-      if (this.filterData?.online) {
-        this.isOnline = true;
-      }
-      this.programFilter()
-    }
-    else if (this.selectedProgramTypes.length){
-      this.programFilter()
-    }
-    else if (this.filterData.activityName) {
-      this.activityName = this.filterData.activityName
-      this.filterByNameDate()
-    }
-    else {
-      this.getPublishedProgram()
-    }
+    //     if (this.filterData.kidAge >= 1) {
+    //       this.isAgeFilter = true
+    //       this.maxAge = Number(this.filterData.kidAge)
+    //       this.minAge = 0
+    //     }
+    //     if (this.filterData.kidAge < 1) {
+    //       this.isAgeFilter = true
+    //       this.maxAge = 1
+    //       this.minAge = 0
+    //     }
+    //   }
+    //   if (this.filterData?.online) {
+    //     this.isOnline = true;
+    //   }
+    //   this.programFilter()
+    // }
+    // else if (this.selectedProgramTypes.length){
+    //   this.programFilter()
+    // }
+    // else if (this.filterData.activityName) {
+    //   this.activityName = this.filterData.activityName
+    //   this.filterByNameDate()
+    // }
+    // else {
+    //   this.getPublishedProgram()
+    // }
     if (this.userData) {
       this.isLogin = true;
       if (this.userData.role === 'provider') {
@@ -283,18 +278,18 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.toDate = e.endDate._d
   }
 
- centerChange(coords: LatLngLiteral) {
+  centerChange(coords: LatLngLiteral) {
     this.coordinates.lat = coords.lat;
     this.coordinates.lng = coords.lng;
   }
- dragEnd(map) {
+  dragEnd(map) {
     map.addListener("dragend", () => {
       if (this.isMapMoveChecked) {
         console.log('dragEnd')
-        this.isMapFilter=true
-      this.programFilter()
-      } 
-         });
+        this.isMapFilter = true
+        this.programFilter()
+      }
+    });
 
   }
   clickedMarker(infowindow) {
@@ -309,42 +304,42 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
   onDayChange(indx: number, day: string, isChecked: boolean) {
     if (isChecked) {
-      this.tempSelectedDays.push(day)
+      this.selectedDays.push(day)
     } else {
-      this.tempSelectedDays.splice(day, -1)
-      let el = this.tempSelectedDays.find(itm => itm === day);
-      if (el) this.tempSelectedDays.splice(this.tempSelectedDays.indexOf(el), 1);
+      this.selectedDays.splice(day, -1)
+      let el = this.selectedDays.find(itm => itm === day);
+      if (el) this.selectedDays.splice(this.selectedDays.indexOf(el), 1);
     }
   }
   onProgramTypeChange(indx: number, type: string, isChecked: boolean) {
     if (isChecked) {
-      this.tempSelectedProgramTypes.push(type)
+      this.selectedProgramTypes.push(type)
     } else {
-      this.tempSelectedProgramTypes.splice(type, -1)
-      let el = this.tempSelectedProgramTypes.find(itm => itm === type);
-      if (el) this.tempSelectedProgramTypes.splice(this.tempSelectedProgramTypes.indexOf(el), 1);
+      this.selectedProgramTypes.splice(type, -1)
+      let el = this.selectedProgramTypes.find(itm => itm === type);
+      if (el) this.selectedProgramTypes.splice(this.selectedProgramTypes.indexOf(el), 1);
     }
   }
   onProgramTimeChange(indx: number, time: string, isChecked: boolean) {
     if (isChecked) {
-      this.tempSelectedProgramTime.push(time)
+      this.selectedProgramTime.push(time)
     } else {
-      this.tempSelectedProgramTime.splice(time, -1)
-      let el = this.tempSelectedProgramTime.find(itm => itm === time);
-      if (el) this.tempSelectedProgramTime.splice(this.tempSelectedProgramTime.indexOf(el), 1);
+      this.selectedProgramTime.splice(time, -1)
+      let el = this.selectedProgramTime.find(itm => itm === time);
+      if (el) this.selectedProgramTime.splice(this.selectedProgramTime.indexOf(el), 1);
     }
   }
   onProgramsSubCategoryChange(i, event) {
-    this.tempCategoryId = ''
+    this.categoryId = ''
     this.subCats[i].checked = event.target.checked;
     if (this.subCats[i].checked) {
-      this.tempSearchedSubCategory = this.subCats[i].name;
-      this.tempSelectedSubCategories.push(this.subCats[i]._id);
+      this.searchedSubCategory = this.subCats[i].name;
+      this.selectedSubCategories.push(this.subCats[i]._id);
     }
     else {
-      const index = this.tempSelectedSubCategories.indexOf(this.subCats[i]._id);
+      const index = this.selectedSubCategories.indexOf(this.subCats[i]._id);
       if (index >= 0) {
-        this.tempSelectedSubCategories.splice(index, 1);
+        this.selectedSubCategories.splice(index, 1);
       }
     }
   }
@@ -354,30 +349,27 @@ export class SearchComponent implements OnInit, OnDestroy {
   @ViewChildren("types") types: QueryList<ElementRef>;
   clearProgramTypes() {
     this.selectedProgramTypes = []
-    this.tempSelectedProgramTypes = []
     this.types.forEach((element) => {
       element.nativeElement.checked = false;
     });
-    this.programFilter()
+    this.setFilterQuery('type')
   }
 
   @ViewChildren("days") days: QueryList<ElementRef>;
   clearProgramDays() {
     this.selectedDays = []
-    this.tempSelectedDays = []
     this.days.forEach((element) => {
       element.nativeElement.checked = false;
     });
-    this.programFilter()
+    this.setFilterQuery('day')
   }
   @ViewChildren("times") times: QueryList<ElementRef>;
   clearProgramTime() {
     this.selectedProgramTime = []
-    this.tempSelectedProgramTime = []
     this.times.forEach((element) => {
       element.nativeElement.checked = false;
     });
-    this.programFilter()
+    this.setFilterQuery('time')
   }
   mailChimpCompleted() {
     window.scrollTo(0, 0)
@@ -391,6 +383,82 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
   ngOnInit() {
     window.scrollTo(0, 0)
+    this.activatedRoute.queryParams
+      .subscribe((params: any) => {
+        if (params.filter) {
+          this.filterObj = JSON.parse('{"' + params.filter.replace(/&/g, '","').replace(/=/g, '":"') + '"}', function (key, value) { return key === "" ? value : decodeURIComponent(value) })
+          if (this.filterObj.hasOwnProperty('categoryId')) {
+            this.checkCategoryFilter(this.filterObj.categoryId,'category')
+            this.isCategoryFilter = true;
+            this.categoryId = this.filterObj.categoryId;
+          }
+          if (this.filterObj.hasOwnProperty('tagsIds')) {
+            this.isCategoryFilter = true;
+            let ids = this.filterObj.tagsIds.split(',');
+            this.selectedSubCategories = ids;
+            this.checkCategoryFilter(this.selectedSubCategories[0],'subcategory')
+          }
+
+          if (this.filterObj.hasOwnProperty('day')) {
+            this.isDaysFilter = true;
+            let days = this.filterObj.day.split(',');
+            this.selectedDays = days;
+          }
+          if (this.filterObj.hasOwnProperty('time')) {
+            this.isTimeFilter = true;
+            let time = this.filterObj.time.split(',');
+            this.selectedProgramTime = time
+          }
+          if (this.filterObj.hasOwnProperty('type')) {
+            this.isTypeFilter = true;
+            let type = this.filterObj.type.split(',');
+            var index = type.indexOf('Drops-in');
+            if (~index) {
+              type[index] = 'Drop-ins';
+            }
+            this.selectedProgramTypes = type
+          }
+          if (this.filterObj.hasOwnProperty('ratingFrom') && this.filterObj.hasOwnProperty('ratingTo')) {
+            this.isTopFilterCheckBox = true
+          }
+          if (this.filterObj.hasOwnProperty('inpersonOrVirtual')) {
+            if (this.filterObj.inpersonOrVirtual == 'online') {
+              this.isOnline = true
+            }
+            else if (this.filterObj.inpersonOrVirtual == 'inperson') {
+              this.isInPerson = true
+            }
+          }
+          if (this.filterObj.hasOwnProperty('fromDate') && this.filterObj.hasOwnProperty('toDate')) {
+            this.isDateFilter = true
+            this.fromDate = this.filterObj.fromDate
+            this.toDate = this.filterObj.toDate
+          }
+
+          if (this.filterObj.hasOwnProperty('ageFrom') && this.filterObj.hasOwnProperty('ageTo')) {
+            this.isAgeFilter = true
+            this.minAge = +this.filterObj.ageFrom
+            this.maxAge = +this.filterObj.ageTo
+          }
+          if (this.filterObj.hasOwnProperty('priceFrom') && this.filterObj.hasOwnProperty('priceTo')) {
+            this.isPriceFilter = true
+            this.minPrice = +this.filterObj.priceFrom
+            this.maxPrice = +this.filterObj.priceTo
+          }
+          if (this.filterObj.hasOwnProperty('lat') && this.filterObj.hasOwnProperty('lng')) {
+            this.isMapFilter = true
+            this.coordinates.lat = +this.filterObj.lat;
+            this.coordinates.lng = +this.filterObj.lng;
+          }
+          this.programFilter(params.filter)
+        } else {
+          this.router.navigate(
+            [],
+            { relativeTo: this.activatedRoute, queryParams: {} }
+          );
+          this.getPublishedProgram()
+        }
+      })
     this.contentLoaded = false
     this.titleService.setTitle(this.title);
     this.metaTagService.updateTag(
@@ -466,8 +534,205 @@ export class SearchComponent implements OnInit, OnDestroy {
 
     });
   }
+  setFilterQuery(filterType) {
+    this.activatedRoute.queryParams
+      .subscribe((params: any) => {
+        if (params.filter) {
+          this.filterObj = JSON.parse('{"' + params.filter.replace(/&/g, '","').replace(/=/g, '":"') + '"}', function (key, value) { return key === "" ? value : decodeURIComponent(value) })
+        }
+      })
+    switch (filterType) {
+      case 'category':
 
+        if (this.filterObj.hasOwnProperty('categoryId') && this.categoryId) {
+          delete this.filterObj['tagsIds'];
+          this.filterObj.categoryId = this.categoryId
+        }
+        else if (!this.filterObj.hasOwnProperty('categoryId') && this.categoryId) {
+          delete this.filterObj['tagsIds'];
+          Object.assign(this.filterObj, { categoryId: this.categoryId });
+        } else {
+          delete this.filterObj['categoryId'];
+          if (this.filterObj.hasOwnProperty('tagsIds') && this.selectedSubCategories.length) {
+            this.filterObj.tagsIds = this.selectedSubCategories.toString();
+          }
+          else if (!this.filterObj.hasOwnProperty('tagsIds') && this.selectedSubCategories.length) {
+            Object.assign(this.filterObj, { tagsIds: this.selectedSubCategories.toString() });
+          }
+          else {
+            delete this.filterObj['tagsIds'];
+          }
+        }
+        break;
+      case 'day':
+
+        if (this.filterObj.hasOwnProperty('day') && this.selectedDays.length) {
+          this.filterObj.day = this.selectedDays.toString();
+        }
+        else if (!this.filterObj.hasOwnProperty('day') && this.selectedDays.length) {
+          Object.assign(this.filterObj, { day: this.selectedDays.toString() });
+        }
+        else {
+          delete this.filterObj['day'];
+        }
+        break;
+
+      case 'time':
+
+        if (this.filterObj.hasOwnProperty('time') && this.selectedProgramTime.length) {
+          this.filterObj.day = this.selectedDays.toString();
+        }
+        else if (!this.filterObj.hasOwnProperty('time') && this.selectedProgramTime.length) {
+          Object.assign(this.filterObj, { time: this.selectedProgramTime.toString() });
+        }
+        else {
+          delete this.filterObj['time'];
+        }
+        break;
+
+      case 'type':
+        let array:any = [];
+        array = [...this.selectedProgramTypes]
+        var index = array.indexOf('Drop-ins');
+        if (~index) {
+            array[index] = 'Drops-in';
+        }
+        if (this.filterObj.hasOwnProperty('type') && array.length) {
+          this.filterObj.type = array.toString();
+        }
+        else if (!this.filterObj.hasOwnProperty('type') && array.length) {
+          Object.assign(this.filterObj, { type: array.toString() });
+        }
+        else {
+          delete this.filterObj['type'];
+        }
+        break;
+
+      case 'rating':
+
+        if (this.filterObj.hasOwnProperty('ratingFrom') && this.filterObj.hasOwnProperty('ratingTo') && this.isTopFilterCheckBox) {
+          this.filterObj.ratingFrom = 4;
+          this.filterObj.ratingTo = 5;
+
+        }
+        else if (!this.filterObj.hasOwnProperty('ratingFrom') && !this.filterObj.hasOwnProperty('ratingTo') && this.isTopFilterCheckBox) {
+          Object.assign(this.filterObj, { ratingFrom: 4 });
+          Object.assign(this.filterObj, { ratingTo: 5 });
+
+        } else {
+          delete this.filterObj['ratingFrom']
+          delete this.filterObj['ratingTo']
+        }
+        break;
+
+      case 'online':
+
+        if (this.filterObj.hasOwnProperty('inpersonOrVirtual') && this.isOnline) {
+          this.filterObj.inpersonOrVirtual = 'online';
+        }
+        else if (!this.filterObj.hasOwnProperty('inpersonOrVirtual') && this.isOnline) {
+          Object.assign(this.filterObj, { inpersonOrVirtual: 'online' });
+        } else {
+          delete this.filterObj['inpersonOrVirtual']
+        }
+        break;
+
+      case 'inperson':
+
+        if (this.filterObj.hasOwnProperty('inpersonOrVirtual') && this.isInPerson) {
+          this.filterObj.inpersonOrVirtual = 'inperson';
+        }
+        else if (!this.filterObj.hasOwnProperty('inpersonOrVirtual') && this.isInPerson) {
+          Object.assign(this.filterObj, { inpersonOrVirtual: 'inperson' });
+        } else {
+          delete this.filterObj['inpersonOrVirtual']
+        }
+        break;
+
+      case 'date':
+        const dateFormat = "YYYY-MM-DD";
+        this.fromDate = moment(this.fromDate).format(dateFormat);
+        this.toDate = moment(this.toDate).format(dateFormat);
+        if (this.filterObj.hasOwnProperty('fromDate') && this.filterObj.hasOwnProperty('toDate') && this.isDateFilter && this.toDate.length) {
+          console.log(this.toDate)
+          this.filterObj.fromDate = this.fromDate;
+          this.filterObj.toDate = this.toDate;
+        }
+        else if (!this.filterObj.hasOwnProperty('fromDate') && !this.filterObj.hasOwnProperty('toDate') && this.isDateFilter && this.toDate.length) {
+          Object.assign(this.filterObj, { fromDate: this.fromDate });
+          Object.assign(this.filterObj, { toDate: this.toDate });
+        } else {
+          delete this.filterObj['fromDate']
+          delete this.filterObj['toDate']
+        }
+        break;
+      case 'age':
+
+        if (this.filterObj.hasOwnProperty('ageFrom') && this.filterObj.hasOwnProperty('ageTo') && this.isAgeFilter) {
+          this.filterObj.ageFrom = this.minAge;
+          this.filterObj.ageTo = this.maxAge;
+        }
+        else if (!this.filterObj.hasOwnProperty('ageFrom') && !this.filterObj.hasOwnProperty('ageTo') && this.isAgeFilter) {
+          Object.assign(this.filterObj, { ageFrom: this.minAge });
+          Object.assign(this.filterObj, { ageTo: this.maxAge });
+        } else {
+          delete this.filterObj['ageFrom']
+          delete this.filterObj['ageTo']
+        }
+        break;
+      case 'price':
+        if (this.filterObj.hasOwnProperty('priceFrom') && this.filterObj.hasOwnProperty('priceTo') && this.isPriceFilter) {
+          this.filterObj.fromDate = this.fromDate;
+          this.filterObj.toDate = this.toDate;
+        }
+        else if (!this.filterObj.hasOwnProperty('priceFrom') && !this.filterObj.hasOwnProperty('priceTo') && this.isPriceFilter) {
+          Object.assign(this.filterObj, { priceFrom: this.minPrice });
+          Object.assign(this.filterObj, { priceTo: this.maxPrice });
+        } else {
+          delete this.filterObj['priceFrom']
+          delete this.filterObj['priceTo']
+        }
+        break;
+      case 'map':
+        if (this.filterObj.hasOwnProperty('lat') && this.filterObj.hasOwnProperty('lng') && Object.keys(this.coordinates).length && this.isMapFilter) {
+          this.filterObj.lat = this.coordinates.lat;
+          this.filterObj.lng = this.coordinates.lng;
+        }
+        else if (!this.filterObj.hasOwnProperty('lat') && !this.filterObj.hasOwnProperty('lat') && Object.keys(this.coordinates).length && this.isMapFilter) {
+          Object.assign(this.filterObj, { lat: this.coordinates.lat });
+          Object.assign(this.filterObj, { lat: this.coordinates.lng });
+        } else {
+          delete this.filterObj['lat']
+          delete this.filterObj['lat']
+        }
+        break;
+    }
+
+    const filter = new URLSearchParams(this.filterObj).toString();
+    this.router.navigate(
+      [],
+      {
+        relativeTo: this.activatedRoute, queryParams: {
+          filter: filter
+        }
+      }
+    );
+    // this.router
+    // .navigateByUrl("/", { skipLocationChange: true })
+    // .then(() => this.router.navigate(['/search'], {
+    //   queryParams: {
+    //     filter: filter
+    //   }
+    // }));
+  }
   resetFilter() {
+    // this.router.navigate(
+    //   [],
+    //   { relativeTo: this.activatedRoute, queryParams: {} }
+    // );
+    this.router
+      .navigateByUrl("/", { skipLocationChange: true })
+      .then(() => this.router.navigate(['/search']));
     this.dataservice.setOption({})
     this.isInfiniteScrollDisabled = false
     this.contentLoaded = false
@@ -513,11 +778,21 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   goToProgramDetail(data) {
-    var programName = data.name;
+        var programName = data.name;
     programName = programName.toLowerCase();
     programName = programName.replace(/ /g, "-");
     programName = programName.replace(/\?/g, "-");
-    return `/program/${programName}/${data._id}`
+    let url = ``
+    if(Object.keys(this.filterObj).length){
+      const filter = new URLSearchParams(this.filterObj).toString();
+      url = `/program/${programName}/${data._id}?filter=${filter}`
+      return url
+    }
+    else{
+      url = `/program/${programName}/${data._id}`
+      return url
+    }
+
     // this.router.navigate(['program', programName, data._id]);
     // const url = this.router.serializeUrl(
     //   this.router.createUrlTree(['program', programName, data._id])
@@ -591,6 +866,34 @@ export class SearchComponent implements OnInit, OnDestroy {
     })
   }
 
+
+  checkCategoryFilter(id,type) {
+    if(type==='category'){
+      this.apiservice.getCategory().subscribe((res: any) => {
+        let index = res.findIndex(object => {
+          return object.id === id;
+        });
+        if(~index){
+          this.searchedSubCategory = res[index].name
+        }
+      });
+    }
+    if(type==='subcategory'){
+      this.apiservice.getTag().subscribe((res: any) => {
+        console.log('res',res)
+        let index = res.data.findIndex(object => {
+          return object._id === id;
+        });
+        if(~index){
+          this.searchedSubCategory = res.data[index].name
+        }
+        console.log('searchedSubCategory',this.searchedSubCategory)
+        console.log('res',res)
+        console.log('id',id)
+      });
+    }
+
+  }
   // ---------------------------------------------get categories-------------------------------------
   getCategory() {
     let removedCategory;
@@ -607,10 +910,10 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   // ---------------------------------------------get subCateById-------------------------------------
   getSubCateById(cat) {
-    this.tempCategoryId = cat.id
+    this.categoryId = cat.id
     this.selectedCat = cat.id
-    this.tempSelectedSubCategories = []
-    this.tempSearchedSubCategory = cat.name
+    this.selectedSubCategories = []
+    this.searchedSubCategory = cat.name
     this.apiservice.getTagByCategoryId(cat.id).subscribe((res: any) => {
       this.subCats = res.data
       this.subCats = this.subCats.filter((item) => item.isActivated === true && item.programCount);
@@ -683,162 +986,166 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.apiservice.parentAnalytics(key, this.userId, value).subscribe((res: any) => {
     });
   }
-  programFilter() {
-    window.scroll(0, 0);
-    this.isInfiniteScrollDisabled = false
-    this.isTimeFilter = false;
-    this.isDaysFilter = false;
-    this.isTopFilter = false;
-    this.isTypeFilter = false;
-    this.isCategoryFilter = false;
-    this.suggested = []
-    if (this.isMapFilter || this.isTopFilterCheckBox || this.categoryId || this.selectedDays.length || this.selectedProgramTypes.length || this.selectedSubCategories.length || this.selectedProgramTime.length || this.isOnline || this.isInPerson || this.isDateFilter || this.isPriceFilter || this.isAgeFilter) {
-     let pageSize =50;
-      this.contentLoaded = false;
-      let filter = ``
-      let inpersonOrVirtual = ''
-      let days = ''
-      let categoryId = ''
-      let tags = ''
-      let types = ''
-      let times = ''
-      let daysCount = 1
-      let typesCount = 1
-      let tagsCount = 1
-      let timesCount = 1
-      let ratingFrom = 4
-      let ratingTo = 5
-      if (this.categoryId) {
-        this.isCategoryFilter = true;
-        categoryId = this.categoryId
-        this.parentAnalyticAction('category', categoryId)
-      }
-      for (let day of this.selectedDays) {
-        this.isDaysFilter = true;
-        if (daysCount === 1) {
-          days += day
-          daysCount++
+  programFilter(filter?) {
+    // window.scroll(0, 0);
+    // this.isInfiniteScrollDisabled = false
+    // this.isTimeFilter = false;
+    // this.isDaysFilter = false;
+    // this.isTopFilter = false;
+    // this.isTypeFilter = false;
+    // this.isCategoryFilter = false;
+    // this.suggested = []
+    // if (this.isMapFilter || this.isTopFilterCheckBox || this.categoryId || this.selectedDays.length || this.selectedProgramTypes.length || this.selectedSubCategories.length || this.selectedProgramTime.length || this.isOnline || this.isInPerson || this.isDateFilter || this.isPriceFilter || this.isAgeFilter) {
+    //  let pageSize =50;
+    //   this.contentLoaded = false;
+    //   let filter = ``
+    //   let inpersonOrVirtual = ''
+    //   let days = ''
+    //   let categoryId = ''
+    //   let tags = ''
+    //   let types = ''
+    //   let times = ''
+    //   let daysCount = 1
+    //   let typesCount = 1
+    //   let tagsCount = 1
+    //   let timesCount = 1
+    //   let ratingFrom = 4
+    //   let ratingTo = 5
+    //   if (this.categoryId) {
+    //     this.isCategoryFilter = true;
+    //     categoryId = this.categoryId
+    //     this.parentAnalyticAction('category', categoryId)
+    //   }
+    //   for (let day of this.selectedDays) {
+    //     this.isDaysFilter = true;
+    //     if (daysCount === 1) {
+    //       days += day
+    //       daysCount++
+    //     }
+    //     else {
+    //       days += ',' + day
+    //     }
+    //   }
+    //   for (let type of this.selectedProgramTypes) {
+    //     if(type==='Drop-ins'){
+    //       type='Drops-in'
+    //     }
+    //     this.isTypeFilter = true
+    //     if (typesCount === 1) {
+    //       types += type
+    //       typesCount++
+    //     }
+    //     else {
+    //       types += ',' + type
+    //     }
+    //   }
+    //   for (let tag of this.selectedSubCategories) {
+    //     this.isCategoryFilter = true
+    //     if (tagsCount === 1) {
+    //       this.suggestedSubCategories(tag)
+    //       tags += tag
+    //       tagsCount++
+    //     }
+    //     else {
+    //       tags += ',' + tag
+    //     }
+    //     this.parentAnalyticAction('subCategory', tag)
+    //   }
+    //   for (let time of this.selectedProgramTime) {
+    //     this.isTimeFilter = true
+    //     if (timesCount === 1) {
+    //       times += time
+    //       timesCount++
+    //     }
+    //     else {
+    //       times += ',' + time
+    //     }
+    //   }
+    //   if (!categoryId && !this.selectedSubCategories.length) {
+    //     this.searchedSubCategory = '';
+    //   }
+    //   if (this.isOnline) {
+    //     inpersonOrVirtual = 'online'
+    //   }
+    //   else if (this.isInPerson) {
+    //     inpersonOrVirtual = 'inperson'
+    //   }
+    //   else {
+    //     inpersonOrVirtual = ''
+    //   }
+    //   const dateFormat = "YYYY-MM-DD";
+    //   this.fromDate = moment(this.fromDate).format(dateFormat);
+    //   this.toDate = moment(this.toDate).format(dateFormat);
+    //   filter = `time=${times}&categoryId=${categoryId}&tagsIds=${tags}&type=${types}&inpersonOrVirtual=${inpersonOrVirtual}&day=${days}`
+    //   if (this.isTopFilterCheckBox) {
+    //     this.isTopFilter = true;
+    //     filter += `&ratingFrom=${ratingFrom}&ratingTo=${ratingTo}`
+    //   }
+    //   if (this.isDateFilter) {
+    //     filter += `&fromDate=${this.fromDate}&toDate=${this.toDate}`
+    //   }
+    //   if (this.isPriceFilter) {
+    //     filter += `&priceFrom=${this.minPrice}&priceTo=${this.maxPrice}`
+    //   }
+    //   if (this.isAgeFilter) {
+    //     filter += `&ageFrom=${this.minAge}&ageTo=${this.maxAge}`
+    //   }
+    //   if (this.isMapFilter) {
+    //     pageSize=10
+    //     filter += `&lat=${this.coordinates.lat}&lng=${this.coordinates.lng}`
+    //   }
+    this.ngxLoader.start()
+    this.apiservice.programFilter(filter, 1, 50).subscribe((res: any) => {
+      this.showReset = true
+      if (res.isSuccess) {
+        this.activitiesCount =res.total
+        // this.isTopFilterCheckBox = false
+        res.items = res.items .filter(item => item.user[0].isActivated === true)
+        this.programs = res.items;
+        if (this.isTopFilter) {
+          this.providerProgram = this.programs.sort((a, b) => b.user[0]?.averageFinalRating - a.user[0]?.averageFinalRating);
         }
         else {
-          days += ',' + day
+          this.providerProgram = this.programs;
         }
-      }
-      for (let type of this.selectedProgramTypes) {
-        if(type==='Drop-ins'){
-          type='Drops-in'
+        if (!this.providerProgram.length) {
+          this.isLoaded = true
         }
-        this.isTypeFilter = true
-        if (typesCount === 1) {
-          types += type
-          typesCount++
-        }
-        else {
-          types += ',' + type
-        }
+        // if (this.providerProgram.length) {
+        //   this.providerProgram[0].collapsed = true
+        // }
+        // if (this.providerProgram.length == 2) {
+        //   this.providerProgram[1].collapsed = true
+        // }
+        // else if (this.providerProgram.length > 2) {
+        //   this.providerProgram[1].collapsed = true
+        //   this.providerProgram[2].collapsed = true
+        // }
+        // if (categoryId || this.selectedSubCategories.length) {
+        // const sum = this.providerProgram.reduce((accumulator, object) => {
+        //   return accumulator + object.programs.length;
+        // }, 0);
+        // this.activitiesCount = sum
+        // }
+        // for (let i in this.programs) {
+        //   let category = this.programs[i].category.filter((v, num, a) => a.findIndex(t => (t.name == v.name)) === num)
+        //   this.programs[i].category = category
+        // }
+        this.startTour()
+        this.isScrol = false;
       }
-      for (let tag of this.selectedSubCategories) {
-        this.isCategoryFilter = true
-        if (tagsCount === 1) {
-          this.suggestedSubCategories(tag)
-          tags += tag
-          tagsCount++
-        }
-        else {
-          tags += ',' + tag
-        }
-        this.parentAnalyticAction('subCategory', tag)
-      }
-      for (let time of this.selectedProgramTime) {
-        this.isTimeFilter = true
-        if (timesCount === 1) {
-          times += time
-          timesCount++
-        }
-        else {
-          times += ',' + time
-        }
-      }
-      if (!categoryId && !this.selectedSubCategories.length) {
-        this.searchedSubCategory = '';
-      }
-      if (this.isOnline) {
-        inpersonOrVirtual = 'online'
-      }
-      else if (this.isInPerson) {
-        inpersonOrVirtual = 'inperson'
-      }
-      else {
-        inpersonOrVirtual = ''
-      }
-      const dateFormat = "YYYY-MM-DD";
-      this.fromDate = moment(this.fromDate).format(dateFormat);
-      this.toDate = moment(this.toDate).format(dateFormat);
-      filter = `time=${times}&categoryId=${categoryId}&tagsIds=${tags}&type=${types}&inpersonOrVirtual=${inpersonOrVirtual}&day=${days}`
-      if (this.isTopFilterCheckBox) {
-        this.isTopFilter = true;
-        filter += `&ratingFrom=${ratingFrom}&ratingTo=${ratingTo}`
-      }
-      if (this.isDateFilter) {
-        filter += `&fromDate=${this.fromDate}&toDate=${this.toDate}`
-      }
-      if (this.isPriceFilter) {
-        filter += `&priceFrom=${this.minPrice}&priceTo=${this.maxPrice}`
-      }
-      if (this.isAgeFilter) {
-        filter += `&ageFrom=${this.minAge}&ageTo=${this.maxAge}`
-      }
-      if (this.isMapFilter) {
-        pageSize=10
-        filter += `&lat=${this.coordinates.lat}&lng=${this.coordinates.lng}`
-      }
-      this.ngxLoader.start()
-      this.apiservice.programFilter(filter, 1,pageSize).subscribe((res: any) => {
-        this.showReset = true
-        if (res.isSuccess) {
-          // this.isTopFilterCheckBox = false
-          res.data = res.data.filter(item => item.user[0].isActivated === true)
-          this.programs = res.data;
-          if (this.isTopFilter) {
-            this.providerProgram = this.programs.sort((a, b) => b.user[0]?.averageFinalRating - a.user[0]?.averageFinalRating);
-          }
-          else {
-            this.providerProgram = this.programs;
-          }
-          if (!this.providerProgram.length) {
-            this.isLoaded = true
-          }
-          // if (this.providerProgram.length) {
-          //   this.providerProgram[0].collapsed = true
-          // }
-          // if (this.providerProgram.length == 2) {
-          //   this.providerProgram[1].collapsed = true
-          // }
-          // else if (this.providerProgram.length > 2) {
-          //   this.providerProgram[1].collapsed = true
-          //   this.providerProgram[2].collapsed = true
-          // }
-          // if (categoryId || this.selectedSubCategories.length) {
-          const sum = this.providerProgram.reduce((accumulator, object) => {
-            return accumulator + object.programs.length;
-          }, 0);
-          this.activitiesCount = sum
-          // }
-          // for (let i in this.programs) {
-          //   let category = this.programs[i].category.filter((v, num, a) => a.findIndex(t => (t.name == v.name)) === num)
-          //   this.programs[i].category = category
-          // }
-          this.startTour()
-          this.isScrol = false;
-        }
-        this.ngxLoader.stop()
-      });
-    }
-    else {
-      this.pageNo = 1
-      this.programs = []
-      this.isTopFilterCheckBox = false
-      this.getPublishedProgram();
-    }
+      this.ngxLoader.stop()
+      var filterObj = JSON.parse('{"' + filter.replace(/&/g, '","').replace(/=/g, '":"') + '"}', function (key, value) { return key === "" ? value : decodeURIComponent(value) })
+      console.log('filterObj', filterObj)
+
+    });
+    // }
+    // else {
+    //   this.pageNo = 1
+    //   this.programs = []
+    //   this.isTopFilterCheckBox = false
+    //   this.getPublishedProgram();
+    // }
   }
   searchCategory(key?) {
     this.apiservice.searchTag(key).subscribe((res: any) => {
@@ -881,7 +1188,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   // ---------------------------------navigate to program detail page -------------------------------------------
-  getRating(id,indx) {
+  getRating(id, indx) {
     if (this.isRating) {
       this.apiservice.getUserRating(id).subscribe((res: any) => {
         res.finalAverageRating = parseFloat(String(res.finalAverageRating)).toFixed(1)
@@ -889,10 +1196,10 @@ export class SearchComponent implements OnInit, OnDestroy {
         this.providerProgram[indx].rating = this.rating
       });
     }
-    if(this.providerProgram[indx].isCollapsed){
+    if (this.providerProgram[indx].isCollapsed) {
       this.providerProgram[indx].isCollapsed = false
     }
-    else{
+    else {
       this.providerProgram[indx].isCollapsed = true
     }
   }
@@ -981,6 +1288,7 @@ export class SearchComponent implements OnInit, OnDestroy {
             element.nativeElement.checked = false;
           }
         });
+        this.setFilterQuery('day')
       }
       case 'times': {
         this.times.forEach((element) => {
@@ -989,6 +1297,7 @@ export class SearchComponent implements OnInit, OnDestroy {
             element.nativeElement.checked = false;
           }
         });
+        this.setFilterQuery('time')
       }
       case 'types': {
         this.types.forEach((element) => {
@@ -997,10 +1306,9 @@ export class SearchComponent implements OnInit, OnDestroy {
             element.nativeElement.checked = false;
           }
         });
+        this.setFilterQuery('type')
       }
     }
-    this.programFilter();
-
   }
 
   scrollLeft(i) {

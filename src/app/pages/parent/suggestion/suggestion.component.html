@@ -34,7 +34,7 @@
                             <div class="col-md-4"
                                 *ngFor="let category of kid?.interestInfo | slice:0:3 ; let i = index">
                                 <div class="category_list_box cursor"
-                                    (click)="filterData.kidAge=kid.age;searchBySubCategory (category._id)">
+                                    (click)="filterData.kidAge=kid.age;searchBySubCategory (category)">
                                     <a (click)="filterData.searchedCategoryKey=category.name;">
                                         <div class="category_image">
                                             <img [src]="baseUrl+category?.image" />
@@ -55,7 +55,7 @@
 
                         <!-- <div class="row" *ngIf="!kid?.interestInfo?.length">
                             <div class="col-md-4" *ngFor="let category of kid?.interestInfo | slice:0:3 ; let i = index">
-                                <div class="category_list_box cursor" (click)="searchByCategory(category._id)">
+                                <div class="category_list_box cursor" (click)="searchByCategory(category)">
                                     <a>
                                         <div class="category_image">
                                             <img [defaultImage]="defaultImage" [lazyLoad]="category?.categories?.imageUrl" />
@@ -114,19 +114,19 @@
                             ">
                                                         <div class="card card-body">
                                                             <div class="program-list" *ngIf="categoriesBySearch?.category?.length || categoriesBySearch?.tags?.length">
-                                                                <h6 (click)="filterData.searchedCategoryKey=category.name;searchByCategory(category._id)" *ngFor="
+                                                                <h6 (click)="filterData.searchedCategoryKey=category.name;searchByCategory(category)" *ngFor="
                                 let category of categoriesBySearch?.category
                                   | slice: 0:1
-                              " (click)="searchByCategory(category?._id)">
+                              " (click)="searchByCategory(category)">
                                                                     {{ category.name }}
                                                                     <span class="search-programlist">
                                     <img src="assets/program-search.svg" />
                                   </span>
                                                                 </h6>
-                                                                <h6 (click)="filterData.searchedCategoryKey=category.name;searchBySubCategory(category._id)" *ngFor="
+                                                                <h6 (click)="filterData.searchedCategoryKey=category.name;searchBySubCategory(category)" *ngFor="
                                     let category of categoriesBySearch?.tags
                                       | slice: 0:3
-                                  " (click)="filterData.kidAge='';searchBySubCategory(category?._id)">
+                                  " (click)="filterData.kidAge='';searchBySubCategory(category)">
                                                                     {{ category.name }}
                                                                     <span class="search-programlist">
                                     <img src="assets/program-search.svg" />

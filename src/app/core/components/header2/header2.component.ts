@@ -287,33 +287,46 @@ export class Header2Component implements OnInit {
     } else if (!data.categoryIds && !data.role) {
       let regCount = this.activitySearched + 1
       this.cookies.set('activitySearched', String(regCount), 30);      this.filterData.activityName = "";
-      this.filterData.subcatId = '';
-      this.filterData.categoryId = data._id;
-      this.filterData.searchedCategoryKey = data.name;
-      this.dataservice.setOption(this.filterData);
-      this.router.navigate(["/search"]);
-      if (this.routeName === "/search") {
-        this.router
-          .navigateByUrl("/", { skipLocationChange: true })
-          .then(() => this.router.navigate(["search"]));
-      }
+      // this.filterData.subcatId = '';
+      // this.filterData.categoryId = data._id;
+      // this.filterData.searchedCategoryKey = data.name;
+      // this.dataservice.setOption(this.filterData);
+      // this.router.navigate(["/search"]);
+      // if (this.routeName === "/search") {
+      //   this.router
+      //     .navigateByUrl("/", { skipLocationChange: true })
+      //     .then(() => this.router.navigate(["search"]));
+      // }
+      let filter = `categoryId=${data._id}`
+      this.router.navigate(['/search'], {
+        queryParams: {
+          filter: filter
+        }
+      });
+      
     }
     else if (data.categoryIds && !data.role) {
       let regCount = this.activitySearched + 1
       this.cookies.set('activitySearched', String(regCount), 30);
-      this.filterData.activityName = ''
-      this.filterData.lat = ''
-      this.filterData.lng = ''
-      this.filterData.searchedCategoryKey = data.name;
-      this.filterData.categoryId = ''
-      this.filterData.subcatId = data._id
-      this.dataservice.setOption(this.filterData)
-      this.router.navigate(['/search']);
-      if (this.routeName === "/search") {
-        this.router
-          .navigateByUrl("/", { skipLocationChange: true })
-          .then(() => this.router.navigate(["search"]));
-      }
+      // this.filterData.activityName = ''
+      // this.filterData.lat = ''
+      // this.filterData.lng = ''
+      // this.filterData.searchedCategoryKey = data.name;
+      // this.filterData.categoryId = ''
+      // this.filterData.subcatId = data._id
+      // this.dataservice.setOption(this.filterData)
+      // this.router.navigate(['/search']);
+      // if (this.routeName === "/search") {
+      //   this.router
+      //     .navigateByUrl("/", { skipLocationChange: true })
+      //     .then(() => this.router.navigate(["search"]));
+      // }
+      let filter = `tagsIds=${data._id}`
+      this.router.navigate(['/search'], {
+        queryParams: {
+          filter: filter
+        }
+      });
     }
 
   }
