@@ -388,7 +388,7 @@ export class SearchComponent implements OnInit, OnDestroy {
         if (params.filter) {
           this.filterObj = JSON.parse('{"' + params.filter.replace(/&/g, '","').replace(/=/g, '":"') + '"}', function (key, value) { return key === "" ? value : decodeURIComponent(value) })
           if (this.filterObj.hasOwnProperty('categoryId')) {
-            this.checkCategoryFilter(this.filterObj.categoryId,'category')
+            this.checkCategoryFilter(this.filterObj.categoryId, 'category')
             this.isCategoryFilter = true;
             this.categoryId = this.filterObj.categoryId;
           }
@@ -396,7 +396,7 @@ export class SearchComponent implements OnInit, OnDestroy {
             this.isCategoryFilter = true;
             let ids = this.filterObj.tagsIds.split(',');
             this.selectedSubCategories = ids;
-            this.checkCategoryFilter(this.selectedSubCategories[0],'subcategory')
+            this.checkCategoryFilter(this.selectedSubCategories[0], 'subcategory')
           }
 
           if (this.filterObj.hasOwnProperty('day')) {
@@ -573,6 +573,7 @@ export class SearchComponent implements OnInit, OnDestroy {
           Object.assign(this.filterObj, { day: this.selectedDays.toString() });
         }
         else {
+          this.isDaysFilter = false;
           delete this.filterObj['day'];
         }
         break;
@@ -587,15 +588,16 @@ export class SearchComponent implements OnInit, OnDestroy {
         }
         else {
           delete this.filterObj['time'];
+          this.isTimeFilter = false;
         }
         break;
 
       case 'type':
-        let array:any = [];
+        let array: any = [];
         array = [...this.selectedProgramTypes]
         var index = array.indexOf('Drop-ins');
         if (~index) {
-            array[index] = 'Drops-in';
+          array[index] = 'Drops-in';
         }
         if (this.filterObj.hasOwnProperty('type') && array.length) {
           this.filterObj.type = array.toString();
@@ -604,6 +606,7 @@ export class SearchComponent implements OnInit, OnDestroy {
           Object.assign(this.filterObj, { type: array.toString() });
         }
         else {
+          this.isTypeFilter = false;
           delete this.filterObj['type'];
         }
         break;
@@ -778,20 +781,20 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   goToProgramDetail(data) {
-        var programName = data.name;
+    var programName = data.name;
     programName = programName.toLowerCase();
     programName = programName.replace(/ /g, "-");
     programName = programName.replace(/\?/g, "-");
     let url = ``
-    // if(Object.keys(this.filterObj).length){
-    //   const filter = new URLSearchParams(this.filterObj).toString();
-    //   url = `/program/${programName}/${data._id}?filter=${filter}`
-    //   return url
-    // }
-    // else{
-      url = `/program/${programName}/${data._id}`
+    if (Object.keys(this.filterObj).length) {
+      const filter = new URLSearchParams(this.filterObj).toString();
+      url = `/program/${programName}/${data._id}/${filter}`
       return url
-    // }
+    }
+    else {
+      url = `/program/${programName}/${data._id}/filter`
+      return url
+    }
 
     // this.router.navigate(['program', programName, data._id]);
     // const url = this.router.serializeUrl(
@@ -867,29 +870,29 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
 
-  checkCategoryFilter(id,type) {
-    if(type==='category'){
+  checkCategoryFilter(id, type) {
+    if (type === 'category') {
       this.apiservice.getCategory().subscribe((res: any) => {
         let index = res.findIndex(object => {
           return object.id === id;
         });
-        if(~index){
+        if (~index) {
           this.searchedSubCategory = res[index].name
         }
       });
     }
-    if(type==='subcategory'){
+    if (type === 'subcategory') {
       this.apiservice.getTag().subscribe((res: any) => {
-        console.log('res',res)
+        console.log('res', res)
         let index = res.data.findIndex(object => {
           return object._id === id;
         });
-        if(~index){
+        if (~index) {
           this.searchedSubCategory = res.data[index].name
         }
-        console.log('searchedSubCategory',this.searchedSubCategory)
-        console.log('res',res)
-        console.log('id',id)
+        console.log('searchedSubCategory', this.searchedSubCategory)
+        console.log('res', res)
+        console.log('id', id)
       });
     }
 
@@ -1098,9 +1101,9 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.apiservice.programFilter(filter, 1, 50).subscribe((res: any) => {
       this.showReset = true
       if (res.isSuccess) {
-        this.activitiesCount =res.total
+        this.activitiesCount = res.total
         // this.isTopFilterCheckBox = false
-        res.items = res.items .filter(item => item.user[0].isActivated === true)
+        res.items = res.items.filter(item => item.user[0].isActivated === true)
         this.programs = res.items;
         if (this.isTopFilter) {
           this.providerProgram = this.programs.sort((a, b) => b.user[0]?.averageFinalRating - a.user[0]?.averageFinalRating);
@@ -1281,7 +1284,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   removeRecentSearches(type, indx) {
     this.contentLoaded = false;
     switch (type) {
-      case 'days': {
+      case 'days':
         this.days.forEach((element) => {
           if (element.nativeElement.defaultValue === this.selectedDays[indx]) {
             this.selectedDays.splice(indx, 1);
@@ -1289,8 +1292,9 @@ export class SearchComponent implements OnInit, OnDestroy {
           }
         });
         this.setFilterQuery('day')
-      }
-      case 'times': {
+        break;
+
+      case 'times':
         this.times.forEach((element) => {
           if (element.nativeElement.value === this.selectedProgramTime[indx]) {
             this.selectedProgramTime.splice(indx, 1);
@@ -1298,8 +1302,9 @@ export class SearchComponent implements OnInit, OnDestroy {
           }
         });
         this.setFilterQuery('time')
-      }
-      case 'types': {
+        break;
+
+      case 'types':
         this.types.forEach((element) => {
           if (element.nativeElement.value === this.selectedProgramTypes[indx]) {
             this.selectedProgramTypes.splice(indx, 1);
@@ -1307,7 +1312,7 @@ export class SearchComponent implements OnInit, OnDestroy {
           }
         });
         this.setFilterQuery('type')
-      }
+        break;
     }
   }
 

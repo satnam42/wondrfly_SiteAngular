@@ -9,7 +9,7 @@ export const routes: Routes = [
     path: '', component: ProgramComponent, children: [
 
       {
-        path: ':title/:id',
+        path: ':title/:id/:filter',
         component: DetailComponent,
       },
     ]
