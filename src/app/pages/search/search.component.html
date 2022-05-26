@@ -4,10 +4,10 @@
 <div class="beta-full" *ngIf="isBetaPopUp && !isLogin">
     <div class="beta-fullbox">
         <h1>
-            Wondrfly is currently in beta. Join our exclusive
-             beta program to experience more!
+            Wondrfly Is Currently In Beta. Join Our Exclusive
+             Beta Program To Experience More!
         </h1>
-        <button [routerLink]="['/ask-to-join']">JOIN BETA PROGRAM</button>
+        <button [routerLink]="['/ask-to-join']">Join Beta Program</button>
     </div>
 </div>
 <section class="main_outer common-headermargin" [ngClass]="{'click-disabled':isBetaPopUp && !isLogin}">
@@ -31,18 +31,18 @@
                                                 </div>
                                                 <div class="col-7 sub-categoriesfilterheader">
                                                     <h2>
-                                                        Sub categories
+                                                        Sub Categories
 
                                                         <span>
                                                             <span>
                                                                 <a class="clear cusror" data-target="#category"
                                                                     data-toggle="collapse"
                                                                     (click)="selectedCat='';categoryId='';subCats=[];selectedSubCategories=[];resetFilter()">Clear
-                                                                    all</a>
+                                                                    All</a>
                                                             </span>
                                                             <button data-target="#category" data-toggle="collapse"
                                                                 (click)="setFilterQuery('category')">
-                                                                APPLY FILTER
+                                                                Apply Filter
                                                             </button>
                                                         </span>
                                                     </h2>
@@ -391,8 +391,8 @@
                 <div class="chip-set-bar chip-set-bar-btn" [hidden]="showReset">
                     <div class="map-without-heading display-inline">
                         <h2>
-                            <span class="span-h3">&nbsp;&nbsp;<b>{{activitiesCount}}</b> activities
-                                from <b>{{providerProgram?.length}}</b> providers</span>
+                            <span class="span-h3">&nbsp;&nbsp;<b>{{activitiesCount}}</b> Activities
+                                From <b>{{providerProgram?.length}}</b> Providers</span>
                         </h2>
                     </div>
                 </div>
@@ -401,24 +401,24 @@
                         <h2>
                             <span [hidden]="!searchedSubCategory"><a><span>{{searchedSubCategory}}</span><span
                                         *ngIf="selectedSubCategories?.length && selectedSubCategories?.length>1"> +
-                                        {{selectedSubCategories?.length-1}} More</span></a> in Jersey City</span><span
+                                        {{selectedSubCategories?.length-1}} More</span></a> In Jersey City</span><span
                                 class="span-h3">&nbsp;<span *ngIf="searchedSubCategory">|</span>&nbsp;
-                                <b>{{activitiesCount}}</b> activities
-                                from <b>{{providerProgram?.length}}</b> providers</span>
+                                <b>{{activitiesCount}}</b> Activities
+                                From <b>{{providerProgram?.length}}</b> Providers</span>
                         </h2>
                     </div>
                     <button class="btn_style save_btn cursor" *ngIf="!isInPerson && isOnline">
-                        online
+                        Online
                         <mat-icon (click)="contentLoaded=false;isOnline=!isOnline;setFilterQuery('online')">cancel</mat-icon>
                     </button>
                     <button class="btn_style save_btn cursor" *ngIf="isInPerson && !isOnline">
-                        in-persion
+                        In-persion
                         <mat-icon (click)="contentLoaded=false;isInPerson=!isInPerson;setFilterQuery('inperson')">cancel</mat-icon>
                     </button>
 
 
                     <button class="btn_style save_btn cursor" *ngIf="isAgeFilter">
-                        Age {{minAge}}-{{maxAge}} years
+                        Age {{minAge}}-{{maxAge}} Years
                         <mat-icon (click)="contentLoaded=false;isAgeFilter=!isAgeFilter;setFilterQuery('age')">cancel
                         </mat-icon>
                     </button>
@@ -441,29 +441,29 @@
                         Top Rated
                         <mat-icon
                             (click)="contentLoaded=false;isTopFilterCheckBox=false;isTopFilter=false;setFilterQuery('rating')">
-                            cancel</mat-icon>
+                            Cancel</mat-icon>
                     </button>
                     <button class="btn_style save_btn cursor" *ngFor="let day of this.selectedDays;index as i">
                         {{day}}
-                        <mat-icon (click)="removeRecentSearches('days',i)" class="ml-2">cancel</mat-icon>
+                        <mat-icon (click)="removeRecentSearches('days',i)" class="ml-2">Cancel</mat-icon>
                     </button>
                     <button class="btn_style save_btn cursor" *ngFor="let type of this.selectedProgramTypes;index as i">
                         {{type}}
-                        <mat-icon (click)="removeRecentSearches('types',i)" class="ml-2">cancel</mat-icon>
+                        <mat-icon (click)="removeRecentSearches('types',i)" class="ml-2">Cancel</mat-icon>
                     </button>
                     <button class="btn_style save_btn cursor" *ngFor="let time of this.selectedProgramTime;index as i">
                         {{time}}
-                        <mat-icon (click)="removeRecentSearches('times',i)" class="ml-2">cancel</mat-icon>
+                        <mat-icon (click)="removeRecentSearches('times',i)" class="ml-2">Cancel</mat-icon>
                     </button>
                     <span>
-                        <a class="ml-2 clear-text cursor" (click)="resetFilter()">Clear all</a>
+                        <a class="ml-2 clear-text cursor" (click)="resetFilter()">Clear All</a>
                     </span>
                 </div>
             </div>
             <div class="col-2" [hidden]="isMap || isOnline">
                 <div class="chip-set-bar btn-show-map-right">
                     <button (click)="isMap=!isMap;" class="btn-show-map"><img src="assets/show-map-icon.png"
-                            class="gis-map-icon"> Show map</button>
+                            class="gis-map-icon"> Show Map</button>
                 </div>
             </div>
 
@@ -600,11 +600,11 @@
                                             <div class="view-less-txt-info collapsed">
                                                 <a *ngIf="provider.collapsed" class="btn-view-less"
                                                     (click)="provider.collapsed=false" aria-expanded="false"
-                                                    aria-controls="collapseDosing">Show activities<i
+                                                    aria-controls="collapseDosing">Show Activities<i
                                                         class="fas fa-chevron-down"></i></a>
                                                 <a *ngIf="!provider.collapsed" class="btn-view-less"
                                                     (click)="provider.collapsed=true" aria-expanded="false"
-                                                    aria-controls="collapseDosing">Hide activities<i
+                                                    aria-controls="collapseDosing">Hide Activities<i
                                                         class="fas fa-chevron-up"></i></a>
                                             </div>
                                         </div>
@@ -684,7 +684,7 @@
                                                         class="bookmark_icon cursor"><img
                                                             src="assets/bookmark-active.svg" alt="Menu Image "
                                                             joyrideStep="thirdStep{{providerIndx}}{{programIndx}}"
-                                                            title="💡 Save activities for later"
+                                                            title="💡 Save Activities For Later"
                                                             text="Click here to save your favorite activities all in one place for when you need them!" /></a>
 
                                                     <a *ngIf="!isLogin" routerLink="/login"
@@ -700,7 +700,7 @@
                                         </div>
                                         <div class="list_outer row row-0">
                                             <div class="list col-12 mt-2 mb-1">
-                                                <p>by {{ program?.programOwner }}</p>
+                                                <p>By {{ program?.programOwner }}</p>
                                             </div>
                                             <!-- <div class="rating-starsearch">
                                                 <p (click)=" getRating(program); programOwnerData.firstName = program?.programOwner
@@ -1134,7 +1134,7 @@
 
                     <div *ngIf="!providerProgram?.length && isLoaded" class="suggested-searchresult">
                         <div class="suggested-text">
-                            <h1>Sorry no results found :(</h1>
+                            <h1>Sorry No Results Found :(</h1>
                             <!-- <h2>
                                 Do you want to search <span class="cursor" (click)="categoryId='60b4752fbb70a952280bfa74';searchedSubCategory='Dance';programFilter()">Dance</span> or
                                 <span class="cursor" (click)="categoryId='60b47547bb70a952280bfa75';searchedSubCategory='Music';programFilter()">Music</span> instead
@@ -1186,13 +1186,13 @@
                                                     <a [routerLink]="['/blogs']">Blog</a>
                                                 </li>
                                                 <li class="cursor">
-                                                    <a [routerLink]="['/faq']">FAQ</a>
+                                                    <a [routerLink]="['/faq']">Faq</a>
                                                 </li>
                                                 <!-- <li class="cursor">
                                   <a [routerLink]="['/ambassador-policy']">Ambassador</a>
                                 </li> -->
                                                 <li class="cursor">
-                                                    <a [routerLink]="['/term-condition']">Terms of use</a>
+                                                    <a [routerLink]="['/term-condition']">Terms Of Use</a>
                                                 </li>
                                                 <li class="cursor">
                                                     <a [routerLink]="['/privacy-policy']">Privacy Policy</a>
@@ -1269,12 +1269,12 @@
                         <label class="map-search-checkbox-field">
                             <input type="checkbox" [class.] [checked]="isMapMoveChecked" (change)="isMapMoveChecked=!isMapMoveChecked">
                             <span class="checkmark"></span>
-                            <span class="checkbox-txt">Search as I move the Map</span>
+                            <span class="checkbox-txt">Search As I Move The Map</span>
                         </label>
                     </div>
                     <div class="btn-hide-up-info">
                         <button class="btn-hide-up" (click)="isMap=!isMap"><img class="gis-map-icon"
-                                src="assets/gis_map.png" /> Hide map <img class="right-arrow-icon"
+                                src="assets/gis_map.png" /> Hide Map <img class="right-arrow-icon"
                                 src="assets/right-arrow-icon.png" /></button>
                     </div>
                     <agm-map *ngIf="providerProgram?.length; else nolocationfound" [styles]="mapTheme.customStyle"

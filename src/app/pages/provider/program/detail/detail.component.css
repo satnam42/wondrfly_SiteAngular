@@ -83,7 +83,7 @@ a.business_btn.cursor.contact {
   font-size: 10px;
   line-height: 14px;
   color: #777cea;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 .program_text .CategoryText .shareIcon {
@@ -126,6 +126,7 @@ a.business_btn.cursor.contact {
   width: 65%;
   align-items: center;
   display: flex;
+  text-transform: capitalize;
 }
 
 .program_text .CategoryText h3 .edit_name {
@@ -319,7 +320,7 @@ button.camp-btn {
   background: #53b2e8;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.24);
   border-radius: 20px;
-  text-transform: uppercase;
+  text-transform: capitalize;
   font-weight: 600;
   font-family: "Poppins";
 }
@@ -343,7 +344,7 @@ button.camp-btn {
   line-height: 14px;
   letter-spacing: 0.01em;
   color: #53b2e8;
-  text-transform: uppercase;
+  text-transform: capitalize;
   width: 100%;
 }
 
@@ -418,7 +419,7 @@ button.camp-btn {
   font-weight: 600;
   font-size: 10px;
   line-height: 14px;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #fa627d;
   width: 100%;
   display: inline-block;
@@ -428,7 +429,7 @@ button.camp-btn {
   font-weight: 600;
   font-size: 10px;
   line-height: 15px;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #53b2e8;
   float: right;
   cursor: pointer;
@@ -579,7 +580,7 @@ a{
   font-size: 10px;
   letter-spacing: 0.01em;
   text-align: center;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 .featured_text .featured_btn {
@@ -716,7 +717,7 @@ a{
   font-size: 10px;
   line-height: 14px;
   letter-spacing: 0.01em;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #748494;
   display: inline-block;
 }
@@ -739,14 +740,14 @@ a{
 
 /* ------------style.css-------------- */
 
-.form-group label {
-  font-weight: 600;
-  font-size: 10px;
-  line-height: 14px;
-  text-transform: uppercase;
-  color: #494949;
-  padding: 0 0 0 0px;
-}
+  /* .form-group label {
+    font-weight: 600;
+    font-size: 10px;
+    line-height: 14px;
+    text-transform: capitalize;
+    color: #494949;
+    padding: 0 0 0 0px;
+  } */
 
 .form-group input {
   width: 100%;
@@ -838,7 +839,7 @@ a{
   font-weight: 600;
   font-size: 10px;
   line-height: 15px;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #53b2e8;
   float: right;
 }
@@ -887,7 +888,7 @@ a{
   font-weight: 600;
   font-size: 10px;
   line-height: 14px;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #494949;
   margin-top: 6px;
 }
@@ -1008,7 +1009,7 @@ agm-map {
   font-weight: 400;
   font-size: 10px;
   line-height: 14px;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #494949;
   margin-top: 6px;
 }
@@ -1133,7 +1134,7 @@ agm-map {
   font-size: 12px;
   line-height: 18px;
   text-align: center;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #ffffff;
   position: absolute;
   left: 0;
@@ -1225,7 +1226,7 @@ agm-map {
   font-size: 10px;
   line-height: 15px;
   letter-spacing: 0.01em;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #53b2e8;
   margin-top: 6px;
 }
@@ -1440,7 +1441,7 @@ span.blue_heading {
   line-height: 21px;
   text-align: justify;
   letter-spacing: 0.01em;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #53B2E8;
 }
 span.more-programscolor {
@@ -1472,7 +1473,7 @@ button.addimagebtn {
   line-height: 18px;
   text-align: center;
   letter-spacing: 0.02em;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #ffffff;
   padding: 10px;
   padding-left: 20px;
@@ -1528,7 +1529,7 @@ button.bt-chat {
   line-height: 18px;
   text-align: center;
   letter-spacing: 0.02em;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #53b2e8;
   background: #ffffff;
   border: 1px solid #53b2e8;
@@ -1631,7 +1632,7 @@ button.map-buttonas {
   font-size: 12px;
   line-height: 100%;
   text-align: center;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #ffffff;
   padding: 10px;
   padding-left: 30px;
@@ -1683,7 +1684,7 @@ button.map-buttonas {
   color: #53b2e8;
   font-size: 40px;
   font-family: "poppins";
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 .media-left.profile-text {
   display: grid;
@@ -1760,7 +1761,7 @@ span#closeBtn {
   font-size: 10px;
   line-height: 15px;
   letter-spacing: 0.01em;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #494949;
   margin-bottom: 9px;
 }
@@ -2037,7 +2038,7 @@ ul.act-top-right-btn li .toggle-filtersearch button:hover{
   font-size: 10px;
   line-height: 14px;
   letter-spacing: 0.01em;
-  text-transform: uppercase;
+  text-transform: capitalize;
   font-family: "Poppins";
   color: #53b2e8;
   float: right;
@@ -2172,7 +2173,7 @@ ul.act-top-right-btn li .toggle-filtersearch button:hover{
   line-height: 16px;
   text-align: center;
   letter-spacing: 0.02em;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #ffffff;
   border: 0px;
   padding: 10px;
@@ -2202,6 +2203,21 @@ ul.act-top-right-btn li .toggle-filtersearch button:hover{
   color: #494949;
   overflow-wrap: break-word;
   width: 50%;
+}
+.categories-filtercontent h3:hover, .categories-filtercontent .active {
+  background: #e2f5ff;
+  border-radius: 20px;
+  color: #53b2e8 !important;
+}
+.checkbox-checked-name {
+  color: #53b2e8 !important;
+}
+.categories-checkbox::before {
+  content: " " !important;
+}
+.k-checkbox:checked {
+  background: #53b2e8;
+  color: white !important;
 }
 .sub-categoriesfiltercontent {
   padding-top: 10px;
@@ -2306,7 +2322,7 @@ ul.act-top-right-btn li .toggle-filtersearch button:hover{
   font-size: 10px;
   line-height: 15px;
   letter-spacing: 0.01em;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #494949;
 }
 #timess .form-group.typess input {
@@ -2560,7 +2576,7 @@ display: none;
     min-width: 70px;
     font-size: 10px;
     font-weight: 600;
-    text-transform: uppercase;
+    text-transform: capitalize;
     transition: 0.8s;
 }
 
@@ -2575,7 +2591,7 @@ display: none;
     min-width: 70px;
     font-size: 10px;
     font-weight: 600;
-    text-transform: uppercase;
+    text-transform: capitalize;
     transition: 0.8s;
 }
 .calender-buttons button.calender-buttons1:hover {
@@ -2657,7 +2673,7 @@ display: none;
   font-family: "poppins";
   font-size: 12px;
   letter-spacing: 0.02em;
-  text-transform: uppercase;
+  text-transform: capitalize;
   font-weight: 400;
   color: #53b2e8 !important;
   transition: 0.8s;

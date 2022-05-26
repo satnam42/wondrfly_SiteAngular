@@ -168,7 +168,7 @@ button:focus {
   font-weight: 600;
   font-size: 10px;
   line-height: 14px;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #494949;
   padding: 0 0 0 15px;
 }
@@ -212,7 +212,7 @@ button:focus {
   text-align: center;
   font-size: 22px;
   letter-spacing: 0.02em;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: $white1;
   -webkit-transition: 0.8s;
   transition: 0.8s;
@@ -520,12 +520,12 @@ label.custom-label {
   font-weight: 600;
   font-size: 10px;
   line-height: 14px;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #494949;
 }
 
 label.heading-label {
-  text-transform: uppercase;
+  text-transform: capitalize;
   font-weight: 600;
   font-size: 20px;
   font-family: "Poppins";
@@ -535,7 +535,7 @@ label.heading-label {
 }
 
 label.heading1-label {
-  text-transform: uppercase;
+  text-transform: capitalize;
   font-weight: 600;
   font-size: 20px;
   font-family: "Poppins";
@@ -805,11 +805,13 @@ button.btn.btn-Grade2 {
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.12);
   border-radius: 20px;
   text-align: center;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: $white;
   transition: 0.8s;
 }
-
+.star-daialogbox h1 {
+  text-transform: capitalize;
+}
 .verification_modal .submit_btn .submit_btn:hover {
   background: $theme;
 }
@@ -825,7 +827,7 @@ button.btn.btn-Grade2 {
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.12);
   border-radius: 20px;
   text-align: center;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: $theme;
   transition: 0.8s;
   margin: 0 0 0 5px;
@@ -2244,7 +2246,7 @@ body {
   font-weight: 600;
   font-size: 13px;
   margin: 0 auto;
-  text-transform: uppercase;
+  text-transform: capitalize;
   transition: .8s;
 }
 
@@ -2266,7 +2268,7 @@ body {
   color: #53b2e8;
   font-size: 40px;
   font-family: "poppins";
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 // initial alpha logo css end

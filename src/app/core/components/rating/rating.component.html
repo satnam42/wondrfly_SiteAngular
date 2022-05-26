@@ -74,17 +74,17 @@
             <span class="fa fa-star checked"></span>
             <span class="fa fa-star checked"></span>
         </h4>
-        <span class="ratingstar-kids" *ngIf="rating?.isSuccess==false;else finalAverageRatingg">0 reviews
+        <span class="ratingstar-kids" *ngIf="rating?.isSuccess==false;else finalAverageRatingg">0 Reviews
         </span>
 
         <ng-template  #finalAverageRatingg>
-          <span class="no-underline">(</span><a class="no-underline" *ngIf="rating?.totalReviews">{{rating?.totalReviews }} reviews</a>
-          <a class="no-underline" *ngIf="!rating?.totalReviews">0 reviews</a><span class="no-underline">)</span>
+          <span class="no-underline">(</span><a class="no-underline" *ngIf="rating?.totalReviews">{{rating?.totalReviews }} Reviews</a>
+          <a class="no-underline" *ngIf="!rating?.totalReviews">0 Reviews</a><span class="no-underline">)</span>
         </ng-template>
       </h2>
   </div>
   <h3>
-    Rating based on:
+    Rating Based On:
   </h3>
 
   <div class="star-dailogsocial container">
@@ -169,10 +169,10 @@
           <div class="col-4">
               <h4>
               <span class="social-star" *ngIf="rating?.isSuccess==false;else numberOfFacebookk">
-                0 reviews
+                0 Reviews
               </span>
               <ng-template #numberOfFacebookk><span class="social-star">
-                {{rating?.numberOfFacebook}} reviews
+                {{rating?.numberOfFacebook}} Reviews
               </span></ng-template>
               </h4>
           </div>
@@ -258,10 +258,10 @@
           <div class="col-4">
               <h4>
                 <span class="social-star" *ngIf="rating?.isSuccess==false;else numberOfGooglee">
-                    0 reviews
+                    0 Reviews
                   </span>
                   <ng-template #numberOfGooglee><span class="social-star">
-                    {{rating?.numberOfGoogle}} reviews
+                    {{rating?.numberOfGoogle}} Reviews
                   </span></ng-template>
               </h4>
           </div>
@@ -346,10 +346,10 @@
           <div class="col-4">
               <h4>
                 <span class="social-star" *ngIf="rating?.isSuccess==false;else numberOfYelpp">
-                    0 reviews
+                    0 Reviews
                   </span>
                   <ng-template #numberOfYelpp><span class="social-star">
-                    {{rating?.numberOfYelp}} reviews
+                    {{rating?.numberOfYelp}} Reviews
                   </span></ng-template>
 
               </h4>

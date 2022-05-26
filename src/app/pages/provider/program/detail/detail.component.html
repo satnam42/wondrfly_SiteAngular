@@ -16,7 +16,7 @@
                                 class="dropzone" *ngIf="program?.user === this.userId" />
                             <button class="uploadbanner" type="button" *ngIf="program?.user === this.userId"
                                 onclick="document.getElementById('file').click();">
-                                ADD PHOTOS
+                                Add Photos
                             </button>
                         </label>
                     </div>
@@ -60,8 +60,8 @@
                                             <div class="share_icon share-icon-calendar">
                                                 <div class="add-to-calendar-info">
                                                     <button class="add-to-calendar-btn" (click)="download()"><img
-                                                            src="/assets/ph-calendar-plus-light.svg" />Add to
-                                                        calendar</button>
+                                                            src="/assets/ph-calendar-plus-light.svg" />Add To
+                                                        Calendar</button>
                                                 </div>
                                                 <a data-toggle="modal" (click)="selectedProgram = program"
                                                     data-target="#ShareModal" class="cursor">
@@ -178,9 +178,9 @@
                                                         </span>
                                                         <span class="no-underline">(</span><a class="reviews-underline"
                                                             *ngIf="rating?.totalReviews">{{rating?.totalReviews }}
-                                                            reviews</a>
+                                                            Reviews</a>
                                                         <a class="reviews-underline" *ngIf="!rating?.totalReviews">0
-                                                            reviews</a><span class="no-underline">)</span>
+                                                            Reviews</a><span class="no-underline">)</span>
                                                     </p>
                                                     <div class="star-daialogbox" *ngIf="isRating">
                                                         <app-rating [rating]="rating" [user]="user"></app-rating>
@@ -196,7 +196,7 @@
                                                 <p *ngIf="program.inpersonOrVirtual=='Virtual' && program?.joiningLink">
                                                     <img src="assets/bi_link.svg" alt="Location Pin" /><a
                                                         href="{{program?.joiningLink}}" target="_blank"
-                                                        rel="noopener">Join via Link</a>
+                                                        rel="noopener">Join Via Link</a>
                                                 </p>
                                                 <p *ngIf="!program?.isDateNotMention">
                                                     <img src="assets/calendar_orange.svg" alt="Calendar" />{{
@@ -255,7 +255,7 @@
                                                         class="btn btn-primary moreBtn" type="button"
                                                         data-toggle="collapse" data-target="#collapseExample"
                                                         aria-expanded="false">
-                                                        + {{subcatArr?.length - 2}} more
+                                                        + {{subcatArr?.length - 2}} More
                                                     </button>
                                                 </p>
                                                 <div class="collapse" id="collapseExample">
@@ -338,8 +338,8 @@
                 ">
                                 <h2>Cancellation Policy</h2>
                                 <p>
-                                    <label>Booking can’t be cancelled before</label> {{
-                                    program?.bookingCancelledIn?.days }} days {{ program?.bookingCancelledIn?.hours }}
+                                    <label>Booking Can’t Be Cancelled Before</label> {{
+                                    program?.bookingCancelledIn?.days }} Days {{ program?.bookingCancelledIn?.hours }}
                                     Hours
                                 </p>
                             </div>
@@ -493,7 +493,7 @@
                                                     <h1>
                                                         {{ program?.name }}
                                                     </h1>
-                                                    <h2>by {{ program?.programOwner }}</h2>
+                                                    <h2>By {{ program?.programOwner }}</h2>
                                                     <div class="rating-starsearch">
                                                         <p>
                                                             <span *ngIf="program?.averageFinalRating == 0">
@@ -578,7 +578,7 @@
                                                                 <span class="fa fa-star checked"></span>
                                                                 <span class="fa fa-star checked"></span>
                                                             </span>
-                                                            <a> <span></span>(58 reviews)</a>
+                                                            <a> <span></span>(58 Reviews)</a>
                                                         </p>
                                                     </div>
                                                     <div class="map-locationtext">
@@ -598,7 +598,7 @@
                         </div>
                         <div class="col-12" *ngIf="program?.user === this.userId">
                             <div class="description_text people_section people_outer">
-                                <h2>People <a>View all</a></h2>
+                                <h2>People <a>View All</a></h2>
                                 <div class="people_list">
                                     <div class="col-md-4 list_box">
                                         <div class="media">
@@ -802,7 +802,7 @@
                             </div>
                             
                         </div> -->
-                        <div id="ActivitiesList" style="visibility: hidden;">scroll</div>
+                        <div id="ActivitiesList" style="visibility: hidden;">Scroll</div>
                         <div class="provider_full carousel-cat ativities-section-info">
                             <div class="activities-top-grid">
                                 <div>
@@ -849,19 +849,19 @@
                                                                         </div>
                                                                         <div class="col-7 sub-categoriesfilterheader">
                                                                             <h2>
-                                                                                Sub categories
+                                                                                Sub Categories
                                                                                 <span>
                                                                                     <span>
                                                                                         <a class="clear cusror"
                                                                                             data-target="#category"
                                                                                             data-toggle="collapse"
                                                                                             (click)="selectedCat='';categoryId='';subCats=[];selectedSubCategories=[];setFilterQuery('category')">Clear
-                                                                                            all</a>
+                                                                                            All</a>
                                                                                     </span>
                                                                                     <button data-target="#category"
                                                                                         data-toggle="collapse"
                                                                                         (click)="setFilterQuery('category')">
-                                                                                        APPLY FILTER
+                                                                                        Apply Filter
                                                                                     </button>
                                                                                 </span>
                                                                             </h2>
@@ -1170,7 +1170,7 @@
                                             <button [class.active]="isInPerson"
                                                 (click)="(isInPerson?isInPerson=false:isInPerson=true);(isOnline?isOnline=false:false);setFilterQuery('inperson')"
                                                 class="btn2-filtersearch">
-                                                In person
+                                                In Person
                                             </button>
                                         </div>
                                     </div>
@@ -1187,70 +1187,70 @@
                                                         {{selectedSubCategories?.length-1}} More
                                                     </span>
                                                 </a>
-                                                in New Jersey
+                                                In New Jersey
                                                 <span class="span-h3">&nbsp;|&nbsp; <b>{{activitiesCount}}</b>
-                                                    activities
+                                                    Activities
                                                     <!-- from <b>{{providerProgram?.length}}</b> providers    -->
                                                 </span>
                                             </h2>
                                         </div>
                                         <button class="btn_style save_btn cursor" *ngIf="!isInPerson && isOnline">
-                                            online
+                                            Online
                                             <mat-icon (click)="isOnline=!isOnline;setFilterQuery('online')">
-                                                cancel</mat-icon>
+                                                Cancel</mat-icon>
                                         </button>
                                         <button class="btn_style save_btn cursor" *ngIf="isInPerson && !isOnline">
-                                            in-persion
+                                            In-persion
                                             <mat-icon (click)="isInPerson=!isInPerson;setFilterQuery('inperson')">
-                                                cancel</mat-icon>
+                                                Cancel</mat-icon>
                                         </button>
 
 
                                         <button class="btn_style save_btn cursor" *ngIf="isAgeFilter">
-                                            Age {{minAge}}-{{maxAge}} years
+                                            Age {{minAge}}-{{maxAge}} Years
                                             <mat-icon (click)="isAgeFilter=!isAgeFilter;setFilterQuery('age')">
-                                                cancel
+                                                Cancel
                                             </mat-icon>
                                         </button>
                                         <button class="btn_style save_btn cursor" *ngIf="isPriceFilter">
                                             Price ${{minPrice}}-${{maxPrice}}
                                             <mat-icon (click)="isPriceFilter=!isPriceFilter;setFilterQuery('price')">
-                                                cancel
+                                                Cancel
                                             </mat-icon>
                                         </button>
                                         <button class="btn_style save_btn cursor" *ngIf="isDateFilter">
                                             {{fromDate | date: "MMM d " }}-{{toDate | date: "MMM d " }}
                                             <mat-icon (click)="isDateFilter=!isDateFilter;setFilterQuery('date')">
-                                                cancel
+                                                Cancel
                                             </mat-icon>
                                         </button>
                                         <button class="btn_style save_btn cursor" *ngIf="isTopFilterCheckBox">
                                             Top Rated
                                             <mat-icon
                                                 (click)="isTopFilterCheckBox=false;isTopFilter=false;setFilterQuery('rating')">
-                                                cancel</mat-icon>
+                                                Cancel</mat-icon>
                                         </button>
                                         <button class="btn_style save_btn cursor"
                                             *ngFor="let day of this.selectedDays;index as i">
                                             {{day}}
-                                            <mat-icon (click)="removeRecentSearches('days',i)" class="ml-2">cancel
+                                            <mat-icon (click)="removeRecentSearches('days',i)" class="ml-2">Cancel
                                             </mat-icon>
                                         </button>
                                         <button class="btn_style save_btn cursor"
                                             *ngFor="let type of this.selectedProgramTypes;index as i">
                                             {{type}}
-                                            <mat-icon (click)="removeRecentSearches('types',i)" class="ml-2">cancel
+                                            <mat-icon (click)="removeRecentSearches('types',i)" class="ml-2">Cancel
                                             </mat-icon>
                                         </button>
                                         <button class="btn_style save_btn cursor"
                                             *ngFor="let time of this.selectedProgramTime;index as i">
                                             {{time}}
-                                            <mat-icon (click)="removeRecentSearches('times',i)" class="ml-2">cancel
+                                            <mat-icon (click)="removeRecentSearches('times',i)" class="ml-2">Cancel
                                             </mat-icon>
                                         </button>
                                         <span>
                                             <a (click)="resetFilter(program)" class="ml-2 clear-text cursor">Clear
-                                                all</a>
+                                                All</a>
                                         </span>
                                     </div>
                                 </div>
@@ -1365,7 +1365,7 @@
                                                         )}} -
                                                         {{globalFunc.tools_replaceAll(activity?.time?.to?.toFixed(2)?.toString(),".",":"
                                                         )}}</p>
-                                                    <p *ngIf="activity?.isTimeNotMention">Time not mentioned</p>
+                                                    <p *ngIf="activity?.isTimeNotMention">Time Not Mentioned</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1417,7 +1417,7 @@
                                     </div>
                                 </div>
                                 <div class="col-12" style="align-items: center;" *ngIf="!providerProgram?.programs?.length && isLoaded">
-                                    <h1 style="color: #494949;">Sorry no results found :(</h1>
+                                    <h1 style="color: #494949;">Sorry No Results Found :(</h1>
                                 </div>
                             </div>
                             <!-- <div class="" [hidden]="listView"> 

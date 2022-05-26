@@ -162,7 +162,7 @@ button:focus {
     font-size: 10px;
     line-height: 14px;
     letter-spacing: 0.01em;
-    text-transform: uppercase;
+    text-transform: capitalize;
     color: #494949;
 }
 
@@ -478,7 +478,7 @@ button:focus {
 .select_avtar p {
     font-weight: 600;
     font-size: 10px;
-    text-transform: uppercase;
+    text-transform: capitalize;
     color: #c5ced6;
     margin: 14px 0 0 0;
 }
@@ -1109,7 +1109,7 @@ span.close-filter {
     line-height: 18px;
     letter-spacing: 0.01em;
     font-weight: normal;
-    text-transform: uppercase;
+    text-transform: capitalize;
     color: #494949;
 }
 
@@ -1426,7 +1426,7 @@ span.close-filter {
     font-size: 10px;
     text-align: justify;
     letter-spacing: 0.01em;
-    text-transform: uppercase;
+    text-transform: capitalize;
     color: #494949;
     margin-top: 30px;
 }
@@ -1450,7 +1450,7 @@ span.close-filter {
     font-weight: normal;
     font-size: 10px;
     letter-spacing: 0.02em;
-    text-transform: uppercase;
+    text-transform: capitalize;
     color: #494949;
 }
 
@@ -1467,7 +1467,7 @@ span.close-filter {
     font-weight: normal;
     font-size: 10px;
     letter-spacing: 0.02em;
-    text-transform: uppercase;
+    text-transform: capitalize;
     color: #494949;
 }
 
@@ -1959,7 +1959,7 @@ span.close-filter {
     font-size: 10px;
     line-height: 15px;
     letter-spacing: 0.01em;
-    text-transform: uppercase;
+    text-transform: capitalize;
     color: #494949;
 }
 
@@ -2273,7 +2273,7 @@ button.btn1-filtersearch.active {
     min-width: 70px;
     font-size: 10px;
     font-weight: 600;
-    text-transform: uppercase;
+    text-transform: capitalize;
     transition: 0.8s;
 }
 
@@ -2288,7 +2288,7 @@ button.btn1-filtersearch.active {
     min-width: 70px;
     font-size: 10px;
     font-weight: 600;
-    text-transform: uppercase;
+    text-transform: capitalize;
     transition: 0.8s;
 }
 .calender-buttons button.calender-buttons1:hover {
@@ -2365,7 +2365,7 @@ button.map-buttonas {
     font-size: 12px;
     line-height: 100%;
     text-align: center;
-    text-transform: uppercase;
+    text-transform: capitalize;
     color: #ffffff;
     padding: 10px;
     padding-left: 30px;
@@ -2632,7 +2632,7 @@ button.map-buttonas {
     font-weight: 600;
     font-size: 13px;
     margin: 0 auto;
-    text-transform: uppercase;
+    text-transform: capitalize;
     transition: 0.8s;
 }
 
@@ -2671,7 +2671,7 @@ button.map-buttonas {
     line-height: 16px;
     text-align: center;
     letter-spacing: 0.02em;
-    text-transform: uppercase;
+    text-transform: capitalize;
     color: #ffffff;
     border: 0px;
     padding: 10px;
@@ -2764,7 +2764,6 @@ button.map-buttonas {
     font-family: "poppins";
     font-size: 12px;
     letter-spacing: 0.02em;
-    text-transform: uppercase;
     font-weight: 400;
     color: #53b2e8 !important;
     /* background-color: #53b2e8; */
@@ -2919,7 +2918,7 @@ div#Exploring-Wonderfly button.done-btn {
     line-height: 18px;
     text-align: justify;
     letter-spacing: 0.001em;
-    text-transform: uppercase;
+    text-transform: capitalize;
     color: #53B2E8;
     border: 1px solid #53b2e8;
     background: transparent;
