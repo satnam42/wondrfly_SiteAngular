@@ -1124,11 +1124,12 @@ export class SearchComponent implements OnInit, OnDestroy {
         //   this.providerProgram[1].collapsed = true
         //   this.providerProgram[2].collapsed = true
         // }
-        // if (categoryId || this.selectedSubCategories.length) {
-        // const sum = this.providerProgram.reduce((accumulator, object) => {
-        //   return accumulator + object.programs.length;
-        // }, 0);
-        // this.activitiesCount = sum
+        if (!this.selectedSubCategories.length) {
+        const sum = this.providerProgram.reduce((accumulator, object) => {
+          return accumulator + object.programs.length;
+        }, 0);
+        this.activitiesCount = sum
+      }
         // }
         // for (let i in this.programs) {
         //   let category = this.programs[i].category.filter((v, num, a) => a.findIndex(t => (t.name == v.name)) === num)
