@@ -223,12 +223,12 @@ export class DetailComponent implements OnInit {
   upArrow2: boolean = false;
   providerr = new User;
   activitiesCount = 0
-  tempCategoryId = ''
-  tempSearchedSubCategory = ''
-  tempSelectedSubCategories = []
-  tempSelectedDays: any = []
-  tempSelectedProgramTypes: any = []
-  tempSelectedProgramTime: any = []
+  // tempCategoryId = ''
+  // tempSearchedSubCategory = ''
+  // tempSelectedSubCategories = []
+  // tempSelectedDays: any = []
+  // tempSelectedProgramTypes: any = []
+  // tempSelectedProgramTime: any = []
 
   constructor(private apiservice: ApiService,
     private mapsAPILoader: MapsAPILoader,
@@ -391,14 +391,14 @@ export class DetailComponent implements OnInit {
           this.checkCategoryFilter(this.filterObj.categoryId, 'category')
           this.isCategoryFilter = true;
           this.categoryId = this.filterObj.categoryId;
-          this.tempCategoryId = this.filterObj.categoryId;
+          // this.tempCategoryId = this.filterObj.categoryId;
         }
         if (this.filterObj.hasOwnProperty('tagsIds')) {
           this.isCategoryFilter = true;
           let ids = this.filterObj.tagsIds.split(',');
           this.selectedSubCategories = ids;
-          this.tempSelectedSubCategories = ids
-          this.tempCategoryId = this.filterObj.categoryId;
+          // this.tempSelectedSubCategories = ids
+          // this.tempCategoryId = this.filterObj.categoryId;
           this.checkCategoryFilter(this.selectedSubCategories[0], 'subcategory')
         }
 
@@ -406,13 +406,13 @@ export class DetailComponent implements OnInit {
           this.isDaysFilter = true;
           let days = this.filterObj.day.split(',');
           this.selectedDays = days;
-          this.tempSelectedDays = days
+          // this.tempSelectedDays = days
         }
         if (this.filterObj.hasOwnProperty('time')) {
           this.isTimeFilter = true;
           let time = this.filterObj.time.split(',');
           this.selectedProgramTime = time
-          this.tempSelectedProgramTime = time
+          // this.tempSelectedProgramTime = time
         }
         if (this.filterObj.hasOwnProperty('type')) {
           this.isTypeFilter = true;
@@ -422,7 +422,7 @@ export class DetailComponent implements OnInit {
             type[index] = 'Drop-ins';
           }
           this.selectedProgramTypes = type
-          this.tempSelectedProgramTypes = type
+          // this.tempSelectedProgramTypes = type
         }
         if (this.filterObj.hasOwnProperty('ratingFrom') && this.filterObj.hasOwnProperty('ratingTo')) {
           delete this.filterObj['ratingFrom']
@@ -935,42 +935,42 @@ export class DetailComponent implements OnInit {
 
   onDayChange(indx: number, day: string, isChecked: boolean) {
     if (isChecked) {
-      this.tempSelectedDays.push(day)
+      this.selectedDays.push(day)
     } else {
-      this.tempSelectedDays.splice(day, -1)
-      let el = this.tempSelectedDays.find(itm => itm === day);
-      if (el) this.tempSelectedDays.splice(this.tempSelectedDays.indexOf(el), 1);
+      this.selectedDays.splice(day, -1)
+      let el = this.selectedDays.find(itm => itm === day);
+      if (el) this.selectedDays.splice(this.selectedDays.indexOf(el), 1);
     }
   }
   onProgramTypeChange(indx: number, type: string, isChecked: boolean) {
     if (isChecked) {
-      this.tempSelectedProgramTypes.push(type)
+      this.selectedProgramTypes.push(type)
     } else {
-      this.tempSelectedProgramTypes.splice(type, -1)
-      let el = this.tempSelectedProgramTypes.find(itm => itm === type);
-      if (el) this.tempSelectedProgramTypes.splice(this.tempSelectedProgramTypes.indexOf(el), 1);
+      this.selectedProgramTypes.splice(type, -1)
+      let el = this.selectedProgramTypes.find(itm => itm === type);
+      if (el) this.selectedProgramTypes.splice(this.selectedProgramTypes.indexOf(el), 1);
     }
   }
   onProgramTimeChange(indx: number, time: string, isChecked: boolean) {
     if (isChecked) {
-      this.tempSelectedProgramTime.push(time)
+      this.selectedProgramTime.push(time)
     } else {
-      this.tempSelectedProgramTime.splice(time, -1)
-      let el = this.tempSelectedProgramTime.find(itm => itm === time);
-      if (el) this.tempSelectedProgramTime.splice(this.tempSelectedProgramTime.indexOf(el), 1);
+      this.selectedProgramTime.splice(time, -1)
+      let el = this.selectedProgramTime.find(itm => itm === time);
+      if (el) this.selectedProgramTime.splice(this.selectedProgramTime.indexOf(el), 1);
     }
   }
   onProgramsSubCategoryChange(i, event) {
-    this.tempCategoryId = ''
+    this.categoryId = ''
     this.subCats[i].checked = event.target.checked;
     if (this.subCats[i].checked) {
       this.searchedSubCategory = this.subCats[i].name;
-      this.tempSelectedSubCategories.push(this.subCats[i]._id);
+      this.selectedSubCategories.push(this.subCats[i]._id);
     }
     else {
-      const index = this.tempSelectedSubCategories.indexOf(this.subCats[i]._id);
+      const index = this.selectedSubCategories.indexOf(this.subCats[i]._id);
       if (index >= 0) {
-        this.tempSelectedSubCategories.splice(index, 1);
+        this.selectedSubCategories.splice(index, 1);
       }
     }
   }
@@ -1025,10 +1025,9 @@ export class DetailComponent implements OnInit {
 
   // ---------------------------------------------get subCateById-------------------------------------
   getSubCateById(cat) {
-    this.tempCategoryId = cat.id
+    this.categoryId = cat.id
     this.selectedCat = cat.id
     this.selectedSubCategories = []
-    this.tempSelectedSubCategories = []
     this.searchedSubCategory = cat.name
     this.apiservice.getTagByCategoryId(cat.id).subscribe((res: any) => {
       this.subCats = res.data
