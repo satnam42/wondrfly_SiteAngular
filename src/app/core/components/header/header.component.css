@@ -208,7 +208,7 @@ header .navbar {
 
 .header_right .progress .progress-value span {
     font-size: 12px;
-    text-transform: uppercase;
+    text-transform: capitalize;
 }
 
 
@@ -250,6 +250,7 @@ header .navbar {
     color: #494949;
     font-size: 15px;
     font-weight: 500;
+    text-transform: capitalize;
 }
 
 span.red_heading_alert {
@@ -260,6 +261,7 @@ span.red_heading_alert {
     font-size: 14px;
     color: #494949;
     margin-top: 7px;
+    text-transform: capitalize;
 }
 
 .noti_heading {
@@ -272,6 +274,7 @@ span.red_heading_alert {
     text-align: justify;
     letter-spacing: 0.001em;
     color: #858585;
+    text-transform: capitalize;
 }
 
 .modal-content.noti_modal {
@@ -1833,7 +1836,7 @@ header .header_main .nav-link .icon {
     font-size: 11px;
     line-height: 15px;
     letter-spacing: 0.015em;
-    text-transform: uppercase;
+    text-transform: capitalize;
     color: #748494;
 }
 
@@ -1871,7 +1874,7 @@ header .header_main .nav-link .icon {
     font-size: 11px;
     line-height: 15px;
     letter-spacing: 0.015em;
-    text-transform: uppercase;
+    text-transform: capitalize;
     color: #494949;
 }
 
@@ -2084,7 +2087,7 @@ button[disabled] {
     font-size: 14px;
     text-align: center;
     letter-spacing: 0.02em;
-    text-transform: uppercase;
+    text-transform: capitalize;
     color: #FFFFFF;
     padding: 15px;
     padding-left: 70px;
@@ -2451,7 +2454,7 @@ span.icon.rel:hover .box {
     color: #53b2e8;
     font-size: 20px;
     font-family: "poppins";
-    text-transform: uppercase;
+    text-transform: capitalize;
 }
 
 .search-location input::placeholder {

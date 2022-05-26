@@ -25,7 +25,7 @@ button:focus {
   font-family: "poppins";
   font-size: 14px;
   letter-spacing: 0.02em;
-  text-transform: uppercase;
+  text-transform: capitalize;
   font-weight: 600;
   color: #53b2e8 !important;
   -webkit-transition: 0.8s;
@@ -159,7 +159,7 @@ text-align: center;
   line-height: 75px;
   font-weight: 700;
   font-family: "poppins";
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 
@@ -196,7 +196,7 @@ text-align: center;
   font-size: 10px;
   line-height: 15px;
   letter-spacing: 0.01em;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #494949;
 }
 
@@ -328,7 +328,7 @@ text-align: center;
   font-size: 12px;
   font-weight: 600;
   line-height: 14px;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #494949;
   padding: 0px;
 }
@@ -535,7 +535,7 @@ span.parent-close {
   font-size: 10px;
   line-height: 14px;
   letter-spacing: 0.01em;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #53b2e8;
 }
 
@@ -897,7 +897,7 @@ span.parent-close {
 .select_avtar p {
   font-weight: 600;
   font-size: 10px;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #c5ced6;
   margin: 14px 0 0 0;
 }
@@ -2063,7 +2063,7 @@ h2.description-activities {
   font-size: 10px;
   line-height: 18px;
   text-align: center;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #53b2e8;
   margin-left: -11px;
 }
@@ -2118,7 +2118,7 @@ h2.description-activities {
   font-size: 10px;
   line-height: 15px;
   letter-spacing: 0.01em;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #494949;
   padding-top: 20px;
 }
@@ -2176,7 +2176,7 @@ span.text-absolu {
   font-size: 12px;
   line-height: 18px;
   letter-spacing: 0.01em;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #494949 !important;
 }
 .notifications h3 label.switch.notification {
@@ -2198,7 +2198,7 @@ span.text-absolu {
   font-size: 10px;
   line-height: 15px;
   letter-spacing: 0.01em;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #494949;
 }
 .modal_custom .modal-content.child-modal {
@@ -2214,7 +2214,7 @@ span.text-absolu {
   font-size: 12px;
   font-weight: 600;
   line-height: 18px;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #494949;
   padding-left: 0px;
 }
@@ -2237,7 +2237,7 @@ span.parent-edit {
     font-size: 12px;
     font-weight: 600;
     line-height: 14px;
-    text-transform: uppercase;
+    text-transform: capitalize;
     color: #494949;
     padding-left: 0px;
 }
@@ -2274,7 +2274,7 @@ span.parent-edit {
   line-height: 18px;
   text-align: center;
   letter-spacing: 0.02em;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #ffffff;
   background: #53b2e8;
   border-radius: 50px;
@@ -2445,7 +2445,7 @@ input#flexCheckDefault {
   line-height: 18px;
   text-align: center;
   letter-spacing: 0.02em;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #53B2E8;
   border: 1px solid #53B2E8;
   box-sizing: border-box;
@@ -2462,7 +2462,7 @@ input#flexCheckDefault {
   line-height: 18px;
   text-align: center;
   letter-spacing: 0.02em;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #fff;
   background: #53B2E8;
   border: 1px solid #53B2E8;

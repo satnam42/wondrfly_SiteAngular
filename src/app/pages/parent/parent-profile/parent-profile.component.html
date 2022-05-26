@@ -83,7 +83,7 @@
                         </div>
                         <div class="complete_score">
                             <p>
-                                Profile completion score
+                                Profile Completion Score
                                 <!-- <span class="icon-information"></span> -->
                             </p>
                         </div>
@@ -130,7 +130,7 @@
                                         <div class="form-group">
                                             <label>Full Name</label>
                                             <input type="text" (input)="userValueChanged=true"
-                                                placeholder="Enter fullName" maxlength="200" class="form-control"
+                                                placeholder="Enter FullName" maxlength="200" class="form-control"
                                                 [formControl]="updateForm.controls['firstName']"
                                                 [(ngModel)]="user.firstName" name="firstName" />
                                             <span class="parent-close"><img (click)="user.firstName = ''"
@@ -139,7 +139,7 @@
 
                                         <div class="form-group">
                                             <label>Email Address</label>
-                                            <input type="text" placeholder="Enter email address" class="form-control"
+                                            <input type="text" placeholder="Enter Email Address" class="form-control"
                                                 [formControl]="updateForm.controls['email']" [(ngModel)]="user.email"
                                                 name="email" readonly />
                                             <span class="parent-close"><img src="assets/close.png" /></span>
@@ -148,7 +148,7 @@
                                         <div class="form-group">
                                             <label>Address</label>
                                             <input (input)="userValueChanged=true" type="text"
-                                                placeholder="Enter address" class="form-control"
+                                                placeholder="Enter Address" class="form-control"
                                                 [formControl]="updateForm.controls['addressLine1']"
                                                 [(ngModel)]="user.addressLine1" name="addressLine1" />
                                         </div>
@@ -392,7 +392,7 @@
 
                         <!-- ---------------account setting------------------------- -->
                         <div *ngIf="isSetting" class="personal_details">
-                            <h2>Change your password</h2>
+                            <h2>Change Your password</h2>
                             <div class="row">
                                 <div class="col-md-8">
                                     <form class="details_form" [formGroup]="resetPasswordForm">
@@ -408,7 +408,7 @@
                               'required'
                             ) &&
                             resetPasswordForm.controls['oldPassword'].touched
-                          " class="form-error-msg">CAN'T LEAVE IT BLANK</small>
+                          " class="form-error-msg">Can't Leave It Blank</small>
                                             </div>
                                         </div>
 
@@ -424,14 +424,14 @@
                               'required'
                             ) &&
                             resetPasswordForm.controls['newPassword'].touched
-                          " class="form-error-msg">CAN'T LEAVE IT BLANK</small>
+                          " class="form-error-msg">Can't Leave It Blank</small>
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label>Confirm New Password</label>
                                             <div class="input_outer">
-                                                <input type="password" placeholder="Confirm password"
+                                                <input type="password" placeholder="Confirm Password"
                                                     class="form-control" [formControl]="
                             resetPasswordForm.controls['confirmPassword']
                           " />
@@ -440,7 +440,7 @@
                               'confirmPassword'
                             ].hasError('equalTo')
                           " class="form-error-msg">
-                                                    PASSWORD DO NOT MATCH</small>
+                                                Password Do Not Match</small>
                                             </div>
                                         </div>
 
@@ -477,7 +477,7 @@
                             <h2>
                                 Grown Ups
                                 <a [ngClass]="{ disable_next: guardianResponse?.length }" data-toggle="modal"
-                                    data-target="#inviteGuardianModal" class="btn_style save_btn cursor"> ADD</a>
+                                    data-target="#inviteGuardianModal" class="btn_style save_btn cursor"> Add</a>
                             </h2>
 
                             <div class="grown-uptext" *ngIf="!guardianResponse?.length">
@@ -505,7 +505,7 @@
                                         <div class="content-childrenpart">
                                             <div class="ist-contentimg">
                                                 <span><img src="assets/birthday-cake 1.png" /></span>
-                                                <h2>{{ guardian?.age }} years</h2>
+                                                <h2>{{ guardian?.age }} Years</h2>
                                             </div>
                                             <p>Notes</p>
                                             <div class="text-form">
@@ -514,7 +514,7 @@
                               updateGuardian(guardian, guardian.id)
                             " placeholder="Type" maxLength="3000" #Description maxlength="3000"
                                                         [(ngModel)]="guardian.personalNote"></textarea>
-                                                    <span class="text-absolu">({{ guardianNotes.value?.length }} of
+                                                    <span class="text-absolu">({{ guardianNotes.value?.length }} Of
                                                         3000)</span>
                                                 </div>
                                             </div>
@@ -873,7 +873,7 @@
                                             <div class="media-activity">
                                                 <div class="media-body">
                                                     <div class="no-saved-content">
-                                                        <h3>No saved activities</h3>
+                                                        <h3>No Saved Activities</h3>
                                                         <a class="explore-link"  (click)="goToProviderProfile(data?.provider,true)">Explore now </a>
                                                     </div>
                                                 </div>
@@ -1090,11 +1090,11 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                        CANCEL
+                        Cancel
                     </button>
                     <button type="button" (click)="activeDeactiveUser(currentUser?.id, user?.isActivated)"
                         data-dismiss="modal" class="btn btn-primary">
-                        CONFIRM
+                        Confirm
                     </button>
                 </div>
             </div>
@@ -1127,7 +1127,7 @@
                       addGuardianForm.controls['firstName'].hasError(
                         'required'
                       ) && addGuardianForm.controls['firstName'].touched
-                    " class="form-error-msg">CAN'T LEAVE IT BLANK</small>
+                    " class="form-error-msg">Can't Leave It Blank</small>
                                 </div>
                             </div>
 
@@ -1142,18 +1142,18 @@
                                     <small *ngIf="
                       addGuardianForm.controls['email'].hasError('required') &&
                       addGuardianForm.controls['email'].touched
-                    " class="form-error-msg">CAN'T LEAVE IT BLANK</small>
+                    " class="form-error-msg">Can't Leave It Blank</small>
                                     <small *ngIf="
                       addGuardianForm.controls['email'].hasError('email') &&
                       addGuardianForm.controls['email'].touched
-                    " class="form-error-msg">INVALID EMAIL ADDRESS</small>
+                    " class="form-error-msg">Invalid Email Address</small>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label>Add a personal note</label>
+                                <label>Add A Personal Note</label>
                                 <div class="input_outer">
-                                    <textarea class="form-control" placeholder="Add personal note" #Description
+                                    <textarea class="form-control" placeholder="Add Personal Note" #Description
                                         maxlength="3000" [ngModelOptions]="{ standalone: true }"
                                         [(ngModel)]="guardianData.personalNote"></textarea>
                                     <span class="word_limit">({{ Description.value?.length || 0 }} of 3000)</span>
@@ -1163,7 +1163,7 @@
                             <div class="form-group update_btn">
                                 <button class="btn_style save_btn cursor" data-dismiss="modal"
                                     (click)="inviteGuardian(currentUser?.id)" [disabled]="addGuardianForm.invalid">
-                                    INVITE
+                                    Invite
                                 </button>
                             </div>
                         </form>
@@ -1204,7 +1204,7 @@
                             <div class="form-group">
                                 <label>Full Name</label>
                                 <div class="input_outer">
-                                    <input type="text" placeholder="Enter fullName" class="form-control"
+                                    <input type="text" placeholder="Enter FullName" class="form-control"
                                         [(ngModel)]="kid.name" name="FullName" />
                                     <span class="parent-edit" *ngIf="kid?.id" (click)="kid.name = ''"><img
                                             src="assets/pencil-blue.png" /></span>
@@ -1220,17 +1220,17 @@
                                             Female
                                         </option>
                                         <option *ngIf="kid?.sex === 'decline to answer'" selected>
-                                            Prefer not to say
+                                            Prefer Not To Say
                                         </option>
                                         <option value="male">Male</option>
                                         <option value="female">Female</option>
-                                        <option value="decline to answer">Prefer not to say</option>
+                                        <option value="decline to answer">Prefer Not To Say</option>
                                     </select>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label>Date of Birth</label>
+                                <label>Date Of Birth</label>
                                 <div class="input_outer">
                                     <input type="date" id="listingDateOpen" min='2007-01-01' placeholder="MM/DD/YYYY"
                                         class="form-control" [(ngModel)]="kid.dob" name="dob" />
@@ -1450,7 +1450,7 @@
                             <div class="form-group">
                                 <label>Full Name</label>
                                 <div class="input_outer">
-                                    <input type="text" placeholder="Enter fullName" class="form-control"
+                                    <input type="text" placeholder="Enter FullName" class="form-control"
                                         [ngModelOptions]="{ standalone: true }" [(ngModel)]="guardianData.firstName"
                                         name="FullName" />
                                 </div>
@@ -1459,18 +1459,18 @@
                             <div class="form-group">
                                 <label>Email Address</label>
                                 <div class="input_outer">
-                                    <input placeholder="Enter Email address" class="form-control"
+                                    <input placeholder="Enter Email Address" class="form-control"
                                         [ngModelOptions]="{ standalone: true }" [(ngModel)]="guardianData.email" />
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label>Add a personal note</label>
+                                <label>Add A Personal Note</label>
                                 <div class="input_outer">
                                     <textarea class="form-control" placeholder="Add personal note" #Description
                                         maxlength="3000" [ngModelOptions]="{ standalone: true }"
                                         [(ngModel)]="guardianData.personalNote"></textarea>
-                                    <span class="word_limit">({{ Description.value?.length || 0 }} of 3000)</span>
+                                    <span class="word_limit">({{ Description.value?.length || 0 }} Of 3000)</span>
                                 </div>
                             </div>
 
@@ -1509,7 +1509,7 @@
                         <div class="form-group">
                             <label>Full Name</label>
                             <div class="input_outer">
-                                <input type="text" placeholder="Enter fullName"
+                                <input type="text" placeholder="Enter FullName"
                                     [formControl]="inviteForm.controls['fullName']" class="form-control"
                                     [(ngModel)]="inviteAsktojoin.firstName" name="FullName" required />
                                 <span class="parent-edit"><img src="assets/close.png" /></span>
@@ -1524,11 +1524,11 @@
                                 <small *ngIf="
                     inviteForm.controls['email'].hasError('email') &&
                     inviteForm.controls['email'].touched
-                  " class="form-error-msg">INVALID EMAIL ADDRESS</small>
+                  " class="form-error-msg">Invalid Email Address</small>
                                 <small *ngIf="
                     inviteForm.controls['email'].hasError('required') &&
                     inviteForm.controls['email'].touched
-                  " class="form-error-msg">EMAIL IS REQUIRED</small>
+                  " class="form-error-msg">Email Is Required</small>
                                 <span class="parent-edit"><img src="assets/close.png" /></span>
                             </div>
                         </div>
@@ -1538,13 +1538,13 @@
                                 <input class="form-check-input k-checkbox" type="checkbox" #parentc [checked]="isParent"
                                     (change)="parentChecked(parentc.checked)" />
                                 <label class="form-check-label k-checkbox-label" for="flexCheckDefault">
-                                    Is this person a parent?
+                                    Is This Person A Parent?
                                 </label>
                             </div>
                             <div class="form-check copy-link" (click)="copyInvite()">
                                 <span><img src="assets/copy-link.png" /></span>
                                 <label class="form-check-label k-checkbox-label cursor" for="flexCheckChecked">
-                                    COPY Invitation link
+                                    Copy Invitation Link
                                 </label>
                             </div>
                         </div>
@@ -1553,7 +1553,7 @@
                             <button class="btn_style save_btn cursor" type="submit"
                                 [disabled]="inviteForm.invalid || !isParent" data-dismiss="modal"
                                 (click)="inviteAsktojoina()">
-                                SEND INVITE
+                                Send Invite
                             </button>
                         </div>
                     </form>
@@ -1597,19 +1597,19 @@
                     </div>
                 </div>
                 <div *ngIf="imageRole==='parent'" class="upload-btns">
-                    <button class="save-new" (click)="removeParentImage()">REMOVE</button>
+                    <button class="save-new" (click)="removeParentImage()">Remove</button>
                     <input style="display: none" #uploadP accept="image/*" (change)="previewImage($event)" type="file"
                         name="image" />
-                    <button class="save-new" *ngIf="!parentImgURL" (click)="uploadP.click()">UPLOAD NEW</button>
-                    <button class="save-new" *ngIf="parentImgURL" (click)="uploadParentImg()">SAVE </button>
+                    <button class="save-new" *ngIf="!parentImgURL" (click)="uploadP.click()">Upload New</button>
+                    <button class="save-new" *ngIf="parentImgURL" (click)="uploadParentImg()">Save </button>
                 </div>
 
                 <div *ngIf="imageRole==='kid'" class="upload-btns">
-                    <button class="save-new" (click)="removeChildImage()">REMOVE</button>
+                    <button class="save-new" (click)="removeChildImage()">Remove</button>
                     <input style="display: none" #uploadC accept="image/*" (change)="previewChildImage($event)"
                         type="file" name="image" />
-                    <button class="save-new" *ngIf="!childImgURL" (click)="uploadC.click()">UPLOAD NEW</button>
-                    <button class="save-new" *ngIf="childImgURL" (click)="uploadChildImg()">SAVE </button>
+                    <button class="save-new" *ngIf="!childImgURL" (click)="uploadC.click()">Upload New</button>
+                    <button class="save-new" *ngIf="childImgURL" (click)="uploadChildImg()">Save </button>
                 </div>
 
             </div>

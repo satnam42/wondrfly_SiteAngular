@@ -10,6 +10,7 @@
     line-height: 18px;
     color: #777CEA;
     text-align: center;
+    text-transform: capitalize;
 }
 
 .upper-blog {
@@ -47,6 +48,7 @@
     font-size: 48px;
     text-align: center;
     color: #53b2e8;
+    text-transform: capitalize;
     padding-left: 15%;
     padding-right: 15%;
     margin-top: 30px;
@@ -242,6 +244,7 @@ h2.title {
     font-size: 26px;
     line-height: 18px;
     color: #494949;
+    text-transform: capitalize;
 }
 
 .activity_category_list {
@@ -563,7 +566,7 @@ span.d-flex.justify-content-end {
     font-size: 12px;
     line-height: 18px;
     letter-spacing: 0.001em;
-    text-transform: uppercase;
+    text-transform: capitalize;
     color: #ffffff;
     padding-left: 30px;
     padding-right: 30px;
@@ -635,7 +638,7 @@ span.d-flex.justify-content-end {
     line-height: 18px;
     letter-spacing: 0.001em;
     text-decoration-line: underline;
-    text-transform: uppercase;
+    text-transform: capitalize;
     color: #53b2e8;
 }
 
@@ -665,7 +668,7 @@ img.card-img-top {
     font-size: 12px;
     line-height: 18px;
     letter-spacing: 0.001em;
-    text-transform: uppercase;
+    text-transform: capitalize;
     color: #ffffff;
     padding: 10px;
     padding-left: 15px;
@@ -803,7 +806,7 @@ section.blog-explore .boxs {
     line-height: 18px;
     text-align: justify;
     letter-spacing: 0.001em;
-    text-transform: uppercase;
+    text-transform: capitalize;
     color: #ffffff;
     border: 0px;
     padding: 12px;
@@ -938,7 +941,7 @@ a.btn-sec {
     line-height: 21px;
     letter-spacing: 0.001em;
     text-decoration-line: underline;
-    text-transform: uppercase;
+    text-transform: capitalize;
     color: #53B2E8;
     text-align: center;
     margin-bottom: 20px;
@@ -1027,6 +1030,7 @@ button.cmn-resbtn h1 {
     line-height: 18px;
     letter-spacing: 0.005em;
     color: #53B2E8;
+    text-transform: capitalize;
 }
 
 button.cmn-resbtn.active {
@@ -1084,7 +1088,7 @@ button.cmn-resbtn.active {
     font-size: 12px;
     line-height: 18px;
     letter-spacing: 0.001em;
-    text-transform: uppercase;
+    text-transform: capitalize;
     color: #ffffff;
     padding-left: 30px;
     padding-right: 30px;
@@ -1161,7 +1165,7 @@ button.cmn-resbtn.active {
     line-height: 18px;
     letter-spacing: 0.001em;
     text-decoration-line: underline;
-    text-transform: uppercase;
+    text-transform: capitalize;
     color: #53b2e8;
     margin-top: 40px;
 }
@@ -1187,7 +1191,7 @@ button.cmn-resbtn.active {
     font-size: 12px;
     line-height: 18px;
     letter-spacing: 0.001em;
-    text-transform: uppercase;
+    text-transform: capitalize;
     color: #ffffff;
     padding: 10px;
     padding-left: 15px;
