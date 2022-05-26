@@ -1004,7 +1004,7 @@
                                                                     <button class="calender-buttons1"
                                                                         data-target="#date" data-toggle="collapse"
                                                                         (click)="isDateFilter=false;setFilterQuery('date')">
-                                                                        Cancel
+                                                                        cancel
                                                                     </button>
                                                                     <button class="calender-buttons2"
                                                                         data-target="#date" data-toggle="collapse"
@@ -1197,55 +1197,55 @@
                                         <button class="btn_style save_btn cursor" *ngIf="!isInPerson && isOnline">
                                             Online
                                             <mat-icon (click)="isOnline=!isOnline;setFilterQuery('online')">
-                                                Cancel</mat-icon>
+                                                cancel</mat-icon>
                                         </button>
                                         <button class="btn_style save_btn cursor" *ngIf="isInPerson && !isOnline">
                                             In-persion
                                             <mat-icon (click)="isInPerson=!isInPerson;setFilterQuery('inperson')">
-                                                Cancel</mat-icon>
+                                                cancel</mat-icon>
                                         </button>
 
 
                                         <button class="btn_style save_btn cursor" *ngIf="isAgeFilter">
                                             Age {{minAge}}-{{maxAge}} Years
                                             <mat-icon (click)="isAgeFilter=!isAgeFilter;setFilterQuery('age')">
-                                                Cancel
+                                                cancel
                                             </mat-icon>
                                         </button>
                                         <button class="btn_style save_btn cursor" *ngIf="isPriceFilter">
                                             Price ${{minPrice}}-${{maxPrice}}
                                             <mat-icon (click)="isPriceFilter=!isPriceFilter;setFilterQuery('price')">
-                                                Cancel
+                                                cancel
                                             </mat-icon>
                                         </button>
                                         <button class="btn_style save_btn cursor" *ngIf="isDateFilter">
                                             {{fromDate | date: "MMM d " }}-{{toDate | date: "MMM d " }}
                                             <mat-icon (click)="isDateFilter=!isDateFilter;setFilterQuery('date')">
-                                                Cancel
+                                                cancel
                                             </mat-icon>
                                         </button>
                                         <button class="btn_style save_btn cursor" *ngIf="isTopFilterCheckBox">
                                             Top Rated
                                             <mat-icon
                                                 (click)="isTopFilterCheckBox=false;isTopFilter=false;setFilterQuery('rating')">
-                                                Cancel</mat-icon>
+                                                cancel</mat-icon>
                                         </button>
                                         <button class="btn_style save_btn cursor"
                                             *ngFor="let day of this.selectedDays;index as i">
                                             {{day}}
-                                            <mat-icon (click)="removeRecentSearches('days',i)" class="ml-2">Cancel
+                                            <mat-icon (click)="removeRecentSearches('days',i)" class="ml-2">cancel
                                             </mat-icon>
                                         </button>
                                         <button class="btn_style save_btn cursor"
                                             *ngFor="let type of this.selectedProgramTypes;index as i">
                                             {{type}}
-                                            <mat-icon (click)="removeRecentSearches('types',i)" class="ml-2">Cancel
+                                            <mat-icon (click)="removeRecentSearches('types',i)" class="ml-2">cancel
                                             </mat-icon>
                                         </button>
                                         <button class="btn_style save_btn cursor"
                                             *ngFor="let time of this.selectedProgramTime;index as i">
                                             {{time}}
-                                            <mat-icon (click)="removeRecentSearches('times',i)" class="ml-2">Cancel
+                                            <mat-icon (click)="removeRecentSearches('times',i)" class="ml-2">cancel
                                             </mat-icon>
                                         </button>
                                         <span>
