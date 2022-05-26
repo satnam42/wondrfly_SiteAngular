@@ -68,7 +68,7 @@
     font-weight: 600;
     font-size: 13px;
     margin: 0 auto;
-    text-transform: uppercase;
+    text-transform: capitalize;
     transition: 0.8s;
 }
 
@@ -111,6 +111,7 @@ h1.ask-heading {
     text-align: center;
     letter-spacing: 0.001em;
     color: #777CEA;
+    text-transform: capitalize;
     margin-bottom: 25px;
     margin-top: 50px;
 }
@@ -142,7 +143,7 @@ span.beta-span {
     font-size: 11px;
     line-height: 15px;
     letter-spacing: 0.015em;
-    text-transform: uppercase;
+    text-transform: capitalize;
     color: #748494;
 }
 
@@ -196,7 +197,7 @@ span.beta-span {
     font-size: 11px;
     line-height: 15px;
     letter-spacing: 0.015em;
-    text-transform: uppercase;
+    text-transform: capitalize;
     color: #494949;
 }
 
@@ -437,7 +438,7 @@ select.ng-invalid.ng-touched {
     font-weight: 600;
     font-size: 13px;
     margin: 0 auto;
-    text-transform: uppercase;
+    text-transform: capitalize;
     transition: 0.8s;
 }
 
@@ -478,6 +479,7 @@ select.ng-invalid.ng-touched {
     letter-spacing: 0.001em;
     color: #494949;
     padding: 10px;
+    text-transform: capitalize;
     padding-left: 15px;
 }
 

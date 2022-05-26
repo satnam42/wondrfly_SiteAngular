@@ -4,7 +4,6 @@
             <div class="row align-items-center">
                 <div class="col-md-6 sign_outer">
                     <div class="otp_form">
-
                         <div class="sing_text">
                             <img class="cursor" routerLink="/" src="assets/logo.png">
                         </div>
@@ -17,25 +16,25 @@
                             <div class="form-group mt-5">
                                 <label>Email</label>
                                 <div class="input_outer">
-                                    <input type="email" class="form-control" placeholder="Enter email address"
+                                    <input type="email" class="form-control" placeholder="Enter Email Address"
                                         [formControl]="signinForm.controls['username']" [(ngModel)]="credentials.email">
                                     <small
                                         *ngIf=" signinForm.controls['username'].hasError('email') && signinForm.controls['username'].touched"
-                                        class="form-error-msg">INVALID EMAIL ADDRESS</small>
+                                        class="form-error-msg">Invalid Email Address</small>
                                     <small
                                         *ngIf=" signinForm.controls['username'].hasError('required') && signinForm.controls['username'].touched"
-                                        class="form-error-msg">USERNAME IS REQUIRED</small>
+                                        class="form-error-msg">Username Is Required</small>
                                 </div>
                             </div>
                             <div class="form-group mt-1">
                                 <label>Password</label>
                                 <div class="input_outer">
-                                    <input type="password" class="form-control" placeholder="Enter password"
+                                    <input type="password" class="form-control" placeholder="Enter Password"
                                         [formControl]="signinForm.controls['password']"
                                         [(ngModel)]="credentials.password" [type]="hide ? 'password' : 'text'">
                                     <small
                                         *ngIf=" signinForm.controls['password'].hasError('required') && signinForm.controls['password'].touched"
-                                        class="form-error-msg">PASSWORD IS REQUIRED</small>
+                                        class="form-error-msg">Password Is Required</small>
                                     <mat-icon class="field-icon" *ngIf="!hide" (click)="onPassword()"><svg width="17"
                                             height="13" viewBox="0 0 17 13" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
@@ -75,7 +74,7 @@
                             </div>
                             <div class="sign_in_btn">
                                 <button class="SignBtn" type="submit" (click)="signin()" [disabled]="signinForm.invalid">Sign
-                                    IN</button>
+                                    In</button>
                                 <button class="SignBtn cancel" (click)="cancel()">Cancel</button>
                             </div>
                         </form>
@@ -108,18 +107,18 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">ACTIVATE YOUR ACCOUNT</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Activate Your Account</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    Do you want to Activate you account ?
+                    Do You Want To Activate You Account ?
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                     <button type="button" (click)="activeDeactiveUser()" data-dismiss="modal"
-                        class="btn btn-primary">CONFIRM</button>
+                        class="btn btn-primary">Confirm</button>
                 </div>
             </div>
         </div>
