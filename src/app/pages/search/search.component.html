@@ -41,7 +41,7 @@
                                                                     All</a>
                                                             </span>
                                                             <button data-target="#category" data-toggle="collapse"
-                                                                (click)="setFilterQuery('category')">
+                                                                (click)="categoryId=tempCategoryId;selectedSubCategories=tempSelectedSubCategories;setFilterQuery('category')">
                                                                 Apply Filter
                                                             </button>
                                                         </span>
@@ -131,7 +131,7 @@
                                                 Clear
                                             </button>
                                             <button class="submitBtn" data-target="#typess" data-toggle="collapse"
-                                                (click)="setFilterQuery('type')">
+                                                (click)="selectedProgramTypes=tempSelectedProgramTypes;setFilterQuery('type')">
                                                 Apply
                                             </button>
                                         </div>
@@ -206,7 +206,7 @@
                                             </button>
 
                                             <button
-                                                (click)="setFilterQuery('time')"
+                                                (click)="selectedProgramTime=tempSelectedProgramTime;setFilterQuery('time')"
                                                 search-results.scrollTop="0" data-target="#timess"
                                                 data-toggle="collapse" class="submitBtn">
                                                 Apply
@@ -246,7 +246,7 @@
                                                 Clear
                                             </button>
 
-                                            <button (click)="setFilterQuery('day')"
+                                            <button (click)="selectedDays=tempSelectedDays;setFilterQuery('day')"
                                                 search-results.scrollTop="0" data-target="#Dayss" data-toggle="collapse"
                                                 class="submitBtn">
                                                 Apply

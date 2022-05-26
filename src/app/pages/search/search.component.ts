@@ -157,6 +157,12 @@ export class SearchComponent implements OnInit, OnDestroy {
   upArrow2: boolean = false;
   providerr = new User;
   activitiesCount = 0
+  tempCategoryId = ''
+  tempSearchedSubCategory = ''
+  tempSelectedSubCategories = []
+  tempSelectedDays: any = []
+  tempSelectedProgramTypes: any = []
+  tempSelectedProgramTime: any = []
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
@@ -287,7 +293,7 @@ export class SearchComponent implements OnInit, OnDestroy {
       if (this.isMapMoveChecked) {
         console.log('dragEnd')
         this.isMapFilter = true
-        this.programFilter()
+        this.setFilterQuery('map')
       }
     });
 
@@ -304,42 +310,42 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
   onDayChange(indx: number, day: string, isChecked: boolean) {
     if (isChecked) {
-      this.selectedDays.push(day)
+      this.tempSelectedDays.push(day)
     } else {
-      this.selectedDays.splice(day, -1)
-      let el = this.selectedDays.find(itm => itm === day);
-      if (el) this.selectedDays.splice(this.selectedDays.indexOf(el), 1);
+      this.tempSelectedDays.splice(day, -1)
+      let el = this.tempSelectedDays.find(itm => itm === day);
+      if (el) this.tempSelectedDays.splice(this.tempSelectedDays.indexOf(el), 1);
     }
   }
   onProgramTypeChange(indx: number, type: string, isChecked: boolean) {
     if (isChecked) {
-      this.selectedProgramTypes.push(type)
+      this.tempSelectedProgramTypes.push(type)
     } else {
-      this.selectedProgramTypes.splice(type, -1)
-      let el = this.selectedProgramTypes.find(itm => itm === type);
-      if (el) this.selectedProgramTypes.splice(this.selectedProgramTypes.indexOf(el), 1);
+      this.tempSelectedProgramTypes.splice(type, -1)
+      let el = this.tempSelectedProgramTypes.find(itm => itm === type);
+      if (el) this.tempSelectedProgramTypes.splice(this.tempSelectedProgramTypes.indexOf(el), 1);
     }
   }
   onProgramTimeChange(indx: number, time: string, isChecked: boolean) {
     if (isChecked) {
-      this.selectedProgramTime.push(time)
+      this.tempSelectedProgramTime.push(time)
     } else {
-      this.selectedProgramTime.splice(time, -1)
-      let el = this.selectedProgramTime.find(itm => itm === time);
-      if (el) this.selectedProgramTime.splice(this.selectedProgramTime.indexOf(el), 1);
+      this.tempSelectedProgramTime.splice(time, -1)
+      let el = this.tempSelectedProgramTime.find(itm => itm === time);
+      if (el) this.tempSelectedProgramTime.splice(this.tempSelectedProgramTime.indexOf(el), 1);
     }
   }
   onProgramsSubCategoryChange(i, event) {
-    this.categoryId = ''
+    this.tempCategoryId = ''
     this.subCats[i].checked = event.target.checked;
     if (this.subCats[i].checked) {
       this.searchedSubCategory = this.subCats[i].name;
-      this.selectedSubCategories.push(this.subCats[i]._id);
+      this.tempSelectedSubCategories.push(this.subCats[i]._id);
     }
     else {
-      const index = this.selectedSubCategories.indexOf(this.subCats[i]._id);
+      const index = this.tempSelectedSubCategories.indexOf(this.subCats[i]._id);
       if (index >= 0) {
-        this.selectedSubCategories.splice(index, 1);
+        this.tempSelectedSubCategories.splice(index, 1);
       }
     }
   }
@@ -391,11 +397,13 @@ export class SearchComponent implements OnInit, OnDestroy {
             this.checkCategoryFilter(this.filterObj.categoryId, 'category')
             this.isCategoryFilter = true;
             this.categoryId = this.filterObj.categoryId;
+            this.tempCategoryId = this.filterObj.categoryId
           }
           if (this.filterObj.hasOwnProperty('tagsIds')) {
             this.isCategoryFilter = true;
             let ids = this.filterObj.tagsIds.split(',');
             this.selectedSubCategories = ids;
+            this.tempSelectedSubCategories = ids
             this.checkCategoryFilter(this.selectedSubCategories[0], 'subcategory')
           }
 
@@ -403,11 +411,13 @@ export class SearchComponent implements OnInit, OnDestroy {
             this.isDaysFilter = true;
             let days = this.filterObj.day.split(',');
             this.selectedDays = days;
+            this.tempSelectedDays = days
           }
           if (this.filterObj.hasOwnProperty('time')) {
             this.isTimeFilter = true;
             let time = this.filterObj.time.split(',');
             this.selectedProgramTime = time
+            this.tempSelectedProgramTime = time
           }
           if (this.filterObj.hasOwnProperty('type')) {
             this.isTypeFilter = true;
@@ -417,6 +427,7 @@ export class SearchComponent implements OnInit, OnDestroy {
               type[index] = 'Drop-ins';
             }
             this.selectedProgramTypes = type
+            this.tempSelectedProgramTypes - type
           }
           if (this.filterObj.hasOwnProperty('ratingFrom') && this.filterObj.hasOwnProperty('ratingTo')) {
             this.isTopFilterCheckBox = true
@@ -701,12 +712,12 @@ export class SearchComponent implements OnInit, OnDestroy {
           this.filterObj.lat = this.coordinates.lat;
           this.filterObj.lng = this.coordinates.lng;
         }
-        else if (!this.filterObj.hasOwnProperty('lat') && !this.filterObj.hasOwnProperty('lat') && Object.keys(this.coordinates).length && this.isMapFilter) {
+        else if (!this.filterObj.hasOwnProperty('lat') && !this.filterObj.hasOwnProperty('lng') && Object.keys(this.coordinates).length && this.isMapFilter) {
           Object.assign(this.filterObj, { lat: this.coordinates.lat });
-          Object.assign(this.filterObj, { lat: this.coordinates.lng });
+          Object.assign(this.filterObj, { lng: this.coordinates.lng });
         } else {
           delete this.filterObj['lat']
-          delete this.filterObj['lat']
+          delete this.filterObj['lng']
         }
         break;
     }
@@ -913,15 +924,15 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   // ---------------------------------------------get subCateById-------------------------------------
   getSubCateById(cat) {
-    this.categoryId = cat.id
+    this.tempCategoryId = cat.id
     this.selectedCat = cat.id
-    this.selectedSubCategories = []
+    this.tempSelectedSubCategories = []
     this.searchedSubCategory = cat.name
     this.apiservice.getTagByCategoryId(cat.id).subscribe((res: any) => {
       this.subCats = res.data
       this.subCats = this.subCats.filter((item) => item.isActivated === true && item.programCount);
       for (let i in this.subCats) {
-        for (let id of this.selectedSubCategories) {
+        for (let id of this.tempSelectedSubCategories) {
           if (id === this.subCats[i]._id) {
             this.subCats[i].checked = true;
           }
