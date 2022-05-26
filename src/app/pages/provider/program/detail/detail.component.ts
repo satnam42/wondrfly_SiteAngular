@@ -900,7 +900,7 @@ export class DetailComponent implements OnInit {
     if (!checkFilter.hasOwnProperty('providerId')) {
       checkFilter.providerId = this.user.id
     }
-    delete checkFilter['ratingFrom']
+    delete checkFilter['ratingFrom']  
     delete checkFilter['ratingTo']
     delete checkFilter['lng']
     delete checkFilter['lng']
@@ -924,7 +924,12 @@ export class DetailComponent implements OnInit {
         // if (!this.providerProgram.length) {
         //   this.isLoaded = true
         // }
-
+        if (!this.selectedSubCategories.length) {
+          const sum = this.providerProgram.reduce((accumulator, object) => {
+            return accumulator + object.programs.length;
+          }, 0);
+          this.activitiesCount = sum
+        }
         this.isScrol = false;
       }
       this.ngxLoader.stop()
