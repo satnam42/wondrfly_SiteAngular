@@ -885,6 +885,7 @@
                                                                                         id="categoriescheck{{i}}"
                                                                                         name="categoriescheck"
                                                                                         value="{{ s }}"
+
                                                                                         [checked]="s.checked" (change)="
                                                         onProgramsSubCategoryChange(i, $event)
                                                         " /></span>
@@ -1189,7 +1190,8 @@
                                                 in New Jersey
                                                 <span class="span-h3">&nbsp;|&nbsp; <b>{{activitiesCount}}</b>
                                                     activities
-                                                    from <b>{{providerProgram?.length}}</b> providers</span>
+                                                    <!-- from <b>{{providerProgram?.length}}</b> providers    -->
+                                                </span>
                                             </h2>
                                         </div>
                                         <button class="btn_style save_btn cursor" *ngIf="!isInPerson && isOnline">
@@ -1324,15 +1326,19 @@
                                         </div>
                                     </div>
                                 </div> -->
-                                <div class="col-12" *ngFor="let activity of programs;index as i"
-                                    [hidden]="!programs?.length">
+                                <div class="col-12" *ngFor="let activity of  this.providerProgram?.programs;index as i">
                                     <div class="row ativities-boxes-info align-items-center bg_color">
                                         <div class="col-2 name">
                                             <h6 class="tdata">{{activity.name}}</h6>
                                         </div>
                                         <div class="col-3">
                                             <div class="btn-group-info">
-                                                <ul class="ul-tag-btn-info">
+                                                <ul class="ul-tag-btn-info" *ngIf="showReset">
+                                                    <li *ngFor='let cat of programs[0]?.categories'><button
+                                                            class="btn-activites-info">{{cat.name}}</button></li>
+                                                </ul>
+                                                
+                                                <ul class="ul-tag-btn-info" *ngIf="!showReset">
                                                     <li *ngFor='let cat of activity?.category'><button
                                                             class="btn-activites-info">{{cat.name}}</button></li>
                                                 </ul>
@@ -1346,7 +1352,7 @@
                                                 <div>
                                                     <p *ngIf="activity?.isDateNotMention">Ongoing</p>
                                                     <p *ngIf="!activity?.isDateNotMention">{{activity?.date.from |
-                                                        date:'MMM dd'}} - {{program.date.to | date:'MMM dd'}}</p>
+                                                        date:'MMM dd'}} - {{activity.date.to | date:'MMM dd'}}</p>
                                                 </div>
                                             </div>
                                             <div class="left-icon-box-media">
@@ -1381,7 +1387,7 @@
                                                     <p *ngIf="!activity?.isFree && activity?.pricePerParticipant">
                                                         <span>{{
                                                             activity.pricePerParticipant
-                                                            }}<span *ngIf="program?.pricePeriod?.periodAmount">/{{
+                                                            }}<span *ngIf="activity?.pricePeriod?.periodAmount">/{{
                                                                 activity?.pricePeriod?.periodAmount
                                                                 }}</span></span>
                                                     </p>
@@ -1410,7 +1416,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12" style="align-items: center;" *ngIf="!programs?.length && isLoaded">
+                                <div class="col-12" style="align-items: center;" *ngIf="!providerProgram?.programs?.length && isLoaded">
                                     <h1 style="color: #494949;">Sorry no results found :(</h1>
                                 </div>
                             </div>

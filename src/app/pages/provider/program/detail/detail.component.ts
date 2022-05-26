@@ -328,6 +328,7 @@ export class DetailComponent implements OnInit {
   getProviderById() {
     this.apiservice.getUserById(this.program.user).subscribe((res: any) => {
       this.user = res.data;
+      this.checkQueryParams()
     });
     this.getRating()
   }
@@ -346,21 +347,21 @@ export class DetailComponent implements OnInit {
     this.apiservice.getProgramById(this.program.id).subscribe(res => {
       this.ngxLoader.stop();
       this.program = res
-      let event: any = {
-        start: new Date(this.program.date.from),
-        // end: new Date('2020-01-01')
-        end: new Date(this.program.date.to),
-        summary: this.program.name,
-        description: this.program.description,
-        location: this.program.location,
-        url: 'https://www.wondrfly.com'
-      }
+      // let event: any = {
+      //   start: new Date(this.program.date.from),
+      //   // end: new Date('2020-01-01')
+      //   end: new Date(this.program.date.to),
+      //   summary: this.program.name,
+      //   description: this.program.description,
+      //   location: this.program.location,
+      //   url: 'https://www.wondrfly.com'
+      // }
 
-      event.start.setHours(Math.trunc(this.program.time.from))
-      event.start.setMinutes(this.globalFunc.getHourOrMinute(this.program.time.from.toFixed(2).toString(), ".", ":"))
-      event.end.setHours(Math.trunc(this.program.time.to))
-      event.end.setMinutes(this.globalFunc.getHourOrMinute(this.program.time.to.toFixed(2).toString(), ".", ":"))
-      this.events.push(event)
+      // event.start.setHours(Math.trunc(this.program.time.from))
+      // event.start.setMinutes(this.globalFunc.getHourOrMinute(this.program.time.from.toFixed(2).toString(), ".", ":"))
+      // event.end.setHours(Math.trunc(this.program.time.to))
+      // event.end.setMinutes(this.globalFunc.getHourOrMinute(this.program.time.to.toFixed(2).toString(), ".", ":"))
+      // this.events.push(event)
       // this.program.time.from =moment(this.program.time.from).format("h:mm");
       // this.program.time.to = moment(this.program.time.to).format("h:mm");
       // this.program.time.from =this.convertNumToTime(this.program.time.from.toFixed(2))
@@ -377,8 +378,7 @@ export class DetailComponent implements OnInit {
       this.programImgURL = this.program.programCoverPic;
       // this.userLogo = this.program.provider.logo
       this.getProviderById()
-      this.checkQueryParams()
-      this.program_mins = moment.utc(moment(this.program.time.to, "HH:mm:ss").diff(moment(this.program.time.from, "HH:mm:ss"))).format("mm")
+      // this.program_mins = moment.utc(moment(this.program.time.to, "HH:mm:ss").diff(moment(this.program.time.from, "HH:mm:ss"))).format("mm")
       this.parentAnalyticAction()
     });
 
@@ -574,14 +574,7 @@ export class DetailComponent implements OnInit {
     await this.apiservice.getProgramByProvider(this.program.user, this.pageNo, 200).subscribe((res) => {
       this.isScrol = true;
       this.showReset = false
-      this.programs = res
-      let programs = []
-      this.programs.forEach(program => {
-        // program.time.from =this.convertNumToTime(program.time.from.toFixed(2))
-        // program.time.to =this.convertNumToTime(program.time.to.toFixed(2))
-        programs.push(program)
-      });
-      this.programs = programs
+      this.providerProgram.programs = res
     });
   }
   getCategoryList() {
@@ -680,9 +673,9 @@ export class DetailComponent implements OnInit {
       programId: '',
     };
     if (programId) {
-      this.programs[indx].isFav = true;
+      this.program.isFav = true;
       fav.userId = this.userId;
-      fav.programId = this.programs[indx]._id;
+      fav.programId = this.program._id;
     }
     else {
       this.program.isFav = true;
@@ -697,7 +690,7 @@ export class DetailComponent implements OnInit {
     let id = ''
     if (programId) {
       id = programId
-      this.programs[indx].isFav = false;
+      this.program.isFav = false;
     }
     else {
       id = this.program._id
@@ -913,19 +906,20 @@ export class DetailComponent implements OnInit {
       if (res.isSuccess) {
         this.activitiesCount = res.total
         // this.isTopFilterCheckBox = false
-        res.items = res.items.filter(item => item.user[0].isActivated === true)
-        if (res.items[0]) {
-          this.programs = res.items[0].programs;
-        }
-        if (this.isTopFilter) {
-          this.providerProgram = this.programs.sort((a, b) => b.user[0]?.averageFinalRating - a.user[0]?.averageFinalRating);
-        }
-        else {
-          this.providerProgram = this.programs;
-        }
-        if (!this.providerProgram.length) {
-          this.isLoaded = true
-        }
+        // res.items = res.items.filter(item => item.user[0].isActivated === true)
+        // if (res.items) {
+        // }
+        // // if (this.isTopFilter) {
+        // //   this.providerProgram = this.programs.sort((a, b) => b.user[0]?.averageFinalRating - a.user[0]?.averageFinalRating);
+        // // }
+        // else {
+        //   this.providerProgram = this.programs;
+        // }
+        this.programs =  res.items
+        this.providerProgram.programs = this.programs[0].programs
+        // if (!this.providerProgram.length) {
+        //   this.isLoaded = true
+        // }
 
         this.isScrol = false;
       }
@@ -1041,10 +1035,10 @@ export class DetailComponent implements OnInit {
     programName = programName.toLowerCase();
     programName = programName.replace(/ /g, "-");
     programName = programName.replace(/\?/g, "-");
-    this.router.navigate(['program', programName, data._id, 'filter'])
-    // this.router
-    // .navigateByUrl("/", { skipLocationChange: true })
-    // .then(() => this.router.navigate(['program', programName, data._id,'filter']));
+    // this.router.navigate(['program', programName, data._id, 'filter'])
+    this.router
+    .navigateByUrl("/", { skipLocationChange: true })
+    .then(() => this.router.navigate(['program', programName, data._id,'filter']));
     this.searchedSubCategory = '';
     this.activityName = '';
     this.isInPerson = false;
@@ -1087,8 +1081,7 @@ export class DetailComponent implements OnInit {
     this.showReset = false
     this.isLoaded = false;
     this.apiservice.getProgramByProvider(this.user.id, this.pageNo, 200).subscribe((res) => {
-      this.programs = res
-      this.isLoaded = true;
+      this.providerProgram.programs = res      
     });
     this.ngxLoader.stop()
   }
