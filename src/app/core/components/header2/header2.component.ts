@@ -73,7 +73,7 @@ import { DataService } from "../../services/dataservice.service ";
             <a class="nav-link cursor" [routerLink]="['/ask-to-join']">Join the Beta</a>
           </li>
           <li>
-            <a [routerLink]="['/login']" class="btn_style cursor">SIGN IN</a>
+            <a [routerLink]="['/login']" class="btn_style cursor">Sign In</a>
           </li>
         </ul>
       </div>

@@ -36,6 +36,7 @@ header .navbar-light .navbar-nav .nav-link {
     color: #494949;
     padding: 9px 0;
     margin-right: 25px;
+    text-transform: capitalize;
 }
 
 header .navbar-nav .btn_style {

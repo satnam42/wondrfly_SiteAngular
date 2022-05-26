@@ -47,7 +47,7 @@
                     <div class="row">
                         <div class="col-6">
                             <div onclick="history.back()" class="back_btn cursor">
-                                <a> back </a>
+                                <a> Back </a>
                             </div>
                         </div>
                         <div class="col-6">
@@ -90,8 +90,8 @@
                             </div>
                         </div>
                         <div class="business_name">
-                            <div class="N_container_box_input_heading">NAME</div>
-                            <input type="text" placeholder="Type" form [formControl]="addChildForm.controls['name']" class="my_inputs" [(ngModel)]="kid.name" />
+                            <div class="N_container_box_input_heading">Create a nickname to identify your child</div>
+                            <input type="text" placeholder="ex. Jane, Billy, Bob, Spidey, etc." form [formControl]="addChildForm.controls['name']" class="my_inputs" [(ngModel)]="kid.name" />
                         </div>
 
 
@@ -108,11 +108,11 @@
 
 
                         <div class="business_name datef">
-                            <div class="N_container_box_input_heading">DATE OF BIRTH</div>
+                            <div class="N_container_box_input_heading">Date of birth</div>
                             <input type="date" id="listingDate" min='2007-01-01' placeholder="mm/dd/yy" [formControl]="addChildForm.controls['dob']" class="my_inputs" [(ngModel)]="kid.dob" />
                         </div>
                         <div class="business_name">
-                            <div class="N_container_box_input_heading">CHILD INTRESTS</div>
+                            <div class="N_container_box_input_heading">Child interests</div>
                             <form>
                                 <div >
                                     <!-- <div class="form-group">
@@ -145,7 +145,7 @@
                                         <!-- <label>Interest</label> -->
                                         <div class="input_outer">
                                             <!-- <input type="text" placeholder="Search" class="form-control" autocomplete="off"  (change)="onChangeSearch($event)" [(ngModel)]="keyword" name="Intrest" /> -->
-                                            <input type="text" placeholder="Type Activities" class="form-control" autocomplete="off"
+                                            <input type="text" placeholder="ex. Acting, Chess, Tennis, Guitar, Latin Dance, etc." class="form-control" autocomplete="off"
                                                 [formControl]="searchTagValue" [(ngModel)]="keyword" name="Intrest" />
             
                                         </div>
@@ -260,7 +260,7 @@
                     <div class="row">
                         <div class="col-6">
                             <div (click)="backStep()" class="back_btn cursor">
-                                <a> back </a>
+                                <a> Back </a>
                             </div>
                         </div>
                         <div class="col-6">

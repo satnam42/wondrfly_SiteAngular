@@ -39,6 +39,7 @@
   font-size: 14px;
   line-height: 21px;
   letter-spacing: -0.01em;
+  text-transform: capitalize;
   color: #494949;
 }
 .N_container_box_input_heading {
@@ -48,7 +49,7 @@
   font-size: 10px;
   line-height: 15px;
   letter-spacing: 0.01em;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #494949;
   text-align: left;
   padding-top: 14px;
@@ -104,7 +105,7 @@ input.my_inputs {
   line-height: 18px;
   text-align: center;
   letter-spacing: 0.02em;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #53b2e8;
 }
 .N_btns .next_btn {
@@ -136,7 +137,7 @@ input.my_inputs.ng-untouched.ng-pristine.ng-invalid::placeholder {
   line-height: 18px;
   text-align: center;
   letter-spacing: 0.02em;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #ffffff;
 }
 .N_inputs_container {
@@ -153,6 +154,7 @@ h2.my_heading1 {
   font-size: 26px;
   line-height: 39px;
   text-align: center;
+  text-transform: capitalize;
   color: #494949;
 }
 .small_boxes .my_box {
@@ -625,7 +627,7 @@ span.wnderfly-btn {
   
   .header_right .progress .progress-value span {
       font-size: 12px;
-      text-transform: uppercase;
+      text-transform: capitalize;
   }
   .header_right p {
       font-family: 'Poppins';
@@ -700,6 +702,7 @@ span.wnderfly-btn {
   line-height: 21px;
   letter-spacing: 0.001em;
   color: #494949;
+  text-transform: capitalize;
 }
 .child-dob-h4 img{
   margin-right: 5px;
@@ -731,6 +734,7 @@ button.child-interests-btn {
   border: 1px solid #53b2e8;
   border-radius: 40px;
   margin: 2px 5px 2px 0px;
+  text-transform: capitalize;
   display: inline-block;
 }
 .edit-child-btn, .delete-child-btn {
@@ -748,6 +752,7 @@ button.child-interests-btn {
   line-height: 51px;
   color: #777CEA;
   text-align: center;
+  text-transform: capitalize;
   margin-bottom: 30px;
 }
 .welcome-popup-box .laststep-onboarding p {
@@ -757,6 +762,7 @@ button.child-interests-btn {
   font-size: 18px;
   line-height: 27px;
   color: #494949;
+  text-transform: capitalize;
   margin-bottom: 10px;
 }
 .welcome-popup-box .next_btn {
