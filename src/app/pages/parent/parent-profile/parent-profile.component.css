@@ -184,9 +184,7 @@ text-align: center;
   margin-right: 40px;
 }
 
-.side_bar .complete_score {
-  margin-top: 7px;
-}
+.side_bar .complete_score {margin-top: 7px;}
 
 .side_bar .complete_score p {
   font-family: "Poppins";
@@ -2767,6 +2765,7 @@ ul.ul-tag-checkbox-info ul.ul-tag-checkbox-child .checkbox-txt {
   text-decoration-line: underline;
   color: #53B2E8;
   cursor: pointer;
+  text-transform: capitalize;
 }
 .grid-label-checkbox {
   display: grid;
