@@ -770,7 +770,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.maxAge = 5;
     this.minAge = 0;
     this.pageNo = 1;
-    this.pageSize = 20;
+    this.pageSize = 15;
     this.selectedProgramTime = []
     this.programs = []
     this.times.forEach((element) => {
@@ -1108,6 +1108,10 @@ export class SearchComponent implements OnInit, OnDestroy {
     //     pageSize=10
     //     filter += `&lat=${this.coordinates.lat}&lng=${this.coordinates.lng}`
     //   }
+    let pageSize = 50;
+    if (this.isMapFilter) {
+      pageSize = 10
+    }
     this.ngxLoader.start()
     this.apiservice.programFilter(filter, 1, 50).subscribe((res: any) => {
       this.showReset = true
@@ -1136,11 +1140,11 @@ export class SearchComponent implements OnInit, OnDestroy {
         //   this.providerProgram[2].collapsed = true
         // }
         if (!this.selectedSubCategories.length) {
-        const sum = this.providerProgram.reduce((accumulator, object) => {
-          return accumulator + object.programs.length;
-        }, 0);
-        this.activitiesCount = sum
-      }
+          const sum = this.providerProgram.reduce((accumulator, object) => {
+            return accumulator + object.programs.length;
+          }, 0);
+          this.activitiesCount = sum
+        }
         // }
         // for (let i in this.programs) {
         //   let category = this.programs[i].category.filter((v, num, a) => a.findIndex(t => (t.name == v.name)) === num)
@@ -1220,51 +1224,51 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   //----------------------------------------search history get ---------------------------------------------------------
-  getTopRated() {
-    this.contentLoaded = false
-    this.searchedSubCategory = '',
-      this.activityName = ''
-    this.isInPerson = false
-    this.showReset = true
-    this.isTypeFilter = false
-    this.categoryId = ''
-    this.isOnline = false;
-    this.isDaysFilter = false
-    this.isTimeFilter = false;
-    this.isTopFilter = false;
-    this.isAgeFilter = false;
-    this.isDateFilter = false;
-    this.selectedSubCategories = [];
-    this.isPriceFilter = false;
-    this.isCategoryFilter = false;
-    this.maxAge = 5;
-    this.minAge = 0;
-    this.pageNo = 1;
-    this.pageSize = 20;
-    this.selectedProgramTime = []
-    this.times.forEach((element) => {
-      element.nativeElement.checked = false;
-    });
-    this.selectedDays = []
-    this.days.forEach((element) => {
-      element.nativeElement.checked = false;
-    });
-    this.selectedProgramTypes = []
-    this.types.forEach((element) => {
-      element.nativeElement.checked = false;
-    });
-    if (this.isTopFilterCheckBox == true) {
-      this.apiservice.getTopRated().subscribe((res: any) => {
-        this.programs = res
-        this.contentLoaded = true;
-      });
-    }
-    else if (this.isTopFilterCheckBox == !true) {
-      this.showReset = true
-      this.resetFilter();
-      this.contentLoaded = true;
-    }
-  }
+  // getTopRated() {
+  //   this.contentLoaded = false
+  //   this.searchedSubCategory = '',
+  //     this.activityName = ''
+  //   this.isInPerson = false
+  //   this.showReset = true
+  //   this.isTypeFilter = false
+  //   this.categoryId = ''
+  //   this.isOnline = false;
+  //   this.isDaysFilter = false
+  //   this.isTimeFilter = false;
+  //   this.isTopFilter = false;
+  //   this.isAgeFilter = false;
+  //   this.isDateFilter = false;
+  //   this.selectedSubCategories = [];
+  //   this.isPriceFilter = false;
+  //   this.isCategoryFilter = false;
+  //   this.maxAge = 5;
+  //   this.minAge = 0;
+  //   this.pageNo = 1;
+  //   this.pageSize = 10;
+  //   this.selectedProgramTime = []
+  //   this.times.forEach((element) => {
+  //     element.nativeElement.checked = false;
+  //   });
+  //   this.selectedDays = []
+  //   this.days.forEach((element) => {
+  //     element.nativeElement.checked = false;
+  //   });
+  //   this.selectedProgramTypes = []
+  //   this.types.forEach((element) => {
+  //     element.nativeElement.checked = false;
+  //   });
+  //   if (this.isTopFilterCheckBox == true) {
+  //     this.apiservice.getTopRated().subscribe((res: any) => {
+  //       this.programs = res
+  //       this.contentLoaded = true;
+  //     });
+  //   }
+  //   else if (this.isTopFilterCheckBox == !true) {
+  //     this.showReset = true
+  //     this.resetFilter();
+  //     this.contentLoaded = true;
+  //   }
+  // }
 
 
   // ---------------------suggested sub categories by sub catids -----------------------
