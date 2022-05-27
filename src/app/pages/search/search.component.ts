@@ -1000,7 +1000,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.apiservice.parentAnalytics(key, this.userId, value).subscribe((res: any) => {
     });
   }
-  programFilter(filter?) {
+  programFilter(filter) {
     // window.scroll(0, 0);
     // this.isInfiniteScrollDisabled = false
     // this.isTimeFilter = false;
