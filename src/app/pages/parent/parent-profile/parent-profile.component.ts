@@ -1411,7 +1411,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
     }
     data.name = data.name.replace(/ /g, "-");
     data.name = data.name.replace(/\?/g, "-");
-    this.router.navigate(['program', data.name, data._id]);
+    this.router.navigate(['program', data.name, data._id,'filter']);
   }
 
   copyInvite() {

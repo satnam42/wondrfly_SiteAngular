@@ -2637,7 +2637,6 @@ ul.ul-tag-checkbox-info ul.ul-tag-checkbox-child .checkbox-txt {
   line-height: 27px;
   letter-spacing: 0.001em;
   color: #494949;
-  cursor: pointer;
   max-width: 280px;
   display: -webkit-box;
   -webkit-line-clamp: 2;

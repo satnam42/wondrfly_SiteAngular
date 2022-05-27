@@ -660,12 +660,12 @@
                                                         <ng-template #tagsUrl>
                                                             <img  *ngIf="data?.tags?.length; else noLogoFound" src="{{baseUrl+data?.tags[0]?.logo}}" />
                                                             <ng-template #noLogoFound>
-                                                                <img  src="https://wondrfly.com/images/1643352351489music.png" />
+                                                                <img  src="assets/outdoor.png" />
                                                                 </ng-template>
                                                         </ng-template>
                                                     </div>
                                                     <div class="left-icon-h2">
-                                                        <h2 (click)="goToProviderProfile(data?.provider)">{{data?.provider?.firstName}}</h2>
+                                                        <h2>{{data?.provider?.firstName}}</h2>
                                                     </div>
                                                     <div class="rating-starsearch" (click)=" getRating(data?.provider?._id); 
                                                     " class="cursor" data-toggle="collapse"
