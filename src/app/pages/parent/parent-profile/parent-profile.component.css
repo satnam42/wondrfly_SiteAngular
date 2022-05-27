@@ -2858,7 +2858,7 @@ color: #494949;
   align-items: center;
   column-gap: 10px;
 }
-.add-ph-no-h3 h3, .add-profile-pic-h3 h3 {
+.add-ph-no-h3 h3, .add-profile-pic h3 {
   font-family: "Poppins";
   font-style: normal;
   font-weight: 400;
@@ -2868,7 +2868,7 @@ color: #494949;
   letter-spacing: 0.01em;
   text-transform: capitalize;
 }
-.add-profile-pic-h3 h3 {
+.profile-completeness-h3 {
   color: #53b2e8 !important;
   text-decoration: underline;
 }
