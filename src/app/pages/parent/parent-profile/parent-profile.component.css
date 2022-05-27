@@ -133,7 +133,7 @@ text-align: center;
   color: #53b2e8;
   position: absolute;
   top: -15px;
-  left: 15px;
+  right: 0px;
 }
 
 
@@ -186,7 +186,6 @@ text-align: center;
 
 .side_bar .complete_score {
   margin-top: 7px;
-  padding-left: 15px;
 }
 
 .side_bar .complete_score p {
@@ -2863,11 +2862,15 @@ color: #494949;
   font-family: "Poppins";
   font-style: normal;
   font-weight: 400;
-  font-size: 10px;
-  line-height: 15px;
+  font-size: 12px;
+  line-height: 18px;
   color: #494949;
   letter-spacing: 0.01em;
   text-transform: capitalize;
+}
+.add-profile-pic-h3 h3 {
+  color: #53b2e8 !important;
+  text-decoration: underline;
 }
 .gry-dot-circle {
   width: 24px;

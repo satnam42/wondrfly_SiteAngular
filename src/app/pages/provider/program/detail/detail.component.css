@@ -144,8 +144,8 @@ button.camp-btn {
   font-size: 11px;
   line-height: 16px;
   letter-spacing: 0.001em;
-  color: #53B2E8;
-  background: #E2F5FF;
+  color: #494949;
+  background: #ebebeb;
   border: none;
   border-radius: 20px;
   padding: 7px 8px;
@@ -1700,8 +1700,8 @@ div#cat-subcat {
   padding-right: 15px;
   padding-left: 15px;
   line-height: 17px;
-  background: #ffffff;
-  border: 1px solid #53b2e8;
+  background: #ebebeb;
+  border: 1px solid #ebebeb;
   border-radius: 20px;
   display: inline-block;
   font-size: 11px;
@@ -1711,7 +1711,7 @@ div#cat-subcat {
   font-style: normal;
   font-weight: normal;
   letter-spacing: 0.001em;
-  color: #53b2e8;
+  color: #494949;
   margin-left: 14px;
   position: relative;
 }
@@ -1888,7 +1888,7 @@ h2.provider_name span.provider-heading-h2 {
 .clr-blue{color: #53B2E8!important;}
 .bg_color {
   background: #FFFFFF;
-  box-shadow: -4px 4px 10px rgb(0 0 0 / 10%);
+  box-shadow: -2px 2px 11px rgb(0 0 0 / 19%);
   border-radius: 20px;  
 }
 .ativities-boxes-info .program_img img {
@@ -1918,8 +1918,8 @@ h2.provider_name span.provider-heading-h2 {
   line-height: 16px;
   text-align: center;
   letter-spacing: 0.001em;
-  color: #53B2E8;
-  background: #E2F5FF;
+  color: #494949;
+  background: #ebebeb;
   cursor: default;
   border-radius: 20px;
   border: none;

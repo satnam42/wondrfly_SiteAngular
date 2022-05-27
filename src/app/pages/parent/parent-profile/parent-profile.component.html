@@ -90,30 +90,36 @@
 
                         <div class="add-ph-no mt-20">
                             <div class="icon-img-dott">
-                                <span class="gry-dot-circle" *ngIf="!user.phoneNumber"></span>
-                                <span class="blue-dot-circle" *ngIf="user.phoneNumber"></span>
+                                <img src="assets/phone-blue-icon.svg" *ngIf="!user.phoneNumber" />
+                                <img src="assets/phone-blue-icon.svg" *ngIf="user.phoneNumber" />
+                                <!-- <span class="gry-dot-circle" *ngIf="!user.phoneNumber"></span>
+                                <span class="blue-dot-circle" *ngIf="user.phoneNumber"></span> -->
                             </div>
                             <div class="add-ph-no-h3">
-                                <h3 *ngIf="user.phoneNumber">Add Your Phone Number (+20%)</h3>
-                                <h3 *ngIf="!user.phoneNumber" (click)="onProfile()">Add Your Phone Number (+20%)</h3>
+                                <h3 class="cursor" *ngIf="user.phoneNumber">Add Your Phone Number (+20%)</h3>
+                                <h3 class="cursor" *ngIf="!user.phoneNumber" (click)="onProfile()">Add Your Phone Number (+20%)</h3>
                             </div>
                         </div>
                         <div class="add-profile-pic mt-10">
                             <div class="icon-img-dott">
-                                <span class="gry-dot-circle" *ngIf="!user.avatarImages"></span>
-                                <span class="blue-dot-circle" *ngIf="user.avatarImages"></span>                            </div>
+                                <img src="assets/add-profile-pic.svg" />
+                                <!-- <span class="gry-dot-circle" *ngIf="!user.avatarImages"></span>
+                                <span class="blue-dot-circle" *ngIf="user.avatarImages"></span>       -->
+                            </div>
                             <div class="add-profile-pic-h3">
-                                <h3 *ngIf="user.avatarImages">Add Profile Picture  (+20%)</h3>
+                                <h3 class="cursor" *ngIf="user.avatarImages">Add Profile Picture  (+20%)</h3>
                                 <h3 class="cursor" *ngIf="!user.avatarImages" (click)="imageRole='parent';parentImgURL=''" data-toggle="modal"
                                 data-target="#ImageModal">Add Profile Picture  (+20%)</h3>
                             </div>
                         </div>
-                        <div class="add-profile-pic mt-10">
+                        <div class="add-ph-no mt-10">
                             <div class="icon-img-dott">
-                                <span class="gry-dot-circle" *ngIf="!user.addressLine1"></span>
-                                <span class="blue-dot-circle" *ngIf="user.addressLine1"></span>                               </div>
-                            <div class="add-profile-pic-h3">
-                                <h3 *ngIf="user.addressLine1">Add Your Address (+20%)</h3>
+                                <img src="assets/loction_pin.svg" />
+                                <!-- <span class="gry-dot-circle" *ngIf="!user.addressLine1"></span>
+                                <span class="blue-dot-circle" *ngIf="user.addressLine1"></span>        -->
+                            </div>
+                            <div class="add-ph-no-h3 ">
+                                <h3 class="cursor" *ngIf="user.addressLine1">Add Your Address (+20%)</h3>
                                 <h3 class="cursor" (click)="onProfile()" *ngIf="!user.addressLine1">Add Your Address (+20%)</h3>
                             </div>
                         </div>
