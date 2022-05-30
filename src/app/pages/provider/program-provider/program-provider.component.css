@@ -1588,27 +1588,37 @@ display: none;
 }
 
 .calender-buttons button.calender-buttons1 {
-  background: #ffffff;
-  border: 1.25973px solid #53b2e8;
-  box-sizing: border-box;
-  border-radius: 25.1946px;
-  padding: 10px;
-  padding-left: 15px;
-  padding-right: 15px;
-  color: #53b2e8;
-  margin-right: 20px;
-  margin-left: 20px;
+    background: #ffffff;
+    border: 1.25973px solid #53b2e8;
+    box-sizing: border-box;
+    border-radius: 25.1946px;
+    color: #53b2e8;
+    margin-right: 20px;
+    margin-left: 20px;
+    min-height: 34px;
+    min-width: 70px;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: capitalize;
+    transition: 0.8s;
 }
-
+.calender-buttons button.calender-buttons1:hover {
+  background: #53B2E8;
+  color: #fff;
+}
 .calender-buttons button.calender-buttons2 {
   background: #53b2e8;
   box-sizing: border-box;
   border-radius: 25.1946px;
-  padding: 10px;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding: 5px;
   border: 1px solid #53b2e8;
   color: #fff;
+  min-height: 34px;
+  min-width: 70px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: capitalize;
+  transition: 0.8s;
 }
 
 ::ng-deep .md-drppicker.ltr {
