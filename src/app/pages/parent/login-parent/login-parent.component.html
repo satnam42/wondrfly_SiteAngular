@@ -145,7 +145,7 @@
                                         <!-- <label>Interest</label> -->
                                         <div class="input_outer">
                                             <!-- <input type="text" placeholder="Search" class="form-control" autocomplete="off"  (change)="onChangeSearch($event)" [(ngModel)]="keyword" name="Intrest" /> -->
-                                            <input type="text" placeholder="ex. Acting, Chess, Tennis, Guitar, Latin Dance, etc." class="form-control" autocomplete="off"
+                                            <input   (click)="$event.stopPropagation()" type="text" placeholder="ex. Acting, Chess, Tennis, Guitar, Latin Dance, etc." class="form-control" autocomplete="off"
                                                 [formControl]="searchTagValue" [(ngModel)]="keyword" name="Intrest" />
             
                                         </div>
@@ -175,7 +175,7 @@
                                             </ul>
                                         </div>
                                     </div> -->
-                                    <div class="search-checkbox-info" [hidden]="!searchedTags?.length || !keyword">
+                                    <div class="search-checkbox-info" [hidden]="!searchedTags?.length || !keyword" (click)="$event.stopPropagation()">
                                         <div class="search-checkbox-div">
                                             <ul class="ul-tag-checkbox-info">
                                                 <li *ngFor="let category of searchedTags;let i = index">

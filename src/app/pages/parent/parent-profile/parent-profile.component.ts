@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewChecked, OnDestroy, ElementRef } from "@angular/core";
+import { Component, OnInit, ViewChild, AfterViewChecked, OnDestroy, ElementRef, HostListener } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ApiService } from "src/app/core/services/api.service.service";
 import { Router } from "@angular/router";
@@ -1249,7 +1249,10 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
       }
     })
   }
-
+  @HostListener('document:click', ['$event']) clickedOutside($event){
+    // here you can hide your review popup
+    this.keyword=''
+  }
   ngOnInit() {
     this.getCategory()
     this.searchTagValue.valueChanges.subscribe((value) => {
@@ -1275,6 +1278,7 @@ export class ParentProfileComponent implements OnInit, AfterViewChecked, OnDestr
       this.isProfile = true;
       this.profile = "active";
     }
+    
     this.betaProgramInvitedUsers(this.currentUser.id);
     window.scroll(0, 0);
     this.getProfileProgress();

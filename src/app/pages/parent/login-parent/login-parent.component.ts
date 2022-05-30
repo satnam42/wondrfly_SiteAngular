@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, NgZone, ElementRef, ViewChild, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/core/services/api.service.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -98,7 +98,10 @@ export class LoginParentComponent implements OnInit {
     }
   }
 
-
+  @HostListener('document:click', ['$event']) clickedOutside($event){
+    // here you can hide your review popup
+    this.keyword=''
+  }
 
   selected(event: MatAutocompleteSelectedEvent): void {
     this.addChildData.interestInfo.push(event.option.value);
