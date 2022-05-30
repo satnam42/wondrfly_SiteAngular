@@ -114,8 +114,8 @@
 *ngIf="!rating?.finalAverageRating || rating?.finalAverageRating=='NaN' || rating?.finalAverageRating==undefined">0</span>
 out of 5 </a> -->
                                                 <span class="no-underline">(</span><a
-                                                    *ngIf="rating?.totalReviews">{{rating?.totalReviews }} reviews</a>
-                                                <a *ngIf="!rating?.totalReviews">0 reviews</a> <span
+                                                    *ngIf="rating?.totalReviews">{{rating?.totalReviews }} Reviews</a>
+                                                <a *ngIf="!rating?.totalReviews">0 Reviews</a> <span
                                                     class="no-underline">)</span>
                                             </p>
                                             <div class=" star-daialogbox" *ngIf="isRating">
@@ -950,8 +950,10 @@ out of 5 </a> -->
                             </div> -->
                                 <div class="col-12" *ngFor="let program of programs;index as i" [hidden]="!listView  && !programs?.length">
                                     <div class="row ativities-boxes-info align-items-center bg_color">
-                                        <div class="col-2 name" (click)='goToProgramDetail(program)'>
-                                            <h6 class="tdata">{{program.name}}</h6>
+                                        <div class="col-2 name tooltip-div" (click)='goToProgramDetail(program)'>
+                                            <h6 class="tdata h2-tooltip">{{program.name}}
+                                                <span class="tooltip-text">{{program.name}}</span>
+                                            </h6>
                                         </div>
                                         <div class="col-3">
                                             <div class="btn-group-info">
