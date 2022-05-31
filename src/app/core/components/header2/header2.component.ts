@@ -178,7 +178,7 @@ export class Header2Component implements OnInit {
         .then(() => this.router.navigate(["search"]));
     }
   }
-    // search by sub category
+  // search by sub category
   searchBySubCategory(id) {
     let regCount = this.activitySearched + 1
     this.cookies.set('activitySearched', String(regCount), 30);
@@ -222,7 +222,7 @@ export class Header2Component implements OnInit {
     });
 
   }
-    // activity search by sub category
+  // activity search by sub category
   searchByCategory(id) {
     let regCount = this.activitySearched + 1
     this.cookies.set('activitySearched', String(regCount), 30);
@@ -241,18 +241,19 @@ export class Header2Component implements OnInit {
   }
   searchSubCategory(key) {
     let groupDataAll: any = [
-      { label: 'Category', data: [] },
+      { label: 'Keywords', data: [] },
       { label: 'Provider', data: [] },
     ]
     if (!key) {
       this.allData = [];
     } else {
-      this.apiservice.searchTag(key).subscribe((res: any) => {
-        this.categoriesBySearch = res;
-        this.categoriesBySearch.category = this.categoriesBySearch.category.filter((item) => item.isActivated !== false);
-        this.categoriesBySearch.tags = this.categoriesBySearch.tags.filter((item) => item.isActivated !== false  && item.programCount);
-        this.categoryData = this.categoriesBySearch.category.concat(this.categoriesBySearch.tags)
-        groupDataAll[0].data = this.categoryData;
+      this.apiservice.searchKeywords(key).subscribe((res: any) => {
+        this.categoriesBySearch = res.data;
+        res.data.map(keyword => { keyword.name = keyword.keywordName })
+        // this.categoriesBySearch.category = this.categoriesBySearch.category.filter((item) => item.isActivated !== false);
+        // this.categoriesBySearch.tags = this.categoriesBySearch.tags.filter((item) => item.isActivated !== false && item.programCount);
+        // this.categoryData = this.categoriesBySearch.concat(this.categoriesBySearch)
+        groupDataAll[0].data = this.categoriesBySearch;
       });
       this.apiservice.searchUsers(key, "provider").subscribe((res: any) => {
         if (res.isSuccess === true) {
@@ -284,50 +285,96 @@ export class Header2Component implements OnInit {
           .navigateByUrl("/", { skipLocationChange: true })
           .then(() => this.router.navigate(["/provider/program-provider", data.name, data._id]));
       }
-    } else if (!data.categoryIds && !data.role) {
-      let regCount = this.activitySearched + 1
-      this.cookies.set('activitySearched', String(regCount), 30);      this.filterData.activityName = "";
-      // this.filterData.subcatId = '';
-      // this.filterData.categoryId = data._id;
-      // this.filterData.searchedCategoryKey = data.name;
-      // this.dataservice.setOption(this.filterData);
-      // this.router.navigate(["/search"]);
-      // if (this.routeName === "/search") {
-      //   this.router
-      //     .navigateByUrl("/", { skipLocationChange: true })
-      //     .then(() => this.router.navigate(["search"]));
-      // }
-      let filter = `categoryId=${data._id}`
-      this.router.navigate(['/search'], {
-        queryParams: {
-          filter: filter
-        }
-      });
-      
     }
-    else if (data.categoryIds && !data.role) {
-      let regCount = this.activitySearched + 1
-      this.cookies.set('activitySearched', String(regCount), 30);
-      // this.filterData.activityName = ''
-      // this.filterData.lat = ''
-      // this.filterData.lng = ''
-      // this.filterData.searchedCategoryKey = data.name;
-      // this.filterData.categoryId = ''
-      // this.filterData.subcatId = data._id
-      // this.dataservice.setOption(this.filterData)
-      // this.router.navigate(['/search']);
-      // if (this.routeName === "/search") {
-      //   this.router
-      //     .navigateByUrl("/", { skipLocationChange: true })
-      //     .then(() => this.router.navigate(["search"]));
-      // }
-      let filter = `tagsIds=${data._id}`
-      this.router.navigate(['/search'], {
-        queryParams: {
-          filter: filter
-        }
-      });
+    else {
+      let filter = ``
+      switch (data.keywordType) {
+        case 'category':
+          filter = `categoryId=${data.keywordValue[0].category}`
+          break;
+        case 'subCategory':
+          filter = `tagsIds=${data.keywordValue[0].subcategory.toString()}`
+          break;
+        case 'age':
+          filter = `ageFrom=${data.keywordValue[0].from}&ageTo=${data.keywordValue[0].to}`
+          break;
+        case 'price':
+          filter = `priceFrom=${data.keywordValue[0].from}priceTo=${data.keywordValue[0].to}`
+          break;
+        case 'dates':
+          filter = `fromDate=${data.keywordValue[0].from}&toDate=${data.keywordValue[0].to}`
+          break;
+        case 'type':
+          filter = `type=${data.keywordValue[0].type.toString()}`
+          break;
+        case 'time':
+          filter = `time=${data.keywordValue[0].time.toString()}`
+          break;
+        case 'days':
+          filter = `day=${data.keywordValue[0].days.toString()}`
+          break;
+        case 'format':
+          filter = `inpersonOrVirtual=${data.keywordValue[0].format.toString()}`
+          break;
+        case 'topRated':
+          filter = `ratingFrom=${data.keywordValue[0].from}&ratingTo=${data.keywordValue[0].to}`
+
+          break;
+
+      }
+      this.router
+          .navigateByUrl("/", { skipLocationChange: true })
+          .then(() =>    this.router.navigate(['/search'], {
+            queryParams: {
+              filter: filter
+            }
+          }));
     }
+
+    // else if (!data.categoryIds && !data.role) {
+    //   let regCount = this.activitySearched + 1
+    //   this.cookies.set('activitySearched', String(regCount), 30);      this.filterData.activityName = "";
+    //   // this.filterData.subcatId = '';
+    //   // this.filterData.categoryId = data._id;
+    //   // this.filterData.searchedCategoryKey = data.name;
+    //   // this.dataservice.setOption(this.filterData);
+    //   // this.router.navigate(["/search"]);
+    //   // if (this.routeName === "/search") {
+    //   //   this.router
+    //   //     .navigateByUrl("/", { skipLocationChange: true })
+    //   //     .then(() => this.router.navigate(["search"]));
+    //   // }
+    //   let filter = `categoryId=${data._id}`
+    //   this.router.navigate(['/search'], {
+    //     queryParams: {
+    //       filter: filter
+    //     }
+    //   });
+
+    // }
+    // else if (data.categoryIds && !data.role) {
+    //   let regCount = this.activitySearched + 1
+    //   this.cookies.set('activitySearched', String(regCount), 30);
+    //   // this.filterData.activityName = ''
+    //   // this.filterData.lat = ''
+    //   // this.filterData.lng = ''
+    //   // this.filterData.searchedCategoryKey = data.name;
+    //   // this.filterData.categoryId = ''
+    //   // this.filterData.subcatId = data._id
+    //   // this.dataservice.setOption(this.filterData)
+    //   // this.router.navigate(['/search']);
+    //   // if (this.routeName === "/search") {
+    //   //   this.router
+    //   //     .navigateByUrl("/", { skipLocationChange: true })
+    //   //     .then(() => this.router.navigate(["search"]));
+    //   // }
+    //   let filter = `tagsIds=${data._id}`
+    //   this.router.navigate(['/search'], {
+    //     queryParams: {
+    //       filter: filter
+    //     }
+    //   });
+    // }
 
   }
 

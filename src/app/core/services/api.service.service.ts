@@ -388,6 +388,20 @@ export class ApiService {
         });
         return subject.asObservable();
     }
+    
+    searchKeywords(key): Observable<any> {
+        const subject = new Subject<any>();
+        this.http.get(`${this.root}/filterkeys/search?name=${key}`, this.getHeader()).subscribe((responseData:any) => {
+            if(responseData.isSuccess){
+                this.userResponse = responseData;
+                subject.next(this.userResponse);
+            }
+        }, (error) => {
+            subject.next(error.error);
+        });
+        return subject.asObservable();
+    }
+    
       //------------------------- contactUs --------------------------------->
 
       contactUs(data): Observable<User[]> {
