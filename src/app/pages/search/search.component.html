@@ -317,6 +317,54 @@
                                    </div>
                                 </div>
                             </li>
+
+                            <li class="cursor">
+                                <a aria-expanded="true" aria-expanded="true" data-target="#rating" data-toggle="collapse">Rating</a>
+                                <div class="rating-collapse-info collapse main_collpase" id="rating" data-parent="#accordionExample">
+                                        <div class="reviews-filter-info">
+                                            <div class="reviews-filter-box">
+                                                <form action="">
+                                                <div class="reviews-filter-grid">
+                                                    <div class="reviews-filter-checkbox">
+                                                        <input type="checkbox" name="categoriescheck" class="review-input-checkbox" />     
+                                                    </div>
+                                                    <div class="reviews-filter-star">
+                                                        <p>
+                                                            <span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                            </span>
+                                                            <span class="ratingstar-kids">And More</span>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="reviews-filter-grid">
+                                                    <div class="reviews-filter-checkbox">
+                                                        <input type="checkbox" name="categoriescheck" class="review-input-checkbox" />     
+                                                    </div>
+                                                    <div class="reviews-filter-star">
+                                                        <p>
+                                                            <span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                            </span>
+                                                            <span class="ratingstar-kids"></span>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                </div>
+                            </li>     
+
+
                             <li class="cursor">
                                 <a aria-expanded="true"(click)="isTopFilterCheckBox=!isTopFilterCheckBox;setFilterQuery('rating')" [ngClass]="{ active:isTopFilterCheckBox}" aria-expanded="true"
                                     data-target="#Rating" data-toggle="collapse">Top Rated</a>

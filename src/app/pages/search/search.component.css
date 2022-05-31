@@ -3601,3 +3601,18 @@ footer {
     text-overflow: ellipsis;
 }
 .max-width-400{position: relative;max-width: 400px;}
+
+/* start css reviews-filter-info */
+.rating-collapse-info.main_collpase {padding: 0px;min-width: 250px;}
+.reviews-filter-box{padding: 15px 20px 5px 20px;}
+.reviews-filter-grid {display: flex;column-gap: 10px;margin-bottom: 10px;}
+.review-input-checkbox {border-radius: 2px;width: 16px;height: 16px;border: 1px solid #494949;
+    background-color: #fff;outline: 0;box-sizing: border-box;display: inline-block;
+    vertical-align: middle;position: relative;-webkit-appearance: none;cursor: pointer;}
+.review-input-checkbox:checked {background: #53b2e8;border-color: transparent;color: #fff;}
+.review-input-checkbox::before{width: 12px;height: 12px;font-size: 12px;
+    line-height: 1;transform: scale(0) translate(-50%, -50%);overflow: hidden;
+    position: absolute;top: 7px;left: 7px;content: "\2713";font-family: "poppins";}
+.review-input-checkbox:checked::before {border-radius: 1px;transform: scale(1) translate(-50%, -50%);}
+
+/* end css reviews-filter-info */
