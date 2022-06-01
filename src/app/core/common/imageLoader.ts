@@ -7,7 +7,7 @@ export class Globals {
   public img = "assets/loader.gif";
   public logo = "assets/logo.png";
   public noCat = "assets/guitar.png";
-  date = '2022-01-01'
+  date = 'Wed Mar 03 2021'
   constructor(public datePipe: DatePipe) {
 
   }
