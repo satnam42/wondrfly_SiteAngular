@@ -825,9 +825,9 @@
                                                                 </div>
                                                                 <div>
                                                                     <p *ngIf="!program?.programs[0]?.isTimeNotMention">
-                                                                        {{globalFunc.tools_replaceAll(program?.programs[0]?.time?.from?.toFixed(2)?.toString(),".",":"
+                                                                        {{globalFunc.tools_replaceAll(program?.programs[0]?.time?.from?.toFixed(2),".",":"
                                                                         )}} –
-                                                                        {{globalFunc.tools_replaceAll(program?.programs[0]?.time?.to?.toFixed(2)?.toString(),".",":"
+                                                                        {{globalFunc.tools_replaceAll(program?.programs[0]?.time?.to?.toFixed(2),".",":"
                                                                         )}}</p>
                                                                     <p *ngIf="program?.programs[0]?.isTimeNotMention">Time not mentioned</p>
             

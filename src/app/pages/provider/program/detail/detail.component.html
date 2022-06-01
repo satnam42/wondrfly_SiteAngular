@@ -213,9 +213,9 @@
 
                                                 <p *ngIf="!program?.isTimeNotMention">
                                                     <img src="assets/watch.svg" alt="Loction Pin" /> {{
-                                                    globalFunc.tools_replaceAll(program?.time?.from?.toFixed(2)?.toString(),".",":"
+                                                    globalFunc.tools_replaceAll(program?.time?.from?.toFixed(2),".",":"
                                                     )}} - {{
-                                                    globalFunc.tools_replaceAll(program?.time?.to?.toFixed(2)?.toString(),".",":"
+                                                    globalFunc.tools_replaceAll(program?.time?.to?.toFixed(2),".",":"
                                                     )}}
                                                 </p>
                                                 <!-- <p *ngIf="program?.isTimeNotMention">
@@ -223,8 +223,8 @@
                                                 </p> -->
                                                 <p *ngIf="!program?.isTimeNotMention">
                                                     <img src="assets/timer.svg" alt="Loction Pin" />{{
-                                                    globalFunc.timeDifference(globalFunc.tools_replaceAll(program?.time?.from?.toFixed(2)?.toString(),".",":"
-                                                    ),globalFunc.tools_replaceAll(program?.time?.to?.toFixed(2)?.toString(),".",":"
+                                                    globalFunc.timeDifference(globalFunc.tools_replaceAll(program?.time?.from?.toFixed(2),".",":"
+                                                    ),globalFunc.tools_replaceAll(program?.time?.to?.toFixed(2),".",":"
                                                     )) }}
                                                 </p>
 
@@ -1361,9 +1361,9 @@
                                                 </div>
                                                 <div>
                                                     <p *ngIf="!activity?.isTimeNotMention">
-                                                        {{globalFunc.tools_replaceAll(activity?.time?.from?.toFixed(2)?.toString(),".",":"
+                                                        {{globalFunc.tools_replaceAll(activity?.time?.from?.toFixed(2),".",":"
                                                         )}} -
-                                                        {{globalFunc.tools_replaceAll(activity?.time?.to?.toFixed(2)?.toString(),".",":"
+                                                        {{globalFunc.tools_replaceAll(activity?.time?.to?.toFixed(2),".",":"
                                                         )}}</p>
                                                     <p *ngIf="activity?.isTimeNotMention">Time Not Mentioned</p>
                                                 </div>

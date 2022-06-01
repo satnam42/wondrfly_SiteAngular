@@ -15,7 +15,8 @@ export class Globals {
   tools_replaceAll(str, find, replace) {
     var escapedFind = find.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
     str = this.date + " " + str?.replace(new RegExp(escapedFind, 'g'), replace)
-    return str = this.datePipe.transform(str, 'h:mm a')
+     str = this.datePipe.transform(str, 'h:mm a')
+    return str.toString()
   }
   // ---get duration by start and end time
   timeDifference(from, end) {
