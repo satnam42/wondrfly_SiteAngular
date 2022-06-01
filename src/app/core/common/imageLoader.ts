@@ -14,9 +14,8 @@ export class Globals {
   // ---time converter
   tools_replaceAll(str, find, replace) {
     var escapedFind = find.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
-    str = this.date + " " + str?.replace(new RegExp(escapedFind, 'g'), replace)
-     str = this.datePipe.transform(str, 'h:mm a')
-    return str.toString()
+    str = this.date + " " + str?.replace(new RegExp(escapedFind, 'g'), replace) + ' UTC'
+    return str = this.datePipe.transform(str, 'h:mm a')
   }
   // ---get duration by start and end time
   timeDifference(from, end) {
