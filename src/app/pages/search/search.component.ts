@@ -487,25 +487,21 @@ export class SearchComponent implements OnInit, OnDestroy {
     //          this.getPublishedProgram();
     //        }
     this.getCategory();
-    this.mapsAPILoader.load().then(() => {
-      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef?.nativeElement);
-      autocomplete.addListener('place_changed', () => {
-        this.ngZone.run(() => {
-          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-          place.formatted_address;
-          if (place.geometry === undefined || place.geometry === null) {
-            return;
-          }
-          this.lat = place.geometry.location.lat();
-          this.lng = place.geometry.location.lng();
-          this.programByLatLng();
-        });
-      });
-    });
-
-
-
-
+    // this.mapsAPILoader.load().then(() => {
+    //   let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef?.nativeElement);
+    //   autocomplete.addListener('place_changed', () => {
+    //     this.ngZone.run(() => {
+    //       let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+    //       place.formatted_address;
+    //       if (place.geometry === undefined || place.geometry === null) {
+    //         return;
+    //       }
+    //       this.lat = place.geometry.location.lat();
+    //       this.lng = place.geometry.location.lng();
+    //       this.programByLatLng();
+    //     });
+    //   });
+    // });
   }
 
   // Get Current Location Coordinates
