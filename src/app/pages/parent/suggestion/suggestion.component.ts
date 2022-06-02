@@ -118,7 +118,7 @@ export class SuggestionComponent implements OnInit {
 
   searchSubCategory(key) {
     let groupDataAll: any = [
-      { label: 'Kewords', data: [] },
+      { label: 'Keywords', data: [] },
       { label: 'Provider', data: [] },
     ]
     if (!key) {
