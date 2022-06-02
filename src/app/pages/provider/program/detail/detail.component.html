@@ -1329,7 +1329,11 @@
                                 <div class="col-12" *ngFor="let activity of  this.providerProgram?.programs;index as i">
                                     <div class="row ativities-boxes-info align-items-center bg_color">
                                         <div class="col-2 name">
-                                            <h6 class="tdata">{{activity.name}}</h6>
+                                            <div class="tooltip-div">
+                                                <h6 class="tdata">{{activity.name}}
+                                                    <span class="tooltip-text">{{activity.name}}</span>
+                                                </h6>
+                                            </div>
                                         </div>
                                         <div class="col-3">
                                             <div class="btn-group-info">

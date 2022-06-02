@@ -436,13 +436,16 @@ button:focus {
 }
 
 .category_list li a {
-    font-size: 13px;
+    font-family: "poppins";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0.001em;
     color: #494949;
     border: 1px solid #494949;
     border-radius: 20px;
-    padding: 0 18px;
-    min-height: 36px;
-    line-height: 36px;
+    padding: 10px 18px;
     display: inline-block;
     margin-right: 12px;
     margin-bottom: 7px;
@@ -1878,7 +1881,8 @@ span.close-filter {
 #typess .form-group.typess input {
     width: auto !important;
     min-height: 0px;
-    padding: 8px;
+    padding: 7px;
+    margin-top: 7px;
 }
 
 #typess {
@@ -1886,15 +1890,22 @@ span.close-filter {
     padding: 10px;
 }
 
-#typess .form-group.typess label {
-    line-height: 16px;
-    margin-top: 15px;
+.search-filterss label.k-checkbox-label {
+    font-family: "poppins";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    letter-spacing: 0.001em;
+    color: #494949;
+    padding: 5px 10px;
 }
-
+.search-filterss .verification_modal .submit_btn {
+    margin-top: 14px;
+}
 #typess .typess-flex {
     display: flex;
     justify-content: flex-start;
-    align-items: flex-end;
 }
 
 
@@ -1904,29 +1915,27 @@ span.close-filter {
 #format .form-group.typess input {
     width: auto !important;
     min-height: 0px;
-    padding: 8px;
+    padding: 7px;
+    margin-top: 7px;
 }
 
 #format {
     min-width: auto;
     padding: 10px;
 }
-
-#format .form-group.typess label {
-    line-height: 16px;
-    margin-top: 15px;
+.format-collapse-info .form-group.typess {
+    margin-bottom: 0px;
 }
 
 #format .typess-flex {
     display: flex;
     justify-content: flex-start;
-    align-items: flex-end;
 }
 
 #Dayss .form-group.typess input {
     width: auto !important;
     min-height: 0px;
-    padding: 8px;
+    padding: 7px;
 }
 
 #Dayss {
@@ -1935,9 +1944,10 @@ span.close-filter {
 }
 
 #Dayss .form-group.typess label {
-    line-height: 12px;
-    margin-top: 15px;
-    padding-left: 0px;
+    font-size: 10px;
+    line-height: 15px;
+    margin-top: 5px;
+    padding: 0px;
 }
 
 #Dayss .typess-flex {
@@ -1966,7 +1976,8 @@ span.close-filter {
 #timess .form-group.typess input {
     width: auto !important;
     min-height: 0px;
-    padding: 8px;
+    padding: 7px;
+    margin-top: 7px
 }
 
 #timess {
@@ -1974,21 +1985,11 @@ span.close-filter {
     padding: 10px;
 }
 
-#timess .form-group.typess label {
-    line-height: 12px;
-    margin-top: 15px;
-}
-
 #timess .typess-flex {
     display: flex;
     justify-content: flex-start;
-    align-items: flex-end;
-}
-
-#timess .typess-flex {
     border-bottom: 1px solid #e0e0e0;
-    padding: 20px;
-    padding-top: 8px;
+    padding: 10px 20px;
 }
 
 #timess {
@@ -2012,9 +2013,9 @@ button.btn1-filtersearch.active {
     background: #e2f5ff !important;
 }
 
-.categories-checkbox {
+/* .categories-checkbox {
     top: 3px;
-}
+} */
 
 .sub-categoriesfilterheader h2 {
     font-family: "Poppins";
@@ -2026,11 +2027,13 @@ button.btn1-filtersearch.active {
     color: #494949;
     padding-left: 21px;
     display: flex;
+    align-items: center;
     justify-content: space-between;
 }
 
 .categories-filterheader h2 {
     font-family: "Poppins";
+    font-style: normal;
     font-weight: 500;
     font-size: 18px;
     line-height: 27px;
@@ -2041,19 +2044,18 @@ button.btn1-filtersearch.active {
 
 .categories-filt {
     border-bottom: 1px solid #bdbdbd;
-    padding-top: 20px;
-    padding-bottom: 5px;
-    padding-left: 15px;
+    padding: 10px 0px 10px 15px;
+    align-items: center;
 }
 
 .categories-filtercontent h3 {
     font-family: "Poppins";
     font-style: normal;
-    font-weight: normal;
-    font-size: 17px;
-    line-height: 27px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
     text-align: left;
-    padding: 10px 10px 10px 15px;
+    padding: 7px 15px 7px 15px;
     color: #494949;
     overflow-wrap: break-word;
     width: 50%;
@@ -2066,16 +2068,14 @@ button.btn1-filtersearch.active {
 .sub-categoriesfiltercontent h3 {
     font-family: "Poppins";
     font-style: normal;
-    font-weight: normal;
-    font-size: 17px;
-    line-height: 27px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
     text-align: left;
-    padding: 10px 10px 10px 15px;
+    padding: 5px 6px 5px 6px;
     color: #494949;
     overflow-wrap: break-word;
     width: 95%;
-    min-height: 50px;
-    line-height: 24px;
 }
 
 .col-6.categories-filterheader {
@@ -2466,29 +2466,28 @@ button.map-buttonas {
 
 /*Empty checkbox*/
 
-.k-checkbox {
+/* .k-checkbox {
     background: transparent;
     color: white !important;
-}
+} */
 
 
 /*Checked checkbox*/
 
-.k-checkbox {
+/* .k-checkbox {
     border-color: rgba(0, 0, 0, 0.08);
     color: transparent;
     background-color: #fff;
-}
+} */
 
 .k-checkbox {
-    border-radius: 2px;
+    border-radius: 1px;
     margin: 0;
     padding: 0;
     width: 16px;
     height: 16px;
     line-height: initial;
-    border-width: 1px;
-    border-style: solid;
+    border: 1px solid #494949;
     outline: 0;
     box-sizing: border-box;
     display: inline-block;
@@ -2499,7 +2498,7 @@ button.map-buttonas {
 
 .k-checkbox.k-checked::before,
 .k-checkbox:checked::before {
-    border-radius: 2px;
+    border-radius: 1px;
     -webkit-transform: scale(1) translate(-50%, -50%);
     -ms-transform: scale(1) translate(-50%, -50%);
     transform: scale(1) translate(-50%, -50%);
@@ -2531,7 +2530,8 @@ button.map-buttonas {
 
 .k-checkbox:checked {
     background: #53b2e8;
-    color: white !important;
+    color: #fff !important;
+    border-color: transparent;
 }
 
 .checkbox-checked-name {
@@ -2650,34 +2650,31 @@ button.map-buttonas {
 .sub-categoriesfilterheader h2 span a.clear {
     font-family: Poppins;
     font-style: normal;
-    font-weight: normal;
-    font-size: 13px;
-    line-height: 19px;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 22px;
     letter-spacing: 0.001em;
+    -webkit-text-decoration-line: underline;
     text-decoration-line: underline;
-    color: #000000;
+    color: #494949;
     border: none !important;
     margin-bottom: 0px !important;
 }
-
-
 .sub-categoriesfilterheader h2 span button {
     background: #53b2e8;
     border-radius: 25.1946px;
     font-family: "poppins";
     font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
+    font-weight: 600;
+    font-size: 14px;
     line-height: 16px;
     text-align: center;
     letter-spacing: 0.02em;
     text-transform: capitalize;
     color: #ffffff;
     border: 0px;
-    padding: 10px;
+    padding: 10px 20px;
     margin-right: 20px;
-    padding-left: 15px;
-    padding-right: 15px;
 }
 
 
