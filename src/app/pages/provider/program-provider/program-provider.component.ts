@@ -346,7 +346,7 @@ this.getProviderProgram()  }
       this.addAction(data._id);
     }
     data.name = data.name.replace(/ /g, "-");
-    this.router.navigate(['program', data.name, data._id]);
+    this.router.navigate(['program', data.name, data._id,'filter']);
   }
 
   setSubCategoryId(data) {

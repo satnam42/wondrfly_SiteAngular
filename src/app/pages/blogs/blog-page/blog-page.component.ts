@@ -3,6 +3,7 @@ import { Component, ElementRef, NgZone, OnInit, ViewChild } from '@angular/core'
 import { Meta, Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import axios from 'axios';
+import { CookieService } from 'ngx-cookie-service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { environment } from 'src/environments/environment';
 
@@ -32,12 +33,13 @@ export class BlogPageComponent implements OnInit {
   data: any;
   term: string;
   title = 'Top Kid Friendly Blogs to Follow - Wondrfly';
-
+  blogsVisited = 0
   constructor(
     private titleService: Title,
     private metaTagService: Meta,
     private ngxLoader: NgxUiLoaderService,
-    private router: Router
+    private router: Router,
+    private cookies:CookieService
   ) {
 
     this.getBlog()
@@ -45,6 +47,9 @@ export class BlogPageComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.blogsVisited = Number(this.cookies.get('blogsVisited'))
+    let regCount = this.blogsVisited + 1
+    this.cookies.set('blogsVisited', String(regCount), 30);
     this.titleService.setTitle(this.title);
     this.metaTagService.updateTag(
       { name: 'description', content: "Check out our Blog Section to read posts on trending kid's activities, child development, parenting and muh more. Also, don't miss Wondrfly's top blog posts." }

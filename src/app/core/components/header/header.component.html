@@ -28,7 +28,7 @@
                   </div>
                   <div class="form-group cursor">
                     <button (click)="dataservice.setOption({})" [disabled]="filterData.activityName"
-                      class="banner_button cursor" routerLink="/search">
+                      class="banner_button cursor" (click)="searchKeyword(searchTerm.value)">
                       <img src="assets/search_icon.svg" alt="Search image" />
                     </button>
                   </div>

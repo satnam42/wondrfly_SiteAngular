@@ -71,6 +71,7 @@ export class HeaderComponent implements OnInit {
   newNotifications: any;
   @ViewChild('search', { static: false }) searchElementRef: ElementRef; gitBoxImage = 'assets/gift-box.svg';
   categoryData: any;
+  filterArray:any =[]
   constructor(
     private router: Router,
     private auth: AuthsService,
@@ -504,13 +505,13 @@ export class HeaderComponent implements OnInit {
 
       }
       this.router
-          .navigateByUrl("/", { skipLocationChange: true })
-          .then(() =>    this.router.navigate(['/search'], {
-            queryParams: {
-              filter: filter
-            }
-          }));
-   
+        .navigateByUrl("/", { skipLocationChange: true })
+        .then(() => this.router.navigate(['/search'], {
+          queryParams: {
+            filter: filter
+          }
+        }));
+
     }
     // else if (!data.categoryIds && !data.role) {
     //   // this.filterData.activityName = "";
@@ -553,5 +554,39 @@ export class HeaderComponent implements OnInit {
     //   });
     // }
 
+  }
+  searchKeyword(key) {
+    if(key){
+      this.apiservice.searchMultipleKeywords(key).subscribe((res: any) => {
+        console.log(res)
+      })
+    }
+      
+
+//     var stringArray = key.split(" ")
+//    var  filtred = stringArray.filter(el=>el)
+// let uniqueArry = [...new Set(filtred)];
+
+    // let filter = ``
+    // for (key of uniqueArry) {
+    //   this.apiservice.searchKeywords(key).subscribe((res: any) => {
+    //     console.log(res)
+    //     if (res.data.length) {
+    //       const myPromise = new Promise((resolve, reject) => {
+    //      resolve(   res.data.forEach(item => {
+    //           if(item.keywordName.toLowerCase() == key.toLowerCase()){
+    //             this.filterArray.push(item) 
+    //             console.log('filterArray',this.filterArray)
+    //           }
+    //         }))
+    //       });
+          
+      
+    //     }
+    //     else {
+    //       this.router.navigate(['/search'])
+    //     }
+    //   })
+    // }
   }
 }

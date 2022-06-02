@@ -9,6 +9,7 @@ import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/core/services/api.service.service';
 import { ToastrService } from 'ngx-toastr';
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-blog-detail',
   templateUrl: './blog-detail.component.html',
@@ -39,6 +40,7 @@ export class BlogDetailComponent implements OnInit {
   shareUrl: string;
   shareUrlSocial = environment.baseUrl;
   programs: any = new Program;
+  blogsVisited=0
   constructor(
     public auths: AuthsService,
     private titleService: Title,
@@ -46,7 +48,8 @@ export class BlogDetailComponent implements OnInit {
     private toastr: ToastrService,
     private apiservice: ApiService,
     private router: Router,
-    private activatedroute: ActivatedRoute) {
+    private activatedroute: ActivatedRoute,
+    private cookies:CookieService) {
 
     this.user = this.auths.currentUser()
     this.activatedroute.params.subscribe(data => {
@@ -57,6 +60,9 @@ export class BlogDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.blogsVisited = Number(this.cookies.get('blogsVisited'))
+    let regCount = this.blogsVisited + 1
+    this.cookies.set('blogsVisited', String(regCount), 30);
     window.scroll(0, 0);
     this.getPrograms();
     this.getBlog();

@@ -22,7 +22,7 @@
       <div class="row">
         <div class="col-7">
           <div class="main_img">
-            <img oncontextmenu="return false;" *ngIf="blog[0]?.image[0]?.url"
+            <img oncontextmenu="false;" *ngIf="blog[0]?.image[0]?.url"
               class="blog_img cursor"
               src="{{ blogUrl }}{{ blog[0]?.image[0]?.formats?.thumbnail?.url }}"
               alt="{{ blog[0]?.image[0]?.alternativeText }}"
@@ -58,7 +58,7 @@
             <div class="small_imgs_section">
               <div class="small_img cursor">
                 <!-- <img oncontextmenu="return false;"  (click)="setBlog(blogg)" style="height: 137px;width: 167px;" [defaultImage]="defaultImage" [errorImage]="errorImage" lazyLoad="{{blogUrl}}{{blogg?.image[0]?.url}}"/> -->
-                <img oncontextmenu="return false;"
+                <img oncontextmenu="false;"
                   style="height: 137px; width: 167px"
                   src="{{ blogUrl }}{{ blogg?.image[0]?.formats?.thumbnail?.url }}"
                   alt="{{ blogg?.image[0]?.alternativeText }}"
@@ -113,7 +113,7 @@
             "
           >
           <div class="img-overflow">
-            <img oncontextmenu="return false;"
+            <img oncontextmenu="false;"
             (click)="setBlog(blog)"
             class="forth_section_image cursor"
             src="{{ blogUrl }}{{ blog?.image[0]?.formats?.thumbnail?.url }}"
@@ -163,7 +163,7 @@
             "
           >
           <div class="img-overflow">
-            <img oncontextmenu="return false;"
+            <img oncontextmenu="false;"
             (click)="setBlog(blog)"
             class="forth_section_image cursor"
             src="{{ blogUrl }}{{ blog?.image[0]?.formats?.thumbnail?.url }}"
@@ -213,7 +213,7 @@
             "
           >
           <div class="img-overflow">
-            <img oncontextmenu="return false;"
+            <img oncontextmenu="false;"
             (click)="setBlog(blog)"
             class="forth_section_image cursor"
             src="{{ blogUrl }}{{ blog?.image[0]?.formats?.thumbnail?.url }}"
@@ -256,7 +256,7 @@
         >
           <div class="small_section">
             <div class="small_section_img">
-              <img oncontextmenu="return false;"
+              <img oncontextmenu="false;"
                 (click)="setBlog(blog)"
                 class="small_section_img cursor"
                 src="{{ blogUrl }}{{ blog?.image[0]?.formats?.thumbnail?.url }}"
@@ -298,7 +298,7 @@
               "
             >
             <div class="img-overflow ">
-              <img oncontextmenu="return false;"
+              <img oncontextmenu=" false;"
               (click)="setBlog(blog)"
               class="forth_section_image cursor"
    
