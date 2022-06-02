@@ -2378,15 +2378,14 @@ h6.today-heading {
 }
 
 .box {
-    width: 245px;
+    width: 305px;
     background-color: #53B2E8;
-    ;
     color: #fff;
     padding: 10px;
     position: absolute;
     border-radius: 6px;
-    right: -35px;
-    top: 39px;
+    right: -65px;
+    top: 45px;
     display: none;
     transition: 0.5s;
 }
@@ -2395,8 +2394,6 @@ h6.today-heading {
     background: #FFFFFF;
     border-radius: 20px;
     border: 0px;
-    padding-left: 15px;
-    padding-right: 15px;
     font-family: "Poppins";
     font-style: normal;
     font-weight: 600;
@@ -2404,44 +2401,45 @@ h6.today-heading {
     line-height: 15px;
     letter-spacing: 0.001em;
     color: #53B2E8;
-    margin-top: 8px;
+    padding: 3px 15px;
+    margin-top: 5px;
     float: right;
 }
 
 .box.arrow-top h2 {
     font-family: "Poppins";
     font-style: normal;
-    font-weight: normal;
-    font-size: 10px;
-    line-height: 15px;
-    letter-spacing: 0.001em;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 130%;
+    letter-spacing: 0.15px;
     color: #FFFFFF;
-    margin-top: 5px;
+    margin-top: 0px;
 }
 
 .box.arrow-top h1 {
     font-family: "Poppins";
     font-style: normal;
     font-weight: 600;
-    font-size: 12px;
-    line-height: 18px;
-    letter-spacing: 0.001em;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
     color: #FFFFFF;
+    text-transform: capitalize;
 }
 
 .box.arrow-top:after {
     content: " ";
     position: absolute;
-    right: 30px;
-    top: -15px;
+    right: 36px;
+    top: -10px;
     border-top: none;
-    border-right: 15px solid transparent;
-    border-left: 15px solid transparent;
-    border-bottom: 15px solid #53B2E8;
-    ;
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+    border-bottom: 10px solid #53B2E8;
 }
 
-span.icon.rel:hover .box {
+span.icon.rel .box {
     display: block;
     transition: 0.5s;
 }

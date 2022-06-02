@@ -104,6 +104,13 @@
             <div class="progress-imagewith">
               <a class="cursor" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">
+                <span class="icon rel" *ngIf="+profileProgress<100">
+                  <div class="box arrow-top">
+                    <h1>Profile {{profileProgress}}% Complete</h1>
+                    <h2>Profile Completion Score</h2>
+                    <button (click)="profile()">Complete</button>
+                  </div>
+                </span>
                 <div class="head_profile" [class.initial-alpha]="!user?.avatarImages">
                   <div class="progress" id="progress">
                     <span class="progress-left">
@@ -119,6 +126,7 @@
                 </div>
               </a>
               <div class="dropdown-menu header-logoutdrop" aria-labelledby="navbarDropdown">
+                 
                 <a class="dropdown-item cursor active-head" (click)="profile()"><img
                     src="assets/new-profile.svg" />Profile</a>
                 <a class="dropdown-item cursor active-head" (click)="savedList()"><img
