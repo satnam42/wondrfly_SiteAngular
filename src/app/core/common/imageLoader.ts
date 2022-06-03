@@ -15,14 +15,15 @@ export class Globals {
   tools_replaceAll(str, find, replace) {
     var escapedFind = find.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
     str = this.date + " " + str?.replace(new RegExp(escapedFind, 'g'), replace) + ' UTC'
-    try{ return str =  this.datePipe.transform(str,'h:mm a')
+    try {
+      return str = this.datePipe.transform(str, 'h:mm a')
+    }
+    catch (err) {
+    }
+    finally {
+      return str
+    }
   }
-  catch(err){
-console.log('errrr',err)
-  }
-  finally { 
-    return 'Invalid Time'
-  }  }
   // ---get duration by start and end time
   timeDifference(from, end) {
     var timeStart: any = new Date("01/01/2007 " + from)
@@ -47,11 +48,11 @@ console.log('errrr',err)
     }
     return duration
   }
-    // ---get hours or minutes 
+  // ---get hours or minutes 
   getHourOrMinute(str, find, replace) {
-      var escapedFind = find.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
-      str = this.date + " " + str?.replace(new RegExp(escapedFind, 'g'), replace)
-      return str = this.datePipe.transform(str, 'mm')
+    var escapedFind = find.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
+    str = this.date + " " + str?.replace(new RegExp(escapedFind, 'g'), replace)
+    return str = this.datePipe.transform(str, 'mm')
   }
 
 }
