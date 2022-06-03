@@ -15,8 +15,14 @@ export class Globals {
   tools_replaceAll(str, find, replace) {
     var escapedFind = find.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
     str = this.date + " " + str?.replace(new RegExp(escapedFind, 'g'), replace) + ' UTC'
-    return str = this.datePipe.transform(str, 'h:mm a')
+    try{ return str =  this.datePipe.transform(str,'h:mm a')
   }
+  catch(err){
+console.log('errrr',err)
+  }
+  finally { 
+    return 'Invalid Time'
+  }  }
   // ---get duration by start and end time
   timeDifference(from, end) {
     var timeStart: any = new Date("01/01/2007 " + from)
