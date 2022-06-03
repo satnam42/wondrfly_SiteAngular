@@ -565,6 +565,7 @@ export class HeaderComponent implements OnInit {
     if(key){
       this.apiservice.searchMultipleKeywords(key).subscribe((res: any) => {
         console.log(res)
+        if(res.data.length){}
       })
     }
       
@@ -573,26 +574,6 @@ export class HeaderComponent implements OnInit {
 //    var  filtred = stringArray.filter(el=>el)
 // let uniqueArry = [...new Set(filtred)];
 
-    // let filter = ``
-    // for (key of uniqueArry) {
-    //   this.apiservice.searchKeywords(key).subscribe((res: any) => {
-    //     console.log(res)
-    //     if (res.data.length) {
-    //       const myPromise = new Promise((resolve, reject) => {
-    //      resolve(   res.data.forEach(item => {
-    //           if(item.keywordName.toLowerCase() == key.toLowerCase()){
-    //             this.filterArray.push(item) 
-    //             console.log('filterArray',this.filterArray)
-    //           }
-    //         }))
-    //       });
-          
-      
-    //     }
-    //     else {
-    //       this.router.navigate(['/search'])
-    //     }
-    //   })
-    // }
-  }
+    }
+
 }

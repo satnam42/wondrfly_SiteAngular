@@ -403,7 +403,7 @@ export class ApiService {
     }
     searchMultipleKeywords(key): Observable<any> {
         const subject = new Subject<any>();
-        this.http.get(`${this.root}/filterkeys/search?name=${key}`, this.getHeader()).subscribe((responseData:any) => {
+        this.http.get(`${this.root}/freetextSearch/search?text=${key}`, this.getHeader()).subscribe((responseData:any) => {
             if(responseData.isSuccess){
                 this.userResponse = responseData;
                 subject.next(this.userResponse);

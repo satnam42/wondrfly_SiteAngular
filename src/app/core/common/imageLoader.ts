@@ -14,7 +14,7 @@ export class Globals {
   // ---time converter
   tools_replaceAll(str, find, replace) {
     var escapedFind = find.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
-    str = this.date + " " + str?.replace(new RegExp(escapedFind, 'g'), replace) + ' UTC'
+    str = this.date + " " + str?.replace(new RegExp(escapedFind, 'g'), replace)
     try {
       return str = this.datePipe.transform(str, 'h:mm a')
     }

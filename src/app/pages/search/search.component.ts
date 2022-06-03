@@ -1125,6 +1125,7 @@ export class SearchComponent implements OnInit, OnDestroy {
         if (!this.providerProgram.length) {
           this.isLoaded = true
         }
+        this.ngxLoader.stop()
         // if (this.providerProgram.length) {
         //   this.providerProgram[0].collapsed = true
         // }
@@ -1149,7 +1150,6 @@ export class SearchComponent implements OnInit, OnDestroy {
         this.startTour()
         this.isScrol = false;
       }
-      this.ngxLoader.stop()
       var filterObj = JSON.parse('{"' + filter.replace(/&/g, '","').replace(/=/g, '":"') + '"}', function (key, value) { return key === "" ? value : decodeURIComponent(value) })
       console.log('filterObj', filterObj)
 
