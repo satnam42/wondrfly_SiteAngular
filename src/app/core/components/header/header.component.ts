@@ -72,6 +72,7 @@ export class HeaderComponent implements OnInit {
   @ViewChild('search', { static: false }) searchElementRef: ElementRef; gitBoxImage = 'assets/gift-box.svg';
   categoryData: any;
   filterArray:any =[]
+  profileProgressPopup:boolean
   constructor(
     private router: Router,
     private auth: AuthsService,
@@ -86,6 +87,7 @@ export class HeaderComponent implements OnInit {
     this.user = this.auth.currentUser();
     this.auth.userChanges.subscribe((user) => (this.user = user));
     this.routeName = this.router.url;
+
     if (this.routeName === "/search") {
       this.logoPosition = true;
     }
@@ -144,6 +146,11 @@ export class HeaderComponent implements OnInit {
       .subscribe((res: any) => {
         this.profileProgress = res.profileProgress.toString();
         $("#progress").attr("data-percentage", this.profileProgress);
+        if (this.routeName === `/parent/profile/${this.user.id}`) {
+          this.profileProgressPopup = false
+        }else{
+          this.profileProgressPopup = true
+        }
       });
   }
   getUserById(id?) {
@@ -249,7 +256,6 @@ export class HeaderComponent implements OnInit {
       }
     })
     this.getUserById();
-
     if ((this.routeName === "/profile", this.user.id)) {
       this.profileClass = "active";
     }
