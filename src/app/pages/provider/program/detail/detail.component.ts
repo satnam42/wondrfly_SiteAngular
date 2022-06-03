@@ -1099,29 +1099,29 @@ export class DetailComponent implements OnInit {
       case 'days':
         this.days.forEach((element) => {
           if (element.nativeElement.defaultValue === this.selectedDays[indx]) {
-            this.selectedDays.splice(indx, 1);
             element.nativeElement.checked = false;
           }
         });
+        this.selectedDays.splice(indx, 1);
         this.setFilterQuery('day')
         break;
 
       case 'times':
         this.times.forEach((element) => {
           if (element.nativeElement.value === this.selectedProgramTime[indx]) {
-            this.selectedProgramTime.splice(indx, 1);
             element.nativeElement.checked = false;
           }
         });
+        this.selectedProgramTime.splice(indx, 1);
         this.setFilterQuery('time')
         break;
       case 'types':
         this.types.forEach((element) => {
           if (element.nativeElement.value === this.selectedProgramTypes[indx]) {
-            this.selectedProgramTypes.splice(indx, 1);
             element.nativeElement.checked = false;
           }
         });
+        this.selectedProgramTypes.splice(indx, 1);
         this.setFilterQuery('type')
         break;
     }
