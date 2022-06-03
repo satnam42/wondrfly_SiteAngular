@@ -399,18 +399,18 @@
                                    </div>
                                 </div> -->
                             </li>
-
-                            <!-- <li class="cursor">
-                                <a class="top-rateds" aria-expanded="true" [ngClass]="{ active: isTopFilter }"><span
+<!-- 
+                            <li class="cursor">
+                                <a class="top-rateds" aria-expanded="true" [ngClass]="{ active: isChildCareFilter }"><span
                                         class="simple-toggle">
-                                        Top Rated
                                         <span>
                                             <label class="switch1">
                                                 <input [(ngModel)]="isTopFilterCheckBox"
-                                                    (change)="contentLoaded=false;programFilter()" type="checkbox" />
+                                                    (change)="contentLoaded=false" type="checkbox" />
                                                 <span class="slider1"></span>
                                             </label>
                                         </span>
+                                        Child Care Included
                                     </span>
                                 </a>
                             </li> -->
@@ -491,15 +491,15 @@
                             (click)="contentLoaded=false;isTopFilterCheckBox=false;isTopFilter=false;setFilterQuery('rating')">
                             cancel</mat-icon>
                     </button>
-                    <button class="btn_style save_btn cursor" *ngFor="let day of this.selectedDays;index as i">
+                    <button class="btn_style save_btn cursor" *ngFor="let day of this.selectedDays;let i=index">
                         {{day}}
                         <mat-icon (click)="removeRecentSearches('days',i)" class="ml-2">cancel</mat-icon>
                     </button>
-                    <button class="btn_style save_btn cursor" *ngFor="let type of this.selectedProgramTypes;index as i">
+                    <button class="btn_style save_btn cursor" *ngFor="let type of this.selectedProgramTypes;let i=index">
                         {{type}}
                         <mat-icon (click)="removeRecentSearches('types',i)" class="ml-2">cancel</mat-icon>
                     </button>
-                    <button class="btn_style save_btn cursor" *ngFor="let time of this.selectedProgramTime;index as i">
+                    <button class="btn_style save_btn cursor" *ngFor="let time of this.selectedProgramTime;let i=index">
                         {{time}}
                         <mat-icon (click)="removeRecentSearches('times',i)" class="ml-2">cancel</mat-icon>
                     </button>
