@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
   envName: string;
   currentOS = null;
   cookiesData: string;
+  versionData:string = '0.0.1'
   constructor(
     private canonicalService: CanonicalService,
     private deviceService: DeviceDetectorService,
@@ -22,9 +23,11 @@ export class AppComponent implements OnInit {
     if (environment.name && environment.name !== 'prod') {
       this.envName = environment.name;
     }
-
-
-
+    let versionData =  this.cookies.get('_v');
+    if(this.versionData !== versionData){
+      this.cookies.deleteAll();
+      this.cookies.set('_v', this.versionData);
+  }
   }
   checkCookieData(data) {
     this.cookiesData = data

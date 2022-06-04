@@ -345,21 +345,21 @@ export class DetailComponent implements OnInit {
     this.apiservice.getProgramById(this.program.id).subscribe(res => {
       this.ngxLoader.stop();
       this.program = res
-      // let event: any = {
-      //   start: new Date(this.program.date.from),
-      //   // end: new Date('2020-01-01')
-      //   end: new Date(this.program.date.to),
-      //   summary: this.program.name,
-      //   description: this.program.description,
-      //   location: this.program.location,
-      //   url: 'https://www.wondrfly.com'
-      // }
+      let event: any = {
+        start: new Date(this.program.date.from),
+        // end: new Date('2020-01-01')
+        end: new Date(this.program.date.to),
+        summary: this.program.name,
+        description: this.program.description,
+        location: this.program.location,
+        url: 'https://www.wondrfly.com'
+      }
 
-      // event.start.setHours(Math.trunc(this.program.time.from))
-      // event.start.setMinutes(this.globalFunc.getHourOrMinute(this.program.time.from.toFixed(2).toString(), ".", ":"))
-      // event.end.setHours(Math.trunc(this.program.time.to))
-      // event.end.setMinutes(this.globalFunc.getHourOrMinute(this.program.time.to.toFixed(2).toString(), ".", ":"))
-      // this.events.push(event)
+      event.start.setHours(Math.trunc(this.program.time.from))
+      event.start.setMinutes(this.globalFunc.getHourOrMinute(this.program.time.from.toFixed(2).toString(), ".", ":"))
+      event.end.setHours(Math.trunc(this.program.time.to))
+      event.end.setMinutes(this.globalFunc.getHourOrMinute(this.program.time.to.toFixed(2).toString(), ".", ":"))
+      this.events.push(event)
       // this.program.time.from =moment(this.program.time.from).format("h:mm");
       // this.program.time.to = moment(this.program.time.to).format("h:mm");
       // this.program.time.from =this.convertNumToTime(this.program.time.from.toFixed(2))
