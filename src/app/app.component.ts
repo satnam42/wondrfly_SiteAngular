@@ -23,8 +23,8 @@ export class AppComponent implements OnInit {
     if (environment.name && environment.name !== 'prod') {
       this.envName = environment.name;
     }
-    let versionData =  this.cookies.get('_v');
-    if(this.versionData !== versionData){
+    let version =  this.cookies.get('_v');
+    if(this.versionData !== version){
       this.cookies.deleteAll();
       this.cookies.set('_v', this.versionData);
   }
