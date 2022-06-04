@@ -318,15 +318,35 @@
                                 </div>
                             </li>
 
-                            <!-- <li class="cursor">
-                                <a aria-expanded="true" aria-expanded="true" data-target="#rating" data-toggle="collapse">Rating</a>
+                            <li class="cursor">
+                                <a aria-expanded="true"  [ngClass]="{ active:(isRating3_5 || isRating4_5)}" aria-expanded="true" data-target="#rating" data-toggle="collapse">Rating</a>
                                 <div class="rating-collapse-info collapse main_collpase" id="rating" data-parent="#accordionExample">
                                         <div class="reviews-filter-info">
                                             <div class="reviews-filter-box">
                                                 <form action="">
+                                                    <div class="reviews-filter-grid">
+                                                        <div class="reviews-filter-checkbox">
+                                                            <input type="checkbox"   data-target="#rating"
+                                                            data-toggle="collapse" [checked]="!isRating3_5 && isRating4_5"
+                                                            (change)="(isRating4_5?isRating4_5=false:isRating4_5=true);(isRating3_5?isRating3_5=false:false);setFilterQuery('rating4_5')" name="categoriescheck" class="review-input-checkbox" />     
+                                                        </div>
+                                                        <div class="reviews-filter-star">
+                                                            <p>
+                                                                <span>
+                                                                    <span class="fa fa-star checked"></span>
+                                                                    <span class="fa fa-star checked"></span>
+                                                                    <span class="fa fa-star checked"></span>
+                                                                    <span class="fa fa-star checked "></span>
+                                                                    <span class="fa fa-star-o"></span>
+                                                                </span>
+                                                                <span class="ratingstar-kids">And More</span>
+                                                            </p>
+                                                        </div>
+                                                    </div>
                                                 <div class="reviews-filter-grid">
                                                     <div class="reviews-filter-checkbox">
-                                                        <input type="checkbox" name="categoriescheck" class="review-input-checkbox" />     
+                                                        <input    data-target="#rating" data-toggle="collapse" type="checkbox" [checked]="isRating3_5 && !isRating4_5"
+                                                        (change)="(isRating3_5?isRating3_5=false:isRating3_5=true);(isRating4_5?isRating4_5=false:false);setFilterQuery('rating3_5')" name="categoriescheck" class="review-input-checkbox" />     
                                                     </div>
                                                     <div class="reviews-filter-star">
                                                         <p>
@@ -334,71 +354,26 @@
                                                                 <span class="fa fa-star checked"></span>
                                                                 <span class="fa fa-star checked"></span>
                                                                 <span class="fa fa-star checked"></span>
-                                                                <span class="fa fa-star checked"></span>
-                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star-o"></span>
+                                                                <span class="fa fa-star-o "></span>
                                                             </span>
                                                             <span class="ratingstar-kids">And More</span>
                                                         </p>
                                                     </div>
                                                 </div>
-                                                <div class="reviews-filter-grid">
-                                                    <div class="reviews-filter-checkbox">
-                                                        <input type="checkbox" name="categoriescheck" class="review-input-checkbox" />     
-                                                    </div>
-                                                    <div class="reviews-filter-star">
-                                                        <p>
-                                                            <span>
-                                                                <span class="fa fa-star checked"></span>
-                                                                <span class="fa fa-star checked"></span>
-                                                                <span class="fa fa-star checked"></span>
-                                                                <span class="fa fa-star checked"></span>
-                                                                <span class="fa fa-star checked"></span>
-                                                            </span>
-                                                            <span class="ratingstar-kids"></span>
-                                                        </p>
-                                                    </div>
-                                                </div>
+                                             
                                                 </form>
                                             </div>
                                         </div>
                                 </div>
-                            </li>      -->
+                            </li>     
 
 
-                            <li class="cursor">
+                            <!-- <li class="cursor">
                                 <a aria-expanded="true"(click)="isTopFilterCheckBox=!isTopFilterCheckBox;setFilterQuery('rating')" [ngClass]="{ active:isTopFilterCheckBox}" aria-expanded="true"
                                     data-target="#Rating" data-toggle="collapse">Top Rated</a>
-                                <!-- <div class="rating-collapse-info collapse main_collpase typess verification_modal" id="Rating"
-                                    data-parent="#accordionExample">
-                                    <div class="collpase_content">
-                                        <div class="form-group typess">
-                                            <div class="input_outer">
-                                                <form action="">
-                                                    <div class="typess-flex" >
-                                                        <input  data-target="#format"
-                                                        data-toggle="collapse" type="checkbox" [checked]="isOnline && !isInPerson"
-                                                        (change)="(isOnline?isOnline=false:isOnline=true);(isInPerson?isInPerson=false:false);programFilter()"
-                                                            class="k-checkbox" />
-                                                          
-                                                        <label  class="k-checkbox-label"
-                                                            for="type1">Online</label>
-                                                    </div>
-                                                    <div class="typess-flex">
-                                                        <input type="checkbox" data-target="#format"
-                                                        data-toggle="collapse" [checked]="!isOnline && isInPerson"
-                                                        (change)="(isInPerson?isInPerson=false:isInPerson=true);(isOnline?isOnline=false:false);programFilter()"
-                                                            class="k-checkbox" />
-                                                            <label  class="k-checkbox-label"
-                                                            for="type1">In-person</label>
-                                                    </div>
-
-
-                                                </form>
-                                            </div>
-                                        </div>
-                                   </div>
-                                </div> -->
-                            </li>
+                              
+                            </li> -->
 <!-- 
                             <li class="cursor">
                                 <a class="top-rateds" aria-expanded="true" [ngClass]="{ active: isChildCareFilter }"><span
@@ -485,11 +460,13 @@
                         <mat-icon (click)="contentLoaded=false;isMapFilter=!isMapFilter;programFilter()">cancel
                         </mat-icon>
                     </button> -->
-                    <button class="btn_style save_btn cursor" *ngIf="isTopFilterCheckBox">
+                    <button class="btn_style save_btn cursor" *ngIf="isRating3_5 && !isRating4_5">
                         Top Rated
-                        <mat-icon
-                            (click)="contentLoaded=false;isTopFilterCheckBox=false;isTopFilter=false;setFilterQuery('rating')">
-                            cancel</mat-icon>
+                        <mat-icon (click)="contentLoaded=false;isRating3_5=!isRating3_5;setFilterQuery('rating3_5')">cancel</mat-icon>
+                    </button>
+                    <button class="btn_style save_btn cursor" *ngIf="isRating4_5 && !isRating3_5">
+                        Top Rated
+                        <mat-icon (click)="contentLoaded=false;isRating4_5=!isRating4_5;setFilterQuery('rating4_5')">cancel</mat-icon>
                     </button>
                     <button class="btn_style save_btn cursor" *ngFor="let day of this.selectedDays;let i=index">
                         {{day}}

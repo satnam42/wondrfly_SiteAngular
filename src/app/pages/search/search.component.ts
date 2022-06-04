@@ -31,7 +31,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   isPriceFilter: boolean = false;
   isTypeFilter: boolean = false;
   isCategoryFilter: boolean = false;
-  isTopFilterCheckBox: boolean = false;
+  // isTopFilterCheckBox: boolean = false;
   isMapFilter: boolean = false;
   isAlert: boolean = true;
   isFav: boolean = false;
@@ -125,6 +125,8 @@ export class SearchComponent implements OnInit, OnDestroy {
   programOwnerData: any = User
   isOnline: boolean = false;
   isInPerson: boolean = false;
+  isRating3_5:boolean = false;
+  isRating4_5:boolean = false;
   type1: any
   subCats: any = [];
   previous;
@@ -430,7 +432,12 @@ export class SearchComponent implements OnInit, OnDestroy {
             this.tempSelectedProgramTypes - type
           }
           if (this.filterObj.hasOwnProperty('ratingFrom') && this.filterObj.hasOwnProperty('ratingTo')) {
-            this.isTopFilterCheckBox = true
+            if (this.filterObj.ratingFrom == '3') {
+              this.isRating3_5 = true
+            }
+            else if(this.filterObj.ratingFrom == '4'){
+              this.isRating4_5 = true
+            }
           }
           if (this.filterObj.hasOwnProperty('inpersonOrVirtual')) {
             if (this.filterObj.inpersonOrVirtual == 'online') {
@@ -618,15 +625,15 @@ export class SearchComponent implements OnInit, OnDestroy {
         }
         break;
 
-      case 'rating':
+      case 'rating3_5':
 
-        if (this.filterObj.hasOwnProperty('ratingFrom') && this.filterObj.hasOwnProperty('ratingTo') && this.isTopFilterCheckBox) {
-          this.filterObj.ratingFrom = 4;
+        if (this.filterObj.hasOwnProperty('ratingFrom') && this.filterObj.hasOwnProperty('ratingTo') && this.isRating3_5) {
+          this.filterObj.ratingFrom = 3;
           this.filterObj.ratingTo = 5;
 
         }
-        else if (!this.filterObj.hasOwnProperty('ratingFrom') && !this.filterObj.hasOwnProperty('ratingTo') && this.isTopFilterCheckBox) {
-          Object.assign(this.filterObj, { ratingFrom: 4 });
+        else if (!this.filterObj.hasOwnProperty('ratingFrom') && !this.filterObj.hasOwnProperty('ratingTo') && this.isRating3_5) {
+          Object.assign(this.filterObj, { ratingFrom: 3 });
           Object.assign(this.filterObj, { ratingTo: 5 });
 
         } else {
@@ -634,6 +641,22 @@ export class SearchComponent implements OnInit, OnDestroy {
           delete this.filterObj['ratingTo']
         }
         break;
+        case 'rating4_5':
+
+          if (this.filterObj.hasOwnProperty('ratingFrom') && this.filterObj.hasOwnProperty('ratingTo') && this.isRating4_5) {
+            this.filterObj.ratingFrom = 4;
+            this.filterObj.ratingTo = 5;
+  
+          }
+          else if (!this.filterObj.hasOwnProperty('ratingFrom') && !this.filterObj.hasOwnProperty('ratingTo') && this.isRating4_5) {
+            Object.assign(this.filterObj, { ratingFrom: 4 });
+            Object.assign(this.filterObj, { ratingTo: 5 });
+  
+          } else {
+            delete this.filterObj['ratingFrom']
+            delete this.filterObj['ratingTo']
+          }
+          break;
 
       case 'online':
 
@@ -755,7 +778,9 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.isOnline = false;
     this.isDaysFilter = false
     this.isTimeFilter = false;
-    this.isTopFilterCheckBox = false
+    // this.isTopFilterCheckBox = false
+    this.isRating3_5 = false;
+    this.isRating4_5 = false
     this.isTopFilter = false;
     this.isMapFilter = false;
     this.isAgeFilter = false;
@@ -832,6 +857,12 @@ export class SearchComponent implements OnInit, OnDestroy {
   activitySorting(programs) {
     programs = programs.sort((a, b) => new Date(a.date.from).valueOf() - new Date(b.date.from).valueOf());
     return programs
+  }
+  setRatingFilter(min,max,e){
+    console.log('min',min)
+    console.log('max',max)
+    console.log('e',e.target['checked'])
+    
   }
   getPublishedProgram() {
     // this.contentLoaded = false;
@@ -1116,7 +1147,7 @@ export class SearchComponent implements OnInit, OnDestroy {
         // this.isTopFilterCheckBox = false
         res.items = res.items.filter(item => item.user[0].isActivated === true)
         this.programs = res.items;
-        if (this.isTopFilter) {
+        if (this.isRating3_5 || this.isRating4_5) {
           this.providerProgram = this.programs.sort((a, b) => b.user[0]?.averageFinalRating - a.user[0]?.averageFinalRating);
         }
         else {
