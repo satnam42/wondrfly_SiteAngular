@@ -401,6 +401,9 @@ export class SearchComponent implements OnInit, OnDestroy {
             this.categoryId = this.filterObj.categoryId;
             this.tempCategoryId = this.filterObj.categoryId
           }
+          else{
+            this.isCategoryFilter = false;
+          }
           if (this.filterObj.hasOwnProperty('tagsIds')) {
             this.isCategoryFilter = true;
             let ids = this.filterObj.tagsIds.split(',');
@@ -408,18 +411,22 @@ export class SearchComponent implements OnInit, OnDestroy {
             this.tempSelectedSubCategories = ids
             this.checkCategoryFilter(this.selectedSubCategories[0], 'subcategory')
           }
-
           if (this.filterObj.hasOwnProperty('day')) {
             this.isDaysFilter = true;
             let days = this.filterObj.day.split(',');
             this.selectedDays = days;
             this.tempSelectedDays = days
           }
+          else{
+            this.isDaysFilter=false
+          }
           if (this.filterObj.hasOwnProperty('time')) {
             this.isTimeFilter = true;
             let time = this.filterObj.time.split(',');
             this.selectedProgramTime = time
             this.tempSelectedProgramTime = time
+          }  else{
+            this.isTimeFilter=false
           }
           if (this.filterObj.hasOwnProperty('type')) {
             this.isTypeFilter = true;
@@ -431,6 +438,9 @@ export class SearchComponent implements OnInit, OnDestroy {
             this.selectedProgramTypes = type
             this.tempSelectedProgramTypes - type
           }
+          else{
+            this.isTypeFilter=false
+          }
           if (this.filterObj.hasOwnProperty('ratingFrom') && this.filterObj.hasOwnProperty('ratingTo')) {
             if (this.filterObj.ratingFrom > +'0') {
               this.isRating3_5 = true
@@ -438,6 +448,10 @@ export class SearchComponent implements OnInit, OnDestroy {
             else if(this.filterObj.ratingFrom >= +'4'){
               this.isRating4_5 = true
             }
+          }
+          else{
+            this.isRating3_5=false;
+            this.isRating4_5 = false
           }
           if (this.filterObj.hasOwnProperty('inpersonOrVirtual')) {
             if (this.filterObj.inpersonOrVirtual == 'online') {
@@ -447,26 +461,41 @@ export class SearchComponent implements OnInit, OnDestroy {
               this.isInPerson = true
             }
           }
+          else{
+            this.isOnline=false;
+            this.isInPerson = false
+          }
           if (this.filterObj.hasOwnProperty('fromDate') && this.filterObj.hasOwnProperty('toDate')) {
             this.isDateFilter = true
             this.fromDate = this.filterObj.fromDate
             this.toDate = this.filterObj.toDate
           }
-
+          else{
+            this.isDateFilter=false;
+          }
           if (this.filterObj.hasOwnProperty('ageFrom') && this.filterObj.hasOwnProperty('ageTo')) {
             this.isAgeFilter = true
             this.minAge = +this.filterObj.ageFrom
             this.maxAge = +this.filterObj.ageTo
+          }
+          else{
+            this.isAgeFilter=false;
           }
           if (this.filterObj.hasOwnProperty('priceFrom') && this.filterObj.hasOwnProperty('priceTo')) {
             this.isPriceFilter = true
             this.minPrice = +this.filterObj.priceFrom
             this.maxPrice = +this.filterObj.priceTo
           }
+          else{
+            this.isPriceFilter=false;
+          }
           if (this.filterObj.hasOwnProperty('lat') && this.filterObj.hasOwnProperty('lng')) {
             this.isMapFilter = true
             this.coordinates.lat = +this.filterObj.lat;
             this.coordinates.lng = +this.filterObj.lng;
+          }
+          else{
+            this.isMapFilter=false;
           }
           this.programFilter(params.filter)
         } else {
