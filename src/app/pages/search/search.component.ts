@@ -394,7 +394,10 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.activatedRoute.queryParams
       .subscribe((params: any) => {
         if (params.filter) {
-          this.filterObj = JSON.parse('{"' + params.filter.replace(/&/g, '","').replace(/=/g, '":"') + '"}', function (key, value) { return key === "" ? value : decodeURIComponent(value) })
+        try{          this.filterObj = JSON.parse('{"' + params.filter.replace(/&/g, '","').replace(/=/g, '":"') + '"}', function (key, value) { return key === "" ? value : decodeURIComponent(value) })
+      } catch(err){
+console.log(err)
+      }
           if (this.filterObj.hasOwnProperty('categoryId')) {
             this.checkCategoryFilter(this.filterObj.categoryId, 'category')
             this.isCategoryFilter = true;

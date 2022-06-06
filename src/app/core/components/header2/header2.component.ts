@@ -429,9 +429,9 @@ export class Header2Component implements OnInit {
                 break;
               case 'days':
                 if (filter) {
-                  filter = `&day=${data.keywordValue[0].days.toString()}`
+                  filter += `&day=${data.keywordValue[0].days.toString()}`
                 } else {
-                  filter = `day=${data.keywordValue[0].days.toString()}`
+                  filter += `day=${data.keywordValue[0].days.toString()}`
                 }
                 break;
               case 'format':
