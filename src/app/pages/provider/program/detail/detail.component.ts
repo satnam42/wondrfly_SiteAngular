@@ -344,17 +344,18 @@ export class DetailComponent implements OnInit {
     programName = programName.toLowerCase();
     programName = programName.replace(/ /g, "-");
     programName = programName.replace(/\?/g, "-");
-    let url = ``
     if (Object.keys(this.filterObj).length) {
       const filter = new URLSearchParams(this.filterObj).toString();
     const url = this.router.serializeUrl(
       this.router.createUrlTree(['program', programName, data._id,filter])
-      
     );
+    window.open(url, '_blank');
     }
     else {
-      this.router.createUrlTree(['program', programName, data._id,'filter'])
-    }
+      const url = this.router.serializeUrl(
+        this.router.createUrlTree(['program', programName, data._id,'filter'])
+      );
+      window.open(url, '_blank');    }
 
     // this.router.navigate(['program', programName, data._id]);
     // const url = this.router.serializeUrl(
