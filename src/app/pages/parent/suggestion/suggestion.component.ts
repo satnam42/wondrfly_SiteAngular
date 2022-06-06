@@ -546,9 +546,9 @@ export class SuggestionComponent implements OnInit {
                 break;
               case 'price':
                 if (filter) {
-                  filter += `&priceFrom=${data.keywordValue[0].from}priceTo=${data.keywordValue[0].to}`
+                  filter += `&priceFrom=${data.keywordValue[0].from}&priceTo=${data.keywordValue[0].to}`
                 } else {
-                  filter += `priceFrom=${data.keywordValue[0].from}priceTo=${data.keywordValue[0].to}`
+                  filter += `priceFrom=${data.keywordValue[0].from}&priceTo=${data.keywordValue[0].to}`
                 }
                 break;
               case 'dates':
