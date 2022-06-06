@@ -27,7 +27,7 @@ button:focus {
   text-align: center;
   font-size: 22px;
   letter-spacing: 0.02em;
-  text-transform: uppercase;
+  text-transform: capitalize;
   font-family: "Poppins";
   color: #fff;
   -webkit-transition: 0.8s;
@@ -135,7 +135,7 @@ button:focus {
   font-weight: 600;
   font-size: 10px;
   line-height: 14px;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #494949;
 }
 
@@ -249,7 +249,7 @@ button:focus {
   font-weight: 600;
   font-size: 10px;
   line-height: 14px;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #777cea;
   padding: 0 0 0 15px;
 }
@@ -464,7 +464,7 @@ footer {
   font-weight: 600;
   font-size: 10px;
   line-height: 14px;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #777cea;
 }
 
@@ -508,7 +508,7 @@ footer {
   font-size: 10px;
   line-height: 14px;
   letter-spacing: 0.01em;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #777cea;
 }
 
@@ -851,7 +851,7 @@ footer {
 .select_avtar p {
   font-weight: 600;
   font-size: 10px;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #c5ced6;
   margin: 14px 0 0 0;
 }
@@ -906,7 +906,7 @@ header .navbar-nav .btn_style {
   border: 1px solid #f15c20;
   box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.1);
   border-radius: 6px;
-  text-transform: uppercase;
+  text-transform: capitalize;
   font-weight: 600;
   font-size: 15px;
 }
@@ -1110,6 +1110,7 @@ header .navbar-nav .btn_style {
   letter-spacing: 0.01em;
   color: #494949;
   margin: 17px 0 0 0;
+  text-transform: capitalize;
 }
 
 .terms_outer .terms_top h3 {
@@ -1146,6 +1147,7 @@ header .navbar-nav .btn_style {
   line-height: 32px;
   letter-spacing: 0.01em;
   color: #494949;
+  text-transform: capitalize;
 }
 
 .terms_content_outer .terms_box ul li {

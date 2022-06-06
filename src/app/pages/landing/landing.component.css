@@ -11,6 +11,7 @@
   line-height: 60px;
   color: #ffffff;
   width: 80%;
+  text-transform: capitalize;
   margin-bottom: 40px;
 }
 
@@ -26,6 +27,7 @@ h2.title {
   font-size: 26px;
   line-height: 18px;
   color: #494949;
+  text-transform: capitalize;
 }
 
 .activity_category_list {
@@ -114,6 +116,7 @@ section.blog-explore .box {
   font-size: 28px;
   line-height: 18px;
   text-align: justify;
+  text-transform: capitalize;
   color: #494949;
   padding-top: 30px;
   padding-bottom: 50px;
@@ -126,7 +129,7 @@ h2.upper-blog-heading {
   line-height: 21px;
   text-align: justify;
   letter-spacing: 0.01em;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #494949;
 }
 span.upper-blog-view {
@@ -400,7 +403,7 @@ button.banner_button.cursor img {
   font-weight: 600;
   font-size: 13px;
   margin: 0 auto;
-  text-transform: uppercase;
+  text-transform: capitalize;
   transition: 0.8s;
 }
 .location-popup span img {

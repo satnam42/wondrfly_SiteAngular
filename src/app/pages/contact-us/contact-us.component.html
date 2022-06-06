@@ -11,7 +11,7 @@
         <div class="contact-usdata">
           <h1>Contact Us</h1>
           <h2>
-            Our mailing address is :
+            Our Mailing Address Is :
             <br />1732 1st Ave, #21026, New York, NY 10128 <br />Email:
             contact@wondrfly.com
           </h2>
@@ -36,10 +36,10 @@
       </div>
       <div class="col-md-7">
         <div class="contact-usform">
-          <h1>Send us a message:</h1>
+          <h1>Send Us A Message:</h1>
           <form [formGroup]="contactUsForm">
             <div class="form-group">
-              <label for="exampleInputEmail1">Email address</label>
+              <label for="exampleInputEmail1">Email Address</label>
               <input
                 type="email"
                 class="form-control"
@@ -54,7 +54,7 @@
                   contactUsForm.controls['email'].touched
                 "
                 class="form-error-msg"
-                >INVALID EMAIL ADDRESS</small
+                >Invalid Email Address</small
               >
               <small
                 *ngIf="
@@ -62,11 +62,11 @@
                   contactUsForm.controls['email'].touched
                 "
                 class="form-error-msg"
-                >EMAIL IS REQUIRED</small
+                >Email Is Required</small
               >
             </div>
             <div class="form-group">
-              <label for="exampleInputPhone1">Phone Number (optional)</label>
+              <label for="exampleInputPhone1">Phone Number (Optional)</label>
               <input
                 type="number"
                 class="form-control"
@@ -92,11 +92,11 @@
                   contactUsForm.controls['subject'].touched
                 "
                 class="form-error-msg"
-                >SUBJECT IS REQUIRED</small
+                >Subject Is Required</small
               >
             </div>
             <div class="form-group text-lengthno">
-              <label for="exampleFormControlTextarea1">DESCRIPTION</label>
+              <label for="exampleFormControlTextarea1">Description </label>
               <textarea
                 maxlength="3000"
                 class="form-control"
@@ -110,7 +110,7 @@
                   contactUsForm.controls['description'].touched
                 "
                 class="form-error-msg"
-                >DESCRIPTION IS REQUIRED</small
+                >Description Is Required</small
               >
               <div class="textarea_length">
                 <p>({{ contactUsForm.value.description?.length }} of 3000)</p>

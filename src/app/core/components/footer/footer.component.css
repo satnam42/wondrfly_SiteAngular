@@ -33,6 +33,7 @@ footer {
   line-height: 18px;
   letter-spacing: 0.001em;
   color: #fff;
+  text-transform: capitalize;
 }
 
 .footer_menu ul a:hover {

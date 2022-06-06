@@ -61,7 +61,7 @@
   font-size: 10px;
   line-height: 15px;
   letter-spacing: 0.01em;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #494949;
   padding-left: 0px;
 }
@@ -83,7 +83,7 @@
   line-height: 16px;
   text-align: center;
   letter-spacing: 0.02em;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #ffffff;
   border: none;
   margin-top: 25px;
