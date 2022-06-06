@@ -323,12 +323,12 @@ export class Header2Component implements OnInit {
 
       }
       this.router
-          .navigateByUrl("/", { skipLocationChange: true })
-          .then(() =>    this.router.navigate(['/search'], {
-            queryParams: {
-              filter: filter
-            }
-          }));
+        .navigateByUrl("/", { skipLocationChange: true })
+        .then(() => this.router.navigate(['/search'], {
+          queryParams: {
+            filter: filter
+          }
+        }));
     }
   }
 
@@ -452,14 +452,18 @@ export class Header2Component implements OnInit {
             }
           }
           console.log(filter)
-          if(filter){
+          if (filter) {
             this.router
-            .navigateByUrl("/", { skipLocationChange: true })
-            .then(() => this.router.navigate(['/search'], {
-              queryParams: {
-                filter: filter
-              }
-            }));
+              .navigateByUrl("/", { skipLocationChange: true })
+              .then(() => this.router.navigate(['/search'], {
+                queryParams: {
+                  filter: filter
+                }
+              }));
+          } else {
+            this.router
+              .navigateByUrl("/", { skipLocationChange: true })
+              .then(() => this.router.navigate(['/search']));
           }
         } else {
           this.router

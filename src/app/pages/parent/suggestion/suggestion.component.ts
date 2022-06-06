@@ -126,7 +126,7 @@ export class SuggestionComponent implements OnInit {
     } else {
       this.apiservice.searchKeywords(key).subscribe((res: any) => {
         this.categoriesBySearch = res.data;
-        res.data.map(keyword=>{keyword.name = keyword.keywordName})
+        res.data.map(keyword => { keyword.name = keyword.keywordName })
         // this.categoriesBySearch.category = this.categoriesBySearch.category.filter((item) => item.isActivated !== false);
         // this.categoriesBySearch.tags = this.categoriesBySearch.tags.filter((item) => item.isActivated !== false && item.programCount);
         // this.categoryData = this.categoriesBySearch.concat(this.categoriesBySearch)
@@ -344,7 +344,7 @@ export class SuggestionComponent implements OnInit {
   getChildByParentId(id) {
     this.ngxLoader.start();
     this.apiservice.getChildByParentId(id).subscribe((res: any) => {
-      if(!res.error){
+      if (!res.error) {
         let kids = res
         console.log(res)
         kids = kids.filter((item) => item.isActivated === true);
@@ -503,12 +503,12 @@ export class SuggestionComponent implements OnInit {
 
       }
       this.router
-      .navigateByUrl("/", { skipLocationChange: true })
-      .then(() => this.router.navigate(['/search'], {
-        queryParams: {
-          filter: filter
-        }
-      }));
+        .navigateByUrl("/", { skipLocationChange: true })
+        .then(() => this.router.navigate(['/search'], {
+          queryParams: {
+            filter: filter
+          }
+        }));
     }
 
   }
@@ -597,16 +597,20 @@ export class SuggestionComponent implements OnInit {
             }
           }
           console.log(filter)
-          if(filter){
+          if (filter) {
             this.router
-            .navigateByUrl("/", { skipLocationChange: true })
-            .then(() => this.router.navigate(['/search'], {
-              queryParams: {
-                filter: filter
-              }
-            }));
+              .navigateByUrl("/", { skipLocationChange: true })
+              .then(() => this.router.navigate(['/search'], {
+                queryParams: {
+                  filter: filter
+                }
+              }));
+          } else {
+            this.router
+              .navigateByUrl("/", { skipLocationChange: true })
+              .then(() => this.router.navigate(['/search']));
           }
- 
+
         } else {
           this.router
             .navigateByUrl("/", { skipLocationChange: true })

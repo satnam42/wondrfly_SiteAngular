@@ -578,7 +578,11 @@
                                                                 <span class="fa fa-star checked"></span>
                                                                 <span class="fa fa-star checked"></span>
                                                             </span>
-                                                            <a> <span></span>(58 Reviews)</a>
+                                                            <span class="no-underline">(</span><a class="no-underline"
+                                                            *ngIf="rating?.totalReviews">{{rating?.totalReviews }}
+                                                            Reviews</a>
+                                                        <a class="no-underline" *ngIf="!rating?.totalReviews">0
+                                                            Reviews</a><span class="no-underline">)</span>
                                                         </p>
                                                     </div>
                                                     <div class="map-locationtext">
@@ -596,7 +600,7 @@
                                 </agm-map>
                             </div>
                         </div>
-                        <div class="col-12" *ngIf="program?.user === this.userId">
+                        <!-- <div class="col-12" *ngIf="program?.user === this.userId">
                             <div class="description_text people_section people_outer">
                                 <h2>People <a>View All</a></h2>
                                 <div class="people_list">
@@ -684,7 +688,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
                         <!-- <div class="container description_text slider carousel-cat" *ngIf="programs?.length">
                             <div class="row row-0 align-items-center mb-30">
@@ -1330,7 +1334,7 @@
                                     <div class="row ativities-boxes-info align-items-center bg_color">
                                         <div class="col-2 name">
                                             <div class="tooltip-div">
-                                                <h6 class="tdata">{{activity.name}}
+                                                <h6 class="tdata cursor"  (click)="goToProgramDetail(activity)">{{activity.name}}
                                                     <span class="tooltip-text">{{activity.name}}</span>
                                                 </h6>
                                             </div>

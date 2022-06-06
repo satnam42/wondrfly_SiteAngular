@@ -339,6 +339,29 @@ export class DetailComponent implements OnInit {
     });
   }
 
+  goToProgramDetail(data) {
+    var programName = data.name;
+    programName = programName.toLowerCase();
+    programName = programName.replace(/ /g, "-");
+    programName = programName.replace(/\?/g, "-");
+    let url = ``
+    if (Object.keys(this.filterObj).length) {
+      const filter = new URLSearchParams(this.filterObj).toString();
+    const url = this.router.serializeUrl(
+      this.router.createUrlTree(['program', programName, data._id,filter])
+      
+    );
+    }
+    else {
+      this.router.createUrlTree(['program', programName, data._id,'filter'])
+    }
+
+    // this.router.navigate(['program', programName, data._id]);
+    // const url = this.router.serializeUrl(
+    //   this.router.createUrlTree(['program', programName, data._id])
+    // );
+    // window.open(url, '_blank');
+  }
   getProgramById() {
     this.events = []
     this.ngxLoader.start();
