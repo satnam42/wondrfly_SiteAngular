@@ -344,25 +344,29 @@ export class SuggestionComponent implements OnInit {
   getChildByParentId(id) {
     this.ngxLoader.start();
     this.apiservice.getChildByParentId(id).subscribe((res: any) => {
-      let kids = res
-      kids = kids.filter((item) => item.isActivated === true);
-      let childIds = ''
-      let count = 1
-      for (let kid of kids) {
-        if (count <= 1) {
-          childIds += kid.id
-          count++
+      if(!res.error){
+        let kids = res
+        console.log(res)
+        kids = kids.filter((item) => item.isActivated === true);
+        let childIds = ''
+        let count = 1
+        for (let kid of kids) {
+          if (count <= 1) {
+            childIds += kid.id
+            count++
+          }
+          else {
+            childIds += ',' + kid.id
+          }
         }
-        else {
-          childIds += ',' + kid.id
+        if (childIds) {
+          this.apiservice.childrenWithFiltredActivity(childIds).subscribe((filtredKidsResponse: any) => {
+            this.kids = filtredKidsResponse.data
+          })
         }
-      }
-      if (childIds) {
-        this.apiservice.childrenWithFiltredActivity(childIds).subscribe((filtredKidsResponse: any) => {
-          this.kids = filtredKidsResponse.data
-        })
       }
       this.ngxLoader.stop();
+
     })
   }
   sendInvite() {
@@ -498,72 +502,117 @@ export class SuggestionComponent implements OnInit {
           break;
 
       }
-      this.router.navigate(['/search'], {
+      this.router
+      .navigateByUrl("/", { skipLocationChange: true })
+      .then(() => this.router.navigate(['/search'], {
         queryParams: {
           filter: filter
         }
-      });
+      }));
     }
 
   }
-  // searchKeyword(key) {
-  //   if (key) {
-  //     let filter = ``
-  //     this.apiservice.searchKeywords(key).subscribe((res: any) => {
-  //       console.log(res)
-  //       if (res.data.length) {
-  //         switch (res.data[0].keywordType) {
-  //           case 'category':
-  //             filter = `categoryId=${res.data[0].keywordValue[0].category}`
-  //             this.router.navigate(['/search'], {
-  //               queryParams: {
-  //                 filter: filter
-  //               }
-  //             });
-  //             break;
-  //           case 'subCategory':
-  //             filter = `categoryId=${res.data[0].keywordValue[0].category}&tagsIds=${res.data[0].keywordValue[0].subcategory.toString()}`
-  //             this.router.navigate(['/search'], {
-  //               queryParams: {
-  //                 filter: filter
-  //               }
-  //             });
-  //             break;
-  //           case 'age':
-  //             filter = `ageFrom=${res.data[0].keywordValue[0].from}&ageTo=${res.data[0].keywordValue[0].to}`
-  //             this.router.navigate(['/search'], {
-  //               queryParams: {
-  //                 filter: filter
-  //               }
-  //             });
-  //             break;
-  //           case 'price':
-  //             break;
-  //           case 'dates':
-  //             break;
-  //           case 'type':
-  //             break;
-  //           case 'time':
-  //             break;
-  //           case 'days':
-  //             break;
-  //           case 'format':
-  //             break;
-  //           case 'topRated':
-  //             break;
+  searchKeyword(txt) {
+    //     var stringArray = key.split(" ")
+    if (txt) {
+      this.apiservice.searchMultipleKeywords(txt).subscribe((res: any) => {
+        const uniqueArry: any = [...new Map(res.data.map((item) => [item["keywordName" && "keywordType"], item])).values()];
+        console.log('uniqueArry', uniqueArry)
+        if (uniqueArry) {
+          let filter = ``
+          for (let data of uniqueArry) {
+            switch (data.keywordType) {
+              case 'category':
+                if (filter) {
+                  filter += `&categoryId=${data.keywordValue[0].category}`
+                } else {
+                  filter += `categoryId=${data.keywordValue[0].category}`
+                }
+                break;
+              case 'subCategory':
+                if (filter) {
+                  filter += `&tagsIds=${data.keywordValue[0].subcategory.toString()}`
+                } else {
+                  filter += `tagsIds=${data.keywordValue[0].subcategory.toString()}`
 
-  //         }
+                }
+                break;
+              case 'age':
+                if (filter) {
+                  filter += `&ageFrom=${data.keywordValue[0].from}&ageTo=${data.keywordValue[0].to}`
+                } else {
+                  filter += `ageFrom=${data.keywordValue[0].from}&ageTo=${data.keywordValue[0].to}`
+                }
+                break;
+              case 'price':
+                if (filter) {
+                  filter += `&priceFrom=${data.keywordValue[0].from}priceTo=${data.keywordValue[0].to}`
+                } else {
+                  filter += `priceFrom=${data.keywordValue[0].from}priceTo=${data.keywordValue[0].to}`
+                }
+                break;
+              case 'dates':
+                if (filter) {
+                  filter += `&fromDate=${data.keywordValue[0].from}&toDate=${data.keywordValue[0].to}`
+                } else {
+                  filter += `fromDate=${data.keywordValue[0].from}&toDate=${data.keywordValue[0].to}`
+                }
+                break;
+              case 'type':
+                if (filter) {
+                  filter += `&type=${data.keywordValue[0].type.toString()}`
+                } else {
+                  filter += `type=${data.keywordValue[0].type.toString()}`
+                }
+                break;
+              case 'time':
+                if (filter) {
+                  filter += `&time=${data.keywordValue[0].time.toString()}`
+                } else {
+                  filter += `time=${data.keywordValue[0].time.toString()}`
+                }
+                break;
+              case 'days':
+                if (filter) {
+                  filter = `&day=${data.keywordValue[0].days.toString()}`
+                } else {
+                  filter = `day=${data.keywordValue[0].days.toString()}`
+                }
+                break;
+              case 'format':
+                if (filter) {
+                  filter += `&inpersonOrVirtual=${data.keywordValue[0].format.toString()}`
+                } else {
+                  filter += `inpersonOrVirtual=${data.keywordValue[0].format.toString()}`
+                }
+                break;
+              case 'topRated':
+                if (filter) {
+                  filter += `&ratingFrom=${data.keywordValue[0].from}&ratingTo=${data.keywordValue[0].to}`
+                } else {
+                  filter += `ratingFrom=${data.keywordValue[0].from}&ratingTo=${data.keywordValue[0].to}`
+                }
+                break;
 
-
-  //       }
-  //       else {
-  //         this.router.navigate(['/search'])
-  //       }
-  //     })
-
-  //   }
-  //   else {
-  //     this.router.navigate(['/search'])
-  //   }
-  // }
+            }
+          }
+          console.log(filter)
+          if(filter){
+            this.router
+            .navigateByUrl("/", { skipLocationChange: true })
+            .then(() => this.router.navigate(['/search'], {
+              queryParams: {
+                filter: filter
+              }
+            }));
+          }
+ 
+        } else {
+          this.router
+            .navigateByUrl("/", { skipLocationChange: true })
+            .then(() => this.router.navigate(['/search']));
+        }
+      })
+    }
+  }
 }

@@ -23,7 +23,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-12 activities-flex">
-                            <h2 class="title">Activities for <span style="color:#53b2e8 ;">{{ kid?.name }}</span></h2>
+                            <h2 class="title">Activities for <span class="child-name">{{ kid?.name }}</span></h2>
                             <span
                                 (click)="filterData.searchedCategoryKey=kids[i].interestInfo[0]?.name;filterData.kidAge=kids[i].age;clickOnViewAllChildIntrests(i)"
                                 class="d-flex justify-content-end">view all</span>
@@ -147,7 +147,7 @@
                                                     </div>
                                                 </form> -->
                                              
-                                                <form class="banner_form" [ngClass]="{'banner_form_error':searchMywondrfly.value && (!allData[0]?.data?.length && !allData[1]?.data?.length)}">
+                                                <form class="banner_form">
                                                 
                                                         <div class="form-group ">
                                                         <input type="text" placeholder="Search Activity..."
@@ -163,8 +163,8 @@
                                                             autocapitalize="off" spellcheck="off" #search readonly />
                                                     </div>
                                                     <div class="form-group">
-                                                        <button [disabled]="filterData.activityName" 
-                                                            class="banner_button" routerLink="/search">
+                                                        <button 
+                                                            class="banner_button" (click)="searchKeyword(searchMywondrfly.value)">
                                                             <img src="assets/search_icon.svg" alt="Search image" />
                                                         </button>
                                                     </div>

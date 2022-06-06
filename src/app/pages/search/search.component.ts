@@ -432,10 +432,10 @@ export class SearchComponent implements OnInit, OnDestroy {
             this.tempSelectedProgramTypes - type
           }
           if (this.filterObj.hasOwnProperty('ratingFrom') && this.filterObj.hasOwnProperty('ratingTo')) {
-            if (this.filterObj.ratingFrom == '3') {
+            if (this.filterObj.ratingFrom > +'0') {
               this.isRating3_5 = true
             }
-            else if(this.filterObj.ratingFrom == '4'){
+            else if(this.filterObj.ratingFrom >= +'4'){
               this.isRating4_5 = true
             }
           }

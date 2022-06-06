@@ -15,7 +15,7 @@
           <div class="left-searchpd" *ngIf="!searchBar || isLogin">
             <div class="left_search">
               <div>
-                <form class="banner_form"  [ngClass]="{'banner_form_error':searchTerm.value && (!allData[0]?.data?.length && !allData[1]?.data?.length)}">
+                <form class="banner_form">
                   <div class="form-group ">
                     <input type="text" placeholder="Search Activity..." aria-label="Activity" [formControl]="searchTerm"
                       class="form-control camp_input " matInput [matAutocomplete]="autoHeader">
@@ -27,8 +27,8 @@
                       autocapitalize="off" spellcheck="off" #search readonly />
                   </div>
                   <div class="form-group cursor">
-                    <button (click)="dataservice.setOption({})" [disabled]="filterData.activityName"
-                      class="banner_button cursor" routerLink="/search" (click)="searchKeyword(searchTerm.value)">
+                    <button 
+                      class="banner_button cursor"  (click)="searchKeyword(searchTerm.value)">
                       <img src="assets/search_icon.svg" alt="Search image" />
                     </button>
                   </div>

@@ -74,8 +74,10 @@
                                     </div>
                                 </div>
                             </form> -->
-                            <form class="banner_form" [ngClass]="{'banner_form_error':searchTermlanding.value && (!allData[0]?.data?.length && !allData[1]?.data?.length)}" data-toggle="collapse" href="#dropdownprogram-provider" role="button" aria-expanded="false" aria-controls="dropdownprogram-provider">
-                                <div class="left-searchpd">
+
+                            <!-- <form class="banner_form" [ngClass]="{'banner_form_error':searchTermlanding.value && (!allData[0]?.data?.length && !allData[1]?.data?.length)}" data-toggle="collapse" href="#dropdownprogram-provider" role="button" aria-expanded="false" aria-controls="dropdownprogram-provider"> -->
+                                 <form class="banner_form"  data-toggle="collapse" href="#dropdownprogram-provider" role="button" aria-expanded="false" aria-controls="dropdownprogram-provider">
+ <div class="left-searchpd">
                                     <div class="left_search">
                                         <div>
                             <form class="banner_form">
@@ -94,7 +96,7 @@
                                     <input placeholder="Search Jersey City" (keydown.enter)="$event.preventDefault()" autocorrect="off" autocapitalize="off" spellcheck="off" #search readonly />
                                 </div>
                                 <div class="form-group cursor">
-                                    <button (click)="dataservice.setOption({})" [disabled]="filterData.activityName" class="banner_button cursor" routerLink="/search">
+                                    <button   class="banner_button cursor" (click)="searchKeyword(searchTermlanding.value)">
             <img src="assets/search_icon.svg" alt="Search image" />
           </button>
                                 </div>

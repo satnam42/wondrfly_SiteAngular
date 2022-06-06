@@ -10,6 +10,7 @@ import { DataService } from "../../services/dataservice.service ";
 import { MapsAPILoader } from "@agm/core";
 import * as moment from "moment";
 import { FormControl } from "@angular/forms";
+import { Console } from "console";
 declare const $: any;
 @Component({
   selector: "app-header",
@@ -71,8 +72,8 @@ export class HeaderComponent implements OnInit {
   newNotifications: any;
   @ViewChild('search', { static: false }) searchElementRef: ElementRef; gitBoxImage = 'assets/gift-box.svg';
   categoryData: any;
-  filterArray:any =[]
-  profileProgressPopup:boolean
+  filterArray: any = []
+  profileProgressPopup: boolean
   constructor(
     private router: Router,
     private auth: AuthsService,
@@ -148,7 +149,7 @@ export class HeaderComponent implements OnInit {
         $("#progress").attr("data-percentage", this.profileProgress);
         if (this.routeName === `/parent/profile/${this.user.id}`) {
           this.profileProgressPopup = false
-        }else{
+        } else {
           this.profileProgressPopup = true
         }
       });
@@ -519,61 +520,109 @@ export class HeaderComponent implements OnInit {
         }));
 
     }
-    // else if (!data.categoryIds && !data.role) {
-    //   // this.filterData.activityName = "";
-    //   // this.filterData.subcatId = '';
-    //   // this.filterData.categoryId = data._id;
-    //   // this.filterData.searchedCategoryKey = data.name;
-    //   // this.dataservice.setOption(this.filterData);
-    //   // this.router.navigate(["/search"]);
-    //   // if (this.routeName === "/search") {
-    //   //   this.router
-    //   //     .navigateByUrl("/", { skipLocationChange: true })
-    //   //     .then(() => this.router.navigate(["search"]));
-    //   // }
-    //   let filter = `categoryId=${data._id}`
-    //   this.router.navigate(['/search'], {
-    //     queryParams: {
-    //       filter: filter
-    //     }
-    //   });
-    // }
-    // else if (data.categoryIds && !data.role) {
-    //   // this.filterData.activityName = ''
-    //   // this.filterData.lat = ''
-    //   // this.filterData.lng = ''
-    //   // this.filterData.searchedCategoryKey = data.name;
-    //   // this.filterData.categoryId = ''
-    //   // this.filterData.subcatId = data._id
-    //   // this.dataservice.setOption(this.filterData)
-    //   // this.router.navigate(['/search']);
-    //   // if (this.routeName === "/search") {
-    //   //   this.router
-    //   //     .navigateByUrl("/", { skipLocationChange: true })
-    //   //     .then(() => this.router.navigate(["search"]));
-    //   // }
-    //   let filter = `tagsIds=${data._id}`
-    //   this.router.navigate(['/search'], {
-    //     queryParams: {
-    //       filter: filter
-    //     }
-    //   });
-    // }
 
   }
-  searchKeyword(key) {
-    if(key){
-      this.apiservice.searchMultipleKeywords(key).subscribe((res: any) => {
-        console.log(res)
-        if(res.data.length){}
+  searchKeyword(txt) {
+    //     var stringArray = key.split(" ")
+    if (txt) {
+      this.apiservice.searchMultipleKeywords(txt).subscribe((res: any) => {
+        const uniqueArry: any = [...new Map(res.data.map((item) => [item["keywordName" && "keywordType"], item])).values()];
+        console.log('uniqueArry', uniqueArry)
+        if (uniqueArry) {
+          let filter = ``
+          for (let data of uniqueArry) {
+            switch (data.keywordType) {
+              case 'category':
+                if (filter) {
+                  filter += `&categoryId=${data.keywordValue[0].category}`
+                } else {
+                  filter += `categoryId=${data.keywordValue[0].category}`
+                }
+                break;
+              case 'subCategory':
+                if (filter) {
+                  filter += `&tagsIds=${data.keywordValue[0].subcategory.toString()}`
+                } else {
+                  filter += `tagsIds=${data.keywordValue[0].subcategory.toString()}`
+
+                }
+                break;
+              case 'age':
+                if (filter) {
+                  filter += `&ageFrom=${data.keywordValue[0].from}&ageTo=${data.keywordValue[0].to}`
+                } else {
+                  filter += `ageFrom=${data.keywordValue[0].from}&ageTo=${data.keywordValue[0].to}`
+                }
+                break;
+              case 'price':
+                if (filter) {
+                  filter += `&priceFrom=${data.keywordValue[0].from}priceTo=${data.keywordValue[0].to}`
+                } else {
+                  filter += `priceFrom=${data.keywordValue[0].from}priceTo=${data.keywordValue[0].to}`
+                }
+                break;
+              case 'dates':
+                if (filter) {
+                  filter += `&fromDate=${data.keywordValue[0].from}&toDate=${data.keywordValue[0].to}`
+                } else {
+                  filter += `fromDate=${data.keywordValue[0].from}&toDate=${data.keywordValue[0].to}`
+                }
+                break;
+              case 'type':
+                if (filter) {
+                  filter += `&type=${data.keywordValue[0].type.toString()}`
+                } else {
+                  filter += `type=${data.keywordValue[0].type.toString()}`
+                }
+                break;
+              case 'time':
+                if (filter) {
+                  filter += `&time=${data.keywordValue[0].time.toString()}`
+                } else {
+                  filter += `time=${data.keywordValue[0].time.toString()}`
+                }
+                break;
+              case 'days':
+                if (filter) {
+                  filter = `&day=${data.keywordValue[0].days.toString()}`
+                } else {
+                  filter = `day=${data.keywordValue[0].days.toString()}`
+                }
+                break;
+              case 'format':
+                if (filter) {
+                  filter += `&inpersonOrVirtual=${data.keywordValue[0].format.toString()}`
+                } else {
+                  filter += `inpersonOrVirtual=${data.keywordValue[0].format.toString()}`
+                }
+                break;
+              case 'topRated':
+                if (filter) {
+                  filter += `&ratingFrom=${data.keywordValue[0].from}&ratingTo=${data.keywordValue[0].to}`
+                } else {
+                  filter += `ratingFrom=${data.keywordValue[0].from}&ratingTo=${data.keywordValue[0].to}`
+                }
+                break;
+
+            }
+          }
+          console.log(filter)
+          if(filter){
+            this.router
+            .navigateByUrl("/", { skipLocationChange: true })
+            .then(() => this.router.navigate(['/search'], {
+              queryParams: {
+                filter: filter
+              }
+            }));
+          }
+ 
+        } else {
+          this.router
+            .navigateByUrl("/", { skipLocationChange: true })
+            .then(() => this.router.navigate(['/search']));
+        }
       })
     }
-      
-
-//     var stringArray = key.split(" ")
-//    var  filtred = stringArray.filter(el=>el)
-// let uniqueArry = [...new Set(filtred)];
-
-    }
-
+  }
 }

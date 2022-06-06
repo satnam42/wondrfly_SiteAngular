@@ -244,9 +244,13 @@ h2.title {
     font-size: 26px;
     line-height: 18px;
     color: #494949;
-    text-transform: capitalize;
+    /* text-transform: capitalize; */
 }
+.child-name{
+    color:#53b2e8;
+    text-transform: capitalize; 
 
+}
 .activity_category_list {
     padding-top: 18px;
 }
