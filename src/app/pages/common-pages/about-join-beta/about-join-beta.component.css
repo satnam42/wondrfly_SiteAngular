@@ -5,6 +5,7 @@
   font-size: 30px;
   line-height: 45px;
   color: #494949;
+  text-transform: capitalize;
 }
 section.webelieve-wonderfly img {
   width: 100%;
@@ -142,6 +143,7 @@ section.family-wonderfly {
   text-align: center;
   color: #53B2E8;
   padding-bottom: 30px;
+  text-transform: capitalize;
 }
 .col-12.subscribe h2 {
   font-family: "Poppins";
@@ -174,7 +176,7 @@ button.Submit_btn {
   line-height: 18px;
   text-align: justify;
   letter-spacing: 0.001em;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #FFFFFF;
   padding: 12px;
   padding-left: 30px;
@@ -200,6 +202,7 @@ section.beta-upperpart h1 {
   line-height: 120%;
   text-align: center;
   color: #53B2E8;
+  text-transform: capitalize;
 }
 section.beta-upperpart p {
   font-family: "Poppins";
@@ -224,6 +227,7 @@ section.beta-upperpart p {
   line-height: 150%;
   letter-spacing: 0.001em;
   color: #494949;
+  text-transform: capitalize;
   margin-bottom: 15px;
 }
 .tab1-data span.plus-src.cursor {
