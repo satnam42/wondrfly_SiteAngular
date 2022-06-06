@@ -69,6 +69,7 @@
   line-height: 33px;
   letter-spacing: 0.001em;
   color: #494949;
+  text-transform: capitalize;
   padding-bottom: 15px;
 }
 .search-reasultpage .search-result h3 {

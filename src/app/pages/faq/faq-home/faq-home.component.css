@@ -90,6 +90,7 @@
   display: block;
 }
 .faq-page .tab-bar .nav-tabs .nav-link {
+  text-transform: capitalize;
   border: none;
   padding: 15px;
   padding-left: 0px;
