@@ -86,6 +86,7 @@ export class SharePopupComponent implements OnInit {
       name = name.replace(/ /g, "-");
       name = name.replace(/\?/g, "-");
       name = name.replace(/[{()}]/g, '');
+      name = name.replace(/\//g, '-');
       id = this.shareData.user ? this.shareData.user[0]._id : this.shareData?.provider?._id;
 
       subject = "Check out this activity provider on Wondrfly:"
@@ -99,10 +100,11 @@ export class SharePopupComponent implements OnInit {
       name = name.replace(/ /g, "-");
       name = name.replace(/\?/g, "-");
       name = name.replace(/[{()}]/g, '');
+      name = name.replace(/\//g, '-');
       subject = "Check out this kids' activity on Wondrfly:"
       emailSubject = "Check out this kids' activity on Wondrfly!"
       emailBody = "Check out this kids' activity on Wondrfly!"
-      this.shareUrl = `${this.baseUrl}program/${name}/${this.shareData._id}`;
+      this.shareUrl = `${this.baseUrl}program/${name}/${this.shareData._id}/filter`;
     }
 
     switch (provider) {

@@ -846,6 +846,8 @@ export class SearchComponent implements OnInit, OnDestroy {
     programName = programName.toLowerCase();
     programName = programName.replace(/ /g, "-");
     programName = programName.replace(/\?/g, "-");
+    programName = programName.replace(/\//g, "-");
+
     let url = ``
     if (Object.keys(this.filterObj).length) {
       const filter = new URLSearchParams(this.filterObj).toString();

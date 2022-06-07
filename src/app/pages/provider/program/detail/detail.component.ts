@@ -300,6 +300,7 @@ export class DetailComponent implements OnInit {
     this.program.programOwner = this.program.programOwner.toLowerCase();
     this.program.programOwner = this.program.programOwner.replace(/ /g, "-");
     this.program.programOwner = this.program.programOwner.replace(/\?/g, "-");
+    this.program.programOwner = this.program.programOwner.replace(/\//g, "-");
     this.router.navigate(['/provider/program-provider', this.program.programOwner, this.program.user]);
   }
   onChangeSearch(val: string) {
@@ -344,6 +345,7 @@ export class DetailComponent implements OnInit {
     programName = programName.toLowerCase();
     programName = programName.replace(/ /g, "-");
     programName = programName.replace(/\?/g, "-");
+    programName = programName.replace(/\//g, "-");
     if (Object.keys(this.filterObj).length) {
       const filter = new URLSearchParams(this.filterObj).toString();
     const url = this.router.serializeUrl(
@@ -897,6 +899,7 @@ export class DetailComponent implements OnInit {
     programName = programName.toLowerCase();
     programName = programName.replace(/ /g, "-");
     programName = programName.replace(/\?/g, "-");
+    programName = programName.replace(/\//g, "-");
     if (filter) {
       this.router.navigate(['program', programName, this.program._id, filter])
     } else {
@@ -1068,6 +1071,7 @@ export class DetailComponent implements OnInit {
     programName = programName.toLowerCase();
     programName = programName.replace(/ /g, "-");
     programName = programName.replace(/\?/g, "-");
+    programName = programName.replace(/\//g, "-");
     // this.router.navigate(['program', programName, data._id, 'filter'])
     this.router
     .navigateByUrl("/", { skipLocationChange: true })
