@@ -442,12 +442,13 @@ export class SearchComponent implements OnInit, OnDestroy {
             this.isTypeFilter=false
           }
           if (this.filterObj.hasOwnProperty('ratingFrom') && this.filterObj.hasOwnProperty('ratingTo')) {
-            if (+this.filterObj.ratingFrom > 0) {
+         
+             if(+this.filterObj.ratingFrom >= 4){
+              this.isRating4_5 = true
+            }  else if (+this.filterObj.ratingFrom > 0) {
               this.isRating3_5 = true
             }
-            else if(+this.filterObj.ratingFrom >= 4){
-              this.isRating4_5 = true
-            }
+        
           }
           else{
             this.isRating3_5=false;
