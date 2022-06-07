@@ -80,7 +80,6 @@ export class SharePopupComponent implements OnInit {
     let emailBody:any
     let id
     if(this.isProvider){
-      console.log(this.shareData)
       name = this.shareData.user ? this.shareData.user[0].firstName : this.shareData?.provider?.firstName;
       name = name.toLowerCase();
       name = name.replace(/ /g, "-");

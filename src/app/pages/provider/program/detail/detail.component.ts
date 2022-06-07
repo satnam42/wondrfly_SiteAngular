@@ -509,16 +509,12 @@ export class DetailComponent implements OnInit {
     }
     if (type === 'subcategory') {
       this.apiservice.getTag().subscribe((res: any) => {
-        console.log('res', res)
         let index = res.data.findIndex(object => {
           return object._id === id;
         });
         if (~index) {
           this.searchedSubCategory = res.data[index].name
         }
-        console.log('searchedSubCategory', this.searchedSubCategory)
-        console.log('res', res)
-        console.log('id', id)
       });
     }
 
@@ -852,7 +848,6 @@ export class DetailComponent implements OnInit {
         this.fromDate = moment(this.fromDate).format(dateFormat);
         this.toDate = moment(this.toDate).format(dateFormat);
         if (this.filterObj.hasOwnProperty('fromDate') && this.filterObj.hasOwnProperty('toDate') && this.isDateFilter && this.toDate.length) {
-          console.log(this.toDate)
           this.filterObj.fromDate = this.fromDate;
           this.filterObj.toDate = this.toDate;
         }

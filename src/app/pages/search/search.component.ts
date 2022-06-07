@@ -293,7 +293,6 @@ export class SearchComponent implements OnInit, OnDestroy {
   dragEnd(map) {
     map.addListener("dragend", () => {
       if (this.isMapMoveChecked) {
-        console.log('dragEnd')
         this.isMapFilter = true
         this.setFilterQuery('map')
       }
@@ -717,7 +716,6 @@ export class SearchComponent implements OnInit, OnDestroy {
         this.fromDate = moment(this.fromDate).format(dateFormat);
         this.toDate = moment(this.toDate).format(dateFormat);
         if (this.filterObj.hasOwnProperty('fromDate') && this.filterObj.hasOwnProperty('toDate') && this.isDateFilter && this.toDate.length) {
-          console.log(this.toDate)
           this.filterObj.fromDate = this.fromDate;
           this.filterObj.toDate = this.toDate;
         }
@@ -891,10 +889,6 @@ export class SearchComponent implements OnInit, OnDestroy {
     return programs
   }
   setRatingFilter(min,max,e){
-    console.log('min',min)
-    console.log('max',max)
-    console.log('e',e.target['checked'])
-    
   }
   getPublishedProgram() {
     // this.contentLoaded = false;
@@ -953,16 +947,12 @@ export class SearchComponent implements OnInit, OnDestroy {
     }
     if (type === 'subcategory') {
       this.apiservice.getTag().subscribe((res: any) => {
-        console.log('res', res)
         let index = res.data.findIndex(object => {
           return object._id === id;
         });
         if (~index) {
           this.searchedSubCategory = res.data[index].name
         }
-        console.log('searchedSubCategory', this.searchedSubCategory)
-        console.log('res', res)
-        console.log('id', id)
       });
     }
 
@@ -1102,8 +1092,6 @@ export class SearchComponent implements OnInit, OnDestroy {
         this.isScrol = false;
       }
       var filterObj = JSON.parse('{"' + filter.replace(/&/g, '","').replace(/=/g, '":"') + '"}', function (key, value) { return key === "" ? value : decodeURIComponent(value) })
-      console.log('filterObj', filterObj)
-
     });
     // }
     // else {
@@ -1249,7 +1237,6 @@ export class SearchComponent implements OnInit, OnDestroy {
     switch (type) {
       case 'days':
         this.days.forEach((element) => {
-          console.log(element.nativeElement.defaultValue)
           if (element.nativeElement.defaultValue === this.selectedDays[indx]) {
            return element.nativeElement.checked = false;
           }

@@ -372,7 +372,6 @@ export class Header2Component implements OnInit {
     if (txt) {
       this.apiservice.searchMultipleKeywords(txt).subscribe((res: any) => {
         const uniqueArry: any = [...new Map(res.data.map((item) => [item["keywordName" && "keywordType"], item])).values()];
-        console.log('uniqueArry', uniqueArry)
         if (uniqueArry) {
           let filter = ``
           for (let data of uniqueArry) {
@@ -451,7 +450,6 @@ export class Header2Component implements OnInit {
 
             }
           }
-          console.log(filter)
           if (filter) {
             this.router
               .navigateByUrl("/", { skipLocationChange: true })

@@ -151,7 +151,6 @@ export class LoginParentComponent implements OnInit {
           if (index == -1) {
             this.kids.push(this.kid)
           }
-          console.log('kids', this.kids)
           let emptyChild = new Child
           this.kid = emptyChild
           this.searchedTags = []
@@ -201,7 +200,6 @@ export class LoginParentComponent implements OnInit {
     for (let kid of this.kids) {
       i++;
       this.apiservice.addChild(kid).subscribe((res: any) => {
-        console.log(res)
       });
     }
     if(i==this.kids.length){

@@ -23,7 +23,6 @@ export class RegWallComponent implements OnInit {
     private router:Router
    ) {
     this.routeName = this.router.url;
-    console.log('routeName',this.routeName)
   if (this.routeName =="/ask-to-join" || this.routeName == "/login") {
     this.isRegWall =false;
   }
