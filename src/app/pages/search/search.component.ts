@@ -1060,113 +1060,6 @@ export class SearchComponent implements OnInit, OnDestroy {
     });
   }
   programFilter(filter) {
-    // window.scroll(0, 0);
-    // this.isInfiniteScrollDisabled = false
-    // this.isTimeFilter = false;
-    // this.isDaysFilter = false;
-    // this.isTopFilter = false;
-    // this.isTypeFilter = false;
-    // this.isCategoryFilter = false;
-    // this.suggested = []
-    // if (this.isMapFilter || this.isTopFilterCheckBox || this.categoryId || this.selectedDays.length || this.selectedProgramTypes.length || this.selectedSubCategories.length || this.selectedProgramTime.length || this.isOnline || this.isInPerson || this.isDateFilter || this.isPriceFilter || this.isAgeFilter) {
-    //  let pageSize =50;
-    //   this.contentLoaded = false;
-    //   let filter = ``
-    //   let inpersonOrVirtual = ''
-    //   let days = ''
-    //   let categoryId = ''
-    //   let tags = ''
-    //   let types = ''
-    //   let times = ''
-    //   let daysCount = 1
-    //   let typesCount = 1
-    //   let tagsCount = 1
-    //   let timesCount = 1
-    //   let ratingFrom = 4
-    //   let ratingTo = 5
-    //   if (this.categoryId) {
-    //     this.isCategoryFilter = true;
-    //     categoryId = this.categoryId
-    //     this.parentAnalyticAction('category', categoryId)
-    //   }
-    //   for (let day of this.selectedDays) {
-    //     this.isDaysFilter = true;
-    //     if (daysCount === 1) {
-    //       days += day
-    //       daysCount++
-    //     }
-    //     else {
-    //       days += ',' + day
-    //     }
-    //   }
-    //   for (let type of this.selectedProgramTypes) {
-    //     if(type==='Drop-ins'){
-    //       type='Drops-in'
-    //     }
-    //     this.isTypeFilter = true
-    //     if (typesCount === 1) {
-    //       types += type
-    //       typesCount++
-    //     }
-    //     else {
-    //       types += ',' + type
-    //     }
-    //   }
-    //   for (let tag of this.selectedSubCategories) {
-    //     this.isCategoryFilter = true
-    //     if (tagsCount === 1) {
-    //       this.suggestedSubCategories(tag)
-    //       tags += tag
-    //       tagsCount++
-    //     }
-    //     else {
-    //       tags += ',' + tag
-    //     }
-    //     this.parentAnalyticAction('subCategory', tag)
-    //   }
-    //   for (let time of this.selectedProgramTime) {
-    //     this.isTimeFilter = true
-    //     if (timesCount === 1) {
-    //       times += time
-    //       timesCount++
-    //     }
-    //     else {
-    //       times += ',' + time
-    //     }
-    //   }
-    //   if (!categoryId && !this.selectedSubCategories.length) {
-    //     this.searchedSubCategory = '';
-    //   }
-    //   if (this.isOnline) {
-    //     inpersonOrVirtual = 'online'
-    //   }
-    //   else if (this.isInPerson) {
-    //     inpersonOrVirtual = 'inperson'
-    //   }
-    //   else {
-    //     inpersonOrVirtual = ''
-    //   }
-    //   const dateFormat = "YYYY-MM-DD";
-    //   this.fromDate = moment(this.fromDate).format(dateFormat);
-    //   this.toDate = moment(this.toDate).format(dateFormat);
-    //   filter = `time=${times}&categoryId=${categoryId}&tagsIds=${tags}&type=${types}&inpersonOrVirtual=${inpersonOrVirtual}&day=${days}`
-    //   if (this.isTopFilterCheckBox) {
-    //     this.isTopFilter = true;
-    //     filter += `&ratingFrom=${ratingFrom}&ratingTo=${ratingTo}`
-    //   }
-    //   if (this.isDateFilter) {
-    //     filter += `&fromDate=${this.fromDate}&toDate=${this.toDate}`
-    //   }
-    //   if (this.isPriceFilter) {
-    //     filter += `&priceFrom=${this.minPrice}&priceTo=${this.maxPrice}`
-    //   }
-    //   if (this.isAgeFilter) {
-    //     filter += `&ageFrom=${this.minAge}&ageTo=${this.maxAge}`
-    //   }
-    //   if (this.isMapFilter) {
-    //     pageSize=10
-    //     filter += `&lat=${this.coordinates.lat}&lng=${this.coordinates.lng}`
-    //   }
     let pageSize = 50;
     if (this.isMapFilter) {
       pageSize = 10
@@ -1175,7 +1068,6 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.apiservice.programFilter(filter, 1, 50).subscribe((res: any) => {
       this.showReset = true
       if (res.isSuccess) {
-        this.activitiesCount = res.total
         // this.isTopFilterCheckBox = false
         res.items = res.items.filter(item => item.user[0].isActivated === true)
         this.programs = res.items;
@@ -1189,21 +1081,17 @@ export class SearchComponent implements OnInit, OnDestroy {
           this.isLoaded = true
         }
         this.ngxLoader.stop()
-        // if (this.providerProgram.length) {
-        //   this.providerProgram[0].collapsed = true
-        // }
-        // if (this.providerProgram.length == 2) {
-        //   this.providerProgram[1].collapsed = true
-        // }
-        // else if (this.providerProgram.length > 2) {
-        //   this.providerProgram[1].collapsed = true
-        //   this.providerProgram[2].collapsed = true
-        // }
-        if (!this.selectedSubCategories.length) {
+        if (!this.selectedSubCategories.length && this.providerProgram.length) {
           const sum = this.providerProgram.reduce((accumulator, object) => {
             return accumulator + object.programs.length;
           }, 0);
           this.activitiesCount = sum
+        }
+        else if(this.selectedSubCategories.length && this.providerProgram.length){
+          this.activitiesCount = res.total
+        }
+        else{
+          this.activitiesCount = 0
         }
         // }
         // for (let i in this.programs) {
