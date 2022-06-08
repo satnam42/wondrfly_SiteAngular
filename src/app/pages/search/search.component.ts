@@ -1051,11 +1051,11 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
   programFilter(filter) {
     let pageSize = 50;
-    if (this.isMapFilter) {
-      pageSize = 10
+  if(this.filterObj.hasOwnProperty('lat') && this.filterObj.hasOwnProperty('lng')){
+      pageSize = 5
     }
     this.ngxLoader.start()
-    this.apiservice.programFilter(filter, 1, 50).subscribe((res: any) => {
+    this.apiservice.programFilter(filter, 1, pageSize).subscribe((res: any) => {
       this.showReset = true
       if (res.isSuccess) {
         // this.isTopFilterCheckBox = false

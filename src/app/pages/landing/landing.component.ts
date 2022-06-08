@@ -203,6 +203,7 @@ export class LandingComponent implements OnInit {
     providerName = providerName.toLowerCase();
     providerName = providerName.replace(/ /g, "-");
     providerName = providerName.replace(/\?/g, "-");
+    providerName = providerName.replace(/\//g, "-");
     this.router.navigate(['provider/program-provider', providerName, provider._id]);
   }
 

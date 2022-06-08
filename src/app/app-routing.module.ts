@@ -43,7 +43,10 @@ const ROUTES: Routes = [
     loadChildren: () => import('.//pages/blogs/blogs.module').then(m => m.BlogsModule),
   },
 
-
+  {
+    path: '',
+    loadChildren: () => import('.//pages/short-urls/short-urls.module').then(m => m.ShortUrlsModule),
+  },
   { path: '404', component: NotFound404Component },
   { path: '**', redirectTo: '404' },
 ];

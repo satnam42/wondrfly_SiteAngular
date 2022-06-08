@@ -1065,6 +1065,55 @@ export class ApiService {
         });
         return subject.asObservable();
     }
+       // -------------------------- getUserByUsername ------------------------->
+
+       getUserByUsername(key): Observable<User> {
+        const subject = new Subject<User>();
+        this.http.get(`${this.root}/users/getById/${key}`,).subscribe((responseData: any) => {
+            if (responseData.statusCode !== 200) {
+                throw new Error('This request has failed ' + responseData.status);
+            }
+            const dataModel = responseData;
+            if (!dataModel.isSuccess) {
+                if (responseData.status === 200) {
+                    // this.toasty.error(dataModel.error);
+                    throw new Error(dataModel.code || dataModel.message || 'failed');
+                } else {
+                    throw new Error(responseData.status + '');
+                }
+            }
+            subject.next(responseData);
+        }, (error) => {
+            const dataModel = error;
+            subject.next(dataModel.error);
+        });
+        return subject.asObservable();
+    }
+
+        // -------------------------- getUserByUsername ------------------------->
+
+        searchTopic(key): Observable<any> {
+            const subject = new Subject<any>();
+            this.http.get(`${this.root}/users/getById/${key}`,).subscribe((responseData: any) => {
+                if (responseData.statusCode !== 200) {
+                    throw new Error('This request has failed ' + responseData.status);
+                }
+                const dataModel = responseData;
+                if (!dataModel.isSuccess) {
+                    if (responseData.status === 200) {
+                        // this.toasty.error(dataModel.error);
+                        throw new Error(dataModel.code || dataModel.message || 'failed');
+                    } else {
+                        throw new Error(responseData.status + '');
+                    }
+                }
+                subject.next(responseData);
+            }, (error) => {
+                const dataModel = error;
+                subject.next(dataModel.error);
+            });
+            return subject.asObservable();
+        }
     // ---------------------------delete notification by id---------------------
 
     deleteNotification(model): Observable<User> {
