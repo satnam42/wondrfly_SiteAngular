@@ -930,29 +930,15 @@ export class DetailComponent implements OnInit {
     this.apiservice.programFilter(filterr, 1, 1).subscribe((res: any) => {
       this.showReset = true
       if (res.isSuccess) {
-        this.activitiesCount = res.total
-        // this.isTopFilterCheckBox = false
-        // res.items = res.items.filter(item => item.user[0].isActivated === true)
-        // if (res.items) {
-        // }
-        // // if (this.isTopFilter) {
-        // //   this.providerProgram = this.programs.sort((a, b) => b.user[0]?.averageFinalRating - a.user[0]?.averageFinalRating);
-        // // }
-        // else {
-        //   this.providerProgram = this.programs;
-        // }
         this.programs =  res.items
-        this.providerProgram.programs = this.programs[0].programs
-        // if (!this.providerProgram.length) {
-        //   this.isLoaded = true
-        // }
-        if (!this.selectedSubCategories.length) {
-          const sum = this.providerProgram.reduce((accumulator, object) => {
-            return accumulator + object.programs.length;
-          }, 0);
-          this.activitiesCount = sum
-        }
-        this.isScrol = false;
+        if(this.programs.length){
+          this.providerProgram.programs = this.programs[0].programs
+          this.activitiesCount = this.providerProgram.programs.length
+    
+      }else{
+        this.providerProgram = []
+        this.activitiesCount = 0
+      }
       }
       this.ngxLoader.stop()
     });
