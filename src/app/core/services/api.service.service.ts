@@ -1090,7 +1090,7 @@ export class ApiService {
         return subject.asObservable();
     }
 
-        // -------------------------- getUserByUsername ------------------------->
+        // -------------------------- search topic ------------------------->
 
         searchTopic(key): Observable<any> {
             const subject = new Subject<any>();
