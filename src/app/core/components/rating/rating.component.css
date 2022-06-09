@@ -1,5 +1,9 @@
+.star-rating {
+  margin-bottom: 12px;
+}
 .star-rating h4 {
     font-size: 14px;
+    letter-spacing: 2px;
 }
 
 .ratingstar-kids {
@@ -8,10 +12,24 @@
     /* text-decoration: underline; */
 }
 .no-underline {
-  color: #494949 !important;
-  font-size: 13px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: 0.005em;
+  color: #494949;
 }
 .review-underline{
   text-decoration: underline;
   color: #444343;
+}
+.star-daialogcontent .followers-txt-h4{
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: 0.001em;
+  color: #494949;
 }

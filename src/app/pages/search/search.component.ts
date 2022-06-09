@@ -91,7 +91,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     floor: 0,
     ceil: 15,
     translate: (value: number): string => {
-      return value + ' YRS';
+      return value + ' Yrs';
     }
   };
 

@@ -1209,43 +1209,63 @@ button.close.star-daialogicon {
 .star-daialogcontent h1 {
   font-family: "Poppins";
   font-style: normal;
-  font-weight: normal;
+  font-weight: 400;
   font-size: 20px;
+  line-height: 18px;
   letter-spacing: 0.005em;
   color: #494949;
-  margin-top: 20px;
+  margin-bottom: 12px;
 }
 
 .star-daialogcontent h3 {
   font-family: "Poppins";
   font-style: normal;
-  font-weight: normal;
+  font-weight: 400;
   font-size: 14px;
+  line-height: 21px;
   letter-spacing: 0.001em;
   color: #494949;
-  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.star-dailogsocial.container .row {
+  margin-bottom: 10px;
+}
+.star-dailogsocial.container .row:last-child {
+  margin-bottom: 0px;
 }
 
 .star-daialogcontent h2 {
   font-family: "Poppins";
   font-style: normal;
-  font-weight: normal;
+  font-weight: 400;
   font-size: 12px;
+  line-height: 18px;
   letter-spacing: 0.005em;
   color: #494949;
-  margin-top: 7px;
   display: flex;
 }
 
 .star-daialogcontent .star-dailogsocial h4 {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    letter-spacing: 0.001em;
+    color: #858585;
+}
+.star-daialogcontent .star-dailogsocial h4 span.social-star {
   font-family: "Poppins";
   font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 21px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
   letter-spacing: 0.001em;
-  color: #858585;
-  margin-top: 20px;
+  color: #494949;
+  text-decoration: underline;
+}
+.star-daialogcontent .star-dailogsocial h4 span.fa {
+  letter-spacing: 2px;
 }
 
 span.ratingstar-kids {

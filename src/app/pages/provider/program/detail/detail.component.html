@@ -29,7 +29,7 @@
                                 <div class="session_details">
                                     <div class="row row-0">
                                         <div class="col-md-2">
-                                            <div *ngIf="program?.name" class="learn_code"
+                                            <div *ngIf="program?.name" class="learn_code mb-10"
                                                 [class.initial-alpha-profile]="!program?.subCategoryIds[0]?.logo && !program?.category[0]?.logoUrl">
                                                 <img *ngIf="program?.subCategoryIds[0]?.logo"
                                                     [defaultImage]="defaultImage"
@@ -43,6 +43,7 @@
                                                     {{ program?.name?.charAt(0) + program?.name?.charAt(1) }}
                                                 </h1>
                                             </div>
+                                            <button *ngIf="program.inpersonOrVirtual=='Virtual'" class="btn-purple-online">Online</button>
                                         </div>
 
                                         <div class="programText col-md-10">
@@ -52,9 +53,6 @@
                                                     *ngIf="program?.user === this.userId" data-target="#UpdateModal">
                                                     <img src="assets/edit_skyblue.svg" alt="Edit Image" />
                                                 </a>
-
-                                                <button *ngIf="program.inpersonOrVirtual=='Virtual'"
-                                                    class="btn-style">Online</button>
                                             </h3>
 
                                             <div class="share_icon share-icon-calendar">
@@ -1118,6 +1116,7 @@
                                                         <div class="collapse main_collpase verification_modal"
                                                             id="priceGroup" data-parent="#accordionExample">
                                                             <div class="collpase_content">
+                                                                <h4 class="price-per-hr-txt">(per hour)</h4>
                                                                 <div class="form-group">
                                                                     <ngx-slider [(value)]="minPrice"
                                                                         [(highValue)]="maxPrice"

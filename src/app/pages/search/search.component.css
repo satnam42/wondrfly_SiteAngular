@@ -901,9 +901,9 @@ a.top-rateds {
 
 .main_collpase.verification_modal .submit_btn .submitBtn,
 .main_collpase.verification_modal .submit_btn .cancel_btn {
-    min-width: 70px;
-    min-height: 20px;
-    line-height: 30px;
+    min-width: 60px;
+    min-height: 21px;
+    line-height: 21px;
     margin: 0 12px;
     font-size: 10px;
 }
@@ -1878,17 +1878,34 @@ span.close-filter {
     font-weight: normal;
 }
 
+/* types css */
+#typess {
+    min-width: auto;
+    padding: 0px;
+    border-radius: 12px;
+}
 #typess .form-group.typess input {
     width: auto !important;
     min-height: 0px;
     padding: 7px;
     margin-top: 7px;
 }
-
-#typess {
-    min-width: auto;
-    padding: 10px;
+#typess .collpase_content {
+    padding: 0;
 }
+#typess .collpase_content .form-group.typess {
+    margin-bottom: 0px;
+}
+#typess .typess-flex {
+    display: flex;
+    justify-content: flex-start;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 8px 20px;
+}
+#typess .typess-flex:last-child {
+    border-bottom: 0px !important;
+}
+/* end types css */
 
 .search-filterss label.k-checkbox-label {
     font-family: "poppins";
@@ -1903,34 +1920,38 @@ span.close-filter {
 .search-filterss .verification_modal .submit_btn {
     margin-top: 14px;
 }
-#typess .typess-flex {
-    display: flex;
-    justify-content: flex-start;
+
+/* format css */
+#format {
+    min-width: auto;
+    padding: 0px;
+    border-radius: 12px;
 }
-
-
-
-
-
 #format .form-group.typess input {
     width: auto !important;
     min-height: 0px;
     padding: 7px;
     margin-top: 7px;
 }
-
-#format {
-    min-width: auto;
-    padding: 10px;
+#format .collpase_content {
+    padding: 0;
+}
+#format .collpase_content .form-group.typess {
+    margin-bottom: 0px;
+}
+#format .typess-flex {
+    display: flex;
+    justify-content: flex-start;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 8px 20px;
+}
+#format .typess-flex:last-child {
+    border-bottom: 0px !important;
 }
 .format-collapse-info .form-group.typess {
     margin-bottom: 0px;
 }
-
-#format .typess-flex {
-    display: flex;
-    justify-content: flex-start;
-}
+/* end format css */
 
 #Dayss .form-group.typess input {
     width: auto !important;
@@ -2269,8 +2290,8 @@ button.btn1-filtersearch.active {
     color: #53b2e8;
     margin-right: 20px;
     margin-left: 20px;
-    min-height: 34px;
-    min-width: 70px;
+    min-height: 25px;
+    min-width: 60px;
     font-size: 10px;
     font-weight: 600;
     text-transform: capitalize;
@@ -2284,8 +2305,8 @@ button.btn1-filtersearch.active {
     padding: 5px;
     border: 1px solid #53b2e8;
     color: #fff;
-    min-height: 34px;
-    min-width: 70px;
+    min-height: 25px;
+    min-width: 60px;
     font-size: 10px;
     font-weight: 600;
     text-transform: capitalize;
@@ -3613,3 +3634,30 @@ footer {
 .review-input-checkbox:checked::before {border-radius: 1px;transform: scale(1) translate(-50%, -50%);}
 
 /* end css reviews-filter-info */
+
+
+::ng-deep #ageGroup .collpase_content .ngx-slider-span.ngx-slider-bubble,
+::ng-deep #priceGroup .collpase_content .ngx-slider-span.ngx-slider-bubble {
+    font-family: "Poppins" !important;
+    font-style: normal !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    line-height: 18px !important;
+    letter-spacing: 0.02em;
+    color: #494949;
+    text-transform: capitalize;
+    top: 16px !important;
+}
+#priceGroup {padding-top: 55px;}
+#priceGroup h4.price-per-hr-txt {
+    font-family: "poppins";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0.02em;
+    color: #c1c1c1;
+    position: absolute;
+    right: 25px;
+    top: 20px;
+}
