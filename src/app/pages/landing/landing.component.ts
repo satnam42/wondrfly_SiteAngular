@@ -423,5 +423,10 @@ export class LandingComponent implements OnInit {
         }
       })
     }
+    else{
+      this.router
+            .navigateByUrl("/", { skipLocationChange: true })
+            .then(() => this.router.navigate(['/search']));
+    }
   }
 }

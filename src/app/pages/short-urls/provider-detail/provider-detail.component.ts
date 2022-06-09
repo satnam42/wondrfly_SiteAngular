@@ -11,13 +11,13 @@ export class ProviderDetailComponent implements OnInit {
   constructor(private apiservice: ApiService, private activatedRoute: ActivatedRoute,private router:Router) {
     this.activatedRoute.params.subscribe(params => {
       let username = params['username'];
-      this.searchCategory(username)
+      this.getUserByUsername(username)
     });
   }
 
   ngOnInit(): void {
   }
-  searchCategory(key) {
+  getUserByUsername(key) {
     this.apiservice.getUserByUsername(key).subscribe((res: any) => {
       console.log(res)
        let  providerName = 'provider name';

@@ -626,5 +626,10 @@ export class HeaderComponent implements OnInit {
         }
       })
     }
+     else{
+      this.router
+            .navigateByUrl("/", { skipLocationChange: true })
+            .then(() => this.router.navigate(['/search']));
+    }
   }
 }
