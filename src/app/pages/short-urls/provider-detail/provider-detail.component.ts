@@ -18,15 +18,18 @@ export class ProviderDetailComponent implements OnInit {
   ngOnInit(): void {
   }
   getUserByUsername(key) {
-    this.apiservice.getUserByUsername(key).subscribe((res: any) => {
-      console.log(res)
-      
+    this.apiservice.getUserByUsername(key).subscribe((res: any) => {      
       if(res.isSuccess){
-        let  providerName = 'provider name';
-        providerName = providerName.replace(/ /g, "-");
-        providerName = providerName.replace(/\?/g, "-");
-        providerName = providerName.replace(/\//g, "-");
-        // this.router.navigate(['provider/program-provider', providerName, '60b7234dc995bc5de57f1184']);
+        if(res.data!==null){
+          let  providerName = res.data.firstName;
+          providerName = providerName.replace(/ /g, "-");
+          providerName = providerName.replace(/\?/g, "-");
+          providerName = providerName.replace(/\//g, "-");
+          this.router.navigate(['provider/program-provider', providerName, res.data._id]);
+        }
+        else{
+          this.router.navigate(['404']);
+        }
       }
       else{
         this.router.navigate(['404']);
