@@ -20,12 +20,17 @@ export class ProviderDetailComponent implements OnInit {
   getUserByUsername(key) {
     this.apiservice.getUserByUsername(key).subscribe((res: any) => {
       console.log(res)
-       let  providerName = 'provider name';
+      
+      if(res.isSuccess){
+        let  providerName = 'provider name';
         providerName = providerName.replace(/ /g, "-");
         providerName = providerName.replace(/\?/g, "-");
         providerName = providerName.replace(/\//g, "-");
-        this.router.navigate(['provider/program-provider', providerName, '60b7234dc995bc5de57f1184']);
-      
+        // this.router.navigate(['provider/program-provider', providerName, '60b7234dc995bc5de57f1184']);
+      }
+      else{
+        this.router.navigate(['404']);
+      }
     })
   }
 }

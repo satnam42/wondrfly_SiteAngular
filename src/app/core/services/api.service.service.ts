@@ -1067,9 +1067,9 @@ export class ApiService {
     }
        // -------------------------- getUserByUsername ------------------------->
 
-       getUserByUsername(key): Observable<User> {
-        const subject = new Subject<User>();
-        this.http.get(`${this.root}/users/getById/${key}`,).subscribe((responseData: any) => {
+       getUserByUsername(key): Observable<any> {
+        const subject = new Subject<any>();
+        this.http.get(`${this.root}/providers/getByUsername/${key}`, this.getHeader()).subscribe((responseData: any) => {
             if (responseData.statusCode !== 200) {
                 throw new Error('This request has failed ' + responseData.status);
             }
