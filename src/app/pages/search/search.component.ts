@@ -868,14 +868,13 @@ export class SearchComponent implements OnInit, OnDestroy {
     let regCount = this.activityClicked + 1
     this.cookies.set('activityClicked', String(regCount), 30);
     if (this.parentRole) {
-      this.addAction(programId);
-    }
-    let body = {
-      action: 'click',
-      programId: programId
-    };
-    this.apiservice.addAction(body).subscribe((res: any) => {
-    });
+      let body = {
+        action: 'click',
+        programId: programId
+      };
+      this.apiservice.addAction(body).subscribe((res: any) => {
+      });    }
+
   }
 
   onScroll() {

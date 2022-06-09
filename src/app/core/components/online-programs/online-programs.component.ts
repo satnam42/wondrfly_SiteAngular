@@ -125,12 +125,14 @@ addFavProgram(userId, programId, providerIndx,programIndx) {
       return url
     }  }
   addAction(programId) {
-    let body = {
-      action: 'click',
-      programId: programId
-    };
-    this.apiservice.addAction(body).subscribe((res: any) => {
-    });
+    if(this.parentRole){
+      let body = {
+        action: 'click',
+        programId: programId
+      };
+      this.apiservice.addAction(body).subscribe((res: any) => {
+      });
+    }
   }
    // ---------------------------------navigate to program detail page -------------------------------------------
 getRating(id,indx){
