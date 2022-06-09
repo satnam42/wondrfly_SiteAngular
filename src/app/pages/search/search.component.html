@@ -1429,7 +1429,7 @@
 
         <!-- start online programs  -->
         <div *ngIf="isOnline && showReset">
-            <online-programs [provider_programs]="providerProgram" [categories]="categories" [suggested]="suggested">
+            <online-programs [provider_programs]="providerProgram" [filterObj]="filterObj" [categories]="categories" [suggested]="suggested">
             </online-programs>
         </div>
         <!-- end online programs  -->

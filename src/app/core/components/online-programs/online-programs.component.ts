@@ -30,6 +30,7 @@ export class OnlineProgramsComponent implements OnInit {
   @Input() provider_programs: any=[];
   @Input() categories: any=[];
   @Input() suggested: any=[];
+  @Input() filterObj:any = {};
   isLogin: Boolean = false;
   key: string = '';
   parentRole: boolean = false;
@@ -112,9 +113,17 @@ addFavProgram(userId, programId, providerIndx,programIndx) {
     programName = programName.toLowerCase();
     programName = programName.replace(/ /g, "-");
     programName = programName.replace(/\?/g, "-");
-    return `/program/${programName}/${data._id}`
-    // this.router.navigate(['program', programName, data._id]);
-  }
+    programName = programName.replace(/\//g, "-");
+    let url = ``
+    if (Object.keys(this.filterObj).length) {
+      const filter = new URLSearchParams(this.filterObj).toString();
+      url = `/program/${programName}/${data._id}/${filter}`
+      return url
+    }
+    else {
+      url = `/program/${programName}/${data._id}/filter`
+      return url
+    }  }
   addAction(programId) {
     let body = {
       action: 'click',
