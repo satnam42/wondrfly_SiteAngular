@@ -197,10 +197,10 @@ out of 5 </a> -->
                                         <div class="media-body">
                                             <p *ngIf="user?.about">{{user?.about}}</p>
                                             <p *ngIf="!user?.about">{{user?.note}}</p>
-                                            <div class="skills_sec" *ngIf='user?.subCategoryIds?.length'>
+                                            <div class="skills_sec" *ngIf='userCategories?.length'>
                                                 <h3>Activities</h3>
                                                 <div class="skill_flex">
-                                                    <div class="skill_outer" *ngFor='let skill of user?.subCategoryIds'>
+                                                    <div class="skill_outer" *ngFor='let skill of userCategories'>
                                                         <span>{{skill?.name}}</span>
                                                     </div>
                                                 </div>
