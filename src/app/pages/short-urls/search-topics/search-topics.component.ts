@@ -18,9 +18,18 @@ export class SearchTopicsComponent implements OnInit {
   ngOnInit(): void {
   }
   searchTopic(key) {
-    this.apiservice.searchTopic(key).subscribe((res: any) => {
-      console.log(res)
+    if(key){
+      this.router.navigate(['/search'], {
+        queryParams: {
+          filter: key
+        }
+      });    }
+    else{
       this.router.navigate(['search'])
-    })
+    }
+    // this.apiservice.searchTopic(key).subscribe((res: any) => {
+    //   console.log(res)
+    //   this.router.navigate(['search'])
+    // })
   }
 }
