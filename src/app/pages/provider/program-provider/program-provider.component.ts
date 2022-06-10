@@ -288,11 +288,11 @@ export class ProgramProviderComponent implements OnInit {
     this.isLoaded = false;
     window.scroll(0, 0);
     this.ngxLoader.start()
-    this.userCategories = []
     await this.apiservice.getProgramByProvider(this.user.id, this.pageNo, 200).subscribe((res) => {
       this.programs = res
       this.programs.map(program => program.category.map(category => {
-        if (this.userCategories.findIndex(item => item !== category)) {
+        const found = this.userCategories.find(el => el.name == category.name)
+        if (!found) {
           this.userCategories.push(category);
         }
       }));
@@ -491,11 +491,11 @@ export class ProgramProviderComponent implements OnInit {
       this.isTopFilterCheckBox = false
       // this.getProviderProgram();
       this.showReset = false
-      this.userCategories = []
       this.apiservice.getProgramByProvider(this.user.id, this.pageNo, 200).subscribe((res) => {
         this.programs = res
         this.programs.map(program => program.category.map(category => {
-          if (this.userCategories.findIndex(item => item !== category)) {
+          const found = this.userCategories.find(el => el.name == category.name)
+          if (!found) {
             this.userCategories.push(category);
           }
         }));
@@ -653,11 +653,11 @@ export class ProgramProviderComponent implements OnInit {
     this.ngxLoader.start()
     this.showReset = false
     this.isLoaded = false;
-    this.userCategories = []
     this.apiservice.getProgramByProvider(this.user.id, this.pageNo, 200).subscribe((res) => {
       this.programs = res
       this.programs.map(program => program.category.map(category => {
-        if (this.userCategories.findIndex(item => item !== category)) {
+        const found = this.userCategories.find(el => el.name == category.name)
+        if (!found) {
           this.userCategories.push(category);
         }
       }));
