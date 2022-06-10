@@ -125,8 +125,8 @@ export class SearchComponent implements OnInit, OnDestroy {
   programOwnerData: any = User
   isOnline: boolean = false;
   isInPerson: boolean = false;
-  isRating3_5:boolean = false;
-  isRating4_5:boolean = false;
+  isRating3_5: boolean = false;
+  isRating4_5: boolean = false;
   type1: any
   subCats: any = [];
   previous;
@@ -399,8 +399,9 @@ export class SearchComponent implements OnInit, OnDestroy {
             this.isCategoryFilter = true;
             this.categoryId = this.filterObj.categoryId;
             this.tempCategoryId = this.filterObj.categoryId
+            this.parentAnalyticAction('category', this.categoryId)
           }
-          else{
+          else {
             this.isCategoryFilter = false;
           }
           if (this.filterObj.hasOwnProperty('tagsIds')) {
@@ -409,6 +410,9 @@ export class SearchComponent implements OnInit, OnDestroy {
             this.selectedSubCategories = ids;
             this.tempSelectedSubCategories = ids
             this.checkCategoryFilter(this.selectedSubCategories[0], 'subcategory')
+            for (let id of ids) {
+              this.parentAnalyticAction('subCategory', id)
+            }
           }
           if (this.filterObj.hasOwnProperty('day')) {
             this.isDaysFilter = true;
@@ -416,16 +420,16 @@ export class SearchComponent implements OnInit, OnDestroy {
             this.selectedDays = days;
             this.tempSelectedDays = days
           }
-          else{
-            this.isDaysFilter=false
+          else {
+            this.isDaysFilter = false
           }
           if (this.filterObj.hasOwnProperty('time')) {
             this.isTimeFilter = true;
             let time = this.filterObj.time.split(',');
             this.selectedProgramTime = time
             this.tempSelectedProgramTime = time
-          }  else{
-            this.isTimeFilter=false
+          } else {
+            this.isTimeFilter = false
           }
           if (this.filterObj.hasOwnProperty('type')) {
             this.isTypeFilter = true;
@@ -437,20 +441,20 @@ export class SearchComponent implements OnInit, OnDestroy {
             this.selectedProgramTypes = type
             this.tempSelectedProgramTypes - type
           }
-          else{
-            this.isTypeFilter=false
+          else {
+            this.isTypeFilter = false
           }
           if (this.filterObj.hasOwnProperty('ratingFrom') && this.filterObj.hasOwnProperty('ratingTo')) {
-         
-             if(+this.filterObj.ratingFrom >= 4){
+
+            if (+this.filterObj.ratingFrom >= 4) {
               this.isRating4_5 = true
-            }  else if (+this.filterObj.ratingFrom > 0) {
+            } else if (+this.filterObj.ratingFrom > 0) {
               this.isRating3_5 = true
             }
-        
+
           }
-          else{
-            this.isRating3_5=false;
+          else {
+            this.isRating3_5 = false;
             this.isRating4_5 = false
           }
           if (this.filterObj.hasOwnProperty('inpersonOrVirtual')) {
@@ -461,8 +465,8 @@ export class SearchComponent implements OnInit, OnDestroy {
               this.isInPerson = true
             }
           }
-          else{
-            this.isOnline=false;
+          else {
+            this.isOnline = false;
             this.isInPerson = false
           }
           if (this.filterObj.hasOwnProperty('fromDate') && this.filterObj.hasOwnProperty('toDate')) {
@@ -470,32 +474,32 @@ export class SearchComponent implements OnInit, OnDestroy {
             this.fromDate = this.filterObj.fromDate
             this.toDate = this.filterObj.toDate
           }
-          else{
-            this.isDateFilter=false;
+          else {
+            this.isDateFilter = false;
           }
           if (this.filterObj.hasOwnProperty('ageFrom') && this.filterObj.hasOwnProperty('ageTo')) {
             this.isAgeFilter = true
             this.minAge = +this.filterObj.ageFrom
             this.maxAge = +this.filterObj.ageTo
           }
-          else{
-            this.isAgeFilter=false;
+          else {
+            this.isAgeFilter = false;
           }
           if (this.filterObj.hasOwnProperty('priceFrom') && this.filterObj.hasOwnProperty('priceTo')) {
             this.isPriceFilter = true
             this.minPrice = +this.filterObj.priceFrom
             this.maxPrice = +this.filterObj.priceTo
           }
-          else{
-            this.isPriceFilter=false;
+          else {
+            this.isPriceFilter = false;
           }
           if (this.filterObj.hasOwnProperty('lat') && this.filterObj.hasOwnProperty('lng')) {
             this.isMapFilter = true
             this.coordinates.lat = +this.filterObj.lat;
             this.coordinates.lng = +this.filterObj.lng;
           }
-          else{
-            this.isMapFilter=false;
+          else {
+            this.isMapFilter = false;
           }
           this.programFilter(params.filter)
         } else {
@@ -670,22 +674,22 @@ export class SearchComponent implements OnInit, OnDestroy {
           delete this.filterObj['ratingTo']
         }
         break;
-        case 'rating4_5':
+      case 'rating4_5':
 
-          if (this.filterObj.hasOwnProperty('ratingFrom') && this.filterObj.hasOwnProperty('ratingTo') && this.isRating4_5) {
-            this.filterObj.ratingFrom = 4;
-            this.filterObj.ratingTo = 5;
-  
-          }
-          else if (!this.filterObj.hasOwnProperty('ratingFrom') && !this.filterObj.hasOwnProperty('ratingTo') && this.isRating4_5) {
-            Object.assign(this.filterObj, { ratingFrom: 4 });
-            Object.assign(this.filterObj, { ratingTo: 5 });
-  
-          } else {
-            delete this.filterObj['ratingFrom']
-            delete this.filterObj['ratingTo']
-          }
-          break;
+        if (this.filterObj.hasOwnProperty('ratingFrom') && this.filterObj.hasOwnProperty('ratingTo') && this.isRating4_5) {
+          this.filterObj.ratingFrom = 4;
+          this.filterObj.ratingTo = 5;
+
+        }
+        else if (!this.filterObj.hasOwnProperty('ratingFrom') && !this.filterObj.hasOwnProperty('ratingTo') && this.isRating4_5) {
+          Object.assign(this.filterObj, { ratingFrom: 4 });
+          Object.assign(this.filterObj, { ratingTo: 5 });
+
+        } else {
+          delete this.filterObj['ratingFrom']
+          delete this.filterObj['ratingTo']
+        }
+        break;
 
       case 'online':
 
@@ -873,7 +877,8 @@ export class SearchComponent implements OnInit, OnDestroy {
         programId: programId
       };
       this.apiservice.addAction(body).subscribe((res: any) => {
-      });    }
+      });
+    }
 
   }
 
@@ -887,7 +892,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     programs = programs.sort((a, b) => new Date(a.date.from).valueOf() - new Date(b.date.from).valueOf());
     return programs
   }
-  setRatingFilter(min,max,e){
+  setRatingFilter(min, max, e) {
   }
   getPublishedProgram() {
     // this.contentLoaded = false;
@@ -1050,7 +1055,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
   programFilter(filter) {
     let pageSize = 50;
-  if(this.filterObj.hasOwnProperty('lat') && this.filterObj.hasOwnProperty('lng')){
+    if (this.filterObj.hasOwnProperty('lat') && this.filterObj.hasOwnProperty('lng')) {
       pageSize = 5
     }
     this.ngxLoader.start()
@@ -1076,10 +1081,10 @@ export class SearchComponent implements OnInit, OnDestroy {
           }, 0);
           this.activitiesCount = sum
         }
-        else if(this.selectedSubCategories.length && this.providerProgram.length){
+        else if (this.selectedSubCategories.length && this.providerProgram.length) {
           this.activitiesCount = res.total
         }
-        else{
+        else {
           this.activitiesCount = 0
         }
         // }
@@ -1237,7 +1242,7 @@ export class SearchComponent implements OnInit, OnDestroy {
       case 'days':
         this.days.forEach((element) => {
           if (element.nativeElement.defaultValue === this.selectedDays[indx]) {
-           return element.nativeElement.checked = false;
+            return element.nativeElement.checked = false;
           }
         });
         this.selectedDays.splice(indx, 1);

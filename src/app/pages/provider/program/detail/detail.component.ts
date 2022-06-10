@@ -348,16 +348,17 @@ export class DetailComponent implements OnInit {
     programName = programName.replace(/\//g, "-");
     if (Object.keys(this.filterObj).length) {
       const filter = new URLSearchParams(this.filterObj).toString();
-    const url = this.router.serializeUrl(
-      this.router.createUrlTree(['program', programName, data._id,filter])
-    );
-    window.open(url, '_blank');
+      const url = this.router.serializeUrl(
+        this.router.createUrlTree(['program', programName, data._id, filter])
+      );
+      window.open(url, '_blank');
     }
     else {
       const url = this.router.serializeUrl(
-        this.router.createUrlTree(['program', programName, data._id,'filter'])
+        this.router.createUrlTree(['program', programName, data._id, 'filter'])
       );
-      window.open(url, '_blank');    }
+      window.open(url, '_blank');
+    }
 
     // this.router.navigate(['program', programName, data._id]);
     // const url = this.router.serializeUrl(
@@ -922,7 +923,7 @@ export class DetailComponent implements OnInit {
     if (!checkFilter.hasOwnProperty('providerId')) {
       checkFilter.providerId = this.user.id
     }
-    delete checkFilter['ratingFrom']  
+    delete checkFilter['ratingFrom']
     delete checkFilter['ratingTo']
     delete checkFilter['lng']
     delete checkFilter['lng']
@@ -930,15 +931,15 @@ export class DetailComponent implements OnInit {
     this.apiservice.programFilter(filterr, 1, 1).subscribe((res: any) => {
       this.showReset = true
       if (res.isSuccess) {
-        this.programs =  res.items
-        if(this.programs.length){
+        this.programs = res.items
+        if (this.programs.length) {
           this.providerProgram.programs = this.programs[0].programs
           this.activitiesCount = this.providerProgram.programs.length
-    
-      }else{
-        this.providerProgram = []
-        this.activitiesCount = 0
-      }
+
+        } else {
+          this.providerProgram = []
+          this.activitiesCount = 0
+        }
       }
       this.ngxLoader.stop()
     });
@@ -1055,8 +1056,8 @@ export class DetailComponent implements OnInit {
     programName = programName.replace(/\//g, "-");
     // this.router.navigate(['program', programName, data._id, 'filter'])
     this.router
-    .navigateByUrl("/", { skipLocationChange: true })
-    .then(() => this.router.navigate(['program', programName, data._id,'filter']));
+      .navigateByUrl("/", { skipLocationChange: true })
+      .then(() => this.router.navigate(['program', programName, data._id, 'filter']));
     this.searchedSubCategory = '';
     this.activityName = '';
     this.isInPerson = false;
@@ -1099,7 +1100,7 @@ export class DetailComponent implements OnInit {
     this.showReset = false
     this.isLoaded = false;
     this.apiservice.getProgramByProvider(this.user.id, this.pageNo, 200).subscribe((res) => {
-      this.providerProgram.programs = res      
+      this.providerProgram.programs = res
     });
     this.ngxLoader.stop()
   }

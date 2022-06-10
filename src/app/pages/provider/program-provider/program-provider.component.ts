@@ -292,9 +292,9 @@ export class ProgramProviderComponent implements OnInit {
     await this.apiservice.getProgramByProvider(this.user.id, this.pageNo, 200).subscribe((res) => {
       this.programs = res
       this.programs.map(program => program.category.map(category => {
-        if(this.userCategories.findIndex(item=>item!==category)) {
+        if (this.userCategories.findIndex(item => item !== category)) {
           this.userCategories.push(category);
-      }
+        }
       }));
       if (this.scrollToActivities == 'activities') {
         document.querySelector('#ActivitiesList').scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -495,9 +495,9 @@ export class ProgramProviderComponent implements OnInit {
       this.apiservice.getProgramByProvider(this.user.id, this.pageNo, 200).subscribe((res) => {
         this.programs = res
         this.programs.map(program => program.category.map(category => {
-          if(this.userCategories.findIndex(item=>item!==category)) {
+          if (this.userCategories.findIndex(item => item !== category)) {
             this.userCategories.push(category);
-        }
+          }
         }));
         this.isLoaded = true;
       });
@@ -656,10 +656,10 @@ export class ProgramProviderComponent implements OnInit {
     this.userCategories = []
     this.apiservice.getProgramByProvider(this.user.id, this.pageNo, 200).subscribe((res) => {
       this.programs = res
-      this.programs.map(program => program.category.map(category => {  
-        if(this.userCategories.findIndex(item=>item!==category)) {
+      this.programs.map(program => program.category.map(category => {
+        if (this.userCategories.findIndex(item => item !== category)) {
           this.userCategories.push(category);
-      }     
+        }
       }));
       this.isLoaded = true;
     });
