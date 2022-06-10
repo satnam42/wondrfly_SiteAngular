@@ -229,7 +229,7 @@ export class DetailComponent implements OnInit {
   // tempSelectedDays: any = []
   // tempSelectedProgramTypes: any = []
   // tempSelectedProgramTime: any = []
-
+  programBannerAlt=''
   constructor(private apiservice: ApiService,
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
@@ -401,6 +401,9 @@ export class DetailComponent implements OnInit {
         { name: 'description', content: this.program.description }
       );
       this.programImgURL = this.program.programCoverPic;
+      if(this.programImgURL){
+        this.programBannerAlt = this.programImgURL.replace(/^.*[\\\/]/, '');
+      }
       // this.userLogo = this.program.provider.logo
       this.getProviderById()
       // this.program_mins = moment.utc(moment(this.program.time.to, "HH:mm:ss").diff(moment(this.program.time.from, "HH:mm:ss"))).format("mm")

@@ -21,7 +21,7 @@
                                 <div class="profile_image" *ngIf="user?.firstName"
                                     [class.initial-alpha]="!user?.avatarImages">
                                     <img *ngIf="user.avatarImages" [defaultImage]="defaultImage"
-                                        lazyLoad="{{ user?.avatarImages }}" alt="Profile Image" />
+                                        lazyLoad="{{ user?.avatarImages }}" alt="{{user?.firstName}}" />
                                     <h1 *ngIf="!user.avatarImages" [class.initial-alpha]="!user?.avatarImages">
                                         {{user.firstName.charAt(0)+user?.firstName?.charAt(1)}}</h1>
 
@@ -37,7 +37,7 @@
                         (change)="parentImageSelect($event, currentUser?.id)" type="file" name="image" /> -->
                                             <img (click)="imageRole='parent';parentImgURL=''" data-toggle="modal"
                                                 data-target="#ImageModal" src="assets/edit_white.svg"
-                                                alt="Profile Image" />
+                                                alt="edit-white" />
                                         </label>
                                     </a>
                                 </div>
@@ -90,7 +90,7 @@
 
                         <div class="add-ph-no mt-20">
                             <div class="icon-img-dott">
-                                <img src="assets/phone-blue-icon.svg"/>
+                                <img src="assets/phone-blue-icon.svg" alt="phone-icon"/>
                                 <!-- <span class="gry-dot-circle" *ngIf="!user.phoneNumber"></span>
                                 <span class="blue-dot-circle" *ngIf="user.phoneNumber"></span> -->
                             </div>
@@ -101,7 +101,7 @@
                         </div>
                         <div class="add-profile-pic mt-10">
                             <div class="icon-img-dott">
-                                <img src="assets/add-profile-pic.svg" />
+                                <img src="assets/add-profile-pic.svg" alt="add-profile-pic" />
                                 <!-- <span class="gry-dot-circle" *ngIf="!user.avatarImages"></span>
                                 <span class="blue-dot-circle" *ngIf="user.avatarImages"></span>       -->
                             </div>
@@ -113,7 +113,7 @@
                         </div>
                         <div class="add-ph-no mt-10">
                             <div class="icon-img-dott">
-                                <img src="assets/loction_pin.svg" />
+                                <img src="assets/loction_pin.svg" alt="location" />
                                 <!-- <span class="gry-dot-circle" *ngIf="!user.addressLine1"></span>
                                 <span class="blue-dot-circle" *ngIf="user.addressLine1"></span>        -->
                             </div>
@@ -139,7 +139,7 @@
                                                 [formControl]="updateForm.controls['firstName']"
                                                 [(ngModel)]="user.firstName" name="firstName" />
                                             <span class="parent-close"><img (click)="user.firstName = ''"
-                                                    src="assets/close.png" /></span>
+                                                    src="assets/close.png" alt="remove" /></span>
                                         </div>
 
                                         <div class="form-group">
@@ -147,7 +147,7 @@
                                             <input type="text" placeholder="Enter Email Address" class="form-control"
                                                 [formControl]="updateForm.controls['email']" [(ngModel)]="user.email"
                                                 name="email" readonly />
-                                            <span class="parent-close"><img src="assets/close.png" /></span>
+                                            <span class="parent-close"><img src="assets/close.png"  alt="remove"/></span>
                                         </div>
 
                                         <div class="form-group">
@@ -495,9 +495,9 @@
                                         <div class="page_heading small-box">
                                             <div class="profile_outer">
                                                 <div class="content-img">
-                                                    <img *ngIf="guardian?.avatarImages" alt="Profile Image"
+                                                    <img *ngIf="guardian?.avatarImages" alt="{{guardian?.firstName}}"
                                                         src="{{ guardian?.avatarImages }}" />
-                                                    <img *ngIf="!guardian?.avatarImages" alt="Profile Image"
+                                                    <img *ngIf="!guardian?.avatarImages" alt="{{guardian?.firstName}}"
                                                         src="assets/default_img.png" />
                                                 </div>
                                             </div>
@@ -580,7 +580,7 @@
                                                                     (click)="imageRole='kid';childImgURL='';selectedChildIndx=i"
                                                                     data-toggle="modal" data-target="#ImageModal"
                                                                     name="image" style="display: none" />
-                                                                <img alt="Profile Image"
+                                                                <img alt="edit_white"
                                                                     src="assets/edit_white.svg" /></label></a>
                                                     </div>
                                                 </div>
@@ -1192,15 +1192,15 @@
                         <h2 *ngIf="!kid?.id" class="title">Add</h2> -->
                         <div class="profile_outer">
                             <div class="profile_image">
-                                <img alt="Profile Image" *ngIf="childImgURL" src="{{ childImgURL }}" />
-                                <img alt="Profile Image" *ngIf="!childImgURL" src="assets/default_img.png" />
+                                <img  *ngIf="childImgURL" src="{{ childImgURL }}" alt="{{kid?.name}}" />
+                                <img alt="{{kid?.name}}"  *ngIf="!childImgURL" src="assets/default_img.png" />
                             </div>
                             <div class="edit_profile">
                                 <a>
                                     <label class="cursor">
                                         <input style="display: none" #file accept="image/*"
                                             (change)="childImageSelect($event)" type="file" name="image" />
-                                        <img alt="Profile Image" src="assets/edit_white.svg" />
+                                        <img alt="edit-white" src="assets/edit_white.svg" />
                                     </label>
                                 </a>
                             </div>
@@ -1212,7 +1212,7 @@
                                     <input type="text" placeholder="Enter FullName" class="form-control"
                                         [(ngModel)]="kid.name" name="FullName" />
                                     <span class="parent-edit" *ngIf="kid?.id" (click)="kid.name = ''"><img
-                                            src="assets/pencil-blue.png" /></span>
+                                            src="assets/pencil-blue.png" alt="pencil-blue" /></span>
                                 </div>
                             </div>
 
@@ -1517,7 +1517,7 @@
                                 <input type="text" placeholder="Enter FullName"
                                     [formControl]="inviteForm.controls['fullName']" class="form-control"
                                     [(ngModel)]="inviteAsktojoin.firstName" name="FullName" required />
-                                <span class="parent-edit"><img src="assets/close.png" /></span>
+                                <span class="parent-edit"><img src="assets/close.png" alt="pencil-blue" /></span>
                             </div>
                         </div>
                         <div class="form-group">
@@ -1534,7 +1534,7 @@
                     inviteForm.controls['email'].hasError('required') &&
                     inviteForm.controls['email'].touched
                   " class="form-error-msg">Email Is Required</small>
-                                <span class="parent-edit"><img src="assets/close.png" /></span>
+                                <span class="parent-edit"><img src="assets/close.png" alt="close"/></span>
                             </div>
                         </div>
 
@@ -1581,9 +1581,9 @@
                     <div *ngIf="imageRole==='parent' && user?.firstName" class="profile_image"
                         [class.initial-alpha]="!user?.avatarImages">
                         <img *ngIf="parentImgURL" [defaultImage]="defaultImage" lazyLoad="{{ parentImgURL }}"
-                            alt="Profile Image" />
+                        alt="{{user?.firstName}}" />
                         <img *ngIf="user.avatarImages && !parentImgURL" [defaultImage]="defaultImage"
-                            lazyLoad="{{ user.avatarImages }}" alt="Profile Image" />
+                            lazyLoad="{{ user.avatarImages }}" alt="{{user?.firstName}}" />
                         <h1 *ngIf="!user.avatarImages && !parentImgURL" [class.initial-alpha]="!user?.avatarImages">
                             {{user.firstName.charAt(0)+user?.firstName?.charAt(1)}}</h1>
 
@@ -1592,9 +1592,9 @@
                     <div *ngIf="imageRole==='kid' && kids[selectedChildIndx]?.name" class="profile_image"
                         [class.initial-alpha]="!kids[selectedChildIndx]?.avtar">
                         <img *ngIf="childImgURL" [defaultImage]="defaultImage" lazyLoad="{{ childImgURL }}"
-                            alt="Profile Image" />
+                        alt="{{kid?.name}}"/>
                         <img *ngIf="kids[selectedChildIndx]?.avtar && !childImgURL" [defaultImage]="defaultImage"
-                            lazyLoad="{{ kids[selectedChildIndx]?.avtar }}" alt="Profile Image" />
+                            lazyLoad="{{ kids[selectedChildIndx]?.avtar }}" alt="{{kid?.name}}" />
                         <h1 *ngIf="!kids[selectedChildIndx]?.avtar && !childImgURL"
                             [class.initial-alpha]="!kids[selectedChildIndx]?.avtar">
                             {{kids[selectedChildIndx]?.name?.charAt(0)+kids[selectedChildIndx]?.name?.charAt(1)}}</h1>
