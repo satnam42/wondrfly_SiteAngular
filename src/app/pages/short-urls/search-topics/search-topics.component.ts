@@ -24,7 +24,7 @@ export class SearchTopicsComponent implements OnInit {
         if (res.data !== null) {
           this.router.navigate(['/search'], {
             queryParams: {
-              filter: res.data.url
+              filter:decodeURIComponent(res.data.url) 
             }
           });
         }
