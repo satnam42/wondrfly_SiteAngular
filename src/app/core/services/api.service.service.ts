@@ -1094,7 +1094,7 @@ export class ApiService {
 
         searchTopic(key): Observable<any> {
             const subject = new Subject<any>();
-            this.http.get(`${this.root}/searchTopics/${key}`,).subscribe((responseData: any) => {
+            this.http.get(`${this.root}/searchTopics/getByName/${key}`,).subscribe((responseData: any) => {
                 if (responseData.statusCode !== 200) {
                     throw new Error('This request has failed ' + responseData.status);
                 }
