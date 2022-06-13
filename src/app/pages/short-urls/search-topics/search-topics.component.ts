@@ -8,7 +8,7 @@ import { ApiService } from 'src/app/core/services/api.service.service';
 })
 export class SearchTopicsComponent implements OnInit {
 
-  constructor(private activatedRoute: ActivatedRoute, private apiservice: ApiService,private router:Router) {
+  constructor(private activatedRoute: ActivatedRoute, private apiservice: ApiService, private router: Router) {
     this.activatedRoute.params.subscribe(params => {
       let topic = params['topicname'];
       this.searchTopic(topic)
@@ -18,18 +18,23 @@ export class SearchTopicsComponent implements OnInit {
   ngOnInit(): void {
   }
   searchTopic(key) {
-    if(key){
-      this.router.navigate(['/search'], {
-        queryParams: {
-          filter: key
+    this.apiservice.searchTopic(key).subscribe((res: any) => {
+      console.log(res)
+      if (res.isSuccess) {
+        if (res.data !== null) {
+          this.router.navigate(['/search'], {
+            queryParams: {
+              filter: key
+            }
+          });
         }
-      });    }
-    else{
-      this.router.navigate(['search'])
-    }
-    // this.apiservice.searchTopic(key).subscribe((res: any) => {
-    //   console.log(res)
-    //   this.router.navigate(['search'])
-    // })
+        else {
+          this.router.navigate(['404']);
+        }
+      }
+      else {
+        this.router.navigate(['404']);
+      }
+    })
   }
 }

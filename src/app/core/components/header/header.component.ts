@@ -525,6 +525,7 @@ export class HeaderComponent implements OnInit {
   searchKeyword(txt) {
     //     var stringArray = key.split(" ")
     if (txt) {
+      txt+=`&parentId=${this.user.id}`
       this.apiservice.searchMultipleKeywords(txt).subscribe((res: any) => {
         const uniqueArry: any = [...new Map(res.data.map((item) => [item["keywordName" && "keywordType"], item])).values()];
         if (uniqueArry) {
