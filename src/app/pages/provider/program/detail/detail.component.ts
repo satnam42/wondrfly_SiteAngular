@@ -372,6 +372,20 @@ export class DetailComponent implements OnInit {
     this.apiservice.getProgramById(this.program.id).subscribe(res => {
       this.ngxLoader.stop();
       this.program = res
+      let keywords = []
+      for (let category of this.program.category) {
+        keywords.push(category.name)
+      }
+      for (let subCategory of this.program.subCategoryIds) {
+        keywords.push(subCategory.name)
+
+      }
+      this.metaTagService.updateTag(
+        { name: 'description', content: this.program.description }
+      );
+      this.metaTagService.addTag(
+        { name: 'keywords', content: keywords.toString() }
+      );
       let event: any = {
         start: new Date(this.program.date.from),
         // end: new Date('2020-01-01')
@@ -397,20 +411,6 @@ export class DetailComponent implements OnInit {
       this.categoryArr = this.program.category;
       this.subcatArr = this.program.subCategoryIds
       this.titleService.setTitle(this.title + ' - wondrfly');
-      let keywords = []
-      for (let category of this.program.category) {
-        keywords.push(category.name)
-      }
-      for (let subCategory of this.program.subCategoryIds) {
-        keywords.push(subCategory.name)
-
-      }
-      this.metaTagService.updateTag(
-        { name: 'description', content: this.program.description }
-      );
-      this.metaTagService.addTag(
-        { name: 'keywords', content: keywords.toString() }
-      );
       this.programImgURL = this.program.programCoverPic;
       if (this.programImgURL) {
         this.programBannerAlt = this.programImgURL.replace(/^.*[\\\/]/, '');
