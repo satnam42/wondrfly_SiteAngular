@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Meta } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import axios from 'axios';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
@@ -28,13 +28,15 @@ export class BlogSearchComponent implements OnInit {
   catg: any;
   blogsBycatg: any;
   blogArray: any = [];
-
+  title = 'Top Kid Friendly Blogs to Follow - Wondrfly';
   constructor(
     private apiservice: ApiService,
     private router: Router,
     private ngxLoader: NgxUiLoaderService,
     private activatedroute: ActivatedRoute,
-    private metaTagService: Meta
+    private metaTagService: Meta,
+    private titleService: Title,
+
   ) {
 
     this.activatedroute.params.subscribe(data => {
@@ -44,13 +46,43 @@ export class BlogSearchComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.metaTagService.addTag(
-      { name: 'keywords', content: 'blog category filter, blog category page, search blogs,blog topics for kids' }
-    );
+    this.metaService()
     window.scroll(0, 0);
 
   }
+  metaService(){
+    this.apiservice.getMetaServiceByPageName('blogs').subscribe(res=>{
+      console.log('metaservice',res)
+      if (res.isSuccess) {
+        if (res.data !== null) {
+          this.titleService.setTitle(res.data.title);
+          this.metaTagService.updateTag(
+            { name: 'description', content: res.data.description }
+          );
+          this.metaTagService.addTag(
+            { name: 'keywords', content: res.data.keywords }
+          );
+        }
+        else {
+          this.titleService.setTitle(this.title);
+          this.metaTagService.updateTag(
+            { name: 'description', content: "Check out our Blog Section to read posts on trending kid's activities, child development, parenting and muh more. Also, don't miss Wondrfly's top blog posts." }
+          );
+          this.metaTagService.addTag(
+            { name: 'keywords', content: 'blog category filter, blog category page, search blogs,blog topics for kids' }
+          );       }
+      }
+      else {
+        this.titleService.setTitle(this.title);
+        this.metaTagService.updateTag(
+          { name: 'description', content: "Check out our Blog Section to read posts on trending kid's activities, child development, parenting and muh more. Also, don't miss Wondrfly's top blog posts." }
+        );
+        this.metaTagService.addTag(
+          { name: 'keywords', content: 'blog category filter, blog category page, search blogs,blog topics for kids' }
+        );  }
+    })
 
+  }
   // ------------------------------------------------search categories functionality----------------------------------
 
   selectEvent(item) {

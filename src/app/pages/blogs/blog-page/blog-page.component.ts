@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import axios from 'axios';
 import { CookieService } from 'ngx-cookie-service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { ApiService } from 'src/app/core/services/api.service.service';
 import { environment } from 'src/environments/environment';
 
 
@@ -39,7 +40,8 @@ export class BlogPageComponent implements OnInit {
     private metaTagService: Meta,
     private ngxLoader: NgxUiLoaderService,
     private router: Router,
-    private cookies:CookieService
+    private cookies:CookieService,
+    private apiservice:ApiService
   ) {
 
     this.getBlog()
@@ -50,15 +52,41 @@ export class BlogPageComponent implements OnInit {
     this.blogsVisited = Number(this.cookies.get('blogsVisited'))
     let regCount = this.blogsVisited + 1
     this.cookies.set('blogsVisited', String(regCount), 30);
-    this.titleService.setTitle(this.title);
-    this.metaTagService.updateTag(
-      { name: 'description', content: "Check out our Blog Section to read posts on trending kid's activities, child development, parenting and muh more. Also, don't miss Wondrfly's top blog posts." }
-    );
-    this.metaTagService.addTag(
-      { name: 'keywords', content: 'kids activities blog,blogs for kids, kids friendly blogs,kids activity blog' }
-    );
-
     window.scroll(0, 0);
+    this.metaService()
+  }
+  metaService(){
+    this.apiservice.getMetaServiceByPageName('blogs').subscribe(res=>{
+      console.log('metaservice',res)
+      if (res.isSuccess) {
+        if (res.data !== null) {
+          this.titleService.setTitle(res.data.title);
+          this.metaTagService.updateTag(
+            { name: 'description', content: res.data.description }
+          );
+          this.metaTagService.addTag(
+            { name: 'keywords', content: res.data.keywords }
+          );
+        }
+        else {
+          this.titleService.setTitle(this.title);
+          this.metaTagService.updateTag(
+            { name: 'description', content: "Check out our Blog Section to read posts on trending kid's activities, child development, parenting and muh more. Also, don't miss Wondrfly's top blog posts." }
+          );
+          this.metaTagService.addTag(
+            { name: 'keywords', content: 'kids activities blog,blogs for kids, kids friendly blogs,kids activity blog' }
+          );       }
+      }
+      else {
+        this.titleService.setTitle(this.title);
+        this.metaTagService.updateTag(
+          { name: 'description', content: "Check out our Blog Section to read posts on trending kid's activities, child development, parenting and muh more. Also, don't miss Wondrfly's top blog posts." }
+        );
+        this.metaTagService.addTag(
+          { name: 'keywords', content: 'kids activities blog,blogs for kids, kids friendly blogs,kids activity blog' }
+        );  }
+    })
+
   }
 
 

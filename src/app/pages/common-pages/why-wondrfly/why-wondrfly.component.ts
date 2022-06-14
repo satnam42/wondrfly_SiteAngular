@@ -4,6 +4,7 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { environment } from 'src/environments/environment';
 import { Title, Meta } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { ApiService } from 'src/app/core/services/api.service.service';
 
 @Component({
   selector: 'app-why-wondrfly',
@@ -20,7 +21,8 @@ export class WhyWondrflyComponent implements OnInit {
   constructor(private ngxLoader: NgxUiLoaderService,
     private titleService: Title,
     private router: Router,
-    private metaTagService: Meta,) {
+    private metaTagService: Meta,
+    private apiservice :ApiService) {
     this.userData = JSON.parse(localStorage.getItem('CurrentUserWondrfly'));
 
     if (this.userData) {
@@ -43,17 +45,41 @@ export class WhyWondrflyComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.titleService.setTitle(this.title);
-    this.metaTagService.updateTag(
-      { name: 'description', content: 'Why choose Wondrfly? We strongly believe that right developmental activities can inspire a life-long love for adventure and curiosity among kids. Explore now!' }
-    );
-    this.metaTagService.addTag(
-      { name: 'keywords', content: 'about wondrfly, wondrfly inc,' }
-    );
-
+    this.metaService()
     window.scroll(0, 0);
     this.whyWonderflyData()
   }
+  metaService(){
+    this.apiservice.getMetaServiceByPageName('why-wondrfly').subscribe(res=>{
+      if (res.isSuccess) {
+        if (res.data !== null) {
+          this.titleService.setTitle(res.data.title);
+          this.metaTagService.updateTag(
+            { name: 'description', content: res.data.description }
+          );
+          this.metaTagService.addTag(
+            { name: 'keywords', content: res.data.keywords }
+          );
+        }
+        else {
+          this.titleService.setTitle(this.title);
+          this.metaTagService.updateTag(
+            { name: 'description', content: 'Why choose Wondrfly? We strongly believe that right developmental activities can inspire a life-long love for adventure and curiosity among kids. Explore now!' }
+          );
+          this.metaTagService.addTag(
+            { name: 'keywords', content: 'about wondrfly, wondrfly inc' }
+          );  }
+      }
+      else {
+        this.titleService.setTitle(this.title);
+        this.metaTagService.updateTag(
+          { name: 'description', content: 'Why choose Wondrfly? We strongly believe that right developmental activities can inspire a life-long love for adventure and curiosity among kids. Explore now!' }
+        );
+        this.metaTagService.addTag(
+          { name: 'keywords', content: 'about wondrfly, wondrfly inc,' }
+        ); }
+    })
 
+  }
 }
 

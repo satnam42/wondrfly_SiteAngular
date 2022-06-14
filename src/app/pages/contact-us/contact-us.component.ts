@@ -23,13 +23,7 @@ export class ContactUsComponent implements OnInit {
   }
   ngOnInit() {
     window.scroll(0, 0);
-    this.titleService.setTitle(this.title);
-    this.metaTagService.updateTag(
-      { name: 'description', content: `If you have any questions or concerns about Wondrfly's online classes, activites or programs for kids? Contact us over phone or mail or fill the form below. ` }
-    );
-    this.metaTagService.addTag(
-      { name: 'keywords', content: 'Contact Wondrfly, Wondrfly Contact Details, Mail to Wondrfly, Contact Us for My Account, Wondrfly Email Address, Wondrfly Contact, Wondrfly Contact Form' }
-    );
+    this.metaService()
     this.contactUsForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       phoneNumber: new FormControl('',),
@@ -37,6 +31,38 @@ export class ContactUsComponent implements OnInit {
       description: new FormControl('', [Validators.required]),
 
     });
+  }
+  metaService(){
+    this.apiservice.getMetaServiceByPageName('contact-us').subscribe(res=>{
+      if (res.isSuccess) {
+        if (res.data !== null) {
+          this.titleService.setTitle(res.data.title);
+          this.metaTagService.updateTag(
+            { name: 'description', content: res.data.description }
+          );
+          this.metaTagService.addTag(
+            { name: 'keywords', content: res.data.keywords }
+          );
+        }
+        else {
+          this.titleService.setTitle(this.title);
+          this.metaTagService.updateTag(
+            { name: 'description', content: `If you have any questions or concerns about Wondrfly's online classes, activites or programs for kids? Contact us over phone or mail or fill the form below. ` }
+          );
+          this.metaTagService.addTag(
+            { name: 'keywords', content: 'Contact Wondrfly, Wondrfly Contact Details, Mail to Wondrfly, Contact Us for My Account, Wondrfly Email Address, Wondrfly Contact, Wondrfly Contact Form' }
+          );  }
+      }
+      else {
+        this.titleService.setTitle(this.title);
+        this.metaTagService.updateTag(
+          { name: 'description', content: `If you have any questions or concerns about Wondrfly's online classes, activites or programs for kids? Contact us over phone or mail or fill the form below. ` }
+        );
+        this.metaTagService.addTag(
+          { name: 'keywords', content: 'Contact Wondrfly, Wondrfly Contact Details, Mail to Wondrfly, Contact Us for My Account, Wondrfly Email Address, Wondrfly Contact, Wondrfly Contact Form' }
+        ); }
+    })
+
   }
   contactUs() {
     this.ngxLoader.start();

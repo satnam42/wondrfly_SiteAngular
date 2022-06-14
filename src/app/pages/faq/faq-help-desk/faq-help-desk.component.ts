@@ -4,6 +4,7 @@ import { Meta, Title } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
 import axios from 'axios';
 import { User } from 'src/app/core/models';
+import { ApiService } from 'src/app/core/services/api.service.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -23,6 +24,7 @@ export class FaqHelpDeskComponent implements OnInit {
     private activatedroute: ActivatedRoute,
     private titleService: Title,
     private metaTagService: Meta,
+    private apiservice:ApiService
   ) {
 
     this.activatedroute.params.subscribe(data => {
@@ -109,14 +111,39 @@ export class FaqHelpDeskComponent implements OnInit {
 
 
   ngOnInit() {
-    this.titleService.setTitle(this.title);
-    this.metaTagService.updateTag(
-      { name: 'description', content: "If you have any queries about kids activities classes, programs or camps you can visit our Frequently Asked Questions (FAQs) section. Visit Wondrfly's website." }
-    );
-    this.metaTagService.addTag(
-      { name: 'keywords', content: 'frequently asked questions about kids activities, fun questions for kids' }
-    );
-
+this.metaService()
     window.scroll(0, 0);
+  }
+  metaService(){
+    this.apiservice.getMetaServiceByPageName('faq-help-desk').subscribe(res=>{
+      if (res.isSuccess) {
+        if (res.data !== null) {
+          this.titleService.setTitle(res.data.title);
+          this.metaTagService.updateTag(
+            { name: 'description', content: res.data.description }
+          );
+          this.metaTagService.addTag(
+            { name: 'keywords', content: res.data.keywords }
+          );
+        }
+        else {
+          this.titleService.setTitle(this.title);
+          this.metaTagService.updateTag(
+            { name: 'description', content: "If you have any queries about kids activities classes, programs or camps you can visit our Frequently Asked Questions (FAQs) section. Visit Wondrfly's website." }
+          );
+          this.metaTagService.addTag(
+            { name: 'keywords', content: 'frequently asked questions about kids activities, fun questions for kids' }
+          );  }
+      }
+      else {
+        this.titleService.setTitle(this.title);
+        this.metaTagService.updateTag(
+          { name: 'description', content: "If you have any queries about kids activities classes, programs or camps you can visit our Frequently Asked Questions (FAQs) section. Visit Wondrfly's website." }
+        );
+        this.metaTagService.addTag(
+          { name: 'keywords', content: 'frequently asked questions about kids activities, fun questions for kids' }
+        ); }
+    })
+
   }
 }

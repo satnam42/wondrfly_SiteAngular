@@ -1862,6 +1862,17 @@ subscribeToMailchimpNewsletter(model): Observable<any> {
         });
         return subject.asObservable();
     }
+          // =============================get users=================================
+          getMetaServiceByPageName(pageName): Observable<any> {
+            const subject = new Subject<any>();
+            this.http.get(`${this.root}/metaservice/getbyPagename/${pageName}`, this.getHeader()).subscribe((responseData) => {
+                this.userResponse = responseData;
+                subject.next(this.userResponse);
+            }, (error) => {
+                subject.next(error.error);
+            });
+            return subject.asObservable();
+        }
 getIPAddress()  
 {  
   return this.http.get("https://api.ipify.org/?format=json");  
