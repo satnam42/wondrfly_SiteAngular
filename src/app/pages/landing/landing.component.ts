@@ -220,6 +220,7 @@ export class LandingComponent implements OnInit {
     }
  }
   ngOnInit() {
+    this.metaService()
     this.searchTermlanding.valueChanges.subscribe((value) =>{
       if(value){this.searchSubCategory(value)}else{
         this.allData=[];
@@ -236,15 +237,6 @@ export class LandingComponent implements OnInit {
     }
     this.getCategoryList();
     this.getBlog();
-    this.titleService.setTitle(this.title);
-    this.metaTagService.updateTag(
-      { name: 'description', content: 'Looking for the best programs and activities for your kids? Wondrfly is the leading platform for parents to discover indoor and outdoor activities for kids ages 3-14 years.' },
-    );
-    this.metaTagService.addTag(
-      { name: 'keywords', content: 'Best Activities and Programs, activities near me for toddlers, fitness classes for kids, online music lessons, online art classes' }
-    );
-
-
     this.mapsAPILoader.load().then(() => {
       this.geoCoder = new google.maps.Geocoder;
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);
@@ -262,7 +254,40 @@ export class LandingComponent implements OnInit {
       });
     });
   }
+  metaService() {
+    this.apiservice.getMetaServiceByPageName('landing').subscribe(res => {
+      if (res.isSuccess) {
+        if (res.data !== null) {
+          this.titleService.setTitle(res.data.title);
+          this.metaTagService.updateTag(
+            { name: 'description', content: res.data.description }
+          );
+          this.metaTagService.addTag(
+            { name: 'keywords', content: res.data.keywords }
+          );
+        }
+        else {
+          this.titleService.setTitle(this.title);
+          this.metaTagService.updateTag(
+            { name: 'description', content: 'Looking for the best programs and activities for your kids? Wondrfly is the leading platform for parents to discover indoor and outdoor activities for kids ages 3-14 years.' },
+          );
+          this.metaTagService.addTag(
+            { name: 'keywords', content: 'Best Activities and Programs, activities near me for toddlers, fitness classes for kids, online music lessons, online art classes' }
+          );
+        }
+      }
+      else {
+        this.titleService.setTitle(this.title);
+        this.metaTagService.updateTag(
+          { name: 'description', content: 'Looking for the best programs and activities for your kids? Wondrfly is the leading platform for parents to discover indoor and outdoor activities for kids ages 3-14 years.' },
+        );
+        this.metaTagService.addTag(
+          { name: 'keywords', content: 'Best Activities and Programs, activities near me for toddlers, fitness classes for kids, online music lessons, online art classes' }
+        );
+      }
+    })
 
+  }
   selectSearchedOption(data){
     if(data.role=='provider'){
       this.filterData.activityName = "";

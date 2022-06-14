@@ -407,14 +407,7 @@ export class LoginParentComponent implements OnInit {
       }
     })
     this.dateV();
-    this.titleService.setTitle(this.title);
-    this.metaTagService.updateTag(
-      { name: 'description', content: "Structured and well-planned onboarding process for parents to explore kids program, fun activities, and online classes. Visit Wondrfly's website for more info." }
-    );
-    this.metaTagService.addTag(
-      { name: 'keywords', content: 'kids on boarding,onboarding' }
-    );
-
+    this.metaService()
     window.scroll(0, 0);
     this.getCategoryList();
     this.getTagList();
@@ -456,7 +449,40 @@ export class LoginParentComponent implements OnInit {
       });
     });
   }
+  metaService() {
+    this.apiservice.getMetaServiceByPageName('parent-onboarding').subscribe(res => {
+      if (res.isSuccess) {
+        if (res.data !== null) {
+          this.titleService.setTitle(res.data.title);
+          this.metaTagService.updateTag(
+            { name: 'description', content: res.data.description }
+          );
+          this.metaTagService.addTag(
+            { name: 'keywords', content: res.data.keywords }
+          );
+        }
+        else {
+          this.titleService.setTitle(this.title);
+          this.metaTagService.updateTag(
+            { name: 'description', content: "Structured and well-planned onboarding process for parents to explore kids program, fun activities, and online classes. Visit Wondrfly's website for more info." }
+          );
+          this.metaTagService.addTag(
+            { name: 'keywords', content: 'kids on boarding,onboarding' }
+          );
+        }
+      }
+      else {
+        this.titleService.setTitle(this.title);
+        this.metaTagService.updateTag(
+          { name: 'description', content: "Structured and well-planned onboarding process for parents to explore kids program, fun activities, and online classes. Visit Wondrfly's website for more info." }
+        );
+        this.metaTagService.addTag(
+          { name: 'keywords', content: 'kids on boarding,onboarding' }
+        );
+      }
+    })
 
+  }
   nextStep() {
     window.scroll(0, 0);
     if (this.step1) {
