@@ -48,8 +48,8 @@ export class LandingComponent implements OnInit {
   cookiesData: string;
   activitySearched = 0
   @ViewChild('search') searchElementRef: ElementRef;
-  allData: any=[];
-  searchTermlanding= new FormControl();
+  allData: any = [];
+  searchTermlanding = new FormControl();
   categoryData: any;
   constructor(private router: Router,
     private mapsAPILoader: MapsAPILoader,
@@ -154,37 +154,36 @@ export class LandingComponent implements OnInit {
 
 
   searchSubCategory(key) {
-    let groupDataAll:any =[
-       {label:'Keywords',data:[]},
-       {label:'Provider',data:[]},
-     ]
-     if(!key){
-       this.allData=[];
-     }else{
+    let groupDataAll: any = [
+      { label: 'Keywords', data: [] },
+      { label: 'Provider', data: [] },
+    ]
+    if (!key) {
+      this.allData = [];
+    } else {
       this.apiservice.searchKeywords(key).subscribe((res: any) => {
         this.categoriesBySearch = res.data;
-        res.data.map(keyword=>{keyword.name = keyword.keywordName})
-        // this.categoriesBySearch.category = this.categoriesBySearch.category.filter((item) => item.isActivated !== false);
-        // this.categoriesBySearch.tags = this.categoriesBySearch.tags.filter((item) => item.isActivated !== false && item.programCount);
-        // this.categoryData = this.categoriesBySearch.concat(this.categoriesBySearch)
+        res.data.map(keyword => { keyword.name = keyword.keywordName })
         groupDataAll[0].data = this.categoriesBySearch;
       });
-     this.apiservice.searchUsers(key, "provider").subscribe((res: any) => {
-       if (res.isSuccess===true) {
-       this.providersBySearch = res.data;
-       var i;
-       for(i = 0; i < this.providersBySearch.length; i++){
-         this.providersBySearch[i].name = this.providersBySearch[i]['firstName'];
-       groupDataAll[1].data=this.providersBySearch;
-       this.allData=groupDataAll
-       }}
-       else {
-        groupDataAll[1].data = []
-        this.allData=groupDataAll
-       }
-       });
-     }
-     }
+      this.apiservice.searchUsers(key, "provider").subscribe((res: any) => {
+        if (res.isSuccess === true) {
+          this.providersBySearch = res.data;
+          this.providersBySearch = this.providersBySearch.filter(e => e.isActivated);
+          var i;
+          for (i = 0; i < this.providersBySearch.length; i++) {
+            this.providersBySearch[i].name = this.providersBySearch[i]['firstName'];
+            groupDataAll[1].data = this.providersBySearch;
+            this.allData = groupDataAll
+          }
+        }
+        else {
+          groupDataAll[1].data = []
+          this.allData = groupDataAll
+        }
+      });
+    }
+  }
 
 
   providerSearch(key) {
@@ -214,18 +213,18 @@ export class LandingComponent implements OnInit {
     //     this.cookies.set('isTour', String(num), 30);
   }
   // }
-  onTab(e,value){
-    if(this.allData[0].data.length){
+  onTab(e, value) {
+    if (this.allData[0].data.length) {
       this.searchTermlanding.setValue(value)
     }
- }
+  }
   ngOnInit() {
     this.metaService()
-    this.searchTermlanding.valueChanges.subscribe((value) =>{
-      if(value){this.searchSubCategory(value)}else{
-        this.allData=[];
-      }   
-      })
+    this.searchTermlanding.valueChanges.subscribe((value) => {
+      if (value) { this.searchSubCategory(value) } else {
+        this.allData = [];
+      }
+    })
     this.setVisit();
     window.scroll(0, 0);
     this.landingImageIndex = Math.floor(Math.random() * this.landingImages.length);
@@ -288,16 +287,16 @@ export class LandingComponent implements OnInit {
     })
 
   }
-  selectSearchedOption(data){
-    if(data.role=='provider'){
+  selectSearchedOption(data) {
+    if (data.role == 'provider') {
       this.filterData.activityName = "";
-  data.name = data.name.toLowerCase();
-  data.name = data.name.replace(/ /g, "-");
-  data.name = data.name.replace(/\?/g, "-");
-  this.router.navigate(["/provider/program-provider", data.name, data._id])
+      data.name = data.name.toLowerCase();
+      data.name = data.name.replace(/ /g, "-");
+      data.name = data.name.replace(/\?/g, "-");
+      this.router.navigate(["/provider/program-provider", data.name, data._id])
     }
     else {
-           let regCount = this.activitySearched + 1
+      let regCount = this.activitySearched + 1
       this.cookies.set('activitySearched', String(regCount), 30);
       let filter = ``
       switch (data.keywordType) {
@@ -335,12 +334,12 @@ export class LandingComponent implements OnInit {
 
       }
       this.router
-      .navigateByUrl("/", { skipLocationChange: true })
-      .then(() => this.router.navigate(['/search'], {
-        queryParams: {
-          filter: filter
-        }
-      }));
+        .navigateByUrl("/", { skipLocationChange: true })
+        .then(() => this.router.navigate(['/search'], {
+          queryParams: {
+            filter: filter
+          }
+        }));
     }
   }
   searchKeyword(txt) {
@@ -426,21 +425,21 @@ export class LandingComponent implements OnInit {
 
             }
           }
-          if(filter){
+          if (filter) {
             this.router
-            .navigateByUrl("/", { skipLocationChange: true })
-            .then(() => this.router.navigate(['/search'], {
-              queryParams: {
-                filter: filter
-              }
-            }));
+              .navigateByUrl("/", { skipLocationChange: true })
+              .then(() => this.router.navigate(['/search'], {
+                queryParams: {
+                  filter: filter
+                }
+              }));
           }
-          else{
+          else {
             this.router
-            .navigateByUrl("/", { skipLocationChange: true })
-            .then(() => this.router.navigate(['/search']));
+              .navigateByUrl("/", { skipLocationChange: true })
+              .then(() => this.router.navigate(['/search']));
           }
- 
+
         } else {
           this.router
             .navigateByUrl("/", { skipLocationChange: true })
@@ -448,10 +447,10 @@ export class LandingComponent implements OnInit {
         }
       })
     }
-    else{
+    else {
       this.router
-            .navigateByUrl("/", { skipLocationChange: true })
-            .then(() => this.router.navigate(['/search']));
+        .navigateByUrl("/", { skipLocationChange: true })
+        .then(() => this.router.navigate(['/search']));
     }
   }
 }

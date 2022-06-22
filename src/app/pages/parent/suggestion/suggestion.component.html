@@ -1,59 +1,58 @@
 <body>
-    <app-header2 *ngIf="!auth.currentUser()"></app-header2>
-    <app-header *ngIf="auth.currentUser()"></app-header>
+  <app-header2 *ngIf="!auth.currentUser()"></app-header2>
+  <app-header *ngIf="auth.currentUser()"></app-header>
 
-    <div class="common-headermargin">
-        <section>
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="beta-suggestionheading">
-                            <h1 [class.nochildfound]="!kids?.length">Hi
-                                {{currentUser?.firstName.substr(0,currentUser?.firstName.indexOf(' '))}}. Welcome to
-                                Wondrfly!</h1>
-                            <!-- <h2 *ngIf="kids?.length">We’ve prepared these activity recommendations just for you!</h2> -->
-                        </div>
-                    </div>
-                </div>
+  <div class="common-headermargin">
+    <section>
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="beta-suggestionheading">
+              <h1 [class.nochildfound]="!kids?.length">Hi
+                {{currentUser?.firstName.substr(0,currentUser?.firstName.indexOf(' '))}}. Welcome to
+                Wondrfly!</h1>
+              <!-- <h2 *ngIf="kids?.length">We’ve prepared these activity recommendations just for you!</h2> -->
             </div>
-        </section>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <div *ngIf="kids?.length">
-            <section class="activity_category" *ngFor="let kid of kids;let i = index;">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12 activities-flex">
-                            <h2 class="title">Activities for <span class="child-name">{{ kid?.name }}</span></h2>
-                            <span
-                                (click)="filterData.searchedCategoryKey=kids[i].interestInfo[0]?.name;filterData.kidAge=kids[i].age;clickOnViewAllChildIntrests(i)"
-                                class="d-flex justify-content-end">view all</span>
-                        </div>
+    <div *ngIf="kids?.length">
+      <section class="activity_category" *ngFor="let kid of kids;let i = index;">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 activities-flex">
+              <h2 class="title">Activities for <span class="child-name">{{ kid?.name }}</span></h2>
+              <span
+                (click)="filterData.searchedCategoryKey=kids[i].interestInfo[0]?.name;filterData.kidAge=kids[i].age;clickOnViewAllChildIntrests(i)"
+                class="d-flex justify-content-end">view all</span>
+            </div>
+          </div>
+          <div class="activity_category_list">
+            <div class="row" *ngIf="kid?.interestInfo?.length">
+              <div class="col-md-4" *ngFor="let category of kid?.interestInfo | slice:0:3 ; let i = index">
+                <div class="category_list_box cursor"
+                  (click)="filterData.kidAge=kid.age;searchBySubCategory (category)">
+                  <a (click)="filterData.searchedCategoryKey=category.name;">
+                    <div class="category_image">
+                      <img [src]="baseUrl+category?.image" />
                     </div>
-                    <div class="activity_category_list">
-                        <div class="row" *ngIf="kid?.interestInfo?.length">
-                            <div class="col-md-4"
-                                *ngFor="let category of kid?.interestInfo | slice:0:3 ; let i = index">
-                                <div class="category_list_box cursor"
-                                    (click)="filterData.kidAge=kid.age;searchBySubCategory (category)">
-                                    <a (click)="filterData.searchedCategoryKey=category.name;">
-                                        <div class="category_image">
-                                            <img [src]="baseUrl+category?.image" />
-                                        </div>
-                                        <div class="category_title">
-                                            <p>
-                                                {{ category?.name}}
-                                                <span class="title_arrow">
-                                                    <img src="assets/category_arrow.svg" alt="Category_arrow" />
-                                                </span>
-                                            </p>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="category_title">
+                      <p>
+                        {{ category?.name}}
+                        <span class="title_arrow">
+                          <img src="assets/category_arrow.svg" alt="Category_arrow" />
+                        </span>
+                      </p>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
 
 
-                        <!-- <div class="row" *ngIf="!kid?.interestInfo?.length">
+            <!-- <div class="row" *ngIf="!kid?.interestInfo?.length">
                             <div class="col-md-4" *ngFor="let category of kid?.interestInfo | slice:0:3 ; let i = index">
                                 <div class="category_list_box cursor" (click)="searchByCategory(category)">
                                     <a>
@@ -69,142 +68,78 @@
                                 </div>
                             </div>
                         </div> -->
-                    </div>
-                </div>
-            </section>
+          </div>
         </div>
+      </section>
+    </div>
 
-        <section>
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="beta-suggestionbox">
-                            <div class="imgage-corners">
-                                <img src="assets/resouces-circle.png" />
-                            </div>
-                            <h1>Discover the best kids activities near you</h1>
+    <section>
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="beta-suggestionbox">
+              <div class="imgage-corners">
+                <img src="assets/resouces-circle.png" />
+              </div>
+              <h1>Discover the best kids activities near you</h1>
 
-                            <div class="search-filterupper">
-                                <div class="search-filed">
-                                    <div class="left-searchss">
-                                        <div class="">
-                                            <div>
-                                                <!-- <form class="banner_form" data-toggle="collapse" href="#dropdownprogram-provider" role="button" aria-expanded="false" aria-controls="dropdownprogram-provider">
-                                                    <div class="form-group">
-                                                        <input type="text" autocomplete="off" (keyup)="
-                                searchSubCategory(filterData.activityName);
-                                providerSearch(filterData.activityName)
-                              " placeholder="Search activity or provider..." class="form-control camp_input" name="activityName" [(ngModel)]="filterData.activityName" />
-                                                    </div>
-                                                    <div class="search-location">
-                                                        <span data-toggle="modal" data-target="#locationMod">
+              <div class="search-filterupper">
+                <div class="search-filed">
+                  <div class="left-searchss">
+                    <div class="">
+                      <div>
+                        <form class="banner_form">
+
+                          <div class="form-group ">
+                            <input type="text" placeholder="Search Activity..." aria-label="Activity"
+                              [formControl]="searchMywondrfly" class="form-control camp_input " matInput
+                              [matAutocomplete]="autoLanding2">
+                          </div>
+                          <div class="search-location">
+                            <span data-toggle="modal" data-target="#locationMod">
                               <img src="assets/search-location.png" /></span>
-                                                        <input placeholder="Search Jersey City" (keydown.enter)="$event.preventDefault()" autocorrect="off" autocapitalize="off" spellcheck="off" #search readonly />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <button [disabled]="filterData.activityName" class="banner_button" routerLink="/search">
+                            <input placeholder="Search Jersey City" (keydown.enter)="$event.preventDefault()"
+                              autocorrect="off" autocapitalize="off" spellcheck="off" #search readonly />
+                          </div>
+                          <div class="form-group">
+                            <button class="banner_button" (click)="searchKeyword(searchMywondrfly.value)">
                               <img src="assets/search_icon.svg" alt="Search image" />
                             </button>
-                                                    </div>
+                          </div>
 
-                                                    <div class="dropdownprogram" *ngIf="
-                              (providersBySearch?.length ||
-                                categoriesBySearch?.length) &&
-                                filterData.activityName
-                            ">
-                                                        <div class="card card-body">
-                                                            <div class="program-list" *ngIf="categoriesBySearch?.category?.length || categoriesBySearch?.tags?.length">
-                                                                <h6 (click)="filterData.searchedCategoryKey=category.name;searchByCategory(category)" *ngFor="
-                                let category of categoriesBySearch?.category
-                                  | slice: 0:1
-                              " (click)="searchByCategory(category)">
-                                                                    {{ category.name }}
-                                                                    <span class="search-programlist">
-                                    <img src="assets/program-search.svg" />
-                                  </span>
-                                                                </h6>
-                                                                <h6 (click)="filterData.searchedCategoryKey=category.name;searchBySubCategory(category)" *ngFor="
-                                    let category of categoriesBySearch?.tags
-                                      | slice: 0:3
-                                  " (click)="filterData.kidAge='';searchBySubCategory(category)">
-                                                                    {{ category.name }}
-                                                                    <span class="search-programlist">
-                                    <img src="assets/program-search.svg" />
-                                  </span>
-                                                                </h6>
-                                                            </div>
-                                                            <hr />
-                                                            <div class="provider-list" *ngIf="providersBySearch?.length">
-                                                                <h5>Providers</h5>
-                                                                <h6 (click)="goToProviderProfile(provider)" *ngFor="
-                                    let provider of providersBySearch
-                                      | slice: 0:4
-                                  ">
-                                                                    {{ provider.firstName }}
-                                                                </h6>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </form> -->
-                                             
-                                                <form class="banner_form">
-                                                
-                                                        <div class="form-group ">
-                                                        <input type="text" placeholder="Search Activity..."
-                                                            aria-label="Activity" [formControl]="searchMywondrfly"
-                                                            class="form-control camp_input " matInput
-                                                            [matAutocomplete]="autoLanding2">
-                                                    </div>
-                                                    <div class="search-location">
-                                                        <span data-toggle="modal" data-target="#locationMod">
-                                                            <img src="assets/search-location.png" /></span>
-                                                        <input placeholder="Search Jersey City"
-                                                            (keydown.enter)="$event.preventDefault()" autocorrect="off"
-                                                            autocapitalize="off" spellcheck="off" #search readonly />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <button 
-                                                            class="banner_button" (click)="searchKeyword(searchMywondrfly.value)">
-                                                            <img src="assets/search_icon.svg" alt="Search image" />
-                                                        </button>
-                                                    </div>
-
-                                                    <div class="autocomp">
-                                                        <mat-autocomplete autoActiveFirstOption
-                                                            #autoLanding2="matAutocomplete" class="auto-landing">
-                                                            <div *ngFor="let group of allData">
-                                                                <mat-optgroup *ngIf="group?.data?.length"
-                                                                    [label]="group.label">
-                                                                    <mat-option
-                                                                        *ngFor="let option of group.data"
-                                                                        [value]="option.name"
-                                                                        (click)="selectSearchedOption(option)"
-                                                                        (onSelectionChange)="selectSearchedOption(option)">
-                                                                        {{option.name}}
-                                                                        <span class="search-programlist">
-                                                                            <img src="assets/program-search.svg" />
-                                                                        </span>
-                                                                    </mat-option>
-                                                                </mat-optgroup>
-                                                            </div>
-                                                        </mat-autocomplete>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="image-corners">
-                                <img src="assets/beta-image.png" />
-                            </div>
-                        </div>
+                          <div class="autocomp">
+                            <mat-autocomplete autoActiveFirstOption #autoLanding2="matAutocomplete"
+                              class="auto-landing">
+                              <div *ngFor="let group of allData">
+                                <mat-optgroup *ngIf="group?.data?.length" [label]="group.label">
+                                  <mat-option *ngFor="let option of group.data" [value]="option.name"
+                                    (click)="selectSearchedOption(option)"
+                                    (onSelectionChange)="selectSearchedOption(option)">
+                                    {{option.name}}
+                                    <span class="search-programlist">
+                                      <img src="assets/program-search.svg" />
+                                    </span>
+                                  </mat-option>
+                                </mat-optgroup>
+                              </div>
+                            </mat-autocomplete>
+                          </div>
+                        </form>
+                      </div>
                     </div>
+                  </div>
                 </div>
+              </div>
+              <div class="image-corners">
+                <img src="assets/beta-image.png" />
+              </div>
             </div>
-        </section>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <!-- <section class="blog-explore">
+    <!-- <section class="blog-explore">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -233,7 +168,7 @@
             </div>
         </section> -->
 
-        <!-- <div class="blog-explore explore-fixed" [hidden]="isNewFeaturePopUp">
+    <!-- <div class="blog-explore explore-fixed" [hidden]="isNewFeaturePopUp">
             <div class="container">
                 <div class="row">
                     <div class="col-md-8">
@@ -259,7 +194,7 @@
             </div>
         </div> -->
 
-        <!-- 
+    <!-- 
         <section class="blog-explore">
             <div class="container">
                 <div class="row">
@@ -296,7 +231,7 @@
             </div>
         </section> -->
 
-        <!-- <section class="blog-explore">
+    <!-- <section class="blog-explore">
       <div class="container">
         <div class="row">
           <div class="col-12">
@@ -407,149 +342,141 @@
         </div>
       </div>
     </section> -->
-        <section class="blog-explore new-resources">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="box">
-                            <div class="upper-blog">
-                                <h2 class="upper-blog-heading">Resources</h2>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="new-resourcesleft">
-                                        <button class="cmn-resbtn" [class.active]="resourcesType=='do-together'"
-                                            (click)="resourcesType='do-together'">
-                                            <img src="assets/do-together.png">
-                                            <h1>Do-at-Home</h1>
-                                        </button>
-                                        <button class="cmn-resbtn" [class.active]="resourcesType=='printable'"
-                                            (click)="resourcesType='printable'">
-                                            <img src="assets/fluent_print-20-filled.png">
-                                            <h1>Printables</h1>
-                                        </button>
-                                        <button class="cmn-resbtn" [class.active]="resourcesType=='featured-blogs'"
-                                            (click)="resourcesType='featured-blogs'">
-                                            <img src="assets/bx_bxs-book-reader.png">
-                                            <h1>Featured Blogs</h1>
-                                        </button>
-                                        <!-- <button class="cmn-resbtn" [class.active]="resourcesType=='funny-tweets'" (click)="resourcesType='funny-tweets'">
+    <section class="blog-explore new-resources">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="box">
+              <div class="upper-blog">
+                <h2 class="upper-blog-heading">Resources</h2>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="new-resourcesleft">
+                    <button class="cmn-resbtn" [class.active]="resourcesType=='do-together'"
+                      (click)="resourcesType='do-together'">
+                      <img src="assets/do-together.png">
+                      <h1>Do-at-Home</h1>
+                    </button>
+                    <button class="cmn-resbtn" [class.active]="resourcesType=='printable'"
+                      (click)="resourcesType='printable'">
+                      <img src="assets/fluent_print-20-filled.png">
+                      <h1>Printables</h1>
+                    </button>
+                    <button class="cmn-resbtn" [class.active]="resourcesType=='featured-blogs'"
+                      (click)="resourcesType='featured-blogs'">
+                      <img src="assets/bx_bxs-book-reader.png">
+                      <h1>Featured Blogs</h1>
+                    </button>
+                    <!-- <button class="cmn-resbtn" [class.active]="resourcesType=='funny-tweets'" (click)="resourcesType='funny-tweets'">
                       <img src="assets/bi_twitter.png">
                       <h1>Just for Giggles</h1>
                     </button> -->
-                                    </div>
+                  </div>
+                </div>
+
+
+                <div class="col-md-8">
+                  <div class="height-carousel">
+                    <div class="left-resourcebtn" [ngClass]="this.leftDisabled ? 'visibility':''">
+                      <a (click)="scrollLeft()">
+                        <div class="carousel-nav-icon">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129"
+                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <path
+                              d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z" />
+                          </svg>
+                        </div>
+                      </a>
+                    </div>
+                    <div class="new-resourcesright">
+                      <div *ngIf="resourcesType==='do-together'">
+                        <div class="do-together cardss">
+                          <div #widgetsContent class="custom-slider-main">
+                            <div class="card" *ngFor="let blog of blogByCategory?.blogs | slice: 0:3">
+                              <!-- <img src="assets/why-family.png" class="card-img-top" alt="..."> -->
+                              <img src="{{blogUrl}}{{blog?.image[0]?.formats?.thumbnail?.url}}"
+                                class="card-img-top cursor" (click)="setBlog(blog)" alt="...">
+
+                              <div class="card-body">
+                                <h6 class="date">{{blog?.published_at |
+                                                                    date:'mediumDate'}}</h6>
+                                <h5 class="card-title">{{blog?.title | slice: 0:32}} ...
+                                </h5>
+                                <p class="card-text" [innerHTML]="blog.content | markdown | slice: 0:50">
+                                </p>
+                                <a class="btn learn-btn" (click)="setBlog(blog)">Learn
+                                  More</a>
+                              </div>
+                            </div>
+                            <div class="card cmn-card">
+                              <a (click)="doTogather(blogByCategory)" class="btn cmn-viewbtn">View All</a>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+                      <div class="lower-resources-sec" *ngIf="resourcesType==='printable'">
+                        <div #widgetsContent class="custom-slider-main">
+                          <div class="resourves-width" *ngFor=" let printable of printables">
+                            <div class="card card-beta">
+                              <!-- <img *ngIf="printable?.coverPic?.url" class="card-img-top" src="{{blogUrl}}{{printable?.coverPic?.url}}" /> -->
+                              <!-- <img class="card-img-top" src="assets/resource-view2.png" /> -->
+                              <img *ngIf="printable?.coverPic?.url" class="card-img-top"
+                                src="{{blogUrl}}{{printable?.coverPic?.formats?.thumbnail?.url}}" />
+                              <img *ngIf="!printable?.coverPic?.url" class="card-img-top"
+                                src="assets/resource-view2.png" />
+                              <div class="card-body">
+                                <div class="list join-flex">
+                                  <h5>{{printable?.title}}</h5>
+                                  <p>
+                                    <a class="cursor" (click)="downloadFile(printable?.file)">DOWNLOAD</a>
+                                  </p>
                                 </div>
+                              </div>
 
+                            </div>
+                          </div>
+                          <div class="resourves-width">
+                            <div class="card cmn-card">
+                              <a routerLink="/resources" class="btn cmn-viewbtn">View
+                                All</a>
+                            </div>
+                          </div>
 
-                                <div class="col-md-8">
-                                    <div class="height-carousel">
-                                        <div class="left-resourcebtn" [ngClass]="this.leftDisabled ? 'visibility':''">
-                                            <a (click)="scrollLeft()">
-                                                <div class="carousel-nav-icon">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129"
-                                                        xmlns:xlink="http://www.w3.org/1999/xlink">
-                                                        <path
-                                                            d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z" />
-                                                    </svg>
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <div class="new-resourcesright">
-                                            <div *ngIf="resourcesType==='do-together'">
-                                                <div class="do-together cardss">
-                                                    <div #widgetsContent class="custom-slider-main">
-                                                        <div class="card"
-                                                            *ngFor="let blog of blogByCategory?.blogs | slice: 0:3">
-                                                            <!-- <img src="assets/why-family.png" class="card-img-top" alt="..."> -->
-                                                            <img src="{{blogUrl}}{{blog?.image[0]?.formats?.thumbnail?.url}}"
-                                                                class="card-img-top cursor" (click)="setBlog(blog)"
-                                                                alt="...">
+                        </div>
+                      </div>
 
-                                                            <div class="card-body">
-                                                                <h6 class="date">{{blog?.published_at |
+                      <div *ngIf="resourcesType==='featured-blogs'">
+                        <div class="do-together cardss">
+                          <div #widgetsContent class="custom-slider-main">
+                            <div class="card" *ngFor="let blog of featuredBlogs">
+                              <!-- <img src="assets/why-family.png" class="card-img-top" alt="..."> -->
+                              <img (click)="setBlog(blog)" src="{{blogUrl}}{{blog?.image[0]?.formats?.thumbnail?.url}}"
+                                class="card-img-top cursor" alt="...">
+
+                              <div class="card-body">
+                                <h6 class="date">{{blog?.published_at |
                                                                     date:'mediumDate'}}</h6>
-                                                                <h5 class="card-title">{{blog?.title | slice: 0:32}} ...
-                                                                </h5>
-                                                                <p class="card-text"
-                                                                    [innerHTML]="blog.content | markdown | slice: 0:50">
-                                                                </p>
-                                                                <a class="btn learn-btn" (click)="setBlog(blog)">Learn
-                                                                    More</a>
-                                                            </div>
-                                                        </div>
-                                                        <div class="card cmn-card">
-                                                            <a (click)="doTogather(blogByCategory)"
-                                                                class="btn cmn-viewbtn">View All</a>
-                                                        </div>
-                                                    </div>
+                                <h5 class="card-title">{{blog?.title | slice: 0:32}} ...
+                                </h5>
+                                <p class="card-text" [innerHTML]="blog.content | markdown | slice: 0:50">
+                                </p>
+                                <a href="" class="btn learn-btn" (click)="setBlog(blog)">Learn More</a>
+                              </div>
+                            </div>
+                            <div class="card cmn-card">
+                              <a routerLink="/blogs" class="btn cmn-viewbtn">View All</a>
+                            </div>
+                          </div>
 
-                                                </div>
-                                            </div>
-                                            <div class="lower-resources-sec" *ngIf="resourcesType==='printable'">
-                                                <div #widgetsContent class="custom-slider-main">
-                                                    <div class="resourves-width" *ngFor=" let printable of printables">
-                                                        <div class="card card-beta">
-                                                            <!-- <img *ngIf="printable?.coverPic?.url" class="card-img-top" src="{{blogUrl}}{{printable?.coverPic?.url}}" /> -->
-                                                            <!-- <img class="card-img-top" src="assets/resource-view2.png" /> -->
-                                                            <img *ngIf="printable?.coverPic?.url" class="card-img-top"
-                                                                src="{{blogUrl}}{{printable?.coverPic?.formats?.thumbnail?.url}}" />
-                                                            <img *ngIf="!printable?.coverPic?.url" class="card-img-top"
-                                                                src="assets/resource-view2.png" />
-                                                            <div class="card-body">
-                                                                <div class="list join-flex">
-                                                                    <h5>{{printable?.title}}</h5>
-                                                                    <p>
-                                                                        <a class="cursor"
-                                                                            (click)="downloadFile(printable?.file)">DOWNLOAD</a>
-                                                                    </p>
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-                                                    <div class="resourves-width">
-                                                        <div class="card cmn-card">
-                                                            <a routerLink="/resources" class="btn cmn-viewbtn">View
-                                                                All</a>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-
-                                            <div *ngIf="resourcesType==='featured-blogs'">
-                                                <div class="do-together cardss">
-                                                    <div #widgetsContent class="custom-slider-main">
-                                                        <div class="card" *ngFor="let blog of featuredBlogs">
-                                                            <!-- <img src="assets/why-family.png" class="card-img-top" alt="..."> -->
-                                                            <img (click)="setBlog(blog)"
-                                                                src="{{blogUrl}}{{blog?.image[0]?.formats?.thumbnail?.url}}"
-                                                                class="card-img-top cursor" alt="...">
-
-                                                            <div class="card-body">
-                                                                <h6 class="date">{{blog?.published_at |
-                                                                    date:'mediumDate'}}</h6>
-                                                                <h5 class="card-title">{{blog?.title | slice: 0:32}} ...
-                                                                </h5>
-                                                                <p class="card-text"
-                                                                    [innerHTML]="blog.content | markdown | slice: 0:50">
-                                                                </p>
-                                                                <a href="" class="btn learn-btn"
-                                                                    (click)="setBlog(blog)">Learn More</a>
-                                                            </div>
-                                                        </div>
-                                                        <div class="card cmn-card">
-                                                            <a routerLink="/blogs" class="btn cmn-viewbtn">View All</a>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                            <div *ngIf="resourcesType==='funny-tweets'">
-                                                <div class="do-together cardss">
-                                                    <div #widgetsContent class="custom-slider-main">
-                                                        <div class="card" *ngFor='let tweetData of tweetData'>
-                                                            <!-- <div class="resourcenew-upper">
+                        </div>
+                      </div>
+                      <div *ngIf="resourcesType==='funny-tweets'">
+                        <div class="do-together cardss">
+                          <div #widgetsContent class="custom-slider-main">
+                            <div class="card" *ngFor='let tweetData of tweetData'>
+                              <!-- <div class="resourcenew-upper">
                                                                 <a routerLink="{{tweetDataBlogPath}}" target="_blank">
                                                                     <div class="content-upper cursor">
 
@@ -559,56 +486,55 @@
                                                                     </div>
                                                                 </a>
                                                             </div> -->
-                                                            <!-- <ngx-tweet></ngx-tweet> -->
-                                                            <div class="card-body">
-                                                                <!-- <div class="resourcenew-lower">
+                              <!-- <ngx-tweet></ngx-tweet> -->
+                              <div class="card-body">
+                                <!-- <div class="resourcenew-lower">
                                                                     <div class="dummy-twitter"> -->
 
-                                                                <div [innerHTML]="tweetData?.embededTweet | markdown">
-                                                                </div>
-                                                                <!-- </div>
-                                                                </div> -->
-                                                            </div>
-                                                            <a routerLink="{{tweetDataBlogPath}}" target="_blank"
-                                                                class="btn-sec">CHECK FOR MORE!</a>
-                                                        </div>
-
-                                                        <div class="card cmn-card">
-                                                            <a (click)="tweetCategory()" class="btn cmn-viewbtn">View
-                                                                All</a>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="right-resourcebtn" [ngClass]="this.rightDisabled ? 'visibility':''">
-                                            <a (click)="scrollRight()">
-                                                <div class="carousel-nav-icon">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129"
-                                                        xmlns:xlink="http://www.w3.org/1999/xlink">
-                                                        <path
-                                                            d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z" />
-                                                    </svg>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
+                                <div [innerHTML]="tweetData?.embededTweet | markdown">
                                 </div>
-
+                                <!-- </div>
+                                                                </div> -->
+                              </div>
+                              <a routerLink="{{tweetDataBlogPath}}" target="_blank" class="btn-sec">CHECK FOR MORE!</a>
                             </div>
 
+                            <div class="card cmn-card">
+                              <a (click)="tweetCategory()" class="btn cmn-viewbtn">View
+                                All</a>
+                            </div>
+                          </div>
+
                         </div>
+                      </div>
                     </div>
+                    <div class="right-resourcebtn" [ngClass]="this.rightDisabled ? 'visibility':''">
+                      <a (click)="scrollRight()">
+                        <div class="carousel-nav-icon">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129"
+                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <path
+                              d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z" />
+                          </svg>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
                 </div>
+
+              </div>
+
             </div>
-        </section>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    </div>
+  </div>
 
-    <app-footer></app-footer>
-    <ngx-ui-loader [fgsTemplate]="foregroundSpinner" fgsSize="190" bgsSize="190"> </ngx-ui-loader>
-    <ng-template #foregroundSpinner>
-        <app-loader-file></app-loader-file>
-    </ng-template>
+  <app-footer></app-footer>
+  <ngx-ui-loader [fgsTemplate]="foregroundSpinner" fgsSize="190" bgsSize="190"> </ngx-ui-loader>
+  <ng-template #foregroundSpinner>
+    <app-loader-file></app-loader-file>
+  </ng-template>
 </body>

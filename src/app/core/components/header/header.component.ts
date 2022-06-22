@@ -377,14 +377,12 @@ export class HeaderComponent implements OnInit {
       this.apiservice.searchKeywords(key).subscribe((res: any) => {
         this.categoriesBySearch = res.data;
         res.data.map(keyword => { keyword.name = keyword.keywordName })
-        // this.categoriesBySearch.category = this.categoriesBySearch.category.filter((item) => item.isActivated !== false);
-        // this.categoriesBySearch.tags = this.categoriesBySearch.tags.filter((item) => item.isActivated !== false && item.programCount);
-        // this.categoryData = this.categoriesBySearch.concat(this.categoriesBySearch)
         groupDataAll[0].data = this.categoriesBySearch;
       });
       this.apiservice.searchUsers(key, "provider").subscribe((res: any) => {
         if (res.isSuccess === true) {
           this.providersBySearch = res.data;
+          this.providersBySearch = this.providersBySearch.filter(e => e.isActivated);
           var i;
           for (i = 0; i < this.providersBySearch.length; i++) {
             this.providersBySearch[i].name = this.providersBySearch[i]['firstName'];
@@ -525,7 +523,7 @@ export class HeaderComponent implements OnInit {
   searchKeyword(txt) {
     //     var stringArray = key.split(" ")
     if (txt) {
-      txt+=`&parentId=${this.user.id}`
+      txt += `&parentId=${this.user.id}`
       this.apiservice.searchMultipleKeywords(txt).subscribe((res: any) => {
         const uniqueArry: any = [...new Map(res.data.map((item) => [item["keywordName" && "keywordType"], item])).values()];
         if (uniqueArry) {
@@ -627,10 +625,10 @@ export class HeaderComponent implements OnInit {
         }
       })
     }
-     else{
+    else {
       this.router
-            .navigateByUrl("/", { skipLocationChange: true })
-            .then(() => this.router.navigate(['/search']));
+        .navigateByUrl("/", { skipLocationChange: true })
+        .then(() => this.router.navigate(['/search']));
     }
   }
 }
