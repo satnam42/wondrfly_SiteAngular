@@ -426,7 +426,7 @@ export class LoginParentComponent implements OnInit {
     this.mapsAPILoader.load().then(() => {
       this.geoCoder = new google.maps.Geocoder;
       var options = {
-        types: ['(cities)'],
+        // types: ['(cities)'],
         componentRestrictions: { country: "us" }
       };
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, options);
