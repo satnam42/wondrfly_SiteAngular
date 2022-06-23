@@ -1348,6 +1348,9 @@
                                                 <ul class="ul-tag-btn-info" *ngIf="!showReset">
                                                     <li *ngFor='let cat of activity?.category'><button
                                                             class="btn-activites-info">{{cat.name}}</button></li>
+                                                            <li *ngFor='let cat of activity?.subCategoryIds'><button
+                                                                class="btn-activites-info">{{cat.name}}</button></li>
+                                                            
                                                 </ul>
                                             </div>
                                         </div>

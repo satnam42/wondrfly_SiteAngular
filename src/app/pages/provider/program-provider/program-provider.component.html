@@ -230,6 +230,9 @@ out of 5 </a> -->
                                                         <div class="sports_btn" *ngFor='let cat of program?.category'>
                                                             <span>{{cat?.name}}</span>
                                                         </div>
+                                                        <div class="sports_btn" *ngFor='let cat of program?.subCategoryIds'>
+                                                            <span>{{cat?.name}}</span>
+                                                        </div>
 
                                                         <div class="date_age">
                                                             <p>
@@ -962,6 +965,8 @@ out of 5 </a> -->
                                             <ul class="ul-tag-btn-info">
                                                 <li *ngFor='let cat of program?.category'><button
                                                         class="btn-activites-info">{{cat.name}}</button></li>
+                                                        <li *ngFor='let cat of program?.subCategoryIds'><button
+                                                            class="btn-activites-info">{{cat.name}}</button></li>
                                             </ul>
                                         </div>
                                     </div>

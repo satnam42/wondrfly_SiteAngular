@@ -291,7 +291,13 @@ export class ProgramProviderComponent implements OnInit {
     await this.apiservice.getProgramByProvider(this.user.id, this.pageNo, 200).subscribe((res) => {
       this.programs = res
       this.programs.map(program => program.category.map(category => {
-        const found = this.userCategories.find(el => el.name == category.name)
+        let found = this.userCategories.find(el => el.name == category.name)
+        if (!found) {
+          this.userCategories.push(category);
+        }
+      }));
+      this.programs.map(program => program.subCategoryIds.map(category => {
+        let found = this.userCategories.find(el => el.name == category.name)
         if (!found) {
           this.userCategories.push(category);
         }
