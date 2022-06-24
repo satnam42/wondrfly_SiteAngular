@@ -4,12 +4,10 @@
             <div class="row">
                 <div class="col-md-6 sign_outer">
                     <div class="otp_form">
-
-                        <div class="sing_text">
+                        <div class="ask-join-top-logo">
                             <img routerLink="/" src="assets/logo-betawndr.png">
                         </div>
                         <div class="tab_outer">
-
                             <div class="tab-content">
                                 <div class="tab-pane active" id="parent" role="tabpanel">
                                     <div class="form" [formGroup]="parentForm">
@@ -57,7 +55,7 @@
                                             <div class="form-group choose-acti">
                                                 <label>I book activities for...​</label>
                                                 <div class="input_outer" data-toggle="collapse" data-target="#choose-activ">
-                                                    <input type="text" class="form-control" readonly placeholder="Choose" [formControl]="parentForm.controls['bookedActivityFor']" [(ngModel)]="userData.bookedActivityFor">
+                                                    <input type="text" class="form-control" readonly placeholder="Select" [formControl]="parentForm.controls['bookedActivityFor']" [(ngModel)]="userData.bookedActivityFor">
                                                     <img src="assets/downarrow.png" alt="" id="image-downArrow">
                                                     <p class="cant_blank" *ngIf="parentForm.controls['bookedActivityFor'].hasError('required') && parentForm.controls['bookedActivityFor'].touched">
                                                         Can't Leave It Blank</p>
@@ -130,23 +128,18 @@
                                             <button class="SignBtn cancel" *ngIf="step1" (click)="cancel()">Cancel</button>
                                             <button class="SignBtn cancel" *ngIf="step2" (click)="step1=true;step2=false">Back</button>
                                         </div>
-                                        <div class="row forgot_password" *ngIf="step2">
-                                            <div class="col-12 forgot_text">
-                                                <p class="mt-3"> By Clicking Submit Request I Hereby Agree To The WONDRFLY
-                                                </p>
-                                            </div>
-                                        </div>
                                     </div>
 
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
-                    <div class="row forgot_password" [hidden]="!step2">
-                        <div class="col-12 forgot_text">
-                            <p class="member-123"><a class="cursor" target="_blank" [routerLink]="['/term-condition']">Terms & Conditions</a> and <a class="cursor" [routerLink]="['/privacy-policy']" target="_blank">Privacy Policy</a></p>
+                    <div class="row">
+                        <div class="col-12">
+                          <div class="ask-join-botom-txt">
+                            <p>By Clicking Submit Request I Hereby Agree To The WONDRFLY</p>
+                            <p><a class="cursor" target="_blank" [routerLink]="['/term-condition']">Terms & Conditions</a> and <a class="cursor" [routerLink]="['/privacy-policy']" target="_blank">Privacy Policy</a></p>
+                          </div>     
                         </div>
                     </div>
                     <div class="row forgot_password">
@@ -155,7 +148,20 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 img-box">
+                <div class="col-md-6 bg-imgs-rcc" [hidden]="!step1">
+                    <div class="step1-right-colm-info">
+                        <div class="ask-join-rcc">
+                            <h2>What you get with the Beta program:</h2>
+                            <ul class="ul-pci-info">
+                                <li>Unlimited Access to 1500+ Activities from 200+ Providers</li>
+                                <li>The Ability to Save and Share your Favorite Activities </li>
+                                <li>Personalized Activity Recommendations</li>
+                                <li>Early Access to Brand New Features</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 img-box" [hidden]="!step2">
                     <div class="otp_img">
                         <img class="img-fluid" [defaultImage]="defaultImage" [errorImage]="errorImage" [lazyLoad]="signUpImage" />
                         <div class="otp_img_overlay"></div>

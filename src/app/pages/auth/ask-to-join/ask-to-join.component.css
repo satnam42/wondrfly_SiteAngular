@@ -1,127 +1,16 @@
-.otp_form {
-    max-width: 440px;
-    margin: 0 auto;
-}
+.otp_form {max-width: 440px;margin: 0 auto;padding-top: 40px;}
+.otp_form .form-group label {font-size: 12px;line-height: 18px;}
 
-.otp_form .otp_logo {
-    position: absolute;
-    top: 40px;
-}
-
-.otp_form .form {
-    margin-top: 13px;
-}
-
-.otp_form .form .form-group {
-    margin: 0 0 10px 0;
-}
-
-.otp_form .form .form-group.email_text h2 {
-    font-family: 'Poppins';
-    font-size: 20px;
-    line-height: 27px;
-    letter-spacing: 0.001em;
-    color: #748494;
-}
+.otp_form .form .form-group {margin: 0 0 10px 0;}
 
 .otp_form .form .form-group .input_outer:focus::after,
 .otp_form .form .form-group .input_outer:focus-within::after {
     opacity: 1;
 }
-
-.otp_form .form .form-group .input_outer.password::after {
+.otp_form .form .form-group .input_outer.password:after {
     content: none;
 }
-
-.otp_form .form .form-group .input_outer.password .password_view {
-    position: absolute;
-    right: 9px;
-    top: 50%;
-    -webkit-transform: translateY(-50%);
-    transform: translateY(-50%);
-}
-
-.ch-radio input[type="checkbox"]:checked+span:before,
-.ch-radio input[type="checkbox"]:checked~span:before,
-.ch-radio input[type="radio"]:checked+span:before,
-.ch-radio input[type="radio"]:checked~span:before {
-    border-color: #27AE60;
-    background-color: #27AE60;
-}
-
-.sign_in_btn {
-    text-align: center;
-    margin: 20px 0 0 0;
-}
-
-.SignBtn {
-    background: #53B2E8;
-    border: 1px solid #53B2E8;
-    box-sizing: border-box;
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.12);
-    border-radius: 50px;
-    min-width: 205px;
-    max-height: 52px;
-    line-height: 50px;
-    text-align: center;
-    color: #ffffff;
-    font-weight: 600;
-    font-size: 13px;
-    margin: 0 auto;
-    text-transform: capitalize;
-    transition: 0.8s;
-}
-
-.SignBtn:hover {
-    background: #53B2E8;
-}
-
-.SignBtn.cancel {
-    background: transparent;
-    border: 1px solid #53B2E8;
-    color: #53B2E8;
-    margin: 0 auto 0 16px;
-}
-
-.SignBtn.cancel:hover {
-    background: #53B2E8;
-    color: #ffffff;
-}
-
-.otp_img {
-    position: relative;
-    overflow: hidden;
-}
-
-.otp_img_overlay {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0px;
-    background: linear-gradient(214.99deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 100%);
-}
-
-h1.ask-heading {
-    font-family: "Poppins";
-    font-style: normal;
-    font-weight: 500;
-    font-size: 34px;
-    line-height: 51px;
-    text-align: center;
-    letter-spacing: 0.001em;
-    color: #777CEA;
-    text-transform: capitalize;
-    margin-bottom: 25px;
-    margin-top: 50px;
-}
-
-h1.ask-heading a {
-    color: #777CEA;
-    text-decoration: underline;
-}
-
-span.beta-span {
+.beta-span {
     color: #53B2E8;
     cursor: pointer;
 }
@@ -130,89 +19,10 @@ span.beta-span {
     position: relative;
 }
 
-.otp_outer .email_register {
-    position: inherit;
-}
-
-.go_back_page {
-    position: absolute;
-    bottom: 27px;
-}
-
-.go_back_page p {
-    font-size: 11px;
-    line-height: 15px;
-    letter-spacing: 0.015em;
-    text-transform: capitalize;
-    color: #748494;
-}
-
-.go_back_page p a {
-    color: #53B2E8;
-}
-
-.sing_text {
-    margin: 0;
-}
-
-.sing_text h1 {
-    font-family: 'Poppins';
-    font-size: 36px;
-    line-height: 37px;
-    color: #53B2E8;
-    font-weight: 400;
-    margin-top: 0;
-}
-
-.sing_text h3 {
-    font-family: 'Poppins';
-    font-size: 20px;
-    line-height: 27px;
-    letter-spacing: 0.001em;
-    color: #748494;
-    margin-top: 10px;
-}
-
-.forgot_text p.member-123 {
-    padding-bottom: 0px;
-    padding-top: 0px;
-}
-
-.otp_img .img-fluid {
-    max-width: 100%;
-    height: 1019px;
-    object-fit: cover;
-}
-
-.otp_outer .sign_outer {
-    position: inherit;
-    margin-top: 40px;
-}
-
-.form-group.socialicons-input {
-    padding-bottom: 75px;
-}
-
-.forgot_text p {
-    font-size: 11px;
-    line-height: 15px;
-    letter-spacing: 0.015em;
-    text-transform: capitalize;
-    color: #494949;
-}
-
-.forgot_text p a {
-    color: #53B2E8;
-}
-
-.forgot_text.right {
-    text-align: right;
-}
-
 .forgot_password {
-    margin-top: 21px;
-    padding: 0 5px;
+    padding: 0px 5px;
     text-align: center;
+    margin-top: 21px;
     margin-bottom: 20px;
 }
 
@@ -221,53 +31,15 @@ span.beta-span {
     bottom: 20px;
     padding: 0;
 }
-
-.copyright_text p {
-    font-size: 13px;
-    line-height: 16px;
-    letter-spacing: 0.001em;
-    color: #494949;
-    margin-left: 30px;
-}
-
-.tab_outer {
-    margin-top: 18px;
-}
-
-.tab_outer .nav-tabs {
-    border: none;
-}
-
-.tab_outer .nav-tabs .nav-item {
-    margin: 0 41px 0 0;
-}
-
-.tab_outer .nav-tabs .nav-item:last-child {
-    margin: 0;
-}
-
-.tab_outer .nav-tabs .nav-link {
-    text-align: center;
-    border: 1px solid #E5E9EC;
-    box-sizing: border-box;
-    border-radius: 20px;
-    padding: 15px 0;
-    background-color: #fff;
-    min-width: 198px;
-    font-weight: 600;
-    font-size: 13px;
-    letter-spacing: 0.001em;
-    color: #494944;
-    height: 100%;
-}
-
-.tab_outer .custom_select {
-    min-height: 46px;
-    line-height: 46px;
-}
-
 .tab_outer .form-group .form-control,
 .tab_outer .form-group input {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0.001em;
+    color: #494949;
     min-height: 47px;
     padding: 10px 14px;
     padding-right: 24px;
@@ -275,28 +47,7 @@ span.beta-span {
     background-color: #fff;
 }
 
-.tab_outer .nav-tabs .nav-link span {
-    width: 100%;
-    display: inline-block;
-    margin-top: 9px;
-}
-
-.tab_outer .nav-tabs .nav-link .svg_img path {
-    stroke: #494949;
-}
-
-.tab_outer .nav-tabs .nav-link.active {
-    color: #53B2E8;
-    border: 1px solid #53B2E8;
-}
-
-.tab_outer .nav-tabs .nav-link.active .svg_img path {
-    stroke: #53B2E8;
-}
-
-.otp_outer .col-md-6 {
-    padding: 0px;
-}
+.otp_outer .col-md-6 {padding: 0px;}
 
 mat-icon.field-icon {
     float: right;
@@ -307,82 +58,41 @@ mat-icon.field-icon {
     font-size: 20px;
 }
 
-.form-error-msg {
-    color: red;
-}
+.form-error-msg {color: red;}
+input.ng-invalid.ng-touched {border: 1px solid red;}
+select.ng-invalid.ng-touched {border: 1px solid red;}
 
-input.ng-invalid.ng-touched {
-    border: 1px solid red;
-}
-
-select.ng-invalid.ng-touched {
-    border: 1px solid red;
-}
-
-.checkbox-ask .form-check {
-    padding: 8px;
-    padding-top: 10px;
-}
-
-.checkbox-ask .form-check label.form-check-label {
-    font-family: "Poppins";
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 21px;
-    letter-spacing: 0.01em;
-    color: #494949;
-    margin-left: 25px;
-}
-
-
-/*Empty checkbox*/
-
-.k-checkbox {
-    background: transparent;
-    color: white !important;
-}
+.checkbox-ask .form-check {padding: 8px;padding-top: 10px;}
+.checkbox-ask .form-check label.form-check-label {font-family: "Poppins";font-style: normal;font-weight: normal;font-size: 14px; line-height: 21px;letter-spacing: 0.01em; color: #494949;margin-left: 25px;}
 
 
 /*Checked checkbox*/
 
 .k-checkbox {
-    border-color: rgba(0, 0, 0, .08);
-    color: transparent;
-    background-color: #fff;
-}
-
-.k-checkbox {
-    border-radius: 2px;
-    margin: 0;
+    margin: 0px;
     padding: 0;
     width: 16px;
     height: 16px;
     line-height: initial;
-    border-width: 1px;
-    border-style: solid;
-    outline: 0;
+    outline: 0px;
     box-sizing: border-box;
     position: absolute;
     -webkit-appearance: none;
     margin-right: 9px;
     border: 1px solid #53B2E8;
     box-sizing: border-box;
-    border-radius: 5px;
+    border-radius: 4px;
     top: 13px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -o-border-radius: 5px;
+    background-color: #fff;
 }
 
-.k-checkbox.k-checked::before,
+/* .k-checkbox.k-checked::before,
 .k-checkbox:checked::before {
     border-radius: 2px;
     -webkit-transform: scale(1) translate(-50%, -50%);
     -ms-transform: scale(1) translate(-50%, -50%);
     transform: scale(1) translate(-50%, -50%);
-}
+} */
 
 .k-checkbox::before {
     width: 12px;
@@ -422,6 +132,7 @@ select.ng-invalid.ng-touched {
 
 #joinModal .location-popup h2 {
     padding: 15px;
+    justify-content: center;
 }
 
 .SignBtnss {
@@ -558,63 +269,7 @@ input.form-check-input.k-checkbox.bookeds {
     font-variant: all-petite-caps;
     color: #beb4b4;
 }
-
-@media(max-width:767px) {
-    .tab_outer .nav-tabs .nav-link {
-        padding: 15px 0 !important;
-        min-width: 110px !important;
-    }
-    .tab-content .forgot_password .forgot_text {
-        max-width: 100% !important;
-    }
-    .otp_outer {
-        padding: 0 0 20px 0;
-    }
-    .tab_outer .nav-tabs .nav-item {
-        margin: 0 20px 0 0;
-    }
-}
-
-@media (max-width: 1024px) {
-    .otp_img {
-        position: absolute !important;
-        top: 36%;
-        transform: translateY(-36%);
-    }
-    .otp_img .img-fluid {
-        height: 1386px;
-    }
-    .sign_in_btn {
-        margin: 46px 0 0 0;
-    }
-    .form-group.socialicons-input {
-        padding-bottom: 60px;
-        padding-top: 29px;
-    }
-    .forgot_password {
-        margin-top: 65px;
-    }
-    .otp_outer .sign_outer {
-        position: inherit;
-        margin-top: 136px;
-    }
-    @media (max-width: 1024px) {
-        .otp_outer .email_register {
-            position: inherit;
-            height: 100vh;
-        }
-    }
-}
-
-.otp_form .sing_text img {
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-    width: 250px;
-    object-fit: cover;
-}
-
-img#image-downArrow {
+#image-downArrow {
     display: block;
     margin-left: auto;
     position: relative;
@@ -622,3 +277,37 @@ img#image-downArrow {
     right: 10px;
     width: 15px;
 }
+
+
+/* Ask join page css */
+.ask-join-top-logo {text-align: center;margin-bottom: 40px;}
+h1.ask-heading {font-family: 'Poppins';font-style: normal;font-weight: 500;font-size: 34px;line-height: 120%;text-align: center;letter-spacing: 0.001em;color: #777CEA; margin-bottom: 30px;}
+h1.ask-heading a {color: #777CEA;text-decoration: underline;}
+
+.otp_img {position: relative;overflow: hidden;height: 100%;}
+.otp_img .img-fluid {width: 100%;height: 100%;object-fit: cover;}
+.otp_img_overlay {position: absolute;width: 100%;height: 100%;left: 0;top: 0px;background: linear-gradient(214.99deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 100%);}
+
+.sign_in_btn {text-align: center;margin: 20px 0 0 0;}
+.SignBtn {background: #53B2E8;border: 1px solid #53B2E8;box-sizing: border-box;box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.12);
+    border-radius: 50px;min-width: 205px;max-height: 52px;line-height: 50px;text-align: center;color: #ffffff;font-weight: 600;font-size: 14px; margin: 0 auto;text-transform: capitalize;transition: 0.8s;}
+.SignBtn:hover {background: #53B2E8;}
+.SignBtn.cancel {background: transparent;border: 1px solid #53B2E8;color: #53B2E8;margin: 0 auto 0 16px;}
+.SignBtn.cancel:hover {background: #53B2E8;color: #ffffff;}
+
+.ask-join-botom-txt {margin-top: 30px;text-align: center;margin-bottom: 20px;}
+.ask-join-botom-txt p {font-family: 'Poppins';font-style: normal;font-weight: 400;font-size: 10px;line-height: 15px;letter-spacing: 0.01em;color: #494949;margin-bottom: 10px;}
+.ask-join-botom-txt p a {font-weight: 600;color: #53B2E8;}
+.copyright_text p {font-family: 'Poppins';font-style: normal;font-weight: 400;font-size: 12px;line-height: 18px;letter-spacing: 0.001em; color: #494949;margin-left: 30px;}
+
+.bg-imgs-rcc{
+  background-image: url(/assets/left-bg-5821.svg), url(/assets/right-bg-5822.svg);
+  background-position: left top, right top;
+  background-repeat: no-repeat, no-repeat;
+  background-color: #E2F5FF;
+}
+.ask-join-rcc {padding: 200px 90px 100px 90px;}
+.ask-join-rcc h2 {font-family: 'Poppins';font-style: normal;font-weight: 500;font-size: 34px;line-height: 130%;letter-spacing: 0.001em;color: #53B2E8;margin-bottom: 40px;}
+ul.ul-pci-info {position: relative;padding-left: 30px;}
+ul.ul-pci-info li::before {content: url(/assets/purple-tick-icon.svg);position: absolute;left: 0px;}
+ul.ul-pci-info li {font-family: 'Poppins';font-style: normal;font-weight: 500;font-size: 24px;line-height: 140%;letter-spacing: 0.001em;color: #53B2E8;margin-bottom: 30px;}
