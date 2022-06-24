@@ -49,9 +49,9 @@ export class BlogPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.blogsVisited = Number(this.cookies.get('blogsVisited'))
-    let regCount = this.blogsVisited + 1
-    this.cookies.set('blogsVisited', String(regCount), 30);
+    // this.blogsVisited = Number(this.cookies.get('blogsVisited'))
+    // let regCount = this.blogsVisited + 1
+    // this.cookies.set('blogsVisited', String(regCount), 30);
     window.scroll(0, 0);
     this.metaService()
   }

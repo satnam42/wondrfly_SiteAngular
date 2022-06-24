@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 import { MapsAPILoader } from '@agm/core';
 import { CookieService } from 'ngx-cookie-service';
 import { FormControl } from '@angular/forms';
+import { createCookies } from 'src/app/core/common/create-cookies';
 
 @Component({
   selector: 'app-landing',
@@ -47,6 +48,7 @@ export class LandingComponent implements OnInit {
   private geoCoder;
   cookiesData: string;
   activitySearched = 0
+  regWall = 0
   @ViewChild('search') searchElementRef: ElementRef;
   allData: any = [];
   searchTermlanding = new FormControl();
@@ -59,13 +61,17 @@ export class LandingComponent implements OnInit {
     public auth: AuthsService,
     private titleService: Title,
     private metaTagService: Meta,
-    private cookies: CookieService
+    private cookies: CookieService,
+    private createCookies:createCookies
   ) {
     this.activitySearched = Number(this.cookies.get('activitySearched'))
   }
   searchBySubCategory(data) {
-    let regCount = this.activitySearched + 1
-    this.cookies.set('activitySearched', String(regCount), 30);
+    if(!this.activitySearched){
+      this.activitySearched=1
+      this.cookies.set('activitySearched',String(this.activitySearched) );
+      this.createCookies.createCookie('regWall',1,4);
+    }
     // this.filterData.activityName = ''
     // this.filterData.lat = ''
     // this.filterData.lng = ''
@@ -82,8 +88,11 @@ export class LandingComponent implements OnInit {
   }
 
   searchByCategory(data) {
-    let regCount = this.activitySearched + 1
-    this.cookies.set('activitySearched', String(regCount), 30);
+    if(!this.activitySearched){
+      this.activitySearched=1
+      this.cookies.set('activitySearched',String(this.activitySearched) );
+      this.createCookies.createCookie('regWall',1,4);
+    }
     // this.filterData.activityName = ''
     // this.filterData.lat = ''
     // this.filterData.lng = ''
@@ -296,8 +305,11 @@ export class LandingComponent implements OnInit {
       this.router.navigate(["/provider/program-provider", data.name, data._id])
     }
     else {
-      let regCount = this.activitySearched + 1
-      this.cookies.set('activitySearched', String(regCount), 30);
+      if(!this.activitySearched){
+        this.activitySearched=1
+        this.cookies.set('activitySearched',String(this.activitySearched) );
+        this.createCookies.createCookie('regWall',1,4);
+      }
       let filter = ``
       switch (data.keywordType) {
         case 'category':
@@ -426,6 +438,11 @@ export class LandingComponent implements OnInit {
             }
           }
           if (filter) {
+            if(!this.activitySearched){
+              this.activitySearched=1
+              this.cookies.set('activitySearched',String(this.activitySearched) );
+              this.createCookies.createCookie('regWall',1,4);
+            }
             this.router
               .navigateByUrl("/", { skipLocationChange: true })
               .then(() => this.router.navigate(['/search'], {
@@ -453,4 +470,5 @@ export class LandingComponent implements OnInit {
         .then(() => this.router.navigate(['/search']));
     }
   }
+
 }

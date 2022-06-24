@@ -12,8 +12,9 @@ export class RegWallComponent implements OnInit {
   isShow: boolean;
   isLogin: boolean;
   activitySearched = 0
-  activityClicked = 0
-  blogsVisited = 0
+  // activityClicked = 0
+  // blogsVisited = 0
+  regWall = 0
   currentUser :any
   routeName=''
   isRegWall:boolean;
@@ -30,11 +31,16 @@ export class RegWallComponent implements OnInit {
     this.isRegWall =true
   }
   this.currentUser = this.auth.currentUser();
-  this.blogsVisited = Number(this.cookies.get('blogsVisited'))
-  this.activityClicked = Number(this.cookies.get('activityClicked'))
-  this.activitySearched = Number(this.cookies.get('activitySearched'))
-  if (this.activitySearched > 3 || this.activityClicked > 10 || this.blogsVisited>2) {
-    this.isShow = true
+  // this.blogsVisited = Number(this.cookies.get('blogsVisited'))
+  // this.activityClicked = Number(this.cookies.get('activityClicked'))
+  // this.activitySearched = Number(this.cookies.get('activitySearched'))
+  // if (this.activitySearched > 3 || this.activityClicked > 10 || this.blogsVisited>2) {
+  //   this.isShow = true
+  // }
+  this.regWall = Number(this.cookies.get('regWall'))
+    this.activitySearched = Number(this.cookies.get('activitySearched'))
+  if(!this.regWall && this.activitySearched){
+  this.isShow = true
   }
   if(this.currentUser){
     this.isLogin=true

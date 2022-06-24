@@ -22,7 +22,7 @@ export class CookiesPopupComponent implements OnInit {
   // ---accept coockies
    acceptCookies(){
       if(this.currentUser){
-      this.cookies.set('_ui', this.currentUser.id,30);
+      this.cookies.set('_ui', this.currentUser.id);
       }
       else{
         this.cookies.set('_ui', 'anonymous',30);

@@ -21,6 +21,7 @@ import { JoyrideModule } from 'ngx-joyride';
 import { CookieService } from 'ngx-cookie-service';
 import { ActiveUser } from './core/guards';
 import { MapTheme } from './core/common/map-theme';
+import { createCookies } from './core/common/create-cookies';
 
 const config: SocketIoConfig = { url: environment.socketUrl, options: {} };
 
@@ -54,6 +55,7 @@ const config: SocketIoConfig = { url: environment.socketUrl, options: {} };
     LocalStorageService,
     ChatService,
     Globals,
+    createCookies,
     CookieService,
     MapTheme
   ],

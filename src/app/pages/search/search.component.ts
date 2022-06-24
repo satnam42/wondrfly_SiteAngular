@@ -14,6 +14,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Globals } from 'src/app/core/common/imageLoader';
 import { MapTheme } from 'src/app/core/common/map-theme';
+import { createCookies } from 'src/app/core/common/create-cookies';
 @Component({
   selector: 'search',
   templateUrl: './search.component.html',
@@ -179,9 +180,10 @@ export class SearchComponent implements OnInit, OnDestroy {
     private joyride: JoyrideService,
     private ngxLoader: NgxUiLoaderService,
     public globalFunc: Globals,
-    public mapTheme: MapTheme
+    public mapTheme: MapTheme,
+    private createCookies:createCookies
   ) {
-    this.activityClicked = Number(this.cookies.get('activityClicked'))
+    // this.activityClicked = Number(this.cookies.get('activityClicked'))
     this.activitySearched = Number(this.cookies.get('activitySearched'))
     // let regCount = this.activitySearched + 1
     // this.cookies.set('activitySearched', String(regCount), 30);
@@ -1055,6 +1057,11 @@ export class SearchComponent implements OnInit, OnDestroy {
     }
     this.ngxLoader.start()
     this.apiservice.programFilter(filter, 1, pageSize).subscribe((res: any) => {
+      if(!this.activitySearched && !this.isLogin){
+        this.activitySearched=1
+        this.cookies.set('activitySearched',String(this.activitySearched) );
+        this.createCookies.createCookie('regWall',1,4);
+      }
       this.showReset = true
       if (res.isSuccess) {
         // this.isTopFilterCheckBox = false

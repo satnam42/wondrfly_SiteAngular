@@ -3,6 +3,7 @@ import { Component, ElementRef, NgZone, OnInit, ViewChild } from "@angular/core"
 import { FormControl } from "@angular/forms";
 import { Router } from "@angular/router";
 import { CookieService } from "ngx-cookie-service";
+import { createCookies } from "../../common/create-cookies";
 import { ApiService } from "../../services/api.service.service";
 import { DataService } from "../../services/dataservice.service ";
 
@@ -156,6 +157,7 @@ export class Header2Component implements OnInit {
     public dataservice: DataService,
     private ngZone: NgZone,
     private cookies: CookieService,
+    private createCookies:createCookies
   ) {
     this.activitySearched = Number(this.cookies.get('activitySearched'))
     this.routeName = this.router.url;
@@ -180,8 +182,11 @@ export class Header2Component implements OnInit {
   }
   // search by sub category
   searchBySubCategory(id) {
-    let regCount = this.activitySearched + 1
-    this.cookies.set('activitySearched', String(regCount), 30);
+    if(!this.activitySearched){
+      this.activitySearched=1
+      this.cookies.set('activitySearched',String(this.activitySearched) );
+      this.createCookies.createCookie('regWall',1,4);
+    }
     this.filterData.activityName = ''
     this.filterData.lat = ''
     this.filterData.lng = ''
@@ -224,8 +229,11 @@ export class Header2Component implements OnInit {
   }
   // activity search by sub category
   searchByCategory(id) {
-    let regCount = this.activitySearched + 1
-    this.cookies.set('activitySearched', String(regCount), 30);
+    if(!this.activitySearched){
+      this.activitySearched=1
+      this.cookies.set('activitySearched',String(this.activitySearched) );
+      this.createCookies.createCookie('regWall',1,4);
+    }
     this.filterData.activityName = ''
     this.filterData.categoryId = id
     this.filterData.subcatId = ''
@@ -449,6 +457,11 @@ export class Header2Component implements OnInit {
             }
           }
           if (filter) {
+            if(!this.activitySearched){
+              this.activitySearched=1
+              this.cookies.set('activitySearched',String(this.activitySearched) );
+              this.createCookies.createCookie('regWall',1,4);
+            }
             this.router
               .navigateByUrl("/", { skipLocationChange: true })
               .then(() => this.router.navigate(['/search'], {
