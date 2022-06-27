@@ -512,7 +512,7 @@
                                         </div>
                                         <div class="left-icon-h2 map-with-heading-h2">
                                             <div class="tooltip-div map-h2-tooltip">
-                                                <h2>
+                                                <h2 (mouseover)="coordinates.lat=+provider.user[0].lat;coordinates.lng=+provider.user[0].lng;centerChange(coordinates);provider.activeMarker=true" (mouseout)="provider.activeMarker=false">
                                                     {{provider.user[0].firstName}}
                                                     <span class="tooltip-text">{{provider.user[0].firstName}}</span>
                                                 </h2>
@@ -1308,7 +1308,7 @@
                         [usePanning]="true" [fitBounds]="true" [latitude]="lat" [longitude]="lng"
                         (mapClick)="mapClicked(previous)">
                         <div *ngFor="let data of providerProgram;let providerIndx = index">
-                            <agm-marker *ngIf="data.user[0]?.lat && data?.user[0]?.lng" [iconUrl]="markerUrl"
+                            <agm-marker *ngIf="data.user[0]?.lat && data?.user[0]?.lng" [iconUrl]="data?.activeMarker?activeMarkerUrl:markerUrl"
                                 (markerClick)="clickedMarker(previous)" [latitude]="data?.user[0]?.lat"
                                 [longitude]="data?.user[0]?.lng" [agmFitBounds]="true">
                                 <agm-info-window #previous>

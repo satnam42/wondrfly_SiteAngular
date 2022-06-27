@@ -51,6 +51,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   providersBySearch: any = new User;
   userData: any = {};
   markerUrl = 'assets/location.svg';
+  activeMarkerUrl='assets/activemarker.svg';
   pageNo: number = 1;
   pageSize: number = 15;
   programs: any = [];
@@ -1097,7 +1098,6 @@ export class SearchComponent implements OnInit, OnDestroy {
         this.startTour()
         this.isScrol = false;
       }
-      var filterObj = JSON.parse('{"' + filter.replace(/&/g, '","').replace(/=/g, '":"') + '"}', function (key, value) { return key === "" ? value : decodeURIComponent(value) })
     });
     // }
     // else {

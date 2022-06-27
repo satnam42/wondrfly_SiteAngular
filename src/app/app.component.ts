@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
   envName: string;
   currentOS = null;
   cookiesData: string;
-  versionData:string = '0.0.1'
+  versionData:string = '0.0.2'
   constructor(
     private canonicalService: CanonicalService,
     private deviceService: DeviceDetectorService,
