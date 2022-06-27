@@ -49,7 +49,7 @@ export class LoginParentComponent implements OnInit {
   markerUrl = 'assets/location.svg';
   private geoCoder;
   progressBarVaue = 25;
-  zoom: number = 2;
+  zoom: number = 12;
   latitude: Number;
   longitude: Number;
   @ViewChild('search', { static: false }) searchElementRef: ElementRef;
@@ -74,6 +74,7 @@ export class LoginParentComponent implements OnInit {
   ) {
     var retrievedObject = localStorage.getItem('CurrentUserWondrfly');
     this.parent = JSON.parse(retrievedObject);
+    console.log(this.parent)
   }
   logo() {
     this.router.navigate(['/search']);
@@ -423,6 +424,10 @@ export class LoginParentComponent implements OnInit {
       dob: new FormControl('', [Validators.required]),
       fromWhereYouHeard: new FormControl('', [Validators.required]),
     });
+    this.latitude = +this.parent.lat
+    this.longitude = +this.parent.lng
+    this.locationForm.value.location = this.parent.addressLine1
+    this.locationForm.value.addressLine1 = this.parent.addressLine1
     this.mapsAPILoader.load().then(() => {
       this.geoCoder = new google.maps.Geocoder;
       var options = {

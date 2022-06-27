@@ -51,11 +51,7 @@
                             </div>
                         </div>
                         <div class="col-6">
-                            <div [ngClass]="{
-                  disable_next:
-                    !locationForm.value.location ||
-                    !locationForm.value.addressLine1
-                }" (click)="nextStep()" class="next_btn cursor">
+                            <div  (click)="nextStep()" class="next_btn cursor">
                                 <a> Next </a>
                             </div>
                         </div>
