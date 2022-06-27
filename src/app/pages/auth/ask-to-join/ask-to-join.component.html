@@ -18,16 +18,16 @@
                                                 <label>Full Name</label>
                                                 <div class="input_outer">
                                                     <input type="text" class="form-control" placeholder="Enter Name" [formControl]="parentForm.controls['name']" [(ngModel)]="userData.firstName">
-                                                    <p class="cant_blank" *ngIf="parentForm.controls['name'].hasError('required') && parentForm.controls['name'].touched">
-                                                        Can't Leave It Blank</p>
+                                                    <!-- <p class="cant_blank" *ngIf="parentForm.controls['name'].hasError('required') && parentForm.controls['name'].touched">
+                                                        Can't Leave It Blank</p> -->
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label>Email</label>
                                                 <div class="input_outer">
                                                     <input type="text" class="form-control" placeholder="Enter Email" [formControl]="parentForm.controls['email']" [(ngModel)]="userData.email">
-                                                    <p class="cant_blank" *ngIf="parentForm.controls['email'].hasError('required') && parentForm.controls['email'].touched">
-                                                        Can't Leave It Blank</p>
+                                                    <!-- <p class="cant_blank" *ngIf="parentForm.controls['email'].hasError('required') && parentForm.controls['email'].touched">
+                                                        Can't Leave It Blank</p> -->
                                                     <p class="cant_blank" *ngIf="parentForm.controls['email'].hasError('email') && parentForm.controls['email'].touched">
                                                         Invalid Email Address</p>
                                                 </div>
@@ -39,8 +39,8 @@
                                                     <mat-icon class="field-icon" *ngIf="hide" (click)="onPassword()"><i class="far fa-eye"></i></mat-icon>
                                                     <mat-icon class="field-icon" *ngIf="!hide" (click)="onPassword()"> <i class="far fa-eye-slash"></i></mat-icon>
 
-                                                    <p class="cant_blank" *ngIf="parentForm.controls['password'].hasError('required') && parentForm.controls['password'].touched">
-                                                        Can't Leave It Blank</p>
+                                                    <!-- <p class="cant_blank" *ngIf="parentForm.controls['password'].hasError('required') && parentForm.controls['password'].touched">
+                                                        Can't Leave It Blank</p> -->
 
                                                 </div>
                                             </div>
@@ -48,8 +48,8 @@
                                                 <label>I’m looking for kids’ activities in...</label>
                                                 <div class="input_outer">
                                                     <input type="text" class="form-control" placeholder="Your Location" (keydown.enter)="$event.preventDefault()" autocorrect="off" autocapitalize="off" spellcheck="off" #search value="" formControlName="lookingkidsActivityIn">
-                                                    <p class="cant_blank" *ngIf="parentForm.controls['lookingkidsActivityIn'].hasError('required') && parentForm.controls['lookingkidsActivityIn'].touched">
-                                                        Can't Leave It Blank</p>
+                                                    <!-- <p class="cant_blank" *ngIf="parentForm.controls['lookingkidsActivityIn'].hasError('required') && parentForm.controls['lookingkidsActivityIn'].touched">
+                                                        Can't Leave It Blank</p> -->
                                                 </div>
                                             </div>
                                             <div class="form-group choose-acti">
@@ -57,8 +57,8 @@
                                                 <div class="input_outer" data-toggle="collapse" data-target="#choose-activ">
                                                     <input type="text" class="form-control" readonly placeholder="Select" [formControl]="parentForm.controls['bookedActivityFor']" [(ngModel)]="userData.bookedActivityFor">
                                                     <img src="assets/downarrow.png" alt="" id="image-downArrow">
-                                                    <p class="cant_blank" *ngIf="parentForm.controls['bookedActivityFor'].hasError('required') && parentForm.controls['bookedActivityFor'].touched">
-                                                        Can't Leave It Blank</p>
+                                                    <!-- <p class="cant_blank" *ngIf="parentForm.controls['bookedActivityFor'].hasError('required') && parentForm.controls['bookedActivityFor'].touched">
+                                                        Can't Leave It Blank</p> -->
                                                 </div>
                                                 <div class="collapse dropdown-activities cursor" data-toggle="collapse" data-target="#choose-activ" id="choose-activ">
                                                     <h6 (click)="userData.bookedActivityFor='My kids'">My kids</h6>
@@ -93,8 +93,8 @@
                                                 <div class="input_outer" data-toggle="collapse" data-target="#choose-activ">
                                                     <input type="text" class="form-control" readonly placeholder="Choose" [formControl]="parentForm.controls['wantWondrflyBetaUserBecause']" [(ngModel)]="userData.wantWondrflyBetaUserBecause">
                                                     <img src="assets/downarrow.png" alt="" id="image-downArrow">
-                                                    <p class="cant_blank" *ngIf="parentForm.controls['wantWondrflyBetaUserBecause'].hasError('required') && parentForm.controls['wantWondrflyBetaUserBecause'].touched">
-                                                        Can't Leave It Blank</p>
+                                                    <!-- <p class="cant_blank" *ngIf="parentForm.controls['wantWondrflyBetaUserBecause'].hasError('required') && parentForm.controls['wantWondrflyBetaUserBecause'].touched">
+                                                        Can't Leave It Blank</p> -->
                                                 </div>
                                                 <div class="collapse dropdown-activities cursor" data-toggle="collapse" data-target="#choose-activ" id="choose-activ">
                                                     <h6 (click)="userData.wantWondrflyBetaUserBecause='I want to find the best kids activities near me'">I want to find the best kids' activities near me</h6>
@@ -108,9 +108,9 @@
                                         </label>
                                                 <div class="input_outer">
                                                     <textarea type="text" class="form-control" placeholder="e.g. Stay-at-home Parent, Designer, Consultant,  Etc." [formControl]="parentForm.controls['occupation']" [(ngModel)]="userData.occupation"></textarea>
-                                                    <p class="cant_blank" *ngIf="parentForm.controls['occupation'].hasError('required') && parentForm.controls['occupation'].touched">
-                                                        Can't Leave It Blank</p>
-                                                </div>
+                                                    <!-- <p class="cant_blank" *ngIf="parentForm.controls['occupation'].hasError('required') && parentForm.controls['occupation'].touched">
+                                                        Can't Leave It Blank</p> -->
+                                                </div>  
                                             </div>
                                             <div class="checkbox-ask">
                                                 <div class="form-check">
