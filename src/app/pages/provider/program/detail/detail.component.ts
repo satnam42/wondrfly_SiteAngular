@@ -19,6 +19,7 @@ import { AnimationOptions } from 'ngx-lottie';
 import { AnimationItem } from 'lottie-web';
 import { createEvent, download } from './event-download.utils';
 import { MapTheme } from 'src/app/core/common/map-theme';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',
@@ -241,7 +242,8 @@ export class DetailComponent implements OnInit {
     public auth: AuthsService,
     public globalFunc: Globals,
     private dataService: DataService,
-    public mapTheme: MapTheme) {
+    public mapTheme: MapTheme,
+    private toastr:ToastrService) {
     this.user = JSON.parse(localStorage.getItem('CurrentUserWondrfly'));
     if (this.user) {
       this.isLogin = true;
@@ -369,10 +371,13 @@ export class DetailComponent implements OnInit {
   getProgramById() {
     this.events = []
     this.ngxLoader.start();
-    this.apiservice.getProgramById(this.program.id).subscribe(res => {
+    this.apiservice.getProgramById(this.program.id).subscribe((res:any) => {
       this.ngxLoader.stop();
       this.program = res
-      let keywords = []
+      if(res.error){
+        this.toastr.error('Activity Not Found!')
+      }   
+         let keywords = []
       for (let category of this.program.category) {
         keywords.push(category.name)
       }

@@ -1,7 +1,7 @@
 <body>
     <app-header2 *ngIf="!isLogin"></app-header2>
     <app-header *ngIf="isLogin"></app-header>
-    <section class="main_outer common-headermargin">
+    <section *ngIf="!program.error" class="main_outer common-headermargin">
         <div class="program_outer">
             <div class="container">
                 <div class="row">
@@ -1451,7 +1451,7 @@
         </div>
     </section>
 
-    <app-footer2></app-footer2>
+    <app-footer2 *ngIf="!program.error" ></app-footer2>
 </body>
 
 

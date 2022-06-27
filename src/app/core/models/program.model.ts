@@ -58,4 +58,5 @@ export class Program {
     joiningLink: string;
     isDateNotMention:boolean;
     isTimeNotMention:Boolean;
+    error:any;
 }

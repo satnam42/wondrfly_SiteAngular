@@ -8,7 +8,7 @@ import { Category, Program, User } from 'src/app/core/models';
 import { AuthsService } from 'src/app/core/services/auths.service';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { Meta, Title } from '@angular/platform-browser';
-import { ToastrService } from 'ngx-toastr';
+import { Toast, ToastrService } from 'ngx-toastr';
 import { DataService } from 'src/app/core/services/dataservice.service ';
 import { environment } from 'src/environments/environment.prod';
 import { Globals } from 'src/app/core/common/imageLoader';
@@ -207,7 +207,8 @@ export class ProgramProviderComponent implements OnInit {
     private metaTagService: Meta,
     private dataService: DataService,
     public globalFunc: Globals,
-    public mapTheme: MapTheme) {
+    public mapTheme: MapTheme,
+    private toastr:ToastrService) {
     this.scrollToActivities = this.dataService.getScrollToActivities()
     this.activatedRoute.params.subscribe(params => {
       this.user.id = params['id'];
@@ -234,7 +235,11 @@ export class ProgramProviderComponent implements OnInit {
   getProviderById() {
     this.ngxLoader.start();
     this.apiservice.getUserById(this.user.id).subscribe((res: any) => {
+      this.ngxLoader.stop();
       this.user = res.data;
+      if(!this.user){
+        this.toastr.error('Provider Not Found!')
+      }
       for (let health of this.user.healthAndSafety) {
         if (health.socialDistancing) {
           this.health_safety[1].status = 'active';

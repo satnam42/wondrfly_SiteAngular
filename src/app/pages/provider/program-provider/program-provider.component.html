@@ -3,7 +3,7 @@
     <app-header2 *ngIf="!isLogin"></app-header2>
     <app-header *ngIf="isLogin"></app-header>
     <!-- <app-alert *ngIf="isLogin"></app-alert> -->
-    <div class="main_outer common-headermargin">
+    <div *ngIf="user" class="main_outer common-headermargin">
         <div class="program_outer">
             <div class="container">
                 <div class="provider_profile">
@@ -1058,12 +1058,11 @@ out of 5 </a> -->
             </div>
         </div>
     </div>
-
     <ngx-ui-loader [fgsTemplate]="foregroundSpinner" fgsSize="190" bgsSize="190"> </ngx-ui-loader>
     <ng-template #foregroundSpinner>
         <app-loader-file></app-loader-file>
     </ng-template>
 
-    <app-footer2></app-footer2>
+    <app-footer2 *ngIf="user"></app-footer2>
 </body>
 <reg-wall></reg-wall>
