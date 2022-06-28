@@ -615,13 +615,23 @@ export class HeaderComponent implements OnInit {
           } else {
             this.router
               .navigateByUrl("/", { skipLocationChange: true })
-              .then(() => this.router.navigate(['/search']));
+              .then(() => this.router.navigate(['/search'], {
+                queryParams: {
+                  filter:  `keyword=${txt}`
+
+                }
+              }));
           }
 
         } else {
           this.router
-            .navigateByUrl("/", { skipLocationChange: true })
-            .then(() => this.router.navigate(['/search']));
+          .navigateByUrl("/", { skipLocationChange: true })
+          .then(() => this.router.navigate(['/search'], {
+            queryParams: {
+              filter:  `keyword=${txt}`
+
+            }
+          }));
         }
       })
     }

@@ -1053,6 +1053,12 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
   programFilter(filter) {
     let pageSize = 50;
+    if((this.filterObj.hasOwnProperty('keyword'))){
+      this.showReset = true
+      this.isLoaded = true
+       this.providerProgram=[]
+       return
+    }
     if (this.filterObj.hasOwnProperty('lat') && this.filterObj.hasOwnProperty('lng')) {
       pageSize = 5
     }

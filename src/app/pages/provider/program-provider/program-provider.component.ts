@@ -293,7 +293,7 @@ export class ProgramProviderComponent implements OnInit {
     this.isLoaded = false;
     window.scroll(0, 0);
     this.ngxLoader.start()
-    await this.apiservice.getProgramByProvider(this.user.id, this.pageNo, 200).subscribe((res) => {
+    await this.apiservice.getProgramByProvider(this.user.id, this.pageNo, 300).subscribe((res) => {
       this.programs = res
       this.programs.map(program => program.category.map(category => {
         let found = this.userCategories.find(el => el.name == category.name)
