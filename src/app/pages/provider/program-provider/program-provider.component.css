@@ -932,6 +932,7 @@ button.map-buttonas {
  
 .skill_flex{
 display: flex;
+flex-wrap: wrap;
 }
 /* list -view css */
 h2.provider_name span.provider-heading-h2 {
